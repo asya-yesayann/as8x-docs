@@ -32,6 +32,38 @@ public async Task<DataSourceResult<R>> Execute(P param, HashSet<string> columns 
 ```
 
 ---
+## MakeSQLCommand(DataSourceArgs<P>, CancellationToken)
+
+Այս մեթոդը անհրաժեշտ է գերբեռնել այն դեպքում, երբ որ ունենք sql-based տվյալների աղբյուր։ Այս մեթոդը ձևավորում ենք տվյալների աղբյուրի տվյալների լրացման համար անհրաժեշտ sql հարցումը ու այն վերադարձնել։
+
+```c#
+protected virtual Task<SqlCommand> MakeSQLCommand(DataSourceArgs<P> args, CancellationToken stoppingToken)
+```
+
+## BeforeExecuteSQLCommand(DataSourceArgs<P>, CancellationToken)
+
+???
+
+```c#
+protected virtual Task BeforeExecuteSQLCommand(DataSourceArgs<P> args, CancellationToken stoppingToken)
+```
+
+## AfterExecuteSQLCommand(DataSourceArgs<P>, SqlDataReader)
+
+Այս մեթոդը անհրաժեշտ է գերբեռնել եթե sql-based տվյալների աղբյուրի sql հարցման կատարումից հետո անհրաժեշտ է ստանալ հարցման սյուների պարունակությունը:
+
+```c#
+protected virtual void AfterExecuteSQLCommand(DataSourceArgs<P> args, SqlDataReader reader)
+```
+
+## ProcessRow(DataSourceArgs<P>, R, SqlDataReader)
+
+Հանդիսանում է AfterDataReaderClose համարժեքը, եթե տվյալների տողերի հավելյալ մշակման համար անհրաժեշտ չէ կատարել լրացուցիչ sql հարցումներ հավելյալ ինֆորմացիա ստանալու համար։
+
+```c#
+protected virtual bool ProcessRow(DataSourceArgs<P> args, R row, SqlDataReader reader)
+```
+
 
 ## AfterDataReaderClose(DataSourceArgs<P>, CancellationToken)
 
@@ -47,6 +79,14 @@ protected virtual Task AfterDataReaderClose(DataSourceArgs<P> args, Cancellation
 
 ```c#
 protected virtual Task<bool> AfterDataReaderClose(DataSourceArgs<P> args, R row)
+```
+
+## GetExecutionPhases()
+
+Վերադարձնում է տվյալների աղբյուրի կատարման փուլերը։
+
+```c#
+public virtual IEnumerable<DataSourceExecutionPhase> GetExecutionPhases()
 ```
 
 # Հատկություններ
