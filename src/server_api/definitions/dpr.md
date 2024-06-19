@@ -47,7 +47,7 @@ public DataSourceExecutionProgress Progress { get; }
 
 ## DPRType
 
-Վերադարձնում է Dpr-ի տեսակը։
+Վերադարձնում է DPR-ի տեսակը։
 
 ```c#
 public DPRType DPRType { get; private set; }
@@ -56,7 +56,7 @@ public DPRType DPRType { get; private set; }
 
 ## IsCancellationSupported
 
-Ցույց է տալիս թե Dpr-ի կատարումը սատարում է չեղարկումը(cancellation) թե ոչ
+Ցույց է տալիս թե DPR-ի կատարումը սատարում է չեղարկումը(cancellation) թե ոչ
 
 ```c#
        public virtual bool IsCancellationSupported { get { return true; } }
@@ -64,7 +64,7 @@ public DPRType DPRType { get; private set; }
 
 ## PhasesCount
 
-Ցույց է տալիս է Dpr-ի կատարման փուլերի քանակը:
+Ցույց է տալիս է DPR-ի կատարման փուլերի քանակը:
 
 ```c#
       public virtual short PhasesCount { get { return 1; } }
@@ -73,11 +73,11 @@ public DPRType DPRType { get; private set; }
 
 # Մեթոդներ
 
-## AddRow(R)
+## public abstract Task<R> Execute(P, CancellationToken);
 
-Ավելացնում է տող տվյալների աղբյուրի տողերի ցուցակում:
+Կատարում է DPR-ը:
 
 ```c#
-protected void AddRow(R row)
+public abstract Task<R> Execute(P p, CancellationToken stoppingToken);
 ```
 
