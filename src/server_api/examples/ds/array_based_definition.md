@@ -42,13 +42,13 @@ public class ApiClientInfo : DataSource<ApiClientInfo.DataRow, NoParam>
        }
 ```
 Կոնստրուկտորում անհրաժեշտ է ձևավորել տվյալների աղբյուրի սխեման, որը պարունակում է ամբողջական ինֆորմացիա տվյալների աղբյուրի սյուների ու պարամետրերի մասին։
-Դա անելու համար անհրաժեշտ է base դասի Schema հատկությանը վերագրել Schema դասի նոր օբյեկտ։
+Դա անելու համար անհրաժեշտ է base դասի Schema հատկությանը վերագրել [Schema](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#schema) դասի նոր օբյեկտ։
 
 ```c#
             this.Schema = new Schema(this.Name, ConstantsArmenian.ProcessingMode.ToArmenianANSICached(), ConstantsEnglish.ProcessingMode, typeof(DataRow), typeof(Param));
 ```
 
-- Հետո անհրաժեշտ է սխեմայում ավելացնել տվյալների աղբյուրի սյուների նկարագրությունները Schema դասի `AddColumn` մեթոդի միջոցով։
+- Հետո անհրաժեշտ է սխեմայում ավելացնել տվյալների աղբյուրի սյուների նկարագրությունները Schema դասի [AddColumn](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addcolumn) մեթոդի միջոցով։
 
 ```c#
             this.Schema.AddColumn(nameof(DataRow.CODE), "0", ConstantsArmenian.Code.ToArmenianANSICached(), ConstantsEnglish.Code, FieldTypeProvider.GetNumericFieldType(3), true);
@@ -56,7 +56,7 @@ public class ApiClientInfo : DataSource<ApiClientInfo.DataRow, NoParam>
                         , showType: FieldTypeProvider.GetStringFieldType(DSConstantsLength.PrModeDescShow));
 ```
 
-Եթե տվյալների աղբյուրը պարունակում է պարամետրեր, ապա սխեմայում անհրաժեշտ է ավելացնել նաև պարամետրերի նկարագրությունը Schema դասի `AddParam` մեթոդի միջոցով։
+Եթե տվյալների աղբյուրը պարունակում է պարամետրեր, ապա սխեմայում անհրաժեշտ է ավելացնել նաև պարամետրերի նկարագրությունը Schema դասի [AddParam](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addparam) մեթոդի միջոցով։
 
 ```c#
             this.Schema.AddParam(nameof(Param.SourceType), ConstantsArmenian.Type.ToArmenianANSICached(), FieldTypeProvider.GetNumericFieldType(2), eDescription: ConstantsEnglish.Type);
