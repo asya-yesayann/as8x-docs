@@ -5,90 +5,6 @@ title: "Տվյալների աղբյուրի նկարագրություն"
 
 # Տվյալների աղբյուրի նկարագրություն
 
-# Մեթոդներ
-
-## AddRow(R)
-
-Ավելացնում է տող տվյալների աղբյուրի տողերի ցուցակում:
-
-```c#
-protected void AddRow(R row)
-```
-
-## Execute(DataSourceArgs<P>, CancellationToken, IExtender)
-
-Կատարում է տվյալների աղբյուրը:
-
-```c#
-public async Task<DataSourceResult<R>> Execute(DataSourceArgs<P> args, CancellationToken stoppingToken, IExtender extender = null)
-```
-
-## Execute(P, HashSet<string>, IExtender, CancellationToken )
-
-Կատարում է տվյալների աղբյուրը:
-
-```c#
-public async Task<DataSourceResult<R>> Execute(P param, HashSet<string> columns = null, IExtender extender = null, CancellationToken stoppingToken = default)
-```
-
----
-## MakeSQLCommand(DataSourceArgs<P>, CancellationToken)
-
-Այս մեթոդը անհրաժեշտ է գերբեռնել այն դեպքում, երբ որ ունենք sql-based տվյալների աղբյուր։ Այս մեթոդը ձևավորում ենք տվյալների աղբյուրի տվյալների լրացման համար անհրաժեշտ sql հարցումը ու այն վերադարձնել։
-
-```c#
-protected virtual Task<SqlCommand> MakeSQLCommand(DataSourceArgs<P> args, CancellationToken stoppingToken)
-```
-
-## BeforeExecuteSQLCommand(DataSourceArgs<P>, CancellationToken)
-
-???
-
-```c#
-protected virtual Task BeforeExecuteSQLCommand(DataSourceArgs<P> args, CancellationToken stoppingToken)
-```
-
-## AfterExecuteSQLCommand(DataSourceArgs<P>, SqlDataReader)
-
-Այս մեթոդը անհրաժեշտ է գերբեռնել եթե sql-based տվյալների աղբյուրի sql հարցման կատարումից հետո անհրաժեշտ է ստանալ հարցման սյուների պարունակությունը:
-
-```c#
-protected virtual void AfterExecuteSQLCommand(DataSourceArgs<P> args, SqlDataReader reader)
-```
-
-## ProcessRow(DataSourceArgs<P>, R, SqlDataReader)
-
-Հանդիսանում է AfterDataReaderClose համարժեքը, եթե տվյալների տողերի հավելյալ մշակման համար անհրաժեշտ չէ կատարել լրացուցիչ sql հարցումներ հավելյալ ինֆորմացիա ստանալու համար։
-
-```c#
-protected virtual bool ProcessRow(DataSourceArgs<P> args, R row, SqlDataReader reader)
-```
-
-
-## AfterDataReaderClose(DataSourceArgs<P>, CancellationToken)
-
-Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է գերբեռնել այս մեթոդը՝ նախապես գերբեռնելով AfterDataReaderCloseMode՝ը որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որով ասում ենք որ AfterDataReaderClose մեթոդը կանչվելու է յուրաքանչյուր տողի համար։
-
-```c#
-protected virtual Task AfterDataReaderClose(DataSourceArgs<P> args, CancellationToken stoppingToken)
-```
-
-## AfterDataReaderClose(DataSourceArgs<P>, R)
-
-Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է գերբեռնել այս մեթոդը՝ նախապես գերբեռնելով AfterDataReaderCloseMode՝ը որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որով ասում ենք որ AfterDataReaderClose մեթոդը կանչվելու է յուրաքանչյուր տողի համար։
-
-```c#
-protected virtual Task<bool> AfterDataReaderClose(DataSourceArgs<P> args, R row)
-```
-
-## GetExecutionPhases()
-
-Վերադարձնում է տվյալների աղբյուրի կատարման փուլերը։
-
-```c#
-public virtual IEnumerable<DataSourceExecutionPhase> GetExecutionPhases()
-```
-
 # Հատկություններ
 
 ## Name
@@ -222,3 +138,87 @@ public virtual bool IsUpdatable
        }
 ```
 ---
+
+# Մեթոդներ
+
+## AddRow(R)
+
+Ավելացնում է տող տվյալների աղբյուրի տողերի ցուցակում:
+
+```c#
+protected void AddRow(R row)
+```
+
+## Execute(DataSourceArgs<P>, CancellationToken, IExtender)
+
+Կատարում է տվյալների աղբյուրը:
+
+```c#
+public async Task<DataSourceResult<R>> Execute(DataSourceArgs<P> args, CancellationToken stoppingToken, IExtender extender = null)
+```
+
+## Execute(P, HashSet<string>, IExtender, CancellationToken )
+
+Կատարում է տվյալների աղբյուրը:
+
+```c#
+public async Task<DataSourceResult<R>> Execute(P param, HashSet<string> columns = null, IExtender extender = null, CancellationToken stoppingToken = default)
+```
+
+---
+## MakeSQLCommand(DataSourceArgs<P>, CancellationToken)
+
+Այս մեթոդը անհրաժեշտ է գերբեռնել այն դեպքում, երբ որ ունենք sql-based տվյալների աղբյուր։ Այս մեթոդը ձևավորում ենք տվյալների աղբյուրի տվյալների լրացման համար անհրաժեշտ sql հարցումը ու այն վերադարձնել։
+
+```c#
+protected virtual Task<SqlCommand> MakeSQLCommand(DataSourceArgs<P> args, CancellationToken stoppingToken)
+```
+
+## BeforeExecuteSQLCommand(DataSourceArgs<P>, CancellationToken)
+
+Նախատեսված է տվյալների աղբյուրի կատարումից առաջ նախապատրաստական աշխատանքներ կատարելու համար()
+
+```c#
+protected virtual Task BeforeExecuteSQLCommand(DataSourceArgs<P> args, CancellationToken stoppingToken)
+```
+
+## AfterExecuteSQLCommand(DataSourceArgs<P>, SqlDataReader)
+
+Այս մեթոդը անհրաժեշտ է գերբեռնել եթե sql-based տվյալների աղբյուրի sql հարցման կատարումից հետո անհրաժեշտ է ստանալ հարցման սյուների պարունակությունը:
+
+```c#
+protected virtual void AfterExecuteSQLCommand(DataSourceArgs<P> args, SqlDataReader reader)
+```
+
+## ProcessRow(DataSourceArgs<P>, R, SqlDataReader)
+
+Հանդիսանում է AfterDataReaderClose համարժեքը, եթե տվյալների տողերի հավելյալ մշակման համար անհրաժեշտ չէ կատարել լրացուցիչ sql հարցումներ հավելյալ ինֆորմացիա ստանալու համար։
+
+```c#
+protected virtual bool ProcessRow(DataSourceArgs<P> args, R row, SqlDataReader reader)
+```
+
+
+## AfterDataReaderClose(DataSourceArgs<P>, CancellationToken)
+
+Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է գերբեռնել այս մեթոդը՝ նախապես գերբեռնելով AfterDataReaderCloseMode՝ը որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որով ասում ենք որ AfterDataReaderClose մեթոդը կանչվելու է յուրաքանչյուր տողի համար։
+
+```c#
+protected virtual Task AfterDataReaderClose(DataSourceArgs<P> args, CancellationToken stoppingToken)
+```
+
+## AfterDataReaderClose(DataSourceArgs<P>, R)
+
+Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է գերբեռնել այս մեթոդը՝ նախապես գերբեռնելով AfterDataReaderCloseMode՝ը որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որով ասում ենք որ AfterDataReaderClose մեթոդը կանչվելու է յուրաքանչյուր տողի համար։
+
+```c#
+protected virtual Task<bool> AfterDataReaderClose(DataSourceArgs<P> args, R row)
+```
+
+## GetExecutionPhases()
+
+Վերադարձնում է տվյալների աղբյուրի կատարման փուլերը։
+
+```c#
+public virtual IEnumerable<DataSourceExecutionPhase> GetExecutionPhases()
+```
