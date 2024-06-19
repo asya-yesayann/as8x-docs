@@ -7,6 +7,48 @@ title: "Տվյալների աղբյուրի նկարագրություն"
 
 # Մեթոդներ
 
+## AddRow(R)
+
+Ավելացնում է տող տվյալների աղբյուրի տողերի ցուցակում:
+
+```c#
+protected void AddRow(R row)
+```
+
+## Execute(DataSourceArgs<P>, CancellationToken, IExtender)
+
+Կատարում է տվյալների աղբյուրը:
+
+```c#
+public async Task<DataSourceResult<R>> Execute(DataSourceArgs<P> args, CancellationToken stoppingToken, IExtender extender = null)
+```
+
+## Execute(P, HashSet<string>, IExtender, CancellationToken )
+
+Կատարում է տվյալների աղբյուրը:
+
+```c#
+public async Task<DataSourceResult<R>> Execute(P param, HashSet<string> columns = null, IExtender extender = null, CancellationToken stoppingToken = default)
+```
+
+---
+
+## AfterDataReaderClose(DataSourceArgs<P>, CancellationToken)
+
+Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է գերբեռնել այս մեթոդը՝ նախապես գերբեռնելով AfterDataReaderCloseMode՝ը որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որով ասում ենք որ AfterDataReaderClose մեթոդը կանչվելու է յուրաքանչյուր տողի համար։
+
+```c#
+protected virtual Task AfterDataReaderClose(DataSourceArgs<P> args, CancellationToken stoppingToken)
+```
+
+## AfterDataReaderClose(DataSourceArgs<P>, R)
+
+Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է գերբեռնել այս մեթոդը՝ նախապես գերբեռնելով AfterDataReaderCloseMode՝ը որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որով ասում ենք որ AfterDataReaderClose մեթոդը կանչվելու է յուրաքանչյուր տողի համար։
+
+```c#
+protected virtual Task<bool> AfterDataReaderClose(DataSourceArgs<P> args, R row)
+```
+
 # Հատկություններ
 
 ## Name
