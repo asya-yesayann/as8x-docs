@@ -82,8 +82,10 @@ namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
 }
 ```
 Վերևում բերված ֆայլը պարունակում է վարկային պայմանագրի քաղվածքում կիրառվող լրացուցիչ պարամետրերի հաշվարկման համար նախատեսված դասը։ Այն կարելի է օգտագործել որպես ձևանմուշ այլ տպվող ձևերի / քաղվածքների համար պարամետրերի նկարագրության համար։
+
 Բոլոր տպելու ձևանմուշների ընդլայնման դասերը պարտադիր պետք է ունենան [TemplateSubstitutionExtender] ատրիբուտը և իրագործեն ITemplateSubstitutionExtender ինտերֆեյսը։ Ինտերֆեյսի միջոցով սահնանվում են բոլոր այն մեթոդները և հատկությունները, որոնք պետք է ունենա տվյալ դասը։
-Պարամետրերի հաշվարկի ժամանակ 8x համակարգում առկա սերվիսները օգտագործելու համար անհրաժեշտ է հայտարարել համապատասխան տիպերի դաշտերը (private readonly UserProxyService proxyService;) և կոնստրուկտորի միջոցով իրանանացնել սերվիսների injection -ը.
+
+Պարամետրերի հաշվարկի ժամանակ 8x համակարգում առկա սերվիսները օգտագործելու համար անհրաժեշտ է հայտարարել համապատասխան տիպերի դաշտեր (private readonly UserProxyService proxyService;) և կոնստրուկտորի միջոցով իրանանացնել սերվիսների injection -ը.
 
 ```c#
 namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
@@ -102,6 +104,41 @@ namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
         ...
 ```
 
+Ավելացվող տպելու պարամետրերի հաշվարկը և ավելացումը իրականացվում է Calculate ֆունկցիայի միջոցով։  
+
+
+՝՝՝c#
+namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
+{
+    [TemplateSubstitutionExtender]
+    public class AccStateAdr_stamp : ITemplateSubstitutionExtender
+    {
+        ...
+        
+        public async Task Calculate(TemplateSubstitutionExtenderArgs templateSubstitutionArgs)
+        {
+            //Վերադարձնում է այն փաստաթուղթը, որի վրայից տպվում է քաղվածքը։ Այս դեպքում հաշիվը
+            var accountDoc = (Account)templateSubstitutionArgs.Document;
+
+            //Վերադարձնում է հաճախորդ փաստաթուղը
+            var cliDoc = await this.proxyService.LoadClientDoc(accountDoc.CLICOD);
+
+            //Վերադարձնում է հաճախորդ փոստային ինդեքսը
+            var index = cliDoc.POSTIND != "" ? ", Փոստային ինդեքս` " + cliDoc.POSTIND : "";
+
+            //Ստեղծում է հասցեի տպելու պարամետր
+            await proxyService.TryAddAtomicAsync("hasce", async () =>
+            {
+                var bnakavayr = cliDoc.DISTRICT != "001" ? (await proxyService.TreeElPropComment("COMMUNTY", cliDoc.COMMUNITY)) + ", " : "";
+                var marz = cliDoc.DISTRICT != "001" ? (await proxyService.TreeElPropComment("LRDistr", cliDoc.DISTRICT)) + ", " : "";
+                return (marz + cliDoc.CITY + ", " + bnakavayr + cliDoc.ADDRESS + index).ToArmenianUnicode();
+
+            }, templateSubstitutionArgs);
+
+    ...
+
+
+```
 
 
 
