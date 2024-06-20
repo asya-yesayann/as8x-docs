@@ -28,14 +28,12 @@ using ArmSoft.AS8X.Common.Extensions;
 using ArmSoft.AS8X.Core.Templates;
 using System.Threading.Tasks;
 
-
 namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
 {
     [TemplateSubstitutionExtender]
-    public class AccStateAdr_stamp : ITemplateSubstitutionExtender
+    public class AccStateAdr_stamp : ITemplateSubstitutionExtender 
     {
         private readonly UserProxyService proxyService;
-
 
         public AccStateAdr_stamp(UserProxyService proxyService)
         {
@@ -83,7 +81,26 @@ namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
     }
 }
 ```
-Վերևում բերված ֆայլը պարունակում է վարկային պայմանագրի քաղվածքում կիրառվող լրացուցիչ պարամետրերի հաշվարկման համար նախատեսված դասը։ Այն կարելի է օգտագործել որպես ձևանմուշ այլ տպվող ձևերի համար պարամետրերի նկարագրության համար։
+Վերևում բերված ֆայլը պարունակում է վարկային պայմանագրի քաղվածքում կիրառվող լրացուցիչ պարամետրերի հաշվարկման համար նախատեսված դասը։ Այն կարելի է օգտագործել որպես ձևանմուշ այլ տպվող ձևերի / քաղվածքների համար պարամետրերի նկարագրության համար։
+Բոլոր տպելու ձևանմուշների ընդլայնման դասերը պարտադիր պետք է ունենան [TemplateSubstitutionExtender] ատրիբուտը և իրագործեն ITemplateSubstitutionExtender ինտերֆեյսը։ Ինտերֆեյսի միջոցով սահնանվում են բոլոր այն մեթոդները և հատկությունները, որոնք պետք է ունենա տվյալ դասը։
+Պարամետրերի հաշվարկի ժամանակ 8x համակարգում առկա սերվիսները օգտագործելու համար անհրաժեշտ է հայտարարել համապատասխան տիպերի դաշտերը (private readonly UserProxyService proxyService;) և կոնստրուկտորի միջոցով իրանանացնել սերվիսների injection -ը.
+
+՝՝՝c#
+namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
+{
+    
+    [TemplateSubstitutionExtender]
+    public class AccStateAdr_stamp : ITemplateSubstitutionExtender 
+    {
+        private readonly UserProxyService proxyService;
+         
+        public AccStateAdr_stamp(UserProxyService proxyService)
+        {
+            this.proxyService = proxyService;
+
+        }
+        ...
+```
 
 
 
