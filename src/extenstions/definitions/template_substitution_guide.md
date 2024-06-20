@@ -101,19 +101,19 @@ namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
             this.proxyService = proxyService;
 
         }
-        ...
+        ....
 ```
 
 Ավելացվող տպելու պարամետրերի հաշվարկը և ավելացումը իրականացվում է Calculate ֆունկցիայի միջոցով։  
 
+```c#
 
-՝՝՝c#
 namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
 {
     [TemplateSubstitutionExtender]
     public class AccStateAdr_stamp : ITemplateSubstitutionExtender
     {
-        ...
+        ....
         
         public async Task Calculate(TemplateSubstitutionExtenderArgs templateSubstitutionArgs)
         {
@@ -135,14 +135,8 @@ namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
 
             }, templateSubstitutionArgs);
 
-    ...
-
-
+    ....
 ```
-
-
-
-
 
 
 
