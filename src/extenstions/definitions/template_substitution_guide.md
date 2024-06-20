@@ -85,7 +85,7 @@ namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
 Բոլոր տպելու ձևանմուշների ընդլայնման դասերը պարտադիր պետք է ունենան [TemplateSubstitutionExtender] ատրիբուտը և իրագործեն ITemplateSubstitutionExtender ինտերֆեյսը։ Ինտերֆեյսի միջոցով սահնանվում են բոլոր այն մեթոդները և հատկությունները, որոնք պետք է ունենա տվյալ դասը։
 Պարամետրերի հաշվարկի ժամանակ 8x համակարգում առկա սերվիսները օգտագործելու համար անհրաժեշտ է հայտարարել համապատասխան տիպերի դաշտերը (private readonly UserProxyService proxyService;) և կոնստրուկտորի միջոցով իրանանացնել սերվիսների injection -ը.
 
-՝՝՝c#
+```c#
 namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
 {
     
