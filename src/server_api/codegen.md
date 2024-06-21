@@ -101,7 +101,6 @@ string code = DocParser.Parse(configFilePath:this.Host.ResolvePath("..\\..\\Code
 			      docType:"CnCont",
 			      namespaceName:"Enterprise.Doc.Agreement",
 			      className:"Contract",
-			      options:options,
                               generateFieldAccessor:true,
 			      parentClass:"EnterpriseWagesDocument");
 #>
