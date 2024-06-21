@@ -174,11 +174,11 @@ public class AccStatements : ITemplateSubstitutionExtender
     {
 
         this.accountDoc = (Account)templateSubstitutionExtenderArgs.Document;
-        **await proxyService.TryAddAtomicAsync("pass", async () =>**
+        *await proxyService.TryAddAtomicAsync("pass", async () =>
         {
             var cliCod = await this.proxyService.LoadClientDescByCode(accountDoc.CLICOD);
             return cliCod.PasCode;
-        }, templateSubstitutionExtenderArgs);
+        }, templateSubstitutionExtenderArgs);*
     }
 ....
 
