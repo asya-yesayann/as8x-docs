@@ -146,11 +146,36 @@ namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
       //Վերադարձնում է այն փաստաթուղթը, որի վրայից տպվում է քաղվածքը։ Այս դեպքում պայմանագիրը
       var agrDoc = templateSubstitutionArgs.Document;
 ....
-     //Վերադարձնում է պայմանագրի վրա լրացված Նպատակ դաշտի արժեքի նկարագրությունը 
-     var STAIM = !string.IsNullOrWhiteSpace((string)agrDoc["AIM"]) ? (await proxyService.TreeElProp("LoanPrps", (string)agrDoc["AIM"])).Comment : "";
+      //Վերադարձնում է պայմանագրի վրա լրացված Նպատակ դաշտի արժեքի նկարագրությունը 
+      var STAIM = !string.IsNullOrWhiteSpace((string)agrDoc["AIM"]) ? (await proxyService.TreeElProp("LoanPrps", (string)agrDoc["AIM"])).Comment : "";
 
-    //Ստեղծում է տպելու պարամետրեր
-    atomics.Add("STAIM", STAIM);
+     //Ստեղծում է տպելու պարամետրեր
+     atomics.Add("STAIM", STAIM);
+....
+
+```
+
+Հաշվարկից հետո պարամետրի ավելացումը հնարավոր է կատարել նաև UserProxyService ի միջոցով։ Այս տարբերակը ավելի ապահով է այն պատճառով, որ հաշվարկի արդյունքում առաջացած սխալի դեպքում ծրագրի աշխատանքը չի ընդհատվի և մնացած բոլոր պարամետրերի հաշվակը կշարունակվի։
+
+```c#
+  [TemplateSubstitutionExtender]
+  public class AgrState_AS : ITemplateSubstitutionExtender
+  {
+      //Հայտարարում ենք գլոբալ փոփոխականներ
+      private readonly UserProxyService proxyService;
+      Core.Document.Document agrDoc = null;
+
+      public AgrState_AS(UserProxyService proxyService)
+      {
+          this.proxyService = proxyService;
+      }
+     public async Task Calculate(TemplateSubstitutionExtenderArgs templateSubstitutionArgs)
+     {
+       this.agrDoc = templateSubstitutionArgs.Document;
+       //Վերադարձնում է ատոմար տպելու պարամետրերի ցուցակը
+       var atomics = templateSubstitutionArgs.Substitution.AtomicSubstitutions;
+       //Վերադարձնում է համավարկառուների անունները մեկ տողով
+       await proxyService.TryAddAtomicAsync("hamavarkaruner", () => Hamavarkaruner(), templateSubstitutionArgs);
 ....
 
 ```
