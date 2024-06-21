@@ -41,23 +41,38 @@ public TreeNode(IDBService dbService, IServiceProvider serviceProvider) : base(s
 }
 ```
 - Կոնստրուկտորում ձևավորել տվյալների աղբյուրի սխեման, որը պարունակում է ամբողջական ինֆորմացիա տվյալների աղբյուրի սյուների ու պարամետրերի մասին։
-Դա անելու համար անհրաժեշտ է base դասի Schema հատկությանը վերագրել [Schema](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#schema) դասի նոր օբյեկտ։
+Դա անելու համար անհրաժեշտ է base դասի Schema հատկությանը վերագրել [Schema](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#schema) դասի նոր օբյեկտ ՝ կոնստրուկտերին փոխանցելով՝
+  - name - սխեմային ներքին անվանումը,
+  - armenianCaption - սխեմայի հայերեն անվանումը,
+  - englishCaption - սխեմայի հայերեն անվանումը,
+  - rowType - տվյալների աղբյուրի սյուները նկարագրող դասի տիպը,
+  - paramType - տվյալների աղբյուրի պարամետրերը  նկարագրող դասի տիպը
 
 ```c#
-this.Schema = new Schema(this.Name, "Ծառի հանգույցներ".ToArmenianANSICached(), "Tree nodes", typeof(DataRow), typeof(Param));
+this.Schema = new Schema(name: this.Name, armenianCaption: "Ծառի հանգույցներ".ToArmenianANSICached(), englishCaption: "Tree nodes", rowType: typeof(DataRow), paramType: typeof(Param));
 ```
 
-- Սխեմայում ավելացնել տվյալների աղբյուրի սյուների նկարագրությունները Schema դասի [AddColumn](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addcolumn) մեթոդի միջոցով։
+- Սխեմայում ավելացնել տվյալների աղբյուրի սյուների նկարագրությունները Schema դասի [AddColumn](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addcolumn) մեթոդի միջոցով, որին փոխանցված է՝
+  - name - սյան ներքին անվանումը,
+  - source - SQL-ից կարդացվող սյան անունը,
+  - armenianCaption - սյան հայերեն անվանումը,
+  - englishCaption - սյան անգլերեն անվանումը,
+  - columnType - սյան համակարգային տիպը։
+  
 ```c#
-this.Schema.AddColumn(nameof(DataRow.Code), "Code", "Կոդ".ToArmenianANSICached(), "Code", FieldTypeProvider.GetStringFieldType(20));
-this.Schema.AddColumn(nameof(DataRow.Name), "Name", "Անվանում".ToArmenianANSICached(), "Name", FieldTypeProvider.GetStringFieldType(50));
+this.Schema.AddColumn(name։ nameof(DataRow.Code), source։ "Code", armenianCaption։ "Կոդ".ToArmenianANSICached(), englishCaption։ "Code", columnType։ FieldTypeProvider.GetStringFieldType(20));
+this.Schema.AddColumn(name։ nameof(DataRow.Name), source։ "Name", armenianCaption։ "Անվանում".ToArmenianANSICached(), englishCaption։ "Name", columnType։ FieldTypeProvider.GetStringFieldType(50));
 ```
 
-- Սխեմայում ավելացնել պարամետրերի նկարագրությունները Schema դասի [AddParam](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addparam) մեթոդի միջոցով։
+- Սխեմայում ավելացնել պարամետրերի նկարագրությունները Schema դասի [AddParam](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addparam) մեթոդի միջոցով, որին փոխանցված է՝
+  - name - պարամետրի ներքին անվանումը,
+  - description - պարամետրի հայերեն նկարագրությունը,
+  - englishCaption - սյան անգլերեն անվանումը,
+  - columnType - սյան համակարգային տիպը։
 
 ```c#
-this.Schema.AddParam(nameof(Param.TreeId), "Ծառի իդենտիֆիկատոր".ToArmenianANSICached(), FieldTypeProvider.GetStringFieldType(4), eDescription: "TreeId");
-this.Schema.AddParam(nameof(Param.NodeType), "Ծառի հանգույցներ".ToArmenianANSICached(), FieldTypeProvider.GetStringFieldType(1), eDescription: "Tree nodes");
+this.Schema.AddParam(name: nameof(Param.TreeId), description: "Ծառի իդենտիֆիկատոր".ToArmenianANSICached(), fieldType։ FieldTypeProvider.GetStringFieldType(4), eDescription: "TreeId");
+this.Schema.AddParam(name: nameof(Param.NodeType), description: "Ծառի հանգույցներ".ToArmenianANSICached(), fieldType։ FieldTypeProvider.GetStringFieldType(1), eDescription: "Tree nodes");
 ```
 ## sql հարցման ձևավորում
 Տվյալների աղբյուրը ըստ տվյալների բեռնման աղբյուրի լինում է 2 տեսակի՝ sql-based և array-based:
