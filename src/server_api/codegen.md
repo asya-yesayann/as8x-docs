@@ -38,12 +38,6 @@
 
 Վերևում նշված [նախապատրաստական](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/codegen.md#%D5%B6%D5%A1%D5%AD%D5%A1%D5%BA%D5%A1%D5%BF%D6%80%D5%A1%D5%BD%D5%BF%D5%A1%D5%AF%D5%A1%D5%B6-%D6%84%D5%A1%D5%B5%D5%AC%D5%A5%D6%80) և [ընդհանուր](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/codegen.md#%D5%B6%D5%AF%D5%A1%D6%80%D5%A1%D5%A3%D6%80%D5%B8%D6%82%D5%A9%D5%B5%D5%B8%D6%82%D5%B6%D5%A8-%D5%BF%D5%A5%D5%B2%D5%A1%D6%83%D5%B8%D5%AD%D5%A5%D5%AC%D5%B8%D6%82-%D5%B0%D5%A1%D5%B4%D5%A1%D6%80-%D5%A1%D5%B6%D5%B0%D6%80%D5%A1%D5%AA%D5%A5%D5%B7%D5%BF-%D5%A8%D5%B6%D5%A4%D5%B0%D5%A1%D5%B6%D5%B8%D6%82%D6%80-%D6%84%D5%A1%D5%B5%D5%AC%D5%A5%D6%80) քայլերի կատարումից հետո .tt ընդլայնմամբ ֆայլում անհրաժեշտ է ավելացնել DSParser static դասի Parse մեթոդի կանչը, որը գեներացնում է տվյալների աղբյուրի 4x-ական նկարագրությանը համարժեք 8x-ական դասը։ 
 
-Parse մեթոդը ունի հետևյալ շարահյուսությունը՝
-
-```c#
-        public static string Parse(string configFilePath, string filename, string dsName, string namespaceName,
-                                   string className = "", bool generatePublicConstructor = false, string conditionalCompilationList = "")
-```
 Օրինակ՝ 
 ```c#
 <#
