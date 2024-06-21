@@ -94,11 +94,12 @@ MakeSQLCommand-ում անհրաժեշտ է ունենալ [SqlCommand](https://
 Այդ պարամետրերը ավելացնելու համար անհրաժեշտ է @-ով ավելացնել պարամետրի անունը, հետո ստեղծված SqlCommand դասի օբյեկտի Parameters հատկությանը [Add](https://learn.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlparametercollection.add?view=netframework-4.8.1#system-data-sqlclient-sqlparametercollection-add(system-string-system-data-sqldbtype)) մեթոդը կանչել, որտեղ պետք է փոխանցել պարամետրի անունը ու sql-ական տվյալի տիպը։
 
 ```c#
-            if (!string.IsNullOrWhiteSpace(args.Parameters.DocType))
-            {
-                cmd.CommandText += " AND fNAME IN (SELECT item FROM asf_Split_to_table(@DocType, default))";
-                cmd.Parameters.Add("@DocType", SqlDbType.VarChar).Value = args.Parameters.DocType;
-            }
+cmd.Parameters.Add("@TreeId", SqlDbType.Char, 8).Value = args.Parameters.TreeId;
+if (!string.IsNullOrWhiteSpace(args.Parameters.NodeType))
+{
+   cmd.CommandText += " AND fLEAF = @NodeType";
+   cmd.Parameters.Add("@NodeType", SqlDbType.Char, 1).Value = args.Parameters.NodeType;
+}
 ```
 
 Ու MakeSQLCommand մեթոդի վերջում անհրաժեշտ է վերադարձնել ձևավորված sql հարցումը։
