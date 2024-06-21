@@ -174,6 +174,7 @@ ParseClient մեթոդը ունի հետևյալ շարահյուսությու�
 
 
 Օրինակ՝ 
+```c#
 <#    
 string code = DocParser.ParseClient(configFilePath: this.Host.ResolvePath("..\\..\\CodeGen.xml"),
                               	   filename: "\\SOURCE\\Agreement\\Contracts.as",
@@ -182,7 +183,7 @@ string code = DocParser.ParseClient(configFilePath: this.Host.ResolvePath("..\\.
 			           className: "Contract");   
 #>
 <#= code #>
-
+```
 
 ParseClient մեթոդի պարամետրերի մանրամասն նկարագրություն՝
 
