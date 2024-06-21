@@ -61,7 +61,7 @@ string code = DSParser.Parse(configFilePath: this.Host.ResolvePath(@"..\..\CodeG
 4x համակարգում գոյություն ունի փաստաթուղթը նկարագրող մեկ դաս, որը ծառայում է և՛ կլիենտական և՛ սերվերային նպատակներով:
 8x համակարգում սերվերային և կլիենտական ֆունկցիոնալությունները առանձնացված են և յուրաքանչյուրի համար սահմանված է առանձին դաս։
 
-- ### Փաստաթղթի սերվերային նկարագրության տեղափոխում
+- ## Փաստաթղթի սերվերային նկարագրության տեղափոխում
 
 Վերևում նշված [նախապատրաստական](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/codegen.md#%D5%B6%D5%A1%D5%AD%D5%A1%D5%BA%D5%A1%D5%BF%D6%80%D5%A1%D5%BD%D5%BF%D5%A1%D5%AF%D5%A1%D5%B6-%D6%84%D5%A1%D5%B5%D5%AC%D5%A5%D6%80) և [ընդհանուր](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/codegen.md#%D5%B6%D5%AF%D5%A1%D6%80%D5%A1%D5%A3%D6%80%D5%B8%D6%82%D5%A9%D5%B5%D5%B8%D6%82%D5%B6%D5%A8-%D5%BF%D5%A5%D5%B2%D5%A1%D6%83%D5%B8%D5%AD%D5%A5%D5%AC%D5%B8%D6%82-%D5%B0%D5%A1%D5%B4%D5%A1%D6%80-%D5%A1%D5%B6%D5%B0%D6%80%D5%A1%D5%AA%D5%A5%D5%B7%D5%BF-%D5%A8%D5%B6%D5%A4%D5%B0%D5%A1%D5%B6%D5%B8%D6%82%D6%80-%D6%84%D5%A1%D5%B5%D5%AC%D5%A5%D6%80) քայլերի կատարումից հետո .tt ընդլայնմամբ ֆայլում անհրաժեշտ է ավելացնել DocParser static դասի Parse մեթոդի կանչը, որը գեներացնում է փաստաթղթի 4x-ական նկարագրությանը համարժեք 8x-ական դասը։ 
 
@@ -79,7 +79,7 @@ string code = DocParser.Parse(configFilePath: this.Host.ResolvePath(@"..\..\Code
 <#= code #>
 ```
 
-- ###  .as ընդլայմամբ ֆայլի մեջ գտնվող բոլոր փաստաթղթերի սերվերային նկարագրությունների տեղափոխում
+- ##  .as ընդլայմամբ ֆայլի մեջ գտնվող բոլոր փաստաթղթերի սերվերային նկարագրությունների տեղափոխում
 
 Վերևում նշված [նախապատրաստական](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/codegen.md#%D5%B6%D5%A1%D5%AD%D5%A1%D5%BA%D5%A1%D5%BF%D6%80%D5%A1%D5%BD%D5%BF%D5%A1%D5%AF%D5%A1%D5%B6-%D6%84%D5%A1%D5%B5%D5%AC%D5%A5%D6%80) և [ընդհանուր](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/codegen.md#%D5%B6%D5%AF%D5%A1%D6%80%D5%A1%D5%A3%D6%80%D5%B8%D6%82%D5%A9%D5%B5%D5%B8%D6%82%D5%B6%D5%A8-%D5%BF%D5%A5%D5%B2%D5%A1%D6%83%D5%B8%D5%AD%D5%A5%D5%AC%D5%B8%D6%82-%D5%B0%D5%A1%D5%B4%D5%A1%D6%80-%D5%A1%D5%B6%D5%B0%D6%80%D5%A1%D5%AA%D5%A5%D5%B7%D5%BF-%D5%A8%D5%B6%D5%A4%D5%B0%D5%A1%D5%B6%D5%B8%D6%82%D6%80-%D6%84%D5%A1%D5%B5%D5%AC%D5%A5%D6%80) քայլերի կատարումից հետո .tt ընդլայնմամբ ֆայլում անհրաժեշտ է ավելացնել DocParser static դասի ParseAll մեթոդի կանչը, որը գեներացնում է .as ֆայլում գտնվող բոլոր փաստաթղթերի 4x-ական նկարագրություններին համարժեք 8x-ական դասերը։ 
 
@@ -111,7 +111,7 @@ string code = DocParser.ParseClient(configFilePath: this.Host.ResolvePath(@"..\.
 <#= code #>
 ```
 
-### .as ընդլայմամբ ֆայլի մեջ գտնվող բոլոր փաստաթղթերի կլիենտական նկարագրությունների տեղափոխում
+## .as ընդլայմամբ ֆայլի մեջ գտնվող բոլոր փաստաթղթերի կլիենտական նկարագրությունների տեղափոխում
 
 Վերևում նշված [նախապատրաստական](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/codegen.md#%D5%B6%D5%A1%D5%AD%D5%A1%D5%BA%D5%A1%D5%BF%D6%80%D5%A1%D5%BD%D5%BF%D5%A1%D5%AF%D5%A1%D5%B6-%D6%84%D5%A1%D5%B5%D5%AC%D5%A5%D6%80) և [ընդհանուր](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/codegen.md#%D5%B6%D5%AF%D5%A1%D6%80%D5%A1%D5%A3%D6%80%D5%B8%D6%82%D5%A9%D5%B5%D5%B8%D6%82%D5%B6%D5%A8-%D5%BF%D5%A5%D5%B2%D5%A1%D6%83%D5%B8%D5%AD%D5%A5%D5%AC%D5%B8%D6%82-%D5%B0%D5%A1%D5%B4%D5%A1%D6%80-%D5%A1%D5%B6%D5%B0%D6%80%D5%A1%D5%AA%D5%A5%D5%B7%D5%BF-%D5%A8%D5%B6%D5%A4%D5%B0%D5%A1%D5%B6%D5%B8%D6%82%D6%80-%D6%84%D5%A1%D5%B5%D5%AC%D5%A5%D6%80) քայլերի կատարումից հետո .tt ընդլայնմամբ ֆայլում անհրաժեշտ է ավելացնել DocParser static դասի ParseClientAll մեթոդի կանչը, որը գեներացնում է .as ֆայլում գտնվող բոլոր փաստաթղթերի 4x-ական նկարագրություններին համարժեք 8x-ական դասերը։ 
 
