@@ -56,8 +56,8 @@ Parse մեթոդը ունի հետևյալ շարահյուսությունը՝
 Օրինակ՝ 
 ```c#
 <#
-string code = DSParser.Parse(configFilePath: this.Host.ResolvePath("..\\..\\CodeGen.xml"),
-                             filename: "\\PAYMENT\\DOC\\PaySys.as",
+string code = DSParser.Parse(configFilePath: this.Host.ResolvePath(@"..\..\CodeGen.xml"),
+                             filename: @"\PAYMENT\DOC\PaySys.as",
 			     dsName: "OBACSOPT",
 			     namespaceName: "Bank.BankSettings.DS",
 			     className: "AllowableForbiddenAccessTypes");
@@ -96,13 +96,13 @@ Parse մեթոդը ունի հետևյալ շարահյուսությունը՝
 Օրինակ՝ 
 ``` c#
 <#
-string code = DocParser.Parse(configFilePath:this.Host.ResolvePath("..\\..\\CodeGen.xml"),
-			      filename:"\\SOURCE\\Agreement\\Contracts.as",
-			      docType:"CnCont",
-			      namespaceName:"Enterprise.Doc.Agreement",
-			      className:"Contract",
-                              generateFieldAccessor:true,
-			      parentClass:"EnterpriseWagesDocument");
+string code = DocParser.Parse(configFilePath: this.Host.ResolvePath(@"..\..\CodeGen.xml"),
+			      filename: @"\SOURCE\Agreement\Contracts.as",
+			      docType: "CnCont",
+			      namespaceName: "Enterprise.Doc.Agreement",
+			      className: "Contract",
+                              generateFieldAccessor: true,
+			      parentClass: "EnterpriseWagesDocument");
 #>
 <#= code #>
 ```
@@ -139,8 +139,8 @@ ParseAll մեթոդը ունի հետևյալ շարահյուսությունը
 Օրինակ՝ 
 ``` c#
 <#
-string code = DocParser.ParseAll(configFilePath: this.Host.ResolvePath("..\\..\\CodeGen.xml"),
-				filename: "\\SOURCE\\Agreement\\Contracts.as",
+string code = DocParser.ParseAll(configFilePath: this.Host.ResolvePath(@"..\..\CodeGen.xml"),
+				filename: @"\SOURCE\Agreement\Contracts.as",
 				namespaceName: "Enterprise.Doc.Agreement");
 #>
 <#= code #>
@@ -175,8 +175,8 @@ ParseClient մեթոդը ունի հետևյալ շարահյուսությու�
 Օրինակ՝ 
 ```c#
 <#    
-string code = DocParser.ParseClient(configFilePath: this.Host.ResolvePath("..\\..\\CodeGen.xml"),
-                              	   filename: "\\SOURCE\\Agreement\\Contracts.as",
+string code = DocParser.ParseClient(configFilePath: this.Host.ResolvePath(@"..\..\CodeGen.xml"),
+                              	   filename: @"\SOURCE\Agreement\Contracts.as",
                                    docType: "CnCont",
                                    namespaceName: "Enterprise.Client.Doc.Agreement",
 			           className: "Contract");   
@@ -212,8 +212,8 @@ ParseClientAll մեթոդը ունի հետևյալ շարահյուսությո
 Օրինակ՝ 
 ```c#
 <#
-string code = DocParser.ParseClientAll(configFilePath: this.Host.ResolvePath("..\\..\\CodeGen.xml"),
-				       filename: "\\SOURCE\\Agreement\\Contracts.as",
+string code = DocParser.ParseClientAll(configFilePath: this.Host.ResolvePath(@"..\..\CodeGen.xml"),
+				       filename: @"\SOURCE\Agreement\Contracts.as",
                                        namespaceName: "Enterprise.Client.Doc.Agreement");    
 #>
 <#= code #>
