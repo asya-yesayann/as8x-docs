@@ -4,62 +4,56 @@ using System.Threading;
 using System.Threading.Tasks;
 using ArmSoft.AS8X.Common.Extensions;
 using ArmSoft.AS8X.Common.FieldTypes;
-using ArmSoft.AS8X.Common.Language;
-using ArmSoft.AS8X.Core;
-using ArmSoft.AS8X.Core.Constants;
 using ArmSoft.AS8X.Core.DS;
-using ArmSoft.AS8X.Core.Properties;
 using Microsoft.Data.SqlClient;
 
-namespace ArmSoft.AS8X.Bank.DS.Common
+namespace ArmSoft.AS8X.Core.DSImplementation
 {
-    [DataSource(nameof(DocCap))]
-    public class DocCap : DataSource<DocCap.DataRow, DocCap.Param>
+    [DataSource(nameof(TreeNode))]
+    public class TreeNode : DataSource<TreeNode.DataRow, TreeNode.Param>
     {
-        public readonly IDBService dbService;
-
-        protected override Task<SqlCommand> MakeSQLCommand(DataSourceArgs<Param> args, CancellationToken stoppingToken)
-        {
-            using var cmd = this.dbService.Connection.CreateCommand();
-            cmd.CommandText = $"""
-                               SELECT fNAME AS DocType
-                                       , {(LanguageService.IsArmenian ? "fCAPTION" : "fECAPTION")} AS DocTypeName
-                               FROM SYSDEF
-                               WHERE fSYSTYPE = 0
-                               """;
-            if (!string.IsNullOrWhiteSpace(args.Parameters.DocType))
-            {
-                cmd.CommandText += " AND fNAME IN (SELECT item FROM asf_Split_to_table(@DocType, default))";
-                cmd.Parameters.Add("@DocType", SqlDbType.VarChar).Value = args.Parameters.DocType;
-            }
-            return Task.FromResult(cmd);
-        }
-
-        #region Definition
-
+        private readonly IDBService dBService;
         public class DataRow : IExtendableRow
         {
-            public string DocType { get; set; }
-#pragma warning disable IDE1006 // Naming Styles
-            public string fCAPTION { get; set; }
-#pragma warning restore IDE1006 // Naming Styles
+            public string Code { get; set; }
+            public string Name { get; set; }
             public object Extend { get; set; }
         }
 
         public class Param
         {
-            public string DocType { get; set; }
+            public string TreeId { get; set; }
+            public string NodeType { get; set; }
         }
 
-        public DocCap(IDBService dbService, IServiceProvider serviceProvider) : base(serviceProvider)
+        public TreeNode(IDBService dbService, IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.dbService = dbService;
-            this.Schema = new Schema(this.Name, ConstantsArmenian.DocType.ToArmenianANSICached(), ConstantsEnglish.DocType, typeof(DataRow), typeof(Param));
+            this.dBService = dbService;
 
-            this.Schema.AddColumn(nameof(DataRow.DocType), "DocType", ConstantsArmenian.DocType.ToArmenianANSICached(), ConstantsEnglish.DocType, FieldTypeProvider.GetStringFieldType(SYSDEF.DocNameLength));
-            this.Schema.AddColumn(nameof(DataRow.fCAPTION), "DocTypeName", ConstantsArmenian.Name.ToArmenianANSICached(), ConstantsEnglish.Name, FieldTypeProvider.GetStringFieldType(SYSDEF.fCAPTIONLength));
-            this.Schema.AddParam(nameof(Param.DocType), ConstantsArmenian.DocType.ToArmenianANSICached(), FieldTypeProvider.GetStringFieldType(DSConstantsLength.DocCapDocType), eDescription: ConstantsEnglish.DocType);
+            this.Schema = new Schema(this.Name, "Ծառի հանգույցներ".ToArmenianANSICached(), "Tree nodes", typeof(DataRow), typeof(Param));
+
+            this.Schema.AddColumn(nameof(DataRow.Code), "Code", "Կոդ".ToArmenianANSICached(), "Code", FieldTypeProvider.GetStringFieldType(20));
+            this.Schema.AddColumn(nameof(DataRow.Name), "Name", "Անվանում".ToArmenianANSICached(), "Name", FieldTypeProvider.GetStringFieldType(50));
+            // Parameters
+            this.Schema.AddParam(nameof(Param.TreeId), "Ծառի իդենտիֆիկատոր".ToArmenianANSICached(), FieldTypeProvider.GetStringFieldType(4), eDescription: "TreeId");
+            this.Schema.AddParam(nameof(Param.NodeType), "Ծառի հանգույցներ".ToArmenianANSICached(), FieldTypeProvider.GetStringFieldType(1), eDescription: "Tree nodes");
         }
-        #endregion
+
+        protected override Task<SqlCommand> MakeSQLCommand(DataSourceArgs<Param> args, CancellationToken stoppingToken)
+        {
+            var cmd = this.dBService.Connection.CreateCommand();
+            cmd.CommandText = $@"SELECT fCODE AS Code, fNAME AS [Name]
+                                 FROM TREES 
+                                 WHERE t.fTREEID = @TreeId";
+            cmd.Parameters.Add("@TreeId", SqlDbType.Char, 8).Value = args.Parameters.TreeId;
+            if (!string.IsNullOrWhiteSpace(args.Parameters.NodeType))
+            {
+                cmd.CommandText += " AND fLEAF = @NodeType";
+                cmd.Parameters.Add("@NodeType", SqlDbType.Char, 1).Value = args.Parameters.NodeType;
+            }
+            cmd.CommandText += "\n ORDER BY Code";
+
+            return Task.FromResult(cmd);
+        }
     }
 }
