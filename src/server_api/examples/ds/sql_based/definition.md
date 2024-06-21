@@ -45,7 +45,7 @@ public TreeNode(IDBService dbService, IServiceProvider serviceProvider) : base(s
 
   - name - սխեմային ներքին անվանումը,
   - armenianCaption - սխեմայի հայերեն անվանումը,
-  - englishCaption - սխեմայի հայերեն անվանումը,
+  - englishCaption - սխեմայի անգլերեն անվանումը,
   - rowType - տվյալների աղբյուրի սյուները նկարագրող դասի տիպը,
   - paramType - տվյալների աղբյուրի պարամետրերը  նկարագրող դասի տիպը
 
@@ -70,8 +70,8 @@ this.Schema.AddColumn(name։ nameof(DataRow.Name), source։ "Name", armenianCapt
 
   - name - պարամետրի ներքին անվանումը,
   - description - պարամետրի հայերեն նկարագրությունը,
-  - englishCaption - սյան անգլերեն անվանումը,
-  - columnType - սյան համակարգային տիպը։
+  - eDescription - պարամետրի անգլերեն անվանումը,
+  - columnType - պարամետրի համակարգային տիպը։
 
 ```c#
 this.Schema.AddParam(name: nameof(Param.TreeId), description: "Ծառի իդենտիֆիկատոր".ToArmenianANSICached(), fieldType։ FieldTypeProvider.GetStringFieldType(4), eDescription: "TreeId");
