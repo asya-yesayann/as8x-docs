@@ -98,7 +98,7 @@ namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
             this.proxyService = proxyService;
 
         }
-        ....
+....
 ```
 
 Ավելացվող տպելու պարամետրերի հաշվարկը և ավելացումը իրականացվում է Calculate ֆունկցիայի միջոցով։
@@ -109,7 +109,7 @@ namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
     [TemplateSubstitutionExtender]
     public class AccStateAdr_stamp : ITemplateSubstitutionExtender
     {
-        ....
+....
         
         public async Task Calculate(TemplateSubstitutionExtenderArgs templateSubstitutionArgs)
         {
@@ -131,7 +131,7 @@ namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
 
             }, templateSubstitutionArgs);
 
-    ....
+....
 ```
 Այն որպես պարամետր ստանում է TemplateSubstitutionExtenderArgs տիպի օբյեկտ, որի միջոցով հնարավոր է հասանելիություն ստանալ 
 տպվող փաստաթղթին, ինչպես նաև որոշ դեպքերում իրականացնել պարամետրերի ավելացում։
@@ -145,12 +145,13 @@ namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
 
       //Վերադարձնում է այն փաստաթուղթը, որի վրայից տպվում է քաղվածքը։ Այս դեպքում պայմանագիրը
       var agrDoc = templateSubstitutionArgs.Document;
-     ....
+....
      //Վերադարձնում է պայմանագրի վրա լրացված Նպատակ դաշտի արժեքի նկարագրությունը 
      var STAIM = !string.IsNullOrWhiteSpace((string)agrDoc["AIM"]) ? (await proxyService.TreeElProp("LoanPrps", (string)agrDoc["AIM"])).Comment : "";
 
     //Ստեղծում է տպելու պարամետրեր
     atomics.Add("STAIM", STAIM);
+....
 
 ```
 
