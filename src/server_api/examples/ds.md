@@ -53,5 +53,47 @@ dsParams["ShowWithoutOutSum"] = true;
 
 // 3. Կատարել տվյալների աղբյուրը
 var dsResult = this.dsService.ExecuteDataSource<PAGRINFO>("PAGRINFO", dsParams);
+```
+### Արդյունք՝
+Վերադարձնում է List<PAGRINFO> տիպի օբյեկտ, որտեղ PAGRINFO-ն տվյալների աղբյուրի տողերը նկարագրող դասն է:
+
+## 1. Տիպիզացված  կատարում
+
+### Քայլեր՝
+
+1. Ստանալ տվյալների աղբյուրի նկարագրող դասը DataSourceService դասի GetDataSource մեթոդով:
+2. Ստեղծել տվյալների աղբյուրի պարամետրերը նկարագրող դասի օբյեկտ՝ փոխանցելով կատարման համար անհրաժեշտ պարամետրերը։
+3. Կանչել տվյալների աղբյուրի DataSourceService դասի Execute մեթոդը՝ փոխանցելով պարամետրերը նկարագրող դասը:
+
+### Օրինակ՝
+
+```csharp
+
+// 1. Ստանալ տվյալների աղբյուրը 
+var dsPAGRINFO = this.dsService.GetDataSource<PAGRINFO>(); 
+
+// 2. Ստեղծել և լրացնել պարամետրերի նկարագրող դասի օբյեկտը 
+var dsParams = new PAGRINFO.Param { 
+    Type = "C", 
+    Date = DateTime.Now, 
+    AgrCondIn = "ModType:5", 
+    ShowWithoutOutSum = true, 
+    // ... այլ պարամետրեր ... 
+}; 
+
+// 4. Կատարել տվյալների աղբյուրը 
+var dsResult = await dsPAGRINFO.Execute(dsParams);
+
+```
+### Արդյունք՝
+Վերադարձնում է DataSourceResult<PAGRINFO> տիպի օբյեկտ, որը պարունակում է՝
+- Rows: List<PAGRINFO> - տվյալների աղբյուրի տողերը,
+- Schema: Schema - տվյալների աղբյուրի սխեման,
+- Columns: HashSet<string> - սյուների անվանումները,
+- Progress: DataSourceExecutionProgress - կատարման պրոգրեսը,
+- Այլ օգտակար տեղեկատվություն (ErrorDetails, isRestException և այլն)
+
+Տիպիզացված ձևով կատարումը վերադարձնում է ավելի շատ մետատվյալներ, քան ոչ տիպիզացված կատարումը:
+
 
 
