@@ -30,9 +30,10 @@ public class Param
 }
 ```
 
-- Հայտատարել դաս, որը ժառանգում է DataSource<R, P> դասը՝ որպես R փոխանցելով տվյալների աղբյուրի սյուները նկարագրող դասը, իսկ որպես P ` տվյալների աղբյուրի պարամետրերը նկարագրող դասը։ Եթե տվյալների աղբյուրը չի պարունակում պարամետրեր, ապա որպես P անհրաժեշտ է փոխանցել NoParam դասը։
+- Հայտատարել դաս, որը ունի տվյալների աղբյուրի ներքին անվանումը պարունակող DataSource ատրիբուտը և  ժառանգում է DataSource<R, P> դասը՝ որպես R փոխանցելով տվյալների աղբյուրի սյուները նկարագրող դասը, իսկ որպես P ` տվյալների աղբյուրի պարամետրերը նկարագրող դասը։ Եթե տվյալների աղբյուրը չի պարունակում պարամետրեր, ապա որպես P անհրաժեշտ է փոխանցել NoParam դասը։
 
 ```c#
+[DataSource(nameof(TreeNode))]
 public class TreeNode : DataSource<TreeNode.DataRow, TreeNode.Param>
 ```
 
@@ -86,7 +87,7 @@ this.Schema.AddColumn(name։ nameof(DataRow.Name), source։ "Name", armenianCapt
 this.Schema.AddParam(name: nameof(Param.TreeId), description: "Ծառի իդենտիֆիկատոր".ToArmenianANSICached(), fieldType։ FieldTypeProvider.GetStringFieldType(4), eDescription: "TreeId");
 this.Schema.AddParam(name: nameof(Param.NodeType), description: "Ծառի հանգույցներ".ToArmenianANSICached(), fieldType։ FieldTypeProvider.GetStringFieldType(1), eDescription: "Tree nodes");
 ```
-## sql հարցման ձևավորում
+## Sql հարցման ձևավորում
 Տվյալների աղբյուրը ըստ տվյալների բեռնման աղբյուրի լինում է 2 տեսակի՝ sql-based և array-based:
 Տվյալների աղբյուրի տվյալների բեռնման տեսակը որոշվում է `IsSQLBased` boolean տիպի հատկության միջոցով, որի լռությամբ արժեքը true է։
 
