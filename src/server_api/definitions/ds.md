@@ -50,7 +50,7 @@ public DataSourceExecutionProgress Progress { get; }
 Վերադարձնում կամ արժեքավորում է տվյալների աղբյուրի հարցման կատարման մաքսիմալ ժամանակը(վայրկյաններով):
 
 ```c#
-       public int QueryTimeOut { get; set; }
+public int QueryTimeOut { get; set; }
 ```
 
 ---
@@ -60,7 +60,7 @@ public DataSourceExecutionProgress Progress { get; }
 Վերադարձնում կամ արժեքավորում է տվյալների աղբյուրի տողերը:
 
 ```c#
-      protected List<R> Rows { get; set; }
+protected List<R> Rows { get; set; }
 ```
 
 --- 
@@ -70,7 +70,7 @@ public DataSourceExecutionProgress Progress { get; }
 Վերադարձնում է տվյալների աղբյուրի [սխեման]():
 
 ```c#
-      protected List<R> Rows { get; set; }
+protected List<R> Rows { get; set; }
 ```
 
 ## CommandBehaviorFlag
@@ -78,10 +78,10 @@ public DataSourceExecutionProgress Progress { get; }
 Վերադարձնում է sql-based տվյալների աղբյուրի հարցման կատարման ժամանակ տվյալների ստացման հատկությունները։ Ավելին մանրամասն տեղեկատվության համար տես:
 
 ```c#
-      protected virtual CommandBehavior CommandBehaviorFlag
-      {
-        get { return CommandBehavior.Default; }
-      }
+protected virtual CommandBehavior CommandBehaviorFlag
+{
+   get { return CommandBehavior.Default; }
+}
 ```
 
 ## AfterDataReaderCloseMode
@@ -121,10 +121,10 @@ public virtual bool IsUpdatable
 Ցույց է տալիս տվյալների աղբյուրի պրոգրեսով կատարումը սատարում է "Նախապատրաստում" փուլը թե ոչ:
 
 ```c#
-       public virtual bool SupportPrepareExecutionPhase
-       {
-           get { return false; }
-       }
+public virtual bool SupportPrepareExecutionPhase
+{
+   get { return false; }
+}
 ```
 
 ## SupportsSnapshotIsolation
@@ -132,16 +132,16 @@ public virtual bool IsUpdatable
 Ցույց է տալիս տվյալների աղբյուրի հարցման կատարման իզոլյացիայի մակարդակը snapshot է թե ոչ:
 
 ```c#
-       public virtual bool SupportsSnapshotIsolation
-       {
-           get { return false; }
-       }
+public virtual bool SupportsSnapshotIsolation
+{
+   get { return false; }
+}
 ```
 ---
 
 # Մեթոդներ
 
-## AddRow(R)
+## AddRow
 
 Ավելացնում է տող տվյալների աղբյուրի տողերի ցուցակում:
 
@@ -149,7 +149,7 @@ public virtual bool IsUpdatable
 protected void AddRow(R row)
 ```
 
-## Execute(DataSourceArgs<P>, CancellationToken, IExtender)
+## Execute
 
 Կատարում է տվյալների աղբյուրը:
 
@@ -157,7 +157,7 @@ protected void AddRow(R row)
 public async Task<DataSourceResult<R>> Execute(DataSourceArgs<P> args, CancellationToken stoppingToken, IExtender extender = null)
 ```
 
-## Execute(P, HashSet<string>, IExtender, CancellationToken )
+## Execute
 
 Կատարում է տվյալների աղբյուրը:
 
@@ -166,7 +166,7 @@ public async Task<DataSourceResult<R>> Execute(P param, HashSet<string> columns 
 ```
 
 ---
-## MakeSQLCommand(DataSourceArgs<P>, CancellationToken)
+## MakeSQLCommand
 
 Այս մեթոդը անհրաժեշտ է գերբեռնել այն դեպքում, երբ որ ունենք sql-based տվյալների աղբյուր։ Այս մեթոդը ձևավորում ենք տվյալների աղբյուրի տվյալների լրացման համար անհրաժեշտ sql հարցումը ու այն վերադարձնել։
 
@@ -174,7 +174,7 @@ public async Task<DataSourceResult<R>> Execute(P param, HashSet<string> columns 
 protected virtual Task<SqlCommand> MakeSQLCommand(DataSourceArgs<P> args, CancellationToken stoppingToken)
 ```
 
-## BeforeExecuteSQLCommand(DataSourceArgs<P>, CancellationToken)
+## BeforeExecuteSQLCommand
 
 Նախատեսված է տվյալների աղբյուրի կատարումից առաջ նախապատրաստական աշխատանքներ կատարելու համար()
 
@@ -182,7 +182,7 @@ protected virtual Task<SqlCommand> MakeSQLCommand(DataSourceArgs<P> args, Cancel
 protected virtual Task BeforeExecuteSQLCommand(DataSourceArgs<P> args, CancellationToken stoppingToken)
 ```
 
-## AfterExecuteSQLCommand(DataSourceArgs<P>, SqlDataReader)
+## AfterExecuteSQLCommand
 
 Այս մեթոդը անհրաժեշտ է գերբեռնել եթե sql-based տվյալների աղբյուրի sql հարցման կատարումից հետո անհրաժեշտ է ստանալ հարցման սյուների պարունակությունը:
 
@@ -190,7 +190,7 @@ protected virtual Task BeforeExecuteSQLCommand(DataSourceArgs<P> args, Cancellat
 protected virtual void AfterExecuteSQLCommand(DataSourceArgs<P> args, SqlDataReader reader)
 ```
 
-## ProcessRow(DataSourceArgs<P>, R, SqlDataReader)
+## ProcessRow
 
 Հանդիսանում է AfterDataReaderClose համարժեքը, եթե տվյալների տողերի հավելյալ մշակման համար անհրաժեշտ չէ կատարել լրացուցիչ sql հարցումներ հավելյալ ինֆորմացիա ստանալու համար։
 
@@ -199,7 +199,7 @@ protected virtual bool ProcessRow(DataSourceArgs<P> args, R row, SqlDataReader r
 ```
 
 
-## AfterDataReaderClose(DataSourceArgs<P>, CancellationToken)
+## AfterDataReaderClose
 
 Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է գերբեռնել այս մեթոդը՝ նախապես գերբեռնելով AfterDataReaderCloseMode՝ը որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որով ասում ենք որ AfterDataReaderClose մեթոդը կանչվելու է յուրաքանչյուր տողի համար։
 
@@ -207,7 +207,7 @@ protected virtual bool ProcessRow(DataSourceArgs<P> args, R row, SqlDataReader r
 protected virtual Task AfterDataReaderClose(DataSourceArgs<P> args, CancellationToken stoppingToken)
 ```
 
-## AfterDataReaderClose(DataSourceArgs<P>, R)
+## AfterDataReaderClose
 
 Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է գերբեռնել այս մեթոդը՝ նախապես գերբեռնելով AfterDataReaderCloseMode՝ը որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որով ասում ենք որ AfterDataReaderClose մեթոդը կանչվելու է յուրաքանչյուր տողի համար։
 
@@ -215,7 +215,7 @@ protected virtual Task AfterDataReaderClose(DataSourceArgs<P> args, Cancellation
 protected virtual Task<bool> AfterDataReaderClose(DataSourceArgs<P> args, R row)
 ```
 
-## GetExecutionPhases()
+## GetExecutionPhases
 
 Վերադարձնում է տվյալների աղբյուրի կատարման փուլերը։
 
