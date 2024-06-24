@@ -37,6 +37,8 @@ AS-8X համակարգում տվյալների աղբյուրի կատարմա�
 2. Փոխանցել կատարման համար անհրաժեշտ պարամետրերը Dictionary-ին՝ որպես key գրելով պարամետրի անունը, իսկ որպես value` արժեքը:
 3. Կանչել DataSourceService դասի ExecuteDataSource մեթոդը՝ փոխանցելով տվյալների աղբյուրի ներքին անվանումը և պարամետրերի ցանկը:
 
+Օրինակում օգտագործված տվյալների աղբյուրի նկարագրող դասին ծանոթանալու համար տես։
+
 ### Օրինակ՝
 
 ```csharp
@@ -45,19 +47,16 @@ AS-8X համակարգում տվյալների աղբյուրի կատարմա�
 var dsParams = new Dictionary<string, object>();
 
 // 2. Լրացնել պարամետրերը
-dsParams["Type"] = "C";
-dsParams["Date"] = DateTime.Now;
-dsParams["AgrCondIn"] = "ModType:5";
-dsParams["ShowWithoutOutSum"] = true;
-// ... այլ պարամետրեր ...
+dsParams["TreeId"] = "PARGROUP";
+dsParams["NodeType"] = "Install";
 
 // 3. Կատարել տվյալների աղբյուրը
-var dsResult = this.dsService.ExecuteDataSource<PAGRINFO>("PAGRINFO", dsParams);
+var dsResult = this.dsService.ExecuteDataSource<TreeNode.DataRow>("TreeNode", dsParams);
 ```
 ### Արդյունք՝
-Վերադարձնում է List<PAGRINFO> տիպի օբյեկտ, որտեղ PAGRINFO-ն տվյալների աղբյուրի տողերը նկարագրող դասն է:
+Վերադարձնում է List<T> տիպի օբյեկտ, որտեղ T-ն տվյալների աղբյուրի տողերը նկարագրող դասն է: Այս օրինակում T-ն հանդիսանում է TreeNode.DataRow-ն։
 
-## 1. Տիպիզացված  կատարում
+## 2. Տիպիզացված  կատարում
 
 ### Քայլեր՝
 
@@ -70,23 +69,20 @@ var dsResult = this.dsService.ExecuteDataSource<PAGRINFO>("PAGRINFO", dsParams);
 ```csharp
 
 // 1. Ստանալ տվյալների աղբյուրը 
-var dsPAGRINFO = this.dsService.GetDataSource<PAGRINFO>(); 
+var dsTreeNode = this.dsService.GetDataSource<TreeNode>(); 
 
 // 2. Ստեղծել և լրացնել պարամետրերի նկարագրող դասի օբյեկտը 
-var dsParams = new PAGRINFO.Param { 
-    Type = "C", 
-    Date = DateTime.Now, 
-    AgrCondIn = "ModType:5", 
-    ShowWithoutOutSum = true, 
-    // ... այլ պարամետրեր ... 
+var dsParams = new TreeNode.Param { 
+    TreeId = "PARGROUP", 
+    NodeType = "Install"
 }; 
 
 // 4. Կատարել տվյալների աղբյուրը 
-var dsResult = await dsPAGRINFO.Execute(dsParams);
+var dsResult = await dsTreeNode.Execute(dsParams);
 
 ```
 ### Արդյունք՝
-Վերադարձնում է DataSourceResult<PAGRINFO> տիպի օբյեկտ, որը պարունակում է՝
+Վերադարձնում է DataSourceResult<TreeNode.DataRow> տիպի օբյեկտ, որը պարունակում է՝
 - Rows: List<PAGRINFO> - տվյալների աղբյուրի տողերը,
 - Schema: Schema - տվյալների աղբյուրի սխեման,
 - Columns: HashSet<string> - սյուների անվանումները,
@@ -94,6 +90,3 @@ var dsResult = await dsPAGRINFO.Execute(dsParams);
 - Այլ օգտակար տեղեկատվություն (ErrorDetails, isRestException և այլն)
 
 Տիպիզացված ձևով կատարումը վերադարձնում է ավելի շատ մետատվյալներ, քան ոչ տիպիզացված կատարումը:
-
-
-
