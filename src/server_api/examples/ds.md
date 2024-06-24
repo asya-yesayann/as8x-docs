@@ -80,8 +80,8 @@ var dsResult = await dsTreeNode.Execute(dsParams);
 
 ```
 ### Արդյունք՝
-Վերադարձնում է DataSourceResult<TreeNode.DataRow> տիպի օբյեկտ, որը պարունակում է՝
-- Rows: List<PAGRINFO> - տվյալների աղբյուրի տողերը,
+Վերադարձնում է DataSourceResult<T> տիպի օբյեկտ` որպես T վերադարձնելով տվյալների աղբյուրի տողերը նկարագրող դասը, որը պարունակում է՝
+- Rows: List<T> - տվյալների աղբյուրի տողերը,
 - Schema: Schema - տվյալների աղբյուրի սխեման,
 - Columns: HashSet<string> - սյուների անվանումները,
 - Progress: DataSourceExecutionProgress - կատարման պրոգրեսը,
