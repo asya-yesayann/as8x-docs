@@ -25,7 +25,7 @@ PROCESSINGMODE = 1;
 ```c#
 public class DataRow : IExtendableRow
 {
-    public string Name { get; set; }
+    public string Code { get; set; }
     public string Caption { get; set; }
     public object Extend { get; set; }
 }
@@ -81,7 +81,7 @@ this.Schema = new Schema(this.Name, "Փաստաթղթի դաշտեր".ToArmenian
   - columnType - համակարգային տիպը։
   
 ```c#
-this.Schema.AddColumn(nameof(DataRow.Name), "", "Կոդ".ToArmenianANSI(), "Code", FieldTypeProvider.GetStringFieldType(25));
+this.Schema.AddColumn(nameof(DataRow.Code), "", "Կոդ".ToArmenianANSI(), "Code", FieldTypeProvider.GetStringFieldType(25));
 this.Schema.AddColumn(nameof(DataRow.Caption), "", "Անվանում".ToArmenianANSI(), "Name", FieldTypeProvider.GetStringFieldType(30));
 ```
 
