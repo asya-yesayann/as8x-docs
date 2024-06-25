@@ -7,7 +7,7 @@
   - NAME - ներքին անվանումը,
   - CAPTION - հայերեն անվանումը՝ `ansi` կոդավորմամբ,
   - ECAPTION - անգլերեն անվանումը,
-  - ARRAYBASED - տվյալների աղբյուրի տիպը՝ array-based թե sql-based
+  - ARRAYBASED - տիպը՝ array-based թե sql-based,
   - PROCESSINGMODE - կատարման ռեժիմը։
 - Ստեղծված ֆայլը ներմուծել տվյալների բազա `Syscon` գործիքով։
 
@@ -60,42 +60,42 @@ public DocumentFields(IDBService dbService, IServiceProvider serviceProvider) : 
 }
 ```
 - Կոնստրուկտորում ավելացնել տվյալների աղբյուրի սխեման, որը պարունակում է ամբողջական ինֆորմացիա տվյալների աղբյուրի սյուների ու պարամետրերի մասին։
-Դա անելու համար անհրաժեշտ է base դասի Schema հատկությանը վերագրել [Schema](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#schema) դասի նոր օբյեկտ ՝ կոնստրուկտորին փոխանցելով՝
+Դա անելու համար անհրաժեշտ է base դասի Schema հատկությանը վերագրել [Schema](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#schema) դասի նոր օբյեկտ ՝ կոնստրուկտորին փոխանցելով սխեմայի՝
 
-  - name - սխեմայի ներքին անվանումը,
-  - armenianCaption - սխեմայի հայերեն անվանումը,
-  - englishCaption - սխեմայի անգլերեն անվանումը,
+  - name - ներքին անվանումը,
+  - armenianCaption - հայերեն անվանումը` ANSI կոդավորմամբ,
+  - englishCaption - անգլերեն անվանումը,
   - rowType - տվյալների աղբյուրի սյուները նկարագրող դասի տիպը,
-  - paramType - տվյալների աղբյուրի պարամետրերը  նկարագրող դասի տիպը
+  - paramType - տվյալների աղբյուրի պարամետրերը  նկարագրող դասի տիպը։
 
 ```c#
 this.Schema = new Schema(this.Name, "Փաստաթղթի դաշտեր".ToArmenianANSI(), "Document's fields", typeof(DataRow), typeof(Param));
 ```
 
-- Սխեմայում ավելացնել տվյալների աղբյուրի սյուների նկարագրությունները Schema դասի [AddColumn](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addcolumn) մեթոդի միջոցով, որին փոխանցված է՝
+- Սխեմայում ավելացնել տվյալների աղբյուրի սյուների նկարագրությունները Schema դասի [AddColumn](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addcolumn) մեթոդի միջոցով, որին փոխանցված է սյան՝
   
-  - name - սյան ներքին անվանումը,
+  - name - ներքին անվանումը,
   - source - տալ դատարկ արժեք,
-  - armenianCaption - սյան հայերեն անվանումը,
-  - englishCaption - սյան անգլերեն անվանումը,
-  - columnType - սյան համակարգային տիպը։
+  - armenianCaption - հայերեն անվանումը,
+  - englishCaption - անգլերեն անվանումը,
+  - columnType - համակարգային տիպը։
   
 ```c#
 this.Schema.AddColumn(nameof(DataRow.Name), "", "Կոդ".ToArmenianANSI(), "Code", FieldTypeProvider.GetStringFieldType(25));
 this.Schema.AddColumn(nameof(DataRow.Caption), "", "Անվանում".ToArmenianANSI(), "Name", FieldTypeProvider.GetStringFieldType(30));
 ```
 
-- Սխեմայում ավելացնել պարամետրերի նկարագրությունները Schema դասի [AddParam](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addparam) մեթոդի միջոցով, որին փոխանցված է՝
+- Սխեմայում ավելացնել պարամետրերի նկարագրությունները Schema դասի [AddParam](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addparam) մեթոդի միջոցով, որին փոխանցված է պարամետրի՝
 
-  - name - պարամետրի ներքին անվանումը,
-  - description - պարամետրի հայերեն նկարագրությունը,
-  - eDescription - պարամետրի անգլերեն անվանումը,
-  - columnType - պարամետրի համակարգային տիպը։
+  - name - ներքին անվանումը,
+  - description - հայերեն նկարագրությունը,
+  - eDescription - անգլերեն անվանումը,
+  - columnType - համակարգային տիպը։
 
 ```c#
 this.Schema.AddParam(nameof(Param.DocType), "Փաստաթղթի տեսակ".ToArmenianANSI(), FieldTypeProvider.GetStringFieldType(8), eDescription: "Document's type");
 ```
-## Sql հարցման ձևավորում
+## Տվյալների ձևավորում
 Տվյալների աղբյուրը ըստ տվյալների բեռնման աղբյուրի լինում է 2 տեսակի՝ sql-based և array-based:
 Տվյալների աղբյուրի տվյալների բեռնման տեսակը որոշվում է `IsSQLBased` boolean տիպի հատկության միջոցով, որի լռությամբ արժեքը true է։
 
