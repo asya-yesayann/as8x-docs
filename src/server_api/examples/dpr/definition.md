@@ -34,30 +34,16 @@ public class IndexDefragmentRequest
 
 - Ստեղծել DPR-ի կատարման արդյունքում ստացվող տվյալները նկարագրող դասը։
 ```c#
-public class DataRow : IExtendableRow
-{
-    public string Code { get; set; }
-    public string Name { get; set; }
-    public object Extend { get; set; }
-}
+
 ```
 
 
-- Հայտատարել դաս, որը ունի DPR ատրիբուտը և ժառանգում է DataProcessingRequest<R, P> դասը՝ որպես R փոխանցելով Dpr-ի կատարման արդյունքում ստացվող տվյալները նկարագրող դասը, իսկ որպես P՝ պարամետրերը նկարագրող դասը։ Պարամետրերի բացակայության դեպքում որպես P անհրաժեշտ է փոխանցել NoParam դասը, արդյունքի բացակայության դեպքում որպես R փոխանցել NoResult դասը։
+- Հայտատարել դաս, որը ունի DPR ատրիբուտը և ժառանգում է DataProcessingRequest<R, P> դասը՝ որպես R փոխանցելով Dpr-ի կատարման արդյունքում ստացվող տվյալները նկարագրող դասը, իսկ որպես P՝ պարամետրերը նկարագրող դասը։ Պարամետրերի բացակայության դեպքում որպես P անհրաժեշտ է փոխանցել `NoParam` դասը, արդյունքի բացակայության դեպքում որպես R փոխանցել `NoResult` դասը։
 
 ```c#
+[DPR("", DPRType = DPRType.Other, ArmenianCaption = "Ինդեքսների դեֆրագմենտացիա",
+                                      EnglishCaption = "Index defragmentation")]
 public class IndexDefragment : DataProcessingRequest<NoResult, IndexDefragmentRequest>
-```
-
-Եթե Dpr-ի կատարման արդյունքում տվյալներ չեն ստացվում, ապա որպես R անհրաժեշտ է փոխանցել `NoResult` դասը։
-
-```c#
-public class IndexDefragment : DataProcessingRequest<NoResult, IndexDefragmentRequest>
-```
-
-Եթե Dpr-ի համար անհրաժեշտ պարամետրեր չկան, ապա որպես P անհրաժեշտ է փոխանցել `NoParam` դասը։
-```c#
-public class IndexDefragment : DataProcessingRequest<NoResult, NoParam>
 ```
 
 - Հետո անհրաժեշտ է ձևավորել կոնստրուկտորը, որտեղ inject անել աշխատանքի համար անհրաժեշտ service-ները։
