@@ -101,60 +101,26 @@ namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
 ....
 ```
 
-Ավելացվող տպելու պարամետրերի հաշվարկը և ավելացումը իրականացվում է Calculate ֆունկցիայի միջոցով։
+Ավելացվող տպելու պարամետրերի հաշվարկը և ավելացումը իրականացվում է Calculate ֆունկցիայի միջոցով։ Այն որպես պարամետր ստանում է TemplateSubstitutionExtenderArgs տիպի օբյեկտ, որի միջոցով հնարավոր է հասանելիություն ստանալ տպվող փաստաթղթին, ինչպես նաև որոշ դեպքերում իրականացնել պարամետրերի ավելացում։
 ```c#
 
-namespace ArmSoft.AS8X.Bank.CustomerSpecific.MyCompany
-{
-    [TemplateSubstitutionExtender]
-    public class AccStateAdr_stamp : ITemplateSubstitutionExtender
-    {
-....
-        
+       
         public async Task Calculate(TemplateSubstitutionExtenderArgs templateSubstitutionArgs)
         {
-            //Վերադարձնում է այն փաստաթուղթը, որի վրայից տպվում է քաղվածքը։ Այս դեպքում հաշիվը
-            var accountDoc = (Account)templateSubstitutionArgs.Document;
-
-            //Վերադարձնում է հաճախորդ փաստաթուղը
-            var cliDoc = await this.proxyService.LoadClientDoc(accountDoc.CLICOD);
-
-            //Վերադարձնում է հաճախորդ փոստային ինդեքսը
-            var index = cliDoc.POSTIND != "" ? ", Փոստային ինդեքս` " + cliDoc.POSTIND : "";
-
-            //Ստեղծում է հասցեի տպելու պարամետր
-            await proxyService.TryAddAtomicAsync("hasce", async () =>
-            {
-                var bnakavayr = cliDoc.DISTRICT != "001" ? (await proxyService.TreeElPropComment("COMMUNTY", cliDoc.COMMUNITY)) + ", " : "";
-                var marz = cliDoc.DISTRICT != "001" ? (await proxyService.TreeElPropComment("LRDistr", cliDoc.DISTRICT)) + ", " : "";
-                return (marz + cliDoc.CITY + ", " + bnakavayr + cliDoc.ADDRESS + index).ToArmenianUnicode();
-
-            }, templateSubstitutionArgs);
+             //Վերադարձնում է ատոմար տպելու պարամետրերի ցուցակը
+             var atomics = templateSubstitutionArgs.Substitution.AtomicSubstitutions;
+             //Վերադարձնում է այն փաստաթուղթը, որի վրայից ձևավորվում է տպվող ձևը
+             var agrDoc = templateSubstitutionArgs.Document;
+             if (agrDoc["CURRENCY"].ToString() == "001" || agrDoc["CURRENCY"].ToString() == "049")
+             {
+                 atomics.Add("CurType", "Ազատ փոխարկելի արտարժույթ");
+             }else{
+                 atomics.Add("CurType", "");
+             }
+        }
 
 ....
 ```
-Այն որպես պարամետր ստանում է TemplateSubstitutionExtenderArgs տիպի օբյեկտ, որի միջոցով հնարավոր է հասանելիություն ստանալ 
-տպվող փաստաթղթին, ինչպես նաև որոշ դեպքերում իրականացնել պարամետրերի ավելացում։
-
-```c#
-  public async Task Calculate(TemplateSubstitutionExtenderArgs templateSubstitutionArgs)
-  {
-
-      //Վերադարձնում է ատոմար տպելու պարամետրերի ցուցակը
-      var atomics = templateSubstitutionArgs.Substitution.AtomicSubstitutions;
-
-      //Վերադարձնում է այն փաստաթուղթը, որի վրայից տպվում է քաղվածքը։ Այս դեպքում պայմանագիրը
-      var agrDoc = templateSubstitutionArgs.Document;
-....
-      //Վերադարձնում է պայմանագրի վրա լրացված Նպատակ դաշտի արժեքի նկարագրությունը 
-      var STAIM = !string.IsNullOrWhiteSpace((string)agrDoc["AIM"]) ? (await proxyService.TreeElProp("LoanPrps", (string)agrDoc["AIM"])).Comment : "";
-
-     //Ստեղծում է տպելու պարամետրեր
-     atomics.Add("STAIM", STAIM);
-....
-
-```
-
 Պարամետրի հաշվարկը և ավելացումը հնարավոր է կատարել նաև UserProxyService -ի միջոցով։ Այս տարբերակը ավելի ապահով է այն պատճառով, որ հաշվարկի արդյունքում առաջացած սխալի դեպքում ծրագրի աշխատանքը չի ընդհատվի շարունակելով մնացած բոլոր պարամետրերի հաշվակը։
 
 ```c#
