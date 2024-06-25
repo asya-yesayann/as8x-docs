@@ -29,7 +29,6 @@ namespace ArmSoft.AS8X.Core.DSImplementation
         public TreeNode(IDBService dbService, IServiceProvider serviceProvider) : base(serviceProvider)
         {
             this.dBService = dbService;
-
             this.Schema = new Schema(this.Name, "Ծառի հանգույցներ".ToArmenianANSICached(), "Tree nodes", typeof(DataRow), typeof(Param));
 
             this.Schema.AddColumn(nameof(DataRow.Code), "Code", "Կոդ".ToArmenianANSICached(), "Code", FieldTypeProvider.GetStringFieldType(20));
@@ -44,7 +43,7 @@ namespace ArmSoft.AS8X.Core.DSImplementation
             var cmd = this.dBService.Connection.CreateCommand();
             cmd.CommandText = $@"SELECT fCODE AS Code, fNAME AS [Name]
                                  FROM TREES 
-                                 WHERE t.fTREEID = @TreeId";
+                                 WHERE fTREEID = @TreeId";
             cmd.Parameters.Add("@TreeId", SqlDbType.Char, 8).Value = args.Parameters.TreeId;
             if (!string.IsNullOrWhiteSpace(args.Parameters.NodeType))
             {
