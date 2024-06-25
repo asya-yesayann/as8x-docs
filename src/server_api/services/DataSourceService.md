@@ -15,7 +15,7 @@ DataSourceService դասը նախատեսված է տվյալների աղբյո
 public async Task<List<T>> ExecuteDataSource<T>(string dsName, Dictionary<string, object> parameters, CancellationToken cancellationToken = default)
 ```
 
-Կատարում է տվյալների աղբյուրը։
+Կատարում է տվյալների աղբյուրը և վերադարձնում տողերի ցուցակ։
 
 ## ExecuteDataSource
 
@@ -23,7 +23,7 @@ public async Task<List<T>> ExecuteDataSource<T>(string dsName, Dictionary<string
 public Task<List<T>> ExecuteDataSource<T>(Type dsType, Dictionary<string, object> parameters, CancellationToken cancellationToken = default)
 ```
 
-Կատարում է տվյալների աղբյուրը։
+Կատարում է տվյալների աղբյուրը և վերադարձնում տողերի ցուցակ։
 
 ## GetDataSource
 
@@ -38,6 +38,7 @@ public T GetDataSource<T>() where T : IDataSource
 ```c#
 public async Task<Dictionary<string, DataSourceColumnDefinition>> GetColumnsDefinition(string dsName)
 ```
+
 Վերադարձնում է տվյալների աղբյուրի սյուների նկարագրությունների ցանկը։
 
 
