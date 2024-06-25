@@ -99,8 +99,16 @@ this.Schema.AddParam(nameof(Param.DocType), "Փաստաթղթի տեսակ".ToAr
 Տվյալների աղբյուրը ըստ տվյալների բեռնման աղբյուրի լինում է 2 տեսակի՝ sql-based և array-based:
 Տվյալների աղբյուրի տվյալների բեռնման տեսակը որոշվում է `IsSQLBased` boolean տիպի հատկության միջոցով, որի լռությամբ արժեքը true է։
 
-- Եթե տվյալների աղբյուրը `array-based` է (տվյալների աղբյուրի տվյալները ստացվում են sql հարցման միջոցով), ապա տվյալները ձևավորելու համար անհրաժեշտ է գերբեռնել `FillData` մեթոդը։
+- Եթե տվյալների աղբյուրը `array-based` է (տվյալների աղբյուրի տվյալները ստացվում են sql հարցման միջոցով), ապա գերբեռնել `IsSQLBased` հատկությունը՝ վերադարձնելով false արժեք և `FillData` մեթոդը՝ տվյալները ձևավորելու համար։
 ```c#
+public override bool IsSQLBased
+{
+    get
+    {
+      return false;
+    }
+}
+
 protected override async Task FillData(DataSourceArgs<Param> args, CancellationToken stoppingToken)
 {
     var documentDescription = await DocumentHelper.DocumentDescription(this.dBService.Connection, args.Parameters.DocType);
