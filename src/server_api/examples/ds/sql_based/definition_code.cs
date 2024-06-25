@@ -29,13 +29,13 @@ namespace ArmSoft.AS8X.Core.DSImplementation
         public TreeNode(IDBService dbService, IServiceProvider serviceProvider) : base(serviceProvider)
         {
             this.dBService = dbService;
-            this.Schema = new Schema(this.Name, "Ծառի հանգույցներ".ToArmenianANSICached(), "Tree nodes", typeof(DataRow), typeof(Param));
+            this.Schema = new Schema(this.Name, "Ծառի հանգույցներ".ToArmenianANSI(), "Tree nodes", typeof(DataRow), typeof(Param));
 
-            this.Schema.AddColumn(nameof(DataRow.Code), "Code", "Կոդ".ToArmenianANSICached(), "Code", FieldTypeProvider.GetStringFieldType(20));
-            this.Schema.AddColumn(nameof(DataRow.Name), "Name", "Անվանում".ToArmenianANSICached(), "Name", FieldTypeProvider.GetStringFieldType(50));
+            this.Schema.AddColumn(nameof(DataRow.Code), "Code", "Կոդ".ToArmenianANSI(), "Code", FieldTypeProvider.GetStringFieldType(20));
+            this.Schema.AddColumn(nameof(DataRow.Name), "Name", "Անվանում".ToArmenianANSI(), "Name", FieldTypeProvider.GetStringFieldType(50));
             // Parameters
-            this.Schema.AddParam(nameof(Param.TreeId), "Ծառի իդենտիֆիկատոր".ToArmenianANSICached(), FieldTypeProvider.GetStringFieldType(4), eDescription: "TreeId");
-            this.Schema.AddParam(nameof(Param.NodeType), "Ծառի հանգույցներ".ToArmenianANSICached(), FieldTypeProvider.GetStringFieldType(1), eDescription: "Tree nodes");
+            this.Schema.AddParam(nameof(Param.TreeId), "Ծառի իդենտիֆիկատոր".ToArmenianANSI(), FieldTypeProvider.GetStringFieldType(4), eDescription: "TreeId");
+            this.Schema.AddParam(nameof(Param.NodeType), "Ծառի հանգույցներ".ToArmenianANSI(), FieldTypeProvider.GetStringFieldType(1), eDescription: "Tree nodes");
         }
 
         protected override Task<SqlCommand> MakeSQLCommand(DataSourceArgs<Param> args, CancellationToken stoppingToken)
