@@ -23,7 +23,7 @@ VERSION = 2;
 ```
 # .cs ընդլայնմամբ ֆայլի սահմանում
 
-- Ստեղծել DPR-ի կատարման համար անհրաժեշտ պարամետրերը նկարագրող դաս՝ որպես հատկություններ ավելացնելով պարամետրերը։
+- Ստեղծել DPR-ի կատարման համար անհրաժեշտ պարամետրերը նկարագրող դաս։
 
 ```c#
 public class IndexDefragmentRequest
@@ -70,13 +70,7 @@ this.DbService = dbService;
 }
 ```
 
-Dpr-ը կատարման համար անհրաժեշտ է գերբեռնել base դասի `Execute` մեթոդը
-```c#
-Task<object> Execute(object param, CancellationToken stoppingToken);
-```
-
-որտեղ `object param`-ի փոխարեն անհրաժեշտ է փոխանցել Dpr-ի կատարման համար անհրաժեշտ պարամետրերը նկարագրող դասը, իսկ որպես վերադարձվող արժեք նշել՝ Dpr-ի կատարման արդյունքում ստացվող տվյալները նկարագրող դասը։
-
+Dpr-ի կատարման համար անհրաժեշտ է գերբեռնել base դասի `Execute` մեթոդը՝ փոխանցելով պարամետրերը նկարագրող դասը և վերադարձնելով կատարման արդյունքում ստացվող տվյալները նկարագրող դասը։
 ```c#
 public override async Task<NoResult> Execute(IndexDefragmentRequest request, CancellationToken stoppingToken)
 {
