@@ -13,7 +13,7 @@ namespace ArmSoft.AS8X.Core.DSImplementation
     {
         public class DataRow : IExtendableRow
         {
-            public string Name { get; set; }
+            public string Code { get; set; }
             public string Caption { get; set; }
             public object Extend { get; set; }
         }
@@ -37,7 +37,7 @@ namespace ArmSoft.AS8X.Core.DSImplementation
             this.dBService = dBService;
             this.Schema = new Schema(this.Name, "Փաստաթղթի դաշտեր".ToArmenianANSI(), "Document's fields", typeof(DataRow), typeof(Param));
 
-            this.Schema.AddColumn(nameof(DataRow.Name), "", "Կոդ".ToArmenianANSI(), "Code", FieldTypeProvider.GetStringFieldType(25));
+            this.Schema.AddColumn(nameof(DataRow.Code), "", "Կոդ".ToArmenianANSI(), "Code", FieldTypeProvider.GetStringFieldType(25));
             this.Schema.AddColumn(nameof(DataRow.Caption), "", "Անվանում".ToArmenianANSI(), "Name", FieldTypeProvider.GetStringFieldType(30));
 
             this.Schema.AddParam(nameof(Param.DocType), "Փաստաթղթի տեսակ".ToArmenianANSI(), FieldTypeProvider.GetStringFieldType(8), eDescription: "Document's type");
@@ -45,15 +45,18 @@ namespace ArmSoft.AS8X.Core.DSImplementation
 
         protected override async Task FillData(DataSourceArgs<Param> args, CancellationToken stoppingToken)
         {
-            var documentDescription = await DocumentHelper.DocumentDescription(this.dBService.Connection, args.Parameters.DocType);
-            foreach (var field in documentDescription.Fields)
+            if (!string.IsNullOrWhiteSpace(args.Parameters.DocType))
             {
-                var row = new DataRow
+                var documentDescription = await DocumentHelper.DocumentDescription(this.dBService.Connection, args.Parameters.DocType);
+                foreach (var field in documentDescription.Fields)
                 {
-                    Name = field.Key,
-                    Caption = field.Value.Caption
-                };
-                this.Rows.Add(row);
+                    var row = new DataRow
+                    {
+                        Code = field.Key,
+                        Caption = field.Value.Caption
+                    };
+                    this.Rows.Add(row);
+                }
             }
         }
     }
