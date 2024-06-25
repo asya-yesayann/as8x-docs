@@ -1,103 +1,119 @@
-# Ինչպես նկարագրել array-based տվյալների աղբյուր
+# Array-based տվյալների աղբյուրի նկարագրման ձեռնարկ
 
-Ամբողջական կոդը դիտելու համար [տես](definition_code.cs)։ 
+Ամբողջական կոդը դիտելու համար [տես](definition_code.cs)։
 
-- Անհրաժեշտ է հայտատարել դաս, որը ժառանգում է DataSource<R, P> դասը՝ որպես R փոխանցելով տվյալների աղբյուրի սյուները նկարագրող դասը, իսկ որպես P ` տվյալների աղբյուրի պարամետրերը նկարագրող դասը։
-
-```c#
-    public class ProcMode : DataSource<ProcMode.DataRow, ProcMode.Param>
-```
-
-Եթե տվյալների աղբյուրը չի պարունակում պարամետրեր, ապա որպես P անհրաժեշտ է փոխանցել NoParam դասը։
-```c#
-public class ApiClientInfo : DataSource<ApiClientInfo.DataRow, NoParam>
-```
-
-Տվյալների աղբյուրի սյուները նկարագրող դասը պետք է իրականացնի IExtendableRow ինտերֆեյսը։ Այդ դասում անհրաժեշտ է որպես հատկություններ ավելացնել տվյալների աղբյուրի սյուները։
+# .as ընդլայնմամբ ֆայլի սահմանում
+- Ստեղծել .as ընդլայնմամբ ֆայլ՝ ավելացնելով DATA տիպի նկարագրություն, որը պարունակում է տվյալների աղբյուրի՝
+  - NAME - ներքին անվանումը,
+  - CAPTION - հայերեն անվանումը՝ `ansi` կոդավորմամբ,
+  - ECAPTION - անգլերեն անվանումը,
+  - ARRAYBASED - տվյալների աղբյուրի տիպը՝ array-based թե sql-based
+  - PROCESSINGMODE - կատարման ռեժիմը։
+- Ստեղծված ֆայլը ներմուծել տվյալների բազա `Syscon` գործիքով։
 
 ```c#
-        public class DataRow : IExtendableRow
-        {
-            public short CODE { get; set; }
-            public string DESC { get; set; }
-            public object Extend { get; set; }
-        }
+DATA {
+NAME = DocFlds;
+CAPTION = "Փաստաթղթի դաշտեր";
+ECAPTION = "Document's fields";
+ARRAYBASED = 1;
+PROCESSINGMODE = 1;
+}
+```
+# .cs ընդլայնմամբ ֆայլի սահմանում
+- Ստեղծել տվյալների աղբյուրի սյուները նկարագրող դաս՝ որպես հատկություններ ավելացնելով սյուները, որը պարտադիր պետք է իրականացնի `IExtendableRow` ինտերֆեյսը։
+```c#
+public class DataRow : IExtendableRow
+{
+    public string Name { get; set; }
+    public string Caption { get; set; }
+    public object Extend { get; set; }
+}
 ```
 
-Տվյալների աղբյուրի պարամետրերը նկարագրող դասում նույնպես պետք է որպես հատկություններ պետք է ավելացնել պարամետրը։
+- Ստեղծել տվյալների աղբյուրի պարամետրերը նկարագրող դաս՝ որպես հատկություններ ավելացնելով պարամետրերը։
+```c#
+public class Param
+{
+    public string DocType { get; set; }
+}
+```
+
+- Հայտատարել դաս, որը ունի տվյալների աղբյուրի ներքին անվանումը պարունակող `DataSource` ատրիբուտը և  ժառանգում է `DataSource<R, P>` դասը՝ որպես R փոխանցելով տվյալների աղբյուրի սյուները նկարագրող դասը, իսկ որպես P՝ պարամետրերը նկարագրող դասը։ Եթե տվյալների աղբյուրը չի պարունակում պարամետրեր, ապա որպես P անհրաժեշտ է փոխանցել `NoParam` դասը։
 
 ```c#
-        public class Param
-        {
-            public short SourceType { get; set; }
-        }
+[DataSource(nameof(TreeNode))]
+public class DocumentFields : DataSource<DocumentFields.DataRow, DocumentFields.Param>
 ```
 
-- Հետո անհրաժեշտ է ձևավորել տվյալների աղբյուրի կոնստրուկտորը, որը իր հերթին պիտի կանչի base DataSource<R, P> դասի կոնստրուկտորը: Կոնստուկտորում անհրաժեշտ է աշխատանքի համար անհրաժեշտ service-ները։
-Տվյալների աղբյուրի կոնստրուկտորում պարտադիր պետք է ունենալ IServiceProvider տիպի պարամետր, որն էլ պետք է փոխանցել base դասի կոնստրուկտորին։
-```c#
-       public ProcMode(IServiceProvider serviceProvider) : base(serviceProvider)
-       {
-              ․․․․․
-       }
-```
-Կոնստրուկտորում անհրաժեշտ է ձևավորել տվյալների աղբյուրի սխեման, որը պարունակում է ամբողջական ինֆորմացիա տվյալների աղբյուրի սյուների ու պարամետրերի մասին։
-Դա անելու համար անհրաժեշտ է base դասի Schema հատկությանը վերագրել [Schema](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#schema) դասի նոր օբյեկտ։
+## Կոնստրուկտորի ձևավորում
+
+- Ձևավորել տվյալների աղբյուրի կոնստրուկտորը՝ IServiceProvider տիպի պարտադիր պարամետրով, որը պիտի կանչի base DataSource<R, P> դասի կոնստրուկտորը և փոխանցի IServiceProvider տիպի պարամետրը: Կոնստուկտորում անհրաժեշտ է [ինյեկցիա](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection) անել աշխատանքի համար անհրաժեշտ service-ները։
 
 ```c#
-            this.Schema = new Schema(this.Name, ConstantsArmenian.ProcessingMode.ToArmenianANSICached(), ConstantsEnglish.ProcessingMode, typeof(DataRow), typeof(Param));
-```
+private readonly IDBService dBService;
 
-- Հետո անհրաժեշտ է սխեմայում ավելացնել տվյալների աղբյուրի սյուների նկարագրությունները Schema դասի [AddColumn](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addcolumn) մեթոդի միջոցով։
+public DocumentFields(IDBService dbService, IServiceProvider serviceProvider) : base(serviceProvider)
+{
+    this.dBService = dbService;
+    ...
+}
+```
+- Կոնստրուկտորում ավելացնել տվյալների աղբյուրի սխեման, որը պարունակում է ամբողջական ինֆորմացիա տվյալների աղբյուրի սյուների ու պարամետրերի մասին։
+Դա անելու համար անհրաժեշտ է base դասի Schema հատկությանը վերագրել [Schema](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#schema) դասի նոր օբյեկտ ՝ կոնստրուկտորին փոխանցելով՝
+
+  - name - սխեմայի ներքին անվանումը,
+  - armenianCaption - սխեմայի հայերեն անվանումը,
+  - englishCaption - սխեմայի անգլերեն անվանումը,
+  - rowType - տվյալների աղբյուրի սյուները նկարագրող դասի տիպը,
+  - paramType - տվյալների աղբյուրի պարամետրերը  նկարագրող դասի տիպը
 
 ```c#
-            this.Schema.AddColumn(nameof(DataRow.CODE), "0", ConstantsArmenian.Code.ToArmenianANSICached(), ConstantsEnglish.Code, FieldTypeProvider.GetNumericFieldType(3), true);
-            this.Schema.AddColumn(nameof(DataRow.DESC), "1", ConstantsArmenian.Descript.ToArmenianANSICached(), ConstantsEnglish.Descript, FieldTypeProvider.GetStringFieldType(DSConstantsLength.PrModeDesc), true
-                        , showType: FieldTypeProvider.GetStringFieldType(DSConstantsLength.PrModeDescShow));
+this.Schema = new Schema(this.Name, "Փաստաթղթի դաշտեր".ToArmenianANSI(), "Document's fields", typeof(DataRow), typeof(Param));
 ```
 
-Եթե տվյալների աղբյուրը պարունակում է պարամետրեր, ապա սխեմայում անհրաժեշտ է ավելացնել նաև պարամետրերի նկարագրությունը Schema դասի [AddParam](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addparam) մեթոդի միջոցով։
+- Սխեմայում ավելացնել տվյալների աղբյուրի սյուների նկարագրությունները Schema դասի [AddColumn](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addcolumn) մեթոդի միջոցով, որին փոխանցված է՝
+  
+  - name - սյան ներքին անվանումը,
+  - source - տալ դատարկ արժեք,
+  - armenianCaption - սյան հայերեն անվանումը,
+  - englishCaption - սյան անգլերեն անվանումը,
+  - columnType - սյան համակարգային տիպը։
+  
+```c#
+this.Schema.AddColumn(nameof(DataRow.Name), "", "Կոդ".ToArmenianANSI(), "Code", FieldTypeProvider.GetStringFieldType(25));
+this.Schema.AddColumn(nameof(DataRow.Caption), "", "Անվանում".ToArmenianANSI(), "Name", FieldTypeProvider.GetStringFieldType(30));
+```
+
+- Սխեմայում ավելացնել պարամետրերի նկարագրությունները Schema դասի [AddParam](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addparam) մեթոդի միջոցով, որին փոխանցված է՝
+
+  - name - պարամետրի ներքին անվանումը,
+  - description - պարամետրի հայերեն նկարագրությունը,
+  - eDescription - պարամետրի անգլերեն անվանումը,
+  - columnType - պարամետրի համակարգային տիպը։
 
 ```c#
-            this.Schema.AddParam(nameof(Param.SourceType), ConstantsArmenian.Type.ToArmenianANSICached(), FieldTypeProvider.GetNumericFieldType(2), eDescription: ConstantsEnglish.Type);
+this.Schema.AddParam(nameof(Param.DocType), "Փաստաթղթի տեսակ".ToArmenianANSI(), FieldTypeProvider.GetStringFieldType(8), eDescription: "Document's type");
 ```
-
+## Sql հարցման ձևավորում
 Տվյալների աղբյուրը ըստ տվյալների բեռնման աղբյուրի լինում է 2 տեսակի՝ sql-based և array-based:
 Տվյալների աղբյուրի տվյալների բեռնման տեսակը որոշվում է `IsSQLBased` boolean տիպի հատկության միջոցով, որի լռությամբ արժեքը true է։
 
-Եթե տվյալների աղբյուրը array-based է, ապա անհրաժեշտ է գերբեռնել IsSQLBased հատկությունը՝ վերադարձնելով false արժեք ու գերբեռնել `Task FillData(DataSourceArgs<P> args, CancellationToken stoppingToken)` մեթոդը` տվյալների աղբյուրի տվյալները ձևավորելու համար, որտեղ որպես P անհրաժեշտ է փոխանցել տվյալների աղբյուրի պարամետրերը նկարագրող դասը։
-
+- Եթե տվյալների աղբյուրը `array-based` է (տվյալների աղբյուրի տվյալները ստացվում են sql հարցման միջոցով), ապա տվյալները ձևավորելու համար անհրաժեշտ է գերբեռնել `FillData` մեթոդը։
 ```c#
-        public override bool IsSQLBased
+protected override async Task FillData(DataSourceArgs<Param> args, CancellationToken stoppingToken)
+{
+    var documentDescription = await DocumentHelper.DocumentDescription(this.dBService.Connection, args.Parameters.DocType);
+    foreach (var field in documentDescription.Fields)
+    {
+        var row = new DataRow
         {
-            get
-            {
-                return false;
-            }
-        }
-
-        protected override Task FillData(DataSourceArgs<Param> args, CancellationToken stoppingToken)
-        {
-            this.Rows.AddRange(
-            [
-                new DataRow
-                {
-                    CODE = 0,
-                    DESC = Resources.WithoutService
-                },
-                new DataRow
-                {
-                    CODE = 1,
-                    DESC = args.Parameters.SourceType == 0 ? Resources.DSProcessingMode1 : Resources.DocTemplateProcessingMode1
-                },
-                new DataRow
-                {
-                    CODE = 2,
-                    DESC = Resources.RunOnServer
-                }
-            ]
-            );
-            return Task.CompletedTask;
-        }
+            Name = field.Key,
+            Caption = field.Value.Caption
+        };
+    this.Rows.Add(row);
+    }
+}
 ```
-FillData մեթոդում ստեղծում ենք տվյալների աղբյուրի տողերը,որոնք հետո ավելացնում ենք տվյալների աղբյուրի `Rows` հատկությանը։ Յուրաքանչյուր տող տվյալների աղբյուրի սյուները նկարագրող դասի տիպի է։
+
+FillData մեթոդում անհրաժեշտ է ստեղծել տվյալների աղբյուրը նկարագրող դասի օբյեկտներ, լրացնել սյուների արժեքները և ստեղծված տողերը ավելացնել տվյալների աղբյուրի `Rows` տողերի ցուցակին։
