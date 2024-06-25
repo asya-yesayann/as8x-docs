@@ -68,7 +68,7 @@ public TreeNode(IDBService dbService, IServiceProvider serviceProvider) : base(s
   - paramType - տվյալների աղբյուրի պարամետրերը  նկարագրող դասի տիպը
 
 ```c#
-this.Schema = new Schema(name: this.Name, armenianCaption: "Ծառի հանգույցներ".ToArmenianANSICached(), englishCaption: "Tree nodes", rowType: typeof(DataRow), paramType: typeof(Param));
+this.Schema = new Schema(name: this.Name, armenianCaption: "Ծառի հանգույցներ".ToArmenianANSI(), englishCaption: "Tree nodes", rowType: typeof(DataRow), paramType: typeof(Param));
 ```
 
 - Սխեմայում ավելացնել տվյալների աղբյուրի սյուների նկարագրությունները Schema դասի [AddColumn](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addcolumn) մեթոդի միջոցով, որին փոխանցված է՝
@@ -80,8 +80,8 @@ this.Schema = new Schema(name: this.Name, armenianCaption: "Ծառի հանգո�
   - columnType - սյան համակարգային տիպը։
   
 ```c#
-this.Schema.AddColumn(name։ nameof(DataRow.Code), source։ "Code", armenianCaption։ "Կոդ".ToArmenianANSICached(), englishCaption։ "Code", columnType։ FieldTypeProvider.GetStringFieldType(20));
-this.Schema.AddColumn(name։ nameof(DataRow.Name), source։ "Name", armenianCaption։ "Անվանում".ToArmenianANSICached(), englishCaption։ "Name", columnType։ FieldTypeProvider.GetStringFieldType(50));
+this.Schema.AddColumn(name։ nameof(DataRow.Code), source։ "Code", armenianCaption։ "Կոդ".ToArmenianANSI(), englishCaption։ "Code", columnType։ FieldTypeProvider.GetStringFieldType(20));
+this.Schema.AddColumn(name։ nameof(DataRow.Name), source։ "Name", armenianCaption։ "Անվանում".ToArmenianANSI(), englishCaption։ "Name", columnType։ FieldTypeProvider.GetStringFieldType(50));
 ```
 
 - Սխեմայում ավելացնել պարամետրերի նկարագրությունները Schema դասի [AddParam](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addparam) մեթոդի միջոցով, որին փոխանցված է՝
@@ -92,8 +92,8 @@ this.Schema.AddColumn(name։ nameof(DataRow.Name), source։ "Name", armenianCapt
   - columnType - պարամետրի համակարգային տիպը։
 
 ```c#
-this.Schema.AddParam(name: nameof(Param.TreeId), description: "Ծառի իդենտիֆիկատոր".ToArmenianANSICached(), fieldType։ FieldTypeProvider.GetStringFieldType(4), eDescription: "TreeId");
-this.Schema.AddParam(name: nameof(Param.NodeType), description: "Ծառի հանգույցներ".ToArmenianANSICached(), fieldType։ FieldTypeProvider.GetStringFieldType(1), eDescription: "Tree nodes");
+this.Schema.AddParam(name: nameof(Param.TreeId), description: "Ծառի իդենտիֆիկատոր".ToArmenianANSI(), fieldType։ FieldTypeProvider.GetStringFieldType(4), eDescription: "TreeId");
+this.Schema.AddParam(name: nameof(Param.NodeType), description: "Ծառի հանգույցներ".ToArmenianANSI(), fieldType։ FieldTypeProvider.GetStringFieldType(1), eDescription: "Tree nodes");
 ```
 ## Sql հարցման ձևավորում
 Տվյալների աղբյուրը ըստ տվյալների բեռնման աղբյուրի լինում է 2 տեսակի՝ sql-based և array-based:
