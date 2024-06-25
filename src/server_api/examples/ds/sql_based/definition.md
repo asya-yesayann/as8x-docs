@@ -5,7 +5,7 @@
 # .as ընդլայնմամբ ֆայլի սահմանում
 - Ստեղծել .as ընդլայնմամբ ֆայլ՝ ավելացնելով DATA տիպի նկարագրություն, որը պարունակում է տվյալների աղբյուրի՝
   - NAME - ներքին անվանումը,
-  - CAPTION - հայերեն անվանումը՝ `ansi` կոդավորմամբ,
+  - CAPTION - հայերեն անվանումը՝ `ANSI` կոդավորմամբ,
   - ECAPTION - անգլերեն անվանումը,
   - PROCESSINGMODE - կատարման ռեժիմը։
 - Ստեղծված ֆայլը ներմուծել տվյալների բազա `Syscon` գործիքով։
@@ -59,37 +59,37 @@ public TreeNode(IDBService dbService, IServiceProvider serviceProvider) : base(s
 }
 ```
 - Կոնստրուկտորում ավելացնել տվյալների աղբյուրի սխեման, որը պարունակում է ամբողջական ինֆորմացիա տվյալների աղբյուրի սյուների ու պարամետրերի մասին։
-Դա անելու համար անհրաժեշտ է base դասի Schema հատկությանը վերագրել [Schema](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#schema) դասի նոր օբյեկտ ՝ կոնստրուկտորին փոխանցելով՝
+Դա անելու համար անհրաժեշտ է base դասի Schema հատկությանը վերագրել [Schema](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#schema) դասի նոր օբյեկտ ՝ կոնստրուկտորին փոխանցելով սխեմայի՝
 
-  - name - սխեմայի ներքին անվանումը,
-  - armenianCaption - սխեմայի հայերեն անվանումը,
-  - englishCaption - սխեմայի անգլերեն անվանումը,
+  - name - ներքին անվանումը,
+  - armenianCaption - հայերեն անվանումը,
+  - englishCaption - անգլերեն անվանումը,
   - rowType - տվյալների աղբյուրի սյուները նկարագրող դասի տիպը,
-  - paramType - տվյալների աղբյուրի պարամետրերը  նկարագրող դասի տիպը
+  - paramType - տվյալների աղբյուրի պարամետրերը  նկարագրող դասի տիպը:
 
 ```c#
 this.Schema = new Schema(name: this.Name, armenianCaption: "Ծառի հանգույցներ".ToArmenianANSI(), englishCaption: "Tree nodes", rowType: typeof(DataRow), paramType: typeof(Param));
 ```
 
-- Սխեմայում ավելացնել տվյալների աղբյուրի սյուների նկարագրությունները Schema դասի [AddColumn](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addcolumn) մեթոդի միջոցով, որին փոխանցված է՝
+- Սխեմայում ավելացնել տվյալների աղբյուրի սյուների նկարագրությունները Schema դասի [AddColumn](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addcolumn) մեթոդի միջոցով, որին փոխանցված է սյան՝
   
-  - name - սյան ներքին անվանումը,
+  - name - ներքին անվանումը,
   - source - SQL-ից կարդացվող սյան անունը,
-  - armenianCaption - սյան հայերեն անվանումը,
-  - englishCaption - սյան անգլերեն անվանումը,
-  - columnType - սյան համակարգային տիպը։
+  - armenianCaption - հայերեն անվանումը,
+  - englishCaption - անգլերեն անվանումը,
+  - columnType - համակարգային տիպը։
   
 ```c#
 this.Schema.AddColumn(name։ nameof(DataRow.Code), source։ "Code", armenianCaption։ "Կոդ".ToArmenianANSI(), englishCaption։ "Code", columnType։ FieldTypeProvider.GetStringFieldType(20));
 this.Schema.AddColumn(name։ nameof(DataRow.Name), source։ "Name", armenianCaption։ "Անվանում".ToArmenianANSI(), englishCaption։ "Name", columnType։ FieldTypeProvider.GetStringFieldType(50));
 ```
 
-- Սխեմայում ավելացնել պարամետրերի նկարագրությունները Schema դասի [AddParam](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addparam) մեթոդի միջոցով, որին փոխանցված է՝
+- Սխեմայում ավելացնել պարամետրերի նկարագրությունները Schema դասի [AddParam](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/schema.md#addparam) մեթոդի միջոցով, որին փոխանցված է պարամետրի՝
 
-  - name - պարամետրի ներքին անվանումը,
-  - description - պարամետրի հայերեն նկարագրությունը,
-  - eDescription - պարամետրի անգլերեն անվանումը,
-  - columnType - պարամետրի համակարգային տիպը։
+  - name - ներքին անվանումը,
+  - description - հայերեն նկարագրությունը,
+  - eDescription - անգլերեն անվանումը,
+  - columnType - համակարգային տիպը։
 
 ```c#
 this.Schema.AddParam(name: nameof(Param.TreeId), description: "Ծառի իդենտիֆիկատոր".ToArmenianANSI(), fieldType։ FieldTypeProvider.GetStringFieldType(4), eDescription: "TreeId");
@@ -99,7 +99,7 @@ this.Schema.AddParam(name: nameof(Param.NodeType), description: "Ծառի հան
 Տվյալների աղբյուրը ըստ տվյալների բեռնման աղբյուրի լինում է 2 տեսակի՝ sql-based և array-based:
 Տվյալների աղբյուրի տվյալների բեռնման տեսակը որոշվում է `IsSQLBased` boolean տիպի հատկության միջոցով, որի լռությամբ արժեքը true է։
 
-- Եթե տվյալների աղբյուրը `sql-based` է (տվյալների աղբյուրի տվյալները ստացվում են sql հարցման միջոցով), ապա sql հարցումը ձևավորելու համար անհրաժեշտ է գերբեռնել `MakeSQLComman` մեթոդը՝ որպես P փոխանցելով տվյալների աղբյուրի պարամետրերը նկարագրող դասը։
+- Եթե տվյալների աղբյուրը `sql-based` է (տվյալների աղբյուրի տվյալները ստացվում են sql հարցման միջոցով), ապա sql հարցումը ձևավորելու համար անհրաժեշտ է գերբեռնել `MakeSQLCommand` մեթոդը՝ DataSourceArgs<P> պարամետրին որպես P փոխանցելով տվյալների աղբյուրի պարամետրերը նկարագրող դասը։
 
 ```c#
 protected override Task<SqlCommand> MakeSQLCommand(DataSourceArgs<Param> args, CancellationToken stoppingToken)
