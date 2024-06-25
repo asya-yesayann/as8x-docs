@@ -42,7 +42,7 @@ public class Param
 - Հայտատարել դաս, որը ունի տվյալների աղբյուրի ներքին անվանումը պարունակող `DataSource` ատրիբուտը և  ժառանգում է `DataSource<R, P>` դասը՝ որպես R փոխանցելով տվյալների աղբյուրի սյուները նկարագրող դասը, իսկ որպես P՝ պարամետրերը նկարագրող դասը։ Եթե տվյալների աղբյուրը չի պարունակում պարամետրեր, ապա որպես P անհրաժեշտ է փոխանցել `NoParam` դասը։
 
 ```c#
-[DataSource(nameof(TreeNode))]
+[DataSource("DocFlds")]
 public class DocumentFields : DataSource<DocumentFields.DataRow, DocumentFields.Param>
 ```
 
