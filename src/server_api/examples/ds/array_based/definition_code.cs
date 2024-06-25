@@ -3,11 +3,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using ArmSoft.AS8X.Common.Extensions;
 using ArmSoft.AS8X.Common.FieldTypes;
-using ArmSoft.AS8X.Core;
 using ArmSoft.AS8X.Core.Document;
 using ArmSoft.AS8X.Core.DS;
 
-namespace ArmSoft.AS8X.Bank.General.DS
+namespace ArmSoft.AS8X.Core.DSImplementation
 {
     [DataSource("DocFlds")]
     public class DocumentFields : DataSource<DocumentFields.DataRow, DocumentFields.Param>
