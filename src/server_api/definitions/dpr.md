@@ -3,32 +3,36 @@ layout: page
 title: "DPR Երկար աշխատող պրոցեսի նկարագրություն" 
 ---
 
-# DPR Երկար աշխատող պրոցեսի նկարագրություն
+## Բովանդակություն
 
-# Հատկություններ
+- [Հատկություններ](#հատկություններ)
+- [Մեթոդներ](#մեթոդներ)
+  
+## Հատկություններ
 
-## Name
+### Name
 
 Վերադարձնում է DPR-ի ներքին անվանումը:
 
 ```c#
 public string Name { get; }
 ```
-## ArmenianCaption
+
+### ArmenianCaption
 
 Վերադարձնում է DPR-ի հայերեն անվանումը:
 ```c#
 public string ArmenianCaption { get; }
 ```
 
-## EnglishCaption
+### EnglishCaption
 
 Վերադարձնում է DPR-ի անգլերեն անվանումը:
 ```c#
 public string EnglishCaption { get; }
 ```
 
-## IsParametersSupported
+### IsParametersSupported
 
 Ցույց է տալիս DPR-ի ունի պարամետրեր թե ոչ:
 
@@ -36,7 +40,7 @@ public string EnglishCaption { get; }
 public bool IsParametersSupported { get; }
 ```
 
-## Progress
+### Progress
 
 Վերադարձնում է DPR-ի կատարման պրոգրեսը:
 
@@ -45,7 +49,7 @@ public DataSourceExecutionProgress Progress { get; }
 ```
 ---
 
-## DPRType
+### DPRType
 
 Վերադարձնում է DPR-ի տեսակը։
 
@@ -54,7 +58,7 @@ public DPRType DPRType { get; private set; }
 ```
 ---
 
-## IsCancellationSupported
+### IsCancellationSupported
 
 Ցույց է տալիս թե DPR-ի կատարումը սատարում է չեղարկումը(cancellation) թե ոչ
 
@@ -62,7 +66,7 @@ public DPRType DPRType { get; private set; }
 public virtual bool IsCancellationSupported { get { return true; } }
 ```
 
-## PhasesCount
+### PhasesCount
 
 Ցույց է տալիս է DPR-ի կատարման փուլերի քանակը:
 
@@ -71,9 +75,9 @@ public virtual short PhasesCount { get { return 1; } }
 ```
 
 
-# Մեթոդներ
+## Մեթոդներ
 
-## Execute
+### Execute
 
 Կատարում է DPR-ը` ստանալով՝
 - կատարման համար անհրաժեշտ պարամետրերը նկարագրող դասը,
@@ -82,4 +86,3 @@ public virtual short PhasesCount { get { return 1; } }
 ```c#
 public abstract Task<R> Execute(P p, CancellationToken stoppingToken);
 ```
-
