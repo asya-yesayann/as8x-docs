@@ -75,8 +75,10 @@ public virtual short PhasesCount { get { return 1; } }
 
 ## Execute
 
-Կատարում է DPR-ը:
-
+Կատարում է DPR-ը` ստանալով՝
+- կատարման համար անհրաժեշտ պարամետրերը նկարագրող դասը,
+- չեղարկման տոկենը։
+  
 ```c#
 public abstract Task<R> Execute(P p, CancellationToken stoppingToken);
 ```
