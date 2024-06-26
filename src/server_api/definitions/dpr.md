@@ -73,7 +73,7 @@ public virtual short PhasesCount { get { return 1; } }
 
 # Մեթոդներ
 
-## public abstract Task<R> Execute(P, CancellationToken);
+## Execute
 
 Կատարում է DPR-ը:
 
