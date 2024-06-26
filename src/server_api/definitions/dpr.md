@@ -59,7 +59,7 @@ public DPRType DPRType { get; private set; }
 Ցույց է տալիս թե DPR-ի կատարումը սատարում է չեղարկումը(cancellation) թե ոչ
 
 ```c#
-       public virtual bool IsCancellationSupported { get { return true; } }
+public virtual bool IsCancellationSupported { get { return true; } }
 ```
 
 ## PhasesCount
@@ -67,7 +67,7 @@ public DPRType DPRType { get; private set; }
 Ցույց է տալիս է DPR-ի կատարման փուլերի քանակը:
 
 ```c#
-      public virtual short PhasesCount { get { return 1; } }
+public virtual short PhasesCount { get { return 1; } }
 ```
 
 
