@@ -163,7 +163,6 @@ MakeSQLCommand մեթոդի վերջում անհրաժեշտ է վերադար�
   - NAME - ներքին անվանումը,
   - CAPTION - հայերեն անվանումը՝ `ansi` կոդավորմամբ,
   - ECAPTION - անգլերեն անվանումը,
-  - ARRAYBASED - տիպը՝ array-based թե sql-based,
   - PROCESSINGMODE - կատարման ռեժիմը։
 - Ստեղծված ֆայլը ներմուծել տվյալների բազա `Syscon` գործիքով։
 
@@ -172,7 +171,6 @@ DATA {
 NAME = DocFlds;
 CAPTION = "Փաստաթղթի դաշտեր";
 ECAPTION = "Document's fields";
-ARRAYBASED = 1;
 PROCESSINGMODE = 1;
 }
 ```
@@ -271,17 +269,21 @@ public override bool IsSQLBased
 
 protected override async Task FillData(DataSourceArgs<Param> args, CancellationToken stoppingToken)
 {
-    var documentDescription = await DocumentHelper.DocumentDescription(this.dBService.Connection, args.Parameters.DocType);
-    foreach (var field in documentDescription.Fields)
-    {
-        var row = new DataRow
-        {
-            Name = field.Key,
-            Caption = field.Value.Caption
-        };
-    this.Rows.Add(row);
-    }
+     if (!string.IsNullOrWhiteSpace(args.Parameters.DocType))
+     {
+         var documentDescription = await DocumentHelper.DocumentDescription(this.dBService.Connection, args.Parameters.DocType);
+         foreach (var (code, field) in documentDescription.Fields)
+         {
+              var row = new DataRow
+              {
+                   Code = code,
+                   Caption = field.Caption
+               };
+               this.Rows.Add(row);
+          }
+      }
 }
+
 ```
 
 FillData մեթոդում անհրաժեշտ է ստեղծել տվյալների աղբյուրը նկարագրող դասի օբյեկտներ, լրացնել սյուների արժեքները և ստեղծված տողերը ավելացնել տվյալների աղբյուրի `Rows` տողերի ցուցակին։
