@@ -3,13 +3,19 @@ layout: page
 title: "DataSourceService" 
 ---
 
-# DataSourceService
-
 DataSourceService դասը նախատեսված է տվյալների աղբյուրի հետ աշխատանքը ապահովելու համար։
 
-# Մեթոդներ
+## Բովանդակություն
+* [Մեթոդներ](#մեթոդներ)
+  * [ExecuteDataSource](#executeDataSource)
+  * [GetDataSource](#getDataSource)
+  * [GetColumnsDefinition](#getColumnsDefinition)
+  * [GetDefinition](#GetDefinition)
 
-## ExecuteDataSource
+
+## Մեթոդներ
+
+### ExecuteDataSource
 
 ```c#
 public async Task<List<T>> ExecuteDataSource<T>(string dsName, Dictionary<string, object> parameters, CancellationToken cancellationToken = default)
@@ -18,29 +24,30 @@ public async Task<List<T>> ExecuteDataSource<T>(string dsName, Dictionary<string
 Կատարում է տվյալների աղբյուրը և վերադարձնում տողերի ցուցակ` ստանալով տվյալների աղբյուրի՝
 - dsName - ներքին անվանումը,
 - parameters - պարամետրերի ցանկը,
-- cancellationToken - չեղարկման տոկենը։
+- cancellationToken - չեղարկման տոկենը,
+- T - սյուները նկարագրող դասը։
 
-## ExecuteDataSource
+### ExecuteDataSource
 
 ```c#
 public Task<List<T>> ExecuteDataSource<T>(Type dsType, Dictionary<string, object> parameters, CancellationToken cancellationToken = default)
 ```
 
-Կատարում է տվյալների աղբյուրը և վերադարձնում տողերի ցուցակ՝ 
-ստանալով տվյալների աղբյուրի՝
+Կատարում է տվյալների աղբյուրը և վերադարձնում տողերի ցուցակ՝ ստանալով տվյալների աղբյուրի՝
 - dsName - նկարագրող դասի տիպը,
 - parameters - պարամետրերի ցանկը,
-- cancellationToken - չեղարկման տոկենը։
+- cancellationToken - չեղարկման տոկենը
+- T - սյուները նկարագրող դասը:
 
-## GetDataSource
+### GetDataSource
 
 ```c#
 public T GetDataSource<T>() where T : IDataSource
 ```
 
-Վերադարձնում է տիպիզացված տվյալների աղբյուր։
+Ստեղծվում է տրված T տիպի տվյալների աղբյուրի դասի օբյեկտ։
 
-## GetColumnsDefinition
+### GetColumnsDefinition
 
 ```c#
 public async Task<Dictionary<string, DataSourceColumnDefinition>> GetColumnsDefinition(string dsName)
@@ -48,12 +55,10 @@ public async Task<Dictionary<string, DataSourceColumnDefinition>> GetColumnsDefi
 
 Վերադարձնում է տվյալների աղբյուրի սյուների նկարագրությունների ցանկը՝ ստանալով տվյալների աղբյուրի ներքին անվանումը։
 
-
-## GetDefinition
+### GetDefinition
 
 ```c#
 public async Task<DataSourceDefinition> GetDefinition(string dsName, bool isFull = false)
 ```
 
 Վերադարձնում է տվյալների աղբյուրի նկարագրությունը` ստանալով տվյալների աղբյուրի ներքին անվանումը։
-
