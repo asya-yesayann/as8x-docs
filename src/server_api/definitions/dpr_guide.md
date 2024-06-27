@@ -27,7 +27,7 @@ title: "DPR-ի նկարագրման ձեռնարկ"
 NAME = IndexDefragment;
 CAPTION = "Ինդեքսների դեֆրագմենտացիա";
 ECAPTION = "Index defragmentation";
-CSSOURCE = ImportSHRlzOrd.cs;
+CSSOURCE = IndexDefragment.cs;
 TYPE = 29;
 VERSION = 2;
 }
