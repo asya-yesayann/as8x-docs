@@ -4,13 +4,13 @@ Schema դասը նախատեսված է տվյալների աղբյուրի սյ
 
 Schema դասի կոնստրուկտորը ունի հետևյալ շարահյուսությունը՝
 ```c#
-        public Schema(string name, string armenianCaption, string englishCaption, Type rowType, Type paramType,
-                      bool supportedExtendedFeatures = false)
+public Schema(string name, string armenianCaption, string englishCaption, Type rowType, Type paramType,
+              bool supportedExtendedFeatures = false)
 ```
 
 Կոնստրուկտորի պարամետրերի մասին ամբողջական ինֆորմացիան ներկայացված է ստորև՝
 
-| Անվանում | Տեսակ | **Նկարագրություն** |
+| Անվանում | Տիպ | **Նկարագրություն** |
 | --- | --- | --- |
 | name | string | Սխեմայի ներքին անվանում| 
 | armenianCaption | string | Սխեմայի հայերեն անվանումը(անվանումը անհրաժեշտ է փոխանցել Ansi կոդավորմամբ)| 
@@ -30,17 +30,17 @@ this.Schema = new Schema(this.Name, ConstantsArmenian.ParamLog.ToArmenianANSICac
 Սխեմայում տվյալների աղբյուրի սյան նկարագրության մասին ինֆորմացիան ավելացնելու համար պետք է կանչել AddColumn մեթոդը, որն ունի հետևյալ շարահյուսությունը՝
 
 ```c#
-        public void AddColumn(string name, string source, string armenianCaption, string englishCaption, FieldType columnType,
-                              bool isPermanent = false, short start = 0, bool autoProcess = true,
-                              string armenianDescription = null, string englishDescription = null,
-                              FieldType showType = null, short width = 0,
-                              short headlines = 2, bool isTrimEnd = false, bool mayNotExistInSQL = false,
-                              SupportedEncoding supportedEncoding = SupportedEncoding.ArmenianAnsi)
+public void AddColumn(string name, string source, string armenianCaption, string englishCaption, FieldType columnType,
+                      bool isPermanent = false, short start = 0, bool autoProcess = true,
+                      string armenianDescription = null, string englishDescription = null,
+                      FieldType showType = null, short width = 0,
+                      short headlines = 2, bool isTrimEnd = false, bool mayNotExistInSQL = false,
+                      SupportedEncoding supportedEncoding = SupportedEncoding.ArmenianAnsi)
 ```
 
 Մեթոդի պարամետրի մասին ամբողջական ինֆորմացիան ներկայացված է ստորև՝
 
-| Անվանում | Տեսակ | **Նկարագրություն** | Լռությամբ արժեք|
+| Անվանում | Տիպ | **Նկարագրություն** | Լռությամբ արժեք|
 | --- | --- | --- | --- |
 | name | string | Սյան ներքին անվանումը| Չունի, արժեքը պարտադիր է լրացնել |
 | source | string | sql-based տվյալների աղբյուրի դեպքում նշվում է SQL-ից կարդացվող սյան անունը, իսկ array-based տվյալների աղբյուրի դեպքում՝ սյան համարը| Չունի, արժեքը պարտադիր է լրացնել |
@@ -55,13 +55,14 @@ this.Schema = new Schema(this.Name, ConstantsArmenian.ParamLog.ToArmenianANSICac
 | showType | FieldType | Սահմանում է համակարգային տիպը ցուցադրման ժամանակ։ Եթե այս պարամետրը բացակայում է, ապա օգտագործվում է columnType հատկության արժեքը։ Սովորոբար այս հատկությունը օգտագործում են, եթե տվյալների տիպը, որը համապատասխանում է սյունակի արժեքներին, հարմար չի ցուցադրման համար։ Օրինակ եթե columnType = new StringFieldType(150) է, բայց շատ դեպքերում բավական է տեսնել տողի սկիզբը, ապա կարելի է սահմանել showType = new StringFieldType(32):| null |
 | width | short | Սյան լայնությունը: Արժեք չփոխանցելու դեպքում որոշվում է կախված սյան armenianCaption, englishCaption, columnType, showType հատկություններից| 0 | 
 | headlines | short | Սյան անվանման մեջ տողերի քանակ | 2 | 
-| isTrimEnd | bool | Սյան արժեքները վերջից trim են արվում թե ոչ| false |
+| isTrimEnd | bool | Սյան արժեքների աջակողմյան բացատները հեռացվում են թե ոչ| false |
 | mayNotExistInSQL | bool | sql-based տվյալների աղբյուրի sql հարցման մեջ սյան արժեքների լրացման համար նախատեսված սյան վերադարձը պարտադիր է թե ոչ։ Սյան արժեքների լրացման համար անհրաժեշտ sql-ական սյան անվանումը նշվում է source դաշտում։| false |
 | supportedEncoding | SupportedEncoding | Սյան կոդավորման տեսակ, որը կարող է ընդունել 3 տեսակի արժեք՝ ArmenianAnsi, RussionAnsi և Unicode։  Unicode արժեքի դեպքում անհրաժեշտ է սխեմայի SupportedExtendedFeatures հատկության արժեքը դնել true:| SupportedEncoding.ArmenianAnsi |
 
 Օրինակ՝
 ```c#
-this.Schema.AddColumn(nameof(DataRow.DocType), "DocType", ConstantsArmenian.DocType.ToArmenianANSICached(), ConstantsEnglish.DocType,                                            FieldTypeProvider.GetStringFieldType(SYSDEF.DocNameLength));
+this.Schema.AddColumn(nameof(DataRow.DocType), "DocType", "Փաստաթղթի տեսակ".ToArmenianANSI(), "Document's type",
+                      FieldTypeProvider.GetStringFieldType(8));
 ```
 
 ### AddParam
@@ -69,14 +70,14 @@ this.Schema.AddColumn(nameof(DataRow.DocType), "DocType", ConstantsArmenian.DocT
 Սխեմայում տվյալների աղբյուրի պարամետրի նկարագրության մասին ինֆորմացիան ավելացնելու համար պետք է կանչել AddParam մեթոդը, որն ունի հետևյալ շարահյուսությունը՝
 
 ```c#
-        public void AddParam(string name, string description, FieldType fieldType, string userReportValue = null,
+public void AddParam(string name, string description, FieldType fieldType, string userReportValue = null, 
                      long? supportedFilterType = null, bool required = false, string eDescription = "",
                      bool nullable = false, bool allowTime = false)
 ```
 
 Մեթոդի պարամետրի մասին ամբողջական ինֆորմացիան ներկայացված է ստորև՝
 
-| Անվանում | Տեսակ | **Նկարագրություն** | Լռությամբ արժեք|
+| Անվանում | Տիպ | **Նկարագրություն** | Լռությամբ արժեք|
 | --- | --- | --- | --- |
 | name | string | Պարամետրի ներքին անվանումը| Չունի, արժեքը պարտադիր է լրացնել | 
 | description | string | Պարամետրի հայերեն նկարագրությունը(անհրաժեշտ է փոխանցել Ansi կոդավորմամբ)| Չունի, արժեքը պարտադիր է լրացնել | 
@@ -90,6 +91,6 @@ this.Schema.AddColumn(nameof(DataRow.DocType), "DocType", ConstantsArmenian.DocT
 
 Օրինակ՝
 ```c#
-this.Schema.AddParam(nameof(Param.DocType), ConstantsArmenian.DocType.ToArmenianANSICached(),                         
-                     FieldTypeProvider.GetStringFieldType(DSConstantsLength.DocCapDocType), eDescription: ConstantsEnglish.DocType);
+this.Schema.AddParam(nameof(Param.DocType), "Փաստաթղթի տեսակ".ToArmenianANSI(),                         
+                     FieldTypeProvider.GetStringFieldType(8), eDescription: "Document's type");
 ``՝
