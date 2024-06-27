@@ -10,6 +10,7 @@ title: "Ընդլայնումներ"
 * [Տպելու ձևերի ընդլայնման ձեռնարկ](extenstions/definitions/template_substitution_guide.md)
 * [Հաշվառման ընդլայնման ձեռնարկ](extenstions/definitions/accounting_events_guide.md)
 * [UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատուկ սերվիս](extenstions/user_proxy_service.md)
+* [Սերվերային մոդուլ](extenstions/definitions/server_side_module_guide.md)
 * [Կազմակերպության սեփական նկարագրություններ](extenstions/new_definitions.md)
 
 
