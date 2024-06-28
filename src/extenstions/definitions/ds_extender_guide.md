@@ -113,6 +113,6 @@ public override Task<bool> ProccessRow(IExtendableRow row, IDataSourceArgs args)
 
 .as և .cs ֆայլերը պատրաստ լինելուն պես անհրաժեշտ է **SYSCON**-ով համապատասխան .as ֆայլը ներմուծել համակարգ, ինչի արդյունքում .cs ֆայլը նույնպես կներմուծվի։ 
 
-[Տվյալների աղբյուր նկարագրություն](ds_events.md)
+[Տվյալների աղբյուր նկարագրություն](ds_extender.md)
 
 
