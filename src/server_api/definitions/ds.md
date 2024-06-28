@@ -76,7 +76,7 @@ protected List<R> Rows { get; set; }
 
 ## CommandBehaviorFlag
 
-Վերադարձնում է sql-based տվյալների աղբյուրի հարցման կատարման ժամանակ տվյալների ստացման հատկությունները։ Ավելին մանրամասն տեղեկատվության համար [տես](https://learn.microsoft.com/en-us/dotnet/api/system.data.commandbehavior?view=net-8.0):
+Վերադարձնում է sql-based տվյալների աղբյուրի հարցման կատարման ժամանակ տվյալների ստացման հատկությունները։ Ավելի մանրամասն տեղեկատվության համար [տես](https://learn.microsoft.com/en-us/dotnet/api/system.data.commandbehavior?view=net-8.0):
 
 ```c#
 protected virtual CommandBehavior CommandBehaviorFlag
