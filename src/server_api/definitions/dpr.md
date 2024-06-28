@@ -21,6 +21,7 @@ public string Name { get; }
 ### ArmenianCaption
 
 Վերադարձնում է DPR-ի հայերեն անվանումը:
+
 ```c#
 public string ArmenianCaption { get; }
 ```
@@ -28,6 +29,7 @@ public string ArmenianCaption { get; }
 ### EnglishCaption
 
 Վերադարձնում է DPR-ի անգլերեն անվանումը:
+
 ```c#
 public string EnglishCaption { get; }
 ```
@@ -79,9 +81,9 @@ public virtual short PhasesCount { get { return 1; } }
 
 ### Execute
 
-Կատարում է DPR-ը` ստանալով՝
-- կատարման համար անհրաժեշտ պարամետրերը նկարագրող դասը,
-- չեղարկման տոկենը։
+Կատարում է DPR-ը` որպես մուտքային պարամետրեր ստանալով՝
+- p - կատարման համար անհրաժեշտ պարամետրերը նկարագրող դասը,
+- stoppingToken - չեղարկման տոկենը։
   
 ```c#
 public abstract Task<R> Execute(P p, CancellationToken stoppingToken);
