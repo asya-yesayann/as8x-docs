@@ -152,7 +152,10 @@ protected void AddRow(R row)
 
 ## Execute
 
-Կատարում է տվյալների աղբյուրը:
+Կատարում է տվյալների աղբյուրը` որպես մուտքային պարամետրեր ստանալով տվյալների աղբյուրի՝
+* args - DataSourceArgs<P> դասի օբյեկտ՝ որպես P փոխանցելով պարամետրերը նկարագրող դասը, որը պարունակում է տվյալների աղղբյուրի պարամետրերը, վերադարձվող սյուների անվանումների ցուցակը և մետատվյալներ,
+* stoppingToken - չեղարկման տոկենը,
+* extender - տվյալների աղբյուրի ընդլայնումը,
 
 ```c#
 public async Task<DataSourceResult<R>> Execute(DataSourceArgs<P> args, CancellationToken stoppingToken, IExtender extender = null)
@@ -160,7 +163,11 @@ public async Task<DataSourceResult<R>> Execute(DataSourceArgs<P> args, Cancellat
 
 ## Execute
 
-Կատարում է տվյալների աղբյուրը:
+Կատարում է տվյալների աղբյուրը` որպես մուտքային պարամետրեր ստանալով տվյալների աղբյուրի՝
+* param - պարամետրերը նկարագրող դասը,
+* columns - վերադարձվող սյուների անվանումների ցուցակը,
+* extender - տվյալների աղբյուրի ընդլայնումը,
+* stoppingToken - չեղարկման տոկենը։
 
 ```c#
 public async Task<DataSourceResult<R>> Execute(P param, HashSet<string> columns = null, IExtender extender = null, CancellationToken stoppingToken = default)
@@ -193,7 +200,7 @@ protected virtual void AfterExecuteSQLCommand(DataSourceArgs<P> args, SqlDataRea
 
 ## ProcessRow
 
-Հանդիսանում է AfterDataReaderClose համարժեքը, եթե տվյալների տողերի հավելյալ մշակման համար անհրաժեշտ չէ կատարել լրացուցիչ sql հարցումներ հավելյալ ինֆորմացիա ստանալու համար։
+Հանդիսանում է [AfterDataReaderClose](#afterDataReaderClose) մեթոդի համարժեքը, եթե տողերի հավելյալ մշակման համար անհրաժեշտ չէ կատարել լրացուցիչ sql հարցումներ՝ հավելյալ ինֆորմացիա ստանալու համար։
 
 ```c#
 protected virtual bool ProcessRow(DataSourceArgs<P> args, R row, SqlDataReader reader)
@@ -202,7 +209,7 @@ protected virtual bool ProcessRow(DataSourceArgs<P> args, R row, SqlDataReader r
 
 ## AfterDataReaderClose
 
-Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է override անել այս մեթոդը՝ նախապես override անելով AfterDataReaderCloseMode՝ը որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որով ասում ենք որ AfterDataReaderClose մեթոդը կանչվելու է յուրաքանչյուր տողի համար։
+Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է override անել այս մեթոդը՝ նախապես override անելով [AfterDataReaderCloseMode](#afterDataReaderCloseMode) հատկությունը՝ որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որի արդյունքում AfterDataReaderClose մեթոդը կկանչվի մեկ անգամ՝ տողերի ընդհանուր մշակում իրականացնելու նպատակով։
 
 ```c#
 protected virtual Task AfterDataReaderClose(DataSourceArgs<P> args, CancellationToken stoppingToken)
@@ -210,7 +217,7 @@ protected virtual Task AfterDataReaderClose(DataSourceArgs<P> args, Cancellation
 
 ## AfterDataReaderClose
 
-Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է override անել այս մեթոդը՝ նախապես override անելով AfterDataReaderCloseMode՝ը որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որով ասում ենք որ AfterDataReaderClose մեթոդը կանչվելու է յուրաքանչյուր տողի համար։
+Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է override անել այս մեթոդը՝ նախապես override անելով [AfterDataReaderCloseMode](#afterDataReaderCloseMode) հատկությունը՝ որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որի արդյունքում AfterDataReaderClose մեթոդը կկանչվի յուրաքանչյուր տողի համար։
 
 ```c#
 protected virtual Task<bool> AfterDataReaderClose(DataSourceArgs<P> args, R row)
