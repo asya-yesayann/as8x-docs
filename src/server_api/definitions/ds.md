@@ -175,8 +175,7 @@ public async Task<DataSourceResult<R>> Execute(P param, HashSet<string> columns 
 
 ---
 ## MakeSQLCommand
-
-Այս մեթոդը անհրաժեշտ է override անել այն դեպքում, երբ որ ունենք sql-based տվյալների աղբյուր։ Այս մեթոդը ձևավորում ենք տվյալների աղբյուրի տվյալների լրացման համար անհրաժեշտ sql հարցումը ու այն վերադարձնել։
+Sql-based տվյալների աղբյուրի sql հարցման հրամանը ձևավորելու համար անհրաժեշտ է override անել մեթոդը։
 
 ```c#
 protected virtual Task<SqlCommand> MakeSQLCommand(DataSourceArgs<P> args, CancellationToken stoppingToken)
