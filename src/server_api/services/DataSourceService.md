@@ -27,7 +27,7 @@ public async Task<List<T>> ExecuteDataSource<T>(string dsName, Dictionary<string
 - cancellationToken - չեղարկման տոկենը,
 - T - սյուները նկարագրող դասը։
 
-Օգտագործման օրինակին ծանոթանալու համար [տե՛ս](/examples/ds.md#1-չտիպիզացված-կատարում):
+Օգտագործման օրինակին ծանոթանալու համար [տե՛ս](../examples/ds.md#1-չտիպիզացված-կատարում):
 
 ### ExecuteDataSource
 
@@ -41,7 +41,7 @@ public Task<List<T>> ExecuteDataSource<T>(Type dsType, Dictionary<string, object
 - cancellationToken - չեղարկման տոկենը,
 - T - սյուները նկարագրող դասը:
 
-Օգտագործման օրինակին ծանոթանալու համար [տե՛ս](/examples/ds.md#1-չտիպիզացված-կատարում):
+Օգտագործման օրինակին ծանոթանալու համար [տե՛ս](../examples/ds.md#1-չտիպիզացված-կատարում):
 
 ### GetDataSource
 
@@ -51,7 +51,7 @@ public T GetDataSource<T>() where T : IDataSource
 
 Ստեղծվում է տրված T տիպի տվյալների աղբյուրի դասի օբյեկտ։
 
-Օգտագործման օրինակին ծանոթանալու համար [տե՛ս](/examples/ds.md#2-տիպիզացված--կատարում):
+Օգտագործման օրինակին ծանոթանալու համար [տե՛ս](../examples/ds.md#2-տիպիզացված--կատարում):
 
 ### GetColumnsDefinition
 
