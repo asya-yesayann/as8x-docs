@@ -87,7 +87,7 @@ protected virtual CommandBehavior CommandBehaviorFlag
 
 ## AfterDataReaderCloseMode
 
-Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է գերբեռնել այս հատկությունը՝ որպես արժեք նշելով հավելյալ մշակում պետք է անել՝ CallMode.EachRowCall - ստացված տողերից յուրաքանչյուրի համար, SingleCall մի ամբողջական մշակում անել բոլոր տողերի համար։ Մշակումը իրականացնելու համար էլ անհրաժեշտ է գերբեռնել AfterDataReaderClose մեթոդը։
+Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է overload անել այս հատկությունը՝ որպես արժեք նշելով հավելյալ մշակում պետք է անել՝ CallMode.EachRowCall - ստացված տողերից յուրաքանչյուրի համար, SingleCall մի ամբողջական մշակում անել բոլոր տողերի համար։ Մշակումը իրականացնելու համար էլ անհրաժեշտ է overload անել AfterDataReaderClose մեթոդը։
 
 ```c#
 public virtual CallMode AfterDataReaderCloseMode
@@ -169,7 +169,7 @@ public async Task<DataSourceResult<R>> Execute(P param, HashSet<string> columns 
 ---
 ## MakeSQLCommand
 
-Այս մեթոդը անհրաժեշտ է գերբեռնել այն դեպքում, երբ որ ունենք sql-based տվյալների աղբյուր։ Այս մեթոդը ձևավորում ենք տվյալների աղբյուրի տվյալների լրացման համար անհրաժեշտ sql հարցումը ու այն վերադարձնել։
+Այս մեթոդը անհրաժեշտ է overload անել այն դեպքում, երբ որ ունենք sql-based տվյալների աղբյուր։ Այս մեթոդը ձևավորում ենք տվյալների աղբյուրի տվյալների լրացման համար անհրաժեշտ sql հարցումը ու այն վերադարձնել։
 
 ```c#
 protected virtual Task<SqlCommand> MakeSQLCommand(DataSourceArgs<P> args, CancellationToken stoppingToken)
@@ -185,7 +185,7 @@ protected virtual Task BeforeExecuteSQLCommand(DataSourceArgs<P> args, Cancellat
 
 ## AfterExecuteSQLCommand
 
-Այս մեթոդը անհրաժեշտ է գերբեռնել եթե sql-based տվյալների աղբյուրի sql հարցման կատարումից հետո անհրաժեշտ է ստանալ հարցման սյուների պարունակությունը:
+Այս մեթոդը անհրաժեշտ է overload անել եթե sql-based տվյալների աղբյուրի sql հարցման կատարումից հետո անհրաժեշտ է ստանալ հարցման սյուների պարունակությունը:
 
 ```c#
 protected virtual void AfterExecuteSQLCommand(DataSourceArgs<P> args, SqlDataReader reader)
@@ -202,7 +202,7 @@ protected virtual bool ProcessRow(DataSourceArgs<P> args, R row, SqlDataReader r
 
 ## AfterDataReaderClose
 
-Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է գերբեռնել այս մեթոդը՝ նախապես գերբեռնելով AfterDataReaderCloseMode՝ը որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որով ասում ենք որ AfterDataReaderClose մեթոդը կանչվելու է յուրաքանչյուր տողի համար։
+Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է overload անել այս մեթոդը՝ նախապես overload անելով AfterDataReaderCloseMode՝ը որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որով ասում ենք որ AfterDataReaderClose մեթոդը կանչվելու է յուրաքանչյուր տողի համար։
 
 ```c#
 protected virtual Task AfterDataReaderClose(DataSourceArgs<P> args, CancellationToken stoppingToken)
@@ -210,7 +210,7 @@ protected virtual Task AfterDataReaderClose(DataSourceArgs<P> args, Cancellation
 
 ## AfterDataReaderClose
 
-Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է գերբեռնել այս մեթոդը՝ նախապես գերբեռնելով AfterDataReaderCloseMode՝ը որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որով ասում ենք որ AfterDataReaderClose մեթոդը կանչվելու է յուրաքանչյուր տողի համար։
+Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է overload անել այս մեթոդը՝ նախապես overload անելով AfterDataReaderCloseMode՝ը որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որով ասում ենք որ AfterDataReaderClose մեթոդը կանչվելու է յուրաքանչյուր տողի համար։
 
 ```c#
 protected virtual Task<bool> AfterDataReaderClose(DataSourceArgs<P> args, R row)
