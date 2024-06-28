@@ -79,7 +79,7 @@ this.DbService = dbService;
 
 ### Execute 
 
-Dpr-ի կատարման համար անհրաժեշտ է գերբեռնել base դասի `Execute` մեթոդը՝ փոխանցելով պարամետրերը նկարագրող դասը և վերադարձնելով կատարման արդյունքում ստացվող տվյալները նկարագրող դասը։
+Dpr-ի կատարման համար անհրաժեշտ է override անել base դասի `Execute` մեթոդը՝ փոխանցելով պարամետրերը նկարագրող դասը և վերադարձնելով կատարման արդյունքում ստացվող տվյալները նկարագրող դասը։
 ```c#
 public override async Task<NoResult> Execute(IndexDefragmentRequest request, CancellationToken stoppingToken)
 {
