@@ -13,7 +13,7 @@ ProcessRow մեթոդը որպես մուտքային պարամետրեր ստ�
 
 ### Օրինակ 1
 
-Այս օրինակում fSTATENAME string տիպի հաշվարկային սյան արժեքը որոշվում fSTATE short տիպի ոչ հաշվարկային սյան արժեքներից ելնելով:
+Այս օրինակում fSTATENAME string տիպի **հաշվարկային** սյան արժեքը որոշվում fSTATE short տիպի ոչ հաշվարկային սյան արժեքներից ելնելով:
 
 ```c#
 protected override bool ProcessRow(DataSourceArgs<Param> args, DataRow row, SqlDataReader reader)
@@ -31,5 +31,23 @@ protected override bool ProcessRow(DataSourceArgs<Param> args, DataRow row, SqlD
         break;
   }
   return true;
+}
+```
+
+### Օրինակ 2
+
+Ներկայացված է տվյալների աղբյուրի տողերի **ֆիլտրացիայի** օրինակ՝ վերջնական տողերի ցուցակում ընդգրկվում են այն տողերը, որոնց short տիպի Age դաշտի արժեքը մեծ է short տիպի AgeStart պարամետրի արժեքից։
+
+```c#
+protected override bool ProcessRow(DataSourceArgs<Param> args, DataRow row, SqlDataReader reader)
+{
+    if (row.Age < args.Parameters.AgeStart)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }
 ```
