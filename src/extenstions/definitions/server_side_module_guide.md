@@ -15,8 +15,9 @@ title: "Սերվերային մոդուլի ձեռնարկ (SERVERSIDEMODULE)"
 
 COMMENT {};
 SERVERSIDEMODULE {Name = AgrMortTemplate_12;
-Caption = "AgrMortTemplate_12";
-ECaption= "AgrMortTemplate_12";
+Caption = "Գրավի պայմանագրերի քաղվածքների լրացուցիչ պարամետրեր";
+ECaption= "Additional parameters for collateral contract statements";
 CSsource = AgrMortTemplate_12.cs;
 };
 ```
+**Note:** Վերևում բերված օրինակում հայերեն անվանումը գրցած է Unicode կոդավորմամբ, սակայն ֆայլը ստեղծելիս հայերենի համար օգտագործեք ANSI կոդավորումը։
