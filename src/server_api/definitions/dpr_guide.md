@@ -12,7 +12,7 @@ title: "DPR-ի նկարագրման ձեռնարկ"
     * [Execute](#execute)
 
 ## Նախաբան
-Սերվիսային երկար տևող հարցումներ կատարելու ու կատարման ընթացքին հետևելու համար նկարագրվում է Dpr` Data Processing Request:
+Սերվիսային երկար տևող հարցումներ կատարելու ու կատարման ընթացքին հետևելու համար նկարագրվում է Dpr( Data Processing Request):
 
 8X-ում DPR նկարագրության համար հարկավոր է ունենալ`
 * .as ընդլայնմամբ ֆայլ սկրիպտերում, որը պարունակում է մետատվյալներ DPR-ի մասին,
@@ -60,7 +60,7 @@ public class IndexDefragmentRequest
 - Հայտատարել դաս, որը ունի DPR ատրիբուտը և ժառանգում է DataProcessingRequest<R, P> դասը՝ որպես R փոխանցելով Dpr-ի կատարման արդյունքում ստացվող տվյալները նկարագրող դասը, իսկ որպես P՝ պարամետրերը նկարագրող դասը։ Պարամետրերի բացակայության դեպքում որպես P անհրաժեշտ է փոխանցել `NoParam` դասը, արդյունքի բացակայության դեպքում որպես R փոխանցել `NoResult` դասը։
 
 ```c#
-[DPR("", DPRType = DPRType.Other, ArmenianCaption = "Ինդեքսների դեֆրագմենտացիա",
+[DPR(nameof(IndexDefragment), DPRType = DPRType.Other, ArmenianCaption = "Ինդեքսների դեֆրագմենտացիա",
                                       EnglishCaption = "Index defragmentation")]
 public class IndexDefragment : DataProcessingRequest<NoResult, IndexDefragmentRequest>
 ```
@@ -69,11 +69,11 @@ public class IndexDefragment : DataProcessingRequest<NoResult, IndexDefragmentRe
 - Ձևավորել կոնստրուկտորը, որտեղ անհրաժեշտ է [ինյեկցիա](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection) անել աշխատանքի համար անհրաժեշտ service-ները։
 
 ```c#
-private IDBService DbService { get; }
+private readonly IDBService dbService;
 
 public IndexDefragment(IDBService dbService)
 {
-this.DbService = dbService;
+  this.DbService = dbService;
 }
 ```
 
@@ -83,7 +83,7 @@ Dpr-ի կատարման համար անհրաժեշտ է override անել base 
 ```c#
 public override async Task<NoResult> Execute(IndexDefragmentRequest request, CancellationToken stoppingToken)
 {
-      using var cmd = this.DbService.Connection.CreateCommand();
+      using var cmd = this.dbService.Connection.CreateCommand();
       cmd.CommandType = CommandType.StoredProcedure;
       cmd.CommandTimeout = timeout;
       cmd.CommandText = "asp_IndexDefrag";
