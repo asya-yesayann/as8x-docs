@@ -92,8 +92,7 @@ protected override bool ProcessRow(DataSourceArgs<Param> args, DataRow row, SqlD
 Այս օրինակում յուրաքանչյուր տողի համար բեռնվում է տողի fISN դաշտի արժեքով փաստաթուղթը  և  DOCARMCAPTION, DOCENGCAPTION string տիպի հաշվարկային սյուներին վերագրում բեռնված փաստաթղթի հայերեն և անգլերեն անվանումները։
 
 ```c#
-public override CallMode AfterDataReaderCloseMode => 
-							CallMode.EachRowCall;
+public override CallMode AfterDataReaderCloseMode => CallMode.EachRowCall;
 							
 protected override async Task<bool> AfterDataReaderClose(DataSourceArgs<Param> args, DataRow row)
 {
@@ -110,8 +109,7 @@ protected override async Task<bool> AfterDataReaderClose(DataSourceArgs<Param> a
 Այս օրինակում յուրաքանչյուր տողի համար բեռնվում է ծառի նկարագրությունը՝ օգտագործելով տողի fNAME դաշտի արժեքը: Եթե դիտումը(AllowView) կամ խմբագրումը(AllowEdit) թույլատրված է, ապա fCAPTION, fECAPTION string տիպի հաշվարկային սյուներին վերագրվում է բեռնված ծառի հայերեն և անգլերեն անվանումները և վերադարձնում true, որի շնորհիվ տողը ներառվում է տվյալների աղբյուրի տողերի վերջնական ցուցակում։ Հակառակ դեպքում տողը չի ավելացվում ցուցակում:
 
 ```c#
-public override CallMode AfterDataReaderCloseMode => 
-							CallMode.EachRowCall;
+public override CallMode AfterDataReaderCloseMode => CallMode.EachRowCall;
 
 protected override Task<bool> AfterDataReaderClose(DataSourceArgs<NoParam> args, DataRow row)
 {
