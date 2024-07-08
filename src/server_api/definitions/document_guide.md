@@ -13,6 +13,7 @@ tags: [Document]
   * [.cs ընդլայնմամբ ֆայլի սահմանում](#cs-ընդլայնմամբ-ֆայլի-սահմանում)
     * [Կոնստրուկտորի ձևավորում](#կոնստրուկտորի-ձևավորում)
     * [Նկարագրման հատվածի ձևավորում](#նկարագրման-հատվածի-ձևավորում)
+    * [Մեթոդներ](#մեթոդներ)
 
 
 ## Նախաբան
@@ -91,5 +92,46 @@ tags: [Document]
 
 ```
 
+## Մեթոդներ
 
 
+### Folders
+
+-  Փաստաթուղթը FOLDERS աղյուսակում գրանցելու համար անհրաժեշտ է override անել [Folders](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Folders.html) մեթոդը՝ ստեղծելով և store անելով `FolderElement` դասի օբյեկտ, որը հանդիսանում է 4x համակարգում նկարագրված [AsFoldElement](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/AsFoldElement.html) դասի համարժեքը։
+
+```c#
+
+```
+
+### Delete
+
+-  Եթե կա անհրաժեշտություն փաստաթղթի հեռացումից առաջ ստուգումներ կատարելու և կապակցված տվյալներ հեռացնելու, ապա անհրաժեշտ է override անել [Delete](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Delete.html) մեթոդը:
+
+```c#
+
+```
+
+### Validate
+
+-  Դաշտերի արժեքների ստուգման անհրաժեշտության դեպքում override անել [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) մեթոդը:
+
+```c#
+
+```
+
+### Action
+
+-  Փաստաթղթի գրանցման ժամանակ  հավելյալ ստուգումներ կատարելու,   լոգում, տվյալների բազայի աղյուսակներում փոխկապակցված գրանցումներ կատարելու, ինչ-որ պայմաններից կախված փաստաթղթի էլեմենտների(ռեկվիզիտ, մեմո, աղյուսակ) և հատկությունների արժեքները փոփոխելու համար անհրաժեշտ է override անել [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) մեթոդը:
+
+```c#
+
+```
+
+### DefaultComment
+
+-  Փաստաթուղթը FOLDERS աղյուսակում գրանցելիս աղյուսակի fCOM դաշտի լրացման անհրաժեշտ է override անել [DefaultComment](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/DefaultComment.html) մեթոդը:
+Override չանելու դեպքում fCOM դաշտում լրացվելու է փաստաթղթի հայերեն անվանումը։
+
+```c#
+
+```
