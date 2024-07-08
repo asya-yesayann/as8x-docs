@@ -3,33 +3,35 @@ layout: page
 title: "Տվյալների աղբյուրի նկարագրություն" 
 ---
 
-# Տվյալների աղբյուրի նկարագրություն
 - [Հատկություններ](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/ds.md#%D5%B0%D5%A1%D5%BF%D5%AF%D5%B8%D6%82%D5%A9%D5%B5%D5%B8%D6%82%D5%B6%D5%B6%D5%A5%D6%80)
 - [Մեթոդներ](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/ds.md#%D5%B4%D5%A5%D5%A9%D5%B8%D5%A4%D5%B6%D5%A5%D6%80)
-# Հատկություններ
 
-## Name
+## Հատկություններ
+
+### Name
 
 Վերադարձնում է տվյալների աղբյուրի ներքին անվանումը:
 
 ```c#
 public string Name { get; }
 ```
-## ArmenianCaption
+### ArmenianCaption
 
 Վերադարձնում է տվյալների աղբյուրի հայերեն անվանումը:
+
 ```c#
 public string ArmenianCaption { get; }
 ```
 
-## EnglishCaption
+### EnglishCaption
 
 Վերադարձնում է տվյալների աղբյուրի անգլերեն անվանումը:
+
 ```c#
 public string EnglishCaption { get; }
 ```
 
-## IsParametersSupported
+### IsParametersSupported
 
 Ցույց է տալիս տվյալների աղբյուրը ունի պարամետրեր թե ոչ:
 
@@ -37,16 +39,16 @@ public string EnglishCaption { get; }
 public bool IsParametersSupported { get; }
 ```
 
-## Progress
+### Progress
 
 Վերադարձնում է տվյալների աղբյուրի կատարման պրոգրեսը:
 
 ```c#
 public DataSourceExecutionProgress Progress { get; }
 ```
----
 
-## QueryTimeOut
+
+### QueryTimeOut
 
 Վերադարձնում կամ արժեքավորում է տվյալների աղբյուրի հարցման կատարման մաքսիմալ ժամանակը(վայրկյաններով):
 
@@ -54,29 +56,25 @@ public DataSourceExecutionProgress Progress { get; }
 public int QueryTimeOut { get; set; }
 ```
 
----
+### Rows
 
-## Rows
-
-Վերադարձնում կամ արժեքավորում է տվյալների աղբյուրի տողերը:
+Վերադարձնում կամ արժեքավորում է տվյալների աղբյուրի տողերը՝ որպես R վերադարձնելով տվյալների աղբյուրի սյուները նկարագրող դասը։
 
 ```c#
 protected List<R> Rows { get; set; }
 ```
 
---- 
-
-## Schema
+### Schema
 
 Վերադարձնում է տվյալների աղբյուրի [սխեման](schema.md):
 
 ```c#
-protected List<R> Rows { get; set; }
+public Schema Schema { get; protected set; }
 ```
 
-## CommandBehaviorFlag
+### CommandBehaviorFlag
 
-Վերադարձնում է sql-based տվյալների աղբյուրի հարցման կատարման ժամանակ տվյալների ստացման հատկությունները։ Ավելի մանրամասն տեղեկատվության համար [տես](https://learn.microsoft.com/en-us/dotnet/api/system.data.commandbehavior?view=net-8.0):
+Վերադարձնում է sql-based տվյալների աղբյուրի հարցման հարցման կատարման հատկությունները և արդյունքների վերադարձման եղանակը։ Ավելի մանրամասն տեղեկատվության համար [տե՛ս](https://learn.microsoft.com/en-us/dotnet/api/system.data.commandbehavior?view=net-8.0):
 
 ```c#
 protected virtual CommandBehavior CommandBehaviorFlag
@@ -85,7 +83,7 @@ protected virtual CommandBehavior CommandBehaviorFlag
 }
 ```
 
-## AfterDataReaderCloseMode
+### AfterDataReaderCloseMode
 
 Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է override անել այս հատկությունը՝ որպես արժեք նշելով հավելյալ մշակում պետք է անել՝ CallMode.EachRowCall - ստացված տողերից յուրաքանչյուրի համար, SingleCall մի ամբողջական մշակում անել բոլոր տողերի համար։ Մշակումը իրականացնելու համար էլ անհրաժեշտ է override անել AfterDataReaderClose մեթոդը։
 
@@ -95,7 +93,7 @@ public virtual CallMode AfterDataReaderCloseMode
     get { return CallMode.None; }
 }
 ```
-## IsSQLBased
+### IsSQLBased
 
 Ցույց է տալիս թե տվյալների աղբյուրի տվյալները ստացվում են sql հարցման միջոցով թե ոչ։
 
@@ -106,9 +104,9 @@ public virtual bool IsSQLBased
 }
 ```
 
-## IsUpdatable
+### IsUpdatable
 
-??
+Sql-based տվյալների աղբյուրում նոր տող ավելացնելու, ջնջելու կամ թարմացնելու հնարավորությունը ապահովելու համար անհրաժեշտ է override անել այս հատկությունը՝ վերադարձնելով true արժեք և [MakeSQLCommand](#makeSQLCommand) մեթոդի DataSourceArgs<P> տիպի args պարամետրի IsUpdate bool տիպի հատկության true արժեքի դեպքում ավելացնել ֆիլտրում ըստ տվյալների աղբյուրի տողի նույննականացուցիչի։ Սովորաբար տողի նույննականացուցիչ հանդիսանում է փաստաթղթի ISN է, բայց կարող է նաև լինել այլ տիպի արժեք։
 
 ```c#
 public virtual bool IsUpdatable
@@ -117,7 +115,7 @@ public virtual bool IsUpdatable
 }
 ```
 
-## SupportPrepareExecutionPhase
+### SupportPrepareExecutionPhase
 
 Ցույց է տալիս տվյալների աղբյուրի պրոգրեսով կատարումը սատարում է "Նախապատրաստում" փուլը թե ոչ:
 
@@ -128,9 +126,9 @@ public virtual bool SupportPrepareExecutionPhase
 }
 ```
 
-## SupportsSnapshotIsolation
+### SupportsSnapshotIsolation
 
-Ցույց է տալիս տվյալների աղբյուրի հարցման կատարման իզոլյացիայի մակարդակը snapshot է թե ոչ:
+Վերադարձնում է  տվյալների աղբյուրի հարցման կատարման իզոլյացիայի մակարդակը [snapshot](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/sql/snapshot-isolation-in-sql-server) է թե ոչ:
 
 ```c#
 public virtual bool SupportsSnapshotIsolation
@@ -138,19 +136,18 @@ public virtual bool SupportsSnapshotIsolation
    get { return false; }
 }
 ```
----
 
-# Մեթոդներ
+## Մեթոդներ
 
-## AddRow
+### AddRow
 
-Ավելացնում է տող տվյալների աղբյուրի տողերի ցուցակում:
+Ավելացնում է տող տվյալների աղբյուրի տողերի ցուցակում` որպես մուտքային R պարամետր ստանալով տվյալների աղբյուրի սյուները նկարագրող դասը։
 
 ```c#
 protected void AddRow(R row)
 ```
 
-## Execute
+### Execute
 
 Կատարում է տվյալների աղբյուրը` որպես մուտքային պարամետրեր ստանալով տվյալների աղբյուրի՝
 * args - DataSourceArgs<P> դասի օբյեկտ՝ որպես P փոխանցելով պարամետրերը նկարագրող դասը, որը պարունակում է տվյալների աղղբյուրի պարամետրերը, վերադարձվող սյուների անվանումների ցուցակը և մետատվյալներ,
@@ -161,7 +158,7 @@ protected void AddRow(R row)
 public async Task<DataSourceResult<R>> Execute(DataSourceArgs<P> args, CancellationToken stoppingToken, IExtender extender = null)
 ```
 
-## Execute
+### Execute
 
 Կատարում է տվյալների աղբյուրը` որպես մուտքային պարամետրեր ստանալով տվյալների աղբյուրի՝
 * param - պարամետրերը նկարագրող դասը,
@@ -173,23 +170,23 @@ public async Task<DataSourceResult<R>> Execute(DataSourceArgs<P> args, Cancellat
 public async Task<DataSourceResult<R>> Execute(P param, HashSet<string> columns = null, IExtender extender = null, CancellationToken stoppingToken = default)
 ```
 
----
-## MakeSQLCommand
-Sql-based տվյալների աղբյուրի sql հարցման հրամանը ձևավորելու համար անհրաժեշտ է override անել մեթոդը։
+### MakeSQLCommand
+
+Ձևավորում է sql-based տվյալների աղբյուրի sql հարցման հրամանը։
 
 ```c#
 protected virtual Task<SqlCommand> MakeSQLCommand(DataSourceArgs<P> args, CancellationToken stoppingToken)
 ```
 
-## BeforeExecuteSQLCommand
+### BeforeExecuteSQLCommand
 
-Նախատեսված է տվյալների աղբյուրի կատարումից առաջ նախապատրաստական աշխատանքներ կատարելու համար()
+Նախատեսված է տվյալների աղբյուրի կատարումից առաջ նախապատրաստական աշխատանքներ կատարելու համար:
 
 ```c#
 protected virtual Task BeforeExecuteSQLCommand(DataSourceArgs<P> args, CancellationToken stoppingToken)
 ```
 
-## AfterExecuteSQLCommand
+### AfterExecuteSQLCommand
 
 Այս մեթոդը անհրաժեշտ է override անել եթե sql-based տվյալների աղբյուրի sql հարցման կատարումից հետո անհրաժեշտ է ստանալ հարցման սյուների պարունակությունը:
 
@@ -197,7 +194,25 @@ protected virtual Task BeforeExecuteSQLCommand(DataSourceArgs<P> args, Cancellat
 protected virtual void AfterExecuteSQLCommand(DataSourceArgs<P> args, SqlDataReader reader)
 ```
 
-## ProcessRow
+### AfterDataReaderClose
+
+Sql-based տվյալների աղբյուրի sql հարցման կատարումից հետո տողերի հավելյալ մշակման, ֆիլտրման և հաշվարկային սյուների արժեքների հաշվման համար անհրաժեշտ է override անել այս մեթոդը՝ նախապես override անելով [AfterDataReaderCloseMode](#afterDataReaderCloseMode) հատկությունը՝ որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որի արդյունքում AfterDataReaderClose մեթոդը կկանչվի յուրաքանչյուր տողի համար։
+
+```c#
+protected virtual Task<bool> AfterDataReaderClose(DataSourceArgs<P> args, R row)
+```
+
+Օգտագործման օրինակներին ծանոթանալու համար [տե՛ս](sql_based_ds_rows_additional_processing.md#afterdatareaderclosemode-ի-օգտագործման-օրինակներ)։
+
+### AfterDataReaderClose
+
+Sql-based տվյալների աղբյուրի sql հարցման կատարումից հետո տողերի հավելյալ մշակման, ֆիլտրման և հաշվարկային սյուների արժեքների հաշվման համար անհրաժեշտ է override անել այս մեթոդը՝ նախապես override անելով [AfterDataReaderCloseMode](#afterDataReaderCloseMode) հատկությունը՝ որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որի արդյունքում AfterDataReaderClose մեթոդը կկանչվի մեկ անգամ՝ տողերի ընդհանուր մշակում իրականացնելու նպատակով։
+
+```c#
+protected virtual Task AfterDataReaderClose(DataSourceArgs<P> args, CancellationToken stoppingToken)
+```
+
+### ProcessRow
 
 Հանդիսանում է [AfterDataReaderClose](#afterDataReaderClose) մեթոդի համարժեքը, եթե տողերի հավելյալ մշակման համար անհրաժեշտ չէ կատարել լրացուցիչ sql հարցումներ՝ հավելյալ ինֆորմացիա ստանալու համար։
 
@@ -205,24 +220,9 @@ protected virtual void AfterExecuteSQLCommand(DataSourceArgs<P> args, SqlDataRea
 protected virtual bool ProcessRow(DataSourceArgs<P> args, R row, SqlDataReader reader)
 ```
 
+Օգտագործման օրինակներին ծանոթանալու համար [տե՛ս](sql_based_ds_rows_additional_processing.md#processRow-ի-օգտագործման-օրինակներ)։
 
-## AfterDataReaderClose
-
-Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է override անել այս մեթոդը՝ նախապես override անելով [AfterDataReaderCloseMode](#afterDataReaderCloseMode) հատկությունը՝ որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որի արդյունքում AfterDataReaderClose մեթոդը կկանչվի մեկ անգամ՝ տողերի ընդհանուր մշակում իրականացնելու նպատակով։
-
-```c#
-protected virtual Task AfterDataReaderClose(DataSourceArgs<P> args, CancellationToken stoppingToken)
-```
-
-## AfterDataReaderClose
-
-Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է override անել այս մեթոդը՝ նախապես override անելով [AfterDataReaderCloseMode](#afterDataReaderCloseMode) հատկությունը՝ որպես վերադարձվող արժեք նշելով CallMode.EachRowCall արժեքը, որի արդյունքում AfterDataReaderClose մեթոդը կկանչվի յուրաքանչյուր տողի համար։
-
-```c#
-protected virtual Task<bool> AfterDataReaderClose(DataSourceArgs<P> args, R row)
-```
-
-## GetExecutionPhases
+### GetExecutionPhases
 
 Վերադարձնում է տվյալների աղբյուրի կատարման փուլերը։
 
