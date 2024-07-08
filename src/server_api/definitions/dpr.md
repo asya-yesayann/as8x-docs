@@ -62,7 +62,7 @@ public DPRType DPRType { get; private set; }
 
 ### IsCancellationSupported
 
-Ցույց է տալիս թե DPR-ի կատարումը սատարում է չեղարկումը(cancellation) թե ոչ
+Ցույց է տալիս թե DPR-ի կատարումը սատարում է չեղարկումը(cancellation) թե ոչ։
 
 ```c#
 public virtual bool IsCancellationSupported { get { return true; } }
@@ -82,6 +82,7 @@ public virtual short PhasesCount { get { return 1; } }
 ### Execute
 
 Կատարում է DPR-ը` որպես մուտքային պարամետրեր ստանալով՝
+- R - կատարման արդյունքում վերադարձվող տվյալները նկարագրող դասը,
 - p - կատարման համար անհրաժեշտ պարամետրերը նկարագրող դասը,
 - stoppingToken - չեղարկման տոկենը։
   
