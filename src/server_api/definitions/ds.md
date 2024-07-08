@@ -74,7 +74,7 @@ public Schema Schema { get; protected set; }
 
 ### CommandBehaviorFlag
 
-Վերադարձնում է sql-based տվյալների աղբյուրի հարցման հարցման կատարման հատկությունները և արդյունքների վերադարձման եղանակը։ Ավելի մանրամասն տեղեկատվության համար [տե՛ս](https://learn.microsoft.com/en-us/dotnet/api/system.data.commandbehavior?view=net-8.0):
+Վերադարձնում է sql-based տվյալների աղբյուրի հարցման կատարման հատկությունները և արդյունքների վերադարձման եղանակը։ Ավելի մանրամասն տեղեկատվության համար [տե՛ս](https://learn.microsoft.com/en-us/dotnet/api/system.data.commandbehavior?view=net-8.0):
 
 ```c#
 protected virtual CommandBehavior CommandBehaviorFlag
@@ -85,7 +85,7 @@ protected virtual CommandBehavior CommandBehaviorFlag
 
 ### AfterDataReaderCloseMode
 
-Տվյալների աղբյուրի հարցման կատարումից հետո երբեմն անհրաժեշտ է լինում հավելյալ մշակել ստացված տվյալները։ Այդ դեպքում անհրաժեշտ է override անել այս հատկությունը՝ որպես արժեք նշելով հավելյալ մշակում պետք է անել՝ CallMode.EachRowCall - ստացված տողերից յուրաքանչյուրի համար, SingleCall մի ամբողջական մշակում անել բոլոր տողերի համար։ Մշակումը իրականացնելու համար էլ անհրաժեշտ է override անել AfterDataReaderClose մեթոդը։
+Sql-based տվյալների աղբյուրի հարցման կատարումից հետո տողերի հավելյալ մշակման, ֆիլտրացիայի համար անհրաժեշտ է override անել այս հատկությունը՝ որպես արժեք նշելով հավելյալ մշակում պետք է անել՝ CallMode.EachRowCall - ստացված տողերից յուրաքանչյուրի համար, SingleCall մի ամբողջական մշակում անել բոլոր տողերի համար։ Մշակումը իրականացնելու համար էլ անհրաժեշտ է override անել [AfterDataReaderClose](#afterDataReaderClose) մեթոդը։
 
 ```c#
 public virtual CallMode AfterDataReaderCloseMode
