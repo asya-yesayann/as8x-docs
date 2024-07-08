@@ -170,6 +170,8 @@ public async Task<DataSourceResult<R>> Execute(DataSourceArgs<P> args, Cancellat
 public async Task<DataSourceResult<R>> Execute(P param, HashSet<string> columns = null, IExtender extender = null, CancellationToken stoppingToken = default)
 ```
 
+Օգտագործման օրինակին ծանոթանալու համար [տե՛ս](../examples/ds.md#2-Տիպիզացված-կատարում)։
+
 ### MakeSQLCommand
 
 Ձևավորում է sql-based տվյալների աղբյուրի sql հարցման հրամանը։
