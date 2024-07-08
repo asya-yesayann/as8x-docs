@@ -3,8 +3,8 @@ layout: page
 title: "Տվյալների աղբյուրի նկարագրություն" 
 ---
 
-- [Հատկություններ](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/ds.md#%D5%B0%D5%A1%D5%BF%D5%AF%D5%B8%D6%82%D5%A9%D5%B5%D5%B8%D6%82%D5%B6%D5%B6%D5%A5%D6%80)
-- [Մեթոդներ](https://github.com/armsoft/as8x-docs/blob/main/src/server_api/definitions/ds.md#%D5%B4%D5%A5%D5%A9%D5%B8%D5%A4%D5%B6%D5%A5%D6%80)
+- [Հատկություններ](#հատկություններ)
+- [Մեթոդներ](#մեթոդներ)
 
 ## Հատկություններ
 
