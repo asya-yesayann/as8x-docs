@@ -99,8 +99,8 @@ public void AddColumn(string name, string armenianCaption, string englishCaption
 * name - սյան ներքին անումը,
 * armenianCaption - Սյան հայերեն անվանումը՝ անհրաժեշտ է փոխանցել ANSI կոդավորմամբ,
 * englishCaption - սյան անգլերեն անվանումը,
-* columnType - սյան համակարգային տիպը։
-  Օրինակ՝
+* columnType - սյան համակարգային տիպը։  
+  Օրինակ՝  
   FieldTypeProvider.Boolean  
   FieldTypeProvider.Amount  
   FieldTypeProvider.GetStringFieldType(10)  
