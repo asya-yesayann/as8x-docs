@@ -1,6 +1,10 @@
 ---
 layout: page
 title: "Տպելու ձևերի ընդլայնման ձեռնարկ"
+tags:
+- TemplateSubstitutionExtender
+- ITemplateSubstitutionExtender
+- TemplateSubstitution
 ---
 
 ## Բովանդակություն
