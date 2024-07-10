@@ -1,4 +1,5 @@
 
+
 ---
 layout: page
 title: "(DataSource) Տվյալների աղբյուրի ընդլայնում"
@@ -30,14 +31,19 @@ tags: [Extender, DSEXTENDER]
 ## DSEXTENDER նկարագրություն
 
 Տվյալների աղբյուրի ընդլայման համար անհրաժեշտ է ստեղծել .as ընդլայնմամբ ֆայլ՝ ավելացնելով DSEXTENDER տիպի նկարագրություն հետևյալ հատկություններով`
+
 ### NAME
-Ներքին անվանումը (առավ. 50 նիշ)։
+Ընդլայնման ներքին անվանումը (առավ. 50 նիշ)։
+
 ### CAPTION 
-Հայերեն անվանումը ANSI կոդավորմամբ։
+Ընդլայնման հայերեն անվանումը ANSI կոդավորմամբ։
+
 ### ECAPTION 
-Անգլերեն անվանումը։
+Ընդլայնման անգլերեն անվանումը։
+
 ### DATASOURCE 
 Ընդլայնվող տվյալների աղբյուրի ներքին անվանումը։
+
 ### CSSOURCE 
 Ընդլայնող C# ֆայլի [հարաբերական ճանապարհը](https://phoenixnap.com/kb/absolute-path-vs-relative-path) .as ֆայլի նկատմամբ։
 
@@ -67,7 +73,7 @@ public abstract class Extender<R, P> : IExtender
 public virtual bool AlwaysCallBeforeProcess => false; 
 ```
 
-[BeforeProcess](#beforeprocess) մեթոդը կանչվում է տողեր պարունակող տվյալների աղբյուրի համար։ Դատաարկ տվյալների աղբյուրի համար մեթոդի կանչը ապահովելու համար անհրաժեշտ է override անել այս հատկությունը՝ վերադարձնելով true արժեք։
+[BeforeProcess](#beforeprocess) մեթոդը կանչվում է միայն տողեր պարունակող տվյալների աղբյուրի համար։ Դատաարկ տվյալների աղբյուրի համար մեթոդի կանչը ապահովելու համար անհրաժեշտ է override անել այս հատկությունը՝ վերադարձնելով true արժեք։
 
 ## Մեթոդներ
 
@@ -84,16 +90,16 @@ public void AddColumn(string name, string armenianCaption, string englishCaption
 
 **Պարամետրեր**
 
-* name - Սյան ներքին անումը,
-* armenianCaption - Սյան հայերեն անվանումը՝ անհրաժեշտ է փոխանցել ANSI կոդավորմամբ,
-* englishCaption - Սյան անգլերեն անվանումը,
+* name - Սյան ներքին անուՆը:
+* armenianCaption - Սյան հայերեն անվանումը՝ ANSI կոդավորմամբ։
+* englishCaption - Սյան անգլերեն անվանումը։
 * columnType - Սյան համակարգային տիպը։  
   Օրինակ՝  
   FieldTypeProvider.Boolean  
   FieldTypeProvider.Amount  
   FieldTypeProvider.GetStringFieldType(10)  
-* armenianDescription - Սյան հայերեն նկարագրությունը՝ անհրաժեշտ է փոխանցել ANSI կոդավորմամբ,
-* englishDescription  - Սյան անգլերեն նկարագրությունը,
+* armenianDescription - Սյան հայերեն նկարագրությունը՝ ANSI կոդավորմամբ։
+* englishDescription - Սյան անգլերեն նկարագրությունը։
 * showType - Սահմանում է համակարգային տիպը ցուցադրման ժամանակ։  
   Եթե այս պարամետրը բացակայում է, ապա օգտագործվում է columnType հատկության արժեքը։
   Սովորոբար այս հատկությունը օգտագործում են, եթե տվյալների տիպը, որը համապատասխանում է սյունակի արժեքներին, հարմար չի ցուցադրման համար։
@@ -106,11 +112,11 @@ public void AddColumn(string name, string armenianCaption, string englishCaption
 
 ### AddParam
 
-Ավելացված պարամետրի հատկությունները սահմանելու համար անհրաժեշտ է կոնստրուկտորում կանչել այս մեթոդը։
-
 ```c#
 public void AddParam(string name, string description, FieldType fieldType)
 ```
+
+Ավելացված պարամետրի հատկությունները սահմանելու համար անհրաժեշտ է կոնստրուկտորում կանչել այս մեթոդը։
 
 **Պարամետրեր**
 
