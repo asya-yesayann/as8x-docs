@@ -32,11 +32,11 @@ tags: [Extender, DSEXTENDER]
 ### DATASOURCE 
 Ընդլայնվող տվյալների աղբյուրի ներքին անվանումը։
 ### CSSOURCE 
-Ընդլայնող C# ֆայլի հարաբերական ճանապարհը .as ֆայլի նկատմամբ։
+Ընդլայնող C# ֆայլի [հարաբերական ճանապարհը](https://phoenixnap.com/kb/absolute-path-vs-relative-path) .as ֆայլի նկատմամբ։
 
 Օրինակներ՝  
 Եթե extend.as և extend.cs ֆայլերը գտնվում են նույն թղթապանակում, ապա կգրվի `CSSOURCE = "extend.cs";`։  
-Եթե extend.as գտվում է "C:\WorkingDir\Scripts\App\extend.as" հասցեում իսկ extend.cs-ը "C:\WorkingDir\SubFolder1\SubFolder2\extend.as" հասցեում, ապա `CSSOURCE = "..\..\SubFolder1\SubFolder2\extend.cs";`։  
+Եթե extend.as գտվում է "C:\WorkingDir\Scripts\App\extend.as" հասցեում, իսկ extend.cs-ը` "C:\WorkingDir\SubFolder1\SubFolder2\extend.as" հասցեում, ապա `CSSOURCE = "..\..\SubFolder1\SubFolder2\extend.cs";`։  
 Կամ կլինի գրել ամբողջական ճանապարհը, ինչը խրախուսելի չէ `CSSOURCE = "C:\WoringDir\SubFolder1\SubFolder2\extend.cs";`
 
 ## Extender դաս
@@ -60,7 +60,7 @@ public abstract class Extender<R, P> : IExtender
 public virtual bool AlwaysCallBeforeProcess => false; 
 ```
 
-[BeforeProcess](#beforeprocess) մեթոդը կանչվում է միայն այն դեպքում, երբ տվյալների աղբյուրը պարունակում է տողեր։ Տողեր չպարունակելու դեպքում մեթոդի կանչը ապահովելու համար անհրաժեշտ է override անել այս հատկությունը՝ վերադարձնելով true արժեք։
+[BeforeProcess](#beforeprocess) մեթոդը կանչվում է տողեր պարունակող տվյալների աղբյուրի համար։ Դատաարկ տվյալների աղբյուրի համար մեթոդի կանչը ապահովելու համար անհրաժեշտ է override անել այս հատկությունը՝ վերադարձնելով true արժեք։
 
 ## Մեթոդներ
 
@@ -127,6 +127,6 @@ public void AddParam(string name, string description, FieldType fieldType)
 
 **Պարամետրեր**
 
-* name - Պարամետրի ներքին անվանումը,
+* name - Պարամետրի ներքին անվանումը։
 * description - Պարամետրի հայերեն նկարագրությունը։ Անհրաժեշտ է փոխանցել ANSI կոդավորմամբ։
 * fieldType - Պարամետրի համակարգային տիպը:
