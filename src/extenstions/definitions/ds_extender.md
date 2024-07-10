@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "(DataSource) Տվյալների աղբյուրի ընդլայնում"
+title: "Տվյալների աղբյուրի ընդլայնում"
 tags: [Extender, DSEXTENDER]
 ---
 
