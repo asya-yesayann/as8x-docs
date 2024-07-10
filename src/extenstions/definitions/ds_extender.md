@@ -48,9 +48,9 @@ tags: [Extender, DSEXTENDER]
 Ընդլայնող C# ֆայլի [հարաբերական ճանապարհը](https://phoenixnap.com/kb/absolute-path-vs-relative-path) .as ֆայլի նկատմամբ։
 
 Օրինակներ՝  
-Եթե extend.as և extend.cs ֆայլերը գտնվում են նույն թղթապանակում, ապա կգրվի `CSSOURCE = "extend.cs";`։  
-Եթե extend.as գտվում է "C:\WorkingDir\Scripts\App\extend.as" հասցեում, իսկ extend.cs-ը` "C:\WorkingDir\SubFolder1\SubFolder2\extend.as" հասցեում, ապա `CSSOURCE = "..\..\SubFolder1\SubFolder2\extend.cs";`։  
-Կամ կլինի գրել ամբողջական ճանապարհը, ինչը խրախուսելի չէ `CSSOURCE = "C:\WoringDir\SubFolder1\SubFolder2\extend.cs";`
+* Եթե extend.as և extend.cs ֆայլերը գտնվում են նույն թղթապանակում, ապա կգրվի `CSSOURCE = "extend.cs";`։  
+* Եթե extend.as գտվում է "C:\WorkingDir\Scripts\App\extend.as" հասցեում, իսկ extend.cs-ը՝ "C:\WorkingDir\SubFolder1\SubFolder2\extend.as" հասցեում, ապա `CSSOURCE = "..\..\SubFolder1\SubFolder2\extend.cs";`։  
+* Կամ կլինի գրել ամբողջական ճանապարհը, ինչը խրախուսելի չէ `CSSOURCE = "C:\WoringDir\SubFolder1\SubFolder2\extend.cs";`
 
 ## Extender դաս
 
@@ -73,7 +73,7 @@ public abstract class Extender<R, P> : IExtender
 public virtual bool AlwaysCallBeforeProcess => false; 
 ```
 
-[BeforeProcess](#beforeprocess) մեթոդը կանչվում է միայն տողեր պարունակող տվյալների աղբյուրի համար։ Դատաարկ տվյալների աղբյուրի համար մեթոդի կանչը ապահովելու համար անհրաժեշտ է override անել այս հատկությունը՝ վերադարձնելով true արժեք։
+[BeforeProcess](#beforeprocess) մեթոդը կանչվում է միայն տողեր պարունակող տվյալների աղբյուրի համար։ Դատարկ տվյալների աղբյուրի համար մեթոդի կանչը ապահովելու համար անհրաժեշտ է override անել այս հատկությունը՝ վերադարձնելով true արժեք։
 
 ## Մեթոդներ
 
@@ -136,7 +136,7 @@ public virtual Task BeforeProcess(IList<IExtendableRow> rows, IDataSourceArgs ar
 
 **Պարամետրեր**
 
-* rows - Տվյալների աղբյուրի տողերի ցուցակ։
+* rows - Տվյալների աղբյուրի ընդլայնման տողերի ցուցակ։
 * args - Դաս, որը պարունակում է տվյալների աղբյուրի և ընդլայնման պարամետրերը, սյուների անվանումների ցանկը և մետատվյալներ։
 
 ### ProccessRow
@@ -151,6 +151,6 @@ public virtual Task<bool> ProccessRow(IExtendableRow row, IDataSourceArgs args)
 
 **Պարամետրեր**
 
-* rows - Տվյալների աղբյուրի ընթացիկ տողը։
+* row - Տվյալների աղբյուրի ընդլայնման ընթացիկ տողը։ Պարունակում է object տիպի Extend հատկություն, որի մեջ պահվում են ընդլայնման սյուները։
 * args - Դաս, որը պարունակում է տվյալների աղբյուրի և ընդլայնման պարամետրերը, սյուների անվանումների ցանկը և մետատվյալներ։
 
