@@ -13,8 +13,8 @@ tags: [DataSource, DS]
 
 ## Նախաբան
 
-`Sql-based` տվյալների աղբյուրի տողերի հավելյալ մշակման, ֆիլտրման և հաշվարկային սյուների արժեքների հաշվման համար կարող են օգտագործվել երկու մեթոդներ՝ **ProcessRow** և **AfterDataReaderClose**: Երկու մեթոդներն էլ կանչվում են **յուրաքանչյուր** տողի համար և հանդիսանում են 4x համակարգում նկարագրված [OnEachRow](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/OnEachRow.html) + 
-[Valid](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Valid_Data.html) իրադարձությունների միավորումը:
+`Sql-based` տվյալների աղբյուրի տողերի հավելյալ մշակման, ֆիլտրման և հաշվարկային սյուների արժեքների հաշվման համար կարող են օգտագործվել երկու մեթոդներ՝ **ProcessRow** և **AfterDataReaderClose**: 
+Երկու մեթոդներն էլ կանչվում են **յուրաքանչյուր** տողի համար և հանդիսանում են 4x համակարգում նկարագրված [OnEachRow](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/OnEachRow.html) + [Valid](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Valid_Data.html) իրադարձությունների միավորումը:
 Երկու մեթոդներն էլ վերադարձնում են bool տիպի արժեք, որը ցույց է տալիս թե ընթացիկ տողը ընդգրկվի տվյալների աղբյուրի տողերի վերջնական ցուցակում թե ոչ։
 
 ## ProcessRow 
@@ -106,7 +106,9 @@ protected override async Task<bool> AfterDataReaderClose(DataSourceArgs<Param> a
 
 ### Օրինակ 2
 
-Այս օրինակում յուրաքանչյուր տողի համար բեռնվում է ծառի նկարագրությունը՝ օգտագործելով տողի fNAME դաշտի արժեքը: Եթե դիտումը(AllowView) կամ խմբագրումը(AllowEdit) թույլատրված է, ապա fCAPTION, fECAPTION string տիպի հաշվարկային սյուներին վերագրվում է բեռնված ծառի հայերեն և անգլերեն անվանումները և վերադարձնում true, որի շնորհիվ տողը ներառվում է տվյալների աղբյուրի տողերի վերջնական ցուցակում։ Հակառակ դեպքում տողը չի ավելացվում ցուցակում:
+Այս օրինակում յուրաքանչյուր տողի համար բեռնվում է ծառի նկարագրությունը՝ օգտագործելով տողի fNAME դաշտի արժեքը: 
+Եթե դիտումը(AllowView) կամ խմբագրումը(AllowEdit) թույլատրված է, ապա fCAPTION, fECAPTION string տիպի հաշվարկային սյուներին վերագրվում է բեռնված ծառի հայերեն և անգլերեն անվանումները և վերադարձնում true, որի շնորհիվ տողը ներառվում է տվյալների աղբյուրի տողերի վերջնական ցուցակում։ 
+Հակառակ դեպքում տողը չի ավելացվում ցուցակում:
 
 ```c#
 public override CallMode AfterDataReaderCloseMode => CallMode.EachRowCall;
