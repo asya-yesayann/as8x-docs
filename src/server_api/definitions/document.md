@@ -4,6 +4,10 @@ title: "Փաստաթղթի նկարագրություն"
 tags: [Doc, Document]
 ---
 
+```
+public class Document
+```
+
 ## Բովանդակություն
 
 - [Հատկություններ](#հատկություններ)
@@ -11,9 +15,9 @@ tags: [Doc, Document]
 	- [State](#state)
 	- [TimeStamp](#timestamp)
 	- [CreatorSUID](#creatorsuid)
-	- [Archived](#archived )
-	- [CreationDate](#creationdate )
-	- [Description](#description )
+	- [Archived](#archived)
+	- [CreationDate](#creationdate)
+	- [Description](#description)
 	- [Grids](#grids)
 	- [GridsLoading ](#gridsloading)
 	- [GridsInitialized](#gridsinitialized)
@@ -99,7 +103,7 @@ tags: [Doc, Document]
 public int ISN { get; internal set; }
 ```
 
-Վերադարձնում է փաստաթղթի isn-ը:
+Վերադարձնում է փաստաթղթի ներքին նույնականացման համարը(isn-ը):
 
 ### State
 
@@ -123,7 +127,7 @@ public byte[] TimeStamp { get; internal set; }
 public short CreatorSUID { get; internal set; }
 ```
 
-Վերադարձնում է փաստաթուղթը ստեղծողի user id-ն:
+Վերադարձնում է փաստաթուղթը ստեղծողի ներքին համարը(user id):
 
 ### Archived 
 
@@ -131,7 +135,7 @@ public short CreatorSUID { get; internal set; }
 public bool Archived { get; internal set; }
 ```
 
-Ցույց է տալիս փաստաթուղթը արխիվացված է թե ոչ։
+Ստուգում է փաստաթղթի արխիվացված լինելը։
 
 ### CreationDate 
 
@@ -187,7 +191,7 @@ public bool GridsLoaded { get; protected internal set; }
 public bool IsNew { get; internal set; }
 ```
 
-Ցույց է տալիս թե փաստաթուղթը նոր է թե ոչ։
+Վերադարձնում է փաստաթղթի նոր կամ սևագիր լինելու հայտանիշը։
 
 ### ExistsInDB
 
@@ -195,7 +199,7 @@ public bool IsNew { get; internal set; }
 public bool ExistsInDB { get; internal set; }
 ```
 
-Ստուգում է փաստաթղթի առկայությունը տվյալների բազայում։
+Ստուգում է փաստաթղթի առկայությունը տվյալների պահոցում։
 
 ### Snapshots
 
@@ -203,7 +207,7 @@ public bool ExistsInDB { get; internal set; }
 public Dictionary<string, DocumentSnapshot> Snapshots { get; internal set; } = new(StringComparer.InvariantCultureIgnoreCase);
 ```
 
-??
+Վերադարձնում է փաստաթղթի DocumentSnapshot տիպի քեշավորված նկարագրությունները։
 
 ### StoreMode
 
@@ -219,7 +223,7 @@ public StoreMode StoreMode { get; internal set; }
 public bool Deleting { get; internal set; }
 ```
 
-Ցույց է տալիս փաստաթղթի գրիդները գտնվում են հեռացման պրոցեսում թե ոչ։
+Ցույց է տալիս փաստաթուղթը հեռացման ընթացքում է թե ոչ։
 
 ### LogTransactions
 
@@ -227,7 +231,7 @@ public bool Deleting { get; internal set; }
 public bool LogTransactions { get; set; }
 ``` 
 
-??
+Վերադարձնում կամ նշանակում է փաստաթղթի պատմության մեջ հաշվառումների գրանցման վերաբերյալ ավտոմատ նշում կատարելու հայտանիշը։
 
 ### CopiedFrom
 
@@ -251,7 +255,9 @@ public bool IsLogged { get; set; }
 public short LastFixedState { get; internal set; }
 ```
 
-??
+Վերադարձնում է փասթաթղթի տվյալների պահոցում վերջին գրանցված վիճակը։
+
+Ի տարբերություն  **LastFixedState**  հատկության ,  [State](#state)  հատկությունը վերադարձնում է փաստաթղթի ընթացիկ վիճակը, որը կարող է նաև տվյալների պահոցում գրանցված չլինել։
 
 ### DocumentChangeRequest
 
@@ -267,7 +273,7 @@ public DocumentChangeRequest DocumentChangeRequest { get; internal set; }
 public Dictionary<string, object> Properties { get; set; }
 ```
 
-Վերադարձնում կամ արժեքավորում է ??
+Վերադարձնում է կամ արժեքավորում է փաստաթղթի հատկությունները։
 
 ### StoredFacts
 
@@ -275,7 +281,7 @@ public Dictionary<string, object> Properties { get; set; }
 public List<Fact> StoredFacts { get; internal set; }
 ```
 
-Վերադարձնում է փաստաթղթի հաշվառումների ցուցակը։
+Վերադարձնում է փաստաթղթի գրանցված հաշվառումների ցուցակը։
 
 ### DocumentLog
 
@@ -397,7 +403,7 @@ public FieldType GetFieldType(string fieldName)
 public virtual Task<TemplateSubstitution> TemplateSubstitution(Dictionary<string, bool> mode, Dictionary<string, object> parameters = null)
 ```
 
-???
+Հանդիսանում է 4x համակարգում նկարագրված  [TemplateSubstitution](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/TemplateSubstitution.html)  իրադարձության
 
 ### TemplateSubstitutionEx
 
@@ -469,7 +475,7 @@ public async Task LoadImagesAndMemos(ArchiveInfo archiveInfo = null)
 public string GetMemo(string name)
 ```
 
-Վերադարձնում է փաստաթղթի տրված ներքին անունով մեմոյի արժեքը։
+Վերադարձնում է փաստաթղթի տրված ներքին անունով մեծ տեքստային դաշտի(մեմոյի) արժեքը։
 
 ### SetMemo
 
@@ -477,7 +483,7 @@ public string GetMemo(string name)
 public void SetMemo(string name, string value)
 ```
 
-Արժեքավորում է փաստաթղթի մեմոն։
+Արժեքավորում է փաստաթղթի տրված ներքին անունով մեծ տեքստային դաշտը(մեմո)։
 
 **Պարամետրեր**
 
@@ -490,7 +496,7 @@ public void SetMemo(string name, string value)
 public byte[] GetImage(string name)
 ```
 
-Վերադարձնում է փաստաթղթի տրված ներքին անունով նկարը՝ որպես byte տիպի զանգված։
+Վերադարձնում է փաստաթղթի տրված ներքին անունով նկար դաշտը՝ որպես byte տիպի զանգված։
 
 ### SetImage
 
@@ -498,7 +504,7 @@ public byte[] GetImage(string name)
 public void SetImage(string name, byte[] value)
 ```
 
-Արժեքավորում է փաստաթղթի նկարը։
+Արժեքավորում է փաստաթղթի տրված ներքին անունով նկար դաշտը։
 
 **Պարամետրեր**
 
@@ -511,7 +517,7 @@ public void SetImage(string name, byte[] value)
 public bool ExistsGrid(string grid)
 ```
 
-Ստուգում է փաստաթղթում տրված ներքին անունով գրիդի առկայությունը։
+Ստուգում է տրված ներքին անունով գրիդի առկայությունը փաստաթղթի նկարագրության մեջ։
 
 ### Grid
 
@@ -527,7 +533,7 @@ public IGrid Grid(string name)
 public async Task StoreValuesHistory()
 ```
 
-???
+Փաստաթղթի ռեկվիզիտների արժեքները գրանցում է տվյալների պահոցի LASTVALUESGROUP աղյուսակում։
 
 ### LoadParents
 
@@ -559,7 +565,7 @@ public async Task<List<int>> GetParents()
 public int GetNextTrans()
 ```
 
-???
+Վերադարձնում է փաստաթղթի տրանզակցիայի հերթական նոր համարը։
 
 ### Body
 
@@ -567,7 +573,7 @@ public int GetNextTrans()
 public string Body()
 ```
 
-???
+Վերադարձնում է փաստաթղթի սերիալիզացված դաշտերի բազմությունը, ինչպես գրվում է ներմուծման ֆայլում կամ DOCS աղյուսակում։ Ներառված չեն փաստաթղթի աղյուսակները։
 
 ### WriteLog
 
@@ -575,7 +581,7 @@ public string Body()
 public async Task WriteLog(string message, int dcrId = -1, bool dcrIdIsISN = false)
 ```
 
-???
+Ավելացնում է նոր գրառում փաստաթղթի պատմության մեջ։
 
 ### SendMessage
 
@@ -587,7 +593,16 @@ public async Task SendMessage(string message,
                               bool raiseErrorIfParentNotExists = true)
 ```
 
-???
+Ուղարկում է հաղորդագրություն այլ փաստաթղթի (կամ ծնող փաստաթղթին) առաջացնելով  [PostMessage](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/PostMessage.html)  իրադարձություն:  
+Հաղորդագրություն ստանալուց հետո ստացող փաստաթղթի  [պատմության](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocLog.html)  մեջ  [գրանցվում է](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/WriteLog.html)  հաղորդագրության տեքստը և ստացող փաստաթղթի համար աշխատում է  [CheckAndStore](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/CheckAndStore.html)  `2`  պարամետրով։
+
+**Պարամետրեր**
+- message - Ուղարկվող հաղորդագրության տեքստը։
+- isn - Հաղորդագրությունը ստացող փաստաթղթի ներքին նույնականացման համարը։ Եթե պարամետրը փոխանցված չէ, ապա հաղորդագրությունը կուղարկվի ընթացիկ փաստաթղթի ծնողին, եթե այն առկա է։
+- messageForDocLog - Ստացող փաստաթղթի պատմության մեջ գրանցվող տեքստը։ Եթե պարամետրը փոխանցված չէ, ապա պատմության մեջ կգրանցվի `message` պարամետրի արժեքը։
+- raiseErrorIfDocNotExists - Ստացող փաստաթղթի բացակայության դեպքում սխալի գեներացում։ Լռությամբ արժեքը true է։
+- raiseErrorIfParentNotExists - Ստացող ծնող փաստաթղթի բացակայության դեպքում սխալի գեներացում։ Լռությամբ արժեքը true է։
+
 
 ### Store
 
@@ -595,12 +610,12 @@ public async Task SendMessage(string message,
 public Task Store(DocumentCheckLevel checkLevel = DocumentCheckLevel.None, string logComment = "")
 ```
 
-Գրանցում է փաստաթուղթը տվյալների պահոցում։
+Կատարում է պարտադիր ստուգումներ և գրանցում փաստաթուղթը տվյալների պահոցում։
 
 **Պարամետրեր**
 
-* checkLevel  - փաստաթղթի ստուգման մակարդակը,
-* logComment - լոգավորման համար անհրաժեշտ մեկնաբանությունը։
+* checkLevel  - Փաստաթղթի ստուգման մակարդակը։
+* logComment - Լոգավորման համար անհրաժեշտ մեկնաբանությունը։
 
 ### BuildEmbeddedUIRequest
 
@@ -616,15 +631,14 @@ public void BuildEmbeddedUIRequest<T>(T uiRequestExecutionProgress) where T : IU
 public async Task RefreshTimeStamp()
 ```
 
-???
+Հիշողության մեջ թարմացնում է փաստաթղթի վերջին գրանցման համարը տվյալների պահոցից։
 
 ### GetCheckValue
 
 ```c#
 public bool GetCheckValue(string fieldName)
 ```
-
-???
+Վերադարձնում է փաստաթղթի նշված ներքին անունով դաշտի ստուգման հայտանիշը: false արժեքի դեպքում դաշտի լրացման կամ ցուցադրման ժամանակ չի ստուգվում արժեքի առկայությունը ծառում կամ թղթապանակում։ true արժեքի դեպքում դաշտի արժեքը պետք է գոյություն ունենա դաշտի համակարգային տիպում նկարագրված ծառում կամ թղթապանակում։
 
 ### SetCheckValue
 
@@ -632,7 +646,12 @@ public bool GetCheckValue(string fieldName)
 public void SetCheckValue(string fieldName, bool value)
 ```
 
-???
+Նշանակում է փաստաթղթի նշված ներքին անունով դաշտի ստուգման հայտանիշը:
+
+**Պարամետրեր**
+
+- fieldName - Ռեկվիզիտի ներքին անուն։
+- value - Սահմանում է դաշտի համակարգային տիպում նկարագրված ծառում կամ թղթապանակում դաշտի արժեքի առկայությունը։
 
 ### SetDefaultValuesForFields
 
