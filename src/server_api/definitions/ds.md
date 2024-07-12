@@ -21,6 +21,14 @@ title: "Տվյալների աղբյուրի նկարագրություն"
    - [SupportPrepareExecutionPhase](#supportprepareexecutionphase)
    - [SupportsSnapshotIsolation](#supportssnapshotisolation)
 - [Մեթոդներ](#մեթոդներ)
+   - [AddRow](#addrow)
+   - [Execute](#execute)
+   - [MakeSQLCommand](#makesqlcommand)
+   - [BeforeExecuteSQLCommand](#beforeexecutesqlcommand)
+   - [AfterExecuteSQLCommand](#afterexecutesqlcommand)
+   - [AfterDataReaderClose](#afterdatareaderclose)
+   - [ProcessRow](#processrow)
+   - [GetExecutionPhases](#getexecutionphases)
 
 ## Հատկություններ
 
