@@ -42,7 +42,7 @@ public class AllOperExtended : Extender<NoColumns, AllOperExtended.Params>
 ```
 
 Ավելացվող պարամետրը հարկավոր է սահմանել երկու տեղ
-1. Նոր class, որը պարունակում է ընդլայնվող սյունակները որպես հատկություններ  (Օրինակում DataRow)
+1. Նոր class, որը պարունակում է ընդլայնվող պարամետրերը որպես հատկություններ  (Օրինակում Params)
 
 ``` cs
 public class Params
@@ -50,7 +50,7 @@ public class Params
     public string CliCode { get; set; }
 }
 ```
-2. Ընդլայնող դասի կոնստրուկտորի մեջ՝ ```AddColumn``` ֆունկցիայի միջոցով։
+2. Ընդլայնող դասի կոնստրուկտորի մեջ՝ ```AddParam``` ֆունկցիայի միջոցով։
 ``` cs
 public AllOperExtended()
 {
@@ -79,7 +79,7 @@ public override async Task BeforeProcess(IList<IExtendableRow> rows, IDataSource
 }
 ```
 
-```ProcessRow``` ֆունկցիայում տվյալ հաճախորդի յուրաքանչյուր հաշիվը ստուգվում է կա դեբետում կամ կրեդիտում, և դրական պատասխանի դեպքում վերադարձնում է տվյալ հաշիվը։
+```ProcessRow``` ֆունկցիայում տվյալ հաճախորդի յուրաքանչյուր հաշիվը ստուգվում է կա արդյոք դեբետում կամ կրեդիտում, և դրական պատասխանի դեպքում վերադարձնում է տվյալ հաշիվը։
 
 ``` cs
 public override Task<bool> ProccessRow(IExtendableRow row, IDataSourceArgs args)
