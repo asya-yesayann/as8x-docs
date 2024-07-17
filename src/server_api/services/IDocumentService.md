@@ -24,9 +24,11 @@ IDocumentService դասը նախատեսված է փաստաթղթի հետ աշ
 	* [GetDocumentType](#getdocumenttype) 
 	* [GetParentIsn](#getparentisn)
 	* [GetParentIsn](#getparentisn)
+ 	* [GetProcessingModes](#getprocessingmodes)
 	* [IsArchived](#isarchived) 
 	* [Load](#load)
 	* [LoadFromFolder](#loadfromfolder)
+ 	* [ReFolder](#refolder)
 	* [Store](#store) 
 	* [StoreFact](#storefact)
 	* [StoreInFolder](#storeinfolder) 
@@ -238,8 +240,16 @@ public Task<int> GetParentIsn(int isn)
 
 Վերադարձնում է նշված ներքին նույնականացման համարով փաստաթղթի առաջին ծնող փաստաթղթի ներքին նույնականացման համարը։ Եթե ծնող փաստաթղթը չկա, ապա վերադառնում է -1։
 
+### GetProcessingModes
+
+```c#
+public async Task<DocumentProcessingModes> GetProcessingModes(string docType)
+```
+
+Վերադարձնում է փաստաթղթի կատարման ռեժիմները ըստ փաստաթղթի տեսակի։
+ 
 **Պարամետրեր**
-* isn - Փաստաթղթի ներքին նույնականացման համար:
+* docType - Փաստաթղթի տեսակ:
 
 ### GetParentIsn
 
@@ -278,12 +288,12 @@ public Task<Document> Load(int isn, GridLoadMode gridLoadMode = GridLoadMode.Ful
 **Պարամետրեր**
 * isn - Բեռնվող փաստաթղթի ներքին նույնականացման համարը։
 * gridLoadMode - Գրիդերի բեռնման ռեժիմը։
-* loadImagesAndMemos - ??
+* loadImagesAndMemos - Նկարների ու մեծ մուտքագրման դաշտերի բեռնման հայտանիշ։ Լռությամբ արժեքը  true է։
 * lockTableRow -  Տվյալների պահոցում արգելափակման (lock) միացման հայտանիշ։ true արժեքի դեպքում դրվում է թարմացման (update) արգելափակում։ Լռությամբ արժեքը false է:
-* throwExceptionIfDeleted - ??
-* lookInArc - Արխիվացված փաստաթղթի բեռնման հայտանիշ։ `True` արժեքի դեպքում փաստաթղթի բեռնումը փորձում է կատարել նաև արխիվային տվյալների պահոցից, եթե այնտեղ նույնպես փաստաթութը առկա չէ, առաջանում է սխալ։
+* throwExceptionIfDeleted - Պահանջվող փաստաթղթի հեռացված լինելու դեպքում սխալի գեներացման հայտանիշ։ 
+* lookInArc - Արխիվացված փաստաթղթի բեռնման հայտանիշ։ `True` արժեքի դեպքում փաստաթղթի բեռնումը փորձում է կատարել նաև արխիվային տվյալների պահոցից, եթե այնտեղ նույնպես փաստաթութը առկա չէ, առաջանում է սխալ։ Լռությամբ արժեքը  true է։
 * instanceType - ??
-* loadParents -  Ծնող փաստաթղթերի ISN-ների ցուցակի բեռնման հայտանիշ։
+* loadParents -  Ծնող փաստաթղթերի ISN-ների ցուցակի բեռնման հայտանիշ։ Լռությամբ արժեքը false է։
 
 ### LoadFromFolder
 
@@ -291,6 +301,7 @@ public Task<Document> Load(int isn, GridLoadMode gridLoadMode = GridLoadMode.Ful
 public Task<Document> LoadFromFolder(string folder, string key, GridLoadMode gridLoadMode = GridLoadMode.Full,
                               bool loadImagesAndMemos = true, Type instanceType = null, bool loadParents = false);
 ```
+
 Բեռնում է փաստաթուղթը ըստ թղթապանակի և բանալու։
 
 **Պարամետրեր**
@@ -301,6 +312,18 @@ public Task<Document> LoadFromFolder(string folder, string key, GridLoadMode gri
 * instanceType - ??
 * loadParents -  Ծնող փաստաթղթերի ISN-երի ցուցակի բեռնման հայտանիշ։
 
+### ReFolder
+
+```c#
+public Task ReFolder(Document document, StoreMode mode)
+```
+
+Իրականացնում է փաստաթղթի վերաինդեկսավորումը թղթապանակներում:
+
+**Պարամետրեր**
+* document - Փաստաթուղթը նկարագրող դասը։
+* mode - Փաստաթղթի պահպանման ռեժիմը։
+
 ### Store
 
 ```c#
@@ -310,7 +333,7 @@ public Task Store(Document document, DocumentCheckLevel checkLevel = DocumentChe
 Անցկացնում է պարտադիր ստուգումներ և գրանցում փաստաթուղթը տվյալների պահոցում։
 
 **Պարամետրեր**
-* document - Գրանցման ենթակա փաստաթուղթը նկարագրող դասը։
+* document - Փաստաթուղթը նկարագրող դասը։
 * checkLevel  - [Փաստաթղթի ստուգման մակարդակը](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/DocCheckLevel.html)։
 * logComment - Հաղորդագրությունը գրանցում է փաստաթղթի պատմության մեջ։
 
