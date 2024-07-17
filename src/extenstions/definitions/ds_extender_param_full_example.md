@@ -10,6 +10,7 @@ title: "Տվյալների աղբյուր պարամետրերի ընդլայն�
 using System.Threading.Tasks;
 using ArmSoft.AS8X.Core.DS;
 using ArmSoft.AS8X.Core;
+using ArmSoft.AS8X.Common.Extensions;
 using ArmSoft.AS8X.Common.FieldTypes;
 using System.Collections.Generic;
 using Dapper;
@@ -25,6 +26,9 @@ namespace CustomerSpecific.DSExtenders
     {
         private readonly IDBService dbService;
         private Dictionary<string, string> dctAccounts;
+
+        HashSet<string> Accounts ;
+
         public class Params
         {
             public string CliCode { get; set; }
@@ -44,8 +48,8 @@ namespace CustomerSpecific.DSExtenders
             {
                 return;
             }
-            this.dctAccounts = (await this.dbService.Connection.QueryAsync<string>(sqlQuery,
-                       new { CliCode= extenderParameters.CliCode.Trim()})).ToDictionary(item => item, item => item);
+            this.Accounts = (await this.dbService.Connection.QueryAsync<string>(sqlQuery,
+                       new { CliCode= extenderParameters.CliCode.Trim()})).ToHashSet();  //ToDictionary(item => item, item => item)
 
         }
 
@@ -58,10 +62,11 @@ namespace CustomerSpecific.DSExtenders
             }
             var dsRow = (AllOperations.DataRow)row;
             
-            bool result= this.dctAccounts.ContainsKey(dsRow.ACCDB) || this.dctAccounts.ContainsKey(dsRow.ACCCR);
+            bool result= this.Accounts.Contains(dsRow.ACCDB) || this.Accounts.Contains(dsRow.ACCCR);
 
             return Task.FromResult(result);
         }
     }
 }
+
 ```
