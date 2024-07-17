@@ -45,7 +45,7 @@ public Task CleanDeleted(DateTime startDate, DateTime endDate, string docType = 
 **Պարամետրեր**
 * startDate - ժամանակահատվածի սկզբի ամսաթիվ։
 * endDate - ժամանակահատվածի վերջին ամսաթիվ։
-* docType - ??
+* docType - Սահմանում է փաստաթղթերի տիպերի ֆիլտր։ Մաքրվում են այն փաստաթղերը, որոնք սկսվում են docType արժեքով։ Չլրացնելու դեպքում մաքրվում են նշված ժամանակահատվածում հեռացված բոլոր փաստաթղթերը։
 
 ### Copy
 
@@ -170,7 +170,7 @@ public Task<List<(int isn, string docType)>> GetDocumentChildren(int isn, string
 DocumentChildrenOrder.UnOrdered - Չի դասավորվում։
 DocumentChildrenOrder.CreationDateAscending - Դասավորվում է աճման կարգով։
 DocumentChildrenOrder.CreationDateDescending - Դասավորվում է նվազման կարգով։
-* docTypeLike -  Սահմանում է ներառվող կամ չներառվող զավակ փաստաթղթերի տիպերի ֆիլտր։ Եթե պարամետրը առկա չի, ապա վերադարձվում են բոլոր տիպի զավակների ISN-ները։  
+* docTypeLike - Սահմանում է ներառվող կամ չներառվող զավակ փաստաթղթերի տիպերի ֆիլտր։ Եթե պարամետրը առկա չի, ապա վերադարձվում են բոլոր տիպի զավակների ISN-ները։  
 Ներառվող տիպերի ֆիլտրը `+` նշանով սկսելով։ Օրինակ՝ `"+Acc%"`։  
 Չներառվող տիպերի ֆիլտրը `-` նշանով սկսելով։ Օրինակ՝ `"-Acc%"`։
 
