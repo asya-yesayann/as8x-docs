@@ -8,6 +8,7 @@ IDocumentService դասը նախատեսված է փաստաթղթի հետ աշ
 
 ## Բովանդակություն
 * [Մեթոդներ](#մեթոդներ)
+	* [CheckProcessingMode](#checkprocessingmode)
 	* [CleanDeleted](#cleandeleted)
 	* [Copy](#copy) 
 	* [Create&lgtT&gt](#create&lgtT&gt)
@@ -35,6 +36,17 @@ IDocumentService դասը նախատեսված է փաստաթղթի հետ աշ
 	* [StoreInTree](#storeintree)  
 
 ## Մեթոդներ
+
+### CheckProcessingMode
+
+```c#
+public async Task CheckProcessingMode(string docType)
+```
+
+Ստուգում է տրված տեսակի փաստաթղթերի գրանցման/հեռացման հնարավորությունը սերվիսում։
+
+**Պարամետրեր**
+* docType - Փաստաթղթի տեսակ։
 
 ### CleanDeleted
 
@@ -73,18 +85,23 @@ public Task<Document> Copy(int isn, object beforeCopyParam = null, int copyDocMo
 public Task<T> Create<T>(List<int> parentsISN = null, DocumentOrigin origin = DocumentOrigin.AsService, params object[] parameters) where T : Document
 ```
 
-Ստեղծում է նշված տիպի նոր փաստաթղթի օբյեկտ։
+Ստեղծում է նշված տիպի փաստաթղթի նոր օբյեկտ։
 
 **Պարամետրեր**
 * parentsISN - Փաստաթղթի ծնող փաստաթղթերի ISN-ների ցուցակը:
 * origin - Սահմանում է փաստաթղթի ստեղծման աղբյուրը:
-				 Արժեքների բազմություն՝
-				 DocumentOrigin.Unknown - Անհայտ
-				 DocumentOrigin.As4xUI - Փաստաթուղթը ստեղծվել է 4xUI-ում:
-				 DocumentOrigin.As4xScript - Փաստաթուղթը ստեղծվել է 4x սկրիպտում:
-				 DocumentOrigin.AsService - Փաստաթուղթը ստեղծվել է սերվիսում:
-				 DocumentOrigin.As8xUI - Փաստաթուղթը ստեղծվել է 8xUI-ում:
-				 DocumentOrigin.As8xUICode - Փաստաթուղթը ստեղծվել է 8xUI-ի կոդում:
+DocumentOrigin.Unknown - Անհայտ:
+
+DocumentOrigin.As4xUI - Փաստաթուղթը ստեղծվել է 4xUI-ում:
+
+DocumentOrigin.As4xScript - Փաստաթուղթը ստեղծվել է 4x սկրիպտում:
+
+DocumentOrigin.AsService - Փաստաթուղթը ստեղծվել է սերվիսում:
+
+DocumentOrigin.As8xUI - Փաստաթուղթը ստեղծվել է 8xUI-ում:
+
+DocumentOrigin.As8xUICode - Փաստաթուղթը ստեղծվել է 8xUI-ի կոդում:
+  
 * parameters - ??
 
 ### CreationDate
@@ -215,6 +232,7 @@ public Task<int> GetDocumentState(int isn);
 ```c#
 public Task<byte> GetDocumentStatus(string folderID, int isn)
 ```
+
 Վերադարձնում է թղթապանակի տարրի վիճակը։
 
 **Պարամետրեր**
