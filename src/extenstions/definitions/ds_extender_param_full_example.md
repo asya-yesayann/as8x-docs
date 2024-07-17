@@ -49,8 +49,7 @@ namespace CustomerSpecific.DSExtenders
                 return;
             }
             this.Accounts = (await this.dbService.Connection.QueryAsync<string>(sqlQuery,
-                       new { CliCode= extenderParameters.CliCode.Trim()})).ToHashSet();  //ToDictionary(item => item, item => item)
-
+                       new { CliCode= extenderParameters.CliCode.Trim()})).ToHashSet();
         }
 
         public override Task<bool> ProccessRow(IExtendableRow row, IDataSourceArgs args)
