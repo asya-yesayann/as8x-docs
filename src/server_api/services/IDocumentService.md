@@ -11,11 +11,14 @@ IDocumentService դասը նախատեսված է փաստաթղթի հետ աշ
 	* [CheckProcessingMode](#checkprocessingmode)
 	* [CleanDeleted](#cleandeleted)
 	* [Copy](#copy) 
-	* [Create&lgtT&gt](#create&lgtT&gt)
+	* [Create](#create)
+	* [CreateParentLinkDB](#createparentlinkdb)
+	* [CreateParentLinksDB](#createparentlinksdb)
 	* [CreationDate](#creationdate) 
 	* [CutChildLink](#cutchildlink) 
 	* [CutParentLink](#cutparentlink) 
 	* [ExistInDb](#existindb) 
+	* [FieldToAnsi](#fieldtoansi)
 	* [GetCaption](#getcaption) 
 	* [GetDocsInfo](#getdocsinfo) 
 	* [GetDocumentChildren](#getdocumentchildren) 
@@ -24,11 +27,11 @@ IDocumentService դասը նախատեսված է փաստաթղթի հետ աշ
 	* [GetDocumentStatus](#getdocumentstatus) 
 	* [GetDocumentType](#getdocumenttype) 
 	* [GetParentIsn](#getparentisn)
-	* [GetParentIsn](#getparentisn)
  	* [GetProcessingModes](#getprocessingmodes)
 	* [IsArchived](#isarchived) 
 	* [Load](#load)
 	* [LoadFromFolder](#loadfromfolder)
+	* [MakeParentLink](#makeparentlink)
  	* [ReFolder](#refolder)
 	* [Store](#store) 
 	* [StoreFact](#storefact)
@@ -79,7 +82,7 @@ public Task<Document> Copy(int isn, object beforeCopyParam = null, int copyDocMo
 `2` - Պատճենվում են միայն այն դաշտերը, որոնք պարունակում են `N` հայտանիշը։  
 Լռությամբ արժեքը 0 է:
 
-### Create&lgtT&gt
+### Create
 
 ```c#
 public Task<T> Create<T>(List<int> parentsISN = null, DocumentOrigin origin = DocumentOrigin.AsService, params object[] parameters) where T : Document
@@ -103,6 +106,86 @@ DocumentOrigin.As8xUI - Փաստաթուղթը ստեղծվել է 8xUI-ում:
 DocumentOrigin.As8xUICode - Փաստաթուղթը ստեղծվել է 8xUI-ի կոդում:
   
 * parameters - ??
+
+### Create
+
+```c#
+public Task<T> Create<T>(int parentISN, DocumentOrigin origin = DocumentOrigin.AsService, params object[] parameters) where T : Document
+```
+
+Ստեղծում է նշված տիպի փաստաթղթի նոր օբյեկտ։
+
+**Պարամետրեր**
+* parentsISN - Փաստաթղթի ծնող փաստաթղթի ISN-ը:
+* origin - Սահմանում է փաստաթղթի ստեղծման աղբյուրը:
+DocumentOrigin.Unknown - Անհայտ:
+
+DocumentOrigin.As4xUI - Փաստաթուղթը ստեղծվել է 4xUI-ում:
+
+DocumentOrigin.As4xScript - Փաստաթուղթը ստեղծվել է 4x սկրիպտում:
+
+DocumentOrigin.AsService - Փաստաթուղթը ստեղծվել է սերվիսում:
+
+DocumentOrigin.As8xUI - Փաստաթուղթը ստեղծվել է 8xUI-ում:
+
+DocumentOrigin.As8xUICode - Փաստաթուղթը ստեղծվել է 8xUI-ի կոդում:
+  
+* parameters - ??
+
+### Create
+
+```c#
+public async Task<Document> Create(string typeName, List<int> parentISN = null, Type instanceType = null, DocumentOrigin origin = DocumentOrigin.AsService, params object[] parameters)
+```
+
+Ստեղծում է նշված տեսակի փաստաթղթի նոր օբյեկտ։
+
+**Պարամետրեր**
+* typeName - Փաստաթղթի տեսակ։
+* parentsISN - Փաստաթղթի ծնող փաստաթղթերի ISN-ների ցուցակը:
+* instanceType - ??
+* origin - Սահմանում է փաստաթղթի ստեղծման աղբյուրը:
+DocumentOrigin.Unknown - Անհայտ:
+
+DocumentOrigin.As4xUI - Փաստաթուղթը ստեղծվել է 4xUI-ում:
+
+DocumentOrigin.As4xScript - Փաստաթուղթը ստեղծվել է 4x սկրիպտում:
+
+DocumentOrigin.AsService - Փաստաթուղթը ստեղծվել է սերվիսում:
+
+DocumentOrigin.As8xUI - Փաստաթուղթը ստեղծվել է 8xUI-ում:
+
+DocumentOrigin.As8xUICode - Փաստաթուղթը ստեղծվել է 8xUI-ի կոդում:
+  
+* parameters - ??
+
+### CreateParentLinkDB
+
+```c#
+public Task CreateParentLinkDB(int isn, int parentIsn = -1)
+```
+
+Փաստաթղթերի միջև ստեղծում է ծնող-զավակ կապ։ Ֆունկցիան ստեղծում է կապը անմիջապես տվյալների պահոցում։ Զավակ փաստաթղթերը պետք է գրանցված լինել տվյալների պահոցում։
+
+Ի տարբերություն  [MakeParentLink](#makeparentlink)-ի այս ֆունկցիան կարելի է կանչել ամենուրեք։
+
+**Պարամետրեր**
+* isn - Փաստաթղթի ներքին նույնականացման համար:
+* parentIsn - Ծնող փաստաթղթի ներքին նույնականացման համար։
+
+### CreateParentLinksDB
+
+```c#
+public async Task CreateParentLinksDB(int isn, List<int> parentsIsn)
+```
+
+Փաստաթղթի և տրված ծնող փաստաթղթերի միջև ստեղծում է ծնող-զավակ կապ։ Ֆունկցիան ստեղծում է կապը անմիջապես տվյալների պահոցում։ Զավակ փաստաթղթերը պետք է գրանցված լինել տվյալների պահոցում։
+
+Ի տարբերություն  [MakeParentLink](#makeparentlink)-ի այս ֆունկցիան կարելի է կանչել ամենուրեք։
+
+**Պարամետրեր**
+* isn - Զավակ փաստաթղթի ներքին նույնականացման համար:
+* parentIsn - Ծնող փաստաթղթերի ներքին նույնականացման համարների ցուցակ։
 
 ### CreationDate
 
@@ -151,6 +234,19 @@ public Task<bool> ExistInDb(int isn);
 
 **Պարամետրեր**
 * isn - Փաստաթղթի ներքին նույնականացման համար:
+
+### FieldToAnsi
+
+```c#
+public async Task<object> FieldToAnsi(string docType, string name, object value)
+```
+
+Փաստաթղթի դաշտի արժեքը ձևափոխում է  համապատասխան լեզվի ANSI կոդավորման։
+
+**Պարամետրեր**
+* docType - Փաստաթղթի տեսակ:
+* name - Դաշտի ներքին անուն։
+* value - Դաշտի արժեք։
 
 ### GetCaption
 
@@ -258,6 +354,21 @@ public Task<int> GetParentIsn(int isn)
 
 Վերադարձնում է նշված ներքին նույնականացման համարով փաստաթղթի առաջին ծնող փաստաթղթի ներքին նույնականացման համարը։ Եթե ծնող փաստաթղթը չկա, ապա վերադառնում է -1։
 
+### GetParentIsn
+
+```c#
+public Task<int> GetParentIsn(int isn, string docType)
+```
+
+Վերադարձնում է առաջին 2 ծնող փաստաթղթերի ներքին նույնականացման համարները։Ծնող փաստաթղթերի բացակայության դեպքում վերադառնում է -1։
+
+**Պարամետրեր**
+* isn - Փաստաթղթի ներքին նույնականացման համար:
+* docType - Սահմանում է ներառվող կամ չներառվող փաստաթղթերի տիպերը։   
+Ներառվող տիպերի ցուցակը թվարկվում են `+` նշանով սկսելով՝ փաստաթղթի տեսակների անվանումները իրարից առանձնացնելով բացատներով։ Օրինակ՝ `"+KasPr MemOrd SetPr"`։  
+Չներառվող տիպերի ցուցակը թվարկվում են `-` նշանով սկսելով՝ փաստաթղթի տեսակների անվանումները իրարից առանձնացնելով բացատներով։ Օրինակ՝ `"-AccDoc AsTurn"`։
+Միայն նշված տիպի ծնող փաստաթղթերը վերադարձնելու համար անհրաժեշտ է ավելացնել փաստաթղթի տեսակը։ Օրինակ՝ `"AccDoc"`:
+
 ### GetProcessingModes
 
 ```c#
@@ -268,18 +379,6 @@ public async Task<DocumentProcessingModes> GetProcessingModes(string docType)
  
 **Պարամետրեր**
 * docType - Փաստաթղթի տեսակ:
-
-### GetParentIsn
-
-```c#
-public Task<int> GetParentIsn(int isn, string docType)
-```
-
-Վերադարձնում է առաջին ծնող փաստաթղթի ներքին նույնականացման համարը։ Եթե ծնող փաստաթղթը չկա, ապա վերադառնում է -1։
-
-**Պարամետրեր**
-* isn - Փաստաթղթի ներքին նույնականացման համար:
-* docType - 
 
 ### IsArchived
 
@@ -329,6 +428,22 @@ public Task<Document> LoadFromFolder(string folder, string key, GridLoadMode gri
 * loadImagesAndMemos - Նկարների ու մեծ մուտքագրման դաշտերի բեռնման հայտանիշ։ Լռությամբ արժեքը  true է։
 * instanceType - ??
 * loadParents -  Ծնող փաստաթղթերի ISN-երի ցուցակի բեռնման հայտանիշ։
+
+### MakeParentLink
+
+```c#
+public Task MakeParentLink(Document document, int parentIsn, bool create = true)
+```
+
+Ընթացիկ փաստաթղի համար սահմանում է ծնողի հետ կապ։ Ընթացիկ փաստաթուղթը կարող է դեռ գրանցված չլինել տվյալների պահոցում։
+
+Ֆունկցիան նախատեսված է  [Action](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/Action.html)  իրադարձության մշակիչում կանչելու համար։  
+Եթե փաստաթուղթը տվյալների պահոցում դեռ գրանցված չէ, ապա այս Ֆունկցիայի կանչից հետո ծնող-զավակ կապերը անմիջապես չեն գրանցվում տվյալների պահոցում, դրանց գրանցումը կատարվում է  [Action](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/Action.md)  իրադարձության մշակիչի ավարտից հետո։
+
+**Պարամետրեր**
+* document - Փաստաթուղթը նկարագրող դասը։
+* parentIsn - Ծնող փաստաթղթի ներքին նույնականացման համար։
+* create - `True` արժեքի դեպքում ստեղծվող կապը լինում է միակը և նախորդ եղած կապերը հեռացվում են։ `False` արժեքի դեպքում ծնողների ցուցակում ավելանում է ևս մեկը։
 
 ### ReFolder
 
