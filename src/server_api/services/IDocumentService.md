@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "IDocumentService" 
+tags: [IDocumentService, DocumentService]
 ---
 
 IDocumentService դասը նախատեսված է փաստաթղթի հետ աշխատանքը ապահովելու համար։
@@ -36,8 +37,9 @@ IDocumentService դասը նախատեսված է փաստաթղթի հետ աշ
 ### CleanDeleted
 
 ```c#
-public async Task CleanDeleted(DateTime startDate, DateTime endDate, string docType = "")
+public Task CleanDeleted(DateTime startDate, DateTime endDate, string docType = "")
 ```
+
 Մաքրում է բոլոր հեռացված փաստաթղթերը՝ նշված ժամանակահատվածով։
 
 **Պարամետրեր**
@@ -45,12 +47,10 @@ public async Task CleanDeleted(DateTime startDate, DateTime endDate, string docT
 * endDate - ժամանակահատվածի վերջին ամսաթիվ։
 * docType - ??
 
-**Պարամետրեր**
-
 ### Copy
 
 ```c#
-public async Task<Document> Copy(int isn, object beforeCopyParam = null, int copyDocMode = 0)
+public Task<Document> Copy(int isn, object beforeCopyParam = null, int copyDocMode = 0)
 ```
 
 Ստեղծում է արդեն գոյություն ունեցող փաստաթղթի պատճեն օբյեկտը։
@@ -68,7 +68,7 @@ public async Task<Document> Copy(int isn, object beforeCopyParam = null, int cop
 ### Create&lgtT&gt
 
 ```c#
-Task<T> Create<T>(List<int> parentsISN = null, DocumentOrigin origin = DocumentOrigin.AsService, params object[] parameters) where T : Document
+public Task<T> Create<T>(List<int> parentsISN = null, DocumentOrigin origin = DocumentOrigin.AsService, params object[] parameters) where T : Document
 ```
 
 Ստեղծում է նշված տիպի նոր փաստաթղթի օբյեկտ։
@@ -88,7 +88,7 @@ Task<T> Create<T>(List<int> parentsISN = null, DocumentOrigin origin = DocumentO
 ### CreationDate
 
 ```c#
-Task<(DateTime CreationDate, short SUID)> CreationDate(int isn, bool isNotRiseErrWhenNoRow = false);
+public Task<(DateTime CreationDate, short SUID)> CreationDate(int isn, bool isNotRiseErrWhenNoRow = false);
 ```
 
 Վերադարձնում է փաստաթղթի ստեղծման ամսաթիվը և ստեղծողի 
@@ -101,7 +101,7 @@ Task<(DateTime CreationDate, short SUID)> CreationDate(int isn, bool isNotRiseEr
 ### CutChildLink
 
 ```c#
-Task CutChildLink(int isn, int childIsn = -1);
+public Task CutChildLink(int isn, int childIsn = -1);
 ```
 
 Ջնջում է փաստաթղթի և իրա զավակների միջև կապերը, կամ մեկ նշված փաստաթղթի հետ կապը։
@@ -113,7 +113,7 @@ Task CutChildLink(int isn, int childIsn = -1);
 ### CutParentLink
 
 ```c#
-Task CutParentLink(int isn, int parentIsn = -1);
+public Task CutParentLink(int isn, int parentIsn = -1);
 ```
 
 Ջնջում է փաստաթղթի և իրա ծնողների միջև կապերը, կամ մեկ նշված փաստաթղթի հետ կապը։
@@ -125,7 +125,7 @@ Task CutParentLink(int isn, int parentIsn = -1);
 ### ExistInDb
 
 ```c#
-Task<bool> ExistInDb(int isn);
+public Task<bool> ExistInDb(int isn);
 ```
 
 Ստուգում է փաստաթղթի առկայությունը տվյալների պահոցում։
@@ -136,7 +136,7 @@ Task<bool> ExistInDb(int isn);
 ### GetCaption
 
 ```c#
-public async Task<(string caption, string englishCaption)> GetCaption(string docType)
+public Task<(string caption, string englishCaption)> GetCaption(string docType)
 ```
 
 Վերադարձնում է փաստաթղթի հայերեն և անգլերեն անվանումները։
@@ -155,7 +155,7 @@ public ArchiveInfo GetDocsInfo()
 ### GetDocumentChildren
 
 ```c#
-Task<List<(int isn, string docType)>> GetDocumentChildren(int isn, string docType = "", DocumentChildrenOrder order = DocumentChildrenOrder.UnOrdered, string docTypeLike = "");
+public Task<List<(int isn, string docType)>> GetDocumentChildren(int isn, string docType = "", DocumentChildrenOrder order = DocumentChildrenOrder.UnOrdered, string docTypeLike = "");
 ```
 
 Վերադարձնում է նշված փաստաթղթի զավակ փաստաթղերի isn-ների ու տեսակների ցուցակը:
@@ -177,7 +177,7 @@ DocumentChildrenOrder.CreationDateDescending - Դասավորվում է նվա�
 ### GetDocumentParents
 
 ```c#
-Task<List<(int isn, string docType)>> GetDocumentParents(int isn, string docType = "", DocumentChildrenOrder order = DocumentChildrenOrder.UnOrdered, string docTypeLike = "");
+public Task<List<(int isn, string docType)>> GetDocumentParents(int isn, string docType = "", DocumentChildrenOrder order = DocumentChildrenOrder.UnOrdered, string docTypeLike = "");
 ```
 
 Վերադարձնում է նշված փաստաթղթի ծնող փաստաթղերի isn-ների ու տեսակների ցուցակը:
@@ -199,7 +199,7 @@ DocumentChildrenOrder.CreationDateDescending - Դասավորվում է նվա�
 ### GetDocumentState
 
 ```c#
-Task<int> GetDocumentState(int isn);
+public Task<int> GetDocumentState(int isn);
 ```
 
 Վերադարձնում է փաստաթղթի վիճակը։
@@ -211,7 +211,7 @@ Task<int> GetDocumentState(int isn);
 ### GetDocumentStatus
 
 ```c#
-public async Task<byte> GetDocumentStatus(string folderID, int isn)
+public Task<byte> GetDocumentStatus(string folderID, int isn)
 ```
 Վերադարձնում է թղթապանակի տարրի վիճակը։
 
@@ -222,7 +222,7 @@ public async Task<byte> GetDocumentStatus(string folderID, int isn)
 ### GetDocumentType 
 
 ```c#
-Task<string> GetDocumentType(int isn);
+public Task<string> GetDocumentType(int isn);
 ```
 
 Վերադարձնում է նշված ներքին նույնականացման համարով փաստաթղթի տեսակը։
@@ -233,7 +233,7 @@ Task<string> GetDocumentType(int isn);
 ### GetParentIsn
 
 ```c#
-public async Task<int> GetParentIsn(int isn)
+public Task<int> GetParentIsn(int isn)
 ```
 
 Վերադարձնում է նշված ներքին նույնականացման համարով փաստաթղթի առաջին ծնող փաստաթղթի ներքին նույնականացման համարը։ Եթե ծնող փաստաթղթը չկա, ապա վերադառնում է -1։
@@ -244,7 +244,7 @@ public async Task<int> GetParentIsn(int isn)
 ### GetParentIsn
 
 ```c#
-public async Task<int> GetParentIsn(int isn, string docType)
+public Task<int> GetParentIsn(int isn, string docType)
 ```
 
 Վերադարձնում է առաջին ծնող փաստաթղթի ներքին նույնականացման համարը։ Եթե ծնող փաստաթղթը չկա, ապա վերադառնում է -1։
@@ -256,7 +256,7 @@ public async Task<int> GetParentIsn(int isn, string docType)
 ### IsArchived
 
 ```c#
-Task<bool> IsArchived(int isn);
+public Task<bool> IsArchived(int isn);
 ```
 
 Ստուգում է փաստաթղթի արխիվացված լինելը։
@@ -267,7 +267,7 @@ Task<bool> IsArchived(int isn);
 ### Load
 
 ```c#
-public async Task<Document> Load(int isn, GridLoadMode gridLoadMode = GridLoadMode.Full,
+public Task<Document> Load(int isn, GridLoadMode gridLoadMode = GridLoadMode.Full,
                                  bool loadImagesAndMemos = true, bool lockTableRow = false,
                                  bool throwExceptionIfDeleted = true, bool lookInArc = true,
                                  Type instanceType = null, bool loadParents = false)
@@ -288,7 +288,7 @@ public async Task<Document> Load(int isn, GridLoadMode gridLoadMode = GridLoadMo
 ### LoadFromFolder
 
 ```c#
-Task<Document> LoadFromFolder(string folder, string key, GridLoadMode gridLoadMode = GridLoadMode.Full,
+public Task<Document> LoadFromFolder(string folder, string key, GridLoadMode gridLoadMode = GridLoadMode.Full,
                               bool loadImagesAndMemos = true, Type instanceType = null, bool loadParents = false);
 ```
 Բեռնում է փաստաթուղթը ըստ թղթապանակի և բանալու։
@@ -304,7 +304,7 @@ Task<Document> LoadFromFolder(string folder, string key, GridLoadMode gridLoadMo
 ### Store
 
 ```c#
-Task Store(Document document, DocumentCheckLevel checkLevel = DocumentCheckLevel.None, string logComment = "");
+public Task Store(Document document, DocumentCheckLevel checkLevel = DocumentCheckLevel.None, string logComment = "");
 ```
 
 Անցկացնում է պարտադիր ստուգումներ և գրանցում փաստաթուղթը տվյալների պահոցում։
@@ -317,7 +317,7 @@ Task Store(Document document, DocumentCheckLevel checkLevel = DocumentCheckLevel
 ### StoreFact
 
 ```c#
-Task StoreFact(Document document, Fact fact);
+public Task StoreFact(Document document, Fact fact);
 ```
 
 Գրանցում է փաստաթղթի հաշվառումը։
@@ -329,7 +329,7 @@ Task StoreFact(Document document, Fact fact);
 ### StoreInFolder
 
 ```c#
-void StoreInFolder(Document document, FolderElement folderElement);
+public void StoreInFolder(Document document, FolderElement folderElement);
 ```
 
 Գրանցում է թղթապանակի տարրը։
@@ -341,7 +341,7 @@ void StoreInFolder(Document document, FolderElement folderElement);
 ### StoreInTree
 
 ```c#
-void StoreInTree(Document document, TreeElement treeElement);
+public void StoreInTree(Document document, TreeElement treeElement);
 ```
 
 Գրանցում է ծառի տարրը։
@@ -349,12 +349,3 @@ void StoreInTree(Document document, TreeElement treeElement);
 **Պարամետրեր**
 * document - Փաստաթուղթը նկարագրող դասը։
 * folderElement - Ծառի տարրը նկարագրող դասը։
-
-
-
-
-
-
-
-
-
