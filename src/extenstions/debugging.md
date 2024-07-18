@@ -23,5 +23,6 @@ Debugger-ի օգտագործման համար անհրաժեշտ է կարգավ
 
 ![Nuget սերվերի կարգավորում](package_sources.png)
 
+Սահմանեք Startup Project -ը Set as Startup Project գործողության միջոցով  Օրինակ՝ ArmSoft.AS8X.BankService
 
 ## Local service-ի կարգավորում
