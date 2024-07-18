@@ -6,7 +6,7 @@ title: "Debug"
 ## Բովանդակություն
 * [Ներածություն](#ներածություն)
 * [Visual Studio ծրագրում կատարվող Կարգավորումները](#visual-studio-ծրագրում-կատարվող-կարգավորումները)
-* [Local service-ի կարգավորում]
+* [Local service-ի կարգավորում](#Local-service-ի-կարգավորում)
 * [Break Point-ի տեղադրում]
 * [Սերվիսի գործարկում]
 * [Աշխատանք Debugger-ի հետ]
@@ -21,4 +21,7 @@ Debug-ը թույլ է տալիս գործարկել ծրագրերը վերահ
 Debugger-ի օգտագործման համար անհրաժեշտ է կարգավորել ներքին մատակարարման Nuget սերվերի ճանապարհը։
 Սահմանվելով այն ՝ https://tfs/Armsoft/Armsoft.Nuget/_packaging/ArmsoftNuget/nuget/v3/index.json։
 
+![Nuget սերվերի կարգավորում](package_sources.png)
 
+
+## Local service-ի կարգավորում
