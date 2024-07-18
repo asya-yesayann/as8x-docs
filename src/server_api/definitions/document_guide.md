@@ -1,4 +1,3 @@
-
 ---
 layout: page
 title: "(Document) Փաստաթղթի նկարագրման ձեռնարկ"
@@ -19,12 +18,23 @@ tags: [Document]
 ## Նախաբան
 
 8X-ում փաստաթղթի նկարագրության համար հարկավոր է ունենալ 
-- .as ընդլայնմամբ ֆայլ սկրիպտերում, որը պարունակում է մետատվյալներ փաստաթղթի մասին,
+- .as ընդլայնմամբ ֆայլ սկրիպտերում DOCUMENT նկարագրությամբ, որը պարունակում է մետատվյալներ փաստաթղթի մասին,
 - .cs ընդլայնմամբ ֆայլ, որը պարունակում է սերվերում աշխատող տրամաբանությունը։ 
 
 ## Փաստաթղթի նկարագրման համար անհրաժեշտ քայլեր
 
 ## .as ընդլայնմամբ ֆայլի սահմանում
+
+``` as4x
+DSEXTENDER {
+  NAME = ...;
+  CAPTION = ...;
+  ECAPTION = ...;
+  DATASOURCE = ...;
+  CSSOURCE = ...;
+};
+```
+
 - Ստեղծել .as ընդլայնմամբ ֆայլ՝ ավելացնելով DOCUMENT տիպի նկարագրություն, որը պարունակում է փաստաթղթի՝
   - NAME - ներքին անվանումը,
   - CAPTION - հայերեն անվանումը՝ `ANSI` կոդավորմամբ,
@@ -43,7 +53,8 @@ tags: [Document]
 - Հայտատարել դաս, որը ունի փաստաթղթի ներքին անվանումը պարունակող `Document` ատրիբուտը և  ժառանգում է Document դասը։
 
 ```c#
-
+[Document("UsrAccs")]
+public class UserAccounts : Document
 ```
 
 ### Կոնստրուկտորի ձևավորում
@@ -51,7 +62,10 @@ tags: [Document]
 - Ձևավորել կոնստրուկտորը՝ IServiceProvider տիպի պարտադիր պարամետրով, որը պիտի կանչի base Document դասի կոնստրուկտորը և փոխանցի IServiceProvider տիպի պարամետրը: Կոնստուկտորում անհրաժեշտ է [ինյեկցիա](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection) անել աշխատանքի համար անհրաժեշտ service-ները։
 
 ```c#
-
+public UserAccounts(IParametersService parameterService, IServiceProvider serviceProvider) : base(serviceProvider)
+{
+    this.parametersService = parameterService;
+}
 ```
 
 ## Նկարագրման հատվածի ձևավորում
@@ -59,37 +73,77 @@ tags: [Document]
 ### Մուտքագրման դաշտերի(ռեկվիզիտների) ավելացում
 
 - Ավելացնել մուտքագրման դաշտերը որպես հատկություններ` սահմանելով հետևյալ կառուցվածքով՝
-  -  get-ում վերադարձնել մուտքագրման դաշտի արժեքը՝ base դասի indexer-ին տալով դաշտի անվանումը և այդ արժեքը բերելով հատկության տիպի,
-  -  set-ում base դասի indexer-ին տալ մուտքագրման դաշտի անվանումը և վերագրել դաշտի արժեքը։
+  -  get-ում վերադարձնել մուտքագրման դաշտի արժեքը՝ base դասի indexer-ին տալով դաշտի անունը և այդ արժեքը բերելով հատկության տիպի,
+  -  set-ում base դասի indexer-ին տալ մուտքագրման դաշտի անունը  և վերագրել դաշտի արժեքը։
 
 ```c#
+public string NAME
+{
+    get { return (string)this[nameof(this.NAME)]; }
+    set { this[nameof(this.NAME)] = value; }
+}
 
+public short USERID
+{
+    get { return (short)this[nameof(this.USERID)]; }
+    set { this[nameof(this.USERID)] = value; }
+}
+
+public string BRANCH
+{
+    get { return (string)this[nameof(this.BRANCH)]; }
+    set { this[nameof(this.BRANCH)] = value; }
+}
 ```
 
 ### Աղյուսակների(գրիդերի) ավելացում
 
 - Սահմանել դաս աղյուսակի տողերի համար, որը պետք է պարտադիր ժառանգի `GridRow` դասից: Դասում ավելացնել սյուները որպես հատկություններ` սահմանելով հետևյալ կառուցվածքով՝
-	-  get-ում վերադարձնել սյան արժեքը՝ base դասի indexer-ին տալով սյան անվանումը և այդ արժեքը բերելով հատկության տիպի,
+	-  get-ում վերադարձնել սյան արժեքը՝ base դասի indexer-ին տալով սյան անունը և այդ արժեքը բերելով հատկության տիպի,
 	-  set-ում base դասի indexer-ին տալ սյան անվանումը և վերագրել սյան արժեքը։
 
 ```c#
+ public class AccountingRow : GridRow
+ {
+     public string ACCTYPE
+     {
+         get { return (string)this[nameof(this.ACCTYPE)]; }
+         set { this[nameof(this.ACCTYPE)] = value; }
+     }
 
+     public int CODE
+     {
+         get { return (int)this[nameof(this.CODE)]; }
+         set { this[nameof(this.CODE)] = value; }
+     }
+...
+ }
 ```
 
-- Սահմանել Grid&lt;T&gt; տիպի հատկություն՝ որպես T փոխանցելով աղյուսակի տողերը նկարագրող դասը: Վերադարձնել base դասի Grids IReadOnlyDictionary&lt;string, IGrid&gt; տիպի հատկության աղյուսակի անունով անդամը՝ բերելով Grid&lt;T&gt; տիպի:
+- Սահմանել Grid&lt;T&gt; տիպի հատկություն՝ որպես T փոխանցելով աղյուսակի տողերը նկարագրող դասը: Հատկությունում վերադարձնել base դասի Grids IReadOnlyDictionary&lt;string, IGrid&gt; տիպի հատկության աղյուսակի անունով անդամը՝ բերելով Grid&lt;T&gt; տիպի:
 
 ```c#
-
+ public Grid<AccountingRow> Accountings
+ {
+     get
+     {
+         return (Grid<AccountingRow>)this.Grids[nameof(this.Accountings)];
+     }
+ }
 ```
 
 ###  Մեծ տեքստային դաշտերի(մեմոների) ավելացում
 
 - Ավելացնել մեմոները որպես հատկություններ` սահմանելով հետևյալ կառուցվածքով՝
-  -  get-ում վերադարձնել GetMemo մեթոդի կանչը՝ փոխանցելով մեմոյի անվանումը,
-  -  set-ում կանչել SetMemo մեթոդը՝ փոխանցելով մեմոյի անվանումը և արժեքը։
+  -  get-ում վերադարձնել GetMemo մեթոդի կանչը՝ փոխանցելով մեմոյի անունը,
+  -  set-ում կանչել SetMemo մեթոդը՝ փոխանցելով մեմոյի անունը և արժեքը։
 
 ```c#
-
+public string COMMENT
+{
+    get { return GetMemo(nameof(this.COMMENT)); }
+    set { SetMemo(nameof(this.COMMENT), value); }
+}
 ```
 
 ## Մեթոդներ
@@ -100,7 +154,20 @@ tags: [Document]
 -  Փաստաթուղթը FOLDERS աղյուսակում գրանցելու համար անհրաժեշտ է override անել [Folders](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Folders.html) մեթոդը՝ ստեղծելով և store անելով `FolderElement` դասի օբյեկտ, որը հանդիսանում է 4x համակարգում նկարագրված [AsFoldElement](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/AsFoldElement.html) դասի համարժեքը։
 
 ```c#
-
+public override Task Folders(FoldersEventArgs args)
+{
+    var folderElement = new FolderElement()
+    {
+        FolderId = "UserAccounts",
+        Status = FolderStatus.Edit,
+        Key = this.ISN.ToString(),
+        Comment = this.Description.ArmenianCaption,
+        EComment = this.Description.EnglishCaption,
+        Spec = this.NAME.LeftAlign(50) + this.USERID.ToString().LeftAlign(20)
+    };
+    this.DocumentService.StoreInFolder(this, folderElement);
+    return Task.CompletedTask;
+}
 ```
 
 ### Delete
@@ -108,7 +175,14 @@ tags: [Document]
 -  Եթե կա անհրաժեշտություն փաստաթղթի հեռացումից առաջ ստուգումներ կատարելու և կապակցված տվյալներ հեռացնելու, ապա անհրաժեշտ է override անել [Delete](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Delete.html) մեթոդը:
 
 ```c#
-
+public override async Task Delete(DeleteEventArgs args)
+{
+    var isDeletionAllowed = await this.parametersService.GetBooleanValue("DELETEALIENDOCS");
+    if (!isDeletionAllowed)
+    {
+        throw new Exception("Փաստաթուղթը հեռացնելու իրավասություն չունեք");
+    }
+}
 ```
 
 ### Validate
@@ -116,7 +190,14 @@ tags: [Document]
 -  Դաշտերի արժեքների ստուգման անհրաժեշտության դեպքում override անել [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) մեթոդը:
 
 ```c#
-
+public override Task Validate(ValidateEventArgs args)
+{
+    if (this.Accountings.RowCount == 0)
+    {
+        throw new Exception("Օգտագործողին հաշիվներ կցված չեն");
+    }
+    return Task.CompletedTask;
+}
 ```
 
 ### Action
@@ -124,14 +205,11 @@ tags: [Document]
 -  Փաստաթղթի գրանցման ժամանակ  հավելյալ ստուգումներ կատարելու,   լոգում, տվյալների բազայի աղյուսակներում փոխկապակցված գրանցումներ կատարելու, ինչ-որ պայմաններից կախված փաստաթղթի էլեմենտների(ռեկվիզիտ, մեմո, աղյուսակ) և հատկությունների արժեքները փոփոխելու համար անհրաժեշտ է override անել [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) մեթոդը:
 
 ```c#
-
-```
-
-### DefaultComment
-
--  Փաստաթուղթը FOLDERS աղյուսակում գրանցելիս աղյուսակի fCOM դաշտի լրացման անհրաժեշտ է override անել [DefaultComment](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/DefaultComment.html) մեթոդը:
-Override չանելու դեպքում fCOM դաշտում լրացվելու է փաստաթղթի հայերեն անվանումը։
-
-```c#
-
+public override async Task Action(ActionEventArgs args)
+{
+    if (string.IsNullOrWhiteSpace(this.BRANCH))
+    {
+        this.BRANCH = await this.parametersService.DefaultBranch();
+    }
+}
 ```
