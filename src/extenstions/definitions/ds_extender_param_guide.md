@@ -13,7 +13,7 @@ title: "Տվյալների աղբյուր պարամետրերի ընդլայն�
 
 Տվյալների աղբյուրի պարամետրերը նկարագրող դասը սահմանվում է ընդլայնվող սյունյակների նման։ Տես նաև՝ [Տվյալների աղբյուրի ընդլայնում 8X-ում](https://github.com/armsoft/as8x-docs/blob/main/src/extenstions/definitions/ds_extender_guide.md)
 
-.cs ֆայլում հարկավոր է ստեղծել ```class```, որը ժառանգում է ```Extender<R, P>``` դասը՝ որպես R փոխանցելով տվյալների աղբյուրի սյուները նկարագրող դասը, իսկ որպես P՝ պարամետրերը նկարագրող դասը։ Եթե տվյալների աղբյուրը չի պարունակում սյուներ, ապա որպես R անհրաժեշտ է փոխանցել NoColumns դասը։ Հարկավոր է նաև ավելացնել ```[DataSourceExtender]``` ատրիբուտը։ Օրինակ՝
+.cs ֆայլում հարկավոր է ստեղծել `class`, որը ժառանգում է `Extender<R, P>` դասը՝ որպես R փոխանցելով տվյալների աղբյուրի սյուները նկարագրող դասը, իսկ որպես P՝ պարամետրերը նկարագրող դասը։ Եթե տվյալների աղբյուրը չի պարունակում սյուներ, ապա որպես R անհրաժեշտ է փոխանցել NoColumns դասը։ Հարկավոր է նաև ավելացնել `[DataSourceExtender]` ատրիբուտը։ Օրինակ՝
 
 ```cs
 [DataSourceExtender]
@@ -29,7 +29,7 @@ public class Params
     public string CliCode { get; set; }
 }
 ```
-2. Ընդլայնող դասի կոնստրուկտորի մեջ՝ ```AddParam``` ֆունկցիայի միջոցով։
+2. Ընդլայնող դասի կոնստրուկտորի մեջ՝ `AddParam` ֆունկցիայի միջոցով։
 ``` cs
 public AllOperExtended()
 {
@@ -37,43 +37,42 @@ public AllOperExtended()
 }
 ```
 
-Ստորև բերված օրինակում, որպես նոր պարամետր հայտարարված է հաճախորդի կոդը։ Պարամետրին դիմելու համար հարկավոր է ```BeforeProcess``` ֆունկցիայում հայտարարել ```extenderParametrs``` փոփոխական.
+Ստորև բերված օրինակում, որպես նոր պարամետր հայտարարված է հաճախորդի կոդը։ Պարամետրին դիմելու համար հարկավոր է `BeforeProcess` ֆունկցիայում հայտարարել `extenderParametrs` փոփոխական.
 
 ``` cs
 var extenderParameters = (Params)args.ExtenderParameters;
 ```
-Ըստ հաճախորդի կոդի ```BeforeProcess``` ֆունկցիայում կատարվում է SQL հարցում, որի արդյունքում վերադարձվում են տվյալ հաճախորդի հաշիվները։
+Ըստ հաճախորդի կոդի `BeforeProcess` ֆունկցիայում կատարվում է SQL հարցում, որի արդյունքում վերադարձվում են տվյալ հաճախորդի հաշիվները։
 
 ``` cs
 public override async Task BeforeProcess(IList<IExtendableRow> rows, IDataSourceArgs args)
-{
-    var extenderParameters = (Params)args.ExtenderParameters;
-    string sqlQuery = "SELECT fCODE from ACCOUNTS with (nolock) where fCLICODE=@CliCode";         
-
-    if(string.IsNullOrWhiteSpace (extenderParameters.CliCode))
     {
-        return;
+        var extenderParameters = (Params)args.ExtenderParameters;
+        if (string.IsNullOrWhiteSpace(extenderParameters.CliCode))
+        {
+            return;
+        }
+        string sqlQuery = "SELECT fCODE from ACCOUNTS with (nolock) where fCLICODE = @CliCode";
+        this.accounts = (await this.dbService.Connection.QueryAsync<string>(sqlQuery,
+              new { CliCode = extenderParameters.CliCode })).ToHashSet();
     }
-    this.dctAccounts = (await this.dbService.Connection.QueryAsync<string>(sqlQuery, new { CliCode= extenderParameters.CliCode.Trim()})).ToDictionary(item => item, item => item);
-}
 ```
 
-```ProcessRow``` ֆունկցիայում տվյալ հաճախորդի յուրաքանչյուր հաշիվը ստուգվում է կա արդյոք դեբետում կամ կրեդիտում, և դրական պատասխանի դեպքում վերադարձնում է տվյալ հաշիվը։
+`ProcessRow` ֆունկցիայում տվյալ հաճախորդի յուրաքանչյուր հաշիվը ստուգվում է կա արդյոք դեբետում կամ կրեդիտում, և դրական պատասխանի դեպքում վերադարձնում է տվյալ հաշիվը։
 
 ``` cs
 public override Task<bool> ProccessRow(IExtendableRow row, IDataSourceArgs args)
-{
-    var extenderParameters = (Params)args.ExtenderParameters;
-    if (string.IsNullOrWhiteSpace(extenderParameters.CliCode))
     {
-        return Task.FromResult(true);
+        var extenderParameters = (Params)args.ExtenderParameters;
+        if (string.IsNullOrWhiteSpace(extenderParameters.CliCode))
+        {
+            return Task.FromResult(true);
+        }
+        var dsRow = (AllOperations.DataRow)row;
+        bool result = this.accounts.Contains(dsRow.ACCDB) || this.accounts.Contains(dsRow.ACCCR);
+
+        return Task.FromResult(result);
     }
-    var dsRow = (AllOperations.DataRow)row;            
-    bool result= this.dctAccounts.ContainsKey(dsRow.ACCDB) || this.dctAccounts.ContainsKey(dsRow.ACCCR);
-
-    return Task.FromResult(result);
-}
-
 ```
 
 ## Պարամետրերի ընդլայնում ՀԾ-Բանկ համակարգում
