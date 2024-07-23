@@ -7,7 +7,7 @@ tags: TemplateSubstitution
 Ստորև բերված է հաշվի քաղվածքում կիրառվող լրացուցիչ պարամետրերի հաշվարկման համար նախատեսված դասը։ 
 Ի տարբերություն այլ դեպքերի ՀԾ-Բանկում հաշվի քաղվածքում նոր պարամետրեր ավելացնելուց արժեքը պետք է լինի Unicode կոդավորմամբ, երբ ձևանմուշը պետք է արտահանվի Unicode, այսինքն գրեթե միշտ։
 
-Օրինակում օգտագործվում է [UserProxyService](/src/extenstions/user_proxy_service.md), որը հասանելի է միայն ՀԾ-Բանկում։
+Օրինակում օգտագործվում է [UserProxyService](/src/extensions/user_proxy_service.md), որը հասանելի է միայն ՀԾ-Բանկում։
 
 ```c#
 using ArmSoft.AS8X.Bank.General.Account.DOCS;

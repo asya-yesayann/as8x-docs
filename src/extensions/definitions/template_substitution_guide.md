@@ -17,11 +17,11 @@ tags:
 
 ## 	Ներածություն
 
-Տպելու ձևանմուշների ընդլայնումը իրականացվում է ծրագրավորման միջոցով օգտագորելով C# լեզուն: Օգտագործվում է [սերվերային մոդուլ](/src/extenstions/definitions/server_side_module_guide.md) ընլայնումը համակարգ ներմուծելու համար։ Անհրաժեշտ է ստեղծել երկու ֆայլ՝
+Տպելու ձևանմուշների ընդլայնումը իրականացվում է ծրագրավորման միջոցով օգտագորելով C# լեզուն: Օգտագործվում է [սերվերային մոդուլ](/src/extensions/definitions/server_side_module_guide.md) ընլայնումը համակարգ ներմուծելու համար։ Անհրաժեշտ է ստեղծել երկու ֆայլ՝
 1.	պարամետրերի հաշվարկի ծրագրերը պարունակող C# ֆայլը,
-2.	`.as` ընդլայնումով [սերվերային մոդուլի](/src/extenstions/definitions/server_side_module_guide.md) նկարագրող ֆայլը, որը օգտագործվում է C# ֆայլը ներմուծելիս։
+2.	`.as` ընդլայնումով [սերվերային մոդուլի](/src/extensions/definitions/server_side_module_guide.md) նկարագրող ֆայլը, որը օգտագործվում է C# ֆայլը ներմուծելիս։
 
-Ստեղծված ֆայլերը պետք է [ներմուծել](/src/extenstions/definitions/server_side_module_guide.md#ընդլայնման-ներմուծում) համակարգ, որից հետո [կապակցել](#ընդլայնման-կապակցում-տպելու-ձևանմուշին) տպվող ձևի ձևանմուշին։
+Ստեղծված ֆայլերը պետք է [ներմուծել](/src/extensions/definitions/server_side_module_guide.md#ընդլայնման-ներմուծում) համակարգ, որից հետո [կապակցել](#ընդլայնման-կապակցում-տպելու-ձևանմուշին) տպվող ձևի ձևանմուշին։
 Ընդլայնվող տպելու ձևանմուշում բոլոր լրացուցիչ պարամետրերը պետք է ծրագրավորված լինեն մեկ C# դասի միջոցով։
 
 Չնայած որ, մեկ ֆայլը կարող է պարունակել բազնաթիվ դասեր, տպելու ձևանմուշին հնարավոր է կապակցել միայն մեկ դաս։
@@ -80,7 +80,7 @@ public Task Calculate(TemplateSubstitutionExtenderArgs args)
 }
 ```
 
-Պարամետրի հաշվարկը և ավելացումը հնարավոր է կատարել նաև [UserProxyService](/src/extenstions/user_proxy_service.md)-ի [TryAddAtomic](/src/extenstions/user_proxy_service.md#tryaddatomic) կամ [TryAddAtomicAsync](/src/extenstions/user_proxy_service.md#tryaddatomicasync) մեթոդովներով։
+Պարամետրի հաշվարկը և ավելացումը հնարավոր է կատարել նաև [UserProxyService](/src/extensions/user_proxy_service.md)-ի [TryAddAtomic](/src/extensions/user_proxy_service.md#tryaddatomic) կամ [TryAddAtomicAsync](/src/extensions/user_proxy_service.md#tryaddatomicasync) մեթոդովներով։
 Այս դեպքում մեկ պարամետրի հաշվարկի ընթացքում առաջացած սխալի դեպքում ծրագրի աշխատանքը չի ընդհատվի շարունակելով մնացած բոլոր պարամետրերի հաշվակը։
 
 ```c#
@@ -119,7 +119,7 @@ public class AccStatements : ITemplateSubstitutionExtender
 
 ## Օրինակներ
 
-Տե՛ս [հաշվի քաղվածքի ընդլայնման օրինակ](/src/extenstions/examples/template_substitution_AccState.md)։
+Տե՛ս [հաշվի քաղվածքի ընդլայնման օրինակ](/src/extensions/examples/template_substitution_AccState.md)։
 
 ## Հատուկ դեպքեր
 
