@@ -18,24 +18,23 @@ tags: [structure]
 
 ## ArmSoft.AS8X.Client
 
+Պարունակում է Routes տիպի դասեր, որոնց օգնությամբ կարելի է դիմել սերվիսային մեթոդներին(DocumentRoutes, ParametersRoutes, ...), փաստաթղթի, dpr-ի կլիենտական նկարագրությունները, որոնք կանչում են սերվերային տրամաբանությունը Route-ների միջոցով։
+
 ## ArmSoft.AS8X.Common
 
-Պարունակում է բոլոր պրոյեկտների կողմից օգտագործվող ծրագրային կտորները, ինչպիսիք են constant-ները, c#-ի ներդրված տիպերի extension մեթոդներ պարունակող դասերը
-(DateExtensions, StringExtensions, ...), համակարգային տիպերը(BooleanFieldType, NumPairFieldType, ...), .... :
+Պարունակում է բոլոր պրոյեկտների կողմից օգտագործվող ծրագրային կտորները, ինչպիսիք են constant-ները, c#-ի ներդրված տիպերի extension մեթոդներ պարունակող դասերը(DateExtensions, StringExtensions, ...), համակարգային տիպերը(BooleanFieldType, NumPairFieldType, ...), .... :
 
 ## ArmSoft.AS8X.Configuration.Service
 
+Պրոյեկտի կարգավորումների որոշ մասը պահվում են տվյալների բազայում։ Տվյալների բազայից այդ տվյալների բեռնման, լիցենզաների ղեկավարման մեխանիզմի, appsettings.json-ում ներառված կարգավորումների համար սահմանված է այս պրոյեկտը
+
 ## ArmSoft.AS8X.Core
 
-Պարունակում է բոլոր պրոյեկտների կողմից օգտագործվող 8x սերվիսում օգտագործվող կտորները, ինչպիսիք են base դասերը, որոնք հիմք են հանդիսանում համակարգային 
-նկարագրությունների սեփական օրինակների ստեղծման համար(Document, DataSource, DPR, ...), սերվիսները(DocumentService, ParametersService, ), ... :
-
+Պարունակում է բոլոր պրոյեկտների կողմից օգտագործվող 8x սերվիսում օգտագործվող կտորները, ինչպիսիք են base դասերը, որոնք հիմք են հանդիսանում համակարգային նկարագրությունների սեփական օրինակների ստեղծման համար(Document, DataSource, DPR, ...), սերվիսները(DocumentService, ParametersService, ), ... :
 
 ## ArmSoft.AS8X.Core.UI
 
-Պարունակում է բոլոր պրոյեկտների կողմից օգտագործվող UI-ական կտորները, ինչպիսիք են Control-ները (ButtonEditExt, ComboBoxEditExt, CheckEditExt, ...), 
-base դասերը, որոնք հիմք են հանդիսանում համակարգային նկարագրությունների (DataView, DropDownView, DPR, ...), 
-պատուհանների (DialogWindow,DataViewDialogWindow, ...) սեփական օրինակների ստեղծման համար, ... :
+Պարունակում է բոլոր պրոյեկտների կողմից օգտագործվող UI-ական կտորները, ինչպիսիք են Control-ները(ButtonEditExt, ComboBoxEditExt, CheckEditExt, ...), ինչպիսիք են base դասերը, որոնք հիմք են հանդիսանում համակարգային նկարագրությունների(DataView, DropDownView, DPR, ...) և պատուհանների(DialogWindow,DataViewDialogWindow, ...) սեփական օրինակների ստեղծման համար, ... :
 
 ## ArmSoft.AS8X.Models
 
