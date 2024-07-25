@@ -18,7 +18,7 @@ tags: [Document]
 ## Նախաբան
 
 8X-ում փաստաթղթի նկարագրության համար հարկավոր է ունենալ 
-- .as ընդլայնմամբ ֆայլ սկրիպտերում DOCUMENT նկարագրությամբ, որը պարունակում է մետատվյալներ փաստաթղթի մասին,
+- .as ընդլայնմամբ ֆայլ սկրիպտերում [DOCUMENT](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Defs/doc.html) նկարագրությամբ, որը պարունակում է մետատվյալներ փաստաթղթի մասին,
 - .cs ընդլայնմամբ ֆայլ, որը պարունակում է սերվերում աշխատող տրամաբանությունը։ 
 
 ## Փաստաթղթի նկարագրման համար անհրաժեշտ քայլեր
@@ -30,22 +30,34 @@ DOCUMENT {
   NAME = UsrAccs;
   CAPTION = "Օգտագործողի հաշիվներ";
   ECAPTION = "User's accounts";
-  PROCESSINGMODE = 2;	
+  PROCESSINGMODE = 2;
+
+Page { CAPTION = "Ընդհանուր";    ECAPTION = "General";
+REKVIZIT {NAME = USERNAME;        CAPTION = "Օգտագործողի անուն";    ECAPTION="User's name";	TYPE = C(20);   };
+REKVIZIT {NAME = USERID;	  CAPTION = "Օգտագործողի կոդ";	    ECAPTION="User's id";	TYPE = NP(10);  };
+
+GRID {NAME = Accounts;	    CAPTION = "Հաշիվներ";              ECAPTION = "Accounts";     WIDTH = 13000; HEIGHT = 3000;
+  COLUMN {NAME = ACCTYPE;  CAPTION = "Տիպ"; 		       ECAPTION = "Type"; 		TYPE = C(10);	 };
+  COLUMN {NAME = CODE;     CAPTION = "Կոդ";                    ECAPTION = "Code";	        TYPE = NP(16);	};
 };
+
+MEMO {NAME = COMMENT;      CAPTION = "Մեկնաբանություն";         ECAPTION = "Comment";     WIDTH = 7000;  HEIGHT = 2300;};
+};
+}
 ```
 
-- Ստեղծել .as ընդլայնմամբ ֆայլ՝ ավելացնելով DOCUMENT տիպի նկարագրություն, որը պարունակում է փաստաթղթի՝
-  - NAME - ներքին անվանումը,
-  - CAPTION - հայերեն անվանումը՝ `ANSI` կոդավորմամբ,
-  - ECAPTION - անգլերեն անվանումը,
-  - PROCESSINGMODE - կատարման ռեժիմը։
+- Ստեղծել .as ընդլայնմամբ ֆայլ՝ ավելացնելով [DOCUMENT](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Defs/doc.html) տիպի նկարագրություն, որը պարունակում է փաստաթղթի՝
+  - NAME - Ներքին անունը։
+  - CAPTION - Հայերեն անվանումը `ANSI` կոդավորմամբ։
+  - ECAPTION - Անգլերեն անվանումը։
+  - PROCESSINGMODE - Կատարման ռեժիմը։
 - Ստեղծված ֆայլը ներմուծել տվյալների բազա `Syscon` գործիքով։
 
 ## .cs ընդլայնմամբ ֆայլի սահմանում
 
 Ամբողջական կոդը դիտելու համար [տե՛ս](/src/server_api/examples/document_code.cs): 
 
-- Հայտատարել դաս, որը ունի փաստաթղթի ներքին անվանումը պարունակող `Document` ատրիբուտը և  ժառանգում է Document դասը։
+- Հայտատարել դաս, որը ունի փաստաթղթի ներքին անվանումը պարունակող `Document` ատրիբուտը և  ժառանգում է [Document](document.md) դասը։
 
 ```c#
 [Document("UsrAccs")]
@@ -82,12 +94,6 @@ public short USERID
 {
     get { return (short)this[nameof(this.USERID)]; }
     set { this[nameof(this.USERID)] = value; }
-}
-
-public string BRANCH
-{
-    get { return (string)this[nameof(this.BRANCH)]; }
-    set { this[nameof(this.BRANCH)] = value; }
 }
 ```
 
