@@ -33,12 +33,12 @@ DOCUMENT {
   PROCESSINGMODE = 2;
 
 Page { CAPTION = "Ընդհանուր";    ECAPTION = "General";
-REKVIZIT {NAME = USERNAME;        CAPTION = "Օգտագործողի անուն";    ECAPTION="User's name";	TYPE = C(20);   };
-REKVIZIT {NAME = USERID;	  CAPTION = "Օգտագործողի կոդ";	    ECAPTION="User's id";	TYPE = NP(10);  };
+REKVIZIT {NAME = USERNAME;        CAPTION = "Օգտագործողի անուն";    ECAPTION="User's name";	     TYPE = C(20);   };
+REKVIZIT {NAME = BRANCH;	  CAPTION = "Մասնաճյուղ";	    ECAPTION="Registration branch";  TYPE = C(10);  };
 
-GRID {NAME = Accounts;	    CAPTION = "Հաշիվներ";              ECAPTION = "Accounts";     WIDTH = 13000; HEIGHT = 3000;
-  COLUMN {NAME = ACCTYPE;  CAPTION = "Տիպ"; 		       ECAPTION = "Type"; 		TYPE = C(10);	 };
-  COLUMN {NAME = CODE;     CAPTION = "Կոդ";                    ECAPTION = "Code";	        TYPE = NP(16);	};
+GRID {NAME = Accounts;	     CAPTION = "Հաշիվներ";              ECAPTION = "Accounts";     WIDTH = 13000; HEIGHT = 3000;
+  COLUMN {NAME = ACCTYPE;   CAPTION = "Տիպ"; 		       ECAPTION = "Type"; 		      TYPE = C(10);	 };
+  COLUMN {NAME = CODE;      CAPTION = "Կոդ";                    ECAPTION = "Code";	              TYPE = NP(16);	};
 };
 
 MEMO {NAME = COMMENT;      CAPTION = "Մեկնաբանություն";         ECAPTION = "Comment";     WIDTH = 7000;  HEIGHT = 2300;};
@@ -90,10 +90,10 @@ public string NAME
     set { this[nameof(this.NAME)] = value; }
 }
 
-public short USERID
+public string BRANCH
 {
-    get { return (short)this[nameof(this.USERID)]; }
-    set { this[nameof(this.USERID)] = value; }
+    get { return (string)this[nameof(this.BRANCH)]; }
+    set { this[nameof(this.BRANCH)] = value; }
 }
 ```
 
@@ -136,8 +136,8 @@ public short USERID
 ###  Մեծ տեքստային դաշտերի(մեմոների) ավելացում
 
 Ավելացնել մեմոները որպես հատկություններ` սահմանելով հետևյալ կառուցվածքով՝
-  - get-ում վերադարձնել GetMemo մեթոդի կանչը՝ փոխանցելով մեմոյի անունը,
-  - set-ում կանչել SetMemo մեթոդը՝ փոխանցելով մեմոյի անունը և արժեքը։
+  - get-ում վերադարձնել [GetMemo](document.md#getmemo) մեթոդի կանչը՝ փոխանցելով մեմոյի անունը,
+  - set-ում կանչել [SetMemo](document.md#setmemo) մեթոդը՝ փոխանցելով մեմոյի անունը և արժեքը։
 
 ```c#
 public string COMMENT
@@ -149,6 +149,19 @@ public string COMMENT
 
 ## Մեթոդներ
 
+### Action
+
+-  Փաստաթղթի գրանցման ժամանակ  հավելյալ ստուգումներ կատարելու,   լոգում, տվյալների բազայի աղյուսակներում փոխկապակցված գրանցումներ կատարելու, ինչ-որ պայմաններից կախված փաստաթղթի էլեմենտների(ռեկվիզիտ, մեմո, աղյուսակ) և հատկությունների արժեքները փոփոխելու համար անհրաժեշտ է override անել [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) մեթոդը:
+
+```c#
+public override async Task Action(ActionEventArgs args)
+{
+    if (string.IsNullOrWhiteSpace(this.BRANCH))
+    {
+       this.BRANCH = await this.parametersService.DefaultBranch();
+    }
+}
+```
 
 ### Folders
 
@@ -164,9 +177,24 @@ public override Task Folders(FoldersEventArgs args)
         Key = this.ISN.ToString(),
         Comment = this.Description.ArmenianCaption,
         EComment = this.Description.EnglishCaption,
-        Spec = this.NAME.LeftAlign(50) + this.USERID.ToString().LeftAlign(20)
+        Spec = this.USERNAME.LeftAlign(20) + this.BRANCH.LeftAlign(50)
     };
     this.DocumentService.StoreInFolder(this, folderElement);
+    return Task.CompletedTask;
+}
+```
+
+### Validate
+
+-  Դաշտերի արժեքների ստուգման անհրաժեշտության դեպքում override անել [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) մեթոդը:
+
+```c#
+public override Task Validate(ValidateEventArgs args)
+{
+    if (this.Accounts.RowCount == 0)
+    {
+        throw new Exception("Օգտագործողին հաշիվներ կցված չեն".ToArmenianANSI());
+    }
     return Task.CompletedTask;
 }
 ```
@@ -178,39 +206,10 @@ public override Task Folders(FoldersEventArgs args)
 ```c#
 public override async Task Delete(DeleteEventArgs args)
 {
-    var isDeletionAllowed = await this.parametersService.GetBooleanValue("DELETEALIENDOCS");
-    if (!isDeletionAllowed)
-    {
-        throw new Exception("Փաստաթուղթը հեռացնելու իրավասություն չունեք");
-    }
-}
-```
-
-### Validate
-
--  Դաշտերի արժեքների ստուգման անհրաժեշտության դեպքում override անել [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) մեթոդը:
-
-```c#
-public override Task Validate(ValidateEventArgs args)
-{
-    if (this.Accountings.RowCount == 0)
-    {
-        throw new Exception("Օգտագործողին հաշիվներ կցված չեն");
-    }
-    return Task.CompletedTask;
-}
-```
-
-### Action
-
--  Փաստաթղթի գրանցման ժամանակ  հավելյալ ստուգումներ կատարելու,   լոգում, տվյալների բազայի աղյուսակներում փոխկապակցված գրանցումներ կատարելու, ինչ-որ պայմաններից կախված փաստաթղթի էլեմենտների(ռեկվիզիտ, մեմո, աղյուսակ) և հատկությունների արժեքները փոփոխելու համար անհրաժեշտ է override անել [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) մեթոդը:
-
-```c#
-public override async Task Action(ActionEventArgs args)
-{
-    if (string.IsNullOrWhiteSpace(this.BRANCH))
-    {
-        this.BRANCH = await this.parametersService.DefaultBranch();
-    }
+   bool isDeletionAllowed = await this.parametersService.GetBooleanValue("DELETEALIENDOCS");
+   if (!isDeletionAllowed)
+   {
+      throw new Exception("Փաստաթուղթը հեռացնելու իրավասություն չունեք".ToArmenianANSI());
+   }
 }
 ```
