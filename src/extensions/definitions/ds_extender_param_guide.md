@@ -1,27 +1,41 @@
 ---
 layout: page
-title: "Տվյալների աղբյուր պարամետրերի ընդլայնման ձեռնարկ" 
+title: "Տվյալների աղբյուրի պարամետրերի ընդլայնման ձեռնարկ" 
 ---
 
-# Տվյալների աղբյուրի պարամետրերի ընդլայնում 8X-ում և ՀԾ-Բանկ համակարգում
-
 ## Բովանդակություն
-* [Տվյալների աղբյուրի պարամետրերի ընդլայնում 8X-ում](#տվյալների-աղբյուրի-պարամետրերի-ընդլայնում-8X)
-* [Պարամետրերի ընդլայնում ՀԾ-Բանկ համակարգում](#պարամետրերի-ընդլայնում-ՀԾ-Բանկ-համակարգում)
+* [Ներածություն](#ներածություն)
+* [.cs ֆայլի ստեղծում](#cs-ֆայլի-ստեղծում)
+* [Ներմուծում և օգտագործում](#ներմուծում-և-օգտագործում)
 
-## Տվյալների աղբյուրի պարամետրերի ընդլայնում 8X-ում
+## Ներածություն
 
-Տվյալների աղբյուրի պարամետրերը նկարագրող դասը սահմանվում է ընդլայնվող սյունյակների նման։ Տես նաև՝ [Տվյալների աղբյուրի ընդլայնում 8X-ում](/src/extensions/definitions/ds_extender_guide.md)
+Գոյություն ունեցող դիտելու ձևերում լրացուցիչ սյուներ, պարամետրեր ավելացնելու, տողերի պարունակությունը փոփոխելու համար նկարագրվում է տվյալների աղբյուրի ընդլայնում։
 
-.cs ֆայլում հարկավոր է ստեղծել `class`, որը ժառանգում է `Extender<R, P>` դասը՝ որպես R փոխանցելով տվյալների աղբյուրի սյուները նկարագրող դասը, իսկ որպես P՝ պարամետրերը նկարագրող դասը։ Եթե տվյալների աղբյուրը չի պարունակում սյուներ, ապա որպես R անհրաժեշտ է փոխանցել NoColumns դասը։ Հարկավոր է նաև ավելացնել `[DataSourceExtender]` ատրիբուտը։ Օրինակ՝
+Ստորև ձեռնարկում նկարագրած է տվյալների աղբյուրում նոր պարամետրերր ավելացնելու քայլերը։  
+Դիտելու ձև ընդլայնելու և նոր սյուներ ավելացնելու հիմնական ձեռնարկը համար տե՛ս [Տվյալների աղբյուրի ընդլայնում 8X-ում](ds_extender_guide.md)։  
+Ընդլայնումը դիտելու ձևում օգտագործումը համար [տե՛ս](view_guide.md):
 
-```cs
+Օրինակը ամբողջությամբ հասանելի է [այստեղ](/src/extensions/examples/ds_extender_addparam.md)։
+
+## .cs ֆայլի ստեղծում
+
+Տվյալների աղբյուրի պարամետրերը նկարագրող դասը սահմանվում է ընդլայնվող սյունյակների նման։ 
+Տե'ս նաև [Տվյալների աղբյուրի ընդլայնում 8X-ում](ds_extender_guide.md)։
+
+.cs ֆայլում հարկավոր է ստեղծել class, որը ժառանգում է `Extender<R, P>` դասը՝ որպես `R` փոխանցելով տվյալների աղբյուրի սյուները նկարագրող դասը, իսկ որպես `P`՝ պարամետրերը նկարագրող դասը։ 
+Եթե տվյալների աղբյուրը չի պարունակում սյուներ, ապա որպես `R` անհրաժեշտ է փոխանցել `NoColumns` դասը։ 
+Հարկավոր է նաև ավելացնել `[DataSourceExtender]` ատրիբուտը։ Օրինակ՝
+
+``` cs
 [DataSourceExtender]
 public class AllOperExtended : Extender<NoColumns, AllOperExtended.Params>
 ```
 
+Բերվող օրինակում, որպես նոր պարամետր հայտարարված է հաճախորդի կոդը։
+
 Ավելացվող պարամետրը հարկավոր է սահմանել երկու տեղ
-1. Նոր class, որը պարունակում է ընդլայնվող պարամետրերը որպես հատկություններ  (Օրինակում Params)
+1. Նոր class, որը պարունակում է ընդլայնվող պարամետրերը որպես հատկություններ  (Օրինակում `Params`)
 
 ``` cs
 public class Params
@@ -29,79 +43,71 @@ public class Params
     public string CliCode { get; set; }
 }
 ```
-2. Ընդլայնող դասի կոնստրուկտորի մեջ՝ `AddParam` ֆունկցիայի միջոցով։
+
+2. Ընդլայնող դասի կոնստրուկտորի մեջ՝ [AddParam](ds_extender.md#addparam) ֆունկցիայի միջոցով։
+
 ``` cs
-public AllOperExtended()
+private readonly IDBService dbService;
+
+public AllOperExtended(IDBService dbService)
 {
-    AddParam(nameof(Params.CliCode), Resources.CliCode, FieldTypeProvider.GetStringFieldType(Constants.LenClient ));           
+    this.dbService = dbService;
+    AddParam(nameof(Params.CliCode), "Հաճախորդի կոդ".ToArmenianANSI(), FieldTypeProvider.GetStringFieldType(8));           
 }
 ```
 
-Ստորև բերված օրինակում, որպես նոր պարամետր հայտարարված է հաճախորդի կոդը։ Պարամետրին դիմելու համար հարկավոր է `BeforeProcess` ֆունկցիայում հայտարարել `extenderParametrs` փոփոխական.
+[AddParam](ds_extender.md#addparam) ֆունկցիային հարկավոր է փոխանցել հետևյալ արժեքները՝
+- Պարամետրի ներքին անուն՝ կոդ (նույնանուն հատկության պետք է լինի ստեղծված `Params` դասի մեջ),
+- Անվանումը հայրեն ANSI կոդավորմամբ (կարելի է գրել Unicode և օգտագործել ToArmenianANSI() ֆունկցիան),
+- Պարամետրի տիպը։
+
+Կոնստրուկտորի մեջ ստանում է նաև տվյալների պահոցի հետ աշխատելու `IDBService` սերվիսը [ինյեկցիայի](/src/project/injection.md) միջոցով։
+
+### BeforeProcess ֆունկցիա
+
+Պարամետրին դիմելու համար [BeforeProcess](ds_extender.md#beforeprocess) ֆունկցիայում 
+- ստանում է տվյալների աղբյուրին փոխանցված պարամետրերը `extenderParameters` փոփոխականի մեջ,
+- ստուգվում է հաճախորդ պարամետրի փոխանցված (լրացված) լինելը,
+- կատարվում է SQL հարցում, որի արդյունքում վերադարձվում են տվյալ հաճախորդի բոլոր հաշիվները
 
 ``` cs
-var extenderParameters = (Params)args.ExtenderParameters;
-```
-Ըստ հաճախորդի կոդի `BeforeProcess` ֆունկցիայում կատարվում է SQL հարցում, որի արդյունքում վերադարձվում են տվյալ հաճախորդի հաշիվները։
+private HashSet<string> accounts;
 
-``` cs
 public override async Task BeforeProcess(IList<IExtendableRow> rows, IDataSourceArgs args)
+{
+    var extenderParameters = (Params)args.ExtenderParameters;
+    if (string.IsNullOrWhiteSpace(extenderParameters.CliCode))
     {
-        var extenderParameters = (Params)args.ExtenderParameters;
-        if (string.IsNullOrWhiteSpace(extenderParameters.CliCode))
-        {
-            return;
-        }
-        string sqlQuery = "SELECT fCODE from ACCOUNTS with (nolock) where fCLICODE = @CliCode";
-        this.accounts = (await this.dbService.Connection.QueryAsync<string>(sqlQuery,
-              new { CliCode = extenderParameters.CliCode })).ToHashSet();
+        return;
     }
+    string sqlQuery = "SELECT fCODE from ACCOUNTS with (nolock) where fCLICODE = @CliCode";
+    this.accounts = (await this.dbService.Connection.QueryAsync<string>(sqlQuery,
+          new { CliCode = extenderParameters.CliCode })).ToHashSet();
+}
 ```
 
-`ProcessRow` ֆունկցիայում տվյալ հաճախորդի յուրաքանչյուր հաշիվը ստուգվում է կա արդյոք դեբետում կամ կրեդիտում, և դրական պատասխանի դեպքում վերադարձնում է տվյալ հաշիվը։
+### ProccessRow ֆունկցիա
+
+Եթե ընդլայնված պարամետրով փոխանցված հաճախորդի կոդ, ապա [ProccessRow](ds_extender.md#proccessrow) ֆունկցիայում ստուգվում է, որ տվյալների աղբյուրի յուրաքանչյուր տողում գրված հաշիվը (դեբետում կամ կրեդիտում) լինի [BeforeProcess](ds_extender.md#beforeprocess)-ում ստացած հաշիվների ցանկում։
+Եվ առկայության դեպքում [ProccessRow](ds_extender.md#proccessrow) ֆունկցիան վերադարձնում է `true`, որպեսզի տողը ընդգրկվի վերջնական ցանկում։ Ցանկում չլինելու դեպքում վերադարձնում է `false` տողը վերջնական ցանկից հանելու համար։
 
 ``` cs
 public override Task<bool> ProccessRow(IExtendableRow row, IDataSourceArgs args)
+{
+    var extenderParameters = (Params)args.ExtenderParameters;
+    if (string.IsNullOrWhiteSpace(extenderParameters.CliCode))
     {
-        var extenderParameters = (Params)args.ExtenderParameters;
-        if (string.IsNullOrWhiteSpace(extenderParameters.CliCode))
-        {
-            return Task.FromResult(true);
-        }
-        var dsRow = (AllOperations.DataRow)row;
-        bool result = this.accounts.Contains(dsRow.ACCDB) || this.accounts.Contains(dsRow.ACCCR);
-
-        return Task.FromResult(result);
+        return Task.FromResult(true);
     }
+    var dsRow = (AllOperations.DataRow)row;
+    bool result = this.accounts.Contains(dsRow.ACCDB) || this.accounts.Contains(dsRow.ACCCR);
+
+    return Task.FromResult(result);
+}
 ```
 
-## Պարամետրերի ընդլայնում ՀԾ-Բանկ համակարգում
+## Ներմուծում և օգտագործում
 
-Նոր պարամետր ավելացնելուց առաջ նախ հարկավոր է "Համակարգային նկարագրությունների ընդլայնումներ"-ի  «Դիալոգների ընդլայնում»-ներ թղթապանակում ավելացնել մեզ անհրաժեշտ ընդլայնումը։
+.as և .cs ֆայլերը պատրաստ լինելուն պես անհրաժեշտ է **SYSCON**-ով համապատասխան .as ֆայլը ներմուծել համակարգ, ինչի արդյունքում .cs ֆայլը նույնպես կներմուծվի։ 
 
-![alt pic](https://github.com/armsoft/as8x-docs/blob/main/src/extensions/definitions/ds_extender_param_guide_dialog_extensions.png)
-
-Պարտադիր է, որպեսզի "Ավելացվող դաշտեր" աղյուսակում նշված "Դաշտի կոդը" և "Համակարգային տիպը" սյուներում ավելացվող արժեքները համընկնեն .cs ֆայլում հայտարարված պարամետրերի անվան և տիպի հետ։
-
-![alt pic](https://github.com/armsoft/as8x-docs/blob/main/src/extensions/definitions/ds_extender_param_guide_dialog_extensions_create.png)
-
-Դիալոգի անունը անհրաժեշտ է, որպեսզի համընկնի դիտելու ձևի անվան հետ։ Այն հնարավոր է տեսնել անհրաժեշտ թղթապանակի պարամետրերում։ Օրինակում բերված է «Ընդհանուր դիտում» թղթապանակի դիտելու ձևի անունը` AllOpers:
-
-![alt pic](https://github.com/armsoft/as8x-docs/blob/main/src/extensions/definitions/ds_extender_param_guide_folder_param.png)
-
-![alt pic](https://github.com/armsoft/as8x-docs/blob/main/src/extensions/definitions/ds_extender_param_guide_folder_param_name.png)
-
-8X սերվիսի ռեժիմում, երբ նոր ստեղծված դիտելու ձևում "Տվյալների աղբյուրի ընդլայնիչ"-ը լրացնելուց հետո, նոր ավելացված պարամետրերը կարելի է տեսնել "Պարամետրերի սկզբնական արժեքներ" էջի աղյուսակում։
-Տվյալ օրինակում, որպես նոր պարամետր ավելացվում է հաճախորդի կոդը.
-
-![alt pic](https://github.com/armsoft/as8x-docs/blob/main/src/extensions/definitions/ds_extender_param_guide_extend_params.png)
-
-
-
-
-
-
-
-
-
-
+ֆայլերը ներմուծելուց հետո հարկավոր այն [կարգավորել դիտելու ձևում](view_guide.md)։

@@ -3,8 +3,9 @@ layout: page
 title: "Տվյալների աղբյուր պարամետրերի ընդլայնման ամբողջական օրինակ" 
 ---
 
-Բերված օրինակում որպես նոր պարամետր ավելացնում ենք հաճախորդի կոդը։ Տվյալ կոդի միջոցով կատարվում է SQL հարցում, որի արդյունքում վերադարձվում են նշված հաճախորդի հաշիվները։ 
-`ProcessRow` ֆունկցիայում տվյալ հաճախորդի յուրաքանչյուր հաշիվը ստուգվում է կա արդյոք դեբետում կամ կրեդիտում, և դրական պատասխանի դեպքում վերադարձնում է տվյալ հաշիվը։ 
+Բերված օրինակում որպես նոր պարամետր ավելացնում ենք հաճախորդի կոդը։ 
+Տվյալ կոդի միջոցով կատարվում է SQL հարցում, որի արդյունքում վերադարձվում են նշված հաճախորդի հաշիվները։ 
+`ProcessRow` ֆունկցիայում տվյալ հաճախորդի յուրաքանչյուր հաշիվը ստուգվում է կա արդյոք դեբետում կամ կրեդիտում, և դրական պատասխանի դեպքում ֆունկցիան վերադարձնում է `true` որպեսզի տողը արտացոլվի վերջնական արդյունքում։ 
 
 ``` cs
 using ArmSoft.AS8X.Bank;
@@ -33,7 +34,7 @@ namespace CustomerSpecific.DSExtenders
         public AllOperExtended(IDBService dbService)
         {
             this.dbService = dbService;
-            AddParam(nameof(Params.CliCode), Resources.CliCode, FieldTypeProvider.GetStringFieldType(Constants.LenClient));
+            AddParam(nameof(Params.CliCode), "Հաճախորդի կոդ".ToArmenianANSI(), FieldTypeProvider.GetStringFieldType(8));
         }
 
         public override async Task BeforeProcess(IList<IExtendableRow> rows, IDataSourceArgs args)
