@@ -22,7 +22,7 @@ tags: [DataSource, DS]
 - sql-based(տվյալները ստացվում են տվյալների բազայից՝ sql հարցման միջոցով),
 - array-based(տվյալները ստացվում են այլ աղբյուրներից և ավելացվում տվյալների աղբյուրի տողերի զանգվածին):
   
-Տեսակը որոշվում է `IsSQLBased` boolean տիպի հատկության միջոցով, որի լռությամբ արժեքը true է։
+Տեսակը որոշվում է [IsSQLBased](ds.md#issqlbased) boolean տիպի հատկության միջոցով, որի լռությամբ արժեքը true է։
 
 8X-ում տվյալների աղբյուրի նկարագրության համար հարկավոր է ունենալ 
 - .as ընդլայնմամբ ֆայլ սկրիպտերում, որը պարունակում է մետատվյալներ տվյալների աղբյուրի մասին,
@@ -91,8 +91,8 @@ private readonly IDBService dBService;
     ...
 }
 ```
-- Կոնստրուկտորում ավելացնել տվյալների աղբյուրի սխեման, որը պարունակում է ամբողջական ինֆորմացիա տվյալների աղբյուրի սյուների ու պարամետրերի մասին։
-Դա անելու համար անհրաժեշտ է base դասի Schema հատկությանը վերագրել [Schema](/src/server_api/definitions/schema.md#schema) դասի նոր օբյեկտ ՝ կոնստրուկտորին փոխանցելով սխեմայի՝
+- Կոնստրուկտորում ավելացնել տվյալների աղբյուրի սխեման, որը նախատեսված է տվյալների աղբյուրի սյուների ու պարամետրերի հատկությունները պահման համար։
+Դա անելու համար անհրաժեշտ է base դասի [Schema](ds.md#schema) հատկությանը վերագրել [Schema](schema.md#schema) դասի նոր օբյեկտ ՝ կոնստրուկտորին փոխանցելով սխեմայի՝
 
   - name - ներքին անվանումը,
   - armenianCaption - հայերեն անվանումը,
@@ -104,9 +104,9 @@ private readonly IDBService dBService;
 this.Schema = new Schema(this.Name, "Ծառի հանգույցներ".ToArmenianANSI(), "Tree nodes", typeof(DataRow), typeof(Param));
 ```
 
-- Սխեմայում ավելացնել տվյալների աղբյուրի սյուների նկարագրությունները Schema դասի [AddColumn](/src/server_api/definitions/schema.md#addcolumn) մեթոդի միջոցով, որին փոխանցված է սյան՝
+- Սխեմայում ավելացնել տվյալների աղբյուրի սյուների հատկությունները [Schema](schema.md#schema) դասի [AddColumn](schema.md#addcolumn) մեթոդի միջոցով, որին փոխանցված է սյան՝
   
-  - name - ներքին անվանումը,
+  - name - ներքին անվանումը, որի պետք է համընկնի սյուները նկարագրող դասում ավելացված համապատասխան հատկության անվան հետ,
   - source - SQL-ից կարդացվող սյան անունը,
   - armenianCaption - հայերեն անվանումը,
   - englishCaption - անգլերեն անվանումը,
@@ -117,9 +117,9 @@ this.Schema.AddColumn(nameof(DataRow.Code), "Code", "Կոդ".ToArmenianANSI(), "
 this.Schema.AddColumn(nameof(DataRow.Name), "Name", "Անվանում".ToArmenianANSI(), "Name", FieldTypeProvider.GetStringFieldType(50));
 ```
 
-- Սխեմայում ավելացնել պարամետրերի նկարագրությունները Schema դասի [AddParam](/src/server_api/definitions/schema.md#addparam) մեթոդի միջոցով, որին փոխանցված է պարամետրի՝
+- Սխեմայում ավելացնել պարամետրերի նկարագրությունները [Schema](schema.md#schema) դասի [AddParam](schema.md#addparam) մեթոդի միջոցով, որին փոխանցված է պարամետրի՝
 
-  - name - ներքին անվանումը,
+  - name - ներքին անվանումը, որի պետք է համընկնի պարամետրերը նկարագրող դասում ավելացված համապատասխան հատկության անվան հետ
   - description - հայերեն նկարագրությունը,
   - eDescription - անգլերեն անվանումը,
   - columnType - համակարգային տիպը։
@@ -133,7 +133,7 @@ this.Schema.AddParam(nameof(Param.NodeType), "Ծառի հանգույցներ".T
 Ամբողջական կոդը դիտելու համար [տե՛ս](/src/server_api/examples/ds/sql_based_code.cs)։
 
 ### Sql հարցման ձևավորում
-Վերևում նշված [ընդհանուր քայլերից](#տվյալների-աղբյուրի-նկարագրման-համար-անհրաժեշտ-ընդհանուր-քայլեր) կատարումից հետո անհրաժեշտ է override անել `MakeSQLCommand` մեթոդը՝ DataSourceArgs<P> տիպի args պարամետրին որպես P փոխանցելով տվյալների աղբյուրի պարամետրերը նկարագրող դասը։
+Վերևում նշված [ընդհանուր քայլերից](#տվյալների-աղբյուրի-նկարագրման-համար-անհրաժեշտ-ընդհանուր-քայլեր) կատարումից հետո անհրաժեշտ է override անել [MakeSQLCommand](ds.md#makesqlcommand) մեթոդը՝ DataSourceArgs<P> տիպի args պարամետրին որպես P փոխանցելով տվյալների աղբյուրի պարամետրերը նկարագրող դասը։
 
 ```c#
 protected override Task<SqlCommand> MakeSQLCommand(DataSourceArgs<Param> args, CancellationToken stoppingToken)
@@ -155,17 +155,17 @@ return Task.FromResult(cmd);
 }
 ```
 
-MakeSQLCommand մեթոդում անհրաժեշտ է ստեղծել [SqlCommand](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlcommand?view=sqlclient-dotnet-standard-5.2) դասի օբյեկտ՝ IDBService դասի [Connection](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlconnection?view=sqlclient-dotnet-standard-5.2) հատկության [CreateCommand](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlconnection.createcommand?view=sqlclient-dotnet-standard-5.2#microsoft-data-sqlclient-sqlconnection-createcommand) մեթոդի միջոցով, որը ընթացիկ sql միացման համար ստեղծում է [SqlCommand](https://learn.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlcommand?view=netframework-4.8.1)` sql հարցումը ձևավորվելու համար։
+[MakeSQLCommand](ds.md#makesqlcommand) մեթոդում անհրաժեշտ է ստեղծել [SqlCommand](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlcommand?view=sqlclient-dotnet-standard-5.2) դասի օբյեկտ՝ IDBService դասի [Connection](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlconnection?view=sqlclient-dotnet-standard-5.2) հատկության [CreateCommand](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlconnection.createcommand?view=sqlclient-dotnet-standard-5.2#microsoft-data-sqlclient-sqlconnection-createcommand) մեթոդի միջոցով, որը ընթացիկ sql միացման համար ստեղծում է [SqlCommand](https://learn.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlcommand?view=netframework-4.8.1)` sql հարցումը ձևավորվելու համար։
 
 Ստեղծված [SqlCommand](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlcommand?view=sqlclient-dotnet-standard-5.2) դասի օբյեկտի [CommandText](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlcommand.commandtext?view=sqlclient-dotnet-standard-5.2) հատկությանը հարկավոր է փոխանցել հարցման տեքստը։
-MakeSQLCommand մեթոդի վերջում անհրաժեշտ է վերադարձնել ձևավորված sql հարցումը։
+[MakeSQLCommand](ds.md#makesqlcommand) մեթոդի վերջում անհրաժեշտ է վերադարձնել ձևավորված sql հարցումը։
 
 ## Array-based տվյալների աղբյուրի նկարագրման ձեռնարկ
 
 Ամբողջական կոդը դիտելու համար [տե՛ս](/src/server_api/examples/ds/array_based_code.cs)։
 
 ### Տվյալների ձևավորում
-- Վերևում նշված [ընդհանուր քայլերից](#տվյալների-աղբյուրի-նկարագրման-համար-անհրաժեշտ-ընդհանուր-քայլեր) կատարումից հետո անհրաժեշտ է override անել `IsSQLBased` հատկությունը՝ վերադարձնելով false արժեք և `FillData` մեթոդը՝ տվյալները ձևավորելու համար։
+- Վերևում նշված [ընդհանուր քայլերից](#տվյալների-աղբյուրի-նկարագրման-համար-անհրաժեշտ-ընդհանուր-քայլեր) կատարումից հետո անհրաժեշտ է override անել [IsSQLBased](ds.md#issqlbased) հատկությունը՝ վերադարձնելով false արժեք և `FillData` մեթոդը՝ տվյալները ձևավորելու համար։
 
 ```c#
 public override bool IsSQLBased => false;
