@@ -78,6 +78,36 @@ public abstract class Extender<R, P> : IExtender
 Եթե նոր պարամետր չի ավելացվում ընդլայնմամբ, ապա որպես `P` անհրաժեշտ է փոխանցել `NoParam` դասը։
 Եթե նոր սյուն չի ավելացվում ընդլայնմամբ, ապա որպես `R` անհրաժեշտ է փոխանցել `NoColumns` դասը։
 
+Դասը պարտադիր պետք է ունենա `DataSourceExtender` ատրիբուտը։ 
+* Եթե դասի անունը համընկնում է .as ֆայլում նկարագրված [ներքին անվանման](#name) հետ, ապա ատրիբուտին արժեք փոխանցելու կարիք չկա:
+
+**Օրինակ**
+```as4x
+DSEXTENDER {
+  NAME = AllOperExtended;
+  ...
+};
+```
+
+```c#
+[DataSourceExtender]
+public class AllOperExtended : Extender<NoColumns, AllOperExtended.Params>
+```
+* Եթե դասի անունը չի համընկնում .as ֆայլում նկարագրված [ներքին անվանման](#name) հետ, ապա ատրիբուտին պետք է փոխանցել ընդլայնման [ներքին անվանումը](#name)։
+
+**Օրինակ**
+```as4x
+DSEXTENDER {
+  NAME = AllOperExt;
+  ...
+};
+```
+
+```c#
+[DataSourceExtender("AllOperExt")]
+public class AllOperExtended : Extender<NoColumns, AllOperExtended.Params>
+```
+
 ## Հատկություններ
 
 ### AlwaysCallBeforeProcess
