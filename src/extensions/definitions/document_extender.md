@@ -48,7 +48,7 @@ tags: [DocExtender, DOCUMENTEXTENDER]
 ## DOCUMENTEXTENDER նկարագրություն
 
 ``` as4x
-DSEXTENDER {
+DOCUMENTEXTENDER {
   NAME = ...;
   CAPTION = ...;
   ECAPTION = ...;
