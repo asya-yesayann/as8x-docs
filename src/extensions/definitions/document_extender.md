@@ -79,7 +79,7 @@ DOCUMENTEXTENDER {
 
 Փաստաթղթի ընդլայնման համար անհրաժեշտ է սահմանել դաս, որը ժառանգում է `DocumentExtender` դասը և ունի `DocumentExtender` ատրիբուտը։
 
-```
+```c#
 [DocumentExtender]
 public class DocExtenders : DocumentExtender
 ```
