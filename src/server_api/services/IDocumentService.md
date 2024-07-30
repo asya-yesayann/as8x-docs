@@ -8,17 +8,22 @@ IDocumentService դասը նախատեսված է փաստաթղթի հետ աշ
 
 ## Բովանդակություն
 * [Մեթոդներ](#մեթոդներ)
+	* [Approve](#approve)
+	* [CheckAndStore](#checkandstore)
 	* [CheckProcessingMode](#checkprocessingmode)
 	* [CleanDeleted](#cleandeleted)
 	* [Copy](#copy) 
 	* [Create](#create)
+ 	* [CreateFactsUsingStateMoverFrom](#createfactsusingstatemoverfrom)
 	* [CreateParentLinkDB](#createparentlinkdb)
 	* [CreateParentLinksDB](#createparentlinksdb)
 	* [CreationDate](#creationdate) 
 	* [CutChildLink](#cutchildlink) 
-	* [CutParentLink](#cutparentlink) 
+	* [CutParentLink](#cutparentlink)
+ 	* [DecodeDocLogState](#decodedoclogstate)
 	* [Delete](#delete)
 	* [DeleteAll](#deleteall)
+ 	* [DeserializeRequestBody](#deserializerequestbody) 
 	* [ExistInDb](#existindb) 
 	* [FieldToAnsi](#fieldtoansi)
 	* [FieldsToAnsi](#fieldstoansi)
@@ -49,10 +54,42 @@ IDocumentService դասը նախատեսված է փաստաթղթի հետ աշ
 
 ## Մեթոդներ
 
+### Approve
+
+```c#
+Task Approve(Document document, DocumentCheckLevel checkLevel = DocumentCheckLevel.None, string logComment = "");
+```
+
+Վավերացնում է փաստաթուղթը։
+
+**Պարամետրեր**
+* document - Փաստաթուղթը նկարագրող դասը։
+* checkLevel - Փաստաթղթի ստուգման մակարդակը։
+* logComment - Հաղորդագրությունը գրանցում է փաստաթղթի պատմության մեջ։
+
 ### CheckProcessingMode
 
 ```c#
-public async Task CheckProcessingMode(string docType)
+Task CheckAndStore(Document document,
+                   StoreMode mode,
+                   DocumentCheckLevel checkLevel = DocumentCheckLevel.None,
+                   int stateBeforeCallPostMessage = 0,
+                   string logComment = "");
+```
+
+Անցկացնում է պարտադիր ստուգումներ և սահմանված ռեժիմով գրանցում փաստաթուղթը տվյալների պահոցում։
+
+**Պարամետրեր**
+* document - Փաստաթուղթը նկարագրող դասը։
+* mode - Փաստաթղթի պահպանման ռեժիմը։
+* checkLevel - Փաստաթղթի ստուգման մակարդակը։
+* stateBeforeCallPostMessage - Փաստաթղթի վիճակը PostMessage մեթոդի կանչից առաջ։
+* logComment - Հաղորդագրությունը գրանցում է փաստաթղթի պատմության մեջ։
+
+### CheckProcessingMode
+
+```c#
+public Task CheckProcessingMode(string docType)
 ```
 
 Ստուգում է տրված տեսակի փաստաթղթերի գրանցման/հեռացման հնարավորությունը սերվիսում։
@@ -139,7 +176,7 @@ DocumentOrigin.As8xUICode - Փաստաթուղթը ստեղծվել է 8xUI-ի �
 ### Create
 
 ```c#
-public async Task<Document> Create(string typeName, List<int> parentISN = null, Type instanceType = null, DocumentOrigin origin = DocumentOrigin.AsService, params object[] parameters)
+public  Task<Document> Create(string typeName, List<int> parentISN = null, Type instanceType = null, DocumentOrigin origin = DocumentOrigin.AsService, params object[] parameters)
 ```
 
 Ստեղծում է նշված տեսակի փաստաթղթի նոր օբյեկտ։
@@ -163,24 +200,30 @@ DocumentOrigin.As8xUICode - Փաստաթուղթը ստեղծվել է 8xUI-ի �
   
 * parameters - ??
 
+### CreateFactsUsingStateMoverFrom
+
+```c#
+Task CreateFactsUsingStateMoverFrom(Document document, int state);
+```
+
 ### CreateParentLinkDB
 
 ```c#
 public Task CreateParentLinkDB(int isn, int parentIsn = -1)
 ```
 
-Փաստաթղթերի միջև ստեղծում է ծնող-զավակ կապ։ Ֆունկցիան ստեղծում է կապը անմիջապես տվյալների պահոցում։ Զավակ փաստաթղթերը պետք է գրանցված լինել տվյալների պահոցում։
+Փաստաթղթերի միջև ստեղծում է ծնող-զավակ կապ։ Ֆունկցիան ստեղծում է կապը անմիջապես տվյալների պահոցում։ Զավակ փաստաթուղթը պետք է գրանցված լինել տվյալների պահոցում։
 
 Ի տարբերություն  [MakeParentLink](#makeparentlink)-ի այս ֆունկցիան կարելի է կանչել ամենուրեք։
 
 **Պարամետրեր**
-* isn - Փաստաթղթի ներքին նույնականացման համար:
+* isn - Զավակ փաստաթղթի ներքին նույնականացման համար:
 * parentIsn - Ծնող փաստաթղթի ներքին նույնականացման համար։
 
 ### CreateParentLinksDB
 
 ```c#
-public async Task CreateParentLinksDB(int isn, List<int> parentsIsn)
+public  Task CreateParentLinksDB(int isn, List<int> parentsIsn)
 ```
 
 Փաստաթղթի և տրված ծնող փաստաթղթերի միջև ստեղծում է ծնող-զավակ կապ։ Ֆունկցիան ստեղծում է կապը անմիջապես տվյալների պահոցում։ Զավակ փաստաթղթերը պետք է գրանցված լինել տվյալների պահոցում։
@@ -197,8 +240,7 @@ public async Task CreateParentLinksDB(int isn, List<int> parentsIsn)
 public Task<(DateTime CreationDate, short SUID)> CreationDate(int isn, bool isNotRiseErrWhenNoRow = false);
 ```
 
-Վերադարձնում է փաստաթղթի ստեղծման ամսաթիվը և ստեղծողի 
-ներքին համարը։
+Վերադարձնում է փաստաթղթի ստեղծման ամսաթիվը և ստեղծողի ներքին համարը։
 
 **Պարամետրեր**
 * isn - Փաստաթղթի ներքին նույնականացման համար:
@@ -227,6 +269,12 @@ public Task CutParentLink(int isn, int parentIsn = -1);
 **Պարամետրեր**
 * isn - Այն փաստաթղթի ներքին նույնականացման համարը, որի համար խզվում է կապը ծնողի հետ։
 * parentIsn - Մեկ ծնողի ներքին նույնականացման համար, այդ ծնողի կապը կզելու համար։ Եթե պարամետրը փոխանցված չէ, ապա կապը խզվում է բոլոր առկա ծնողների հետ։
+
+### DecodeDocLogState
+
+```c#
+public string DecodeDocLogState(string operationCode, string comment);
+```
 
 ### Delete
 
@@ -302,6 +350,12 @@ public Task DeleteAll(List<int> isnList, bool fullDelete, string comment, bool c
 * callDelete - Փաստաթղթերի [Delete](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/Delete.md) իրադարձությունը կանչելու հայտանիշ։ Լռությամբ արժեքը `True`։
 * inheritedDelete - `True` արժեքի դեպքում փաստաթղթերի պատմության մեջ գրվում է, որ փաստաթղթերը ջնջվել են այլ փաստաթղթի ջնջման ընթացքում։ Տվյալների պահոցում ջնջման կոդը լինում է `H`։
 
+### DeserializeRequestBody
+
+```c#
+public Task<Document> DeserializeRequestBody(DocumentModel request, bool isExtended = false);
+```
+
 ### ExistInDb
 
 ```c#
@@ -316,7 +370,7 @@ public Task<bool> ExistInDb(int isn);
 ### FieldToAnsi
 
 ```c#
-public async Task<object> FieldToAnsi(string docType, string name, object value)
+public  Task<object> FieldToAnsi(string docType, string name, object value)
 ```
 
 Վերադարձնում է փաստաթղթի դաշտի արժեքը՝ ձևափոխված  համապատասխան լեզվի ANSI կոդավորման։
@@ -557,7 +611,7 @@ public Task<int> GetParentIsn(int isn, string docType)
 ### GetProcessingModes
 
 ```c#
-public async Task<DocumentProcessingModes> GetProcessingModes(string docType)
+public  Task<DocumentProcessingModes> GetProcessingModes(string docType)
 ```
 
 Վերադարձնում է փաստաթղթի կատարման ռեժիմները ըստ փաստաթղթի տեսակի։
