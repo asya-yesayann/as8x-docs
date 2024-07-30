@@ -32,12 +32,12 @@ Debugger-ի օգտագործման համար անհրաժեշտ է կարգավ
 այնուհետև լրացրեք պահանջվող տվյալները բացված secrets.json ֆայլում json ֆորմատով ստորև բերված օրինակին համապատսխան։
 
   ```json
-{ "db": {
-  "server": "BANK-SERVER\\SQL2017",
-  "database": "asbank",
-
-  "login": "user1",
-  "password": "passw123"
+{
+  "db": {
+    "server": "BANK-SERVER\\SQL2017",
+    "database": "asbank",
+    "login": "user1",
+    "password": "passw123"
   }
 } 
 ```
