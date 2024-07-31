@@ -1,4 +1,3 @@
-
 ---
 layout: page
 title: "appsettings.json: Կարգավորման ֆայլ"
@@ -7,19 +6,18 @@ tags: [Settings, appsettings]
 
 ## Բովանդակություն
 
-* [Ներածություն](#ներածություն) +
+* [Ներածություն](#ներածություն) 
 * Բաժիններ
-  * [additionalSettings](#additionalsettings) +
-  * [AllowedHosts](#allowedhosts)
+  * [additionalSettings](#additionalsettings) 
   * [Autentication](#autentication)
-  * [db](#db)
-  * [Hangfire](#hangfire)
-  * [IsHangfireServer](#ishangfireserver)
-  * [JwtConfig](#jwtconfig)
-  * [redisCachingSettings](#rediscachingsettings)
-  * [redisCachedItems](#rediscacheditems)
-  * [Serilog](#serilog)
-  * [Storage](#storage)
+  * [db](#db) 
+  * [Hangfire](#hangfire) 
+  * [IsHangfireServer](#ishangfireserver) 
+  * [JwtConfig](#jwtconfig) 
+  * [redisCachingSettings](#rediscachingsettings) 
+  * [redisCachedItems](#rediscacheditems) 
+  * [Serilog](#serilog) 
+  * [Storage](#storage) 
   
 ## Ներածություն
 
@@ -42,15 +40,6 @@ tags: [Settings, appsettings]
 **Պարամետրեր**
 * `disableOldLogins` - Լոգինի հին մեխանիզմի անջատման հայտանիշ։
 
-## AllowedHosts
-
-```c#
-"AllowedHosts": "*"
-```
-
-**Պարամետրեր**
-* `AllowedHosts` - 
-
 ## Autentication
 
 ```c#
@@ -59,18 +48,31 @@ tags: [Settings, appsettings]
         "AD": {
             "Authority": "https://login.microsoftonline.com/armsoft.am",
             "ClientId": "158u5wn2-2n95-14nm-22b2-9694efe14vae",
-            "RedirectUri": "https://armsoft.am/b2bAdminTool",
+            "RedirectUri": "https://yourdomain.am/b2bAdminTool",
             "TokenMapping": "oid",
-            "ResourceID": "https://armsoft.am/Cloud"
+            "ResourceID": "https://yourdomain.am/Cloud"
         },
         "ADFS": {
-            "Authority": "https://adfs.armsoft.am/adfs",
+            "Authority": "https://federationservername.yourdomain.am/adfs",
             "ClientId": "v04c6fd-4220-14e6-n315-f147ac852c18",
             "RedirectUri": "https://localhost:44322",
             "TokenMapping": "sid"
         }
     }
 ```
+
+**Պարամետրեր**
+* `Alternative` - Սահմանում է օգտագործողի նույնականացման եղանակը։
+* `AD` - Սահմանում է 
+	* `Authority` -  Oգտագործողի նույնականացման համար անհրաժեշտ URL-ը։
+	* `ClientId` -  Ծրագրի Client ID-ն, որը գրանցված է Azure AD-ում:
+	* `RedirectUri` - Նույնականացումից հետո վերահղման համար URL-ը:
+	* `TokenMapping` - Նույնականացման համար անհրաժեշտ տոկենի տեսակը` OID:
+	* `ResourceID` - Ծրագրի կողմից մուտքագրվող ռեսուրսի URL-ը:
+* `ADFS` - Սահմանում է 
+	* `Authority` - Ծրագրի Client ID-ն, որը գրանցված է ADFS-ում:
+	* `RedirectUri` - Նույնականացումից հետո վերահղման համար URL-ը:
+	* `TokenMapping` - Նույնականացման համար անհրաժեշտ տոկենի տեսակը` ՝ [SID](https://www.techtarget.com/searchsecurity/definition/security-identifier):
 
 ## Hangfire
 
@@ -97,11 +99,15 @@ tags: [Settings, appsettings]
 
 ## IsHangfireServer
 
+Hangfire Server-ի միացման հայտանիշ։
+
 ```c#
 "IsHangfireServer": false
 ```
 
 ## JwtConfig
+
+8X service լոգին լինելուց տրամադրվում է JWT տոկեն, որի օգնությամբ կարելի է նույնականացվել համակարգում և կատարել: Այս բաժնում սահմանված են JWT տոկեն-ի կարգավորումները։
 
 ```c#
 "JwtConfig": {
@@ -120,7 +126,7 @@ tags: [Settings, appsettings]
 
 ## redisCachingSettings
 
-Redis-ը 
+Redis-ը ոչ Sql տվյալների բազա է, որը նախատեսված է տվյալների քեշավորման և արագ բեռնման համար։ Այս բաժնում սահմանված են Redis-ի կարգավորումները։
 
 ```c#
 "redisCachingSettings": {
@@ -135,7 +141,11 @@ Redis-ը
 
 ### redisCachedItems
 
-Այս պահին համակարգում քեշավորվում են փաստաթղթի մետատվյալները, 
+Այս պահին համակարգում քեշավորվում են փաստաթղթի մետատվյալները, պարամետրերը և մոնիտորինգի համար անհրաժեշտ տվյալները։
+Յուրաքանչյուր բաժին էլ պարունակում է 2 պարամետր՝
+*  `enabled` - Թույլատրված է քեշավորումը Redis-ում թե ոչ։
+* `lifetime` - Քեշի պահման ժամանակը Redis-ում։ Լռությամբ արժեքը 1 օրն է։
+
 ```c#
 "rediscacheditems": {
     "documentMetadata": {
@@ -178,7 +188,7 @@ Redis-ը
 
 ## Storage
 
-Սահմանում է 
+Սահմանում է ծրագրի աշխատանքի ընթացքում ստեղծվող ֆայլերի (Text reports, տպելու ձևանմուշներ տարբեր ընդայնումով ֆայլերով) լոկալ  պահման կարգավորումները։
 
 ```json
 "Storage": {
@@ -188,8 +198,8 @@ Redis-ը
 ```
 
 **Պարամետրեր**
-* `BaseUri` - 
-* `Directory` - 
+* `BaseUri` - Սերվիսի հասցեն։
+* `Directory` - Ստեղծվող ֆայլերի պահման լոկալ թղթապանակի ճանապարհը։
 
 ## Serilog
 
@@ -198,21 +208,49 @@ Redis-ը
 AS-8X համակարգում տրված է հնարավորություն լոգը գրանցելու Console-ում, ֆայլում, Seq-ում։
 
 Ֆայլում և Seq-ում գրանցումը ապահովելու համար անհրաժեշտ է appsettings.json ֆայլի `Serilog`-ում բաժնում ավելացնել `WriteTo` ենթաբաժին` նշելով լոգի գրանցման վայրը ու դրան հատուկ պարամետրերը։
-
-Ֆայլում գրանցում 
+ 
 ```c#
- "WriteTo": [
-     {
-         "Name": "File",
-         "Args": {
-             "path": "./logs/log.json",
-             "rollingInterval": "Day",
-             "formatter": "Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact"
-         }
-     }
+{
+    "Serilog": {
+        "MinimumLevel": {
+            "Default": "Information",
+            "Override": {
+                "Microsoft": "Warning",
+                "System": "Warning",
+                "Microsoft.AspNetCore": "Warning",
+                "Serilog.AspNetCore": "Warning"
+            }
+        }
+        ,"WriteTo": [
+          {
+            "Name": "File",
+            "Args": {
+              "path": "./logs/log.json",
+              "rollingInterval": "Day",
+              "formatter": "Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact"
+            }
+          },
+          {
+            "Name": "Seq",
+            "Args": {
+              "serverUrl": "http://95.140.203.18:8443",
+              "bufferBaseFilename": "./logs/buffer"
+            }
+          }
+        ]
+    }
 ```
+
+**Պարամետրեր**
+
+**Ֆայլի դեպք**
 * `Name` - լոգի գրանցման վայր
 * `Args` - գրանցման ֆայլի կարգավորումները
-	* path - ֆայլի ճանապարհը
+	* path - ֆայլի հարաբերական ճանապարհը appsettings.json ֆայլի նկատմամբ,
 	* rollingInterval - 
-	* formatter - 
+	* formatter - լոգերի գրանցման ֆորմատը(JSON, XAML, ...):
+**Seq-ի դեպք**
+* `Name` - լոգի գրանցման վայր
+* `Args` - գրանցման Seq-ի կարգավորումները
+	* `serverUrl` - Seq-ի սերվերի հասցեն
+	* `bufferBaseFilename` - Սերվերի անհասանելի լինելու դեպքում լոգերի գրանցման համար անհրաժեշտ ֆայլի հարաբերական ճանապարհը appsettings.json ֆայլի նկատմամբ։ Սերվերը հասանելի դառնալուն պես ֆայլում գրանցված լոգերը գրանցվում են Seq-ում։
