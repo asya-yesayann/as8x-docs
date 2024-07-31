@@ -38,9 +38,13 @@ Microsoft Azure DevOps Services համակարգից օգտվելու համար
 
 * ”ArmsoftBank Organization”-ը հասանելի է հետևյալ հղմամբ․  [https://dev.azure.com/ArmsoftBank](https://dev.azure.com/ArmsoftBank)
 
-* ”ArmsoftBank Organization” browser-ով մուտք գոծելուց հետո պատկերը կլինի հետևյալը․
+* ”ArmsoftBank Organization” browser-ով մուտք գործելուց հետո պատկերը կլինի հետևյալը․
+
+![armsoft_bank](armsoft_bank.png)
 
 * ASBank նախագիծը պարունակում է բոլոր տրամադրվող համակարգերի կոդերը (Repos բաժնում որպես TFVC տեսակի պահոց)․
+
+![armsoft_bank_project](armsoft_bank_project.png)
 
 ## MS Visual Studio և Azure DevOps Services ինտեգրացիա, nuget-ների և կոդերի ստացում
 
@@ -50,17 +54,31 @@ Microsoft Azure DevOps Services համակարգից օգտվելու համար
 
 * Բացեք Microsoft Visual Studio համակարգը և նրա միջոցով մուտք գործեք Ձեր կողմից ստեղծված Microsoft հաշիվ (վերևի աջ անկյունից)
 
+![sign_in_button](sign_in_button.png)
+
 * Օգտագործեք Ձեր կողմից ստեղծած Microsoft հաշվի տվյալները
+
+![sign_in_window](sign_in_window.png)
 
 * **Menu**-ի **View** բաժնից ընտրեք **Team Explorer**
 
+![menu_view_section](menu_view_section.png)
+
 * Աջ կողմում կբացվի **Team Explorer** պատուհանը, որտեղ անհրաժեշտ է սեղմել **Manage Connections**, ապա **Connect to a project…**
+
+![team_explorer_window](team_explorer_window.png)
 
 * Եթե առաջին քայլում Visual Studio բարեհաջող մուտք եք գործել, ապա կբացվի ձեզ հասանելի նախագծերի ցանկը։ Նշեք **ArmsoftBank**-ը և սեցմեք **Connect**
 
+![connect_to_project](connect_to_project.png)
+
 * **Menu**-ի **View** բաժնից ընտրեք **Other Windows**, ապա **Source Control Explorer**
 
+![menu_view_otherwindows_section](menu_view_otherwindows_section.png)
+
 * Կբացվի կոդի ղեկավարման պատուհանը, որի տեսքը կարող եք տեսնել նկարում։ Ծառատիպ հիերարխիայում կարող եք տեսնել ՀԾ-Բանկ համակարգի կոդերը, դասավորված ըստ թղթապանակների։ Նկարում երևում է **231228** տարբերակի թղթապանակը։ Հետագայում այս համակարգում նոր տարբերակի կոդ ավելացնելուց հետո այն Ձեզ հասանելի կլինի ASBank-ի տակ՝ համապատասխան տարբերակի թղթապանակում։ Կոդերի ստացման հետագա քայլերի նկարագիրը կլինի **231228** տարբերակի օրինակով։
+
+![source_control_explorer](source_control_explorer.png)
 
 * Ցանկացած տարբերակի թղթապանակ պարունակելու է հիմնական 000 տարբերակից սկսված մինչև վերջին ենթատարբերակ բոլոր թարմացումները։ Պահպանման տրամաբանությունը հետևյալն է՝
 
@@ -72,18 +90,35 @@ Microsoft Azure DevOps Services համակարգից օգտվելու համար
 
 * Կոդերը լոկալ համակարգչում ստանալու համար անհրաժեշտ է ցանկալի տարբերակի թղթապանակը Map անել լոկալ թղթապանակի։ Դա անելու համար համակարգչի ձեր ցանկացած վայրում ստեղծում եք թղթապանակ՝ օրինակ «**C:\Map_231228**», ապա կանգնելով **231228** թղթապանակի վրա աջ կտտոցով աշխատացնում հետևյալ հրամանը՝ **Map to Local Follder…**
 
+![map_to_local_folder_command](map_to_local_folder_command.png)
+
 * Բացված պատուհանում լրացնում եք «**C:\Map_231228**», ապա սեղմում **Map**
+
+![project_mapping_window](project_mapping_window.png)
 
 * Համակարգը կառաջարկի լոկալ թղթապանակ բեռնել կոդերը վերջին վիճակով։ Սեղմեք **Yes**  կոճակը։ Կսկսվի ֆայլերի բեռնումը
 
-* Կոդերը ստանալուց հետո, եթե Հայկական Ծրագրերի կողմից թարմացում տեղադրվի, ապա այն կարելի է ստանալ **Get latest version** հրամանով։ Օրինակ՝ եթե Ձեզ մոտ արդեն բեռնված է **231228.001** տարբերակի կոդերը և  Հայկական Ծրագրերը թարմացրել է այն **231228.002**-ի, ապա **231228** թղթապանակի վրա կատարում ենք մկնիկի աջ սեղմում և **Get latest version**
+![mapping_window](mapping_confirmation.png)
+![progress_of_mapping](progress_of_mapping.png)
+
+* Կոդերը ստանալուց հետո, եթե Հայկական Ծրագրերի կողմից թարմացում տեղադրվի, ապա այն կարելի է ստանալ **Get latest version** հրամանով։ Օրինակ՝ եթե Ձեզ մոտ արդեն բեռնված է **231228.001** տարբերակի կոդերը և  Հայկական Ծրագրերը թարմացրել է այն **231228.002**-ի, ապա **231228** թղթապանակի վրա կատարում ենք մկնիկի աջ սեղմում և **Get latest version**։
+
+![get_latest_version](get_latest_version.png)
 
 * Տարբերակի կոդերի թղթապանակի վրայից մկնիկի աջ կտտոցով հասանելի է հարուստ ֆունկցիոնալություն, որին կարող եք ծանոթանալ Microsoft-ի պաշտոնական օգնությունից։ Այս պահին հատկանշական է կոդերը ըստ label-ի ստանալու ֆունկցիոնալությունը։ Օրինակ՝ եթե Ձեր մոտ արդեն բեռնված է համակարգի **231228.010** տարբերակի համապատասխան կոդերը և ցանկանում եք հետ գնալ և բեռնել համակարգի **231228.002** տարբերակի կոդերը, ապա իրականացնում եք **Get specific version** հրամանը։
 
+![get_specific_version](get_specific_version.png)
+
 * Բացված պատուհանում ընտրում ենք **Type: Label**
+
+![get_specific_version_window](get_specific_version_window.png)
 
 * Ապա սեղմում բազմակետերը label ընտրելու համար
 
+![get_specific_version_window_label](get_specific_version_window_label.png.jpg)
+
 * Հետո նշում պրոեկտը, որի վրա փնտրում ենք label, սեղմում **Find** և նշում ցանկալի label-ը, ապա **Ok** կոճակը
+![find_label_window](find_label_window.png)
 
 * Կարգավորում նշիչները ըստ ցանկության և սեղմում **Get** կոճակը
+![]()
