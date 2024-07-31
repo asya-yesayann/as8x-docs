@@ -8,13 +8,13 @@ tags: [project]
 * [Տրամադրվող կոդեր](#տրամադրվող-կոդեր)
 * [Տրամադրման միջոց](#տրամադրման-միջոց)
 * [Օգտագործողի կարգավորումներ](#օգտագործողի-կարգավորումներ)
-* [MS Visual Studio և Azure DevOps Services ինտեգրացիա, nuget-ների և կոդերի ստացում](#ms-visual-studio-և-azure-devops-services-ինտեգրացիա,-nuget-ների-և-կոդերի-ստացում)
+* [MS Visual Studio և Azure DevOps Services ինտեգրացիա, nuget-ների և կոդերի ստացում](#ms-visual-studio-և-azure-devops-services-ինտեգրացիա-nuget-ների-և-կոդերի-ստացում)
 
 ## Տրամադրվող կոդեր
 
 Տրամադրվող կոդերը պատկանում են հետևյալ համակարգերին․
 
-* •	AS-8X համակարգ՝ իր ենթահամակարգերով
+* AS-8X համակարգ՝ իր ենթահամակարգերով
 * AS-Gateway և AS-Integration Services
 * AS-4X համակարգ (asbank.exe)
 * Կառուցված գրադարանները և ՀԾ-Բանկ համակարգի exe ֆայլերը
