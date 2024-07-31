@@ -21,7 +21,7 @@ Debug-ը թույլ է տալիս գործարկել ծրագրերը վերահ
 Debugger-ի օգտագործման համար անհրաժեշտ է կարգավորել ներքին մատակարարման Nuget սերվերի ճանապարհը։
 Սահմանվելով այն ՝ https://tfs/Armsoft/Armsoft.Nuget/_packaging/ArmsoftNuget/nuget/v3/index.json։
 
-![Nuget սերվերի կարգավորում](package_sources.png)
+<img src="package_sources.png" width="600px" alt="Nuget սերվերի կարգավորում"/>
 
 Սահմանեք Startup Project -ը Set as Startup Project գործողության միջոցով  Օրինակ՝ ArmSoft.AS8X.BankService
 
@@ -61,13 +61,14 @@ CONFIG{ NAME="6d_bank6_local";
       Service = "https://localhost:1027";
 };
 ```
-Local սերվիսով ՀԾ-Բանկ մուտք գործելու համար անհրաժեշտ է նախապես գործարկել այն Visual Studio ծրագրում։
+Local սերվիսով ՀԾ-Բանկ մուտք գործելու համար անհրաժեշտ է նախապես գործարկել այն Visual Studio ծրագրում։ Սխալների բացակայության մեջ համոզվելու համար անհրաժեշտ է Build անել պրոյեկտը։
+
 
 <img src="run_debug.png" width="800px" alt="Debug-ի գործարկում"/>
 
 Սերվիսի հաջող գործարկումից հետո բացված browser-ի պատուհանում կարտացոլվի Swagger-ի էջը իսկ Visual Studio ծրագրում կհայտնվի Debug-ի գործիքների վահանակը։ 
 
-<img src="debug_bar.png" width="700px" alt="Debug-ի գործիքների վահանակ"/>
+<img src="debug_bar.png" width="800px" alt="Debug-ի գործիքների վահանակ"/>
 
 
 
