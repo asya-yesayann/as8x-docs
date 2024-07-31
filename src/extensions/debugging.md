@@ -45,19 +45,16 @@ Debugger-ի օգտագործման համար անհրաժեշտ է կարգավ
 ## Local Service ի կարգավորում և գործարկում
 
 Debug անելու համար անհրաժեշտ է կարգավորել ՀԾ-Բանկ համակարգը local սերվիսով աշխատելու համար։ Այդ նպատակով Config.as ֆայլում 
-համապատասխան տվյալների բազայի կոնֆիգուրացիայի համար պետք է ավելացնել նրա կրնկնօրինակը փոխելով Service պարամետրի արժեքը հետևյալ կերպ՝ 
-```
- Service = https://localhost:1027;
-```
+համապատասխան տվյալների բազայի կոնֆիգուրացիայի համար պետք է ավելացնել նրա կրնկնօրինակը փոխելով Service պարամետրի արժեքը հետևյալ կերպ՝ ```Service="https://localhost:1027";```
 Օրինակ՝
 ```
 CONFIG{ NAME="6d_bank6_local";
       SERVER=BANK-SERVER\SQL2017;
-      DATABASE=d_bank6;
+      DATABASE=asbank;
       BASEFOLDER=D:\BANK\asbank\8xCustomerSpecific;
       BackupFolder=\\qa\backup; SS = YES;
-      CONTEXT = ASBANK;
-      Service = "https://localhost:1027";
+      CONTEXT=ASBANK;
+      Service="https://localhost:1027";
 };
 ```
 Local սերվիսով ՀԾ-Բանկ մուտք գործելու համար անհրաժեշտ է նախապես գործարկել այն Visual Studio ծրագրում։ Սխալների բացակայության մեջ համոզվելու համար անհրաժեշտ է Build անել պրոյեկտը։
