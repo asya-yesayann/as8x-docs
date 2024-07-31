@@ -63,9 +63,11 @@ CONFIG{ NAME="6d_bank6_local";
 ```
 Local սերվիսով ՀԾ-Բանկ մուտք գործելու համար անհրաժեշտ է նախապես գործարկել այն Visual Studio ծրագրում։
 
-<img src="run_debug.png" width="700px" alt="Միացման կարգավորում"/>
+<img src="run_debug.png" width="800px" alt="Debug-ի գործարկում"/>
 
 Սերվիսի հաջող գործարկումից հետո բացված browser-ի պատուհանում կարտացոլվի Swagger-ի էջը իսկ Visual Studio ծրագրում կհայտնվի Debug-ի գործիքների վահանակը։ 
+
+<img src="debug_bar.png" width="700px" alt="Debug-ի գործիքների վահանակ"/>
 
 
 
