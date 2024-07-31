@@ -78,6 +78,7 @@ Local սերվիսով ՀԾ-Բանկ մուտք գործելու համար ան
 
 <img src="EvaluateReferences.png" width="800px" alt="Break Point-ի տեղադրում"/>
 
-2. System.Diagnostics.Debugger.Break(); տողի տեղադրում ընդլայնման ֆայլի այն տողում որտեղ ցանկանում ենք կանգնեցնել ծրագրի կատարումը
+2. System.Diagnostics.Debugger.Break(); տողի տեղադրում ընդլայնման ֆայլի այն տողում որտեղ ցանկանում ենք կանգնեցնել ծրագրի կատարումը։
+   
 
 
