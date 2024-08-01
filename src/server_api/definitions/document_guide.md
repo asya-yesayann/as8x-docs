@@ -6,191 +6,176 @@ tags: [Document]
 
 ## Բովանդակություն
 
-* [Նախաբան](#նախաբան)
-* [Փաստաթղթի նկարագրման համար անհրաժեշտ քայլեր](#փաստաթղթի-նկարագրման-համար-անհրաժեշտ-քայլեր)
-  * [.as ընդլայնմամբ ֆայլի սահմանում](#as-ընդլայնմամբ-ֆայլի-սահմանում)
-  * [.cs ընդլայնմամբ ֆայլի սահմանում](#cs-ընդլայնմամբ-ֆայլի-սահմանում)
-    * [Կոնստրուկտորի ձևավորում](#կոնստրուկտորի-ձևավորում)
-    * [Նկարագրման հատվածի ձևավորում](#նկարագրման-հատվածի-ձևավորում)
-    * [Մեթոդներ](#մեթոդներ)
+* [Ներածություն](#ներածություն)
+* [.as ֆայլի նկարագրություն](#as-ֆայլի-նկարագրություն)
+* [CodeGen-ով C# ֆայլի ձևավորում](#codegen-ով-c-ֆայլի-ձևավորում)
+* [Իրադարձությունների C# ֆայլի նկարագրություն](#իրադարձությունների-c-ֆայլի-նկարագրություն)
+  * [Կոնստրուկտորի ձևավորում](#կոնստրուկտորի-ձևավորում)
+  * [Մեթոդներ](#մեթոդներ)
 
 
-## Նախաբան
+## Ներածություն
 
-8X-ում փաստաթղթի նկարագրության համար հարկավոր է ունենալ 
-- .as ընդլայնմամբ ֆայլ սկրիպտերում [DOCUMENT](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Defs/doc.html) նկարագրությամբ, որը պարունակում է մետատվյալներ փաստաթղթի մասին,
-- .cs ընդլայնմամբ ֆայլ, որը պարունակում է սերվերում աշխատող տրամաբանությունը։ 
+8X-ում փաստաթղթի նկարագրության համար հարկավոր է ունենալ [DOCUMENT](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Defs/doc.html) նկարագրություն `.as` ֆայլում, և իրականացնել ինտերֆեյսի հետ չաշխատող իրադարձությունները C# դասում (`.cs` ֆայլում)։
 
-## Փաստաթղթի նկարագրման համար անհրաժեշտ քայլեր
+Փաստաթղթի նկարագրությունը կատարվում է 4X գործիքներով, և դրանում ավելացվում միայն մի քանի 8X-ին յուրահատուկ են հատկություն, ինչպիսին է `PROCESSINGMODE`-ը։  
+Նկարագրությունը ներմուծվում է SysCon գործիքով։
 
-## .as ընդլայնմամբ ֆայլի սահմանում
+C# դասը սովորաբար դրվում է երկու `.cs` ֆայլում։  
+Առաջինը գեներացվում է [CodeGen](/src/server_api/CodeGen/CodeGen.md) գործիքով, և պարունակում է նկարագրության հատվածը։  
+Երկրորդը ստեղծվում է ձեռքով և պարունակում է ոչ ինտերֆեյսային իրադարձությունների իրականացումը (Validate, Action, Folders...)։
 
+Արդյունքում կունենանք 4 ֆայլ:
+- *definition*.as
+- *definition*.cs
+- *definition*.CodeGen.tt
+- *definition*.CodeGen.cs
+
+Տե՛ս 4 ֆայլերի [օրինակը](/src/server_api/examples/document_definition.md):
+
+## .as ֆայլի նկարագրություն
+
+DOCUMENT-ի սահմանումը տես 4X-ի [համապատասխան](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Defs/doc.html) ձեռնարկի։  
+Նկարագրության մեջ հարկավոր է ավելացնել միայն `PROCESSINGMODE` (կատարման ռեժիմ) հատկությունը։
+
+Օրինակ՝
 ``` as4x
 DOCUMENT {
   NAME = UsrAccs;
   CAPTION = "Օգտագործողի հաշիվներ";
   ECAPTION = "User's accounts";
-  PROCESSINGMODE = 2;
+  PROCESSINGMODE = 8; '#DocProcessingMode2
 
-Page { CAPTION = "Ընդհանուր";    ECAPTION = "General";
-REKVIZIT {NAME = USERNAME;        CAPTION = "Օգտագործողի անուն";    ECAPTION="User's name";	     TYPE = C(20);   };
-REKVIZIT {NAME = BRANCH;	  CAPTION = "Մասնաճյուղ";	    ECAPTION="Registration branch";  TYPE = C(10);  };
+  PAGE { CAPTION = "Ընդհանուր"; ECAPTION = "General";
+    REKVIZIT {NAME = USERNAME; CAPTION = "Օգտագործողի անուն"; ECAPTION="User's name";         TYPE = C(20); };
+    REKVIZIT {NAME = BRANCH;   CAPTION = "Մասնաճյուղ";        ECAPTION="Registration branch"; TYPE = C(10); };
 
-GRID {NAME = Accounts;	     CAPTION = "Հաշիվներ";              ECAPTION = "Accounts";     WIDTH = 13000; HEIGHT = 3000;
-  COLUMN {NAME = ACCTYPE;   CAPTION = "Տիպ"; 		       ECAPTION = "Type"; 		      TYPE = C(10);	 };
-  COLUMN {NAME = CODE;      CAPTION = "Կոդ";                    ECAPTION = "Code";	              TYPE = NP(16);	};
-};
+    GRID {NAME = Accounts; CAPTION = "Հաշիվներ"; ECAPTION = "Accounts"; WIDTH = 13000; HEIGHT = 3000;
+      COLUMN {NAME = ACCTYPE; CAPTION = "Տիպ"; ECAPTION = "Type"; TYPE = C(10);  };
+      COLUMN {NAME = CODE;    CAPTION = "Կոդ"; ECAPTION = "Code"; TYPE = NP(16); };
+    };
 
-MEMO {NAME = COMMENT;      CAPTION = "Մեկնաբանություն";         ECAPTION = "Comment";     WIDTH = 7000;  HEIGHT = 2300;};
-};
+    MEMO {NAME = COMMENT; CAPTION = "Մեկնաբանություն"; ECAPTION = "Comment"; WIDTH = 7000; HEIGHT = 2300; };
+  };
 }
 ```
 
-- Ստեղծել .as ընդլայնմամբ ֆայլ՝ ավելացնելով [DOCUMENT](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Defs/doc.html) տիպի նկարագրություն, որը պարունակում է փաստաթղթի՝
-  - NAME - Ներքին անունը։
-  - CAPTION - Հայերեն անվանումը `ANSI` կոդավորմամբ։
-  - ECAPTION - Անգլերեն անվանումը։
-  - PROCESSINGMODE - Կատարման ռեժիմը։
-- Ստեղծված ֆայլը ներմուծել տվյալների բազա `Syscon` գործիքով։
+## CodeGen-ով C# ֆայլի ձևավորում
 
-## .cs ընդլայնմամբ ֆայլի սահմանում
+Առաջին C# ֆայլը գեներացվում է [CodeGen](/src/server_api/CodeGen/CodeGen.md) գործիքով, և պարունակում է նկարագրության հատվածը։
 
-Խորհուրդ է տրվում փաստաթղթի նկարագրման հատվածը և սերվերային տրամաբանությունը գրել .cs ընդլայնմամբ 2 տարբեր ֆայլերում՝ ունենալով միևնույն դասը ու իրար միավորելով partial keyword-ի օգնությամբ։
+Տե՛ս [օրինակում](/src/server_api/examples/document_definition.md) ձևավորված `UsrAccs.CodeGen.cs` ֆայլը:
 
-Նկարագրման հատվածի ամբողջական կոդը դիտելու համար [տե՛ս](../examples/document_definition_code.cs):
+- Հայտատարարված է դաս, որը ունի փաստաթղթի ներքին անվանումը պարունակող `Document` ատրիբուտը և ժառանգում է [Document](document.md) դասից։
+  ```c#
+  [Document("UsrAccs")]
+  public class UsrAccs : Document
+  ```
 
-Սերվերային տրամաբանության ամբողջական կոդը դիտելու համար [տե՛ս](../examples/document_logic_code.cs): 
+- Ավելացված են մուտքագրման դաշտերը որպես հատկություններ` ճիշտ տիպի բերումները արած։
+  ```c#
+  /// <summary>
+  /// Օգտագործողի անուն
+  /// </summary>
+  public string USERNAME
+  {
+      get { return (string)this[nameof(this.USERNAME)]; }
+      set { this[nameof(this.USERNAME)] = value; }
+  }
 
-- Հայտատարել դաս, որը ունի փաստաթղթի ներքին անվանումը պարունակող `Document` ատրիբուտը և  ժառանգում է [Document](document.md) դասը։
+  /// <summary>
+  /// Մասնաճյուղ
+  /// </summary>
+  public string BRANCH
+  {
+      get { return (string)this[nameof(this.BRANCH)]; }
+      set { this[nameof(this.BRANCH)] = value; }
+  }
+  ```
 
-```c#
-[Document("UsrAccs")]
-public class UserAccounts : Document
+- Ավելացված է դաս աղյուսակի տողերի համար, որը պետք է պարտադիր ժառանգի `GridRow` դասից:
+  Աղյուսակի սյուները դասում հատկություններ են` ճիշտ տիպի բերումները արած։
+  ```c#
+  public partial class AccountsRow : GridRow
+  {
+      /// <summary>
+      /// Տիպ
+      /// </summary>
+      public string ACCTYPE
+      {
+          get { return (string)this[nameof(this.ACCTYPE)]; }
+          set { this[nameof(this.ACCTYPE)] = value; }
+      }
+
+      /// <summary>
+      /// Կոդ
+      /// </summary>
+      public decimal CODE
+      {
+          get { return (decimal)this[nameof(this.CODE)]; }
+          set { this[nameof(this.CODE)] = value; }
+      }
+  }
+  ```
+
+- Ավելացված է աղյուսակը վերադարձնող հատկությունը ճիշտ տիպի բերված։
+  ```c#
+  /// <summary>
+  /// Հաշիվներ
+  /// </summary>
+  public Grid<AccountsRow> Accounts
+  {
+      get
+      {
+          return (Grid<AccountsRow>)this.Grids[nameof(this.Accounts)];
+      }
+  }
+  ```
+
+- Ավելացված է Մեծ տեքստային դաշտը(մեմո) որպես հատկություն
+  ```c#
+  public string COMMENT
+  {
+      get { return GetMemo(nameof(this.COMMENT)); }
+      set { SetMemo(nameof(this.COMMENT), value); }
+  }
+  ```
+
+## Իրադարձությունների C# ֆայլի նկարագրություն
+
+Երկրորդ C# ֆայլը ստեղծվում է ձեռքով և պարունակում է ոչ ինտերֆեյսային իրադարձությունների իրականացումը (Validate, Action, Folders...)։  
+Այն պետք է իր մեջ ունենա սահմանված նախրորդ քայլում ձևավոևված դասը partial հատկանիշով։
+
+``` c#
+public partial class UsrAccs
 ```
+
+Տե՛ս [օրինակում](/src/server_api/examples/document_definition.md) ձևավորված `UsrAccs.cs` ֆայլը:
 
 ### Կոնստրուկտորի ձևավորում
 
-- Ձևավորել կոնստրուկտորը՝ IServiceProvider տիպի պարտադիր պարամետրով, որը պիտի կանչի base Document դասի կոնստրուկտորը և փոխանցի IServiceProvider տիպի պարամետրը: Կոնստուկտորում անհրաժեշտ է [ինյեկցիա](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection) անել աշխատանքի համար անհրաժեշտ service-ները։
+Հարկավոր է ավելացնել public կոնստրուկտոր՝ IServiceProvider տիպի պարտադիր պարամետրով, որը պիտի կանչի base Document-ի կոնստրուկտորը և փոխանցի IServiceProvider տիպի պարամետրը:
+
+Կոնստուկտորում կարող է ստանալ հարկավոր սերվիսները [ինյեկցիայի](/src/project/injection.md) միջոցով։  
+Մասնավորապես, օրինակում, ստանում է նաև պարամետրերի հետ աշխատելու `IParametersService` սերվիսը։
 
 ```c#
+private readonly IParametersService parametersService;
+
 public UserAccounts(IParametersService parameterService, IServiceProvider serviceProvider) : base(serviceProvider)
 {
     this.parametersService = parameterService;
 }
 ```
 
-## Նկարագրման հատվածի ձևավորում
+### Մեթոդներ
 
-### Մուտքագրման դաշտերի(ռեկվիզիտների) ավելացում
-
-Ավելացնել մուտքագրման դաշտերը որպես հատկություններ` սահմանելով հետևյալ կառուցվածքով՝
-  -  get-ում վերադարձնել դաշտի արժեքը՝ base դասի indexer-ին տալով դաշտի անունը և այդ արժեքը բերելով հատկության տիպի,
-  -  set-ում base դասի indexer-ին տալ դաշտի անունը  և վերագրել դաշտի արժեքը։
-
-```c#
-public string NAME
-{
-    get { return (string)this[nameof(this.NAME)]; }
-    set { this[nameof(this.NAME)] = value; }
-}
-
-public string BRANCH
-{
-    get { return (string)this[nameof(this.BRANCH)]; }
-    set { this[nameof(this.BRANCH)] = value; }
-}
-```
-
-### Աղյուսակների(գրիդերի) ավելացում
-
-- Սահմանել դաս աղյուսակի տողերի համար, որը պետք է պարտադիր ժառանգի `GridRow` դասից: Դասում ավելացնել սյուները որպես հատկություններ` սահմանելով հետևյալ կառուցվածքով՝
-   - get-ում վերադարձնել սյան արժեքը՝ base դասի indexer-ին տալով սյան անունը և այդ արժեքը բերելով հատկության տիպի,
-   - set-ում base դասի indexer-ին տալ սյան անվանումը և վերագրել սյան արժեքը։
-
-```c#
- public class AccountingRow : GridRow
- {
-     public string ACCTYPE
-     {
-         get { return (string)this[nameof(this.ACCTYPE)]; }
-         set { this[nameof(this.ACCTYPE)] = value; }
-     }
-
-     public int CODE
-     {
-         get { return (int)this[nameof(this.CODE)]; }
-         set { this[nameof(this.CODE)] = value; }
-     }
-...
- }
-```
-
-- Սահմանել Grid&lt;T&gt; տիպի հատկություն՝ որպես T փոխանցելով աղյուսակի տողերը նկարագրող դասը: Հատկությունում վերադարձնել base դասի Grids IReadOnlyDictionary&lt;string, IGrid&gt; տիպի հատկության աղյուսակի անունով անդամը՝ բերելով Grid&lt;T&gt; տիպի:
-
-```c#
- public Grid<AccountingRow> Accountings
- {
-     get
-     {
-         return (Grid<AccountingRow>)this.Grids[nameof(this.Accountings)];
-     }
- }
-```
-
-###  Մեծ տեքստային դաշտերի(մեմոների) ավելացում
-
-Ավելացնել մեմոները որպես հատկություններ` սահմանելով հետևյալ կառուցվածքով՝
-  - get-ում վերադարձնել [GetMemo](document.md#getmemo) մեթոդի կանչը՝ փոխանցելով մեմոյի անունը,
-  - set-ում կանչել [SetMemo](document.md#setmemo) մեթոդը՝ փոխանցելով մեմոյի անունը և արժեքը։
-
-```c#
-public string COMMENT
-{
-    get { return GetMemo(nameof(this.COMMENT)); }
-    set { SetMemo(nameof(this.COMMENT), value); }
-}
-```
-
-## Մեթոդներ
-
-### Action
-
--  Փաստաթղթի գրանցման ժամանակ  հավելյալ ստուգումներ կատարելու,   լոգում, տվյալների բազայի աղյուսակներում փոխկապակցված գրանցումներ կատարելու, ինչ-որ պայմաններից կախված փաստաթղթի էլեմենտների(ռեկվիզիտ, մեմո, աղյուսակ) և հատկությունների արժեքները փոփոխելու համար անհրաժեշտ է override անել [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) մեթոդը:
-
-```c#
-public override async Task Action(ActionEventArgs args)
-{
-    if (string.IsNullOrWhiteSpace(this.BRANCH))
-    {
-       this.BRANCH = await this.parametersService.DefaultBranch();
-    }
-}
-```
-
-### Folders
-
--  Փաստաթուղթը FOLDERS աղյուսակում գրանցելու համար անհրաժեշտ է override անել [Folders](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Folders.html) մեթոդը՝ ստեղծելով և store անելով `FolderElement` դասի օբյեկտ, որը հանդիսանում է 4x համակարգում նկարագրված [AsFoldElement](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/AsFoldElement.html) դասի համարժեքը։
-
-```c#
-public override Task Folders(FoldersEventArgs args)
-{
-    var folderElement = new FolderElement()
-    {
-        FolderId = "UserAccounts",
-        Status = FolderStatus.Edit,
-        Key = this.ISN.ToString(),
-        Comment = this.Description.ArmenianCaption,
-        EComment = this.Description.EnglishCaption,
-        Spec = this.USERNAME.LeftAlign(20) + this.BRANCH.LeftAlign(50)
-    };
-    this.DocumentService.StoreInFolder(this, folderElement);
-    return Task.CompletedTask;
-}
-```
+Փաստաթղթի մեջ հարկավոր է գերբեռնել (override) հարկավոր մեթոդները համապատասխան իրադարձությունները մշակելու համար։  
+Տե՛ս [փաստաթղթի բոլոր իրադարձությունները](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/DocEvents.html) 4X ձեռնարկում։
 
 ### Validate
 
--  Դաշտերի արժեքների ստուգման անհրաժեշտության դեպքում override անել [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) մեթոդը:
+Դաշտերի արժեքների ստուգման անհրաժեշտության դեպքում override անել [Validate](/src/server_api/definitions/document.md#validate) մեթոդը:
 
 ```c#
 public override Task Validate(ValidateEventArgs args)
@@ -203,17 +188,52 @@ public override Task Validate(ValidateEventArgs args)
 }
 ```
 
+### Action
+
+Փաստաթղթի գրանցման ժամանակ հավելյալ ստուգումներ կատարելու, լոգում, տվյալների բազայի աղյուսակներում փոխկապակցված գրանցումներ կատարելու, ինչ-որ պայմաններից կախված փաստաթղթի էլեմենտների(ռեկվիզիտ, մեմո, աղյուսակ) և հատկությունների արժեքները փոփոխելու համար անհրաժեշտ է override անել [Action](/src/server_api/definitions/document.md#action) մեթոդը:
+
+```c#
+public override async Task Action(ActionEventArgs args)
+{
+    if (string.IsNullOrWhiteSpace(this.BRANCH))
+    {
+        this.BRANCH = await this.parametersService.DefaultBranch();
+    }
+}
+```
+
+### Folders
+
+Փաստաթուղթը FOLDERS աղյուսակում գրանցելու համար անհրաժեշտ է override անել [Folders](/src/server_api/definitions/document.md#folders) մեթոդը՝ ստեղծելով և գրանցելով `FolderElement`, որը հանդիսանում է 4x համակարգում նկարագրված [AsFoldElement](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/AsFoldElement.html) դասի համարժեքը։
+
+```c#
+public override Task Folders(FoldersEventArgs args)
+{
+    var folderElement = new FolderElement()
+    {
+        FolderId = "UserAccounts",
+        Status = FolderStatus.Edit,
+        Key = this.USERNAME,
+        Comment = this.Description.ArmenianCaption,
+        EComment = this.Description.EnglishCaption,
+        Spec = this.USERNAME.LeftAlign(20) + this.BRANCH.LeftAlign(50)
+    };
+    this.DocumentService.StoreInFolder(this, folderElement);
+    return Task.CompletedTask;
+}
+```
+
 ### Delete
 
--  Եթե կա անհրաժեշտություն փաստաթղթի հեռացումից առաջ ստուգումներ կատարելու և կապակցված տվյալներ հեռացնելու, ապա անհրաժեշտ է override անել [Delete](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Delete.html) մեթոդը:
+Եթե կա անհրաժեշտություն փաստաթղթի հեռացումից առաջ ստուգումներ կատարելու և կապակցված տվյալներ հեռացնելու, ապա անհրաժեշտ է override անել [Delete](/src/server_api/definitions/document.md#delete) մեթոդը:
 
 ```c#
 public override async Task Delete(DeleteEventArgs args)
 {
-   bool isDeletionAllowed = await this.parametersService.GetBooleanValue("DELETEALIENDOCS");
-   if (!isDeletionAllowed)
-   {
-      throw new Exception("Փաստաթուղթը հեռացնելու իրավասություն չունեք".ToArmenianANSI());
-   }
+    bool isDeletionAllowed = await this.parametersService.GetBooleanValue("DELETEALIENDOCS");
+    if (!isDeletionAllowed)
+    {
+        throw new Exception("Փաստաթուղթը հեռացնելու իրավասություն չունեք".ToArmenianANSI());
+    }
 }
 ```
