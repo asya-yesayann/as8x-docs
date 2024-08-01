@@ -115,10 +115,10 @@ Microsoft Azure DevOps Services համակարգից օգտվելու համար
 
 * Ապա սեղմում բազմակետերը label ընտրելու համար
 
-![get_project_get_specific_version_window_label](get_project_get_specific_version_window_label.png.jpg)
+![get_project_get_specific_version_window_label](get_project_get_specific_version_window_label.png)
 
 * Հետո նշում պրոեկտը, որի վրա փնտրում ենք label, սեղմում **Find** և նշում ցանկալի label-ը, ապա **Ok** կոճակը
 ![get_project_find_label_window](get_project_find_label_window.png)
 
 * Կարգավորում նշիչները ըստ ցանկության և սեղմում **Get** կոճակը
-![get_project_](get_project_)
+![get_project_get_specific_version_window_get.png](get_project_get_specific_version_window_get.png)
