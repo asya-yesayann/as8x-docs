@@ -42,19 +42,26 @@ public class CountryEx : DocumentExtender
         var country = (Country)sender;
         if (string.IsNullOrEmpty(country.ISO))
         {
-            throw new RESTException("ISO Կոդ դաշտը լրացված չէ:");
-        }
+           /* Ստուգում ենք ISO կոդ դաշտի լրացված լինելը, այդ արժեքը օգտագործվում է
+           երկրի տվյալները բեռնելու համար։ Դատարկ լինելու դեպքում ձևավորում ենք սխալի մասին հաղորդագրություն։ */
+           throw new RESTException("ISO Կոդ դաշտը լրացված չէ:");         }
 
+         // Ստուգում ենք փաստաթղթում լրացվող դաշտերից առնվազն մեկի չլրացված լինելը հակառակ դեպքում դուրս ենք գալիս մեթոդից։ 
         if (!string.IsNullOrEmpty(country.SHRTNAME) && !string.IsNullOrEmpty(country.ENAME) && !string.IsNullOrEmpty(country.CODE))
         {
             return;
         }
 
+        // Բեռնում ենք երկրի մասին տվյալները արտաքին վեբ սերվիսից դեսերիալիզանելով պահանջվող տվյալները
         var response = await httpClient.GetAsync("https://restcountries.com/v3.1/alpha/" + country.ISO);
         var json = await response.Content.ReadAsStringAsync();
         var data = JsonSerializer.Deserialize<List<CountryData>>(json);
+
         List<string> updatedFields = new();
 
+        /* Ստուգում ենք՝ Կրճատ անվանում, Կոդ, Անգլերեն անվանում դաշտերի լրացված լինելը փաստաթղթում, դատարկ լինելու 
+           պարագայում  լրացնում ենք համապատասխան դաշտը միաժամանակ ավելացնելով նրա անվանումը updatedFields List տիպի
+           փոփոխականում։ Այն անհրաժեշտ է մեզ վերջում լրացված դաշտերի վերաբերյալ հաղորդագրություն ձևավորելու ժամանակ։ */
         if (string.IsNullOrEmpty(country.SHRTNAME))
         {
             country.SHRTNAME = data[0].cca3;
@@ -75,12 +82,16 @@ public class CountryEx : DocumentExtender
 
         if (sender.IsUIOrigin && updatedFields.Count > 0)
         {
+            // Հաղորդագրություն ենք ձևավորում լրացված դաշտերի վերաբերյալ 
             await sender.Progress.MessageBox(string.Join(", ", updatedFields) + " դաշտը/դաշտերը լրացվել են փաստաթղթի վրա։".ToArmenianANSI(), Common.MessageBoxButtons.OK, Common.MessageBoxIconType.Information);
         }
     }
 }
 
+/* Ստորև տողը անջատում է մասին նշումը Visual Studio -ում CountryData դասում հատկությունների անվանումները փոքրատառով
+սկսվելու վերաբերյալ սխալնելի արտացոլումը, քանի որ հատկությունների անվանումները համապատասխանացվել են JSON ֆորմատի դաշտերի անավնումներին։ */
 [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "json դաշտեր")]
+
 public class CountryData
 {
 
