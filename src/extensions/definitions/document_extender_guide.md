@@ -105,8 +105,31 @@ public class CountryData
     }
 }
 ```
+```json
+[
+  {
+    "name": {
+      "common": "Austria",
+      "official": "Republic of Austria",
+      "nativeName": {
+        "bar": {
+          "official": "Republik Österreich",
+          "common": "Österreich"
+        }
+      }
+    },
+    "tld": [
+      ".at"
+    ],
+    "cca2": "AT",
+    "ccn3": "040",
+    "cca3": "AUT",
+    "cioc": "AUT",
+...
 
-
+  }
+]
+```
 
 
 ## Ֆայլերի ներմուծում 
