@@ -92,6 +92,8 @@ public class CountryEx : DocumentExtender
 սկսվելու վերաբերյալ սխալնելի արտացոլումը, քանի որ հատկությունների անվանումները համապատասխանացվել են JSON ֆորմատի դաշտերի անավնումներին։ */
 [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "json դաշտեր")]
 
+/* CountryData, CountryName դասերը օգտագործվում են ստացված JSON պատասխանը դեսերիալիզացնելու համար։ CountryData դասը ունի ստացված JSON պատասխանի դաշտերին համապատասխան հատկություններ՝ ccn3, cca3 և name։ Վերջինս ներկայացնում է ներդրված օբյեկտ որն ունի բազմաթիվ հատկություններ որոնցից մեզ անհրաժեշտ է միայն  official - ը։ Այդ նպատակով նկարագրել ենք CountryName դասը official հատկությամբ։ Դեսերիալիզացիա անելիս մենք ստանալու ենք CountryData տիպի օբյեկտ, որը պարունակում է միայն անհրաժեշտ տվյալները։
+*/
 public class CountryData
 {
 
