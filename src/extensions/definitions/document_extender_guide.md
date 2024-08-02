@@ -52,7 +52,7 @@ public class CountryEx : DocumentExtender
             return;
         }
 
-        // Բեռնում ենք երկրի մասին տվյալները արտաքին վեբ սերվիսից դեսերիալիզանելով պահանջվող տվյալները
+        // Բեռնում ենք երկրի մասին տվյալները արտաքին վեբ սերվիսից։
         var response = await httpClient.GetAsync("https://restcountries.com/v3.1/alpha/" + country.ISO);
         var json = await response.Content.ReadAsStringAsync();
 
