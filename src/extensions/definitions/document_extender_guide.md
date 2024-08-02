@@ -126,7 +126,6 @@ public class CountryData
     "cca3": "AUT",
     "cioc": "AUT",
 ...
-
   }
 ]
 ```
