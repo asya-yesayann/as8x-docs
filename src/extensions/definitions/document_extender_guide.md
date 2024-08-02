@@ -55,6 +55,8 @@ public class CountryEx : DocumentExtender
         // Բեռնում ենք երկրի մասին տվյալները արտաքին վեբ սերվիսից դեսերիալիզանելով պահանջվող տվյալները
         var response = await httpClient.GetAsync("https://restcountries.com/v3.1/alpha/" + country.ISO);
         var json = await response.Content.ReadAsStringAsync();
+
+        // Կատարում ենք դեսերիալիզացիա օգտագործելով ստորև նկարագրված CountryData դասը։
         var data = JsonSerializer.Deserialize<List<CountryData>>(json);
 
         List<string> updatedFields = new();
@@ -88,11 +90,17 @@ public class CountryEx : DocumentExtender
     }
 }
 
-/* Ստորև տողը անջատում է մասին նշումը Visual Studio -ում CountryData դասում հատկությունների անվանումները փոքրատառով
-սկսվելու վերաբերյալ սխալնելի արտացոլումը, քանի որ հատկությունների անվանումները համապատասխանացվել են JSON ֆորմատի դաշտերի անավնումներին։ */
+/* Ստորև տողը անջատում է մասին նշումը Visual Studio -ում CountryData դասում հատկությունների
+անվանումները փոքրատառով սկսվելու վերաբերյալ սխալնելի արտացոլումը, քանի որ հատկությունների
+անվանումները համապատասխանացվել են JSON ֆորմատի դաշտերի անավնումներին։ */
 [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "json դաշտեր")]
 
-/* CountryData, CountryName դասերը օգտագործվում են ստացված JSON պատասխանը դեսերիալիզացնելու համար։ CountryData դասը ունի ստացված JSON պատասխանի դաշտերին համապատասխան հատկություններ՝ ccn3, cca3 և name։ Վերջինս ներկայացնում է ներդրված օբյեկտ որն ունի բազմաթիվ հատկություններ որոնցից մեզ անհրաժեշտ է միայն  official - ը։ Այդ նպատակով նկարագրել ենք CountryName դասը official հատկությամբ։ Դեսերիալիզացիա անելիս մենք ստանալու ենք CountryData տիպի օբյեկտ, որը պարունակում է միայն անհրաժեշտ տվյալները։
+/* CountryData, CountryName դասերը օգտագործվում են ստացված JSON պատասխանը դեսերիալիզացնելու
+համար։ CountryData դասը ունի ստացված JSON պատասխանի դաշտերին համապատասխան
+հատկություններ՝ ccn3, cca3 և name։ Վերջինս ներկայացնում է ներդրված օբյեկտ որն ունի բազմաթիվ
+հատկություններ, որոնցից մեզ անհրաժեշտ է միայն  official - ը։ Այդ նպատակով նկարագրել ենք CountryName
+դասը official հատկությամբ։ Դեսերիալիզացիա անելիս մենք ստանալու ենք CountryData տիպի օբյեկտ, որը
+պարունակում է միայն անհրաժեշտ տվյալները։
 */
 public class CountryData
 {
@@ -107,6 +115,8 @@ public class CountryData
     }
 }
 ```
+Ստորև ներկայացված է արտաքին վեբ սերվիսից ստացվող պատասխանի հատվածը։
+
 ```json
 [
   {
@@ -131,7 +141,6 @@ public class CountryData
   }
 ]
 ```
-
 
 ## Ֆայլերի ներմուծում 
 
