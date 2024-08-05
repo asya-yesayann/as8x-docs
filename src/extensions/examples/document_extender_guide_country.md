@@ -196,7 +196,7 @@ TYPE:0
 VALUETYPE:Boolean
 VALUE:1
 DESCRIPTION:Ավտոմատ լրացնել Երկրի Կոդ, Անգլերեն անվանում և Կրճատ անվանում դաշտերը երկիր փաս-ում
-EDESCRIPTION:Automatically fill COuntry Code, Short Name and English name fields on Country 
+EDESCRIPTION:Automatically fill Country Code, Short Name and English name fields on Country 
 PERMANENT:1
 GROUP:General
 UPDATEACCESS:1
