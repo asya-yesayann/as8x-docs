@@ -1,4 +1,3 @@
-
 ---
 layout: page
 title: "appsettings.json: Կարգավորման ֆայլ"
@@ -13,26 +12,41 @@ tags: [Settings, appsettings]
   * [Autentication](#autentication)
   * [db](#db) 
   * [Hangfire](#hangfire) 
-  * [IsHangfireServer](#ishangfireserver) 
   * [JwtConfig](#jwtconfig) 
   * [redisCachingSettings](#rediscachingsettings) 
   * [redisCachedItems](#rediscacheditems) 
   * [Serilog](#serilog) 
+    * [Լոգի գրանցում ֆայլում](#լոգի-գրանցում-ֆայլում)
+    * [Լոգի գրանցում Seq սերվերում](#լոգի-գրանցում-seq-սերվերում)
+    * [Լոգի ֆիլտրում](#լոգի-ֆիլտրում)
+    * [Մի քանի լոգերի կիրառում](#մի-քանի-լոգերի-կիրառում)
   * [Storage](#storage) 
   
 ## Ներածություն
 
-[appsettings.json](https://learn.microsoft.com/en-us/iis-administration/configuration/appsettings.json)-ը նախատեսված է AS-8X հարթակի ծրագրերի [կարգավորման պարամետրերը](https://learn.microsoft.com/en-us/dotnet/core/extensions/configuration) սահմանելու և պահելու համար, ինչպիսիք են տվյալների բազայի SqlConnection-ը, լոգավորման կարգավորումները, ...:
+[appsettings.json](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration)-ը նախատեսված է 8X սերվիսի աշխատանքի կարգավորման պարամետրերը սահմանելու համար, ինչպիսիք են տվյալների բազայի Sql Connection-ը, լոգավորման կարգավորումները:
+Այստեղ ավելացվում են կարգավորումներ, որոնք պարունակում են գաղտնիք (password) կամ որոնք էականորեն փոխում են 8X սերվիսի պահվածքը։ 
+Նման պարամետրորը նպատակահարմար չէ պահել 4X հարթակի համակարգային պարամետրերի մեջ։
+
+Տե՛ս նաև
+- [All About AppSettings In ASP.NET Core](https://www.c-sharpcorner.com/article/all-about-appsettings-in-asp-net-core/)
+- [Configuration in .NET](https://learn.microsoft.com/en-us/dotnet/core/extensions/configuration)
+- [Configuration in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/)
+- [ՀԾ-Ձեռնարկություն, ՀԾ-Աշխատավարձ և ՀԾ-Բանկ համակարգերի գրանցման մեխանիզմի ինտեգրացումը Azure AD-ի հետ](https://support.armsoft.am/ViewKnowlageBaseArticle.aspx?KnowlageBaseArticleId=0bac001e-11d6-ee11-8f70-00155d643014)
+- [ՀԾ-Ձեռնարկություն, ՀԾ-Աշխատավարձ և ՀԾ-Բանկ համակարգերի գրանցման մեխանիզմի ինտեգրացումը Windows ADFS-ի հետ](https://support.armsoft.am/ViewKnowlageBaseArticle.aspx?KnowlageBaseArticleId=92e2c510-43eb-ee11-8f70-00155d643014)
+- [Սխալների լոգավորման կազմակերպում](https://support.armsoft.am/ViewKnowlageBaseArticle.aspx?KnowlageBaseArticleId=78fe933a-07c5-eb11-8f3e-00155d644419)
+  - [Serilog.Settings.Configuration](https://github.com/serilog/serilog-settings-configuration)
+  - [Serilog Expressions](https://github.com/serilog/serilog-expressions)
 
 ## additionalSettings
 
 Նախկինում 8X սերվիս լոգին լինելու համար անհրաժեշտ էր միայն մուտքանուն և գաղտնաբառ, որի արդյունքում ստացվում էր JWT token, որի միջոցով օգտագործողը նույնականացվում էր և կարող էր կատարել կամայական API կանչեր։
-Այժմ մտցվել է API CLient-ի գաղափար, որը նախատեսված է  8X սերվիս մուտք գործող կլիենտ ծրագրի սահմանման համար։
-Այն անհրաժեշտ է ստեղծել  4X կամ 8X համակարգի UI-ից "**API Client-ներ**" դիտելու ձևից "**Ավելացնել**" կոնտեքստային ֆունկցիայով՝ նշելով կլիենտի վավերականացման եղանակը (սերտիֆիկատով կամ բանալիով) և նկարագրելով Json ֆորմատի **Manifest** ֆայլ, որը սահմանում է կլիենտ ծրագրի իրավասությունները և սահմանափակումները (որ օգտագործողները կարող են մուտք գործել համակարգ, որ տվյալների աղբյուրներին, փաստաթղթերին, DPR-ներին կարող են դիմել ու որ API կանչերը կատարել)։
+Այժմ մտցվել է API Client-ի գաղափար, որը նախատեսված է 8X սերվիս մուտք գործող կլիենտ ծրագրի սահմանման համար։  
+Այն անհրաժեշտ է ստեղծել 4X կամ 8X համակարգի UI-ից "**API Client-ներ**" դիտելու ձևից "**Ավելացնել**" կոնտեքստային ֆունկցիայով՝ նշելով կլիենտի վավերականացման եղանակը (սերտիֆիկատով կամ բանալիով) և նկարագրելով Json ֆորմատի **Manifest** ֆայլ, որը սահմանում է կլիենտ ծրագրի իրավասությունները և սահմանափակումները (որ օգտագործողները կարող են մուտք գործել համակարգ, որ տվյալների աղբյուրներին, փաստաթղթերին, DPR-ներին կարող են դիմել ու որ API կանչերը կատարել)։
 
 Այս հայտանիշը ավելացվել է հին լոգինի մեխանիզմը անջատելու համար։
 
-```c#
+```json
 "additionalSettings": {
     "disableOldLogins": false
 }
@@ -43,43 +57,51 @@ tags: [Settings, appsettings]
 
 ## Autentication
 
-```c#
-    "Autentication": {
-        "Alternative": "AD",
-        "AD": {
-            "Authority": "https://login.microsoftonline.com/armsoft.am",
-            "ClientId": "158u5wn2-2n95-14nm-22b2-9694efe14vae",
-            "RedirectUri": "https://yourdomain.am/b2bAdminTool",
-            "TokenMapping": "oid",
-            "ResourceID": "https://yourdomain.am/Cloud"
-        },
-        "ADFS": {
-            "Authority": "https://federationservername.yourdomain.am/adfs",
-            "ClientId": "v04c6fd-4220-14e6-n315-f147ac852c18",
-            "RedirectUri": "https://localhost:44322",
-            "TokenMapping": "sid"
-        }
+ADFS նույնականացման կարգավորումներ։  
+Մանրամասների համար տե՛ս 
+- [ՀԾ-Ձեռնարկություն, ՀԾ-Աշխատավարձ և ՀԾ-Բանկ համակարգերի գրանցման մեխանիզմի ինտեգրացումը Azure AD-ի հետ](https://support.armsoft.am/ViewKnowlageBaseArticle.aspx?KnowlageBaseArticleId=0bac001e-11d6-ee11-8f70-00155d643014)
+- [ՀԾ-Ձեռնարկություն, ՀԾ-Աշխատավարձ և ՀԾ-Բանկ համակարգերի գրանցման մեխանիզմի ինտեգրացումը Windows ADFS-ի հետ](https://support.armsoft.am/ViewKnowlageBaseArticle.aspx?KnowlageBaseArticleId=92e2c510-43eb-ee11-8f70-00155d643014)։
+
+```json
+"Autentication": {
+    "Alternative": "AD",
+    "AD": {
+        "Authority": "https://login.microsoftonline.com/yourdomain.am",
+        "ClientId": "158u5wn2-2n95-14nm-22b2-9694efe14vae",
+        "RedirectUri": "https://yourdomain.am/b2bAdminTool",
+        "TokenMapping": "oid",
+        "ResourceID": "https://yourdomain.am/Cloud"
+    },
+    "ADFS": {
+        "Authority": "https://federationservername.yourdomain.am/adfs",
+        "ClientId": "v04c6fd-4220-14e6-n315-f147ac852c18",
+        "RedirectUri": "https://localhost:44322",
+        "TokenMapping": "sid"
     }
+}
 ```
 
 **Պարամետրեր**
-* `Alternative` - Սահմանում է օգտագործողի նույնականացման եղանակը։
-* `AD` - Սահմանում է 
-	* `Authority` -  Oգտագործողի նույնականացման համար անհրաժեշտ URL-ը։
-	* `ClientId` -  Ծրագրի Client ID-ն, որը գրանցված է Azure AD-ում:
-	* `RedirectUri` - Նույնականացումից հետո վերահղման համար URL-ը:
-	* `TokenMapping` - Նույնականացման համար անհրաժեշտ տոկենի տեսակը` OID:
-	* `ResourceID` - Ծրագրի կողմից մուտքագրվող ռեսուրսի URL-ը:
-* `ADFS` - Սահմանում է 
-	* `Authority` - Ծրագրի Client ID-ն, որը գրանցված է ADFS-ում:
-	* `RedirectUri` - Նույնականացումից հետո վերահղման համար URL-ը:
-	* `TokenMapping` - Նույնականացման համար անհրաժեշտ տոկենի տեսակը` ՝ [SID](https://www.techtarget.com/searchsecurity/definition/security-identifier):
+* `Alternative` - Սահմանում է օգտագործողի նույնականացման եղանակը՝ `AD` կամ `ADFS`։
+* `AD` - Կարգավորում է Azure Active Directory-ով նույնականացման կարգավորումները։
+  * `Authority` - Oգտագործողի նույնականացման համար անհրաժեշտ URL-ը։
+  * `ClientId` - Ծրագրի Client ID-ն, որը գրանցված է Azure AD-ում:
+  * `RedirectUri` - Նույնականացումից հետո վերահղման համար URL-ը:
+  * `TokenMapping` - Նույնականացման համար անհրաժեշտ տոկենի տեսակը` OID:
+  * `ResourceID` - Ծրագրի կողմից մուտքագրվող ռեսուրսի URL-ը:
+* `ADFS` - Կարգավորում է Active Directory Federation Services (ADFS)-ով նույնականացման կարգավորումները։
+  * `Authority` - Oգտագործողի նույնականացման համար անհրաժեշտ URL-ը։
+  * `ClientId` - Ծրագրի Client ID-ն, որը գրանցված է ADFS-ում:
+  * `RedirectUri` - Նույնականացումից հետո վերահղման համար URL-ը:
+  * `TokenMapping` - Նույնականացման համար անհրաժեշտ տոկենի տեսակը` ՝ [SID](https://www.techtarget.com/searchsecurity/definition/security-identifier):
 
 ## Hangfire
 
 [Hangfire](https://www.bytehide.com/blog/hangfire-dotnet)-ը գրադարան է, որը նախատեսված է background job-երի հերթի դրման և կատարման մեխանիզմը ապահովելու համար։
 
-```c#
+```json
+"IsHangfireServer": false
+
 "Hangfire": {
     "server": "TEST-SERVER",
     "database": "test_db",
@@ -91,45 +113,40 @@ tags: [Settings, appsettings]
 ```
 
 **Պարամետրեր**
+* `IsHangfireServer` - Hangfire Server-ի միացման հայտանիշ։
 * `server` - Սերվերի անունը, որտեղ գտնվում է Hangfire-ի տվյալների բազան:
 * `database` - Տվյալների բազայի անունը, որը օգտագործում է Hangfire-ը:
 * `login` -  Տվյալների բազայի սերվերին մուտք գործելու համար օգտագործվող մուտքանունը։
 * `password` - Տվյալների բազայի սերվերին մուտք գործելու համար օգտագործվող գաղտնաբառը։
-* `workerCount` - Նշում է ֆոնային աշխատող thread-երի քանակը, որոնք Hangfire-ը պետք է օգտագործի առաջադրանքները մշակելու համար։
+* `workerCount` - Ֆոնային աշխատող պրոցեսների քանակը, որոնք Hangfire-ը պետք է օգտագործի առաջադրանքները մշակելու համար։
 * `expirationInDays` - Նշում է օրերի քանակը, որից հետո մշակված առաջադրանքները կհամարվեն ժամկետանց և կջնջվեն տվյալների բազայից։
-
-## IsHangfireServer
-
-Hangfire Server-ի միացման հայտանիշ։
-
-```c#
-"IsHangfireServer": false
-```
 
 ## JwtConfig
 
-8X service լոգին լինելուց տրամադրվում է JWT տոկեն, որի օգնությամբ կարելի է նույնականացվել համակարգում և կատարել: Այս բաժնում սահմանված են JWT տոկեն-ի կարգավորումները։
+8X սերվիսում ծրագրային նույնականացվելուց սերվիսը տրամադրվում է JWT Token, որը օգտագործվում է API կանչերի ժամանակ նույնականությունը ստուգելու համար: 
+Այս բաժնում սահմանված են JWT Token-ի կարգավորումները։
 
-```c#
+```json
 "JwtConfig": {
     "secret": "7V{)Grmn0/12cx^TY<gnl.568",
     "issuer": "test_db",
     "expirationInMinutes": 1440,
     "refreshExpirationInMinutes": 43200
-},
+}
 ```
 
 **Պարամետրեր**
-* `secret` - JWT տոկենի վավերականացման ու ստորագրման համար նախատեսված բանալի
-* `issuer` - Տոկենը թողարկող տվյալների բազայի անունը։
-* `expirationInMinutes` -  Տոկենի  վավերականության տևողությունը րոպեներով։
-* `refreshExpirationInMinutes` - Թարմացման տոկենի վավերականության տևողությունը րոպեներով:
+* `secret` - JWT Token-ի վավերականացման ու ստորագրման համար նախատեսված բանալի։
+* `issuer` - Թողարկող տվյալների բազայի անունը։
+* `expirationInMinutes` - JWT Token-ի վավերականության տևողությունը րոպեներով։
+* `refreshExpirationInMinutes` - Թարմացման Token-ի վավերականության տևողությունը րոպեներով:
 
 ## redisCachingSettings
 
-Redis-ը ոչ Sql տվյալների բազա է, որը նախատեսված է տվյալների քեշավորման և արագ բեռնման համար։ Այս բաժնում սահմանված են Redis-ի կարգավորումները։
+Redis-ը նախատեսված է տվյալների քեշավորման և արագ բեռնման համար։ 
+Այս բաժնում սահմանված են Redis-ի կարգավորումները։
 
-```c#
+```json
 "redisCachingSettings": {
     "enabled": false,
     "connectionString": "dockerub1:6379,password=mypassword"
@@ -137,18 +154,19 @@ Redis-ը ոչ Sql տվյալների բազա է, որը նախատեսված է
 ```
 
 **Պարամետրեր**
-* `enabled` - Redis-ով տվյալների քեշավորման հայտանիշ։
-* `connectionString` - Redis սերվերին միացման Connection string-ը, որի արժեքը պետք է լինի հետևյալ ֆորմատի՝ "hostname : port, password = yourPassword"
+* `enabled` - Redis-ով տվյալների քեշավորման միացման հայտանիշ։
+* `connectionString` - Redis սերվերին միացման Connection string-ը։
+  Տե՛ս [Redis Connection Strings](https://docs.servicestack.net/redis/client-managers)։
 
 ### redisCachedItems
 
-Այս պահին համակարգում քեշավորվում են փաստաթղթի մետատվյալները, պարամետրերը և մոնիտորինգի համար անհրաժեշտ տվյալները։
-Յուրաքանչյուր բաժին էլ պարունակում է 2 պարամետր՝
-*  `enabled` - Թույլատրված է քեշավորումը Redis-ում թե ոչ։
-* `lifetime` - Քեշի պահման ժամանակը Redis-ում։ Լռությամբ արժեքը 1 օրն է։
+Այս բաժինը նախատեսված է կարգավորելու Redis սերվերում պահվող առանձին տվյալներ և պահպանման տևողությունը։ 
+Այն ընդլայնվում է և առաձին պրոյեկտներում կարող է ավելի շատ լինել։  
+Օրինակ ՀԾ-Բանկի սերվիսը տալիս է OLAP կարգավորումների քեշավորման պարամետրերը։
 
-```c#
-"rediscacheditems": {
+8X հարթակում նվազագույնը առկա են հետևյալ կարգավորումները փաստաթղթի մետատվյալները, պարամետրերը և մոնիտորինգի համար անհրաժեշտ տվյալները քեշավորելու համար։
+```json
+"redisCachedItems": {
     "documentMetadata": {
         "enabled": true,
         "lifetime": "1.00:00:00"
@@ -164,11 +182,15 @@ Redis-ը ոչ Sql տվյալների բազա է, որը նախատեսված է
 }
 ```
 
+Յուրաքանչյուր բաժին պարունակում է երկու պարամետր՝
+* `enabled` - Թույլատրված է քեշավորումը Redis-ում, թե ոչ։
+* `lifetime` - Քեշի պահպանման տևողությունը Redis-ում։ Լռությամբ արժեքը 1 օրն է։
+
 ## db
 
-Այս բաժինը նախատեսված է տվյալների բազայի կարգավորումները պահելու համար։
+Այս բաժինը նախատեսված է տվյալների բազայի կարգավորումները տալու համար։
 
-```c#
+```json
 "db": {
     "server": "TEST-SERVER",
     "database": "test_db",
@@ -184,74 +206,216 @@ Redis-ը ոչ Sql տվյալների բազա է, որը նախատեսված է
 * `database` - Սերվերում գտնվող տվյալների բազայի անուն։
 * `login` - Տվյալների բազայի սերվերին մուտք գործելու համար օգտագործվող մուտքանունը։
 * `password` - Տվյալների բազայի սերվերին մուտք գործելու համար օգտագործվող գաղտնաբառը։
-* `customerId` - Պատվիրատուի նույնակացման համար
-* `encrypt` - Նշում է, թե արդյոք տվյալների բազային միացման ConnectionString-ը պետք է ծածկագրվի թե ոչ։
+* `customerId` - Պատվիրատուի նույնակացման համար։ Օգտագորվում է ՀԾ-Ձեռնարկության և ՀԾ-Աշխատավարձի 8X սերվիսների կողմից։
+* `encrypt` - Նշում է, թե արդյոք տվյալների բազային միացումը ծածկագրվի, թե ոչ։
+
+## Serilog
+
+8X սերվիսում լոգերի հավաքագրման համար օգտագործվում է [Serilog](https://serilog.net/) գրադարանը։ 
+appsettings.json-ում կարգավորումների ձևը որոշվում է Serilog գրադարանի կողմից։  
+
+Լոգավուրումը հնարավոր է կարգավորել այնպես, որ լոգը գրանցվի Console-ում, ֆայլում կամ [Seq սերվերում](https://datalust.co/seq)։ 
+Հնարավոր է կարգավորել, որ միաժամանակ մի քանի աղբյուրում կատարվի լոգի գրանցում։
+Այդ թվում կիրառելով որոշակի ֆիլտր։
+
+Տե՛ս նաև 
+- [Serilog.Settings.Configuration](https://github.com/serilog/serilog-settings-configuration)
+- [Սխալների լոգավորման կազմակերպում](https://support.armsoft.am/ViewKnowlageBaseArticle.aspx?KnowlageBaseArticleId=78fe933a-07c5-eb11-8f3e-00155d644419)։
+
+### MinimumLevel-ի կարգավորում
+
+Այստեղ կարգավորովում է լոգի պահպանման մակարդակը (Information, Warning, Error, Debug, Trace)։
+
+Օրինակ՝
+```json
+"Serilog": {
+    "MinimumLevel": {
+        "Default": "Information",
+        "Override": {
+            "Microsoft": "Warning",
+            "System": "Warning",
+            "Microsoft.AspNetCore": "Warning",
+            "Serilog.AspNetCore": "Warning"
+        }
+    }
+}
+```
+**Պարամետրեր**
+
+* `MinimumLevel:Default` - կարգավորովում է լոգի պահպանման մակարդակը (Information, Warning, Error, Debug, Trace) ընդհանուր դեպքում։
+* `MinimumLevel:Override` - կարգավորովում է լոգի պահպանման մակարդակը առանձին աղբյուրների համար։
+
+### Լոգի գրանցում ֆայլում
+
+Ֆայլում գրանցումը ապահովելու համար անհրաժեշտ է `Serilog` բաժնի `WriteTo` ենթաբաժնում ավելացնել դրան հատուկ պարամետրերը։
+ 
+```json
+"Serilog": {
+    "WriteTo": [
+        {
+            "Name": "File",
+            "Args": {
+                "path": "./logs/log.json",
+                "rollingInterval": "Day",
+                "formatter": "Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact"
+            }
+        }
+    ]
+}
+```
+
+**Պարամետրեր**
+* `Name` - գրելով `File` նշում են, որ լոգավորումը կատարվում է ֆայլում։
+* `Args` - գրանցման ֆայլի կարգավորումները։
+  * `path` - ֆայլի հարաբերական ճանապարհը appsettings.json ֆայլի նկատմամբ,
+  * `rollingInterval` - Լոգերի գրանցման համար անհրաժեշտ նոր ֆայլի ստեղծման հաճախականությունը։
+    Այս օրինակում նշված է Day, որ նշանակում է, որ ամեն օրվա լոգերի համար ստեղծվում է նոր ֆայլ։
+  * `formatter` - լոգերի գրանցման ֆորմատը(JSON, XAML, ...):
+    Օրինակում նշված արժեքը առավել հարմար է լոգերի հետ հետագա աշխատանքի համար։
+
+### Լոգի գրանցում Seq սերվերում
+
+Seq սերվերում գրանցումը ապահովելու համար անհրաժեշտ է `Serilog` բաժնի `WriteTo` ենթաբաժնում ավելացնել դրան հատուկ պարամետրերը։
+
+```json
+"Serilog": {
+    "WriteTo": [
+        {
+            "Name": "Seq",
+            "Args": {
+                "serverUrl": "http://95.140.203.18:8443",
+                "bufferBaseFilename": "./logs/buffer"
+            }
+        }
+    ]
+}
+```
+
+**Պարամետրեր**
+* `Name` - գրելով `Seq` նշում են, որ լոգավորումը կատարվում է Seq սերվերում։
+* `Args` - գրանցման Seq-ի կարգավորումները։
+  * `serverUrl` - Seq-ի սերվերի հասցեն։
+  * `bufferBaseFilename` - Սերվերի անհասանելի լինելու դեպքում լոգերի գրանցման համար անհրաժեշտ ֆայլի հարաբերական ճանապարհը appsettings.json ֆայլի նկատմամբ։
+    Սերվերը հասանելի դառնալուն պես ֆայլում գրանցված լոգերը գրանցվում են Seq-ում։
+
+### Լոգի ֆիլտրում
+
+Լոգը կարելի գրանցել կիրառելով որոշ ֆիլտրեր։
+Ստորև օրինակում ֆիլտրվում է ըստ լոգի ConnectedService դաշտի 'ArCaP2P' արժեքի և լոգավորումը պահպանում է ArCaP2P_XXXXXXXX.json անունով ֆայլում (XXXXXXXX-ի փոխարեն գրված ամսաթիվ):
+
+```json
+"Serilog": {
+  "WriteTo": [
+    {
+      "Name": "Logger",
+      "Args": {
+        "configureLogger": {
+          "Filter": [
+            {
+              "Name": "ByIncludingOnly",
+              "Args": {
+                "expression": "@p['ConnectedService'] = 'ArCaP2P'"
+              }
+            }
+          ],
+          "WriteTo": [
+            {
+              "Name": "File",
+              "Args": {
+                "path": "./logs/ArCaP2P_.json",
+                "formatter": "Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact",
+                "rollingInterval": "Day",
+                "rollOnFileSizeLimit": true,
+                "fileSizeLimitBytes": "1000000"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+```
+
+Վերև լոգի կարգավորման մեջ կարևոր են 
+* `"Name": "Logger"` - նշում է որ բարդ լոգ է։
+* `"Filter"` - կարգավորում է ֆիլտրը։ տե՛ս նաև [Serilog Expressions](https://github.com/serilog/serilog-expressions)։
+
+
+### Մի քանի լոգերի կիրառում
+
+Ստորև օրինակում կարգավորված են վերևի երեք լոգերը միարժամանակ
+
+```json
+"Serilog": {
+  "MinimumLevel": {
+    "Default": "Information",
+    "Override": {
+      "Microsoft": "Warning",
+      "System": "Warning",
+      "Microsoft.AspNetCore": "Warning",
+      "Serilog.AspNetCore": "Warning"
+    }
+  },
+  "WriteTo": [
+    {
+      "Name": "File",
+      "Args": {
+        "path": "./logs/log.json",
+        "rollingInterval": "Day",
+        "formatter": "Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact"
+      }
+    },
+    {
+      "Name": "Seq",
+      "Args": {
+        "serverUrl": "http://95.140.203.18:8443",
+        "bufferBaseFilename": "./logs/buffer"
+      }
+    },
+    {
+      "Name": "Logger",
+      "Args": {
+        "configureLogger": {
+          "Filter": [
+            {
+              "Name": "ByIncludingOnly",
+              "Args": {
+                "expression": "@p['ConnectedService'] = 'ArCaP2P'"
+              }
+            }
+          ],
+          "WriteTo": [
+            {
+              "Name": "File",
+              "Args": {
+                "path": "./logs/ArCaP2P_.json",
+                "formatter": "Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact",
+                "rollingInterval": "Day",
+                "rollOnFileSizeLimit": true,
+                "fileSizeLimitBytes": "1000000"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+```
 
 ## Storage
 
-Սահմանում է ծրագրի աշխատանքի ընթացքում ստեղծվող ֆայլերի (Text reports, տպելու ձևանմուշներ տարբեր ընդայնումով ֆայլերով) լոկալ  պահման կարգավորումները։
+Սահմանում է ծրագրի աշխատանքի ընթացքում ստեղծվող ֆայլերի (Text reports, տպելու ձևանմուշներից առաջացած ֆայլեր, կամ այլ ֆայլեր) լոկալ պահպանման կարգավորումները։
 
 ```json
 "Storage": {
-    "BaseUri": "http://localhost:1026/",
+    "BaseUri": "https://services8x/bank1",
     "Directory": "C:\\Storage\\Files\\"
 }
 ```
 
 **Պարամետրեր**
-* `BaseUri` - Սերվիսի հասցեն։
-* `Directory` - Ստեղծվող ֆայլերի պահման լոկալ թղթապանակի ճանապարհը։
+* `BaseUri` - Սերվիսի հասցեն։ ֆայլերի ծրագրային բեռնման (կամ վերբեռնման) համար հասցեի ձևավորման համար։
+* `Directory` - Ստեղծվող ֆայլերի պահպանման թղթապանակի ճանապարհը։
 
-## Serilog
-
-[Serilog](https://serilog.net/)-ը լոգավորման գրադարան է։ AS-8X համակարգում օգտագործվում է ծրագրում առաջացած սխալների, խափանումների հավաքագրման և գրանցման համար։
-
-AS-8X համակարգում տրված է հնարավորություն լոգը գրանցելու Console-ում, ֆայլում, Seq-ում։
-
-Ֆայլում և Seq-ում գրանցումը ապահովելու համար անհրաժեշտ է appsettings.json ֆայլի `Serilog`-ում բաժնում ավելացնել `WriteTo` ենթաբաժին` նշելով լոգի գրանցման վայրը ու դրան հատուկ պարամետրերը։
- 
-```c#
-{
-    "Serilog": {
-        "MinimumLevel": {
-            "Default": "Information",
-            "Override": {
-                "Microsoft": "Warning",
-                "System": "Warning",
-                "Microsoft.AspNetCore": "Warning",
-                "Serilog.AspNetCore": "Warning"
-            }
-        }
-        ,"WriteTo": [
-          {
-            "Name": "File",
-            "Args": {
-              "path": "./logs/log.json",
-              "rollingInterval": "Day",
-              "formatter": "Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact"
-            }
-          },
-          {
-            "Name": "Seq",
-            "Args": {
-              "serverUrl": "http://95.140.203.18:8443",
-              "bufferBaseFilename": "./logs/buffer"
-            }
-          }
-        ]
-    }
-```
-
-**Պարամետրեր**
-
-**Ֆայլի դեպք**
-* `Name` - լոգի գրանցման վայր
-* `Args` - գրանցման ֆայլի կարգավորումները
-	* path - ֆայլի հարաբերական ճանապարհը appsettings.json ֆայլի նկատմամբ,
-	* rollingInterval - Լոգերի գրանցման համար անհրաժեշտ նոր ֆայլի ստեղծման հաճախականությունը։ Այս օրինակում նշված է Day, որ նշանակում է, որ ամեն օրվա լոգերի համար ստեղծվում է նոր ֆայլ։
-	* formatter - լոգերի գրանցման ֆորմատը(JSON, XAML, ...):
-**Seq-ի դեպք**
-* `Name` - լոգի գրանցման վայր
-* `Args` - գրանցման Seq-ի կարգավորումները
-	* `serverUrl` - Seq-ի սերվերի հասցեն
-	* `bufferBaseFilename` - Սերվերի անհասանելի լինելու դեպքում լոգերի գրանցման համար անհրաժեշտ ֆայլի հարաբերական ճանապարհը appsettings.json ֆայլի նկատմամբ։ Սերվերը հասանելի դառնալուն պես ֆայլում գրանցված լոգերը գրանցվում են Seq-ում։
