@@ -159,7 +159,23 @@ public class CountryData
 ]
 ```
 
-## FILLCOUNTRYFIELDS համակարգային պարամետրի ստեղծում և ներմուծում
+## DOCUMENTEXTENDER-ի ներմուծման ֆայլի ստեղծում
+
+Ընդլայնման ներմուծման համար ստեղծվել է CountryEx.as ֆայլը հետևյալ պարունակությամբ։
+
+```
+DOCUMENTEXTENDER {
+  NAME="COUNTRY";
+  CAPTION="Երկիր փաստաթղթի ընդլայնում"; 
+  ECAPTION="Country doc extension";
+  CSSOURCE="CountryEx.cs";
+};
+```
+
+Ենթադրվում է որ SYSCON - ի միջոցով ֆայլերի ներմուծման ժամանակ ```CountryEx.as``` և ```CountryEx.cs``` այդ ֆայլերը գտնվելու են ```config.as``` ֆայլում BASEFOLDER պարամետրով սահմանված պանակում։
+
+
+## FILLCOUNTRYFIELDS համակարգային պարամետրի ստեղծում և ներմուծում 
 
 Համակարգային պարամետր ավելացնելու համար ստեղծում ենք տեքստային ֆայլ հետևյալ պարունակությամբ
 
