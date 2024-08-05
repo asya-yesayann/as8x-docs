@@ -23,11 +23,12 @@ title: "Փաստաթղթի ընդլայնման ձեռնարկ"
 Մեթոդներում հնարավոր է կատարել նաև ասինխրոն գործողություններ, այդ դեպքում անհրաժեշտ է մեթոդը հայտարարել որպես async  
 
 
+
 ```c#
 namespace DocExtensions;
 
 [DocumentExtender]
-public class CountryEx : DocumentExtender
+public class MyDocExtension : DocumentExtender
 {
     public override Task PostAction(Document sender, ActionEventArgs args)
     {
