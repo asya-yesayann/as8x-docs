@@ -6,6 +6,7 @@
 
 ## C# ընդլայնման դասը
 
+Խնդիրը լուծելու համար կիրառվել է ```DocumentExtender``` դասի ```PreValidate``` մեթոդը։ 
 Փաստաթղթի լրացումը կատարվում է տրանզակցիայի մեջ, մինչև հիմնական վալիդացիայի աշխատելը։
 
 ```c#
@@ -24,15 +25,25 @@ namespace ArmSoft.AS8X.Bank.Samples.DocExtensions;
 public class CountryEx : DocumentExtender
 {
     private static readonly HttpClient httpClient = new();
+
     private readonly IParametersService paramService;
 
     public CountryEx(IParametersService paramService)
     {
+        // Կատարում ենք IParametersService սերվիսի ինյեկցիա, որի միջոցով կստանանք DocumentExtender համակարգային պարամետրերի արժեքը։
         this.paramService = paramService;
     }
 
     public async override Task PreValidate(Document sender, ValidateEventArgs args)
     {
+        //Ստանում ենք FILLCOUNTRYFIELDS համակարգային պարամետրի արժեքը
+        bool isCountryAutofillAllowed = await this.paramService.GetBooleanValue("FILLCOUNTRYFIELDS");
+
+        // Մեթոդի աշխատանքը կավարտվի պարամետրի արժեքի Ոչ արժեքի դեպքում
+        if (!isCountryAutofillAllowed)
+        {
+            return;
+        }
         var country = (Country)sender;
         if (string.IsNullOrEmpty(country.ISO))
         {
