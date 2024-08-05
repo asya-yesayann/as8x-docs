@@ -100,5 +100,5 @@ DOCUMENTEXTENDER {
 
 ## Փաստաթղթի ընդլայնման օրինակ
 
-Փաստաթղի ընդլայնման օրինակի համար տես՝ [Երկիր փաստաթղթի ընդլայնման օրինակ](../examples/document_extender_guide_country.md)
+Փաստաթղի ընդլայնման օրինակի համար տես՝ ["Երկիր" փաստաթղթի ընդլայնման օրինակ](../examples/document_extender_guide_country.md)
 ։
