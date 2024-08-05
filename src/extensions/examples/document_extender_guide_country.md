@@ -19,6 +19,13 @@ namespace ArmSoft.AS8X.Bank.Samples.DocExtensions;
 public class CountryEx : DocumentExtender
 {
     private static readonly HttpClient httpClient = new();
+    private readonly IParametersService paramService;
+
+    public CountryEx(IParametersService paramService)
+    {
+        this.paramService = paramService;
+    }
+
     public async override Task PreValidate(Document sender, ValidateEventArgs args)
     {
         var country = (Country)sender;
