@@ -24,14 +24,18 @@ title: "Փաստաթղթի ընդլայնման ձեռնարկ"
 Անհրաժեշտույան դեպքում դասում կարող է սահմանված լինել կոնստրուկտոր, որի միջոցով հնարավոր է ինյեկցիայի միջոցով 
 փոխանցել լրացուցիչ 8x սերվիսներ, որոնց օգտագործումը անհրաժեշտ է ընդլայնվող մեթոդներում։
 
-
-
 ```c#
 namespace DocExtensions;
 
 [DocumentExtender]
 public class MyDocExtension : DocumentExtender
 {
+    private readonly IParametersService paramService;
+     
+    public MyDocExtension(IParametersService paramService)
+    {
+        this.paramService = paramService;
+    }
     public override Task PostAction(Document sender, ActionEventArgs args)
     {
 
