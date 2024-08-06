@@ -5,7 +5,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 # UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատուկ սերվիս
 
-Բովանդակություն
+## Բովանդակություն
 * [LoadDoc](#LoadDoc)
 * [LoadDocFromFolder](#LoadDocFromFolder)
 LoadContractDoc
