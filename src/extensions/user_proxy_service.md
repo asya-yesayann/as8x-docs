@@ -150,7 +150,7 @@ public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.
 * `loadImagesAndMemos` - Ոչ պարտադիր։ Բեռնել նաև փաստաթղթի մեմոները և նկարները։ Լռությամբ՝ **false**:
 
 
-###LoadDocFromFolder
+### LoadDocFromFolder
 
 ```c#
 public Task<Document> LoadDocFromFolder(string folder, string key,
@@ -159,7 +159,13 @@ public Task<Document> LoadDocFromFolder(string folder, string key,
                                           bool loadImagesAndMemos = false)
 ```
 
-Բեռնում է փաստաթուղթը սահմանված ֆոլդերից: Չհաջողվելու դեպքում վերադարձնում է null։ Արխիվացված փաստաթղթերը չեն դիտարկվում։
+Բեռնում է փաստաթուղթը սահմանված ֆոլդերից: Չհաջողվելու դեպքում վերադարձնում է **null**։ Արխիվացված փաստաթղթերը չեն դիտարկվում։
+
+> [!TIP]
+> Համակարգում առկա ֆոլդեռները ինչպես նաև այնտեղ գրանցված փաստաթղթերը հնարավոր է տեսնել հիմնական բազայի **FOLDERS** աղյուսակում։ Հիմնական սյունենրն են՝ fFOLDERID - Ֆոլդեռի ներքին անվանումը, fKEY - փաստաթղթի նույնացուցիչը, fISN - Փաստաթղթի ISN-ը։ 
+
+<br>
+
 
 **Պարամետրեր**
 
