@@ -12,10 +12,11 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [LoadContractDoc](#LoadContractDoc)
 * [LoadClientDoc](#LoadClientDoc)
 * [LoadClientDescByISN](#LoadClientDescByISN)
+* [LoadClientDescByCode](#LoadClientDescByCode)
 
   
 
-LoadClientDescByCode
+
 LoadClientDocRObyISN
 LoadClientDocRO
 GetClientISN
@@ -223,13 +224,23 @@ public Task<ClientDesc> LoadClientDescByISN(int isn)
 
 * `isn`- Պարտադիր։ Հաճախորդ փաստաթղթի ISN-ը։
 
+## LoadClientDescByCode
+
+```c#
+public Task<ClientDesc> LoadClientDescByCode(string code)
+```
+
+Վերադարձնում է հաճախորդ տեսակի փաստաթղթի հիմնական դաշտերը։
+
+**Պարամետրեր**
+
+* `code`- Պարտադիր։ Հաճախորդի կոդը։
 
 
 
 
 
 
-LoadClientDescByCode
 LoadClientDocRObyISN
 LoadClientDocRO
 GetClientISN
