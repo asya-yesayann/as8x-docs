@@ -292,7 +292,7 @@ public Task<int> GetClientISNByAcc(string acc)
 ```c#
 public Task<string> GetClientFullName(string firstName, string lastName, string ptronymic, bool arm)
 ```
-Վերադարձնում է հաճախորդի անուն, ազգանուն, հայրանունը համակարգում սահմանված հերթականությամբ (հերթականությունը սահմանվում է ՝ CLINAMEORDER, CLINAMEORDERENG պարամետրերով) ։
+Վերադարձնում է հաճախորդի անուն, ազգանուն, հայրանունը համակարգում սահմանված հերթականությամբ (հերթականությունը սահմանվում է ՝ CLINAMEORDER -"Հաճախորդի անվան հերթականություն", CLINAMEORDERENG - "Հաճախորդի անգլ. անվան հերթականություն" պարամետրերով) ։
 
 **Պարամետրեր**
 
