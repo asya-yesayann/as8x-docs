@@ -11,8 +11,10 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [LoadDocFromFolder](#LoadDocFromFolder)
 * [LoadContractDoc](#LoadContractDoc)
 * [LoadClientDoc](#LoadClientDoc)
+* [LoadClientDescByISN](#LoadClientDescByISN)
 
-LoadClientDesc
+  
+
 LoadClientDescByCode
 LoadClientDocRObyISN
 LoadClientDocRO
@@ -128,7 +130,6 @@ UserProxyService պարունակում է մեթոդներ, որոնք հնար
 
 UserProxyService -ը հնարավոր է ինյեկցիայի միջոցավ փոխանցել և կիրառել օգտագործողի կողմից ստեղծվող ընդլայնումների դասերում։
 
-
 ## Մեթոդներ
 
 ### LoadDoc
@@ -140,7 +141,7 @@ public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.
                                 bool loadImagesAndMemos = false)
 ```
 
-Բեռնում է սահմանված ISN -ով փաստաթուղթը։ 
+Վերադարձնում է սահմանված ISN -ով փաստաթուղթը։ 
 
 **Պարամետրեր**
 
@@ -161,7 +162,7 @@ public Task<Document> LoadDocFromFolder(string folder, string key,
                                           bool loadImagesAndMemos = false)
 ```
 
-Բեռնում է փաստաթուղթը սահմանված ֆոլդերից: Չհաջողվելու դեպքում վերադարձնում է **null**։ Արխիվացված փաստաթղթերը չեն դիտարկվում։
+Վերադարձնում է փաստաթուղթը սահմանված ֆոլդերից: Չհաջողվելու դեպքում վերադարձնում է **null**։ Արխիվացված փաստաթղթերը չեն դիտարկվում։
 
 > [!TIP]
 > Համակարգում առկա ֆոլդեռները ինչպես նաև այնտեղ գրանցված փաստաթղթերը հնարավոր է տեսնել հիմնական բազայի **FOLDERS** աղյուսակում։ Աղյուսակի հիմնական սյունենրն են՝ fFOLDERID - ֆոլդեռի ներքին անվանումը, fKEY - փաստաթղթի նույնացուցիչը, fISN - փաստաթղթի ISN-ը։ 
@@ -203,17 +204,31 @@ public Task<Document> LoadContractDoc(string agrType, string agrCode, string agr
 public Task<Client> LoadClientDoc(string clientCode)
 ```
 
-Վերադարձնում է հաճախորդի փաստաթուղթը։
-
+Վերադարձնում է հաճախորդ տեսակի փաստաթուղթը։
 
 **Պարամետրեր**
 
-* `clientCode`- Պարտադիր։ Հաճախորդի կոդը։ 
+* `clientCode`- Պարտադիր։ Հաճախորդի կոդը։
+
+
+## LoadClientDescByISN
+
+```c#
+public Task<ClientDesc> LoadClientDescByISN(int isn)
+```
+
+Վերադարձնում է հաճախորդ տեսակի փաստաթղթի հիմնական դաշտերը։
+
+**Պարամետրեր**
+
+* `isn`- Պարտադիր։ Հաճախորդ փաստաթղթի ISN-ը։
 
 
 
 
-LoadClientDesc
+
+
+
 LoadClientDescByCode
 LoadClientDocRObyISN
 LoadClientDocRO
