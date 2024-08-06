@@ -147,8 +147,8 @@ public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.
 * `gridLoadMode` -  Ոչ պարտադիր։ Բեռնել նաև փաստաթղթի գրիդերը թե ոչ, հնարավոր արժեքներն են 	**GridLoadMode.Full** կամ **GridLoadMode.None**։ Լռությամբ՝ **GridLoadMode.Full**
 * `loadParents` - Ոչ պարտադիր։ Բեռնել նաև փաստաթղթի ծնող-փաստաթղթերը։ Հնարավոր արժեքներն են **true**, **false**։ Լռությամբ՝ **false**
 * `throwExceptionIfDeleted` - Ոչ պարտադիր: Փաստաթղթի հեռացված լինելու դեպքում արտացոլել սխալի վերաբերյալ հաղորդագրություն, կամ բեռնել հեռացված փաստաթուղթը 999 վիճակով։ Հնարավոր արժեքներն են **true**, **false**։ Լռությամբ՝ **true**:
-* `lookInArc` -
-* `loadImagesAndMemos` - 
+* `lookInArc` - Ոչ պարտադիր։ Փնտրել փաստաթուղթը նաև արխիվացվածների մեջ։ Հնարավոր արժեքներն են **true**, **false**։ Լռությամբ՝ **false**:
+* `loadImagesAndMemos` - Ոչ պարտադիր։ Բեռնել նաև փաստաթղթի մեմոները և նկարները։ Հնարավոր արժեքներն են **true**, **false**, լրությամբ՝ **false**:
 
 
 
