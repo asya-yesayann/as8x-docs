@@ -75,6 +75,7 @@ public Task Approve(Document document, DocumentCheckLevel checkLevel = DocumentC
 Վավերացնում է փաստաթուղթը։
 
 **Պարամետրեր**
+
 * `document` - Փաստաթուղթը նկարագրող դասը։
 * `checkLevel` - [Փաստաթղթի ստուգման մակարդակը](DocumentCheckLevel.md)։
 * `logComment` - Փաստաթղթի պատմության մեջ գրանցվող հաղորդագրություն։
@@ -92,6 +93,7 @@ public Task CheckAndStore(Document document,
 Անցկացնում է պարտադիր ստուգումներ և սահմանված ռեժիմով գրանցում փաստաթուղթը տվյալների պահոցում։
 
 **Պարամետրեր**
+
 * `document` - Փաստաթուղթը նկարագրող դասը։
 * `mode` - Փաստաթղթի պահպանման ռեժիմը։
 * `checkLevel` - [Փաստաթղթի ստուգման մակարդակը](DocumentCheckLevel.md)։
@@ -107,6 +109,7 @@ public Task CheckProcessingMode(string docType);
 Ստուգում է տրված տեսակի փաստաթղթերի գրանցման/հեռացման հնարավորությունը սերվիսում։
 
 **Պարամետրեր**
+
 * `docType` - Փաստաթղթի տեսակ։
 
 ### CleanDeleted
@@ -118,6 +121,7 @@ public Task CleanDeleted(DateTime startDate, DateTime endDate, string docType = 
 Մաքրում է բոլոր հեռացված փաստաթղթերը՝ նշված ժամանակահատվածով։
 
 **Պարամետրեր**
+
 * `startDate` - ժամանակահատվածի սկզբի ամսաթիվ։
 * `endDate` - ժամանակահատվածի վերջին ամսաթիվ։
 * `docType` - Սահմանում է փաստաթղթերի տիպերի ֆիլտր։ Մաքրվում են այն հեռացված փաստաթղերը, որոնք սկսվում են docType արժեքով։ Չլրացնելու դեպքում մաքրվում են նշված ժամանակահատվածում հեռացված բոլոր փաստաթղթերը։
@@ -132,13 +136,15 @@ public Task<Document> Copy(int isn, object beforeCopyParam = null, int copyDocMo
 Տրված ISN-ով փաստաթուղթը բեռնում է տվյալների պահոցից, որի հիման վրա ստեղծում պատճեն օբյեկտը։
 
 **Պարամետրեր**
+
 * `isn` - Պատճենման ենթակա փաստաթղթի ներքին նույնականացման համար:
 * `beforeCopyParam` - Տվյալ պարամետրի արժեքը փոխանցվում է փաստաթղթի [BeforeCopy](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) իրադարձությանը։ 
-* `copyDocMode` - Սահմանում է փաստաթղթի պատճենման ռեժիմը։
-`0` - Պատճենվում են բոլոր դաշտերի արժեքները։  
-`1` - Պատճենման ռեժիմը կախված է փաստաթղթի նկարագրության [CopyAsRepeatable](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Defs/doc.md) հատկության արժեքից։  
-`2` - Պատճենվում են միայն այն դաշտերը, որոնք պարունակում են `N` հայտանիշը։  
-Լռությամբ արժեքը 0 է:
+* `copyDocMode` - Փաստաթղթի պատճենման ռեժիմը։ Լռությամբ արժեքը 0 է:
+
+  `0` - Պատճենվում են բոլոր դաշտերի արժեքները։  
+  `1` - Պատճենման ռեժիմը կախված է փաստաթղթի նկարագրության [CopyAsRepeatable](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Defs/doc.md) 
+   հատկության արժեքից։  
+  `2` - Պատճենվում են միայն այն դաշտերը, որոնք պարունակում են `N` հայտանիշը։  
 
 ### Create
 
@@ -149,9 +155,11 @@ public Task<T> Create<T>(List<int> parentsISN = null, DocumentOrigin origin = Do
 Ստեղծում է նշված տիպի փաստաթղթի նոր օբյեկտ։
 
 **Պարամետրեր**
+
 * `parentsISN` - Փաստաթղթի ծնող փաստաթղթերի ISN-ների ցուցակը:
 * `origin` - Սահմանում է [փաստաթղթի ստեղծման աղբյուրը](DocumentOrigin.md):
-* `parameters` - ??
+* `parameters` - Արգումենտների զանգված, որոնք փոխանցվում են փաստաթղթի կոնսրուկտորին և պիտի թվով, հերթականությամբ, տիպերով համընկնեն կանչվող կոնստրուկտորի շարահյուսությանը։
+Չփոխանցելու դեպքում փաստաթղթի նոր օբյեկտը ստեղծվելու է պարամետրեր չպարունակող կոնստրուկտորի միջոցով։
 
 ### Create
 
@@ -162,9 +170,11 @@ public Task<T> Create<T>(int parentISN, DocumentOrigin origin = DocumentOrigin.A
 Ստեղծում է նշված տիպի փաստաթղթի նոր օբյեկտ։
 
 **Պարամետրեր**
+
 * `parentsISN` - Փաստաթղթի ծնող փաստաթղթի ISN-ը:
 * `origin` - Սահմանում է [փաստաթղթի ստեղծման աղբյուրը](DocumentOrigin.md): 
-* `parameters` - ??
+* `parameters` - Արգումենտների զանգված, որոնք փոխանցվում են փաստաթղթի կոնսրուկտորին և պիտի թվով, հերթականությամբ, տիպերով համընկնեն կանչվող կոնստրուկտորի շարահյուսությանը։
+Չփոխանցելու դեպքում փաստաթղթի նոր օբյեկտը ստեղծվելու է պարամետրեր չպարունակող կոնստրուկտորի միջոցով։
 
 ### Create
 
@@ -175,11 +185,13 @@ public  Task<Document> Create(string typeName, List<int> parentISN = null, Type 
 Ստեղծում է նշված տեսակի փաստաթղթի նոր օբյեկտ։
 
 **Պարամետրեր**
+
 * `typeName` - Փաստաթղթի տեսակ։
 * `parentsISN` - Փաստաթղթի ծնող փաստաթղթերի ISN-ների ցուցակը:
 * `instanceType` - ??
 * `origin` - Սահմանում է [փաստաթղթի ստեղծման աղբյուրը](DocumentOrigin.md):
-* `parameters` - ??
+* `parameters` - Արգումենտների զանգված, որոնք փոխանցվում են փաստաթղթի կոնսրուկտորին և պիտի թվով, հերթականությամբ, տիպերով համընկնեն կանչվող կոնստրուկտորի շարահյուսությանը։
+Չփոխանցելու դեպքում փաստաթղթի նոր օբյեկտը ստեղծվելու է պարամետրեր չպարունակող կոնստրուկտորի միջոցով։
 
 ### CreateFactsUsingStateMoverFrom
 
@@ -198,6 +210,7 @@ public Task CreateParentLinkDB(int isn, int parentIsn = -1);
 Ի տարբերություն  [MakeParentLink](#makeparentlink)-ի այս ֆունկցիան կարելի է կանչել ամենուրեք։
 
 **Պարամետրեր**
+
 * `isn` - Զավակ փաստաթղթի ներքին նույնականացման համար:
 * `parentIsn` - Ծնող փաստաթղթի ներքին նույնականացման համար։
 
@@ -212,6 +225,7 @@ public  Task CreateParentLinksDB(int isn, List<int> parentsIsn);
 Ի տարբերություն  [MakeParentLink](#makeparentlink)-ի այս ֆունկցիան կարելի է կանչել ամենուրեք։
 
 **Պարամետրեր**
+
 * `isn` - Զավակ փաստաթղթի ներքին նույնականացման համար:
 * `parentIsn` - Ծնող փաստաթղթերի ներքին նույնականացման համարների ցուցակ։
 
@@ -224,8 +238,9 @@ public Task<(DateTime CreationDate, short SUID)> CreationDate(int isn, bool isNo
 Վերադարձնում է փաստաթղթի ստեղծման ամսաթիվը և ստեղծողի ներքին համարը։
 
 **Պարամետրեր**
+
 * `isn` - Փաստաթղթի ներքին նույնականացման համար:
-* `isNotRiseErrWhenNoRow` - Պահանջվող փաստաթղթի չգտնվելու դեպքում սխալի գեներացման հայտանիշ։ Լռությամբ արժեքը `False` է։ Տվյալների պահոցում ստեղծման ամսաթվի և ստեղծողի ներքին համարի բացակայության դեպքում,  isNotRiseErrWhenNoRow  պարամետրի `true` արժեքի դեպքում որպես **CreationDate** վերադարձնում է 01/01/1900 ամսաթիվը, իսկ որպես **SUID** -1 արժեքը, իսկ `false` արժեքի դեպքում առաջացնում է սխալ հետևյալ հաղորդագրությամբ՝ "Document with specified isn does not exist in DB. No current row.":
+* `isNotRiseErrWhenNoRow` - Պահանջվող փաստաթղթի չգտնվելու դեպքում սխալի գեներացման հայտանիշ։ Լռությամբ արժեքը `false` է։ Տվյալների պահոցում ստեղծման ամսաթվի և ստեղծողի ներքին համարի բացակայության դեպքում,  isNotRiseErrWhenNoRow  պարամետրի `true` արժեքի դեպքում որպես **CreationDate** վերադարձնում է 01/01/1900 ամսաթիվը, իսկ որպես **SUID** -1 արժեքը, իսկ `false` արժեքի դեպքում առաջացնում է սխալ հետևյալ հաղորդագրությամբ՝ "Document with specified isn does not exist in DB. No current row.":
 
 ### CutChildLink
 
@@ -236,6 +251,7 @@ public Task CutChildLink(int isn, int childIsn = -1);
 Ջնջում է փաստաթղթի և իրա զավակների միջև կապերը, կամ մեկ նշված փաստաթղթի հետ կապը։
 
 **Պարամետրեր**
+
 * `isn` - Այն փաստաթղթի ներքին նույնականացման համարը, որի համար խզվում է զավակների հետ կապը։
 * `childIsn` - Մեկ զավակի ներքին նույնականացման համար, այդ զավակի կապը կզելու համար։ Եթե պարամետրը փոխանցված չէ, ապա կապը խզվում է բոլոր առկա զավակների հետ։
 
@@ -248,6 +264,7 @@ public Task CutParentLink(int isn, int parentIsn = -1);
 Ջնջում է փաստաթղթի և իրա ծնողների միջև կապերը, կամ մեկ նշված փաստաթղթի հետ կապը։
 
 **Պարամետրեր**
+
 * `isn` - Այն փաստաթղթի ներքին նույնականացման համարը, որի համար խզվում է կապը ծնողի հետ։
 * `parentIsn` - Մեկ ծնողի ներքին նույնականացման համար, այդ ծնողի կապը կզելու համար։ Եթե պարամետրը փոխանցված չէ, ապա կապը խզվում է բոլոր առկա ծնողների հետ։
 
@@ -268,20 +285,19 @@ public Task<DeletedDoc> Delete(int isn,
 ```
 
 Ջնջում է փաստաթուղթը համակարգից։  
-Ջնջվող փաստաթղթերի համար առաջանում է  [Delete](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/Delete.md)  իրադարձությունը, ապա փաստաթղթի վիճակը դառնում է 999, որից հետո այդ փաստաթուղթը հայտնվում է ջնջված փաստաթղթերի թղթապանակում։ Ջնջման ժամանակ հեռացվում են նաև այդ փաստաթղթի բոլոր թղթապանակները, ծառի տարրերը և իր համար գրանցված հաշվառումները։
+Ջնջվող փաստաթղթերի համար առաջանում է [Delete](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/Delete.md)  իրադարձությունը, ապա փաստաթղթի վիճակը դառնում է 999, որից հետո այդ փաստաթուղթը հայտնվում է ջնջված փաստաթղթերի թղթապանակում։ Ջնջման ժամանակ հեռացվում են նաև այդ փաստաթղթի բոլոր թղթապանակները, ծառի տարրերը և իր համար գրանցված հաշվառումները։
 
 Եթե փաստաթուղթը ունի ենթափաստաթղթեր, ապա ջնջումը թույլատրելի չի լինի։
 
 Ջնջումը տեղի է ունենում տրանզակցիայի մեջ։
 
-Ֆունկցիան վերադարձնում է  `True`  եթե ջնջումը հաջողվում է,  `False`  չհաջողվելու դեպքում։
-
 **Պարամետրեր**
+
 * `isn` - Ջնջվող փաստաթղթի ներքին նույնականացման համարը:
-* `fullDelete` - Փաստաթղթի վերջնական ջնջման հայտանիշ։ Վերջնական ջնջման ժամանակ փաստաթուղթը ջնջվում է բոլոր միջուկային աղյուսակներից աղյուսակներից՝ [DOCP](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocP.html), [FOLDERS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Folders.html), [TREES](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Trees.html), [HIPAR](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/HiPar.html), [HIREST](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hirest.html), [HIREST2](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hirest2.html), [ACCESS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Access.html), [HI](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hi.html) և [HI2](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hi2.html)։ Ոչ վերջնական ջնջման ժամանակ փաստաթուղթը մնում է [DOCS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Docs.html), [DOCLOG](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocLog.html), [DOCSG](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocsG.html), [DOCSIM](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Docsim.html) աղյուսակների մեջ և վիճակը լինում է 999: Լռությամբ արժեքը `False`։
-* `comment` - Փաստաթղթի ջնջման մեկնաբանություն, որը գրանցվում է փաստաթղթի պատմության մեջ։
-* `callDelete` - Փաստաթղթի [Delete](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/Delete.md) իրադարձությունը կանչելու հայտանիշ։ Լռությամբ արժեքը `True`։
-* `inheritedDelete` - `True` արժեքի դեպքում փաստաթղթի պատմության մեջ գրվում է, որ փաստաթուղթը ջնջվել է այլ փաստաթղթի ջնջման ընթացքում։ Տվյալների պահոցում ջնջման կոդը լինում է `H`։
+* `fullDelete` - Փաստաթղթի վերջնական ջնջման հայտանիշ։ Վերջնական ջնջման ժամանակ փաստաթուղթը ջնջվում է բոլոր միջուկային աղյուսակներից աղյուսակներից՝ [DOCP](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocP.html), [FOLDERS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Folders.html), [TREES](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Trees.html), [HIPAR](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/HiPar.html), [HIREST](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hirest.html), [HIREST2](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hirest2.html), [ACCESS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Access.html), [HI](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hi.html) և [HI2](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hi2.html)։ Ոչ վերջնական ջնջման ժամանակ փաստաթուղթը մնում է [DOCS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Docs.html), [DOCLOG](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocLog.html), [DOCSG](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocsG.html), [DOCSIM](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Docsim.html) աղյուսակների մեջ և վիճակը լինում է 999: Լռությամբ արժեքը `false` է։
+* `comment` - ժՓաստաթղթի պատմության մեջ գրանցվող ջնջման մեկնաբանություն։
+* `callDelete` - Փաստաթղթի [Delete](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/Delete.md) իրադարձությունը կանչելու հայտանիշ։ Լռությամբ արժեքը `true` է։
+* `inheritedDelete` - `true` արժեքի դեպքում փաստաթղթի պատմության մեջ գրվում է, որ փաստաթուղթը ջնջվել է այլ փաստաթղթի ջնջման ընթացքում։ Տվյալների պահոցում ջնջման կոդը լինում է `H`, հակառակ դեպքում `D`։
 
 ### Delete
 
@@ -300,14 +316,13 @@ public Task<DeletedDoc> Delete(Document document,
 
 Ջնջումը տեղի է ունենում տրանզակցիայի մեջ։
 
-Ֆունկցիան վերադարձնում է  `True`  եթե ջնջումը հաջողվում է,  `False`  չհաջողվելու դեպքում։
-
 **Պարամետրեր**
+
 * `document` - Ջնջվող փաստաթուղթը նկարագրող դասը։
-* `fullDelete` - Փաստաթղթի վերջնական ջնջման հայտանիշ։ Վերջնական ջնջման ժամանակ փաստաթուղթը ջնջվում է բոլոր միջուկային աղյուսակներից աղյուսակներից՝ [DOCP](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocP.html), [FOLDERS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Folders.html), [TREES](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Trees.html), [HIPAR](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/HiPar.html), [HIREST](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hirest.html), [HIREST2](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hirest2.html), [ACCESS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Access.html), [HI](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hi.html) և [HI2](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hi2.html)։ Ոչ վերջնական ջնջման ժամանակ փաստաթուղթը մնում է [DOCS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Docs.html), [DOCLOG](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocLog.html), [DOCSG](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocsG.html), [DOCSIM](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Docsim.html) աղյուսակների մեջ և վիճակը լինում է 999: Լռությամբ արժեքը `False`։
-* `comment` - Փաստաթղթի ջնջման մեկնաբանություն, որը գրանցվում է փաստաթղթի պատմության մեջ։
-* `callDelete` - Փաստաթղթի [Delete](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/Delete.md) իրադարձությունը կանչելու հայտանիշ։ Լռությամբ արժեքը `True`։
-* `inheritedDelete` - `True` արժեքի դեպքում փաստաթղթի պատմության մեջ գրվում է, որ փաստաթուղթը ջնջվել է այլ փաստաթղթի ջնջման ընթացքում։ Տվյալների պահոցում ջնջման կոդը լինում է `H`։
+* `fullDelete` - Փաստաթղթի վերջնական ջնջման հայտանիշ։ Վերջնական ջնջման ժամանակ փաստաթուղթը ջնջվում է բոլոր միջուկային աղյուսակներից աղյուսակներից՝ [DOCP](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocP.html), [FOLDERS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Folders.html), [TREES](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Trees.html), [HIPAR](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/HiPar.html), [HIREST](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hirest.html), [HIREST2](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hirest2.html), [ACCESS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Access.html), [HI](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hi.html) և [HI2](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hi2.html)։ Ոչ վերջնական ջնջման ժամանակ փաստաթուղթը մնում է [DOCS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Docs.html), [DOCLOG](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocLog.html), [DOCSG](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocsG.html), [DOCSIM](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Docsim.html) աղյուսակների մեջ և վիճակը լինում է 999: Լռությամբ արժեքը `false` է։
+* `comment` - Փաստաթղթի պատմության մեջ գրանցվող ջնջման մեկնաբանություն։
+* `callDelete` - Փաստաթղթի [Delete](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/Delete.md) իրադարձությունը կանչելու հայտանիշ։ Լռությամբ արժեքը `true` է։
+* `inheritedDelete` - `true` արժեքի դեպքում փաստաթղթի պատմության մեջ գրվում է, որ փաստաթուղթը ջնջվել է այլ փաստաթղթի ջնջման ընթացքում։ Տվյալների պահոցում ջնջման կոդը լինում է `H`, հակառակ դեպքում `D`։
 
 ### DeleteAll
 
@@ -322,14 +337,13 @@ public Task DeleteAll(List<int> isnList, bool fullDelete, string comment, bool c
 
 Ջնջումը տեղի է ունենում տրանզակցիայի մեջ։
 
-Ֆունկցիան վերադարձնում է  `True`  եթե ջնջումը հաջողվում է,  `False`  չհաջողվելու դեպքում։
-
 **Պարամետրեր**
+
 * `document` - Ջնջվող փաստաթղթերի ներքին նույնականացման համարների ցուցակ։
-* `fullDelete` - Փաստաթղթի վերջնական ջնջման հայտանիշ։ Վերջնական ջնջման ժամանակ փաստաթուղթը ջնջվում է բոլոր միջուկային աղյուսակներից աղյուսակներից՝ [DOCP](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocP.html), [FOLDERS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Folders.html), [TREES](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Trees.html), [HIPAR](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/HiPar.html), [HIREST](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hirest.html), [HIREST2](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hirest2.html), [ACCESS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Access.html), [HI](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hi.html) և [HI2](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hi2.html)։ Ոչ վերջնական ջնջման ժամանակ փաստաթուղթը մնում է [DOCS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Docs.html), [DOCLOG](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocLog.html), [DOCSG](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocsG.html), [DOCSIM](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Docsim.html) աղյուսակների մեջ և վիճակը լինում է 999: Լռությամբ արժեքը `False`։
-* `comment` - Փաստաթղթերի պատմության մեջ գրանցվող ջնջման մեկնաբանություն
-* `callDelete` - Փաստաթղթերի [Delete](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/Delete.md) իրադարձությունը կանչելու հայտանիշ։ Լռությամբ արժեքը `True`։
-* `inheritedDelete` - `True` արժեքի դեպքում փաստաթղթերի պատմության մեջ գրվում է, որ փաստաթղթերը ջնջվել են այլ փաստաթղթի ջնջման ընթացքում։ Տվյալների պահոցում ջնջման կոդը լինում է `H`։
+* `fullDelete` - Փաստաթղթերի վերջնական ջնջման հայտանիշ։ Վերջնական ջնջման ժամանակ փաստաթղթերը ջնջվում է բոլոր միջուկային աղյուսակներից աղյուսակներից՝ [DOCP](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocP.html), [FOLDERS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Folders.html), [TREES](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Trees.html), [HIPAR](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/HiPar.html), [HIREST](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hirest.html), [HIREST2](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hirest2.html), [ACCESS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Access.html), [HI](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hi.html) և [HI2](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hi2.html)։ Ոչ վերջնական ջնջման ժամանակ փաստաթղթերը մնում են [DOCS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Docs.html), [DOCLOG](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocLog.html), [DOCSG](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocsG.html), [DOCSIM](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Docsim.html) աղյուսակներում և վիճակը լինում է 999: Լռությամբ արժեքը `false`։
+* `comment` - Փաստաթղթերի պատմության մեջ գրանցվող ջնջման մեկնաբանություն:
+* `callDelete` - Փաստաթղթերի [Delete](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/Delete.md) իրադարձությունը կանչելու հայտանիշ։ Լռությամբ արժեքը `true`։
+* `inheritedDelete` - `true` արժեքի դեպքում փաստաթղթերի պատմության մեջ գրվում է, որ փաստաթղթերը ջնջվել են այլ փաստաթղթի ջնջման ընթացքում։ Տվյալների պահոցում ջնջման կոդը լինում է `H`, հակառակ դեպքում `D`։
 
 ### DeserializeRequestBody
 
@@ -346,6 +360,7 @@ public Task<bool> ExistInDb(int isn);
 Ստուգում է փաստաթղթի առկայությունը տվյալների պահոցում։
 
 **Պարամետրեր**
+
 * `isn` - Փաստաթղթի ներքին նույնականացման համար:
 
 ### FieldToAnsi
@@ -357,6 +372,7 @@ public  Task<object> FieldToAnsi(string docType, string name, object value);
 Վերադարձնում է փաստաթղթի դաշտի արժեքը՝ ձևափոխված  համապատասխան լեզվի ANSI կոդավորման։
 
 **Պարամետրեր**
+
 * `docType` - Փաստաթղթի տեսակ:
 * `name` - Դաշտի ներքին անուն։
 * `value` - Դաշտի արժեք։
@@ -370,6 +386,7 @@ public Task<Dictionary<string, object>> FieldsToAnsi(string docType, Dictionary<
 Վերադարձնում է փաստաթղթի դաշտերի արժեքները՝ ձևափոխված  համապատասխան լեզվի ANSI կոդավորման։
 
 **Պարամետրեր**
+
 * `docType` - Փաստաթղթի տեսակ:
 * `fields` - Դաշտի ներքին անունների և արժեքների ցանկ։
 
@@ -382,15 +399,16 @@ public Task<(string caption, string englishCaption)> GetCaption(string docType);
 Վերադարձնում է փաստաթղթի հայերեն և անգլերեն անվանումները։
 
 **Պարամետրեր**
+
 * `docType` - Փաստաթղթի տեսակ։
 
 ### GetDocsInfo
 
-Վերադարձնում է փաստաթղթի արխիվը պարունակող տվյալների բազայի անունը և SqlConnection դեպի այդ բազան։
-
 ```c#
 public ArchiveInfo GetDocsInfo();
 ```
+
+Վերադարձնում է փաստաթղթի արխիվը պարունակող տվյալների բազայի անունը և SqlConnection դեպի այդ բազան։
 
 ### GetDocumentChildren
 
@@ -401,6 +419,7 @@ public Task<List<(int isn, string docType)>> GetDocumentChildren(int isn, string
 Վերադարձնում է նշված փաստաթղթի զավակ փաստաթղերի isn-ների ու տեսակների ցուցակը:
 
 **Պարամետրեր**
+
 * `isn` - Ծնող փաստաթղթի ներքին նույնականացման համարը:
 * `docType` - Սահմանում է ներառվող կամ չներառվող զավակ փաստաթղթերի տիպերը։ Եթե պարամետրը առկա չի, ապա վերադարձվում են բոլոր տիպի փաստաթղթերի ISN-ները։  
 Ներառվող տիպերի ցուցակը թվարկվում են `+` նշանով սկսելով՝ փաստաթղթի տեսակների անվանումները իրարից առանձնացնելով բացատներով։ Օրինակ՝ `"+KasPr MemOrd SetPr"`։  
@@ -423,6 +442,7 @@ public Task<List<(int isn, string docType)>> GetDocumentParents(int isn, string 
 Վերադարձնում է նշված փաստաթղթի ծնող փաստաթղերի isn-ների ու տեսակների ցուցակը:
 
 **Պարամետրեր**
+
 * `isn` - Զավակ փաստաթղթի ներքին նույնականացման համարը:
 * `docType` - Սահմանում է ներառվող կամ չներառվող ծնող փաստաթղթերի տիպերը։ Եթե պարամետրը առկա չի, ապա վերադարձվում են բոլոր տիպի փաստաթղթերի ISN-ները։  
 Ներառվող տիպերի ցուցակը թվարկվում են `+` նշանով սկսելով՝ փաստաթղթի տեսակների անվանումները իրարից առանձնացնելով բացատներով։ Օրինակ՝ `"+KasPr MemOrd SetPr"`։  
@@ -446,6 +466,7 @@ public Task<int> GetDocumentState(int isn);
 Եթե փաստաթուղթը առկա չի, կամ ոչ վերջնական ջնջված է, ապա ֆունկցիան վերադարձնում է -1 արժեք։
 
 **Պարամետրեր**
+
 * `isn` - Փաստաթղթի ներքին նույնականացման համար։
 
 ### GetDocumentStatus
@@ -457,6 +478,7 @@ public Task<byte> GetDocumentStatus(string folderID, int isn);
 Վերադարձնում է թղթապանակի տարրի վիճակը։
 
 **Պարամետրեր**
+
 * `folderID` - Թղթապանակի ներքին անուն:
 * `isn` - Փաստաթղթի ներքին նույնականացման համար։
 
@@ -469,6 +491,7 @@ public Task<string> GetDocumentType(int isn);
 Վերադարձնում է նշված ներքին նույնականացման համարով փաստաթղթի տեսակը։
 
 **Պարամետրեր**
+
 * `isn` - Փաստաթղթի ներքին նույնականացման համար։
 
 ### GetDocumentTypeFromFolder
@@ -480,6 +503,7 @@ public Task<string> GetDocumentTypeFromFolder(string folder, string key);
 Վերադարձնում է փաստաթղթի տեսակը:
 
 **Պարամետրեր**
+
 * `folder` - Թղթապանակի ներքին անուն։
 * `key` - Թղթապանակի տարրի բանալի։
 
@@ -493,6 +517,7 @@ public Task<List<int>> GetGrandChildren(int isn, string docType1 = "", string do
 Վերադարձվող ցուցակը կարելի է ֆիլտրել ըստ փաստաթղթի տիպերի։
 
 **Պարամետրեր**
+
 * `isn` - Ծնող փաստաթղթի ներքին նույնականացման համար:
 * `docType1` - Սահմանում է ներառվող կամ չներառվող զավակ փաստաթղթերի տիպերը։ Եթե պարամետրը առկա չի, ապա դիտարկվում են բոլոր տիպի զավակ փաստաթղթերի զավակները։  
 Ներառվող տիպերի ցուցակը թվարկվում են `+` նշանով սկսելով։ Օրինակ՝ `"+KasPr MemOrd SetPr"`։  
@@ -517,6 +542,7 @@ public Task<int> GetParentIsn(int isn);
 Վերադարձնում է նշված ներքին նույնականացման համարով փաստաթղթի առաջին ծնող փաստաթղթի ներքին նույնականացման համարը։ Եթե ծնող փաստաթղթը չկա, ապա վերադառնում է -1։
 
 **Պարամետրեր**
+
 * `isn` - Փաստաթղթի ներքին նույնականացման համար:
 
 ### GetPassedState
@@ -528,6 +554,7 @@ public short GetPassedState(int isn, List<short> states, bool lastState = true, 
 Ստուգում է և վերադարձնում է փաստաթղթի վերջին կամ առաջին նշանակված վիճակը տրված վիճակների ցուցակից։
 
 **Պարամետրեր**
+
 * `isn` - Փաստաթղթի ներքին նույնականացման համար։
 * `states` - Փաստաթղթի վիճակների ցուցակ։
 * `lastState` - `True` արժեքի դեպքում վերադառնում է վերջին վիճակը, հակառակ դեպքում՝ առաջինը։
@@ -542,6 +569,7 @@ public short GetPassedState(int isn, string statesSubQuery, bool lastState = tru
 Ստուգում է և վերադարձնում է փաստաթղթի վերջին կամ առաջին նշանակված վիճակը տրված վիճակների ցուցակից։
 
 **Պարամետրեր**
+
 * `isn` - Փաստաթղթի ներքին նույնականացման համար։
 * `statesSubQuery` - Փաստաթղթի վիճակները սահմանող sql հարցում:
 * `lastState` - `True` արժեքի դեպքում վերադառնում է վերջին վիճակը, հակառակ դեպքում՝ առաջինը։
@@ -556,6 +584,7 @@ public short GetPassedState(int isn, short state, bool lastState = true, bool in
 Ստուգում է տրված վիճակը հանդիանում է փաստաթղթի վերջին կամ առաջին նշանակված վիճակը թե ոչ։
 
 **Պարամետրեր**
+
 * `isn` - Փաստաթղթի ներքին նույնականացման համար։
 * `state` - Փաստաթղթի վիճակ։
 * `lastState` - `True` արժեքի դեպքում վերադառնում է վերջին վիճակը, հակառակ դեպքում՝ առաջինը։
@@ -571,6 +600,7 @@ public short GetPassedState(int isn, short state, bool lastState = true, bool in
 Վերադարձնում է փաստաթղթի վերջին կամ առաջին նշանակված վիճակը։
 
 **Պարամետրեր**
+
 * `isn` - Փաստաթղթի ներքին նույնականացման համար։
 * `lastState` - `True` արժեքի դեպքում վերադառնում է վերջին վիճակը, հակառակ դեպքում՝ առաջինը։
 
@@ -583,6 +613,7 @@ public Task<int> GetParentIsn(int isn, string docType);
 Վերադարձնում է առաջին 2 ծնող փաստաթղթերի ներքին նույնականացման համարները։Ծնող փաստաթղթերի բացակայության դեպքում վերադառնում է -1։
 
 **Պարամետրեր**
+
 * `isn` - Փաստաթղթի ներքին նույնականացման համար:
 * `docType` - Սահմանում է ներառվող կամ չներառվող փաստաթղթերի տիպերը։   
 Ներառվող տիպերի ցուցակը թվարկվում են `+` նշանով սկսելով՝ փաստաթղթի տեսակների անվանումները իրարից առանձնացնելով բացատներով։ Օրինակ՝ `"+KasPr MemOrd SetPr"`։  
@@ -598,6 +629,7 @@ public  Task<DocumentProcessingModes> GetProcessingModes(string docType);
 Վերադարձնում է փաստաթղթի կատարման ռեժիմները ըստ փաստաթղթի տեսակի։
  
 **Պարամետրեր**
+
 * `docType` - Փաստաթղթի տեսակ:
 
 ### GetSUIDAndDate
@@ -606,12 +638,13 @@ public  Task<DocumentProcessingModes> GetProcessingModes(string docType);
 public Task<(bool exists, short suid, string dateTime)> GetSUIDAndDate(int isn, int state, bool sort = true);
 ```
 
-Ստուգում է  նշված վիճակին համապատասխան տողի առկայությունը փաստաթղթի պատմության մեջ ([DOCLOG](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocLog.html) աղյուսակում)։
+Ստուգում է նշված վիճակին համապատասխան տողի առկայությունը փաստաթղթի պատմության մեջ ([DOCLOG](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocLog.html) աղյուսակում)։
 
 **Պարամետրեր**
+
 * `isn` - Փաստաթղթի ներքին նույնականացման համար:
 * `state` - Փնտրվող վիճակ։
-* `sort` - Փաստաթուղթը նշված վիճակին բերած առաջին (`True`) կամ վերջին (`False`) անգամ վիճակը հասնելը։ Լռությամբ արժեքը true է։
+* `sort` - Փաստաթուղթը նշված վիճակին բերած առաջին (`true`) կամ վերջին (`false`) անգամ վիճակը հասնելը։ Լռությամբ արժեքը true է։
 
 ### HiDelete
 
@@ -623,6 +656,7 @@ public Task<(bool had01AccRow, bool hadHIRow)> HiDelete(Document doc, bool delet
 Եթե մեթոդը կանչում են  [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html)  իրադարձության մշակիչից, ապա սահմանաչափերի ստուգումները կկատարվեն Action-ի ավարտից հետո։ Իսկ եթե այլ տեղից է կանչած, ապա ստուգումները կկատարվեն անմիջապես։
 
 **Պարամետրեր**
+
 * `doc` - Փաստաթուղթը նկարագրող դասը։
 * `deleteDoc` - ???
 
@@ -635,6 +669,7 @@ public Task HiParDelete(Document doc);
 [HIPAR](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/HiPar.html) աղյուսակից ջնջում է այս փաստաթղթի նախկինում գրանցած պարամետրերի արժեքները։
 
 **Պարամետրեր**
+
 * `doc` - Փաստաթուղթը նկարագրող դասը։
 
 ### IsArchived
@@ -646,6 +681,7 @@ public Task<bool> IsArchived(int isn);
 Ստուգում է փաստաթղթի արխիվացված լինելը։
 
 **Պարամետրեր**
+
 * `isn` - Փաստաթղթի ներքին նույնականացման համար:
 
 ### Load
@@ -660,6 +696,7 @@ public Task<Document> Load(int isn, GridLoadMode gridLoadMode = GridLoadMode.Ful
 Բեռնում է տվյալների պահոցում գոյություն ունեցող փաստաթուղթը ըստ ներքին նույնականացման համարի։
 
 **Պարամետրեր**
+
 * `isn` - Բեռնվող փաստաթղթի ներքին նույնականացման համարը։
 * `gridLoadMode` - Գրիդերի բեռնման ռեժիմը։
 * `loadImagesAndMemos` - Նկարների ու մեծ մուտքագրման դաշտերի բեռնման հայտանիշ։ Լռությամբ արժեքը  true է։
@@ -679,6 +716,7 @@ public Task<T> Load<T>(int isn, GridLoadMode gridLoadMode = GridLoadMode.Full, b
 Բեռնում է տվյալների պահոցում գոյություն ունեցող փաստաթուղթը ըստ ներքին նույնականացման համարի։
 
 **Պարամետրեր**
+
 * `isn` - Բեռնվող փաստաթղթի ներքին նույնականացման համարը։
 * `gridLoadMode` - Գրիդերի բեռնման ռեժիմը։
 * `loadImagesAndMemos` - Նկարների ու մեծ մուտքագրման դաշտերի բեռնման հայտանիշ։ Լռությամբ արժեքը  true է։
@@ -697,6 +735,7 @@ public Task<Document> LoadFromFolder(string folder, string key, GridLoadMode gri
 Բեռնում է փաստաթուղթը ըստ թղթապանակի և բանալու։
 
 **Պարամետրեր**
+
 * `folder` - Թղթապանակի ներքին անուն։
 * `key` - Թղթապանակի տարրի բանալի։
 * `gridLoadMode` - Գրիդերի բեռնման ռեժիմը։
@@ -714,6 +753,7 @@ public Task<T> LoadFromFolder<T>(string folder, string key, GridLoadMode gridLoa
 Բեռնում է փաստաթուղթը ըստ թղթապանակի և բանալու։
 
 **Պարամետրեր**
+
 * `folder` - Թղթապանակի ներքին անուն։
 * `key` - Թղթապանակի տարրի բանալի։
 * `gridLoadMode` - Գրիդերի բեռնման ռեժիմը։
@@ -732,6 +772,7 @@ public Task MakeParentLink(Document document, int parentIsn, bool create = true)
 Եթե փաստաթուղթը տվյալների պահոցում դեռ գրանցված չէ, ապա այս Ֆունկցիայի կանչից հետո ծնող-զավակ կապերը անմիջապես չեն գրանցվում տվյալների պահոցում, դրանց գրանցումը կատարվում է  [Action](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/Action.md)  իրադարձության մշակիչի ավարտից հետո։
 
 **Պարամետրեր**
+
 * `document` - Փաստաթուղթը նկարագրող դասը։
 * `parentIsn` - Ծնող փաստաթղթի ներքին նույնականացման համար։
 * `create` - `True` արժեքի դեպքում ստեղծվող կապը լինում է միակը և նախորդ եղած կապերը հեռացվում են։ `False` արժեքի դեպքում ծնողների ցուցակում ավելանում է ևս մեկը։
@@ -745,6 +786,7 @@ public Task ReFolder(Document document, StoreMode mode);
 Իրականացնում է փաստաթղթի վերաինդեկսավորումը թղթապանակներում:
 
 **Պարամետրեր**
+
 * `document` - Փաստաթուղթը նկարագրող դասը։
 * `mode` - Փաստաթղթի պահպանման ռեժիմը։
 
@@ -757,6 +799,7 @@ public Task Store(Document document, DocumentCheckLevel checkLevel = DocumentChe
 Անցկացնում է պարտադիր ստուգումներ և գրանցում փաստաթուղթը տվյալների պահոցում։
 
 **Պարամետրեր**
+
 * `document` - Փաստաթուղթը նկարագրող դասը։
 * `checkLevel` - [Փաստաթղթի ստուգման մակարդակը](DocumentCheckLevel.md)։
 * `logComment` - Փաստաթղթի պատմության մեջ գրանցվող հաղորդագրություն։
@@ -770,6 +813,7 @@ public Task StoreFact(Document document, Fact fact);
 Գրանցում է փաստաթղթի հաշվառումը։
 
 **Պարամետրեր**
+
 * `document` - Փաստաթուղթը նկարագրող դասը։
 * `fact` - Գրանցման ենթակա հաշվառումը նկարագրող դասը։
 
@@ -782,6 +826,7 @@ public void StoreInFolder(Document document, FolderElement folderElement);
 Գրանցում է թղթապանակի տարրը։
 
 **Պարամետրեր**
+
 * `document` - Փաստաթուղթը նկարագրող դասը։
 * `folderElement` - Թղթապանակի տարրը նկարագրող դասը։
 
@@ -794,5 +839,6 @@ public void StoreInTree(Document document, TreeElement treeElement);
 Գրանցում է ծառի տարրը։
 
 **Պարամետրեր**
+
 * `document` - Փաստաթուղթը նկարագրող դասը։
 * `folderElement` - Ծառի տարրը նկարագրող դասը։
