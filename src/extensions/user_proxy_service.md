@@ -286,12 +286,22 @@ public Task<int> GetClientISNByAcc(string acc)
 
 * `acc`- Պարտադիր։ Հաճախորդի հաշիվեհամարներից որևէ մեկը։
 
+## GetClientFullName
+
+```c#
+public Task<string> GetClientFullName(string firstName, string lastName, string ptronymic, bool arm)
+```
+Վերադարձնում է հաճախորդի ամբողջական անվանումը (անուն, ազգանուն, հայրանուն) համապատասխան համակարգում սահմանված հաջարդականության։
+
+**Պարամետրեր**
+
+* `firstName`- Պարտադիր։ Հաճախորդի անուն։
+* `lastName`- Պարտադիր։ Հաճախորդի ազգանուն։
+* `ptronymic`- Պարտադիր։ Հաճախորդի հայրանուն։
+* `arm`- Պարտադիր։ վերադարձնել հայերեն անվանումը։ false արժեքի դեպքում կվերադարձվի անգլերեն անվանումը։ 
 
 
 
-
-GetClientISNByAcc
-GetClientFullName
 GetClientAMDAcc
 GetClientRezJurVolortByAccount
 GetCliContractNamesByISN
