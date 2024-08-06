@@ -16,16 +16,14 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [LoadClientDocRObyISN](#LoadClientDocRObyISN)
 * [LoadClientDocROByCode](#LoadClientDocROByCode)
 * [GetClientISN](#GetClientISN)
+* [GetClientISNByAcc](#GetClientISNByAcc)
 
 
 
   
 
 
-LoadClientDocRObyISN
-LoadClientDocRO
-GetClientISN
-GetClientISNByAcc
+
 GetClientFullName
 GetClientAMDAcc
 GetClientRezJurVolortByAccount
@@ -277,6 +275,16 @@ public Task<int> GetClientISN(string cliCode)
 
 * `cliCode`- Պարտադիր։ Հաճախորդի կոդը։
 
+## GetClientISNByAcc
+
+```c#
+public Task<int> GetClientISNByAcc(string acc)
+```
+Վերադարձնում է հաճախորդի ISN -ը ըստ հաճախորդի հաշվեհամարի։
+
+**Պարամետրեր**
+
+* `acc`- Պարտադիր։ Հաճախորդի հաշիվեհամարներից որևէ մեկը։
 
 
 
