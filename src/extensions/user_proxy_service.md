@@ -6,8 +6,8 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 # UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատուկ սերվիս
 
 Բովանդակություն
-LoadDoc
-LoadDocFromFolder
+* [LoadDoc](#LoadDoc)
+* [LoadDocFromFolder](#LoadDocFromFolder)
 LoadContractDoc
 LoadClientDoc
 LoadClientDesc
