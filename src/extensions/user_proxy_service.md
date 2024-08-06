@@ -17,6 +17,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [LoadClientDocROByCode](#LoadClientDocROByCode)
 * [GetClientISN](#GetClientISN)
 * [GetClientISNByAcc](#GetClientISNByAcc)
+* [GetClientFullName](#GetClientFullName)
 
 
 
@@ -291,14 +292,14 @@ public Task<int> GetClientISNByAcc(string acc)
 ```c#
 public Task<string> GetClientFullName(string firstName, string lastName, string ptronymic, bool arm)
 ```
-Վերադարձնում է հաճախորդի ամբողջական անվանումը (անուն, ազգանուն, հայրանուն) համապատասխան համակարգում սահմանված հաջարդականության։
+Վերադարձնում է հաճախորդի անուն, ազգանուն, հայրանունը համակարգում սահմանված հերթականությամբ (հերթականությունը սահմանվում է ՝ CLINAMEORDER, CLINAMEORDERENG պարամետրերով) ։
 
 **Պարամետրեր**
 
 * `firstName`- Պարտադիր։ Հաճախորդի անուն։
 * `lastName`- Պարտադիր։ Հաճախորդի ազգանուն։
 * `ptronymic`- Պարտադիր։ Հաճախորդի հայրանուն։
-* `arm`- Պարտադիր։ վերադարձնել հայերեն անվանումը։ false արժեքի դեպքում կվերադարձվի անգլերեն անվանումը։ 
+* `arm`- Պարտադիր։ վերադարձնել հայերեն անվանումը։ **false** արժեքի դեպքում կվերադարձվի անգլերեն անվանումը։ 
 
 
 
