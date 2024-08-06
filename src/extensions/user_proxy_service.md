@@ -6,9 +6,10 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 # UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատուկ սերվիս
 
 ## Բովանդակություն
-* [LoadDoc](#LoadDoc)
-* [LoadDocFromFolder](#LoadDocFromFolder)
-LoadContractDoc
+[LoadDoc](#LoadDoc)
+[LoadDocFromFolder](#LoadDocFromFolder)
+[LoadContractDoc](#LoadContractDoc)
+
 LoadClientDoc
 LoadClientDesc
 LoadClientDescByCode
@@ -175,6 +176,19 @@ public Task<Document> LoadDocFromFolder(string folder, string key,
 * `loadParents` -  Ոչ պարտադիր։ Բեռնել նաև փաստաթղթի ծնող-փաստաթղթերը։ Լռությամբ՝ **false**։
 * `loadImagesAndMemos` -Ոչ պարտադիր։ Բեռնել նաև փաստաթղթի մեմոները և նկարները։ Լռությամբ՝ **false**: 
 
+### LoadContractDoc
+
+```c#
+public Task<Document> LoadContractDoc(string agrType, string agrCode, string agrLevelCheck = "")
+```
+Վերադարձնում է պայմանագիրը ըստ պայմանագրի համարի:
+
+
+**Պարամետրեր**
+
+* `agrType`- Պարտադիր։ Ենթահամակարգի տեսակ` C,D,M,N,B,Q։
+* `agrCode`- Պարտադիր։ Պայմանագրի համար։
+* `agrLevelCheck`- Ոչ պարտադիր։ Հնարավոր արժեքներն են ՝"AGRPARENTS","AGREEMENTS","AGRCHILDREN"։ Լռությամբ՝ ""։
 
 
 
@@ -188,8 +202,6 @@ public Task<Document> LoadDocFromFolder(string folder, string key,
 
 
 
-
-LoadContractDoc
 LoadClientDoc
 LoadClientDesc
 LoadClientDescByCode
