@@ -12,7 +12,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [LoadContractDoc](#LoadContractDoc)
 * [LoadClientDoc](#LoadClientDoc)
 
-LoadClientDoc
 LoadClientDesc
 LoadClientDescByCode
 LoadClientDocRObyISN
@@ -201,22 +200,15 @@ public Task<Document> LoadContractDoc(string agrType, string agrCode, string agr
 ## LoadClientDoc
 
 ```c#
-public Task<Document> LoadDocFromFolder(string folder, string key,
-                                          GridLoadMode gridLoadMode = GridLoadMode.Full,
-                                          bool loadParents = false,
-                                          bool loadImagesAndMemos = false)
+public Task<Client> LoadClientDoc(string clientCode)
 ```
 
-Բեռնում է փաստաթուղթը սահմանված ֆոլդերից: Չհաջողվելու դեպքում վերադարձնում է **null**։ Արխիվացված փաստաթղթերը չեն դիտարկվում։
-
-
-
-<br>
+Վերադարձնում է հաճախորդի փաստաթուղթը։
 
 
 **Պարամետրեր**
 
-* `folder`- Պարտադիր։ Ֆոլդեռի ID -ն։ 
+* `clientCode`- Պարտադիր։ Հաճախորդի կոդը։ 
 
 
 
