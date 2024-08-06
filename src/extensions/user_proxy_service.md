@@ -6,6 +6,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 # UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատուկ սերվիս
 
 ## Բովանդակություն
+* [Ներածություն](#ներածություն)
 * [LoadDoc](#LoadDoc)
 * [LoadDocFromFolder](#LoadDocFromFolder)
 * [LoadContractDoc](#LoadContractDoc)
@@ -116,7 +117,7 @@ MaxOverdueDaysCount
 
 
 
-## ներածություն
+## Ներածություն
 
 UserProxyService պարունակում է մեթոդներ, որոնք հնարավորություն տալիս կատարել ստորև թվարկված գործողություններ։ 
 
