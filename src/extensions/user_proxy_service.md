@@ -150,9 +150,39 @@ public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.
 * `loadImagesAndMemos` - Ոչ պարտադիր։ Բեռնել նաև փաստաթղթի մեմոները և նկարները։ Լռությամբ՝ **false**:
 
 
+###LoadDocFromFolder
+
+```c#
+public Task<Document> LoadDocFromFolder(string folder, string key,
+                                          GridLoadMode gridLoadMode = GridLoadMode.Full,
+                                          bool loadParents = false,
+                                          bool loadImagesAndMemos = false)
+```
+
+Բեռնում է փաստաթուղթը սահմանված ֆոլդերից: Չհաջողվելու դեպքում վերադարձնում է null։ Արխիվացված փաստաթղթերը չեն դիտարկվում։
+
+**Պարամետրեր**
+
+* `folder`- Պարտադիր։ Ֆոլդեռի ID -ն։ 
+* `key` - Պարտադիր։  ֆոլդեռում փաստաթղթի նույնացուցիչը։
+* `gridLoadMode` -
+* `loadParents` -
+* `loadImagesAndMemos`
 
 
-LoadDocFromFolder
+
+
+
+
+
+
+
+
+
+
+
+
+
 LoadContractDoc
 LoadClientDoc
 LoadClientDesc
