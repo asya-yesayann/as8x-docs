@@ -10,6 +10,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [LoadDoc](#LoadDoc)
 * [LoadDocFromFolder](#LoadDocFromFolder)
 * [LoadContractDoc](#LoadContractDoc)
+* [LoadClientDoc](#LoadClientDoc)
 
 LoadClientDoc
 LoadClientDesc
@@ -192,18 +193,34 @@ public Task<Document> LoadContractDoc(string agrType, string agrCode, string agr
 * `agrLevelCheck`- Ոչ պարտադիր։ Հնարավոր արժեքներն են ՝"AGRPARENTS","AGREEMENTS","AGRCHILDREN"։ Լռությամբ՝ ""։
 
 
+> [!TIP]
+> ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
+<br>
+
+
+## LoadClientDoc
+
+```c#
+public Task<Document> LoadDocFromFolder(string folder, string key,
+                                          GridLoadMode gridLoadMode = GridLoadMode.Full,
+                                          bool loadParents = false,
+                                          bool loadImagesAndMemos = false)
+```
+
+Բեռնում է փաստաթուղթը սահմանված ֆոլդերից: Չհաջողվելու դեպքում վերադարձնում է **null**։ Արխիվացված փաստաթղթերը չեն դիտարկվում։
+
+
+
+<br>
+
+
+**Պարամետրեր**
+
+* `folder`- Պարտադիր։ Ֆոլդեռի ID -ն։ 
 
 
 
 
-
-
-
-
-
-
-
-LoadClientDoc
 LoadClientDesc
 LoadClientDescByCode
 LoadClientDocRObyISN
