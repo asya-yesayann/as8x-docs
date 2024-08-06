@@ -13,6 +13,8 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [LoadClientDoc](#LoadClientDoc)
 * [LoadClientDescByISN](#LoadClientDescByISN)
 * [LoadClientDescByCode](#LoadClientDescByCode)
+* [LoadClientDocRObyISN](#LoadClientDocRObyISN)
+* [LoadClientDocROByCode](#LoadClientDocROByCode)
 
   
 
@@ -218,7 +220,7 @@ public Task<Client> LoadClientDoc(string clientCode)
 public Task<ClientDesc> LoadClientDescByISN(int isn)
 ```
 
-Վերադարձնում է հաճախորդ տեսակի փաստաթղթի հիմնական դաշտերը։
+Վերադարձնում է հաճախորդ տեսակի փաստաթղթի հիմնական դաշտերը։ Այս մեթոդի կատարման ժամանակը ավելի փոքր է համեմատած LoadClientDoc - ի։
 
 **Պարամետրեր**
 
@@ -230,18 +232,40 @@ public Task<ClientDesc> LoadClientDescByISN(int isn)
 public Task<ClientDesc> LoadClientDescByCode(string code)
 ```
 
-Վերադարձնում է հաճախորդ տեսակի փաստաթղթի հիմնական դաշտերը։
+Վերադարձնում է հաճախորդ տեսակի փաստաթղթի հիմնական դաշտերը։ Այս մեթոդի կատարման ժամանակը ավելի փոքր է համեմատած LoadClientDoc - ի։
 
 **Պարամետրեր**
 
 * `code`- Պարտադիր։ Հաճախորդի կոդը։
 
+## LoadClientDocRObyISN
+ 
+```c#
+public Task<ClientRO> LoadClientDocRObyISN(int isn)
+
+```
+Վերադարձնում է հաճախորդ տեսակի փաստաթղթը, որտեղ դաշտերը գրահաս չեն։ 
+
+**Պարամետրեր**
+
+* `isn`- Պարտադիր։ Հաճախորդ փաստաթղթի ISN-ը։
+
+## LoadClientDocROByCode
+ 
+```c#
+public Task<ClientRO> LoadClientDocROByCode(string cliCode)
+
+```
 
 
 
 
 
-LoadClientDocRObyISN
+
+
+
+
+
 LoadClientDocRO
 GetClientISN
 GetClientISNByAcc
