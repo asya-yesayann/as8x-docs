@@ -169,7 +169,7 @@ public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.
 **Պարամետրեր**
 
 * `isn` - Պարտադիր։ Փաստաթղթի ISN։
-* `gridLoadMode` -  Ոչ պարտադիր։ Բեռնել նաև փաստաթղթի գրիդերը թե ոչ, հնարավոր արժեքներն են 	**GridLoadMode.Full** կամ **GridLoadMode.None**։ Լռությամբ՝ **GridLoadMode.Full**։
+* `gridLoadMode` -  Ոչ պարտադիր։ Բեռնել նաև փաստաթղթում առկա աղյուսակները, հնարավոր արժեքներն են 	**GridLoadMode.Full** կամ **GridLoadMode.None**։ Լռությամբ՝ **GridLoadMode.Full** (բեռնել)։
 * `loadParents` - Ոչ պարտադիր։ Բեռնել նաև փաստաթղթի ծնող-փաստաթղթերը։ Լռությամբ՝ **false**։
 * `throwExceptionIfDeleted` - Ոչ պարտադիր: Փաստաթղթի հեռացված լինելու դեպքում արտացոլել սխալի վերաբերյալ հաղորդագրություն։ **false** արժեքի դեպքում կբեռնվի հեռացված փաստաթուղթը 999 վիճակով։ Լռությամբ՝ **true**:
 * `lookInArc` - Ոչ պարտադիր։ Փնտրել փաստաթուղթը նաև արխիվացվածների մեջ։ Լռությամբ՝ **false**:
@@ -189,15 +189,14 @@ public Task<Document> LoadDocFromFolder(string folder, string key,
 Վերադարձնում է փաստաթուղթը սահմանված ֆոլդերից: Չհաջողվելու դեպքում վերադարձնում է **null**։ Արխիվացված փաստաթղթերը չեն դիտարկվում։
 
 > [!TIP]
-> Համակարգում առկա ֆոլդեռները ինչպես նաև այնտեղ գրանցված փաստաթղթերը հնարավոր է տեսնել հիմնական բազայի **FOLDERS** աղյուսակում։ Աղյուսակի հիմնական սյունենրն են՝ fFOLDERID - ֆոլդեռի ներքին անվանումը, fKEY - փաստաթղթի նույնացուցիչը, fISN - փաստաթղթի ISN-ը։ 
-
+> Համակարգում առկա ֆոլդեռները ինչպես նաև այնտեղ գրանցված փաստաթղթերը հնարավոր է տեսնել հիմնական բազայի **FOLDERS** աղյուսակում։ Աղյուսակի հիմնական սյունենրն են՝ fFOLDERID - ֆոլդեռի ներքին անվանումը, fKEY - փաստաթղթի բանալին ֆոլդեռում, fISN - փաստաթղթի ISN-ը։ 
 <br>
 
 **Պարամետրեր**
 
 * `folder`- Պարտադիր։ Ֆոլդեռի ID -ն։ 
-* `key` - Պարտադիր։  ֆոլդեռում փաստաթղթի նույնացուցիչը։
-* `gridLoadMode` -  Ոչ պարտադիր։ Բեռնել նաև փաստաթղթի գրիդերը թե ոչ, հնարավոր արժեքներն են 	**GridLoadMode.Full** կամ **GridLoadMode.None**։ Լռությամբ՝ **GridLoadMode.Full**։
+* `key` - Պարտադիր։  ֆոլդեռում փաստաթղթի բանալին։
+* `gridLoadMode` -  Ոչ պարտադիր։ Բեռնել նաև փաստաթղթի աղյուսակները, հնարավոր արժեքներն են	**GridLoadMode.Full** կամ **GridLoadMode.None**։ Լռությամբ՝ **GridLoadMode.Full** (բեռնել)։
 * `loadParents` -  Ոչ պարտադիր։ Բեռնել նաև փաստաթղթի ծնող-փաստաթղթերը։ Լռությամբ՝ **false**։
 * `loadImagesAndMemos` -Ոչ պարտադիր։ Բեռնել նաև փաստաթղթի մեմոները և նկարները։ Լռությամբ՝ **false**: 
 
@@ -209,7 +208,8 @@ public Task<Document> LoadDocFromFolder(string folder, string key,
 ```c#
 public Task<Document> LoadContractDoc(string agrType, string agrCode, string agrLevelCheck = "")
 ```
-Վերադարձնում է պայմանագիրը ըստ պայմանագրի համարի:
+
+Վերադարձնում է պայմանագրի օբյեկտը ըստ պայմանագրի համարի:
 
 **Պարամետրեր**
 
@@ -229,7 +229,7 @@ public Task<Document> LoadContractDoc(string agrType, string agrCode, string agr
 public Task<Client> LoadClientDoc(string clientCode)
 ```
 
-Վերադարձնում է հաճախորդ տեսակի փաստաթուղթը։
+Վերադարձնում է հաճախորդի քարտի օբյեկտը։
 
 **Պարամետրեր**
 
@@ -242,7 +242,8 @@ public Task<Client> LoadClientDoc(string clientCode)
 ```c#
 public Task<ClientDesc> LoadClientDescByISN(int isn)
 ```
-Վերադարձնում է հաճախորդ տեսակի փաստաթղթի հիմնական դաշտերը։ Այս մեթոդի կատարման ժամանակը ավելի փոքր է համեմատած LoadClientDoc - ի։
+
+Վերադարձնում է հաճախորդ տեսակի փաստաթղթի հիմնական դաշտերը պարունակող օբյեկտ ըստ հաճախորդի քարտի ISN-ի։ Այս մեթոդի կատարման ժամանակը ավելի փոքր է համեմատած LoadClientDoc - ի։
 
 **Պարամետրեր**
 
@@ -256,7 +257,7 @@ public Task<ClientDesc> LoadClientDescByISN(int isn)
 public Task<ClientDesc> LoadClientDescByCode(string code)
 ```
 
-Վերադարձնում է հաճախորդ տեսակի փաստաթղթի հիմնական դաշտերը։ Այս մեթոդի կատարման ժամանակը ավելի փոքր է համեմատած LoadClientDoc - ի։
+Վերադարձնում է հաճախորդ տեսակի փաստաթղթի հիմնական դաշտերը պարունակող օբյեկտ ըստ հաճախորդի կոդի։ Այս մեթոդի կատարման ժամանակը ավելի փոքր է համեմատած LoadClientDoc - ի։
 
 **Պարամետրեր**
 
@@ -268,9 +269,9 @@ public Task<ClientDesc> LoadClientDescByCode(string code)
  
 ```c#
 public Task<ClientRO> LoadClientDocRObyISN(int isn)
-
 ```
-Վերադարձնում է հաճախորդ տեսակի փաստաթղթը, որտեղ դաշտերը գրահաս չեն։ 
+
+Վերադարձնում է համապատասխան ISN-ով հաճախորդ տեսակի փաստաթուղթը, որտեղ դաշտերը գրահաս չեն։ 
 
 **Պարամետրեր**
 
@@ -283,6 +284,8 @@ public Task<ClientRO> LoadClientDocRObyISN(int isn)
 ```c#
 public Task<ClientRO> LoadClientDocROByCode(string cliCode)
 ```
+
+Վերադարձնում է համապատասխան հաճախորդի կոդով հաճախորդ տեսակի փաստաթուղթը, որտեղ դաշտերը գրահաս չեն։ 
 
 **Պարամետրեր**
 
@@ -301,6 +304,9 @@ public Task<int> GetClientISN(string cliCode)
 **Պարամետրեր**
 
 * `cliCode`- Պարտադիր։ Հաճախորդի կոդը։
+
+
+
 
 ## GetClientISNByAcc
 
@@ -322,7 +328,7 @@ public Task<int> GetClientISNByAcc(string acc)
 public Task<string> GetClientFullName(string firstName, string lastName, string ptronymic, bool arm)
 ```
 
-Վերադարձնում է հաճախորդի անուն, ազգանուն, հայրանունը համակարգում սահմանված հերթականությամբ (հերթականությունը սահմանվում է ՝ CLINAMEORDER -"Հաճախորդի անվան հերթականություն", CLINAMEORDERENG - "Հաճախորդի անգլ. անվան հերթականություն" պարամետրերով) ։
+Վերադարձնում է հաճախորդի անուն, ազգանուն, հայրանունը համակարգում սահմանված հերթականությամբ (հերթականությունը սահմանվում է ՝ CLINAMEORDER -"Հաճախորդի անվան հերթականություն", CLINAMEORDERENG - "Հաճախորդի անգլ. անվան հերթականություն" պարամետրերով)։
 
 **Պարամետրեր**
 
