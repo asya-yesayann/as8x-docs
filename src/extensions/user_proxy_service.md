@@ -335,10 +335,24 @@ public Task<string> GetClientFullName(string firstName, string lastName, string 
 * `firstName`- Պարտադիր։ Հաճախորդի անուն։
 * `lastName`- Պարտադիր։ Հաճախորդի ազգանուն։
 * `ptronymic`- Պարտադիր։ Հաճախորդի հայրանուն։
-* `arm`- Պարտադիր։ Անվանումը հայերեն է։ Այս դեպքում անուն, ազգանունի, հայրանունի հերթականությունը կորոշվի CLINAMEORDER պարամետրով կատարված կարգավորմամբ։ **false** արժեքը օգտագոևծվում է այն դեպքում երբ անվանումը անգլերեն է։ Այս դեպքում անվան հերթականությունը կորորշցի CLINAMEORDERENG պարամետրով։ 
+* `arm`- Պարտադիր։ Անվանումը հայերեն է։ Այս դեպքում անուն, ազգանունի, հայրանունի հերթականությունը կորոշվի CLINAMEORDER պարամետրով կատարված կարգավորմամբ։ **false** արժեքը օգտագոևծվում է այն դեպքում երբ անվանումը անգլերեն է։ Այս դեպքում անվան հերթականությունը կորորշվի CLINAMEORDERENG պարամետրով։ 
 
 
-GetClientAMDAcc
+
+## GetClientAMDAcc
+
+```c#
+public Task<string> GetClientAMDAcc(string cliCode)
+```
+
+Վերադարձնում է հաճախորդի քարտում լրացված հիմնական դրամային հաշիվը ("Պայմաններ" էջ, "Հիմնական դրամային հաշիվ (գանձ. պայմ% մար-տրմդր)")։
+
+**Պարամետրեր**
+
+* `cliCode`- Պարտադիր։ Հաճախորդի կոդ։
+
+
+
 GetClientRezJurVolortByAccount
 GetCliContractNamesByISN
 GetCliContractNamesByCode
