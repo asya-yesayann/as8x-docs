@@ -39,7 +39,7 @@ public class CountryEx : DocumentExtender
     private readonly IParametersService paramService;
 
     // Կատարում ենք IParametersService սերվիսի ինյեկցիա, որի միջոցով կստանանք FILLCOUNTRYFIELDS
-       համակարգային պարամետրերի արժեքը։
+    // համակարգային պարամետրերի արժեքը։
     public CountryEx(IParametersService paramService)
     {
         this.paramService = paramService;
