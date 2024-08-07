@@ -18,15 +18,15 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetClientISN](#GetClientISN)
 * [GetClientISNByAcc](#GetClientISNByAcc)
 * [GetClientFullName](#GetClientFullName)
-
+* [GetClientAMDAcc](#GetClientAMDAcc)
 
 
   
 
 
 
-GetClientFullName
-GetClientAMDAcc
+
+
 GetClientRezJurVolortByAccount
 GetCliContractNamesByISN
 GetCliContractNamesByCode
