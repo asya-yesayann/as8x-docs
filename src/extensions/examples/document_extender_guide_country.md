@@ -105,7 +105,7 @@ public class CountryEx : DocumentExtender
 
         if (sender.IsUIOrigin && updatedFields.Count > 0)
         {
-            // Հաղորդագրություն ենք ձևավորում լրացված դաշտերի վերաբերյալ 
+            // Ձևավորում ենք հաղորդագրություն լրացված դաշտերի վերաբերյալ։ 
             await sender.Progress.MessageBox(string.Join(", ", updatedFields) + " դաշտը/դաշտերը լրացվել են փաստաթղթի վրա։".ToArmenianANSI(), Common.MessageBoxButtons.OK, Common.MessageBoxIconType.Information);
         }
     }
