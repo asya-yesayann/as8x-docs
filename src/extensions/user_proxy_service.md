@@ -19,7 +19,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetClientISNByAcc](#GetClientISNByAcc)
 * [GetClientFullName](#GetClientFullName)
 * [GetClientAMDAcc](#GetClientAMDAcc)
-
+* [GetClientRezJurVolortByAccount](#GetClientRezJurVolortByAccount)
 
   
 
@@ -27,7 +27,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-GetClientRezJurVolortByAccount
+
 GetCliContractNamesByISN
 GetCliContractNamesByCode
 LoadAccountDescByIsn
@@ -353,7 +353,16 @@ public Task<string> GetClientAMDAcc(string cliCode)
 
 
 
-GetClientRezJurVolortByAccount
+## GetClientRezJurVolortByAccount
+
+```c#
+public Task<(string residence, string jurState, string volort)>GetClientRezJurVolortByAccount(string accCode)
+```
+
+Վերադարձնում է 
+
+
+
 GetCliContractNamesByISN
 GetCliContractNamesByCode
 LoadAccountDescByIsn
