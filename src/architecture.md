@@ -12,3 +12,7 @@ title: "Ճարտարապետություն"
 * Windows կլիենտը (client) իրականացված է որպես  Windows Presentation Foundation (WPF) կիրառւոթյուն։
 * Կիրառությունների սերվերը (application server) իրականացված որպես է ASP.NET Core Web API։
 * Տվյաների բազան (database) օգտագործում է Microsoft SQL Server-ը։
+
+
+ ![8x Ճարտարապետությունը](architecture_simple.svg)
+ *8x Ճարտարապետությունը պարզեցված*
