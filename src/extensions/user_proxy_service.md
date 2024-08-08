@@ -29,6 +29,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [LoadAccountDoc](#LoadAccountDoc)
 * [LoadNBAccountDescByCode](#LoadNBAccountDescByCode)
 * [LoadNBAccountDesc](#LoadNBAccountDesc)
+* [GetAccountISN](#GetAccountISN)
 
 
 
@@ -39,7 +40,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-GetAccountISN
+
 GetCliCodeByAcc
 IsKasAcc
 IsIncExpAcc
@@ -503,6 +504,17 @@ public Task<NBAccountDesc> LoadNBAccountDesc(int isn, bool throwException = fals
 
 
 
+## GetAccountISN
+
+```c#
+public Task<int> GetAccountISN(string acc)
+```
+
+Վերադարձնում է հաշվի հիմնական ISN-ը ըստ հաշվի համարի։ 
+
+**Պարամետրեր**
+
+* `acc`- Պարտադիր։ Հաշվի համար։
 
 
 
@@ -511,7 +523,6 @@ public Task<NBAccountDesc> LoadNBAccountDesc(int isn, bool throwException = fals
 
 
 
-GetAccountISN
 GetCliCodeByAcc
 IsKasAcc
 IsIncExpAcc
