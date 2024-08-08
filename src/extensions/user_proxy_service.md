@@ -24,6 +24,8 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetCliContractNamesByCode](#GetCliContractNamesByCode)
 * [LoadAccountDescByIsn](#LoadAccountDescByIsn)
 * [LoadAccountDescByCode](#LoadAccountDescByCode)
+* [LoadShortAccountDescByIsn](#LoadShortAccountDescByIsn)
+* [LoadShortAccountDescByCode](#LoadShortAccountDescByCode)
 
 
 
@@ -33,8 +35,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-LoadShortAccountDescByIsn
-LoadShortAccountDescByCode
+
 LoadAccountDoc
 LoadNBAccountDescByCode
 LoadNBAccountDesc
@@ -429,8 +430,35 @@ public Task<AccountDesc> LoadAccountDescByCode(string code, bool throwException 
 
 
 
-LoadShortAccountDescByIsn
-LoadShortAccountDescByCode
+## LoadShortAccountDescByIsn
+
+```c#
+public Task<AccountDescShort> LoadShortAccountDescByIsn(int isn, bool throwException = false)
+```
+
+Վերադարձնում է հաշվի սահմանափակ դաշտերը (ISN, "Հաշվի համար","Արժույթ","Գրասենյակ","Բաժին","Հասանելիության տիպ") պարունակող օբյեկտ ըսռ հաշվի ISN-ի։ 
+
+**Պարամետրեր**
+
+* `isn`- Պարտադիր։ Հաշվի ISN։
+* `throwException` - Առաջացնել սխալ հաշվի բացակության դեպքում։ Լռությամբ՝ **false**։
+
+
+
+## LoadShortAccountDescByCode
+
+```c#
+public Task<AccountDescShort> LoadShortAccountDescByCode(string code, bool throwException = false)
+```
+
+Վերադարձնում է հաշվի սահմանափակ դաշտերը (ISN, "Հաշվի համար","Արժույթ","Գրասենյակ","Բաժին","Հասանելիության տիպ") պարունակող օբյեկտ ըսռ հաշվեհամարի։ 
+
+* `code`- Պարտադիր։ Հաշվի համար։
+* `throwException` - Առաջացնել սխալ հաշվի բացակության դեպքում։ Լռությամբ՝ **false**։
+
+
+
+
 LoadAccountDoc
 LoadNBAccountDescByCode
 LoadNBAccountDesc
