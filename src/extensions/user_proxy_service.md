@@ -374,7 +374,14 @@ public Task<(string residence, string jurState, string volort)>GetClientRezJurVo
 public async Task<string> GetCliContractNamesByISN(int cliISN, bool showClosed = false)
 ```
 
-Վերադարձնում է հաճախորդի պայմանագրերի համարները ըստ հաճախորդի քարտի ISN-ի։
+Վերադարձնում է հաճախորդի թղթապանակում առկա փաստաթղթերի տեսակների ցանկը։
+
+**Պարամետրեր**
+
+* `cliISN`- Պարտադիր։ Հաճախորդի քարտի ISN -ը։
+* `showClosed` - Ցույց տալ նաև փակվածները։
+
+  
 
 
 
