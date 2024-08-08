@@ -30,6 +30,8 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [LoadNBAccountDescByCode](#LoadNBAccountDescByCode)
 * [LoadNBAccountDesc](#LoadNBAccountDesc)
 * [GetAccountISN](#GetAccountISN)
+* [GetCliCodeByAcc](#GetCliCodeByAcc)
+* [IsKasAcc](#IsKasAcc)
 
 
 
@@ -41,8 +43,8 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-GetCliCodeByAcc
-IsKasAcc
+
+
 IsIncExpAcc
 CalculateAtmInd
 CalculateOlapFormula
@@ -518,13 +520,41 @@ public Task<int> GetAccountISN(string acc)
 
 
 
+## GetCliCodeByAcc
+
+```c#
+public Task<string> GetCliCodeByAcc(string account)
+```
+
+Վերադարձնում է Հաճախորդի կոդը ըստ հաշվի համարի։ 
+
+**Պարամետրեր**
+
+* `account`- Պարտադիր։ Հաշվի համար։
+
+
+
+## IsKasAcc
+```c#
+public Task<bool> IsKasAcc(string account)
+```
+
+Վերադարձնում է **true** երբ փոխանցված հաշվի համարը դրամարկղային է։ 
+
+**Պարամետրեր**
+
+* `account`- Պարտադիր։ Հաշվի համար։
 
 
 
 
 
-GetCliCodeByAcc
-IsKasAcc
+
+
+
+
+
+
 IsIncExpAcc
 CalculateAtmInd
 CalculateOlapFormula
