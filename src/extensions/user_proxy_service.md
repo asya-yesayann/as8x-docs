@@ -32,6 +32,8 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetAccountISN](#GetAccountISN)
 * [GetCliCodeByAcc](#GetCliCodeByAcc)
 * [IsKasAcc](#IsKasAcc)
+* [IsIncExpAcc](#IsIncExpAcc)
+* [CalculateAtmInd](#CalculateAtmInd)
 
 
 
@@ -45,8 +47,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-IsIncExpAcc
-CalculateAtmInd
+
 CalculateOlapFormula
 Udf
 TreeElProp
@@ -535,6 +536,7 @@ public Task<string> GetCliCodeByAcc(string account)
 
 
 ## IsKasAcc
+
 ```c#
 public Task<bool> IsKasAcc(string account)
 ```
@@ -547,16 +549,37 @@ public Task<bool> IsKasAcc(string account)
 
 
 
+## IsIncExpAcc
+
+```c#
+public Task<bool> IsIncExpAcc(string account)
+```
+
+Վերադարձնում է **true** երբ փոխանցված հաշվի համարը եկամտի կամ ծախսի հաշիվ է։ 
+
+**Պարամետրեր**
+
+* `account`- Պարտադիր։ Հաշվի համար։
+
+
+
+## CalculateAtmInd
+
+```c#
+public decimal CalculateAtmInd(string codFormList, DateTime dateFirst, DateTime dateLast, string acsBranch = "",
+        string skv = "", string calcCurCode = "", int precision = 2)
+```
+
+Վերադարձնում է **true** երբ փոխանցված հաշվի համարը եկամտի կամ ծախսի հաշիվ է։ 
+
+**Պարամետրեր**
+
+* `account`- Պարտադիր։ Հաշվի համար։
 
 
 
 
 
-
-
-
-IsIncExpAcc
-CalculateAtmInd
 CalculateOlapFormula
 Udf
 TreeElProp
