@@ -21,7 +21,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetClientAMDAcc](#GetClientAMDAcc)
 * [GetClientRezJurVolortByAccount](#GetClientRezJurVolortByAccount)
 * [GetCliContractNamesByISN](#GetCliContractNamesByISN)
-
+* [GetCliContractNamesByCode](#GetCliContractNamesByCode)
   
 
 
@@ -30,7 +30,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-GetCliContractNamesByCode
+
 LoadAccountDescByIsn
 LoadAccountDescByCode
 LoadShortAccountDescByIsn
@@ -374,7 +374,7 @@ public Task<(string residence, string jurState, string volort)>GetClientRezJurVo
 public async Task<string> GetCliContractNamesByISN(int cliISN, bool showClosed = false)
 ```
 
-Վերադարձնում է հաճախորդի թղթապանակում առկա փաստաթղթերի տեսակների ցանկը։
+Վերադարձնում է հաճախորդի թղթապանակում առկա փաստաթղթերի տեսակների ցանկը ըստ հաճախորդի ISN-ի։
 
 **Պարամետրեր**
 
@@ -383,13 +383,21 @@ public async Task<string> GetCliContractNamesByISN(int cliISN, bool showClosed =
 
   
 
+## GetCliContractNamesByCode
+
+```c#
+public async Task<string> GetCliContractNamesByCode(string cliCode, bool showClosed = false)
+```
+
+Վերադարձնում է հաճախորդի թղթապանակում առկա փաստաթղթերի տեսակների ցանկը ըստ հաճախորդի կոդի։
+
+**Պարամետրեր**
+
+* `cliCode`- Պարտադիր։ Հաճախորդի քարտի ISN -ը։
+* `showClosed` - Ցույց տալ նաև փակվածները։
 
 
 
-
-
-
-GetCliContractNamesByCode
 LoadAccountDescByIsn
 LoadAccountDescByCode
 LoadShortAccountDescByIsn
