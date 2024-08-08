@@ -20,6 +20,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetClientFullName](#GetClientFullName)
 * [GetClientAMDAcc](#GetClientAMDAcc)
 * [GetClientRezJurVolortByAccount](#GetClientRezJurVolortByAccount)
+* [GetCliContractNamesByISN](#GetCliContractNamesByISN)
 
   
 
@@ -28,7 +29,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-GetCliContractNamesByISN
+
 GetCliContractNamesByCode
 LoadAccountDescByIsn
 LoadAccountDescByCode
@@ -359,11 +360,28 @@ public Task<string> GetClientAMDAcc(string cliCode)
 public Task<(string residence, string jurState, string volort)>GetClientRezJurVolortByAccount(string accCode)
 ```
 
-Վերադարձնում է 
+Վերադարձնում է հաճախորդի ռեզիդենտությունը (1-ռեզիդենտ, 2-ոչ ռեզիդենտ), իրավաբանական կարգավիճակի և ոլորտի համապատասխան ծառի կոդերը ըստ հաճախորդի հաշվեհամարի։
+
+**Պարամետրեր**
+
+* `acc`- Պարտադիր։ Հաճախորդի հաշիվեհամարներից որևէ մեկը։
 
 
 
-GetCliContractNamesByISN
+## GetCliContractNamesByISN
+
+```c#
+public async Task<string> GetCliContractNamesByISN(int cliISN, bool showClosed = false)
+```
+
+Վերադարձնում է հաճախորդի պայմանագրերի համարները ըստ հաճախորդի քարտի ISN-ի։
+
+
+
+
+
+
+
 GetCliContractNamesByCode
 LoadAccountDescByIsn
 LoadAccountDescByCode
