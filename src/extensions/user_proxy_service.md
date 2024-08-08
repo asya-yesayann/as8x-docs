@@ -28,6 +28,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [LoadShortAccountDescByCode](#LoadShortAccountDescByCode)
 * [LoadAccountDoc](#LoadAccountDoc)
 * [LoadNBAccountDescByCode](#LoadNBAccountDescByCode)
+* [LoadNBAccountDesc](#LoadNBAccountDesc)
 
 
 
@@ -38,7 +39,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-LoadNBAccountDesc
 GetAccountISN
 GetCliCodeByAcc
 IsKasAcc
@@ -488,8 +488,29 @@ public Task<NBAccountDesc> LoadNBAccountDescByCode(string code, bool throwExcept
 
 
 
+## LoadNBAccountDesc
 
-LoadNBAccountDesc
+```c#
+public Task<NBAccountDesc> LoadNBAccountDesc(int isn, bool throwException = false)
+```
+
+Վերադարձնում է ետհաշվեկշռային հաշվի հիմնական դաշտերը պարունակող օբյետ ըստ ետհաշվեկշռային հաշվի ISN-ի։ 
+
+**Պարամետրեր**
+
+* `isn`- Պարտադիր։ Ետհաշվեկշռային հաշվի ISN-ը։
+* `throwException` - Ոչ պատադիր։ Առաջացնել սխալ հաշվի բավակայության դեպքում։ Լռությամբ՝ **false**: 
+
+
+
+
+
+
+
+
+
+
+
 GetAccountISN
 GetCliCodeByAcc
 IsKasAcc
