@@ -27,6 +27,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [LoadShortAccountDescByIsn](#LoadShortAccountDescByIsn)
 * [LoadShortAccountDescByCode](#LoadShortAccountDescByCode)
 * [LoadAccountDoc](#LoadAccountDoc)
+* [LoadNBAccountDescByCode](#LoadNBAccountDescByCode)
 
 
 
@@ -37,7 +38,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-LoadNBAccountDescByCode
 LoadNBAccountDesc
 GetAccountISN
 GetCliCodeByAcc
@@ -441,7 +441,7 @@ public Task<AccountDescShort> LoadShortAccountDescByIsn(int isn, bool throwExcep
 **Պարամետրեր**
 
 * `isn`- Պարտադիր։ Հաշվի ISN։
-* `throwException` - Առաջացնել սխալ հաշվի բացակության դեպքում։ Լռությամբ՝ **false**։
+* `throwException` -  Ոչ պարտադիր։ Առաջացնել սխալ հաշվի բացակության դեպքում։ Լռությամբ՝ **false**։
 
 
 
@@ -456,7 +456,7 @@ public Task<AccountDescShort> LoadShortAccountDescByCode(string code, bool throw
 **Պարամետրեր**
 
 * `code`- Պարտադիր։ Հաշվի համար։
-* `throwException` - Առաջացնել սխալ հաշվի բացակության դեպքում։ Լռությամբ՝ **false**։
+* `throwException` - Ոչ պարտադիր։ Առաջացնել սխալ հաշվի բացակության դեպքում։ Լռությամբ՝ **false**։
 
 
 ## LoadAccountDoc
@@ -465,7 +465,7 @@ public Task<AccountDescShort> LoadShortAccountDescByCode(string code, bool throw
 public Task<Account> LoadAccountDoc(string accCode)
 ```
 
-Վերադարձնում է հաշվի ամբողջական դաշտերը պարունակող օբյեկտ ըսռ հաշվեհամարի։ 
+Վերադարձնում է հաշվի ամբողջական դաշտերը պարունակող օբյեկտ ըստ հաշվեհամարի։ 
 
 **Պարամետրեր**
 
@@ -473,15 +473,22 @@ public Task<Account> LoadAccountDoc(string accCode)
 
 
 
+## LoadNBAccountDescByCode
+
+```c#
+public Task<NBAccountDesc> LoadNBAccountDescByCode(string code, bool throwException = false)
+```
+
+Վերադարձնում է ետհաշվեկշռային հաշվի հիմնական դաշտերը պարունակող օբյետ ըստ ետհաշվեկշռային հաշվի համարի։ 
+
+**Պարամետրեր**
+
+* `code`- Պարտադիր։ Ետհաշվեկշռային հաշվի համար։ Ետհաշվեկշռային հաշվի համարը պետք փոխանցել հետևյալ ֆորմատով՝ "հաշվային_պլանի_հաշիվ/անալիտիկ_հաշիվ"։ Օրինակ՝ "8000001/803813"
+* `throwException` - Ոչ պատադիր։ Առաջացնել սխալ հաշվի բավակայության դեպքում։ Լռությամբ՝ **false**: 
 
 
 
 
-
-
-
-
-LoadNBAccountDescByCode
 LoadNBAccountDesc
 GetAccountISN
 GetCliCodeByAcc
