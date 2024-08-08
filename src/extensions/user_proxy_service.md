@@ -22,7 +22,8 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetClientRezJurVolortByAccount](#GetClientRezJurVolortByAccount)
 * [GetCliContractNamesByISN](#GetCliContractNamesByISN)
 * [GetCliContractNamesByCode](#GetCliContractNamesByCode)
-  
+* [LoadAccountDescByIsn](#LoadAccountDescByIsn)
+* [LoadAccountDescByCode](#LoadAccountDescByCode)
 
 
 
@@ -31,8 +32,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-LoadAccountDescByIsn
-LoadAccountDescByCode
+
 LoadShortAccountDescByIsn
 LoadShortAccountDescByCode
 LoadAccountDoc
@@ -374,12 +374,12 @@ public Task<(string residence, string jurState, string volort)>GetClientRezJurVo
 public async Task<string> GetCliContractNamesByISN(int cliISN, bool showClosed = false)
 ```
 
-Վերադարձնում է հաճախորդի թղթապանակում առկա փաստաթղթերի տեսակների ցանկը ըստ հաճախորդի ISN-ի։
+Վերադարձնում է հաճախորդի թղթապանակում առկա փաստաթղթերի տեսակների ներքին անվանումների ցանկը ըստ հաճախորդի ISN-ի։
 
 **Պարամետրեր**
 
 * `cliISN`- Պարտադիր։ Հաճախորդի քարտի ISN -ը։
-* `showClosed` - Ցույց տալ նաև փակվածները։
+* `showClosed` - Ոչ պարտադիր։ Ցույց տալ նաև փակվածները։
 
   
 
@@ -389,17 +389,46 @@ public async Task<string> GetCliContractNamesByISN(int cliISN, bool showClosed =
 public async Task<string> GetCliContractNamesByCode(string cliCode, bool showClosed = false)
 ```
 
-Վերադարձնում է հաճախորդի թղթապանակում առկա փաստաթղթերի տեսակների ցանկը ըստ հաճախորդի կոդի։
+Վերադարձնում է հաճախորդի թղթապանակում առկա փաստաթղթերի տեսակների ներքին անվանումների ցանկը ըստ հաճախորդի կոդի։
 
 **Պարամետրեր**
 
 * `cliCode`- Պարտադիր։ Հաճախորդի քարտի ISN -ը։
-* `showClosed` - Ցույց տալ նաև փակվածները։
+* `showClosed` - Ոչ պարտադիր։ Ցույց տալ նաև փակվածները։ Լռությամբ՝ **false**։
 
 
 
-LoadAccountDescByIsn
-LoadAccountDescByCode
+## LoadAccountDescByIsn
+
+```c#
+public Task<AccountDesc> LoadAccountDescByIsn(int isn, bool throwException = false)
+```
+
+Վերադարձնում է հաշվի հիմնական դաշտերը պարունակող օբյեկտ ըսռ հաշվի ISN-ի։ 
+
+**Պարամետրեր**
+
+* `isn`- Պարտադիր։ Հաշվի ISN -ը։
+* `throwException`- Ոչ պարտադիր։ Առաջացնել սխալ հաշվեհամարի բացակության դեպքում։ Լռությամբ՝ **false**։
+
+
+
+## LoadAccountDescByCode
+
+```c#
+public Task<AccountDesc> LoadAccountDescByCode(string code, bool throwException = false)
+```
+
+Վերադարձնում է հաշվի հիմնական դաշտերը պարունակող օբյեկտ ըսռ հաշվեհամարի։ 
+
+**Պարամետրեր**
+
+* `code`- Պարտադիր։ Հաշվի համար։
+* `throwException`- Ոչ պարտադիր։ Առաջացնել սխալ հաշվեհամարի բացակության դեպքում։ Լռությամբ՝ **false**։
+
+
+
+
 LoadShortAccountDescByIsn
 LoadShortAccountDescByCode
 LoadAccountDoc
