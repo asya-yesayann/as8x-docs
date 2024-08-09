@@ -164,7 +164,7 @@ public class AccStatements : ITemplateSubstitutionExtender
 ### LoadDoc
 
 ```c#
-(awaitable) public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.Full,
+public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.Full,
                                 bool loadParents = false,
                                 bool throwExceptionIfDeleted = true, bool lookInArc = true,
                                 bool loadImagesAndMemos = false)
@@ -186,7 +186,7 @@ public class AccStatements : ITemplateSubstitutionExtender
 ### LoadDocFromFolder
 
 ```c#
-(awaitable) public Task<Document> LoadDocFromFolder(string folder, string key,
+public Task<Document> LoadDocFromFolder(string folder, string key,
                                           GridLoadMode gridLoadMode = GridLoadMode.Full,
                                           bool loadParents = false,
                                           bool loadImagesAndMemos = false)
@@ -212,7 +212,7 @@ public class AccStatements : ITemplateSubstitutionExtender
 ### LoadContractDoc
 
 ```c#
-(awaitable) public Task<Document> LoadContractDoc(string agrType, string agrCode, string agrLevelCheck = "")
+public Task<Document> LoadContractDoc(string agrType, string agrCode, string agrLevelCheck = "")
 ```
 
 Վերադարձնում է պայմանագրի օբյեկտը ըստ պայմանագրի համարի:
