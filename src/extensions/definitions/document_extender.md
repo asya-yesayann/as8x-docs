@@ -5,41 +5,40 @@ tags: [DocExtender, DOCUMENTEXTENDER]
 ---
 
 ## Բովանդակություն
-* [Նախաբան](#նախաբան)
-* [Օրինակներ](#օրինակներ)
-* [DOCUMENTEXTENDER նկարագրություն](#documentextender-նկարագրություն)
-* [DocumentExtender դաս](#documentextender-դաս)
-  * [Մեթոդներ](#մեթոդներ)
-	* [Custom](#custom) 
-	* [BeforeCommitDelete](#beforecommitdelete) 
-	* [PostAction](#postaction) 
-    * [PostAfterCommit](#postaftercommit) 
-    * [PostAfterCreate](#postaftercreate) 
-    * [PostAfterLoad](#postafterload) 
-    * [PostBeforeCommit](#postbeforecommit) 
-    * [PostBeforeCopy](#postbeforecopy) 
-    * [PostDelete](#postdelete) 
-    * [PostDeserializeComplexObjectsProperties](#postdeserializecomplexobjectsproperties)
-    * [PostFolders](#postfolders) 
-    * [PostOnConfirmDocumentChangeRequest](#postonconfirmdocumentchangerequest)
-    * [PostSerializeComplexObjects](#postserializecomplexobjects)
-    * [PostStoreGrid](#poststoregrid) 
-    * [PostValidate](#postvalidate) 
-    * [PreAction](#preaction) 
-    * [PreAfterCommit](#preaftercommit) 
-    * [PreAfterCreate](#preaftercreate) 
-    * [PreAfterLoad](#preafterload) 
-    * [PreBeforeCommit](#prebeforecommit) 
-    * [PreBeforeCopy](#preaftercommit) 
-    * [PreDelete](#predelete) 
-    * [PreDeserializeComplexObjectsProperties](#predeserializecomplexobjectsproperties) 
-    * [PreFolders](#prefolders) 
-    * [PostLoadGrids](#postloadgrids) 
-    * [PreOnConfirmDocumentChangeRequest](#preonconfirmdocumentchangerequest) 
-    * [PreSerializeComplexObjects](#preserializecomplexobjects) 
-    * [PreValidate](#prevalidate) 
+- [Բովանդակություն](#բովանդակություն)
+- [Նախաբան](#նախաբան)
+- [DOCUMENTEXTENDER նկարագրություն](#documentextender-նկարագրություն)
+- [Հատկություններ](#հատկություններ)
+  - [NAME](#name)
+  - [CAPTION](#caption)
+  - [ECAPTION](#ecaption)
+  - [CSSOURCE](#cssource)
+- [DocumentExtender դաս](#documentextender-դաս)
+  - [Մեթոդներ](#մեթոդներ)
+  - [BeforeCommitDelete](#beforecommitdelete)
+  - [PreAction](#preaction)
+  - [PostAction](#postaction)
+  - [PreAfterCreate](#preaftercreate)
+  - [PostAfterCreate](#postaftercreate)
+  - [PreAfterLoad](#preafterload)
+  - [PostAfterLoad](#postafterload)
+  - [PreBeforeCommit](#prebeforecommit)
+  - [PostBeforeCommit](#postbeforecommit)
+  - [PreBeforeCopy](#prebeforecopy)
+  - [PostBeforeCopy](#postbeforecopy)
+  - [PreDelete](#predelete)
+  - [PostDelete](#postdelete)
+  - [PreFolders](#prefolders)
+  - [PostFolders](#postfolders)
+  - [PreValidate](#prevalidate)
+  - [PostValidate](#postvalidate)
+  - [PostLoadGrids](#postloadgrids)
+  - [PostStoreGrid](#poststoregrid)
    
 ## Նախաբան
+
+Գոյություն ունեցող փաստաթղթերի մշակման գործընթացում լրացուցիչ ստուգումներ իրականացնելու, դաշտերի ավտոմատ լրացման և այլ սեփական տրամաբանություն ավելացնելու համար նկարագրվում է փաստաթղթի ընդլայնում։
+Փաստաթղթի ընդլայնումը իրանից ներկայացնում է վիրտուալ մեթոդների բազմություն, որոնք կանչվում են [փաստաթղթի հիմնական իրադարձություններից](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/DocEvents.html) առաջ և հետո։ 
 
 8X համակարգում փաստաթղթի ընդլայնում նկարագրելու համար հարկավոր է ունենալ
 - .as ընդլայնմամբ ֆայլ սկրիպտերում DOCUMENTEXTENDER նկարագրությամբ, որը պարունակում է մետատվյալներ ընդլայնման մասին,
@@ -88,152 +87,153 @@ public class DocExtenders : DocumentExtender
 
 ### BeforeCommitDelete
 
-BeforeCommitDelete իրադարձությունը առաջանում է տվյալների պահոցից փաստաթղթի հեռացումից անմիջապես հետո տրանզակցիայի մեջ։ 
-
 ```c#
 public virtual Task BeforeCommitDelete(Document sender, BeforeCommitDeleteEventArgs args)
 ```
 
-### PreAction
+BeforeCommitDelete իրադարձությունը առաջանում է տվյալների պահոցից փաստաթղթի հեռացումից անմիջապես հետո տրանզակցիայի մեջ։ 
 
-Action իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) իրադարձությունից առաջ։
+### PreAction
 
 ```c#
 public virtual Task PreAction(Document sender, ActionEventArgs args)
 ```
 
-### PostAction
+Action իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) իրադարձությունից առաջ։
 
-Action իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) իրադարձությունից հետո։
+### PostAction
 
 ```c#
 public virtual Task PostAction(Document sender, ActionEventArgs args)
 ```
 
-### PreAfterCreate
+Action իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) իրադարձությունից հետո։
 
-PreAfterCreate իրադարձությունը առաջանում է փաստաթուղթը ստեղծելուց` [AfterCreate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterCreate.html) իրադարձությունից առաջ։
+### PreAfterCreate
 
 ```c#
 public virtual Task PreAfterCreate(Document sender, AfterCreateEventArgs args)
 ```
 
-### PostAfterCreate
+PreAfterCreate իրադարձությունը առաջանում է փաստաթուղթը ստեղծելուց` [AfterCreate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterCreate.html) իրադարձությունից առաջ։
 
-PostAfterCreate իրադարձությունը առաջանում է փաստաթուղթը ստեղծելուց` [AfterCreate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterCreate.html) իրադարձությունից հետո։
+### PostAfterCreate
 
 ```c#
 public virtual Task PostAfterCreate(Document sender, AfterCreateEventArgs args)
 ```
 
-### PreAfterLoad
+PostAfterCreate իրադարձությունը առաջանում է փաստաթուղթը ստեղծելուց` [AfterCreate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterCreate.html) իրադարձությունից հետո։
 
-PreAfterLoad իրադարձությունը առաջանում է փաստաթղթի բեռնումից անմիջապես հետո` [AfterLoad](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterLoad.html) իրադարձությունից առաջ։
+### PreAfterLoad
 
 ```c#
 public virtual Task PreAfterLoad(Document sender, AfterLoadEventArgs args)
 ```
 
-### PostAfterLoad
+PreAfterLoad իրադարձությունը առաջանում է փաստաթղթի բեռնումից անմիջապես հետո` [AfterLoad](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterLoad.html) իրադարձությունից առաջ։
 
-PostAfterLoad իրադարձությունը առաջանում է փաստաթղթի բեռնումից անմիջապես հետո` [AfterLoad](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterLoad.html) իրադարձությունից հետո։
+### PostAfterLoad
 
 ```c#
 public virtual Task PostAfterLoad(Document sender, AfterLoadEventArgs args)
 ```
 
-### PreBeforeCommit
+PostAfterLoad իրադարձությունը առաջանում է փաստաթղթի բեռնումից անմիջապես հետո` [AfterLoad](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterLoad.html) իրադարձությունից հետո։
 
-PreBeforeCommit իրադարձությունը առաջանում է փաստաթղթի տվյալների պահոցում գրանցումից անմիջապես հետո տրանզակցիայի մեջ՝ [BeforeCommit](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCommit.html) իրադարձությունից առաջ։
+### PreBeforeCommit
 
 ```c#
 public virtual Task PreBeforeCommit(Document sender, BeforeCommitEventArgs args)
 ```
 
-### PostBeforeCommit
+PreBeforeCommit իրադարձությունը առաջանում է փաստաթղթի տվյալների պահոցում գրանցումից անմիջապես հետո տրանզակցիայի մեջ՝ [BeforeCommit](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCommit.html) իրադարձությունից առաջ։
 
-PostBeforeCommit իրադարձությունը առաջանում է փաստաթղթի տվյալների պահոցում գրանցումից անմիջապես հետո տրանզակցիայի մեջ՝ [BeforeCommit](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCommit.html) իրադարձությունից հետո։
+### PostBeforeCommit
 
 ```c#
 public virtual Task PostBeforeCommit(Document sender, BeforeCommitEventArgs args)
 ```
 
-### PreBeforeCopy
+PostBeforeCommit իրադարձությունը առաջանում է փաստաթղթի տվյալների պահոցում գրանցումից անմիջապես հետո տրանզակցիայի մեջ՝ [BeforeCommit](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCommit.html) իրադարձությունից հետո։
 
-PreBeforeCopy իրադարձությունը առաջանում է փաստաթուղթը պատճենման ժամանակ` [BeforeCopy](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) իրադարձությունից հետո։ 
+### PreBeforeCopy
 
 ```c#
 public virtual Task PreBeforeCopy(Document sender, BeforeCopyEventArgs args)
 ```
 
-### PostBeforeCopy
+PreBeforeCopy իրադարձությունը առաջանում է փաստաթուղթը պատճենման ժամանակ` [BeforeCopy](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) իրադարձությունից հետո։ 
 
-PostBeforeCopy իրադարձությունը առաջանում է փաստաթուղթը պատճենման ժամանակ` [BeforeCopy](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) իրադարձությունից հետո։ 
+### PostBeforeCopy
 
 ```c#
 public virtual Task PostBeforeCopy(Document sender, BeforeCopyEventArgs args)
 ```
 
-### PreDelete
+PostBeforeCopy իրադարձությունը առաջանում է փաստաթուղթը պատճենման ժամանակ` [BeforeCopy](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) իրադարձությունից հետո։ 
 
-PreDelete իրադարձությունը առաջանում է փաստաթուղթը ջնջելու ժամանակ տրանզակցիայի մեջ` [Delete](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Delete.html) իրադարձությունից առաջ։ 
+### PreDelete
 
 ```c#
 public virtual Task PreDelete(Document sender, DeleteEventArgs args)
 ```
 
-### PostDelete
+PreDelete իրադարձությունը առաջանում է փաստաթուղթը ջնջելու ժամանակ տրանզակցիայի մեջ` [Delete](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Delete.html) իրադարձությունից առաջ։ 
 
-PostDelete իրադարձությունը առաջանում է փաստաթուղթը ջնջելու ժամանակ տրանզակցիայի մեջ` [Delete](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Delete.html) իրադարձությունից հետո։ 
+### PostDelete
 
 ```c#
 public virtual Task PostDelete(Document sender, DeleteEventArgs args)
 ```
 
-### PreFolders
+PostDelete իրադարձությունը առաջանում է փաստաթուղթը ջնջելու ժամանակ տրանզակցիայի մեջ` [Delete](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Delete.html) իրադարձությունից հետո։ 
 
-PreFolders իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Folders](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Folders.html) իրադարձությունից առաջ։
+### PreFolders
 
 ```c#
 public virtual Task PreFolders(Document sender, FoldersEventArgs args)
 ```
 
-### PostFolders
+PreFolders իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Folders](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Folders.html) իրադարձությունից առաջ։
 
-PostFolders իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Folders](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Folders.html) իրադարձությունից հետո։
+### PostFolders
 
 ```c#
 public virtual Task PostFolders(Document sender, FoldersEventArgs args)
 ```
 
-### PreValidate
+PostFolders իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Folders](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Folders.html) իրադարձությունից հետո։
 
-PreValidate իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) իրադարձությունից առաջ։
+### PreValidate
 
 ```c#
 public virtual Task PreValidate(Document sender, ValidateEventArgs args)
 ```
 
-### PostValidate
+PreValidate իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) իրադարձությունից առաջ։
 
-PostValidate իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) իրադարձությունից հետո։
+### PostValidate
 
 ```c#
 public virtual Task PostValidate(Document sender, ValidateEventArgs args)
 ```
 
-### PostLoadGrids
+PostValidate իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) իրադարձությունից հետո։
 
-PostLoadGrids իրադարձությունը առաջանում է փաստաթղթի աղյուսակների բեռնման ժամանակ՝ [LoadGrids](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/LoadGrid.html) իրադարձությունից հետո։
+### PostLoadGrids
 
 ```c#
 public virtual Task PostLoadGrids(Document sender, LoadGridsEventArgs args)
 ```
 
-### PostStoreGrid
+PostLoadGrids իրադարձությունը առաջանում է փաստաթղթի աղյուսակների բեռնման ժամանակ՝ [LoadGrids](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/LoadGrid.html) իրադարձությունից հետո։
 
-PostStoreGrid իրադարձությունը առաջանում է փաստաթղթի աղյուսակի պահպանման ժամանակ` [StoreGrids](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/StoreGrid.html) իրադարձությունից հետո։
+### PostStoreGrid
 
 ```c#
 public virtual Task PostStoreGrid(Document sender, StoreGridsEventArgs args)
 ```
+
+PostStoreGrid իրադարձությունը առաջանում է փաստաթղթի աղյուսակի պահպանման ժամանակ` [StoreGrids](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/StoreGrid.html) իրադարձությունից հետո։
+
