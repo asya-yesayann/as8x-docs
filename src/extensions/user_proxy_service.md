@@ -34,6 +34,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [IsKasAcc](#IsKasAcc)
 * [IsIncExpAcc](#IsIncExpAcc)
 * [CalculateAtmInd](#CalculateAtmInd)
+* [CalculateOlapFormula](#CalculateOlapFormula)
 
 
 
@@ -48,7 +49,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-CalculateOlapFormula
 Udf
 TreeElProp
 TreeElPropComment
@@ -574,13 +574,41 @@ public decimal CalculateAtmInd(string codFormList, DateTime dateFirst, DateTime 
 
 **Պարամետրեր**
 
-* `account`- Պարտադիր։ Հաշվի համար։
-
-
-
+* `codFormList`- Պարտադիր։ Հաշվի համար։
+* `branch`- Պարտադիր։ Հաշվի համար։
+* `dateFirst`- Պարտադիր։ Ժամանակաշրջանի սկիզբ։
+* `dateLast`- Պարտադիր։ Ժամանակաշրջանի վերջ
+* `skv`- Ոչ պարտադիր։ Լռությամբ՝ ""։
+* `calcCurCode`- Ոչ պարտադիր։ Լռությամբ՝ ""։
+* `precision`- Ոչ պարտադիր։ Լռությամբ՝ 2։
 
 
 CalculateOlapFormula
+
+```c#
+public decimal CalculateOlapFormula(string codFormList, string branch, DateTime dateFirst, DateTime dateLast,
+                string skv = "", string calcCurCode = "", int precision = 2)
+```
+
+Վերադարձնում է **true** երբ փոխանցված հաշվի համարը եկամտի կամ ծախսի հաշիվ է։ 
+
+**Պարամետրեր**
+
+* `codFormList`- Պարտադիր։ Հաշվի համար։
+* `branch`- Պարտադիր։ Հաշվի համար։
+* `dateFirst`- Պարտադիր։ Ժամանակաշրջանի սկիզբ։
+* `dateLast`- Պարտադիր։ Ժամանակաշրջանի վերջ
+* `skv`- Ոչ պարտադիր։ Լռությամբ՝ ""։
+* `calcCurCode`- Ոչ պարտադիր։ Լռությամբ՝ ""։
+* `precision`- Ոչ պարտադիր։ Լռությամբ՝ 2։
+
+
+
+
+
+
+
+
 Udf
 TreeElProp
 TreeElPropComment
