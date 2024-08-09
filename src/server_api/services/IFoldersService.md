@@ -28,7 +28,7 @@ FolderService դասը նախատեսված է թղթապանակի տարրեր
 public Task<bool> Exists(string folderId);
 ```
 
-Ստուգում է թղթապանակի առկայությունը տվյալների պահոցում։
+Ստուգում է թղթապանակի առկայությունը տվյալների պահոցի [FOLDERS](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Folders.html) աղյուսակում։
 
 **Պարամետրեր**
 
@@ -53,7 +53,7 @@ public Task<FolderElement> GetElement(string folderId, int isn);
 public Task<FolderElement> GetElement(string folderId, string key, bool noLock = false);
 ```
 
-Վերադարձնում է թղթապանակի տարրը նկարագրող դասը՝ ըստ թղթապանակի ներքին անվան և թղթապանակի տարրի կոդի։
+Վերադարձնում է թղթապանակի տարրը նկարագրող դասը՝ ըստ թղթապանակի ներքին անվան և տարրի կոդի։
 
 **Պարամետրեր**
 
@@ -76,15 +76,15 @@ public Task<List<FolderElement>> GetElements(string folderID);
 ### GetElements
 
 ```c#
-Task<List<FolderElement>> GetElements(string folderID, List<string> keys);
+public Task<List<FolderElement>> GetElements(string folderID, List<string> keys);
 ```
 
-Վերադարձնում է թղթապանակի բոլոր տարրերը։
+Վերադարձնում է թղթապանակի նշված կոդերով տարրերը նկարագրող դասերը։
 
 **Պարամետրեր**
 
 * `folderID` - Թղթապանակի ներքին անունը։
-* `keys`
+* `keys` - Թղթապանակի տարրերի կոդերի ցուցակ։
 
 ### GetISN
 
@@ -92,7 +92,7 @@ Task<List<FolderElement>> GetElements(string folderID, List<string> keys);
 public Task<int> GetISN(string folderId, string key);
 ```
 
-Վերադարձնում է թղթապանակում գրանցված փաստաթղթի ներքին նույնականացման համարը՝ ըստ թղթապանակի ներքին անվան և թղթապանակի տարրի կոդի։
+Վերադարձնում է թղթապանակում գրանցված փաստաթղթի ներքին նույնականացման համարը՝ ըստ թղթապանակի ներքին անվան և տարրի կոդի։
 
 **Պարամետրեր**
 
@@ -105,10 +105,19 @@ public Task<int> GetISN(string folderId, string key);
 public Task Store(int isn, List<FolderElement> folderElements, string defaultComment, bool existsInDb);
 ```
 
+Գրանցում է folderElements արգումենտում նշված թղթապանակների տարրերը տվյալների պահոցի [FOLDERS](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Folders.html) աղյուսակից։
+
 
 **Պարամետրեր**
 
-* `isn` - Գրանցման ենթակա փաստաթղթի ներքին նույնականացման համարը։
-* `folderElements` - 
-* `defaultComment` - 
-* `existsInDb` - 
+* `isn` - 
+* `folderElements` - Գրանցման ենթակա թղթապանակի տարրերի ցուցակը։
+* `defaultComment` - Թղթապանակի տարրերում Comment դաշտի դատարկ արժեքի դեպքում թղթապանակի տարրերի հայերեն անվանում։
+* `existsInDb` - isn արգումենտով նշված փաստաթղթի թղթապանակները տվյալների պահոցից հեռացման հայտանիշ։
+
+
+
+
+
+
+
