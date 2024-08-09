@@ -141,6 +141,8 @@ UserProxyService -ը օգտագործվում է ընդլայնումներ ստ
  
 Ընդլայնումներում UserProxyService-ն օգտագործելու համար անհրաժեշտ է կատարել նշված սերվիսի ինյեկցիան։
 
+
+
 ``` c#
 [TemplateSubstitutionExtender]
 public class AccStatements : ITemplateSubstitutionExtender
@@ -155,7 +157,11 @@ public class AccStatements : ITemplateSubstitutionExtender
     }
 
 ```
+UserProxyService -ի որոշ մեթոդներ կատարում են ասինխրոն գործողություններ և պետք է օգտագործվեն await բանալի բառի հետ։
 
+```c#
+var agrs =  await proxyService.LoadDoc(docISN);
+```
 
 ## Մեթոդներ
 
@@ -170,7 +176,8 @@ public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.
                                 bool loadImagesAndMemos = false)
 ```
 
-Վերադարձնում է սահմանված ISN -ով փաստաթուղթը։ 
+Վերադարձնում է սահմանված ISN -ով փաստաթուղթը։ Այս մեթոդը կատարում է ասինխրոն գործողություններ և պետք է կանչվի await բանալի բառով:
+
 
 **Պարամետրեր**
 
