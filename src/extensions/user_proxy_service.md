@@ -176,7 +176,7 @@ public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.
                                 bool loadImagesAndMemos = false)
 ```
 
-Վերադարձնում է սահմանված ISN -ով փաստաթուղթը։ Այս մեթոդը կատարում է ասինխրոն գործողություններ և պետք է կանչվի await բանալի բառով:
+Վերադարձնում է սահմանված ISN -ով փաստաթուղթը։ Այս մեթոդը կատարում է ասինխրոն գործողություններ և պետք է կանչվի `await` բանալի բառով:
 
 
 **Պարամետրեր**
