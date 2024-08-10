@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Փաստաթղթի ընդլայնում"
+title: "Փաստաթղթի իրադարձությունների ընդլայնում"
 tags: [DocExtender, DOCUMENTEXTENDER]
 ---
 
