@@ -115,7 +115,7 @@ public class AccStatements : ITemplateSubstitutionExtender
 
 Երկու դաշտերը հնարավոր է լրացնել ընտրելով համապատասխան արժեքը ցուցակից սեղմելով դաշտի կողքի հապապատասխան կոճակը։ 
 
-![Ընդլայնման կապակցում ձևանմուշին](connecting_extention_to_template.png)
+![Ընդլայնման կապակցում ձևանմուշին](template_substitution_guide_connect_template.png)
 
 ## Օրինակներ
 
