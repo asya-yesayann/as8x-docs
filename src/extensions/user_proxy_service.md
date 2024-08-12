@@ -160,7 +160,7 @@ public class AccStatements : ITemplateSubstitutionExtender
 UserProxyService -ի որոշ մեթոդներ կատարում են ասինխրոն գործողություններ և պետք է օգտագործվեն await բանալի բառի հետ։
 
 ```c#
-var agrs =  await proxyService.LoadDoc(docISN);
+var agrDoc =  await proxyService.LoadDoc(docISN);
 ```
 
 ## Մեթոդներ
