@@ -166,7 +166,7 @@ UserProxyService -ն պարունակում է՝ ինչպես Task-եր, այն�
                                  bool throwExceptionIfDeleted = true, bool lookInArc = true,
                                  bool loadImagesAndMemos = false) */
 
-var agrDoc =  await proxyService.LoadDoc(docISN);  
+var agrDoc =  **await** proxyService.LoadDoc(docISN);  
 ```
 
 ```c#
@@ -178,7 +178,7 @@ static մեթոդները կանչվում են անմիջապես դասի վր
 
 ```c#
 // public static decimal AsCCur(string stringValue)
-decimal sum = UserProxyService.AsCCur("15.86") 
+decimal sum = **UserProxyService**.AsCCur("15.86") 
 ```
 
 
