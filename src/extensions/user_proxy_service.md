@@ -157,11 +157,22 @@ public class AccStatements : ITemplateSubstitutionExtender
     }
 
 ```
-UserProxyService -ի որոշ մեթոդներ կատարում են ասինխրոն գործողություններ և պետք է օգտագործվեն await բանալի բառի հետ։
+UserProxyService -ն պարունակում է՝ ինչպես Task-եր, այնպես էլ սովորական մոթոդներ։ Task-երը անհրաժեշտ է օգտագործվել await բանալի բառի հետ։
 
 ```c#
 var agrDoc =  await proxyService.LoadDoc(docISN);
 ```
+
+```c#
+DateTime curDate = proxyService.WKDATE();
+```
+
+static մեթոդները կանչվում են անմիջապես դասի վրայից։
+
+```c#
+decimal sum = UserProxyService.AsCCur("15.86")
+```
+
 
 ## Մեթոդներ
 
@@ -176,7 +187,7 @@ public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.
                                 bool loadImagesAndMemos = false)
 ```
 
-Վերադարձնում է սահմանված ISN -ով փաստաթուղթը։ Այս մեթոդը կատարում է ասինխրոն գործողություններ և պետք է կանչվի `await` բանալի բառով:
+Վերադարձնում է սահմանված ISN -ով փաստաթուղթը։
 
 
 **Պարամետրեր**
@@ -199,7 +210,7 @@ public Task<Document> LoadDocFromFolder(string folder, string key,
                                           bool loadImagesAndMemos = false)
 ```
 
-Վերադարձնում է փաստաթուղթը սահմանված ֆոլդերից: Չհաջողվելու դեպքում վերադարձնում է **null**։ Արխիվացված փաստաթղթերը չեն դիտարկվում։ Այս մեթոդը կատարում է ասինխրոն գործողություններ և պետք է կանչվի `await` բանալի բառով:
+Վերադարձնում է փաստաթուղթը սահմանված ֆոլդերից: Չհաջողվելու դեպքում վերադարձնում է **null**։ Արխիվացված փաստաթղթերը չեն դիտարկվում։ 
 
 > [!TIP]
 > Համակարգում առկա ֆոլդեռները ինչպես նաև այնտեղ գրանցված փաստաթղթերը հնարավոր է տեսնել հիմնական բազայի **FOLDERS** աղյուսակում։ Աղյուսակի հիմնական սյունենրն են՝ fFOLDERID - ֆոլդեռի ներքին անվանումը, fKEY - փաստաթղթի բանալին ֆոլդեռում, fISN - փաստաթղթի ISN-ը։ 
@@ -222,7 +233,7 @@ public Task<Document> LoadDocFromFolder(string folder, string key,
 public Task<Document> LoadContractDoc(string agrType, string agrCode, string agrLevelCheck = "")
 ```
 
-Վերադարձնում է պայմանագրի օբյեկտը ըստ պայմանագրի համարի: Այս մեթոդը կատարում է ասինխրոն գործողություններ և պետք է կանչվի `await` բանալի բառով:
+Վերադարձնում է պայմանագրի օբյեկտը ըստ պայմանագրի համարի:
 
 **Պարամետրեր**
 
@@ -238,7 +249,7 @@ public Task<Document> LoadContractDoc(string agrType, string agrCode, string agr
 ## GetContractISN
 
 ```c#
-public Task<int> GetContractISN(string agrType, string agrCode, string agrLevelCheck = "")???????????
+public Task<int> GetContractISN(string agrType, string agrCode, string agrLevelCheck = "")??????????????
 ```
 
 Վերադարձնում է պայմանագրի ISN-ը։
@@ -251,7 +262,7 @@ public Task<int> GetContractISN(string agrType, string agrCode, string agrLevelC
 public Task<Client> LoadClientDoc(string clientCode)
 ```
 
-Վերադարձնում է հաճախորդի քարտի օբյեկտը։
+Վերադարձնում է հաճախորդի քարտի օբյեկտը։ Oգտագործվում է `await` բանալի բառով:
 
 **Պարամետրեր**
 
@@ -265,7 +276,7 @@ public Task<Client> LoadClientDoc(string clientCode)
 public Task<ClientDesc> LoadClientDescByISN(int isn)
 ```
 
-Վերադարձնում է հաճախորդ տեսակի փաստաթղթի հիմնական դաշտերը պարունակող օբյեկտ ըստ հաճախորդի քարտի ISN-ի։ Այս մեթոդի կատարման ժամանակը ավելի փոքր է համեմատած LoadClientDoc - ի։
+Վերադարձնում է հաճախորդ տեսակի փաստաթղթի հիմնական դաշտերը պարունակող օբյեկտ ըստ հաճախորդի քարտի ISN-ի։ Այս մեթոդի կատարման ժամանակը ավելի փոքր է համեմատած LoadClientDoc - ի։ 
 
 **Պարամետրեր**
 
