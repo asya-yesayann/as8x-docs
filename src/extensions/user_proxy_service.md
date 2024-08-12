@@ -638,12 +638,29 @@ public decimal CalculateOlapFormula(string codFormList, string branch, DateTime 
 
 
 
+## Udf
+```c#
+public decimal Udf(string codeForm, params object[] @params)
+```
+
+Հաշվարկում է օգտագործողի կողմից նկարագրված բանաձևը։ Մեթոդը հնարավոր է օգտագործել միայն այն դեպքում երբ բանաձևը վերադարձնում է decimal տիպի թիվ։
+
+**Պարամետրեր**
+
+* `codeForm`- Պարտադիր։ բանաձևի կոդը։
+* `params object[] @params` - Օգտոգործողի կողմից նկարագրվող բանաձևի բոլոր պարամետրերի արժեքները։
+
+օրինակ՝ Ստորև նկարագրվող օրինակում հաշվարկվում է AvRem բանաձևը, որը վերադարձնում է 01 տիպի 006 Նշում ունեցող հաշիվների միջին մնացորդը 
+01/07/24-31/07/24 ժամանակահատվածի համար։
+
+```c#
+decimal agrs = proxyService.Udf("AvRem", DateTime.Parse("2024-07-01"), DateTime.Parse("2024-07-31"),  "01", "006");
+```
+
+  
 
 
 
-
-
-Udf
 TreeElProp
 TreeElPropComment
 TreeElPropEComment
