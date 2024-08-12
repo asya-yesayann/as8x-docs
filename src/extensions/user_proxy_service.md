@@ -36,6 +36,9 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [CalculateAtmInd](#CalculateAtmInd)
 * [CalculateOlapFormula](#CalculateOlapFormula)
 * [Udf](#Udf)
+* [TreeElProp](#TreeElProp)
+* [TreeElPropComment](#TreeElPropComment)
+* [TreeElPropEComment](#TreeElPropEComment)
 
 
 
@@ -51,9 +54,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-TreeElProp
-TreeElPropComment
-TreeElPropEComment
 FolderElProp
 FolderElPropSpec
 LoadContractDescByISN
@@ -682,9 +682,37 @@ string DistrName = (await proxyService.TreeElProp("LRDistr", "001")).Comment;
 
 
 
+## TreeElPropComment
 
-TreeElPropComment
-TreeElPropEComment
+```c#
+public async Task<string> TreeElPropComment(string treeId, string key, bool useCache = true)
+```
+
+Վերադարձնում է սահմանված կոդով, ծառ-տեղեկատուի հանգույցի անվանումը։ 
+
+**Պարամետրեր**
+
+* `treeId`- Պարտադիր։ Ծառի ներքին անվանումը։
+* `key` - Պարտադիր։ Հանգույցի կոդը։
+* `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true:
+
+
+## TreeElPropEComment
+
+```c#
+public async Task<string> TreeElPropComment(string treeId, string key, bool useCache = true)
+```
+
+Վերադարձնում է սահմանված կոդով, ծառ-տեղեկատուի հանգույցի անգլերեն անվանումը։ 
+
+**Պարամետրեր**
+
+* `treeId`- Պարտադիր։ Ծառի ներքին անվանումը։
+* `key` - Պարտադիր։ Հանգույցի կոդը։
+* `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true:
+
+
+
 FolderElProp
 FolderElPropSpec
 LoadContractDescByISN
