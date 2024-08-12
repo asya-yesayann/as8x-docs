@@ -160,17 +160,24 @@ public class AccStatements : ITemplateSubstitutionExtender
 UserProxyService -ն պարունակում է՝ ինչպես Task-եր, այնպես էլ սովորական մոթոդներ։ Task-երը անհրաժեշտ է օգտագործվել await բանալի բառի հետ։
 
 ```c#
-var agrDoc =  await proxyService.LoadDoc(docISN);
+/* public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.Full,
+                                 bool loadParents = false,
+                                 bool throwExceptionIfDeleted = true, bool lookInArc = true,
+                                 bool loadImagesAndMemos = false) */
+
+var agrDoc =  await proxyService.LoadDoc(docISN);  
 ```
 
 ```c#
-DateTime curDate = proxyService.WKDATE();
+// public DateTime WKDATE()
+DateTime curDate = proxyService.WKDATE(); 
 ```
 
 static մեթոդները կանչվում են անմիջապես դասի վրայից։
 
 ```c#
-decimal sum = UserProxyService.AsCCur("15.86")
+// public static decimal AsCCur(string stringValue)
+decimal sum = UserProxyService.AsCCur("15.86") 
 ```
 
 
