@@ -39,6 +39,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [TreeElProp](#TreeElProp)
 * [TreeElPropComment](#TreeElPropComment)
 * [TreeElPropEComment](#TreeElPropEComment)
+* [FolderElProp](#FolderElProp)
 
 
 
@@ -54,7 +55,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-FolderElProp
 FolderElPropSpec
 LoadContractDescByISN
 LoadContractDescByCode
@@ -694,7 +694,7 @@ public async Task<string> TreeElPropComment(string treeId, string key, bool useC
 
 * `treeId`- Պարտադիր։ Ծառի ներքին անվանումը։
 * `key` - Պարտադիր։ Հանգույցի կոդը։
-* `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true:
+* `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true: Լռությամբ քեշի թարմացումը տեղի է ունենում 10 րոպեն մեկ, սակայն այդ ժամանակահատվածը հնարավոր է փոփոխել խմբագրելով appsettings.json ֆայլը (CacheRefreshPeriods պարամետր)։
 
 
 ## TreeElPropEComment
@@ -709,11 +709,28 @@ public async Task<string> TreeElPropComment(string treeId, string key, bool useC
 
 * `treeId`- Պարտադիր։ Ծառի ներքին անվանումը։
 * `key` - Պարտադիր։ Հանգույցի կոդը։
-* `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true:
+* `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true: Լռությամբ քեշի թարմացումը տեղի է ունենում 10 րոպեն մեկ, սակայն այդ ժամանակահատվածը հնարավոր է փոփոխել խմբագրելով appsettings.json ֆայլը (CacheRefreshPeriods պարամետր)։
 
 
+## FolderElProp
 
-FolderElProp
+```c#
+public Task<FolderElement> FolderElProp(string folderId, string key, bool noLock = true)
+```
+
+Վերադարձնում է համակարգային թղթապանակ տիպի օբյեկտների հղումներն՝ ըստ օբյեկտի անվանման և հղման բանալու։
+
+**Պարամետրեր**
+
+* `folderId`- Պարտադիր։ Ծառի ներքին անվանումը։
+* `key` - Պարտադիր։ Հանգույցի կոդը։
+* `noLock` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true: 
+
+Բերված օրինակում ստանում ենք վարկային պայմանագրի ընթացիկ գրաֆիկի ISN -ը, պայմանագրի թղթապանակից։ Agr.243335599 -ն հանդիսանում է 243335599 ISN -ով պայմանագրի թղթապանակը, C1TSDtUn -ն հանդիսանում է թղթապանակում ընթացիկ գրաֆիկի բանալին։
+```c#
+int schedISN = (await proxyService.FolderElProp("Agr.243335599", "C1TSDtUn")).ISN;
+```
+
 FolderElPropSpec
 LoadContractDescByISN
 LoadContractDescByCode
