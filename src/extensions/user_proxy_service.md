@@ -35,6 +35,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [IsIncExpAcc](#IsIncExpAcc)
 * [CalculateAtmInd](#CalculateAtmInd)
 * [CalculateOlapFormula](#CalculateOlapFormula)
+* [Udf](#Udf)
 
 
 
@@ -49,7 +50,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-Udf
+
 TreeElProp
 TreeElPropComment
 TreeElPropEComment
@@ -648,9 +649,9 @@ public decimal Udf(string codeForm, params object[] @params)
 **Պարամետրեր**
 
 * `codeForm`- Պարտադիր։ բանաձևի կոդը։
-* `params object[] @params` - Օգտոգործողի կողմից նկարագրվող բանաձևի բոլոր պարամետրերի արժեքները։
+* `params object[] @params` - Պարտադիր։ Օգտոգործողի կողմից նկարագրվող բանաձևի բոլոր պարամետրերի արժեքները։
 
-Օրինակ՝ բերված օրինակում հաշվարկվում է AvRem բանաձևը, որը վերադարձնում է 01 տիպի 006 Նշում ունեցող հաշիվների միջին մնացորդը 
+Բերված օրինակում հաշվարկվում է AvRem բանաձևը, որը վերադարձնում է 01 տիպի 006 Նշում ունեցող հաշիվների միջին մնացորդը 
 01/07/24-31/07/24 ժամանակահատվածի համար։
 
 ```c#
@@ -659,9 +660,29 @@ decimal agrs = proxyService.Udf("AvRem", DateTime.Parse("2024-07-01"), DateTime.
 
   
 
+## TreeElProp
+
+```c#
+public Task<TreeElement> TreeElProp(string treeId, string key, bool useCache = true)
+```
+
+Վերադարձնում է սահմանված կոդով, ծառ-տեղեկատուի հանգույցի օբյեկտը։ 
+
+**Պարամետրեր**
+
+* `treeId`- Պարտադիր։ Ծառի ներքին անվանումը։
+* `key` - Պարտադիր։ Հանգույցի կոդը։
+* `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true:
+
+Բերված օրինակում ստացվում է մարզերի տեղեկատուի 001 կոդով հանգույցի անվանումը օգտագործելով քեշավորված տվյալները։  
+
+```c#
+string DistrName = (await proxyService.TreeElProp("LRDistr", "001")).Comment;
+```
 
 
-TreeElProp
+
+
 TreeElPropComment
 TreeElPropEComment
 FolderElProp
