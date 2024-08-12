@@ -157,7 +157,7 @@ public class AccStatements : ITemplateSubstitutionExtender
     }
 
 ```
-UserProxyService -ն պարունակում է՝ ինչպես Task-եր, այնպես էլ սովորական մեոթոդներ։ Task-երը անհրաժեշտ է օգտագործվել await բանալի բառի հետ։
+UserProxyService -ն պարունակում է՝ ինչպես Task-եր, այնպես էլ սովորական մեթոդներ։ Task-երը անհրաժեշտ է օգտագործվել await բանալի բառի հետ։
 
 ```c#
 /* public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.Full,
