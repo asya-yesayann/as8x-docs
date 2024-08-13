@@ -44,6 +44,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [LoadContractDescByISN](#LoadContractDescByISN)
 * [LoadContractDescByCode](#LoadContractDescByCode)
 * [GetAgrRem](#GetAgrRem)
+* [GetAgrTurn](#GetAgrTurn)
 
 
 
@@ -60,7 +61,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-GetAgrTurn
 GetSSFactValueDate
 GetSSFactValueString
 GetSSFactValueInt
@@ -796,14 +796,28 @@ public async Task<decimal> GetAgrRem(int isn, Rem accType, DateTime requestDate,
 * `accType` - Պարտադիր։ Հաշվառման կոդ։
 * `requestDate` - Պարտադիր։ Մնացորդի ամսաթիվ։
 * `agrTypeName` - Ոչ պարտադիր։ Պայմանագրի փաստաթղթի տեսակ։ Լռությամն՝ null: Սահմանելու դեպքում ֆունկցիայի կատարման ժամանակը կկրճատվի։
-* `curCode` - Ոչ պարտադիր։ Մնացորդի արժույթը։ Լռությամբ՝ ""։ Պարամետրի լռությամբ արժեքի դեպքում մնացորդը կվերադարձվի դրամով, հակառակ դեպքում սահմանված արժույթով։
+* `curCode` - Ոչ պարտադիր։ Մնացորդի արժույթը։ Լռությամբ՝ ""։ Պարամետրի լռությամբ արժեքի դեպքում մնացորդը կվերադարձվի պայմանագրի արժույթով, հակառակ դեպքում մնացորդը կբաժանվի մնացորդի ամսաթվով սահմանված արժույթի հաշվարկային փոխարժեքով։
 
 
 
 ## GetAgrTurn
 
+```c#
+public Task<decimal> GetAgrTurn(int isn, DateTime startDate, DateTime endDate, Rem accType,
+                                               string accOp, string dbCr, string opCur = "", string convertCur = "")
+```
+Վերադարձնում է պայմանագրի հաշվառման շրջանառությունը (բոլոր ենթապայմանագրերով) ըստ պայմանագրի ISN-ի և սահմանված ժամանակահատվածի։
 
+**Պարամետրեր**
 
+* `isn` -  Պարտադիր։ Պայմանագրի ISN։
+* `startDate` - Պարտադիր։ Սկզբի ամսաթիվ։
+* `endDate` - Պարտադիր։ Վերջի ամսաթիվ։
+* `accType` - Պարտադիր։ Հաշվառման կոդ։
+* `accOp` - Պարտադիր։ Գործողության կոդ։ 
+* `dbCr` - Պարտադիր։ Մնացորդի արժույթը։ Լռությամբ՝ ""։ Պարամետրի լռությամբ արժեքի դեպքում մնացորդը կվերադարձվի դրամով, հակառակ դեպքում սահմանված արժույթով։
+* `opCur` - 
+* `convertCur` - 
 
 
 
