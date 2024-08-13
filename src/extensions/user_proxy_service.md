@@ -40,6 +40,9 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [TreeElPropComment](#TreeElPropComment)
 * [TreeElPropEComment](#TreeElPropEComment)
 * [FolderElProp](#FolderElProp)
+* [FolderElPropSpec](#FolderElPropSpec)
+* [LoadContractDescByISN](#LoadContractDescByISN)
+* [LoadContractDescByCode](#LoadContractDescByCode)
 
 
 
@@ -55,9 +58,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-FolderElPropSpec
-LoadContractDescByISN
-LoadContractDescByCode
+
 GetAgrRem
 GetAgrTurn
 GetSSFactValueDate
@@ -674,7 +675,7 @@ public Task<TreeElement> TreeElProp(string treeId, string key, bool useCache = t
 * `key` - Պարտադիր։ Հանգույցի կոդը։
 * `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true:
 
-Բերված օրինակում ստացվում է մարզերի տեղեկատուի 001 կոդով հանգույցի անվանումը օգտագործելով քեշավորված տվյալները։  
+Բերված օրինակում ստանում ենք մարզերի տեղեկատուի 001 կոդով հանգույցի անվանումը օգտագործելով քեշավորված տվյալները։  
 
 ```c#
 string DistrName = (await proxyService.TreeElProp("LRDistr", "001")).Comment;
@@ -694,7 +695,7 @@ public async Task<string> TreeElPropComment(string treeId, string key, bool useC
 
 * `treeId`- Պարտադիր։ Ծառի ներքին անվանումը։
 * `key` - Պարտադիր։ Հանգույցի կոդը։
-* `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true: Լռությամբ քեշի թարմացումը տեղի է ունենում 10 րոպեն մեկ, սակայն այդ ժամանակահատվածը հնարավոր է փոփոխել խմբագրելով appsettings.json ֆայլը (CacheRefreshPeriods պարամետր)։
+* `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true: Լռությամբ քեշի թարմացումը տեղի է ունենում 10 րոպեն մեկ, սակայն այդ ժամանակահատվածը հնարավոր է փոփոխել խմբագրելով appsettings.json ֆայլը (CacheRefreshPeriods պարամետր)։ false արժեքի դեպքում տվյալները կվերցվեն տվյալների բազայից։
 
 
 ## TreeElPropEComment
@@ -709,7 +710,7 @@ public async Task<string> TreeElPropComment(string treeId, string key, bool useC
 
 * `treeId`- Պարտադիր։ Ծառի ներքին անվանումը։
 * `key` - Պարտադիր։ Հանգույցի կոդը։
-* `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true: Լռությամբ քեշի թարմացումը տեղի է ունենում 10 րոպեն մեկ, սակայն այդ ժամանակահատվածը հնարավոր է փոփոխել խմբագրելով appsettings.json ֆայլը (CacheRefreshPeriods պարամետր)։
+* `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ քեշի թարմացումը տեղի է ունենում 10 րոպեն մեկ, սակայն այդ ժամանակահատվածը հնարավոր է փոփոխել խմբագրելով appsettings.json ֆայլը (CacheRefreshPeriods պարամետր)։ false արժեքի դեպքում տվյալները կվերցվեն տվյալների բազայից։
 
 
 ## FolderElProp
@@ -718,12 +719,12 @@ public async Task<string> TreeElPropComment(string treeId, string key, bool useC
 public Task<FolderElement> FolderElProp(string folderId, string key, bool noLock = true)
 ```
 
-Վերադարձնում է համակարգային թղթապանակ տիպի օբյեկտների հղումներն՝ ըստ օբյեկտի անվանման և հղման բանալու։
+Վերադարձնում է FolderElement տիպի օբյեկտ ըստ ֆոլդեռի անվան և բանալու։ Ֆոլդեռները գրանցվում են հիմնական բազայի FOLDERS աղյուսակում։
 
 **Պարամետրեր**
 
-* `folderId`- Պարտադիր։ Ծառի ներքին անվանումը։
-* `key` - Պարտադիր։ Հանգույցի կոդը։
+* `folderId`- Պարտադիր։ Ծառի ներքին անվանումը։ Համապատասխանում է FOLDERS աղյուսակի fFOLDERID դաշտին։
+* `key` - Պարտադիր։ Հանգույցի կոդը։ Համապատասխանում է FOLDERS աղյուսակի fKEY դաշտին։
 * `noLock` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true: 
 
 Բերված օրինակում ստանում ենք վարկային պայմանագրի ընթացիկ գրաֆիկի ISN -ը, պայմանագրի թղթապանակից։ Agr.243335599 -ն հանդիսանում է 243335599 ISN -ով պայմանագրի թղթապանակը, C1TSDtUn -ն հանդիսանում է թղթապանակում ընթացիկ գրաֆիկի բանալին։
@@ -731,9 +732,58 @@ public Task<FolderElement> FolderElProp(string folderId, string key, bool noLock
 int schedISN = (await proxyService.FolderElProp("Agr.243335599", "C1TSDtUn")).ISN;
 ```
 
-FolderElPropSpec
-LoadContractDescByISN
-LoadContractDescByCode
+
+
+## FolderElPropSpec
+
+```c#
+public async Task<string> FolderElPropSpec(string folderId, string key, bool noLock = true)
+```
+
+Վերադարձնում է FOLDERS աղյուսակի fSPEC դաշտի արժեքը ըստ ֆոլդեռ-ի անվան և հղման բանալու։
+
+**Պարամետրեր**
+
+* `folderId`- Պարտադիր։ Ծառի ներքին անվանումը։ Համապատասխանում է FOLDERS աղյուսակի fFOLDERID դաշտին։
+* `key` - Պարտադիր։ Հանգույցի կոդը։ Համապատասխանում է FOLDERS աղյուսակի fKEY դաշտին։
+* `noLock` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true: 
+
+
+
+## LoadContractDescByISN
+
+```c#
+public Task<ContractDesc> LoadContractDescByISN(int isn)
+```
+Վերադարձնում է ContractDesc տիպի օբյեկտ ըստ պայմանագրի ISN -ի, որը պարունակում է պայմանագրի հիմնական դաշտերը։
+
+**Պարամետրեր**
+
+* `isn`- Պարտադիր։ Պայմանագրի ISN։
+
+
+
+## LoadContractDescByCode
+
+```c#
+public Task<ContractDesc> LoadContractDescByCode(string agrType, string code)
+```
+Վերադարձնում է ContractDesc տիպի օբյեկտ ըստ պայմանագրի համարի, որը պարունակում է պայմանագրի հիմնական դաշտերը։
+
+**Պարամետրեր**
+
+* `agrType` -  Պարտադիր։ Ենթահամակարգի տեսակ` C,D,M,N,B,Q։
+* `code` - Պարտադիր։ Պայմանագրի համար։
+
+> [!TIP]
+> ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
+<br>
+
+
+
+
+
+
 GetAgrRem
 GetAgrTurn
 GetSSFactValueDate
