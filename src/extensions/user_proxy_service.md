@@ -793,18 +793,22 @@ public async Task<decimal> GetAgrRem(int isn, Rem accType, DateTime requestDate,
 * `isn` -  Պարտադիր։ Պայմանագրի ISN։
 * `accType` - Պարտադիր։ Հաշվառման կոդ։
 * `requestDate` - Պարտադիր։ Մնացորդի ամսաթիվ։
-* `agrTypeName` - Ոչ պարտադիր։ Պայմանագրի փաստաթղթի տեսակ։ Լռությամն՝ null: 
+* `agrTypeName` - Ոչ պարտադիր։ Պայմանագրի փաստաթղթի տեսակ։ Լռությամն՝ null: Սահմանելու դեպքում ֆունկցիայի կատարման ժամանակը կկրճատվի։
 * `curCode` - Ոչ պարտադիր։ Մնացորդի արժույթը։ Լռությամբ՝ ""։ Պարամետրի լռությամբ արժեքի դեպքում մնացորդը կվերադարձվի դրամով, հակառակ դեպքում սահմանված արժույթով։
 
 
 
+## GetAgrTurn
 
 
 
 
 
 
-GetAgrTurn
+
+
+
+
 GetSSFactValueDate
 GetSSFactValueString
 GetSSFactValueInt
