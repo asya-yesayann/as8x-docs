@@ -804,7 +804,7 @@ public async Task<decimal> GetAgrRem(int isn, Rem accType, DateTime requestDate,
 decimal agrRem = await proxyService.GetAgrRem(653013562, Subsystems.Enums.Accountings.Rem.R1, DateTime.Parse("2024-08-13"), "C1Univer");
 ```
      |Հաշվառման կոդ |  Անվանում
-     ---------------|--------------------------------------------------------------------- 
+     |-|-|
      |R0            |  Արտոնյալ ժամկետով (հին) օվերդրաֆտի ժամկետային գումար |
      |R1            |  Հիմնական գումար |
      |R2            |  Տոկոս           
