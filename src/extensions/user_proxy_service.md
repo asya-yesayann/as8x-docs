@@ -43,6 +43,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [FolderElPropSpec](#FolderElPropSpec)
 * [LoadContractDescByISN](#LoadContractDescByISN)
 * [LoadContractDescByCode](#LoadContractDescByCode)
+* [GetAgrRem](#GetAgrRem)
 
 
 
@@ -59,7 +60,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-GetAgrRem
 GetAgrTurn
 GetSSFactValueDate
 GetSSFactValueString
@@ -246,7 +246,7 @@ public Task<Document> LoadContractDoc(string agrType, string agrCode, string agr
 
 **Պարամետրեր**
 
-* `agrType`- Պարտադիր։ Ենթահամակարգի տեսակ` C,D,M,N,B,Q։
+* `agrType`- Պարտադիր։ Ենթահամակարգի տեսակ` C, D, M, N, B, Q։
 * `agrCode`- Պարտադիր։ Պայմանագրի համար։
 * `agrLevelCheck`- Ոչ պարտադիր։ Հնարավոր արժեքներն են ՝"AGRPARENTS","AGREEMENTS","AGRCHILDREN"։ Լռությամբ՝ ""։
 
@@ -772,7 +772,7 @@ public Task<ContractDesc> LoadContractDescByCode(string agrType, string code)
 
 **Պարամետրեր**
 
-* `agrType` -  Պարտադիր։ Ենթահամակարգի տեսակ` C,D,M,N,B,Q։
+* `agrType` -  Պարտադիր։ Ենթահամակարգի տեսակ` C, D, M, N, B, Q։
 * `code` - Պարտադիր։ Պայմանագրի համար։
 
 > [!TIP]
@@ -781,10 +781,29 @@ public Task<ContractDesc> LoadContractDescByCode(string agrType, string code)
 
 
 
+## GetAgrRem
+
+```c#
+public async Task<decimal> GetAgrRem(int isn, Rem accType, DateTime requestDate, string agrTypeName = null, string curCode = "")
+```
+Վերադարձնում է պայմանագրի հաշվառման մնացորդը (ըստ բոլոր ենթապայմանագրերի)։
+
+**Պարամետրեր**
+
+* `isn` -  Պարտադիր։ Պայմանագրի ISN։
+* `accType` - Պարտադիր։ Հաշվառման կոդ։
+* `requestDate` - Պարտադիր։ Մնացորդի ամսաթիվ։
+* `agrTypeName` - Ոչ պարտադիր։ Պայմանագրի փաստաթղթի տեսակ։ Լռությամն՝ null: 
+* `curCode` - Ոչ պարտադիր։ Մնացորդի արժույթը։ Լռությամբ՝ ""։ Պարամետրի լռությամբ արժեքի դեպքում մնացորդը կվերադարձվի դրամով, հակառակ դեպքում սահմանված արժույթով։
 
 
 
-GetAgrRem
+
+
+
+
+
+
 GetAgrTurn
 GetSSFactValueDate
 GetSSFactValueString
