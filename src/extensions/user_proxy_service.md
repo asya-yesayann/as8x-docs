@@ -826,9 +826,7 @@ public Task<decimal> GetAgrTurn(int isn, DateTime startDate, DateTime endDate, R
 * `opCur` - 
 * `convertCur` - 
 
-![Գործողությունների կոդեր]([user_proxy_oper_codes.png) "Գործողությունների կոդեր")
-
-
+![Գործողությունների կոդեր](user_proxy_oper_codes.png)
 
 
 GetSSFactValueDate
