@@ -48,29 +48,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetSSFactValueDate, GetSSFactValueString, GetSSFactValueInt, GetSSFactValueDecimal, GetSSFactValuePercent, GetSSFactValueStringDecimal](#GetSSFactValueDate-GetSSFactValueString-GetSSFactValueInt-GetSSFactValueDecimal-GetSSFactValuePercent-GetSSFactValueStringDecimal)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-GetSSFactValueDate
-GetSSFactValueString
-GetSSFactValueInt
-GetSSFactValueDecimal
-GetSSFactValuePercent
-GetSSFactValueStringDecimal
-
-
-
 GetAgrFactValueDate
 GetAgrFactValuePercent
 GetAgrFactValueDecimal
@@ -836,13 +813,16 @@ public Task<decimal> GetAgrTurn(int isn, DateTime startDate, DateTime endDate, R
 
 ![Գործողությունների կոդեր](user_proxy_oper_codes.png)
 
+## GetSSFactValueDate GetSSFactValueString GetSSFactValueInt GetSSFactValueDecimal GetSSFactValuePercent GetSSFactValueStringDecimal
 
-GetSSFactValueDate
-GetSSFactValueString
-GetSSFactValueInt
-GetSSFactValueDecimal
-GetSSFactValuePercent
-GetSSFactValueStringDecimal
+
+
+
+
+
+
+
+
 GetAgrFactValueDate
 GetAgrFactValuePercent
 GetAgrFactValueDecimal
