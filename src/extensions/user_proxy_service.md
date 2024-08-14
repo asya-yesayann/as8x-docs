@@ -804,8 +804,15 @@ public Task<decimal> GetAgrTurn(int isn, DateTime startDate, DateTime endDate, R
 * `accType` - Պարտադիր։ Հաշվառման կոդ։
 * `accOp` - Պարտադիր։ Գործողության կոդ։ 
 * `dbCr` - Պարտադիր։ Լրացվում է "D" եթե տվյալ գործողության արդյունքում տեղի է ունենում հաշվառման ավելացում և "C" նվազման դեպքում։
-* `opCur` - 
-* `convertCur` - 
+* `opCur` - Ոչ պարտադիր։ Լռությամբ ""։ Սահմանվում է այն արժույթը, որով կատարվել է գործողությունը։ Հիմնականում կիրառվում է `convertCur` պարամետրի հետ միասին։
+* `convertCur` - Ոչ պարտադիր։ Լռությամբ ""։ Վերահաշվակվի արժույթը։ Այս պարամետրը սահմանվում է `opCur` պարամետրի հետ միասին։ 
+
+Բերված օրինակում հաշվարկվում է 812735354 ISN-ով, դրամային պայմանագրի գծով տրամադրումների ընդհանուր գումարը վերահաշվարկված ԱՄՆ դոլարի։
+
+```c#
+decimal agrRem = await proxyService.GetAgrTurn(812735354, DateTime.Parse("2009-07-10"), DateTime.Parse("2009-07-25"), Subsystems.Enums.Accountings.Rem.R1,"AGR","D", "000", "001");
+```
+
 
 > [!TIP]
 > ՀԾ-Բանկ համակարգում ենթահամակարգերի հաշվառումների գործողությունների կոդերը հնարավոր է դիտել "Համակարգային նկարագրություններ" տեղեկատուի միջոցով (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Համապատասխան հաշվառումը գտնելու համար մուտքագրեք հաշվառման կոդը տեղեկատուի երկխոսության պատուհանի "Նկարագրության ներքին անուն" դաշտում իսկ "նկարագրության տիպ" դաշտում ընտրեք "հաշվառում" արժեքը։   Գործողությունների կոդերը դիտելու համար գործարկեք համապատասխան հաշվառման տողի կոնտեքստային մենյուի "Դիտել" հրամանը)։
@@ -815,7 +822,23 @@ public Task<decimal> GetAgrTurn(int isn, DateTime startDate, DateTime endDate, R
 
 ## GetSSFactValueDate GetSSFactValueString GetSSFactValueInt GetSSFactValueDecimal GetSSFactValuePercent GetSSFactValueStringDecimal
 
+```c#
+public Task<DateTime?> GetAgrFactValueDate(int isn,
+                                                 NoRem accType,
+                                                 string accOp,
+                                                 DateTime requestDate,
+                                                 MinMax minMax,
+                                                 bool onlyOpenChildren)
 
+public Task<string> GetSSFactValueString(int isn, NoRem accType, string accOp, DateTime requestDate, int baseIsn = -1)
+
+public Task<int?> GetSSFactValueInt(int isn, NoRem accType, string accOp, DateTime requestDate, int baseIsn = -1)
+
+public Task<decimal?> GetSSFactValueDecimal(int isn, NoRem accType, string accOp, DateTime requestDate, int baseIsn = -1)
+
+public Task<InterestRate> GetSSFactValuePercent(int isn, NoRem accType, string accOp, DateTime requestDate, int baseIsn)
+public Task<InterestRate> GetSSFactValuePercent(int isn, NoRem accType, string accOp, DateTime requestDate)
+```
 
 
 
