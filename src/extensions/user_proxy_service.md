@@ -45,6 +45,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [LoadContractDescByCode](#LoadContractDescByCode)
 * [GetAgrRem](#GetAgrRem)
 * [GetAgrTurn](#GetAgrTurn)
+* [GetSSFactValueDate, GetSSFactValueString, GetSSFactValueInt, GetSSFactValueDecimal, GetSSFactValuePercent, GetSSFactValueStringDecimal](#GetSSFactValueDate-GetSSFactValueString-GetSSFactValueInt-GetSSFactValueDecimal-GetSSFactValuePercent-GetSSFactValueStringDecimal)
 
 
 
@@ -67,6 +68,9 @@ GetSSFactValueInt
 GetSSFactValueDecimal
 GetSSFactValuePercent
 GetSSFactValueStringDecimal
+
+
+
 GetAgrFactValueDate
 GetAgrFactValuePercent
 GetAgrFactValueDecimal
