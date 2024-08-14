@@ -24,7 +24,7 @@ LanguageService-ը ստատիկ դաս է, որը նախատեսված է 8X Ser
 public static string CurrentUICultureName { get; }
 ```
 
-Վերադարձնում է ծրագրի ընթացիկ UI Culture-ի անունը:
+Վերադարձնում է ծրագրի ընթացիկ [UI Culture](https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo.currentuiculture?view=net-8.0)-ի անունը:
 
 ### IsArmenian
 
