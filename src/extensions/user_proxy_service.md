@@ -843,9 +843,11 @@ public Task<InterestRate> GetSSFactValuePercent(int isn, NoRem accType, string a
 * `requestDate` - Պարտադիր։ Հարցման ամսաթիվը։
 * `baseIsn` - Ոչ պարտադիր։ Փաստաթղթի ISN -ը, որի մշակման արդյունքում կատարված հաշվառման փոփոխությունը պետք է անտեսել։
 
+Բերված օրինակում ստանում ենք 812735354 ISN -ով պայմանագրի տոկոսադրույքը 15/08/24 ամսաթվի դրությամբ։ 
 
-
-
+```c#
+deciaml perc = (await proxyService.GetSSFactValuePercent(812735354, Subsystems.Enums.Accountings.NoRem.N0, "PAG", DateTime.Parse("2024-08-15"))).Rate;
+```
 
 
 
