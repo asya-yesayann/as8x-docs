@@ -823,6 +823,45 @@ decimal agrRem = await proxyService.GetAgrTurn(812735354, DateTime.Parse("2009-0
 ## GetSSFactValueDate GetSSFactValueString GetSSFactValueInt GetSSFactValueDecimal GetSSFactValuePercent GetSSFactValueStringDecimal
 
 ```c#
+public Task<string> GetSSFactValueString(int isn, NoRem accType, string accOp, DateTime requestDate, int baseIsn = -1)
+
+public Task<int?> GetSSFactValueInt(int isn, NoRem accType, string accOp, DateTime requestDate, int baseIsn = -1)
+
+public Task<decimal?> GetSSFactValueDecimal(int isn, NoRem accType, string accOp, DateTime requestDate, int baseIsn = -1)
+
+public Task<InterestRate> GetSSFactValuePercent(int isn, NoRem accType, string accOp, DateTime requestDate, int baseIsn = -1)
+
+```
+
+Ֆունկցիաները վերադարձնում են  սահմանված ամսաթվով ոչ մնացորդային հաշվառումների [ոչ մնացորդային հաշվառումների](#ոչ-մնացորդային-հաշվառումներ) արժեքները։
+
+**Պարամետրեր**
+
+* `isn` -  Պարտադիր։ Պայմանագրի ISN։
+* `accType` - Պարտադիր։ Հաշվառման կոդը։
+* `accOp` - Պարտադիր։ Գործողության կոդը։
+* `requestDate` - Պարտադիր։ Ամսաթիվը։
+* `baseIsn` - Ոչ պարտադիր։ Փաստաթղթի ISN -ը, որի մշակման արդյունքում փոփոխել է տվյալ ոչ մնացորդային հաշվառումը։ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## GetAgrFactValueDate
+
+```c#
 public Task<DateTime?> GetAgrFactValueDate(int isn,
                                                  NoRem accType,
                                                  string accOp,
@@ -830,26 +869,13 @@ public Task<DateTime?> GetAgrFactValueDate(int isn,
                                                  MinMax minMax,
                                                  bool onlyOpenChildren)
 
-public Task<string> GetSSFactValueString(int isn, NoRem accType, string accOp, DateTime requestDate, int baseIsn = -1)
-
-public Task<int?> GetSSFactValueInt(int isn, NoRem accType, string accOp, DateTime requestDate, int baseIsn = -1)
-
-public Task<decimal?> GetSSFactValueDecimal(int isn, NoRem accType, string accOp, DateTime requestDate, int baseIsn = -1)
-
-public Task<InterestRate> GetSSFactValuePercent(int isn, NoRem accType, string accOp, DateTime requestDate, int baseIsn)
-public Task<InterestRate> GetSSFactValuePercent(int isn, NoRem accType, string accOp, DateTime requestDate)
-```
-
-
-
-
-
-
-
 GetAgrFactValueDate
 GetAgrFactValuePercent
 GetAgrFactValueDecimal
 GetAgrFactValueString
+```
+
+
 GetRemSS
 GetRemHI2
 SSLastOpDate
