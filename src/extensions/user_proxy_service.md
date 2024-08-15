@@ -832,7 +832,7 @@ public Task<InterestRate> GetSSFactValuePercent(int isn, NoRem accType, string a
 
 ```
 
-Ֆունկցիաները վերադարձնում են  սահմանված ամսաթվով ոչ մնացորդային հաշվառումների [ոչ մնացորդային հաշվառումների](#ոչ-մնացորդային-հաշվառումներ) արժեքները։
+Ֆունկցիաները վերադարձնում են պայմանագրերի, սահմանված ամսաթվով, ոչ մնացորդային հաշվառումների [ոչ մնացորդային հաշվառումների](#ոչ-մնացորդային-հաշվառումներ) արժեքները։
 
 **Պարամետրեր**
 
@@ -850,25 +850,10 @@ deciaml perc = (await proxyService.GetSSFactValuePercent(812735354, Subsystems.E
 
 
 
-
-
-
-
-
-
-
-
-
-
 ## GetAgrFactValueDate
 
 ```c#
-public Task<DateTime?> GetAgrFactValueDate(int isn,
-                                                 NoRem accType,
-                                                 string accOp,
-                                                 DateTime requestDate,
-                                                 MinMax minMax,
-                                                 bool onlyOpenChildren)
+public Task<DateTime?> GetAgrFactValueDate(int isn, NoRem accType, string accOp, DateTime requestDate, MinMax minMax, bool onlyOpenChildren)
 
 GetAgrFactValueDate
 GetAgrFactValuePercent
