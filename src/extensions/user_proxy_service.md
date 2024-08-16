@@ -847,7 +847,7 @@ deciaml perc = (await proxyService.GetSSFactValuePercent(812735354, Subsystems.E
 
 
 
-## GetAgrFactValueDate
+## GetAgrFactValueDate GetAgrFactValuePercent GetAgrFactValueDecimal GetAgrFactValueString
 
 ```c#
 public Task<DateTime?> GetAgrFactValueDate(int isn, NoRem accType, string accOp, DateTime requestDate, MinMax minMax, bool 
