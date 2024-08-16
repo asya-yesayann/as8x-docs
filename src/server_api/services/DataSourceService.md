@@ -84,7 +84,7 @@ public T GetDataSource<T>() where T : IDataSource
 public Task<DataSourceDefinition> GetDefinition(string dsName, bool isFull = false)
 ```
 
-Վերադարձնում է տվյալների աղբյուրի նկարագրությունը։
+Վերադարձնում է տվյալների աղբյուրի նկարագրությունը, որը պարունակում է տվյալների աղբյուրի մետատվյալները և հատկությունները(ներքին անուն, հայերեն, անգլերեն անվանումներ, SqlBased է թե ոչ, ...):
 
 **Պարամետրեր**
 * `dsName` - Տվյալների աղբյուրի ներքին անունը:
