@@ -67,7 +67,7 @@ public Task<FolderElement> GetElement(string folderId, string key, bool noLock =
 public Task<List<FolderElement>> GetElements(string folderID);
 ```
 
-Վերադարձնում է թղթապանակի բոլոր [տարրերը](/src/server_api/services/FolderElement.md)։
+Վերադարձնում է թղթապանակի բոլոր [տարրերը նկարագրող դասերը](/src/server_api/services/FolderElement.md)։
 
 **Պարամետրեր**
 
@@ -111,5 +111,5 @@ public Task Store(int isn, List<FolderElement> folderElements, string defaultCom
 
 * `isn` - Գրանցման ենթակա թղթապանակի տարրերին կապակցված փաստաթղթի ներքին նույնակականացման համարը։
 * `folderElements` - Գրանցման ենթակա թղթապանակի տարրերի ցուցակը։
-* `defaultComment` - Թղթապանակի տարրերում Comment դաշտի դատարկ արժեքի դեպքում թղթապանակի տարրերի հայերեն անվանում։
+* `defaultComment` - Թղթապանակի տարրերում Comment դաշտի դատարկ արժեքի դեպքում թղթապանակի տարրերին տրվող հայերեն անվանում։
 * `existsInDb` - `isn` ներքին նույնականացման համարով փաստաթղթին կապակցված թղթապանակի տարրերի տվյալների պահոցից հեռացման հայտանիշ։
