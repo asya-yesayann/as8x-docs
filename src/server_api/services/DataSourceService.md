@@ -1,17 +1,17 @@
 ---
 layout: page
 title: "DataSourceService" 
-tags: DataSourceService
+tags: [DataSourceService, DS, DataSource]
 ---
 
 ## Բովանդակություն
-* [Ներածություն](#ներածություն)
-* [Մեթոդներ](#մեթոդներ)
-  * [ExecuteDataSource](#executedatasource)
-  * [ExecuteDataSource](#executedatasource-1)
-  * [GetDataSource](#getdatasource)
-  * [GetColumnsDefinition](#getcolumnsdefinition)
-  * [GetDefinition](#getdefinition)
+- [Ներածություն](#ներածություն)
+- [Մեթոդներ](#մեթոդներ)
+  - [ExecuteDataSource](#executedatasource)
+  - [ExecuteDataSource](#executedatasource-1)
+  - [GetColumnsDefinition](#getcolumnsdefinition)
+  - [GetDataSource](#getdatasource)
+  - [GetDefinition](#getdefinition)
 
 ## Ներածություն
 
