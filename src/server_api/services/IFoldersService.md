@@ -40,7 +40,7 @@ public Task<bool> Exists(string folderId);
 public Task<FolderElement> GetElement(string folderId, int isn);
 ```
 
-Վերադարձնում է թղթապանակի տարրը նկարագրող դասը՝ ըստ թղթապանակի ներքին անվան և թղթապանակում գրանցված փաստաթղթի ներքին նույնականացման համարի։
+Վերադարձնում է [թղթապանակի տարրը նկարագրող դասը](/src/server_api/services/FolderElement.md)՝ ըստ թղթապանակի ներքին անվան և թղթապանակում գրանցված փաստաթղթի ներքին նույնականացման համարի։
 
 **Պարամետրեր**
 
@@ -53,7 +53,7 @@ public Task<FolderElement> GetElement(string folderId, int isn);
 public Task<FolderElement> GetElement(string folderId, string key, bool noLock = false);
 ```
 
-Վերադարձնում է թղթապանակի տարրը նկարագրող դասը՝ ըստ թղթապանակի ներքին անվան և տարրի կոդի։
+Վերադարձնում է [թղթապանակի տարրը նկարագրող դասը](/src/server_api/services/FolderElement.md)՝ ըստ թղթապանակի ներքին անվան և տարրի կոդի։
 
 **Պարամետրեր**
 
@@ -67,7 +67,7 @@ public Task<FolderElement> GetElement(string folderId, string key, bool noLock =
 public Task<List<FolderElement>> GetElements(string folderID);
 ```
 
-Վերադարձնում է թղթապանակի բոլոր տարրերը։
+Վերադարձնում է թղթապանակի բոլոր [տարրերը](/src/server_api/services/FolderElement.md)։
 
 **Պարամետրեր**
 
@@ -79,7 +79,7 @@ public Task<List<FolderElement>> GetElements(string folderID);
 public Task<List<FolderElement>> GetElements(string folderID, List<string> keys);
 ```
 
-Վերադարձնում է թղթապանակի նշված կոդերով տարրերը նկարագրող դասերը։
+Վերադարձնում է թղթապանակի նշված կոդերով [տարրերը նկարագրող դասերը](/src/server_api/services/FolderElement.md)։
 
 **Պարամետրեր**
 
@@ -105,19 +105,11 @@ public Task<int> GetISN(string folderId, string key);
 public Task Store(int isn, List<FolderElement> folderElements, string defaultComment, bool existsInDb);
 ```
 
-Գրանցում է folderElements արգումենտում նշված թղթապանակների տարրերը տվյալների պահոցի [FOLDERS](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Folders.html) աղյուսակից։
-
+Գրանցում է ՝folderElements՝ արգումենտում նշված [թղթապանակների տարրերը](/src/server_api/services/FolderElement.md) տվյալների պահոցի [FOLDERS](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Folders.html) աղյուսակում։
 
 **Պարամետրեր**
 
-* `isn` - 
+* `isn` - Գրանցման ենթակա թղթապանակի տարրերին կապակցված փաստաթղթի ներքին նույնակականացման համարը։
 * `folderElements` - Գրանցման ենթակա թղթապանակի տարրերի ցուցակը։
 * `defaultComment` - Թղթապանակի տարրերում Comment դաշտի դատարկ արժեքի դեպքում թղթապանակի տարրերի հայերեն անվանում։
-* `existsInDb` - isn արգումենտով նշված փաստաթղթի թղթապանակները տվյալների պահոցից հեռացման հայտանիշ։
-
-
-
-
-
-
-
+* `existsInDb` - `isn` ներքին նույնականացման համարով փաստաթղթին կապակցված թղթապանակի տարրերի տվյալների պահոցից հեռացման հայտանիշ։
