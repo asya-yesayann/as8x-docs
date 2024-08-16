@@ -46,12 +46,9 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetAgrRem](#GetAgrRem)
 * [GetAgrTurn](#GetAgrTurn)
 * [GetSSFactValueDate, GetSSFactValueString, GetSSFactValueInt, GetSSFactValueDecimal, GetSSFactValuePercent, GetSSFactValueStringDecimal](#GetSSFactValueDate-GetSSFactValueString-GetSSFactValueInt-GetSSFactValueDecimal-GetSSFactValuePercent-GetSSFactValueStringDecimal)
+* [GetAgrFactValueDate, GetAgrFactValuePercent, GetAgrFactValueDecimal, GetAgrFactValueString](#GetAgrFactValueDate-GetAgrFactValuePercent-GetAgrFactValueDecimal-GetAgrFactValueString)
 
 
-GetAgrFactValueDate
-GetAgrFactValuePercent
-GetAgrFactValueDecimal
-GetAgrFactValueString
 GetRemSS
 GetRemHI2
 SSLastOpDate
@@ -853,12 +850,14 @@ deciaml perc = (await proxyService.GetSSFactValuePercent(812735354, Subsystems.E
 ## GetAgrFactValueDate
 
 ```c#
-public Task<DateTime?> GetAgrFactValueDate(int isn, NoRem accType, string accOp, DateTime requestDate, MinMax minMax, bool onlyOpenChildren)
-
-GetAgrFactValueDate
-GetAgrFactValuePercent
-GetAgrFactValueDecimal
-GetAgrFactValueString
+public Task<DateTime?> GetAgrFactValueDate(int isn, NoRem accType, string accOp, DateTime requestDate, MinMax minMax, bool 
+                                                  onlyOpenChildren, string agrTypeName)
+public Task<InterestRate> GetAgrFactValuePercent(int isn, NoRem accType, string accOp, DateTime requestDate, MinMaxLast 
+                                                  minMaxLast, bool onlyOpenChildren, string agrTypeName)
+public Task<decimal?> GetAgrFactValueDecimal(int isn, NoRem accType, string accOp, DateTime requestDate, MinMax minMax, 
+                                                  bool onlyOpenChildren, string agrTypeName)
+public Task<string> GetAgrFactValueString(int isn, NoRem accType, string accOp, DateTime requestDate, MinMax minMax, bool 
+                                                   onlyOpenChildren, tring agrTypeName)
 ```
 
 
