@@ -36,7 +36,6 @@ tags: DBService
   - [CurrentIsolationLevel](#currentisolationlevel)
   - [Database](#database)
   - [Server](#server)
-  - [ShowTrans](#showtrans)
   - [TransDeferred](#transdeferred)
   - [ReadOnly](#readonly)
 
@@ -249,7 +248,7 @@ public void SetIsolationLevel(IsolationLevel level);
 ```
 
 Սահմանում է բացվող [տրանզակցիաների](https://www.tutorialspoint.com/sql/sql-transactions.htm) իզոլյացիայի [մակարդակը](https://www.geeksforgeeks.org/transaction-isolation-levels-dbms/)։ 
-Տրանզակցիաների լռությամբ իզոլյացիայի մակարդակը Read committed-ն է։
+Տրանզակցիաների լռությամբ իզոլյացիայի մակարդակը [Read committed](https://sqlperformance.com/2014/04/t-sql-queries/the-read-committed-isolation-level)-ն է։
 
 **Պարամետրեր**
 
@@ -262,7 +261,7 @@ public Task SetIsolationLevelAsync(IsolationLevel level);
 ```
 
 Սահմանում է բացվող [տրանզակցիաների](https://www.tutorialspoint.com/sql/sql-transactions.htm) իզոլյացիայի [մակարդակը](https://www.geeksforgeeks.org/transaction-isolation-levels-dbms/)  ասինխրոն եղանակով։
-Տրանզակցիաների լռությամբ իզոլյացիայի մակարդակը Read committed-ն է։
+Տրանզակցիաների լռությամբ իզոլյացիայի մակարդակը [Read committed](https://sqlperformance.com/2014/04/t-sql-queries/the-read-committed-isolation-level)-ն է։
 
 **Պարամետրեր**
 
@@ -332,12 +331,6 @@ public string Server { get; }
 Վերադարձնում է Sql սերվերի անունը, որը նախատեսված է 8X սերվիսի կողմից Sql միացման համար: 
 
 Այն անհրաժեշտ է նախապես սահմանել [appsettings.json](/src/project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [db](/src/project/appsettings_json.md) բաժնի `server` պարամետրում:
-
-### ShowTrans
-
-```c#
-public bool ShowTrans { get; set; }
-```
 
 ### TransDeferred
 
