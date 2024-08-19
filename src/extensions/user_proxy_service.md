@@ -47,9 +47,10 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetAgrTurn](#GetAgrTurn)
 * [GetSSFactValueDate, GetSSFactValueString, GetSSFactValueInt, GetSSFactValueDecimal, GetSSFactValuePercent, GetSSFactValueStringDecimal](#GetSSFactValueDate-GetSSFactValueString-GetSSFactValueInt-GetSSFactValueDecimal-GetSSFactValuePercent-GetSSFactValueStringDecimal)
 * [GetAgrFactValueDate, GetAgrFactValuePercent, GetAgrFactValueDecimal, GetAgrFactValueString](#GetAgrFactValueDate-GetAgrFactValuePercent-GetAgrFactValueDecimal-GetAgrFactValueString)
+* [GetRemSS](#GetRemSS)
 
 
-GetRemSS
+
 GetRemHI2
 SSLastOpDate
 AgrSchedule
@@ -882,8 +883,31 @@ deciaml perc = ( await proxyService.GetAgrFactValuePercent(307245031, Subsystems
 
 
 
+## GetRemSS
 
-GetRemSS
+Վերադարձնում է պայմանագրի մնացորդը։ Չի նախատեսված բարդ պայմանագրերի համար։ Բարդ պայմանագրերի ենթապայմանագրերի հաշվառումների մնացորդների ստացման համար նախատեսված է [GetAgrRem](#GetAgrRem) ֆունկցիան։
+
+```c#
+public Task<decimal> GetRemSS(int isn, Rem accType, DateTime requestDate)
+```
+
+**Պարամետրեր**
+
+* `isn` -  Պարտադիր։ Պայմանագրի ISN։
+* `accType` - Պարտադիր
+
+
+
+
+
+
+
+
+
+
+
+
+
 GetRemHI2
 SSLastOpDate
 AgrSchedule
