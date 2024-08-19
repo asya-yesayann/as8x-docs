@@ -29,20 +29,32 @@ title: "Նոր փաստաթուղթ ավելացնելու ձեռնարկ"
 `DOCUMENT` տիպի նկարագրության մեջ անհրաժեշտ է ավելացնել .cs ընդլայնմամբ ֆայլի ճանապարհը.
 
 * CSSOURCE - սերվիսային նկարագրությունը պարունակող .cs ընդլայնմամբ ֆայլի ճանապարհը։
-* CSSOURCE2 - սերվիսային նկարագրությունը պարունակող CodeGen-ով ձևավորված .cs ընդլայնմամբ ֆայլի ճանապարհը (ոչ պարտադիր)։ [4X նկարագրությունների տեղափոխման մասնակի ավտոմատացում](/src/server_api/CodeGen/CodeGen.md)։ Պլանավորվումա առաջիկայում։
+* CSSOURCE2 - սերվիսային նկարագրությունը պարունակող CodeGen-ով ձևավորված .cs ընդլայնմամբ ֆայլի ճանապարհը (ոչ պարտադիր)։ [4X նկարագրությունների տեղափոխման մասնակի ավտոմատացում](/src/server_api/CodeGen/CodeGen.md)։
+
+***CSSOURCE2-ը առայժմ հասանելի չի։ Պլանավորվում է հնարավորությունը ավելացնել առաջիկայում։***
 
 Օրինակ՝
 
 ``` as4x
 DOCUMENT {
-  NAME = DocNew;
-  CAPTION = "Նոր փաստաթուղթ";
-  ECAPTION = "New Document";
-  PROCESSINGMODE = 1;
-  INDICATE = 1;
-  CSSOURCE = "DocNew_Example.cs";
-  CSSOURCE = "DocNew_Example.cs";
-};
+  NAME = UsrAccs;
+  CAPTION = "Օգտագործողի հաշիվներ";
+  ECAPTION = "User's accounts";
+  PROCESSINGMODE = 8; '#DocProcessingMode2
+  CSSOURCE = "UsrAccs_Example.cs";
+
+  PAGE { CAPTION = "Ընդհանուր"; ECAPTION = "General";
+    REKVIZIT {NAME = USERNAME; CAPTION = "Օգտագործողի անուն"; ECAPTION="User's name";         TYPE = C(20); };
+    REKVIZIT {NAME = BRANCH;   CAPTION = "Մասնաճյուղ";        ECAPTION="Registration branch"; TYPE = C(10); };
+
+    GRID {NAME = Accounts; CAPTION = "Հաշիվներ"; ECAPTION = "Accounts"; WIDTH = 13000; HEIGHT = 3000;
+      COLUMN {NAME = ACCTYPE; CAPTION = "Տիպ"; ECAPTION = "Type"; TYPE = C(10);  };
+      COLUMN {NAME = CODE;    CAPTION = "Կոդ"; ECAPTION = "Code"; TYPE = NP(16); };
+    };
+
+    MEMO {NAME = COMMENT; CAPTION = "Մեկնաբանություն"; ECAPTION = "Comment"; WIDTH = 7000; HEIGHT = 2300; };
+  };
+}
 ```
 
 ## .cs ընդլայնմամբ ֆայլի նկարագրություն
