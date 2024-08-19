@@ -48,10 +48,10 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetSSFactValueDate, GetSSFactValueString, GetSSFactValueInt, GetSSFactValueDecimal, GetSSFactValuePercent, GetSSFactValueStringDecimal](#GetSSFactValueDate-GetSSFactValueString-GetSSFactValueInt-GetSSFactValueDecimal-GetSSFactValuePercent-GetSSFactValueStringDecimal)
 * [GetAgrFactValueDate, GetAgrFactValuePercent, GetAgrFactValueDecimal, GetAgrFactValueString](#GetAgrFactValueDate-GetAgrFactValuePercent-GetAgrFactValueDecimal-GetAgrFactValueString)
 * [GetRemSS](#GetRemSS)
+* [GetRemHI2](#GetRemHI2)
 
 
 
-GetRemHI2
 SSLastOpDate
 AgrSchedule
 GetFutPerDbt
@@ -885,11 +885,11 @@ deciaml perc = ( await proxyService.GetAgrFactValuePercent(307245031, Subsystems
 
 ## GetRemSS
 
-Վերադարձնում է պայմանագրի մնացորդը։ Չի նախատեսված բարդ պայմանագրերի համար։ Բարդ պայմանագրերի ենթապայմանագրերի հաշվառումների մնացորդների ստացման համար նախատեսված է [GetAgrRem](#GetAgrRem) ֆունկցիան։
-
 ```c#
 public Task<decimal> GetRemSS(int isn, Rem accType, DateTime requestDate)
 ```
+
+Վերադարձնում է պայմանագրի մնացորդը։ Չի նախատեսված բարդ պայմանագրերի համար։ Բարդ պայմանագրերի ենթապայմանագրերի հաշվառումների մնացորդների ստացման համար նախատեսված է [GetAgrRem](#GetAgrRem) ֆունկցիան։
 
 **Պարամետրեր**
 
@@ -899,6 +899,10 @@ public Task<decimal> GetRemSS(int isn, Rem accType, DateTime requestDate)
 
 
 
+## GetRemHI2
+```c#
+deciaml perc = ( await proxyService.GetAgrFactValuePercent(307245031, Subsystems.Enums.Accountings.NoRem.N0, "PAG", DateTime.Parse("2024-12-29"), MinMaxLast.Last, true, "C1Compl")).Rate;
+```
 
 
 
@@ -906,10 +910,6 @@ public Task<decimal> GetRemSS(int isn, Rem accType, DateTime requestDate)
 
 
 
-
-
-
-GetRemHI2
 SSLastOpDate
 AgrSchedule
 GetFutPerDbt
