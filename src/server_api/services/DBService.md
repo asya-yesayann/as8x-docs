@@ -5,7 +5,6 @@ tags: DBService
 ---
 
 ## Բովանդակություն
-- [Բովանդակություն](#բովանդակություն)
 - [Ներածություն](#ներածություն)
 - [Մեթոդներ](#մեթոդներ)
   - [ActiveTrans](#activetrans)
@@ -204,7 +203,10 @@ public byte[] GetContext(string defaultValue = null);
 ```
 
 8X սերվիս լոգին լինելուց բացվում է սեսսիա, որի մեջ պահվում է մուտք գործողի մասին ինֆորմացիան։
-Վերադարձնում է սեսսիայի մասին կոնտեքստային ինֆորմացիան(Մուտք գործած օգտատիրոջ id-ն, սեսսիայի id-ն, աշխատանքային տեղի անունը) որպես byte-երի զանգված։ 
+Մեթոդը վերադարձնում է սեսսիայի մասին կոնտեքստային ինֆորմացիան(մուտք գործած օգտատիրոջ, բացված սեսսիայի id-ները, օգտատիրոջ աշխատանքային տեղի անունը և `defaultValue` պարամետրը) որպես byte-երի զանգված։ 
+
+**Պարամետրեր**
+* `defaultValue` - Սովորաբար նշվում է այն դասի անունը, որը կանչում է այս մեթոդը։
 
 ### SetContext
 
@@ -213,7 +215,11 @@ public void SetContext(string value);
 ```
 
 8X սերվիս լոգին լինելուց բացվում է սեսսիա, որի մեջ պահվում է մուտք գործողի մասին ինֆորմացիան։
-Վերադարձնում է սեսսիայի մասին կոնտեքստային ինֆորմացիան(Մուտք գործած օգտատիրոջ id-ն, սեսսիայի id-ն, ) որպես byte-երի զանգված։ 
+
+Մեթոդը գրանցում է սեսսիայի մասին կոնտեքստային ինֆորմացիան(մուտք գործած օգտատիրոջ, բացված սեսսիայի id-ները, օգտատիրոջ աշխատանքային տեղի անունը և `defaultValue` պարամետրը) որպես byte-երի զանգված տվյալների բազայի [sys.dm_exec_requests](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-exec-requests-transact-sql?view=sql-server-ver16), [sys.dm_exec_sessions](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-exec-sessions-transact-sql?view=sql-server-ver16), [sys.sysprocesses](https://learn.microsoft.com/en-us/sql/relational-databases/system-compatibility-views/sys-sysprocesses-transact-sql?view=sql-server-ver16) համակարգային աղյուսակներում [CONTEXT_INFO](https://learn.microsoft.com/en-us/sql/t-sql/statements/set-context-info-transact-sql?view=sql-server-ver16) ֆունկցիայի միջոցով։
+
+**Պարամետրեր**
+* `value` - Սովորաբար նշվում է այն դասի անունը, որը կանչում է այս մեթոդը։
 
 ### GetServerDate
 
