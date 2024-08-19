@@ -820,13 +820,13 @@ decimal agrRem = await proxyService.GetAgrTurn(812735354, DateTime.Parse("2009-0
 ## GetSSFactValueDate GetSSFactValueString GetSSFactValueInt GetSSFactValueDecimal GetSSFactValuePercent GetSSFactValueStringDecimal
 
 ```c#
-public Task<string> GetSSFactValueString(int isn, NoRem accType, string accOp, DateTime requestDate, int baseIsn = -1)
+public Task<string> GetSSFactValueString(int isn, NoRem accType, string accOp, DateTime requestDate)
 
-public Task<int?> GetSSFactValueInt(int isn, NoRem accType, string accOp, DateTime requestDate, int baseIsn = -1)
+public Task<int?> GetSSFactValueInt(int isn, NoRem accType, string accOp, DateTime requestDate)
 
-public Task<decimal?> GetSSFactValueDecimal(int isn, NoRem accType, string accOp, DateTime requestDate, int baseIsn = -1)
+public Task<decimal?> GetSSFactValueDecimal(int isn, NoRem accType, string accOp, DateTime requestDate)
 
-public Task<InterestRate> GetSSFactValuePercent(int isn, NoRem accType, string accOp, DateTime requestDate, int baseIsn = -1)
+public Task<InterestRate> GetSSFactValuePercent(int isn, NoRem accType, string accOp, DateTime requestDate)
 
 ```
 
@@ -838,7 +838,6 @@ public Task<InterestRate> GetSSFactValuePercent(int isn, NoRem accType, string a
 * `accType` - Պարտադիր։ Հաշվառման կոդը։
 * `accOp` - Պարտադիր։ Սահմանվում է Subsystems.Enums.Accountings.NoRem դասի համապատասխան հատկությունը։ Նշված դասի հատկությունների անվանումները համապատասխանում են [գործողությունների կոդերին](#հաշվառումների-գործողությունների-կոդեր)։ 
 * `requestDate` - Պարտադիր։ Հարցման ամսաթիվը։
-* `baseIsn` - Ոչ պարտադիր։ Փաստաթղթի ISN -ը, որի մշակման արդյունքում կատարված հաշվառման փոփոխությունը պետք է անտեսել։
 
 Բերված օրինակում ստանում ենք 812735354 ISN -ով պայմանագրի տոկոսադրույքը 15/08/24 ամսաթվի դրությամբ։ 
 
