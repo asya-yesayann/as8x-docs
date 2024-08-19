@@ -729,7 +729,7 @@ public async Task<string> FolderElPropSpec(string folderId, string key, bool noL
 
 * `folderId`- Պարտադիր։ Ծառի ներքին անվանումը։ Համապատասխանում է FOLDERS աղյուսակի fFOLDERID դաշտին։
 * `key` - Պարտադիր։ Հանգույցի կոդը։ Համապատասխանում է FOLDERS աղյուսակի fKEY դաշտին։
-* `noLock` = Ոչ պարտադիր։ Լռությամբ՝ true: false արժեքի դեպքում հաշվարկի ժամանակ տվյալների փոփոխման տրանզակցիաների առկայության դեպքում տվյալների ստացումը կկատարվի նրանց ավարտից հետո ապահովվելով նրանց վերջնական վիճակը։ true արժեքի՝ հակառակը։ Վերջինի դեպքում աշվարկը կկատարվի ավելի արագ։
+* `noLock` - Ոչ պարտադիր։ Լռությամբ՝ true: false արժեքի դեպքում հաշվարկի ժամանակ տվյալների փոփոխման տրանզակցիաների առկայության դեպքում տվյալների ստացումը կկատարվի նրանց ավարտից հետո ապահովվելով նրանց վերջնական վիճակը։ true արժեքի՝ հակառակը։ Վերջինի դեպքում աշվարկը կկատարվի ավելի արագ։
 
 
 
@@ -830,7 +830,7 @@ public Task<InterestRate> GetSSFactValuePercent(int isn, NoRem accType, string a
 
 ```
 
-Ֆունկցիաները վերադարձնում են պայմանագրերի, սահմանված ամսաթվով, ոչ [ոչ մնացորդային հաշվառումների](#ոչ-մնացորդային-հաշվառումներ) արժեքները։
+Ֆունկցիաները վերադարձնում են պայմանագրի, սահմանված ամսաթվով, ոչ [ոչ մնացորդային հաշվառումների](#ոչ-մնացորդային-հաշվառումներ) արժեքները։
 
 **Պարամետրեր**
 
@@ -857,8 +857,26 @@ public Task<InterestRate> GetAgrFactValuePercent(int isn, NoRem accType, string 
 public Task<decimal?> GetAgrFactValueDecimal(int isn, NoRem accType, string accOp, DateTime requestDate, MinMax minMax, 
                                                   bool onlyOpenChildren, string agrTypeName)
 public Task<string> GetAgrFactValueString(int isn, NoRem accType, string accOp, DateTime requestDate, MinMax minMax, bool 
-                                                   onlyOpenChildren, tring agrTypeName)
+                                                   onlyOpenChildren, string agrTypeName)
 ```
+Ֆունկցիաները վերադարձնում են պայմանագրի, սահմանված ամսաթվով, ոչ [ոչ մնացորդային հաշվառումների](#ոչ-մնացորդային-հաշվառումներ) արժեքները։
+Ի տարբերություն GetSSFactValue անվամբ սկսվող ֆունկցիաների այս ֆունկցիաները նախատեսված են բարդ պայմանագրերի հետ աշխատելու համար։ Կապված 
+MinMax, MinMaxLast enum -ների արժներից վերադարձվող արժեքները կարող են լինել ենթապայմանագրի գծով, սահմանված ամսաթվով, առավելագույն (MinMax.Max, MinMaxLast.Max) նվազագույն (MinMax.Min, MinMaxLast.Min) կամ վերջին նշակաված արժեքները (MinMaxLast.Last)։ 
+
+
+**Պարամետրեր**
+
+* `isn` -  Պարտադիր։ Պայմանագրի ISN։
+* `accType` - Պարտադիր։ Հաշվառման կոդը։
+* `accOp` - Պարտադիր։ Սահմանվում է Subsystems.Enums.Accountings.NoRem դասի համապատասխան հատկությունը։ Նշված դասի հատկությունների անվանումները համապատասխանում են [գործողությունների կոդերին](#հաշվառումների-գործողությունների-կոդեր)։ 
+* `requestDate` - Պարտադիր։ Հարցման ամսաթիվը։
+* `MinMax`, `MinMaxLast` - Պարտադիր։ Նվազագույն, առավելագույն կամ վերջին նշանակված արժեքը ըստ ենթապայմանագրերի։
+* `onlyOpenChildren` - Պարտադիր։ Դիտարկել միայն հարցման ամսաթվով գործող ենթապայմանագրերը։
+* `agrTypeName` - Ոչ պարտադիր։ Սահմանվում է `isn` պարամետրով սահմանված պայմանագրի փաստաթղթի տեսակը։
+
+
+
+
 
 
 GetRemSS
