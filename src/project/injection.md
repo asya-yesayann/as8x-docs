@@ -5,16 +5,19 @@ tags: [DI, Dependency]
 ---
 
 ## Բովանդակություն
+- [Բովանդակություն](#բովանդակություն)
 - [Ի՞նչ է Dependency injection-ը](#ինչ-է-dependency-injection-ը)
 - [Պրոյեկտում կիրառման օրինակներ](#պրոյեկտում-կիրառման-օրինակներ)
   - [Սերվիսում օգտագործման օրինակ](#սերվիսում-օգտագործման-օրինակ)
   - [Տվյալների աղբյուրում օգտագործման օրինակ](#տվյալների-աղբյուրում-օգտագործման-օրինակ)
-
+  - [Controller-ում օգտագործման օրինակ](#controller-ում-օգտագործման-օրինակ)
+  - [Տպելու ձևանմուշի ընդլայնումում օգտագործման օրինակ](#տպելու-ձևանմուշի-ընդլայնումում-օգտագործման-օրինակ)
+  
 ## Ի՞նչ է Dependency injection-ը
 
 Dependency injection-ը ծրագրավորման մեխանիզմ է, որը թույլ է տալիս սահմանել բարդ ֆունկցիոնալություն տվող դասեր (սերվիսներ), որոնք ունեն բարդ ստեղծման մեխանիզմ և օգտագործել դրանք այլ դասերում առանց դրանց ստեղծման մասին մտածելու։ 
 
-Օրինակ.  
+**Օրինակ**.  
 Համակարգում սահմանված է [TreeElementService](/src/server_api/services/TreeElementsService.md), որը իր կոնստրուկտորում պետք է ստանա 4 պարամետր։ 
 Ինյեկցիա կիրառելով այն հնարավոր է ստանալ այլ դասում առանց կոնստրուկտորը կանչելու։
 
@@ -32,9 +35,9 @@ public class MyExtention
 
 Բարդ ֆունկցիոնալություն տվող դասերը (սերվիսները) սահմանվում են 8X համակարգի մեջ, և կարող են օգտագործվել
 - Այլ սերվիսներ ստեղծելուց,
-- asp.net Controller-ներում API-ներ սահմանող մեթոդներ սահմանելուց,
-- 8X համակարգի նկարագրություններ ստեղծելուց (Փաստաթուղթ, Տվյալների աղբյուր...),
-- 8X համակարգի ընդլայնող դասերում (Տվյալների աղբյուրի ընդլայնում, Տպվող ձևի ընդլայնում...),
+- ASP.NET Core [Controller](https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-8.0)-ներում API-ներ սահմանող մեթոդներ սահմանելուց,
+- 8X համակարգի նկարագրություններ ստեղծելուց (Փաստաթուղթ, Տվյալների աղբյուր, ...),
+- 8X համակարգի ընդլայնող դասերում (Տվյալների աղբյուրի ընդլայնում, Տպվող ձևի ընդլայնում, ...),
 - այլ տեղերում, որտեղ հասանելի է [IServiceProvider](https://learn.microsoft.com/en-us/dotnet/api/system.iserviceprovider) ինտերֆեյսի օբյեկտը։
 
 [IServiceProvider](https://learn.microsoft.com/en-us/dotnet/api/system.iserviceprovider) ինտերֆեյսի օբյեկտը դա հատուկ «հավաքածու» է, որը կարողանում է ստեղծել 8X համակարգի միացման ժամանակ ծրագրային սահմանված սերվիս դասերը իր [GetService](https://learn.microsoft.com/en-us/dotnet/api/system.iserviceprovider.getservice) մեթոդով։
@@ -60,7 +63,7 @@ var treeElementService2 = serviceProvider.GetService<TreeElementService>();
 
 ### Սերվիսում օգտագործման օրինակ
 
-[TreeElementService](/src/server_api/services/TreeElementsService.md) դասը իր կախվածությունները ([IDBService](/src/server_api/services/DBService.md), TimeStampService, TreeService և IErrorHandlingService) ստանում է կոնստրուկտորով ինյեկցիայի միջոցով: 
+[TreeElementService](/src/server_api/services/TreeElementsService.md) դասը, որը պարունակում է ծառի հանգույցներին վերաբերող ֆունկցիոնալությունը, իր կախվածությունները ([IDBService](/src/server_api/services/DBService.md), TimeStampService, TreeService և IErrorHandlingService) ստանում է կոնստրուկտորով ինյեկցիայի միջոցով: 
 Այս սերվիսները վերագրվում են դասի ներսում նախապես հայտարարված լոկալ փոփոխականներին և օգտագործվում են դասի ներսում: 
 
 ```c#
@@ -104,5 +107,54 @@ public class TreeNode : DataSource<TreeNode.DataRow, TreeNode.Param>
         this.dbService = dbService;
         ...
     }
+}
+```
+
+### Controller-ում օգտագործման օրինակ
+
+`TreeController` դասը, որը նախատեսված է ծառերի և ծառերի հանգույցներին վերաբերող Http հարցումների կատարաման համար,  իր կախվածությունները (IApiClientInfoService, TreeService, [TreeElementService](/src/server_api/services/TreeElementsService.md)) ստանում է կոնստրուկտորով ինյեկցիայի միջոցով: 
+Այս սերվիսները վերագրվում են դասի ներսում նախապես հայտարարված լոկալ փոփոխականներին և օգտագործվում են դասի ներսում: 
+
+```c#
+[Produces("application/json")]
+[Route("api/[controller]")]
+[Authorize]
+[ApiController]
+public class TreeController
+{
+    private readonly TreeService treeService;
+    private readonly TreeElementService treeElementService;
+    private readonly IApiClientInfoService apiClientInfoService;
+
+    public TreeController(TreeService treeService, TreeElementService treeElementService, IApiClientInfoService apiClientInfoService)
+    {
+        this.treeService = treeService;
+        this.treeElementService = treeElementService;
+        this.apiClientInfoService = apiClientInfoService;
+    }
+
+    ....
+}
+```
+
+### Տպելու ձևանմուշի ընդլայնումում օգտագործման օրինակ
+
+`AccStateAdr_Extander` տպելու ձևանմուշի ընդլայնում հանդիսացող դասը իր կախվածությունը՝ [UserProxyService](/src/extensions/user_proxy_service.md), ստանում է կոնստրուկտորով ինյեկցիայի միջոցով:
+Այս դասը վերագրվում է դասի ներսում նախապես հայտարարված լոկալ փոփոխականին (`proxyService`) և օգտագործվում է դասի ներսում: 
+
+Օրինակում օգտագործված տպելու ձևանմուշի ընդլայնման նկարագրման ձեռնարկին ծանոթանալու համար [տե՛ս](/src/extensions/definitions/template_substitution_guide.md):  
+Օրինակում օգտագործված տպելու ձևանմուշի ընդլայնման կոդին ծանոթանալու համար [տե՛ս](/src/extensions/examples/template_substitution_AccState.md):
+
+```c#
+[TemplateSubstitutionExtender]
+public class AccStateAdr_Extander : ITemplateSubstitutionExtender
+{
+    private readonly UserProxyService proxyService;
+     
+    public AccStateAdr_Extander(UserProxyService proxyService)
+    {
+        this.proxyService = proxyService;
+    }
+    ...
 }
 ```
