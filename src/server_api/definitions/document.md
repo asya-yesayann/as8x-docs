@@ -4,96 +4,116 @@ title: "Փաստաթղթի նկարագրություն"
 tags: [Doc, Document]
 ---
 
-```c#
-public class Document
-```
-
 ## Բովանդակություն
 
--   [Հատկություններ](#հատկություններ)
-    -   [Archived](#archived)
-    -   [CancellationToken](#cancellationtoken)
-    -   [CopiedFrom](#copiedfrom)
-    -   [CreatorSUID](#creatorsuid)
-    -   [CreationDate](#creationdate)
-    -   [Description](#description)
-    -   [DocumentChangeRequest](#documentchangerequest)
-    -   [DocumentLog](#documentlog)
-    -   [Deleting](#deleting)
-    -   [ExistsInDB](#existsindb)
-    -   [Grids](#grids)
-    -   [GridsInitialized](#gridsinitialized)
-    -   [GridsLoaded](#gridsloaded)
-    -   [GridsLoading](#gridsloading)
-    -   [InitialSnapshot](#initialsnapshot)
-    -   [ISN](#isn)
-    -   [IsCancellationSupported](#iscancellationsupported)
-    -   [IsLogged](#islogged)
-    -   [IsNew](#isnew)
-    -   [IsUIOrigin](#isuiorigin)
-    -   [LastFixedState](#lastfixedstate)
-    -   [LogTransactions](#logtransactions)
-    -   [NestedTransactionReport](#nestedtransactionreport)
-    -   [Origin](#origin)
-    -   [Progress](#progress)
-    -   [Properties](#properties)
-    -   [ShowProgress](#showprogress)
-    -   [Snapshots](#snapshots)
-    -   [State](#state)
-    -   [StoreMode](#storemode)
-    -   [StoreSnapshot](#storesnapshot)
-    -   [StoredFacts](#storedfacts)
-    -   [TemplateSubstitutionIsExtended](#templatesubstitutionisextended)
-    -   [TimeStamp](#timestamp)
--   [Մեթոդներ](#մեթոդներ)
-    -   [Action](#action)
-    -   [AddParent](#addparent)
-    -   [AfterCommit](#aftercommit)
-    -   [AfterCreate](#aftercreate)
-    -   [AfterLoad](#afterload)
-    -   [ApplySnapshot](#applysnapshot)
-    -   [BeforeCommit](#beforecommit)
-    -   [BeforeCopy](#beforecopy)
-    -   [BeforeImportProcessing](#beforeimportprocessing)
-    -   [Body](#body)
-    -   [BuildEmbeddedUIRequest](#buildembeddeduirequest)
-    -   [DefaultComment](#defaultcomment)
-    -   [Delete](#delete)
-    -   [DeserializeComplexObjects](#deserializecomplexobjects)
-    -   [DoLoadGrids](#doloadgrids)
-    -   [ExistsGrid](#existsgrid)
-    -   [ExistsRekvizit](#existsrekvizit)
-    -   [Folders](#folders)
-    -   [GetCheckValue](#getcheckvalue)
-    -   [GetFieldType](#getfieldtype)
-    -   [GetImage](#getimage)
-    -   [GetMemo](#getmemo)
-    -   [GetNextTrans](#getnexttrans)
-    -   [GetParents](#getparents)
-    -   [Grid](#grid)
-    -   [InitGrids](#initgrids)
-    -   [LoadGrids](#loadgrids)
-    -   [LoadImagesAndMemos](#loadimagesandmemos)
-    -   [LoadParents](#loadparents)
-    -   [OnConfirmDocumentChangeRequest](#onconfirmdocumentchangerequest)
-    -   [OnRefuse](#onrefuse)
-    -   [OnRejectDocumentChangeRequest](#onrejectdocumentchangerequest)
-    -   [PostMessage](#postmessage)
-    -   [RefreshTimeStamp](#refreshtimestamp)
-    -   [SendMessage](#sendmessage)
-    -   [SerializeComplexObjects](#serializecomplexobjects)
-    -   [SetCheckValue](#setcheckvalue)
-    -   [SetDefaultValuesForFields](#setdefaultvaluesforfields)
-    -   [SetImage](#setimage)
-    -   [SetMemo](#setmemo)
-    -   [Store](#store)
-    -   [StoreGrids](#storegrids)
-    -   [StoreValuesHistory](#storevalueshistory)
-    -   [TakeSnapshot](#takesnapshot)
-    -   [TemplateSubstitution](#templatesubstitution)
-    -   [TemplateSubstitutionEx](#templatesubstitutionex)
-    -   [Validate](#validate)
-    -   [WriteLog](#writelog)
+- [Ներածություն](#ներածություն)
+- [Օրինակներ](#օրինակներ)
+- [Հատկություններ](#հատկություններ)
+  - [Archived](#archived)
+  - [CancellationToken](#cancellationtoken)
+  - [CopiedFrom](#copiedfrom)
+  - [CreatorSUID](#creatorsuid)
+  - [CreationDate](#creationdate)
+  - [Description](#description)
+  - [DocumentChangeRequest](#documentchangerequest)
+  - [DocumentLog](#documentlog)
+  - [Deleting](#deleting)
+  - [ExistsInDB](#existsindb)
+  - [Grids](#grids)
+  - [GridsInitialized](#gridsinitialized)
+  - [GridsLoaded](#gridsloaded)
+  - [GridsLoading](#gridsloading)
+  - [IsCancellationSupported](#iscancellationsupported)
+  - [IsLogged](#islogged)
+  - [InitialSnapshot](#initialsnapshot)
+  - [ISN](#isn)
+  - [IsNew](#isnew)
+  - [IsUIOrigin](#isuiorigin)
+  - [LastFixedState](#lastfixedstate)
+  - [LogTransactions](#logtransactions)
+  - [NestedTransactionReport](#nestedtransactionreport)
+  - [Origin](#origin)
+  - [Progress](#progress)
+  - [Properties](#properties)
+  - [ShowProgress](#showprogress)
+  - [Snapshots](#snapshots)
+  - [State](#state)
+  - [StoreMode](#storemode)
+  - [StoredFacts](#storedfacts)
+  - [StoreSnapshot](#storesnapshot)
+  - [TemplateSubstitutionIsExtended](#templatesubstitutionisextended)
+  - [TimeStamp](#timestamp)
+- [Մեթոդներ](#մեթոդներ)
+  - [Action](#action)
+  - [AddParent](#addparent)
+  - [AfterCommit](#aftercommit)
+  - [AfterCreate](#aftercreate)
+  - [AfterLoad](#afterload)
+  - [ApplySnapshot](#applysnapshot)
+  - [BeforeCommit](#beforecommit)
+  - [BeforeCopy](#beforecopy)
+  - [BeforeImportProcessing](#beforeimportprocessing)
+  - [Body](#body)
+  - [BuildEmbeddedUIRequest](#buildembeddeduirequest)
+  - [DefaultComment](#defaultcomment)
+  - [Delete](#delete)
+  - [DeserializeComplexObjects](#deserializecomplexobjects)
+  - [ExistsGrid](#existsgrid)
+  - [ExistsRekvizit](#existsrekvizit)
+  - [Folders](#folders)
+  - [GetCheckValue](#getcheckvalue)
+  - [GetFieldType](#getfieldtype)
+  - [GetImage](#getimage)
+  - [GetMemo](#getmemo)
+  - [GetNextTrans](#getnexttrans)
+  - [GetParents](#getparents)
+  - [Grid](#grid)
+  - [InitGrids](#initgrids)
+  - [DoLoadGrids](#doloadgrids)
+  - [LoadGrids](#loadgrids)
+  - [LoadImagesAndMemos](#loadimagesandmemos)
+  - [LoadParents](#loadparents)
+  - [OnConfirmDocumentChangeRequest](#onconfirmdocumentchangerequest)
+  - [OnRefuse](#onrefuse)
+  - [OnRejectDocumentChangeRequest](#onrejectdocumentchangerequest)
+  - [PostMessage](#postmessage)
+  - [RefreshTimeStamp](#refreshtimestamp)
+  - [SendMessage](#sendmessage)
+  - [SerializeComplexObjects](#serializecomplexobjects)
+  - [SetCheckValue](#setcheckvalue)
+  - [SetDefaultValuesForFields](#setdefaultvaluesforfields)
+  - [SetDefaultValuesForFields](#setdefaultvaluesforfields-1)
+  - [SetImage](#setimage)
+  - [SetMemo](#setmemo)
+  - [Store](#store)
+  - [StoreGrids](#storegrids)
+  - [StoreValuesHistory](#storevalueshistory)
+  - [TakeSnapshot](#takesnapshot)
+  - [TemplateSubstitution](#templatesubstitution)
+  - [TemplateSubstitutionEx](#templatesubstitutionex)
+  - [Validate](#validate)
+  - [WriteLog](#writelog)
+
+## Ներածություն
+
+```c#
+public class Document : DocumentBase
+```
+
+Document դասը հիմք է հանդիսանում է փաստաթղթերի սահմանման համար։ Բոլոր փաստաթղթերը ունեն `Document` ատրիբուտը և ժառանգ են հանդիսանում այս դասից, որը տրամադրում է վիրտուալ մեթոդներ սեփական սերվերային տրամաբանության սահմանման համար և հատկություններ փաստաթղթի մետատվյալների ստացման համար։
+
+8X համակարգում փաստաթուղթ նկարագրելու համար հարկավոր է ունենալ
+* .as ընդլայնմամբ ֆայլ սկրիպտերում [DOCUMENT](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Defs/doc.html), որը պարունակում է փաստաթղթի մետատվյալները և դաշտերի, աղյուսակների, մեմոների նկարագրությունները։ Այն անհրաժեշտ է ներմուծել տվյալների բազա Syscon գործիքի միջոցով։
+* .cs ընդլայնմամբ ֆայլ, որը պարունակում է սերվերում աշխատող տրամաբանությունը։
+
+[.as և c# ֆայլերի նկարագրման ամբողջական օրինակ](/src/server_api/examples/document_definition.md)
+
+## Օրինակներ
+
+* [Փաստաթղթի նկարագրման ձեռնարկ](/src/server_api/definitions/document_guide.md)
+* [DocumentService դաս](/src/server_api/services/IDocumentService.md)
+* [Փաստաթղթի ընդլայնման բազային դաս](/src/extensions/definitions/document_extender.md)
+* [Փաստաթղթի ընդլայնման նկարագրման ձեռնարկ](/src/extensions/definitions/document_extender_guide.md)
 
 ## Հատկություններ
 
@@ -209,22 +229,6 @@ public bool GridsLoading { get; internal set; } = false;
 
 Ցույց է տալիս փաստաթղթի գրիդները գտնվում են բեռնման պրոցեսում թե ոչ։
 
-### InitialSnapshot
-
-```c#
-public DocumentSnapshot InitialSnapshot { get; private set; }
-```
-
-Snapshots dictionary-ից վերադարձնում է InitialSnapshot key-ին համապատասխան փաստաթղթի քեշավորված նկարագրությունը։
-
-### ISN
-
-```c#
-public int ISN { get; internal set; }
-```
-
-Վերադարձնում է փաստաթղթի ներքին նույնականացման համարը(isn-ը):
-
 ### IsCancellationSupported
 
 ```c#
@@ -240,6 +244,22 @@ public bool IsLogged { get; set; }
 ```
 
 ??
+
+### InitialSnapshot
+
+```c#
+public DocumentSnapshot InitialSnapshot { get; private set; }
+```
+
+Snapshots dictionary-ից վերադարձնում է InitialSnapshot key-ին համապատասխան փաստաթղթի քեշավորված նկարագրությունը։
+
+### ISN
+
+```c#
+public int ISN { get; internal set; }
+```
+
+Վերադարձնում է փաստաթղթի ներքին նույնականացման համարը(isn-ը):
 
 ### IsNew 
 
@@ -348,14 +368,6 @@ StoreMode-ի արժեքների բազմություն
 - StoreMode.Confirmed - Փաստաթուղթը վավերացվում է։
 - StoreMode.Import - Փաստաթղթի ներմուծում։
 
-### StoreSnapshot
-
-```c#
-public DocumentSnapshot StoreSnapshot { get; private set; }
-```
-
-Snapshots dictionary-ից վերադարձնում է StoreSnapshot key-ին համապատասխան փաստաթղթի քեշավորված նկարագրությունը։
-
 ### StoredFacts
 
 ```c#
@@ -363,6 +375,14 @@ public List<Fact> StoredFacts { get; internal set; }
 ```
 
 Վերադարձնում է փաստաթղթի գրանցված հաշվառումների ցուցակը։
+
+### StoreSnapshot
+
+```c#
+public DocumentSnapshot StoreSnapshot { get; private set; }
+```
+
+Snapshots dictionary-ից վերադարձնում է StoreSnapshot key-ին համապատասխան փաստաթղթի քեշավորված նկարագրությունը։
 
 ### TemplateSubstitutionIsExtended
 
@@ -393,7 +413,7 @@ public virtual Task Action(ActionEventArgs args)
 ### AddParent
 
 ```c#
-public async Task AddParent(int isn)
+public Task AddParent(int isn)
 ```
 
 Ավելացնում է տրված isn-ով փաստաթուղթը փաստաթղթի ծնող փաստաթղթերի ցուցակում։
@@ -561,7 +581,7 @@ public int GetNextTrans()
 ### GetParents
 
 ```c#
-public async Task<List<int>> GetParents()
+public Task<List<int>> GetParents()
 ```
 
 Վերադարձնում է փաստաթղթի ծնող փաստաթղթերի isn-ների ցուցակը։ 
@@ -585,7 +605,7 @@ protected void InitGrids()
 ### DoLoadGrids
 
 ```c#
-protected virtual async Task DoLoadGrids(LoadGridsEventArgs args)
+protected virtual Task DoLoadGrids(LoadGridsEventArgs args)
 ```
 
 ???
@@ -593,7 +613,7 @@ protected virtual async Task DoLoadGrids(LoadGridsEventArgs args)
 ### LoadGrids
 
 ```c#
-public async Task LoadGrids(LoadGridsEventArgs args)
+public Task LoadGrids(LoadGridsEventArgs args)
 ```
 
 Բեռնում է փաստաթղթի գրիդները:
@@ -607,7 +627,7 @@ public async Task LoadGrids(LoadGridsEventArgs args)
 ### LoadImagesAndMemos
 
 ```c#
-public async Task LoadImagesAndMemos(ArchiveInfo archiveInfo = null)
+public Task LoadImagesAndMemos(ArchiveInfo archiveInfo = null)
 ```
 
 ???
@@ -615,7 +635,7 @@ public async Task LoadImagesAndMemos(ArchiveInfo archiveInfo = null)
 ### LoadParents
 
 ```c#
-public async Task LoadParents()
+public Task LoadParents()
 ```
 
 Բեռնում է փաստաթղթի ծնող փաստաթղթերի isn-ների ցուցակը։
@@ -655,7 +675,7 @@ public virtual Task PostMessage(PostMessageEventArgs args)
 ### RefreshTimeStamp
 
 ```c#
-public async Task RefreshTimeStamp()
+public Task RefreshTimeStamp()
 ```
 
 Հիշողության մեջ թարմացնում է փաստաթղթի վերջին գրանցման համարը տվյալների պահոցից։
@@ -663,11 +683,11 @@ public async Task RefreshTimeStamp()
 ### SendMessage
 
 ```c#
-public async Task SendMessage(string message,
-                              int isn = -1,
-                              string messageForDocLog = "",
-                              bool raiseErrorIfDocNotExists = true,
-                              bool raiseErrorIfParentNotExists = true)
+public Task SendMessage(string message,
+                        int isn = -1,
+                        string messageForDocLog = "",
+                        bool raiseErrorIfDocNotExists = true,
+                        bool raiseErrorIfParentNotExists = true)
 ```
 
 Ուղարկում է հաղորդագրություն այլ փաստաթղթի (կամ ծնող փաստաթղթին) առաջացնելով  [PostMessage](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/PostMessage.html)  իրադարձություն:  
@@ -767,7 +787,7 @@ public virtual Task StoreGrids(StoreGridsEventArgs args)
 ### StoreValuesHistory
 
 ```c#
-public async Task StoreValuesHistory()
+public Task StoreValuesHistory()
 ```
 
 Փաստաթղթի ռեկվիզիտների արժեքները գրանցում է տվյալների պահոցի LASTVALUESGROUP աղյուսակում։
@@ -817,7 +837,7 @@ public virtual Task Validate(ValidateEventArgs args)
 ### WriteLog
 
 ```c#
-public async Task WriteLog(string message, int dcrId = -1, bool dcrIdIsISN = false)
+public Task WriteLog(string message, int dcrId = -1, bool dcrIdIsISN = false)
 ```
 
 Ավելացնում է նոր գրառում փաստաթղթի պատմության մեջ։
