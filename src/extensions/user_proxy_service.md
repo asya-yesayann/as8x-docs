@@ -49,10 +49,10 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetAgrFactValueDate, GetAgrFactValuePercent, GetAgrFactValueDecimal, GetAgrFactValueString](#GetAgrFactValueDate-GetAgrFactValuePercent-GetAgrFactValueDecimal-GetAgrFactValueString)
 * [GetRemSS](#GetRemSS)
 * [GetRemHI2](#GetRemHI2)
+* [SSLastOpDate](#SSLastOpDate)
 
 
 
-SSLastOpDate
 AgrSchedule
 GetFutPerDbt
 GetFutServFeeDbt
@@ -922,11 +922,32 @@ HI2 / HIREST2 աղյուսակներում  fCURSUM, fSUM / fCURREM, fREM  դա�
 > [!IMPORTANT]
 > Ֆունկցիան կանչելիս անհրաժեշտ է սահմանել առնվազն `isn` կամ `isnGl` պարամետրերից մեկը։
 
+
+Ստորև բերված օրինակում հաշվարկվում է 13047440 ISN -ով հաճախորդի քարտի գծով 100095 ISN -ով արժույթով (տվյալ դեպքում ՀՀ դրամ) կանխիկի մնացորդի ("10") հաշվառման մնացորդը։
+```c#
+(decimal CRem, decimal NCRem) = (await proxyService.GetRemHI2("10", 13047440, 100095,  DateTime.Parse("2018-12-06")));
+```
+
 <br>
 
+## SSLastOpDate
+
+```c#
+  public Task<(DateTime? Date, string Time)> SSLastOpDate(int isn, NoRem accType, DateTime requestDate,
+                                                              string accOp = "", int baseISN = -1)
+```
 
 
-SSLastOpDate
+
+
+
+
+
+
+
+
+
+
 AgrSchedule
 GetFutPerDbt
 GetFutServFeeDbt
