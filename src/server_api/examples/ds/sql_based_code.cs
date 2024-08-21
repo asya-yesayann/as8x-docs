@@ -9,10 +9,10 @@ using Microsoft.Data.SqlClient;
 
 namespace ArmSoft.AS8X.Core.DSImplementation
 {
-    [DataSource(nameof(TreeNode))]
+    [DataSource("TreeNode")]
     public class TreeNode : DataSource<TreeNode.DataRow, TreeNode.Param>
     {
-        private readonly IDBService dBService;
+        private readonly IDBService dbService;
         public class DataRow : IExtendableRow
         {
             public string Code { get; set; }
@@ -28,7 +28,7 @@ namespace ArmSoft.AS8X.Core.DSImplementation
 
         public TreeNode(IDBService dbService, IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            this.dBService = dbService;
+            this.dbService = dbService;
             this.Schema = new Schema(this.Name, "Ծառի հանգույցներ".ToArmenianANSI(), "Tree nodes", typeof(DataRow), typeof(Param));
 
             this.Schema.AddColumn(nameof(DataRow.Code), "Code", "Կոդ".ToArmenianANSI(), "Code", FieldTypeProvider.GetStringFieldType(20));
@@ -40,7 +40,7 @@ namespace ArmSoft.AS8X.Core.DSImplementation
 
         protected override Task<SqlCommand> MakeSQLCommand(DataSourceArgs<Param> args, CancellationToken stoppingToken)
         {
-            var cmd = this.dBService.Connection.CreateCommand();
+            var cmd = this.dbService.CreateCommand();
             cmd.CommandText = $@"SELECT fCODE AS Code, fNAME AS [Name]
                                  FROM TREES 
                                  WHERE fTREEID = @TreeId";

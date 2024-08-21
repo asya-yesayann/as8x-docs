@@ -5,29 +5,28 @@ tags: [DataSource, DS]
 ---
 
 ## Բովանդակություն
-* [Նախաբան](#նախաբան)
-* [ProcessRow](#processRow)
-  * [Օգտագործման օրինակներ](#processRow-ի-օգտագործման-օրինակներ)
- * [AfterDataReaderCloseMode](#afterDataReaderCloseMode)
-   *  [Օգտագործման օրինակներ](#afterDataReaderCloseMode-ի-օգտագործման-օրինակներ)
+* [Ներածություն](#ներածություն)
+* [ProcessRow](#processrow)
+* [AfterDataReaderClose](#afterdatareaderclose)
 
-## Նախաբան
+## Ներածություն
 
-`Sql-based` տվյալների աղբյուրի տողերի հավելյալ մշակման, ֆիլտրման և հաշվարկային սյուների արժեքների հաշվման համար կարող են օգտագործվել երկու մեթոդներ՝ **ProcessRow** և **AfterDataReaderClose**: 
-Երկու մեթոդներն էլ կանչվում են **յուրաքանչյուր** տողի համար և հանդիսանում են 4x համակարգում նկարագրված [OnEachRow](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/OnEachRow.html) + [Valid](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Valid_Data.html) իրադարձությունների միավորումը:
-Երկու մեթոդներն էլ վերադարձնում են bool տիպի արժեք, որը ցույց է տալիս թե ընթացիկ տողը ընդգրկվի տվյալների աղբյուրի տողերի վերջնական ցուցակում թե ոչ։
+Sql-based տվյալների աղբյուրի տողերի հավելյալ մշակման, ֆիլտրման և հաշվարկային սյուների արժեքների հաշվարկման համար կարող են օգտագործվել երկու մեթոդներ՝ [ProcessRow](ds#processrow) և [AfterDataReaderClose](ds#afterdatareaderclose): 
+
+Երկու մեթոդները փոխարինում են 4X համակարգում նկարագրված [OnEachRow](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/OnEachRow.html) և [Valid](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Valid_Data.html) իրադարձություններին:
 
 ## ProcessRow 
 
-*  Կանչվում է SQL հարցման կատարման ընթացքում, երբ հարցման սյուները կարդացող [SqlDataReader]((https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqldatareader?view=sqlclient-dotnet-standard-5.2))-ը դեռ բաց է:
-*  Որպես մուտքային պարամետրեր ստանում է ընթացիկ տողը, SqlDataReader տիպի օբյեկտ և DataSourceArgs տիպի օբյեկտ, որը պարունակում է տվյալների աղբյուրի պարամետրերը, սյուների անվանումների ցուցակը և մետատվյալներ:
-* Մեթոդում հնարավոր չէ կատարել այլ sql հարցումներ կամ դիմել sql միացում պահանջող սերվիսային մեթոդների։
+Մեթոդը կանչվում է [MakeSqlCommand](ds#makesqlcommand) մեթոդում փևավորված SQL հարցման կատարման ընթացքում, երբ հարցման տվյալները կարդացող [SqlDataReader](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqldatareader)-ը դեռ բաց է:
 
-## ProcessRow-ի օգտագործման օրինակներ
+Մեթոդը է վերադարձնում են bool տիպի արժեք, որը ցույց է տալիս թե ընթացիկ տողը պետք է ընդգրկվի տվյալների աղբյուրի տողերի վերջնական ցուցակում, թե ոչ։
+
+Մեթոդում նախատեսված չէ կատարել sql հարցումներ կամ կանչել ասինխրոն ֆունկցիաներ։ 
+Այլ հարկավոր է կա՛մ աշխատել ընթացիկ տողի հետ, կա՛մ reader-ի ընթացիկ տողի հետ։
 
 ### Օրինակ 1
 
-Այս օրինակում fSTATENAME string տիպի **հաշվարկային** սյան արժեքը որոշվում fSTATE short տիպի ոչ հաշվարկային սյան արժեքներից ելնելով:
+Այս օրինակում fSTATENAME string տիպի *հաշվարկային* սյան արժեքը որոշվում fSTATE short տիպի ոչ հաշվարկային սյան արժեքներից ելնելով:
 
 ```c#
 protected override bool ProcessRow(DataSourceArgs<Param> args, DataRow row, SqlDataReader reader)
@@ -50,12 +49,21 @@ protected override bool ProcessRow(DataSourceArgs<Param> args, DataRow row, SqlD
 
 ### Օրինակ 2
 
-Ներկայացված է տվյալների աղբյուրի տողերի **ֆիլտրացիայի** օրինակ՝ վերջնական տողերի ցուցակում ընդգրկվում են այն տողերը, որոնց short տիպի Age դաշտի արժեքը մեծ է short տիպի AgeStart պարամետրի արժեքից։
+Ներկայացված է տվյալների աղբյուրի տողերի ֆիլտրացիայի օրինակ՝ վերջնական տողերի ցուցակում ընդգրկվում են այն տողերը, որտեղ ստուգվում է տարիքը։
+
+reader-ից տողերը կարդալը առավել արագացնելու համար կարելի է [AfterExecuteSQLCommand](ds#afterexecutesqlcommand) մեթոդում ստանալ reader-ի մեջ հարկավոր դիրքերը։
 
 ```c#
+private int ageOrdinal;
+
+protected override void AfterExecuteSQLCommand(DataSourceArgs<Param> args, SqlDataReader reader)
+{
+    this.ageOrdinal = reader.GetOrdinal("fAGE");
+}
+
 protected override bool ProcessRow(DataSourceArgs<Param> args, DataRow row, SqlDataReader reader)
 {
-    if (row.Age < args.Parameters.AgeStart)
+    if (args.Parameters.CheckAge && reader.GetInt32(this.ageOrdinal) < 18)
     {
         return false;
     }
@@ -66,30 +74,18 @@ protected override bool ProcessRow(DataSourceArgs<Param> args, DataRow row, SqlD
 }
 ```
 
-### Օրինակ 3
+## AfterDataReaderClose
 
-Ներկայացված է տվյալների աղբյուրի տողերի **ֆիլտրացիայի** և հաշվարկային սյուների հաշվման օրինակ՝ վերջնական տողերի ցուցակում ընդգրկվում են այն տողերը, որոնց int տիպի WorkersCount հաշվարկային սյան արժեքը հավասար չէ 0-ի։
+AfterDataReaderClose-ը կանչվում է SQL հարցման կատարման ավարտից հետո, երբ [SqlDataReader](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqldatareader)-ը արդեն փակ է: 
+Մեթոդում թույլատրվում է կատարել այլ sql հարցումներ և կանչել ասինխրոն ֆունկցիաներ։
 
-```c#
-protected override bool ProcessRow(DataSourceArgs<Param> args, DataRow row, SqlDataReader reader)
-{
-	row.WorkersCount = row.FirstCompanyWorkersCount + row.SecondCompanyWorkersCount;
-	return WorkersCount != 0;
-}
-```
-
-## AfterDataReaderCloseMode
-
-*  Կանչվում է SQL հարցման կատարման ավարտից հետո, երբ հարցման սյուները կարդացող [SqlDataReader]((https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqldatareader?view=sqlclient-dotnet-standard-5.2))-ը արդեն փակ է:
-*  Որպես մուտքային պարամետրեր ստանում է ընթացիկ տողը և DataSourceArgs տիպի օբյեկտ, որը պարունակում է տվյալների աղբյուրի պարամետրերը, սյուների անվանումների ցուցակը և մետատվյալներ։
-* Մեթոդում թույլատրվում է կատարել այլ sql հարցումներ և դիմել sql միացում պահանջող սերվիսային մեթոդների։
-* Մեթոդի ակտիվացման համար անհրաժեշտ է նախապես override անել [AfterDataReaderCloseMode](ds.md#afterDataReaderCloseMode) հատկությունը՝ վերադարձնելով CallMode.EachRowCall արժեքը։
-
-## AfterDataReaderCloseMode-ի օգտագործման օրինակներ
+AfterDataReaderClose-ի աշխատանքի երկու տարբերակ կա կախված գերբեռնվող [AfterDataReaderCloseMode](ds.md#afterdatareaderclosemode) հատկության արժեքից՝
+- Ամեն տողի համար առանձին կանչ,
+- Մեկ կանչ բոլոր տողերի մշակման համար։
 
 ### Օրինակ 1
 
-Այս օրինակում յուրաքանչյուր տողի համար բեռնվում է տողի fISN դաշտի արժեքով փաստաթուղթը  և  DOCARMCAPTION, DOCENGCAPTION string տիպի հաշվարկային սյուներին վերագրում բեռնված փաստաթղթի հայերեն և անգլերեն անվանումները։
+Այս օրինակում յուրաքանչյուր տողի համար բեռնվում է տողի fISN դաշտի արժեքով փաստաթուղթը և  DOCARMCAPTION, DOCENGCAPTION string տիպի հաշվարկային սյուներին վերագրում բեռնված փաստաթղթի հայերեն և անգլերեն անվանումները։
 
 ```c#
 public override CallMode AfterDataReaderCloseMode => CallMode.EachRowCall;
@@ -101,28 +97,23 @@ protected override async Task<bool> AfterDataReaderClose(DataSourceArgs<Param> a
 	row.DOCENGCAPTION = doc.Description.EnglishCaption; 
 	return true;
 }
-
 ```
 
 ### Օրինակ 2
 
-Այս օրինակում յուրաքանչյուր տողի համար բեռնվում է ծառի նկարագրությունը՝ օգտագործելով տողի fNAME դաշտի արժեքը: 
-Եթե դիտումը(AllowView) կամ խմբագրումը(AllowEdit) թույլատրված է, ապա fCAPTION, fECAPTION string տիպի հաշվարկային սյուներին վերագրվում է բեռնված ծառի հայերեն և անգլերեն անվանումները և վերադարձնում true, որի շնորհիվ տողը ներառվում է տվյալների աղբյուրի տողերի վերջնական ցուցակում։ 
-Հակառակ դեպքում տողը չի ավելացվում ցուցակում:
+Այս օրինակում տողերի մի մասը ստացվում է այլ աղբյուրից, և դրանք ավելացվում են վերջնական տողերի ցուցակին։
 
 ```c#
-public override CallMode AfterDataReaderCloseMode => CallMode.EachRowCall;
+public override CallMode AfterDataReaderCloseMode => CallMode.SingleCall;
 
-protected override Task<bool> AfterDataReaderClose(DataSourceArgs<NoParam> args, DataRow row)
+protected override async Task AfterDataReaderClose(DataSourceArgs<Param> args, CancellationToken stoppingToken)
 {
-    TreeDefinition tree = this.treeService.GetFreshDecsriptor(row.fNAME);
-    
-    if (tree.AllowEdit || tree.AllowView)
-    {
-        row.fCAPTION = tree.ArmenianCaption; 
-        row.fECAPTION = tree.EnglishCaption;
-        return Task.FromResult(true);
-    }    
-    return Task.FromResult(false);
+    var otherRows = await GetRowsFromOtherSource(args, stoppingToken);
+    this.Rows.AddRange(otherRows);
+}
+
+private async Task<List<DataRow>> GetRowsFromOtherSource(DataSourceArgs<Param> args, CancellationToken stoppingToken)
+{
+    //...
 }
 ```

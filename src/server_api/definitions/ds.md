@@ -51,7 +51,7 @@ DataSource աբստրակտ դասը հիմք է հանդիսանում է տվ�
 
 **Օրինակ**
 ```c#
-[DataSource(nameof(TreeNode))]
+[DataSource("TreeNode")]
 public class TreeNode : DataSource<TreeNode.DataRow, TreeNode.Param>
 ```
 
