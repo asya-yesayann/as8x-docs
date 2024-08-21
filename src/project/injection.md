@@ -5,7 +5,6 @@ tags: [DI, Dependency]
 ---
 
 ## Բովանդակություն
-- [Բովանդակություն](#բովանդակություն)
 - [Ի՞նչ է Dependency injection-ը](#ինչ-է-dependency-injection-ը)
 - [Պրոյեկտում կիրառման օրինակներ](#պրոյեկտում-կիրառման-օրինակներ)
   - [Սերվիսում օգտագործման օրինակ](#սերվիսում-օգտագործման-օրինակ)
@@ -36,8 +35,8 @@ public class MyExtention
 Բարդ ֆունկցիոնալություն տվող դասերը (սերվիսները) սահմանվում են 8X համակարգի մեջ, և կարող են օգտագործվել
 - Այլ սերվիսներ ստեղծելուց,
 - ASP.NET Core [Controller](https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-8.0)-ներում API-ներ սահմանող մեթոդներ սահմանելուց,
-- 8X համակարգի նկարագրություններ ստեղծելուց (Փաստաթուղթ, Տվյալների աղբյուր, ...),
-- 8X համակարգի ընդլայնող դասերում (Տվյալների աղբյուրի ընդլայնում, Տպվող ձևի ընդլայնում, ...),
+- 8X համակարգի նկարագրություններ ստեղծելուց (Փաստաթուղթ, Տվյալների աղբյուր...),
+- 8X համակարգի ընդլայնող դասերում (Տվյալների աղբյուրի ընդլայնում, Տպվող ձևի ընդլայնում...),
 - այլ տեղերում, որտեղ հասանելի է [IServiceProvider](https://learn.microsoft.com/en-us/dotnet/api/system.iserviceprovider) ինտերֆեյսի օբյեկտը։
 
 [IServiceProvider](https://learn.microsoft.com/en-us/dotnet/api/system.iserviceprovider) ինտերֆեյսի օբյեկտը դա հատուկ «հավաքածու» է, որը կարողանում է ստեղծել 8X համակարգի միացման ժամանակ ծրագրային սահմանված սերվիս դասերը իր [GetService](https://learn.microsoft.com/en-us/dotnet/api/system.iserviceprovider.getservice) մեթոդով։
@@ -63,7 +62,7 @@ var treeElementService2 = serviceProvider.GetService<TreeElementService>();
 
 ### Սերվիսում օգտագործման օրինակ
 
-[TreeElementService](/src/server_api/services/TreeElementsService.md) դասը, որը պարունակում է ծառի հանգույցներին վերաբերող ֆունկցիոնալությունը, իր կախվածությունները ([IDBService](/src/server_api/services/DBService.md), TimeStampService, TreeService և IErrorHandlingService) ստանում է կոնստրուկտորով ինյեկցիայի միջոցով: 
+[TreeElementService](/src/server_api/services/TreeElementsService.md) դասը իր կախվածությունները ([IDBService](/src/server_api/services/DBService.md), TimeStampService, TreeService և IErrorHandlingService) ստանում է կոնստրուկտորով ինյեկցիայի միջոցով: 
 Այս սերվիսները վերագրվում են դասի ներսում նախապես հայտարարված լոկալ փոփոխականներին և օգտագործվում են դասի ներսում: 
 
 ```c#
