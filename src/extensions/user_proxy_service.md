@@ -935,6 +935,10 @@ HI2 / HIREST2 աղյուսակներում  fCURSUM, fSUM / fCURREM, fREM  դա�
 ```c#
   public Task<(DateTime? Date, string Time)> SSLastOpDate(int isn, NoRem accType, DateTime requestDate,
                                                               string accOp = "", int baseISN = -1)
+  public Task<DateTime?> SSLastOpDate(int isn, Rem accType, DateTime requestDate,
+                                                              string accOp = "", int baseISN = -1)
+  public Task<DateTime?> SSLastOpDate(int isn, Turn accType, DateTime requestDate,
+                                                              string accOp = "", int baseISN = -1)
 ```
 
 
