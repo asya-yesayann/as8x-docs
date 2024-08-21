@@ -769,7 +769,7 @@ public Task<ContractDesc> LoadContractDescByCode(string agrType, string code)
 ## GetAgrRem
 
 ```c#
-public async Task<decimal> GetAgrRem(int isn, Rem accType, DateTime requestDate, string agrTypeName = null, string curCode = "", string convertCur = "")
+public async Task<decimal> GetAgrRem(int isn, Rem accType, DateTime requestDate, string agrTypeName = null, string sourceCur = "", string targetCur  = "")
 ```
 Վերադարձնում է պայմանագրի հաշվառման մնացորդը (ըստ բոլոր ենթապայմանագրերի)։
 
@@ -779,13 +779,13 @@ public async Task<decimal> GetAgrRem(int isn, Rem accType, DateTime requestDate,
 * `accType` - Պարտադիր։ Հաշվառման կոդ։ Սահմանվում է Subsystems.Enums.Accountings.Rem դասի համապատասխան հատկությունը։ Նշված դասի հատկությունների անվանումները համապատասխանում են [պայմանագրերի հաշվառման կոդերին](#պայմանագրերի-հաշվառումների-կոդեր)։
 * `requestDate` - Պարտադիր։ Մնացորդի ամսաթիվ։
 * `agrTypeName` - Ոչ պարտադիր։ Պայմանագրի փաստաթղթի տեսակ։ Լռությամբ՝ null: Սահմանելու դեպքում ֆունկցիայի կատարման ժամանակը կկրճատվի։
-* `curCode` - Ոչ պարտադիր։ Լռությամբ ""։ Պայմանագրի մնացորդի արժույթը։ Կիրառվում է `convertCur` պարամետրի հետ միասին։ 
-* `convertCur` - Ոչ պարտադիր, Լռությամբ ""։ Վերահաշվակվի արժույթը։ Այս պարամետրը սահմանվում է `curCode` պարամետրի հետ միասին։ Սահմանված լինելու դեպքում մնացորդը կվերահաշվարկվի ըստ տվյալ արժույթի համար `requestDate` ապարամետրով սահմանված ամսաթվով ՀՀ ԿԲ հաշվարկային փոխարժեքի։ Սահմանված չլինելու դեպքում գումարը կվերադարձվի հաշվառման աժությով։
+* `sourceCur` - Ոչ պարտադիր։ Լռությամբ ""։ Պայմանագրի մնացորդի արժույթի թվային կոդը։ Օրինակ՝ "000", "001"։ Կիրառվում է `targetCur` պարամետրի հետ միասին։ 
+* `targetCur ` - Ոչ պարտադիր, Լռությամբ ""։ Վերահաշվակվի արժույթի թվային կոդը։ Օրինակ՝ "000", "001"։ Այս պարամետրը սահմանվում է `sourceCur` պարամետրի հետ միասին։ Սահմանված լինելու դեպքում մնացորդը կվերահաշվարկվի ըստ տվյալ արժույթի համար `requestDate` ապարամետրով սահմանված ամսաթվով ՀՀ ԿԲ հաշվարկային փոխարժեքի։ Սահմանված չլինելու դեպքում գումարը կվերադարձվի հաշվառման արժությով։
 
 
-Բերված օրինակում հաշվարկվում է 653013562 ISN-ով պայմանագրի մնացորդը 13/08/24 -ի դրությամբ։
+Բերված օրինակում կհաշվարկվի 653013562 ISN-ով, ԱՄՆ- դոլարով պայմանագրի մնացորդը 13/08/24 -ի դրությամբ վերահաշվարկված ԵՎՐՈ-ով։
 ```c#
-decimal agrRem = await proxyService.GetAgrRem(653013562, Subsystems.Enums.Accountings.Rem.R1, DateTime.Parse("2024-08-13"), "C1Univer");
+decimal agrRem = await proxyService.GetAgrRem(653013562, Subsystems.Enums.Accountings.Rem.R1, DateTime.Parse("2024-08-13"), "C1Univer", "001", "049");
 ```
 
 
