@@ -602,7 +602,7 @@ public decimal CalculateAtmInd(string codFormList, DateTime dateFirst, DateTime 
 * `precision`- Ոչ պարտադիր։ Լռությամբ՝ 2։
 
 
-CalculateOlapFormula
+## CalculateOlapFormula
 
 ```c#
 public decimal CalculateOlapFormula(string codFormList, string branch, DateTime dateFirst, DateTime dateLast,
