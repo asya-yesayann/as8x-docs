@@ -38,7 +38,7 @@ tags: [FieldType, FieldTypes, type]
 Հանդիսանում է 4x-ում նկարագրված [AmAcc](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/Amacc.html) համակարգային տիպի համարժեքը 8x-ում։
 Համարժեք c#-ական ներդրված տիպը [string](https://learn.microsoft.com/en-us/dotnet/api/system.string)-ն է:
 
-Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել `FieldTypeProvider` ստատիկ դասի `AmAcc` հատկությունը։
+Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](/src/field_type_provider.md) ստատիկ դասի [AmAcc](/src/field_type_provider.md#amacc) հատկությունը։
 
 **Օրինակ**
 
@@ -51,7 +51,7 @@ AmAccFieldType accounting = FieldTypeProvider.AmAcc;
 Հանդիսանում է 4x-ում նկարագրված [Summa](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/Summa.html) համակարգային տիպի համարժեքը 8x-ում։
 Համարժեք c#-ական ներդրված տիպը [decimal](https://learn.microsoft.com/en-us/dotnet/api/system.decimal)-ն է։
 
-Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել `FieldTypeProvider` ստատիկ դասի `Amount` հատկությունը։
+Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](/src/field_type_provider.md) ստատիկ դասի [Amount](/src/field_type_provider.md#amount) հատկությունը։
 
 **Օրինակ**
 
@@ -64,7 +64,7 @@ AmountFieldType summa = FieldTypeProvider.Amount;
 Հանդիսանում է 4x-ում նկարագրված [SummaP](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/Summap.html) համակարգային տիպի համարժեքը 8x-ում։
 Համարժեք c#-ական ներդրված տիպը [decimal](https://learn.microsoft.com/en-us/dotnet/api/system.decimal)-ն է։
 
-Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել `FieldTypeProvider` ստատիկ դասի `AmountPositive` հատկությունը։
+Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](/src/field_type_provider.md) ստատիկ դասի [AmountPositive](/src/field_type_provider.md#amountpositive) հատկությունը։
 
 **Օրինակ**
 
@@ -77,7 +77,7 @@ AmountPositiveFieldType investmentAmount = FieldTypeProvider.AmountPositive;
 Հանդիսանում է 4x-ում նկարագրված [Boolean](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/Boolean.html) համակարգային տիպի համարժեքը 8x-ում։
 Համարժեք c#-ական ներդրված տիպը [bool](https://learn.microsoft.com/en-us/dotnet/api/system.boolean)-ն է։
 
-Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել `FieldTypeProvider` ստատիկ դասի `Boolean` հատկությունը։
+Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](/src/field_type_provider.md) ստատիկ դասի [Boolean]((/src/field_type_provider.md#boolean)) հատկությունը։
 
 **Օրինակ**
 
@@ -90,7 +90,7 @@ BooleanFieldType isConfirmed = FieldTypeProvider.Boolean;
 Հանդիսանում է 4x-ում նկարագրված [Ch()](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/Ch.html) համակարգային տիպի համարժեքը 8x-ում։
 Համարժեք c#-ական ներդրված տիպը [string](https://learn.microsoft.com/en-us/dotnet/api/system.string)-ն է:
 
-Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել `FieldTypeProvider` ստատիկ դասի `GetCHFieldType` մեթոդը։
+Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](/src/field_type_provider.md) ստատիկ դասի [GetCHFieldType](/src/field_type_provider.md#getchfieldtype) մեթոդը։
 
 **Օրինակ**
 
@@ -104,7 +104,7 @@ CHFieldType stdCom = FieldTypeProvider.GetCHFieldType("STDCOM", 3));
 Հանդիսանում է 4x-ում նկարագրված [Date](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/Date.html) և [DateLong](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/DateLong.html) համակարգային տիպերի համարժեքը 8x-ում։
 Համարժեք c#-ական ներդրված տիպը [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime)-ն է։
 
-[Date](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/Date.html) տիպի օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել `FieldTypeProvider` ստատիկ դասի `Date` հատկությունը, իսկ [DateLong](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/DateLong.html) տիպի օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել `FieldTypeProvider` ստատիկ դասի `DateLong` հատկությունը։
+[Date](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/Date.html) տիպի օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](/src/field_type_provider.md) ստատիկ դասի [Date](/src/field_type_provider.md#date) հատկությունը, իսկ [DateLong](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/DateLong.html) տիպի օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](/src/field_type_provider.md) ստատիկ դասի [DateLong](/src/field_type_provider.md#datelong) հատկությունը։
 
 **Օրինակ**
 
@@ -118,14 +118,14 @@ DateFieldType endDate = FieldTypeProvider.DateLong;
 Հանդիսանում է 4x-ում նկարագրված [File](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/File.html) համակարգային տիպի համարժեքը 8x-ում։
 Համարժեք c#-ական ներդրված տիպը [string](https://learn.microsoft.com/en-us/dotnet/api/system.string)-ն է:
 
-Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել `FieldTypeProvider` ստատիկ դասի `File` հատկությունը։
+Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](/src/field_type_provider.md) ստատիկ դասի [File](/src/field_type_provider.md#datelong) հատկությունը։
 
 ## FolderFieldType
 
 Հանդիսանում է 4x-ում նկարագրված [Folder()](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/Folder.html) համակարգային տիպի համարժեքը 8x-ում։
 Համարժեք c#-ական ներդրված տիպը [string](https://learn.microsoft.com/en-us/dotnet/api/system.string)-ն է:
 
-Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել `FieldTypeProvider` ստատիկ դասի `GetFolderFieldType` մեթոդը։
+Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](/src/field_type_provider.md) ստատիկ դասի [GetFolderFieldType](/src/field_type_provider.md#getfolderfieldtype) մեթոդը։
 
 **Օրինակ**
 
@@ -141,7 +141,7 @@ FolderFieldType folder = Provider.GetFolderFieldType("ACC", 11));
 5-ից 10 երկարությամբ, կոտորակային մաս չունեցող արժեքների համար int-ն է, 
 հակառակ դեպքում [decimal](https://learn.microsoft.com/en-us/dotnet/api/system.decimal)-ն է։
 
-Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել `FieldTypeProvider` ստատիկ դասի `GetNumericFieldType` մեթոդը։
+Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](/src/field_type_provider.md) ստատիկ դասի [GetNumericFieldType](/src/field_type_provider.md#getnumericfieldtype) մեթոդը։
 
 **Օրինակ**
 
@@ -160,7 +160,7 @@ NumericFieldType number = FieldTypeProvider.GetNumericFieldType(7, 2);
 5-ից 10 երկարությամբ, կոտորակային մաս չունեցող արժեքների համար int-ն է, 
 հակառակ դեպքում [decimal](https://learn.microsoft.com/en-us/dotnet/api/system.decimal)-ն է։
 
-Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել `FieldTypeProvider` ստատիկ դասի `GetNumericPositiveFieldType` մեթոդը։
+Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](/src/field_type_provider.md) ստատիկ դասի [GetNumericPositiveFieldType](/src/field_type_provider.md#getnumericpositivefieldtype) մեթոդը։
 
 **Օրինակ**
 
@@ -177,7 +177,7 @@ NumericPositiveFieldType number = FieldTypeProvider.GetNumericPositiveFieldType(
 Հանդիսանում է 4x-ում նկարագրված [NumPair()](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/NumPair.html) համակարգային տիպի համարժեքը 8x-ում։
 Համարժեք c#-ական ներդրված տիպը [string](https://learn.microsoft.com/en-us/dotnet/api/system.string)-ն է:
 
-Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել `FieldTypeProvider` ստատիկ դասի `GetNumPairFieldType` մեթոդը։
+Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](/src/field_type_provider.md) ստատիկ դասի [GetNumPairFieldType](/src/field_type_provider.md#getnumpairfieldtype) մեթոդը։
 
 **Օրինակ**
 
@@ -193,7 +193,7 @@ NumPairFieldType period =  FieldTypeProvider.GetNumPairFieldType(
 Հանդիսանում է 4x-ում նկարագրված [Path](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/Path.html) համակարգային տիպի համարժեքը 8x-ում։
 Համարժեք c#-ական ներդրված տիպը [string](https://learn.microsoft.com/en-us/dotnet/api/system.string)-ն է:
 
-Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել `FieldTypeProvider` ստատիկ դասի `Path` հատկությունը։
+Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](/src/field_type_provider.md) ստատիկ դասի [Path](/main/src/field_type_provider.md#path) հատկությունը։
 
 **Օրինակ**
 
@@ -206,7 +206,7 @@ PathFieldType path = FieldTypeProvider.Path;
 Հանդիսանում է 4x-ում նկարագրված [C()](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/C.html) համակարգային տիպի համարժեքը 8x-ում։
 Համարժեք c#-ական ներդրված տիպը [string](https://learn.microsoft.com/en-us/dotnet/api/system.string)-ն է:
 
-Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել `FieldTypeProvider` ստատիկ դասի `GetStringFieldType` մեթոդը։
+Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](/src/field_type_provider.md) ստատիկ դասի [GetStringFieldType](/src/field_type_provider.md#getstringfieldtype) մեթոդը։
 
 **Օրինակ**
 
@@ -220,7 +220,7 @@ StringFieldType name = FieldTypeProvider.GetStringFieldType(50);
 Հանդիսանում է 4x-ում նկարագրված [Time](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/Time.html) և [TimeLong](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/TimeLong.html) համակարգային տիպերի համարժեքը 8x-ում։
 Համարժեքը c#-ական ներդրված տիպը [DateTime](https://learn.microsoft.com/en-us/dotnet/api/system.datetime)-ն է։
 
-[Time](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/Time.html) տիպի օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել `FieldTypeProvider` ստատիկ դասի `Time` հատկությունը, իսկ [TimeLong](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/TimeLong.html) տիպի օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել `FieldTypeProvider` ստատիկ դասի `TimeLong` հատկությունը։
+[Time](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/Time.html) տիպի օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](/src/field_type_provider.md) ստատիկ դասի [Time](/src/field_type_provider.md#time) հատկությունը, իսկ [TimeLong](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/TimeLong.html) տիպի օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](/src/field_type_provider.md) ստատիկ դասի [TimeLong](/src/field_type_provider.md#timelong) հատկությունը։
 
 **Օրինակ**
 
@@ -234,8 +234,7 @@ TimeFieldType checkTime = FieldTypeProvider.TimeLong;
 Հանդիսանում է 4x-ում նկարագրված [Tree()](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/Tree.html) և [FullTree()](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/FULLTREE.html) համակարգային տիպերի համարժեքը 8x-ում։
 Համարժեք c#-ական ներդրված տիպը [string](https://learn.microsoft.com/en-us/dotnet/api/system.string)-ն է:
 
-Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել `FieldTypeProvider` ստատիկ դասի `GetTreeFieldType` մեթոդը։
-
+Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](/src/field_type_provider.md) ստատիկ դասի `GetTreeFieldType` մեթոդը։
 
 ```c#
 // USERS ներքին անունով TreeFieldType դասի օբյեկտի ստեղծում
