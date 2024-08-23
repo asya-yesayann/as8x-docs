@@ -6,19 +6,19 @@ sublinks:
 - { title: "Օրինակներ", ref: օրինակներ }
 - { title: "DSEXTENDER նկարագրություն", ref: dsextender-նկարագրություն }
 - { title: "Հատկություններ", ref: հատկություններ }
-  - { title: "NAME", ref: name }
-  - { title: "CAPTION", ref: caption }
-  - { title: "ECAPTION", ref: ecaption }
-  - { title: "DATASOURCE", ref: datasource }
-  - { title: "CSSOURCE", ref: cssource }
+- { title: "NAME", ref: name }
+- { title: "CAPTION", ref: caption }
+- { title: "ECAPTION", ref: ecaption }
+- { title: "DATASOURCE", ref: datasource }
+- { title: "CSSOURCE", ref: cssource }
 - { title: "Extender դաս", ref: extender-դաս }
 - { title: "Հատկություններ", ref: հատկություններ-1 }
-  - { title: "AlwaysCallBeforeProcess", ref: alwayscallbeforeprocess }
+- { title: "AlwaysCallBeforeProcess", ref: alwayscallbeforeprocess }
 - { title: "Մեթոդներ", ref: մեթոդներ }
-  - { title: "AddColumn", ref: addcolumn }
-  - { title: "AddParam", ref: addparam }
-  - { title: "BeforeProcess", ref: beforeprocess }
-  - { title: "ProccessRow", ref: proccessrow }
+- { title: "AddColumn", ref: addcolumn }
+- { title: "AddParam", ref: addparam }
+- { title: "BeforeProcess", ref: beforeprocess }
+- { title: "ProccessRow", ref: proccessrow }
 ---
 
 ## Բովանդակություն
