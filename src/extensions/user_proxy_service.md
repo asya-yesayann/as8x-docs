@@ -53,11 +53,11 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [AgrSchedule](#AgrSchedule)
 * [GetFutPerDbt](#GetFutPerDbt)
 * [GetFutServFeeDbt](#GetFutServFeeDbt)
+* [GetPCardData](#GetPCardData)
 
 
 
 
-GetPCardData
 GetPCardDoc
 AsCCur
 DealRate
@@ -1027,13 +1027,19 @@ public Task<decimal> GetFutPerDbt(int agrISN, DateTime dateStart, DateTime dateE
 
 
 
+## GetPCardData
+```c#
+ public Task<Dictionary<string, object>> GetPCardData(string fieldList,
+                                 string cardNum = "",
+                                 string cardAcc = "",
+                                 long isn = 0,
+                                 bool includeClosed = true,
+                                 bool throwException = true)
+```
 
 
 
 
-
-
-GetPCardData
 GetPCardDoc
 AsCCur
 DealRate
