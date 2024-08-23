@@ -52,10 +52,11 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [SSLastOpDate](#SSLastOpDate)
 * [AgrSchedule](#AgrSchedule)
 * [GetFutPerDbt](#GetFutPerDbt)
+* [GetFutServFeeDbt](#GetFutServFeeDbt)
 
 
 
-GetFutServFeeDbt
+
 GetPCardData
 GetPCardDoc
 AsCCur
@@ -994,10 +995,6 @@ public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, Sch
 
 
 
-
-
-
-
 ## GetFutPerDbt
 
 ```c#
@@ -1014,12 +1011,28 @@ public Task<decimal> GetFutPerDbt(int agrISN, DateTime dateStart, DateTime dateE
 
 
 
+## GetFutServFeeDbt
+
+```c#
+ public Task<decimal> GetFutServFeeDbt(int agrISN, DateTime begDate, DateTime endDate)
+```
+
+Վերադարձնում է Univer տեսակի պայմանագրի, նշված ժամանակահատվածում ընկած, մարման ենթակա վարձավճարը հաշվի առնելով վարձավճարի կանխավճարը։
+
+**Պարամետրեր**
+
+* `agrISN` - Պարտադիր։ Պայմանագրի ISN։
+* `dateStart` - Պարտադիր։ Սկզբի ամսաթիվ։
+* `dateEnd` - Պարտադիր։ Վերջի ամսաթիվ
 
 
 
 
 
-GetFutServFeeDbt
+
+
+
+
 GetPCardData
 GetPCardDoc
 AsCCur
