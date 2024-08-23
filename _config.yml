@@ -2,12 +2,12 @@
 title: AS-8X API Documentation
 baseurl: "/as8x-docs"
 
-# # Search settings
-# tipue_search:
-#   include:
-#     pages: true
-#   exclude:
-#     files: [index.md, search.html]
+# Search settings
+tipue_search:
+  include:
+    pages: true
+  exclude:
+    files: [index.md, search.html]
 
 # Build settings
 markdown: kramdown
@@ -29,7 +29,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
 
-#header_pages:
-#  - content.md
-#  - search.html
-#  - apiIndex.html
+header_pages:
+ - search.html
+ - apiIndex.html
