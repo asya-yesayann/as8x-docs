@@ -2,17 +2,27 @@
 layout: page
 title: "DocParser դաս: Փաստաթղթերի 8X տեղափոխման մասնակի ավտոմատացում"
 tags: [CodeGen, DocParser]
+sublinks:
+- { title: "DocParser", ref: docparser }
+- { title: "Մեթոդներ", ref: մեթոդներ }
+- { title: "Parse", ref: parse }
+- { title: "ParseClient", ref: parseclient }
+- { title: "ParseAll", ref: parseall }
+- { title: "ParseClientAll", ref: parseclientall }
+- { title: "DocGeneratorOptions", ref: docgeneratoroptions }
+- { title: "Օրինակներ", ref: օրինակներ }
 ---
 
 Բովանդակություն
-* [DocParser](#docparser)
-* [Մեթոդներ](#մեթոդներ)
-  * [Parse](#parse)
-  * [ParseClient](#parseclient)
-  * [ParseAll](#parseall)
-  * [ParseClientAll](#parseclientall)
-* [DocGeneratorOptions](#docgeneratoroptions)
-  * [Օրինակներ](#օրինակներ)
+
+- [DocParser](#docparser)
+- [Մեթոդներ](#մեթոդներ)
+  - [Parse](#parse)
+  - [ParseClient](#parseclient)
+  - [ParseAll](#parseall)
+  - [ParseClientAll](#parseclientall)
+- [DocGeneratorOptions](#docgeneratoroptions)
+  - [Օրինակներ](#օրինակներ)
 
 ## DocParser
 
@@ -23,7 +33,6 @@ public static class DocParser
 DocParser դասը նախատեսված է 4X-ում նկարագրված փաստաթղթերի նկարագրությունների նկարագրման հատվածը (Definition) 8X տեղափոխելու համար։
 Օգտագործվում է Text Template գործիքի մեջ։  
 Օգտագործման համար տե՛ս [CodeGen : 4X նկարագրությունների տեղափոխման մասնակի ավտոմատացում](/src/server_api/CodeGen/CodeGen.md)։
-
 
 ## Մեթոդներ
 

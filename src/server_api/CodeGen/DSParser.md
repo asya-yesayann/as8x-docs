@@ -2,12 +2,17 @@
 layout: page
 title: "DSParser դաս: Տվյալների աղբյուրների 8X տեղափոխման մասնակի ավտոմատացում"
 tags: [CodeGen, DSParser]
+sublinks:
+- { title: "DSParser", ref: dsparser }
+- { title: "Մեթոդներ", ref: մեթոդներ }
+- { title: "Parse", ref: parse }
 ---
 
 Բովանդակություն
-* [DSParser](#dsparser)
-* [Մեթոդներ](#մեթոդներ)
-  * [Parse](#parse)
+
+- [DSParser](#dsparser)
+- [Մեթոդներ](#մեթոդներ)
+  - [Parse](#parse)
 
 # DSParser
 

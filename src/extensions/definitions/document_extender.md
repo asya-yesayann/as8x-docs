@@ -2,10 +2,42 @@
 layout: page
 title: "Փաստաթղթի իրադարձությունների ընդլայնում"
 tags: [DocExtender, DOCUMENTEXTENDER]
+sublinks: 
+- { title: "DOCUMENTEXTENDER նկարագրություն", ref: documentextender-նկարագրություն }
+- { title: "Հատկություններ", ref: հատկություններ }
+- { title: "NAME", ref: name }
+- { title: "CAPTION", ref: caption }
+- { title: "ECAPTION", ref: ecaption }
+- { title: "CSSOURCE", ref: cssource }
+- { title: "DocumentExtender դաս", ref: documentextender-դաս }
+- { title: "Մեթոդներ", ref: մեթոդներ }
+- { title: "BeforeCommitDelete", ref: beforecommitdelete }
+- { title: "PreAction", ref: preaction }
+- { title: "PostAction", ref: postaction }
+- { title: "PreAfterCommit", ref: preaftercommit }
+- { title: "PostAfterCommit", ref: postaftercommit }
+- { title: "PreAfterCreate", ref: preaftercreate }
+- { title: "PostAfterCreate", ref: postaftercreate }
+- { title: "PreAfterLoad", ref: preafterload }
+- { title: "PostAfterLoad", ref: postafterload }
+- { title: "PreBeforeCommit", ref: prebeforecommit }
+- { title: "PostBeforeCommit", ref: postbeforecommit }
+- { title: "PreBeforeCopy", ref: prebeforecopy }
+- { title: "PostBeforeCopy", ref: postbeforecopy }
+- { title: "PreDelete", ref: predelete }
+- { title: "PostDelete", ref: postdelete }
+- { title: "PreFolders", ref: prefolders }
+- { title: "PostFolders", ref: postfolders }
+- { title: "PostLoadGrids", ref: postloadgrids }
+- { title: "PreOnConfirmDocumentChangeRequest", ref: preonconfirmdocumentchangerequest }
+- { title: "PostOnConfirmDocumentChangeRequest", ref: postonconfirmdocumentchangerequest }
+- { title: "PostStoreGrid", ref: poststoregrid }
+- { title: "PreValidate", ref: prevalidate }
+- { title: "PostValidate", ref: postvalidate }
 ---
 
 ## Բովանդակություն
-- [Բովանդակություն](#բովանդակություն)
+
 - [Նախաբան](#նախաբան)
 - [DOCUMENTEXTENDER նկարագրություն](#documentextender-նկարագրություն)
 - [Հատկություններ](#հատկություններ)
@@ -38,7 +70,7 @@ tags: [DocExtender, DOCUMENTEXTENDER]
     - [PostStoreGrid](#poststoregrid)
     - [PreValidate](#prevalidate)
     - [PostValidate](#postvalidate)
-   
+
 ## Նախաբան
 
 Գոյություն ունեցող փաստաթղթերի մշակման գործընթացում լրացուցիչ ստուգումներ իրականացնելու, դաշտերի ավտոմատ լրացման և այլ սեփական տրամաբանություն ավելացնելու համար նկարագրվում է փաստաթղթի ընդլայնում։

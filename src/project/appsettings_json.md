@@ -2,26 +2,41 @@
 layout: page
 title: "appsettings.json: Կարգավորման ֆայլ"
 tags: [Settings, appsettings]
+sublinks:
+- { title: "additionalSettings", ref: additionalsettings }
+- { title: "Autentication", ref: autentication }
+- { title: "db", ref: db }
+- { title: "Hangfire", ref: hangfire }
+- { title: "JwtConfig", ref: jwtconfig }
+- { title: "redisCachingSettings", ref: rediscachingsettings }
+- { title: "redisCachedItems", ref: rediscacheditems }
+- { title: "Serilog", ref: serilog }
+- { title: "MinimumLevel-ի կարգավորում", ref: minimumlevel-ի-կարգավորում }
+- { title: "Լոգի գրանցում ֆայլում", ref: լոգի-գրանցում-ֆայլում }
+- { title: "Լոգի գրանցում Seq սերվերում", ref: լոգի-գրանցում-seq-սերվերում }
+- { title: "Լոգի ֆիլտրում", ref: լոգի-ֆիլտրում }
+- { title: "Մի քանի լոգերի կիրառում", ref: մի-քանի-լոգերի-կիրառում }
+- { title: "Storage", ref: storage }
 ---
 
 ## Բովանդակություն
 
-* [Ներածություն](#ներածություն) 
-* Բաժիններ
-  * [additionalSettings](#additionalsettings) 
-  * [Autentication](#autentication)
-  * [db](#db) 
-  * [Hangfire](#hangfire) 
-  * [JwtConfig](#jwtconfig) 
-  * [redisCachingSettings](#rediscachingsettings) 
-  * [redisCachedItems](#rediscacheditems) 
-  * [Serilog](#serilog) 
-    * [Լոգի գրանցում ֆայլում](#լոգի-գրանցում-ֆայլում)
-    * [Լոգի գրանցում Seq սերվերում](#լոգի-գրանցում-seq-սերվերում)
-    * [Լոգի ֆիլտրում](#լոգի-ֆիլտրում)
-    * [Մի քանի լոգերի կիրառում](#մի-քանի-լոգերի-կիրառում)
-  * [Storage](#storage) 
-  
+- [Ներածություն](#ներածություն)
+- [additionalSettings](#additionalsettings)
+- [Autentication](#autentication)
+- [db](#db)
+- [Hangfire](#hangfire)
+- [JwtConfig](#jwtconfig)
+- [redisCachingSettings](#rediscachingsettings)
+  - [redisCachedItems](#rediscacheditems)
+- [Serilog](#serilog)
+  - [MinimumLevel-ի կարգավորում](#minimumlevel-ի-կարգավորում)
+  - [Լոգի գրանցում ֆայլում](#լոգի-գրանցում-ֆայլում)
+  - [Լոգի գրանցում Seq սերվերում](#լոգի-գրանցում-seq-սերվերում)
+  - [Լոգի ֆիլտրում](#լոգի-ֆիլտրում)
+  - [Մի քանի լոգերի կիրառում](#մի-քանի-լոգերի-կիրառում)
+- [Storage](#storage)
+
 ## Ներածություն
 
 [appsettings.json](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration)-ը նախատեսված է 8X սերվիսի աշխատանքի կարգավորման պարամետրերը սահմանելու համար, ինչպիսիք են տվյալների բազայի Sql Connection-ը, լոգավորման կարգավորումները:

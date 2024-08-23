@@ -2,23 +2,46 @@
 layout: page
 title: "Տվյալների աղբյուրի ընդլայնում"
 tags: [Extender, DSEXTENDER]
+sublinks:
+- { title: "Օրինակներ", ref: օրինակներ }
+- { title: "DSEXTENDER նկարագրություն", ref: dsextender-նկարագրություն }
+- { title: "Հատկություններ", ref: հատկություններ }
+  - { title: "NAME", ref: name }
+  - { title: "CAPTION", ref: caption }
+  - { title: "ECAPTION", ref: ecaption }
+  - { title: "DATASOURCE", ref: datasource }
+  - { title: "CSSOURCE", ref: cssource }
+- { title: "Extender դաս", ref: extender-դաս }
+- { title: "Հատկություններ", ref: հատկություններ-1 }
+  - { title: "AlwaysCallBeforeProcess", ref: alwayscallbeforeprocess }
+- { title: "Մեթոդներ", ref: մեթոդներ }
+  - { title: "AddColumn", ref: addcolumn }
+  - { title: "AddParam", ref: addparam }
+  - { title: "BeforeProcess", ref: beforeprocess }
+  - { title: "ProccessRow", ref: proccessrow }
 ---
 
 ## Բովանդակություն
-* [Նախաբան](#նախաբան)
-* [Օրինակներ](#օրինակներ)
-* [DSEXTENDER նկարագրություն](#dsextender-նկարագրություն)
-* [Extender դաս](#extender-դաս)
-  * [Հատկություններ](#հատկություններ)
-    * [AlwaysCallBeforeProcess](#alwayscallbeforeprocess)
-  * [Մեթոդներ](#մեթոդներ)
-    * [AddColumn](#addcolumn)
-    * [AddParam](#addparam)
-    * [BeforeProcess](#beforeprocess)
-    * [ProccessRow](#proccessrow)
 
+- [Ներածություն](#ներածություն)
+- [Օրինակներ](#օրինակներ)
+- [DSEXTENDER նկարագրություն](#dsextender-նկարագրություն)
+- [Հատկություններ](#հատկություններ)
+  - [NAME](#name)
+  - [CAPTION](#caption)
+  - [ECAPTION](#ecaption)
+  - [DATASOURCE](#datasource)
+  - [CSSOURCE](#cssource)
+- [Extender դաս](#extender-դաս)
+- [Հատկություններ](#հատկություններ-1)
+  - [AlwaysCallBeforeProcess](#alwayscallbeforeprocess)
+- [Մեթոդներ](#մեթոդներ)
+  - [AddColumn](#addcolumn)
+  - [AddParam](#addparam)
+  - [BeforeProcess](#beforeprocess)
+  - [ProccessRow](#proccessrow)
 
-## Նախաբան
+## Ներածություն
 
 Գոյություն ունեցող տվյալների աղբյուրում լրացուցիչ սյուներ, պարամետրեր ավելացնելու, տողերի պարունակությունը փոփոխելու համար նկարագրվում է տվյալների աղբյուրի ընդլայնում։
 

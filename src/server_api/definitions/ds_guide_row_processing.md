@@ -2,12 +2,24 @@
 layout: page
 title: "Sql-based տվյալների աղբյուրի տողերի հավելյալ մշակում"
 tags: [DataSource, DS]
+sublinks:
+- { title: "ProcessRow", ref: processrow }
+- { title: "Օրինակ 1", ref: օրինակ-1 }
+- { title: "Օրինակ 2", ref: օրինակ-2 }
+- { title: "AfterDataReaderClose", ref: afterdatareaderclose }
+- { title: "Օրինակ 1", ref: օրինակ-1-1 }
+- { title: "Օրինակ 2", ref: օրինակ-2-1 }
 ---
 
 ## Բովանդակություն
-* [Ներածություն](#ներածություն)
-* [ProcessRow](#processrow)
-* [AfterDataReaderClose](#afterdatareaderclose)
+
+- [Ներածություն](#ներածություն)
+- [ProcessRow](#processrow)
+  - [Օրինակ 1](#օրինակ-1)
+  - [Օրինակ 2](#օրինակ-2)
+- [AfterDataReaderClose](#afterdatareaderclose)
+  - [Օրինակ 1](#օրինակ-1-1)
+  - [Օրինակ 2](#օրինակ-2-1)
 
 ## Ներածություն
 
