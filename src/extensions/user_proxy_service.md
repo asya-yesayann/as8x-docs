@@ -51,10 +51,10 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetRemHI2](#GetRemHI2)
 * [SSLastOpDate](#SSLastOpDate)
 * [AgrSchedule](#AgrSchedule)
+* [GetFutPerDbt](#GetFutPerDbt)
 
 
 
-GetFutPerDbt
 GetFutServFeeDbt
 GetPCardData
 GetPCardDoc
@@ -977,13 +977,48 @@ DUA - Պայմանագրի ժամկետ, PNE - Բանկի արդյունավետ
 ```c#
 public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, ScheduleValueType valueType, ScheduleBasis schKind = ScheduleBasis.Any)
 ```
-Վերադարձնում է 
+Ֆունկցիան կիրառելի է միայն Univer տեսակի պայմանագրերի համար։ Վերադարձնում է AgrScheduleRow տիպի օբյեկտների ցուցակ (List), որտեղ յուրաքանչյուր էլեմենտը պարունակում է հետևյալ հատկությունները՝
+
+* `Date`
+* `Summa`
+* `ReduceDateMark`
+* `RowNumByFirstSch`
+* `PerDateMark` 
+
+**Պարամետրեր**
+
+* `isn` - Պարտադիր։ Փաստաթղթի ISN։
+* `requestDate` - Պարտադիր։ Փաստաթղթի ISN։
+* `valueType` - 
+* `schKind` - 
 
 
 
 
 
-GetFutPerDbt
+
+
+## GetFutPerDbt
+
+```c#
+public Task<decimal> GetFutPerDbt(int agrISN, DateTime dateStart, DateTime dateEnd)
+```
+
+Վերադարձնում է Univer տեսակի պայմանագրի, նշված ժամանակահատվածում ընկած, մարման ենթակա տոկոսագումարը հաշվի առնելով տոկոսագումարի կանխավճարը։
+
+**Պարամետրեր**
+
+* `agrISN` - Պարտադիր։ Պայմանագրի ISN։
+* `dateStart` - Պարտադիր։ Սկզբի ամսաթիվ։
+* `dateEnd` - Պարտադիր։ Վերջի ամսաթիվ
+
+
+
+
+
+
+
+
 GetFutServFeeDbt
 GetPCardData
 GetPCardDoc
