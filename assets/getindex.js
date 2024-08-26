@@ -2,29 +2,30 @@ function generateIndexList() {
     let content = document.getElementById("index_content");
     content.innerHTML = "";
     var pages = tipuesearch.pages;
-    pages.sort((a,b) => { 
-        if (a.title < b.title) 
-            return -1; 
-        if (a.title > b.title) 
-            return 1; 
-        return 0; 
+    pages.sort((a, b) => {
+        if (a.title < b.title)
+            return -1;
+        if (a.title > b.title)
+            return 1;
+        return 0;
     });
 
-    for (let i = 0; i < pages.length; i++) {
-        let urltag = pages[i];
-        let loc = urltag.url;
-        let title = urltag.title ? urltag.title : urltag.url;
+    for (let page of pages) {
+        let loc = page.url;
+        let title = page.title ? page.title : page.url;
 
         let div = document.createElement("div");
+        div.setAttribute("data-title", title);
+        div.setAttribute("data-tag", page.tags);
 
         let a = document.createElement("a");
         a.href = loc;
         a.textContent = title;
         div.appendChild(a);
 
-        if (pages[i].pageTitle) {
+        if (page.pageTitle) {
             let span = document.createElement("span");
-            span.innerText = pages[i].pageTitle;
+            span.innerText = page.pageTitle;
             span.classList.add("index-page-title")
             div.appendChild(span);
         }
@@ -59,18 +60,28 @@ function searchText(input) {
     let searchText = input.value.toLowerCase();
     console.log(searchText);
     let anchorArr = content.getElementsByTagName("a");
-    for (let i = 0; i < anchorArr.length; i++) {
-        let anchorText = anchorArr[i].textContent.toLowerCase();
-        let foundIndex = anchorText.lastIndexOf(searchText);
+    for (let anchor of anchorArr) {
+        let anchorText = anchor.parentElement.getAttribute("data-title");
+        let anchorTextLowered = anchorText.toLowerCase();
+        let foundIndex = anchorTextLowered.lastIndexOf(searchText);
         if (foundIndex >= 0) {
             let slashIndex = anchorText.indexOf("/"); //տիպի հատկությունից տարանջատման նիշ
             if (foundIndex > slashIndex) {
-                anchorArr[i].parentElement.style.display = "";
+                anchor.parentElement.style.display = "";
+                if (searchText != "") {
+                    let foundIndexEnd = foundIndex + searchText.length;
+                    anchor.innerHTML =
+                        anchorText.substring(0, foundIndex)
+                        + "<mark>" + anchorText.substring(foundIndex, foundIndexEnd) + "</mark>"
+                        + anchorText.substring(foundIndexEnd);
+                } else {
+                    anchor.innerHTML = anchor.parentElement.getAttribute("data-title");
+                }
             } else {
-                anchorArr[i].parentElement.style.display = "none";
+                anchor.parentElement.style.display = "none";
             }
         } else {
-            anchorArr[i].parentElement.style.display = "none";
+            anchor.parentElement.style.display = "none";
         }
     }
 }
