@@ -1,4 +1,4 @@
-function getIndex() {
+function generateIndexList() {
     let content = document.getElementById("index_content");
     content.innerHTML = "";
     var pages = tipuesearch.pages;
@@ -14,11 +14,21 @@ function getIndex() {
         let urltag = pages[i];
         let loc = urltag.url;
         let title = urltag.title ? urltag.title : urltag.url;
+
+        let div = document.createElement("div");
+
         let a = document.createElement("a");
         a.href = loc;
         a.textContent = title;
-        let div = document.createElement("div");
         div.appendChild(a);
+
+        if (pages[i].pageTitle) {
+            let span = document.createElement("span");
+            span.innerText = pages.pageTitle;
+            span.classList.add("index-page-title")
+            div.appendChild(a);
+        }
+
         content.appendChild(div);
     }
     let input = document.getElementById("tipue_search_input");
@@ -28,7 +38,7 @@ function getIndex() {
 }
 
 window.addEventListener("load", (ev) => {
-    getIndex();
+    generateIndexList();
     let input = document.getElementById("tipue_search_input");
     input.addEventListener("keyup", (ev) => {
         searchText(input);
