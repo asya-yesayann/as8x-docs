@@ -13,7 +13,5 @@ title: "Ընդլայնումներ"
 * [Սերվերային մոդուլ](extensions/definitions/server_side_module_guide.md)
 * [Կազմակերպության սեփական նկարագրություններ](extensions/new_definitions.md)
 
-
 ....
 
-....

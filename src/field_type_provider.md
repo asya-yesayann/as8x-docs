@@ -196,7 +196,7 @@ public static DateFieldType DateLong { get; }
 public static FileFieldType File { get; }
 ```
 
-Վերադարձնում է [FileFieldType]([DateFieldType](system_types.md#filefieldtype) դասի օբյեկտ քեշից կամ ստեղծում նորը քեշում բացակայության դեպքում և քեշավորում։
+Վերադարձնում է [FileFieldType](system_types.md#filefieldtype) դասի օբյեկտ քեշից կամ ստեղծում նորը քեշում բացակայության դեպքում և քեշավորում։
 
 ### Path
 

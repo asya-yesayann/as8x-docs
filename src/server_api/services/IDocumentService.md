@@ -141,7 +141,7 @@ public Task<Document> Copy(int isn, object beforeCopyParam = null, int copyDocMo
 **Պարամետրեր**
 
 * `isn` - Պատճենման ենթակա փաստաթղթի ներքին նույնականացման համար:
-* `beforeCopyParam` - Տվյալ պարամետրի արժեքը փոխանցվում է փաստաթղթի [BeforeCopy](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) իրադարձությանը։ 
+* `beforeCopyParam` - Տվյալ պարամետրի արժեքը փոխանցվում է փաստաթղթի [BeforeCopy](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) իրադարձությանը։ 
 * `copyDocMode` - Փաստաթղթի պատճենման ռեժիմը։ Լռությամբ արժեքը 0 է:
 
   `0` - Պատճենվում են բոլոր դաշտերի արժեքները։  
@@ -812,7 +812,7 @@ public Task MakeParentLink(Document document, int parentIsn, bool removeExisting
 
 Ընթացիկ փաստաթղի համար սահմանում է ծնողի հետ կապ։ Ընթացիկ փաստաթուղթը կարող է դեռ գրանցված չլինել տվյալների պահոցում։
 
-Մեթոդը նախատեսված է  [Action](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/Action.html) իրադարձության մշակիչում կանչելու համար։  
+Մեթոդը նախատեսված է [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) իրադարձության մշակիչում կանչելու համար։  
 Եթե փաստաթուղթը տվյալների պահոցում դեռ գրանցված չէ, ապա այս մեթոդի կանչից հետո ծնող-զավակ կապերը անմիջապես չեն գրանցվում տվյալների պահոցում, դրանց գրանցումը կատարվում է [Action](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/Action.md)  իրադարձության մշակիչի ավարտից հետո։
 
 **Պարամետրեր**

@@ -15,12 +15,12 @@ title: "Սերվերային API"
 
 ## Սերվիսներ
 
-* [text](server_api/services/IParametersService.md)
-* [text](server_api/services/IDocumentService.md)
-* [text](server_api/services/IFoldersService.md)
-* [text](server_api/services/DataSourceService.md)
-* [text](server_api/services/TreeElementsService.md)
+* [IDocumentService](server_api/services/IDocumentService.md)
+* [IDBService](server_api/services/DBService.md)
+* [IFoldersService](server_api/services/IFoldersService.md)
+* [IParametersService](server_api/services/IParametersService.md)
+* [DataSourceService](server_api/services/DataSourceService.md)
+* [TreeElementsService](server_api/services/TreeElementsService.md)
 * ...
 
-...
 ...
