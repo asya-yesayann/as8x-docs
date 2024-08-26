@@ -1,0 +1,12 @@
+div#index_content>div>span.index-page-title {
+  color: #999;
+  font-style: italic
+}
+
+div#index_content>div>span.index-page-title:before {
+  content: ' ('
+}
+
+div#index_content>div>span.index-page-title:after {
+  content: ')'
+}
