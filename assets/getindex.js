@@ -24,7 +24,7 @@ function generateIndexList() {
 
         if (pages[i].pageTitle) {
             let span = document.createElement("span");
-            span.innerText = pages.pageTitle;
+            span.innerText = pages[i].pageTitle;
             span.classList.add("index-page-title")
             div.appendChild(span);
         }
