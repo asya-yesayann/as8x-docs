@@ -15,7 +15,7 @@ sublinks:
 - { title: "Տվյալների ձևավորում", ref: տվյալների-ձևավորում }
 ---
 
-[CodeGenDS]: /src/server_api/CodeGen/CodeGen.md#տվյալների-աղբյուրի-նկարագրությունը-տեղափոխելու-համար-անհրաժեշտ-քայլեր
+[CodeGenDS]: ../CodeGen/CodeGen.md#տվյալների-աղբյուրի-նկարագրությունը-տեղափոխելու-համար-անհրաժեշտ-քայլեր
 
 ## Բովանդակություն
 
@@ -111,7 +111,7 @@ sublinks:
 
 *Ստորև նկարագրված կոնստրուկտորը և սխեման կարող են ձևավորվել [CodeGen][CodeGenDS] գործիքով։*
 
-- Ձևավորել տվյալների աղբյուրի կոնստրուկտորը՝ IServiceProvider տիպի պարտադիր պարամետրով, որը պիտի կանչի base DataSource<R, P> դասի կոնստրուկտորը և փոխանցի IServiceProvider տիպի պարամետրը: Կոնստուկտորում անհրաժեշտ է [ինյեկցիա](/src/project/injection.md) անել աշխատանքի համար անհրաժեշտ service-ները։
+- Ձևավորել տվյալների աղբյուրի կոնստրուկտորը՝ IServiceProvider տիպի պարտադիր պարամետրով, որը պիտի կանչի base DataSource<R, P> դասի կոնստրուկտորը և փոխանցի IServiceProvider տիպի պարամետրը: Կոնստուկտորում անհրաժեշտ է [ինյեկցիա](../../project/injection.md) անել աշխատանքի համար անհրաժեշտ service-ները։
   ```c#
   private readonly IDBService dbService;
   
@@ -156,13 +156,13 @@ sublinks:
 
 ## Sql-based տվյալների աղբյուրի նկարագրման ձեռնարկ
 
-Ամբողջական կոդը դիտելու համար [տե՛ս](/src/server_api/examples/ds/sql_based_code.cs)։
+Ամբողջական կոդը դիտելու համար [տե՛ս](../examples/ds/sql_based_code.cs):
 
 ### Sql հարցման ձևավորում
 
 Վերևում նշված [ընդհանուր քայլերից](#տվյալների-աղբյուրի-նկարագրման-համար-անհրաժեշտ-ընդհանուր-քայլեր) կատարումից հետո անհրաժեշտ է override անել [MakeSQLCommand](ds.md#makesqlcommand) մեթոդը։
 
-[MakeSQLCommand](ds.md#makesqlcommand) մեթոդում անհրաժեշտ է ստեղծել և վերադարձնել [SqlCommand](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlcommand) դասի օբյեկտ՝ [IDBService](/src/server_api/services/DBService.md) դասի [CreateCommand](/src/server_api/services/DBService.md#createcommand) մեթոդի միջոցով։  
+[MakeSQLCommand](ds.md#makesqlcommand) մեթոդում անհրաժեշտ է ստեղծել և վերադարձնել [SqlCommand](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlcommand) դասի օբյեկտ՝ [IDBService](../services/DBService.md) դասի [CreateCommand](../services/DBService.md#createcommand) մեթոդի միջոցով։  
 Այստեղ հարկավոր է ձևավորել sql հարցման տեքստը հաշվի առնելով նաև փոխանցված պարամետրերի արժեքները։
 
 ```c#
@@ -188,11 +188,11 @@ protected override Task<SqlCommand> MakeSQLCommand(DataSourceArgs<Param> args, C
 ### Տողերի լրացուցիչ մշակում
 
 Sql հարցման կատարումից բացի հնարավոր է նաև լրացուցիչ մշակում կատարել ստացված արդյունքի։
-Տե՛ս [Sql-based տվյալների աղբյուրի տողերի հավելյալ մշակում](/src/server_api/definitions/ds_guide_row_processing.md)։
+Տե՛ս [Sql-based տվյալների աղբյուրի տողերի հավելյալ մշակում](ds_guide_row_processing.md):
 
 ## Array-based տվյալների աղբյուրի նկարագրման ձեռնարկ
 
-Ամբողջական կոդը դիտելու համար [տե՛ս](/src/server_api/examples/ds/array_based_code.cs)։
+Ամբողջական կոդը դիտելու համար [տե՛ս](../examples/ds/array_based_code.cs):
 
 ### Տվյալների ձևավորում
 

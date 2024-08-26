@@ -194,7 +194,7 @@ public Task<DateTime> GetApproximateServerDate();
 
 Վերադարձնում է 8X սերվիսի կողմից օգտագործվող Sql սերվերի մոտավոր ամսաթիվը և ժամանակը։
 
-Sql սերվերի անունը անհրաժեշտ է նախապես սահմանել [appsettings.json](/src/project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [db](/src/project/appsettings_json.md) բաժնի `database` պարամետրում։
+Sql սերվերի անունը անհրաժեշտ է նախապես սահմանել [appsettings.json](../../project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [db](../../project/appsettings_json.md#db) բաժնի `database` պարամետրում։
 
 ### GetContext
 
@@ -229,7 +229,7 @@ public Task<DateTime> GetServerDate();
 
 Վերադարձնում է 8X սերվիսի կողմից օգտագործվող Sql սերվերի ընթացիկ ամսաթիվը և ժամանակը։
 
-Sql սերվերի անունը անհրաժեշտ է նախապես սահմանել [appsettings.json](/src/project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [db](/src/project/appsettings_json.md) բաժնի `database` պարամետրում։
+Sql սերվերի անունը անհրաժեշտ է նախապես սահմանել [appsettings.json](../../project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [db](../../project/appsettings_json.md#db) բաժնի `database` պարամետրում։
 
 ### RollBackTrans
 
@@ -326,7 +326,7 @@ string Database { get; }
 
 Վերադարձնում է այն տվյալների բազայի անունը, որին միացված է 8X սերվիսը: 
 
-Այն անհրաժեշտ է նախապես սահմանել [appsettings.json](/src/project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [db](/src/project/appsettings_json.md) բաժնի `database` պարամետրում։
+Այն անհրաժեշտ է նախապես սահմանել [appsettings.json](../../project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [db](../../project/appsettings_json.md#db) բաժնի `database` պարամետրում։
 
 ### Server
 
@@ -336,7 +336,7 @@ public string Server { get; }
 
 Վերադարձնում է Sql սերվերի անունը, որը նախատեսված է 8X սերվիսի կողմից Sql միացման համար: 
 
-Այն անհրաժեշտ է նախապես սահմանել [appsettings.json](/src/project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [db](/src/project/appsettings_json.md) բաժնի `server` պարամետրում:
+Այն անհրաժեշտ է նախապես սահմանել [appsettings.json](../../project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [db](../../project/appsettings_json.md#db) բաժնի `server` պարամետրում:
 
 ### TransDeferred
 
@@ -352,4 +352,4 @@ public bool ReadOnly { get; }
 
 Ցույց է տալիս, արդյոք ընթացիկ տվյալների բազային միացումը միայն կարդալու իրավասությամբ է (Read-only), թե ոչ։ 
 
-Այն անհրաժեշտ է նախապես սահմանել [appsettings.json](/src/project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [db](/src/project/appsettings_json.md) բաժնի `readOnly` պարամետրում։
+Այն անհրաժեշտ է նախապես սահմանել [appsettings.json](../../project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [db](../../project/appsettings_json.md#db) բաժնի `readOnly` պարամետրում։

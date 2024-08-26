@@ -57,10 +57,10 @@ public class TreeNode : DataSource<TreeNode.DataRow, TreeNode.Param>
 
 ## Օրինակներ
 
-* [Տվյալների աղբյուրի նկարագրման ձեռնարկ](/src/server_api/definitions/ds_guide.md)
-* [DataSourceService դաս](/src/server_api/services/DataSourceService.md)
-* [Տվյալների աղբյուրի ընդլայնման բազային դաս](/src/extensions/definitions/ds_extender.md)
-* [Տվյալների աղբյուրի ընդլայնման նկարագրման ձեռնարկ](/src/extensions/definitions/ds_extender_guide.md)
+* [Տվյալների աղբյուրի նկարագրման ձեռնարկ](ds_guide.md)
+* [DataSourceService դաս](../services/DataSourceService.md)
+* [Տվյալների աղբյուրի ընդլայնման բազային դաս](../../extensions/definitions/ds_extender.md)
+* [Տվյալների աղբյուրի ընդլայնման նկարագրման ձեռնարկ](../../extensions/definitions/ds_extender_guide.md)
   
 ## Ոչ վիրտուալ հատկություններ
 

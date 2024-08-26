@@ -26,7 +26,7 @@ sublinks:
 
 Անհրաժեշտ է `Set as Startup Project` գործողության միջոցով միացող պրոյեկտ սահմանել `ArmSoft.AS8X.BankService`-ը:
 
-Սերվիսը աշխատացնելու համար անհրաժեշտ է [appsettings.json](/src/project/appsettings_json.md)-ում կարգավորել [բազային միանալու](/src/project/appsettings_json.md#db) համար անհրաժեշտ տվյալները՝ սերվերի անունը, բազան, sql-ի մուտքանունն ու գաղտնաբառը: 
+Սերվիսը աշխատացնելու համար անհրաժեշտ է [appsettings.json](../project/appsettings_json.md)-ում կարգավորել [բազային միանալու](../project/appsettings_json.md#db) համար անհրաժեշտ տվյալները՝ սերվերի անունը, բազան, sql-ի մուտքանունն ու գաղտնաբառը: 
 
 ```json
 "db": {

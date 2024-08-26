@@ -25,7 +25,7 @@ sublinks:
 Dependency injection-ը ծրագրավորման մեխանիզմ է, որը թույլ է տալիս սահմանել բարդ ֆունկցիոնալություն տվող դասեր (սերվիսներ), որոնք ունեն բարդ ստեղծման մեխանիզմ և օգտագործել դրանք այլ դասերում առանց դրանց ստեղծման մասին մտածելու։ 
 
 **Օրինակ**.  
-Համակարգում սահմանված է [TreeElementService](/src/server_api/services/TreeElementsService.md), որը իր կոնստրուկտորում պետք է ստանա 4 պարամետր։ 
+Համակարգում սահմանված է [TreeElementService](../server_api/services/TreeElementsService.md), որը իր կոնստրուկտորում պետք է ստանա 4 պարամետր։
 Ինյեկցիա կիրառելով այն հնարավոր է ստանալ այլ դասում առանց կոնստրուկտորը կանչելու։
 
 ```c#
@@ -70,7 +70,7 @@ var treeElementService2 = serviceProvider.GetService<TreeElementService>();
 
 ### Սերվիսում օգտագործման օրինակ
 
-[TreeElementService](/src/server_api/services/TreeElementsService.md) դասը իր կախվածությունները ([IDBService](/src/server_api/services/DBService.md), TimeStampService, TreeService և IErrorHandlingService) ստանում է կոնստրուկտորով ինյեկցիայի միջոցով: 
+[TreeElementService](../server_api/services/TreeElementsService.md) դասը իր կախվածությունները ([IDBService](../server_api/services/DBService.md), TimeStampService, TreeService և IErrorHandlingService) ստանում է կոնստրուկտորով ինյեկցիայի միջոցով: 
 Այս սերվիսները վերագրվում են դասի ներսում նախապես հայտարարված լոկալ փոփոխականներին և օգտագործվում են դասի ներսում: 
 
 ```c#
@@ -97,11 +97,11 @@ public class TreeElementService
 
 ### Տվյալների աղբյուրում օգտագործման օրինակ
 
-`TreeNode` դասը իր կախվածությունը՝ [IDBService](/src/server_api/services/DBService.md), ստանում է կոնստրուկտորով ինյեկցիայի միջոցով, ինչպես նաև `IServiceProvider`, որը փոխանցում է բազային [DataSource](/src/server_api/definitions/ds.md) դասին: 
+`TreeNode` դասը իր կախվածությունը՝ [IDBService](../server_api/services/DBService.md), ստանում է կոնստրուկտորով ինյեկցիայի միջոցով, ինչպես նաև `IServiceProvider`, որը փոխանցում է բազային [DataSource](../server_api/definitions/ds.md) դասին: 
 Այս դասը վերագրվում է դասի ներսում նախապես հայտարարված լոկալ փոփոխականին (`dbService`) և օգտագործվում է դասի ներսում: 
 
-Օրինակում օգտագործված տվյալների աղբյուրի նկարագրման ձեռնարկին ծանոթանալու համար [տե՛ս](/src/server_api/definitions/ds_guide.md):  
-Օրինակում օգտագործված տվյալների աղբյուրի կոդին ծանոթանալու համար [տե՛ս](/src/server_api/examples/ds/sql_based_code.cs):
+Օրինակում օգտագործված տվյալների աղբյուրի նկարագրման ձեռնարկին ծանոթանալու համար [տե՛ս](../server_api/definitions/ds_guide.md):  
+Օրինակում օգտագործված տվյալների աղբյուրի կոդին ծանոթանալու համար [տե՛ս](../server_api/examples/ds/sql_based_code.cs):
 
 ```c#
 [DataSource("TreeNode")]
@@ -119,7 +119,7 @@ public class TreeNode : DataSource<TreeNode.DataRow, TreeNode.Param>
 
 ### Controller-ում օգտագործման օրինակ
 
-`TreeController` դասը, որը նախատեսված է ծառերի և ծառերի հանգույցներին վերաբերող Http հարցումների կատարաման համար,  իր կախվածությունները (IApiClientInfoService, TreeService, [TreeElementService](/src/server_api/services/TreeElementsService.md)) ստանում է կոնստրուկտորով ինյեկցիայի միջոցով: 
+`TreeController` դասը, որը նախատեսված է ծառերի և ծառերի հանգույցներին վերաբերող Http հարցումների կատարաման համար,  իր կախվածությունները (IApiClientInfoService, TreeService, [TreeElementService](../server_api/services/TreeElementsService.md)) ստանում է կոնստրուկտորով ինյեկցիայի միջոցով: 
 Այս սերվիսները վերագրվում են դասի ներսում նախապես հայտարարված լոկալ փոփոխականներին և օգտագործվում են դասի ներսում: 
 
 ```c#
@@ -146,11 +146,11 @@ public class TreeController
 
 ### Տպելու ձևանմուշի ընդլայնումում օգտագործման օրինակ
 
-`AccStateAdr_Extander` տպելու ձևանմուշի ընդլայնում հանդիսացող դասը իր կախվածությունը՝ [UserProxyService](/src/extensions/user_proxy_service.md), ստանում է կոնստրուկտորով ինյեկցիայի միջոցով:
+`AccStateAdr_Extander` տպելու ձևանմուշի ընդլայնում հանդիսացող դասը իր կախվածությունը՝ [UserProxyService](../extensions/user_proxy_service.md), ստանում է կոնստրուկտորով ինյեկցիայի միջոցով:
 Այս դասը վերագրվում է դասի ներսում նախապես հայտարարված լոկալ փոփոխականին (`proxyService`) և օգտագործվում է դասի ներսում: 
 
-Օրինակում օգտագործված տպելու ձևանմուշի ընդլայնման նկարագրման ձեռնարկին ծանոթանալու համար [տե՛ս](/src/extensions/definitions/template_substitution_guide.md):  
-Օրինակում օգտագործված տպելու ձևանմուշի ընդլայնման կոդին ծանոթանալու համար [տե՛ս](/src/extensions/examples/template_substitution_AccState.md):
+Օրինակում օգտագործված տպելու ձևանմուշի ընդլայնման նկարագրման ձեռնարկին ծանոթանալու համար [տե՛ս](../extensions/definitions/template_substitution_guide.md):  
+Օրինակում օգտագործված տպելու ձևանմուշի ընդլայնման կոդին ծանոթանալու համար [տե՛ս](../extensions/examples/template_substitution_AccState.md):
 
 ```c#
 [TemplateSubstitutionExtender]

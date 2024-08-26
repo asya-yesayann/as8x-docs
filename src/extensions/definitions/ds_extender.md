@@ -53,7 +53,7 @@ sublinks:
 
 * [Տվյալների աղբյուրի ընդլայնում 8X-ում](ds_extender_guide.md)
 * [Տվյալների աղբյուրի պարամետրերի ընդլայնում 8X-ում](ds_extender_param_guide.md)
-* [Ընդլայնման միջոցով պարամետրի ավելացմեն ամբողջական օրինակ](/src/extensions/definitions/ds_extender_param_full_example.md)
+* [Ընդլայնման միջոցով պարամետրի ավելացման ամբողջական օրինակ](../examples/ds_extender_addparam.md)
 
 ## DSEXTENDER նկարագրություն
 

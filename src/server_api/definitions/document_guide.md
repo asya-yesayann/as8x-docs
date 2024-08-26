@@ -35,7 +35,7 @@ sublinks:
 Նկարագրությունը ներմուծվում է SysCon գործիքով։
 
 C# դասը սովորաբար դրվում է երկու `.cs` ֆայլում։  
-Առաջինը գեներացվում է [CodeGen](/src/server_api/CodeGen/CodeGen.md) գործիքով, և պարունակում է նկարագրության հատվածը։  
+Առաջինը գեներացվում է [CodeGen](../CodeGen/CodeGen.md) գործիքով, և պարունակում է նկարագրության հատվածը։  
 Երկրորդը ստեղծվում է ձեռքով և պարունակում է ոչ ինտերֆեյսային իրադարձությունների իրականացումը (Validate, Action, Folders...)։
 
 Արդյունքում կունենանք 4 ֆայլ:
@@ -44,7 +44,7 @@ C# դասը սովորաբար դրվում է երկու `.cs` ֆայլում։
 - *definition*.CodeGen.tt
 - *definition*.CodeGen.cs
 
-Տե՛ս 4 ֆայլերի [օրինակը](/src/server_api/examples/document_definition.md):
+Տե՛ս 4 ֆայլերի [օրինակը](../examples/document_definition.md):
 
 ## .as ֆայլի նկարագրություն
 
@@ -75,9 +75,9 @@ DOCUMENT {
 
 ## CodeGen-ով C# ֆայլի ձևավորում
 
-Առաջին C# ֆայլը գեներացվում է [CodeGen](/src/server_api/CodeGen/CodeGen.md) գործիքով, և պարունակում է նկարագրության հատվածը։
+Առաջին C# ֆայլը գեներացվում է [CodeGen](../CodeGen/CodeGen.md) գործիքով, և պարունակում է նկարագրության հատվածը։
 
-Տե՛ս [օրինակում](/src/server_api/examples/document_definition.md) ձևավորված `UsrAccs.CodeGen.cs` ֆայլը:
+Տե՛ս [օրինակում](../examples/document_definition.md) ձևավորված `UsrAccs.CodeGen.cs` ֆայլը:
 
 - Հայտատարարված է դաս, որը ունի փաստաթղթի ներքին անվանումը պարունակող `Document` ատրիբուտը և ժառանգում է [Document](document.md) դասից։
   ```c#
@@ -163,13 +163,13 @@ DOCUMENT {
 public partial class UsrAccs
 ```
 
-Տե՛ս [օրինակում](/src/server_api/examples/document_definition.md) ձևավորված `UsrAccs.cs` ֆայլը:
+Տե՛ս [օրինակում](../examples/document_definition.md) ձևավորված `UsrAccs.cs` ֆայլը:
 
 ### Կոնստրուկտորի ձևավորում
 
 Հարկավոր է ավելացնել public կոնստրուկտոր՝ IServiceProvider տիպի պարտադիր պարամետրով, որը պիտի կանչի base Document-ի կոնստրուկտորը և փոխանցի IServiceProvider տիպի պարամետրը:
 
-Կոնստուկտորում կարող է ստանալ հարկավոր սերվիսները [ինյեկցիայի](/src/project/injection.md) միջոցով։  
+Կոնստուկտորում կարող է ստանալ հարկավոր սերվիսները [ինյեկցիայի](../../project/injection.md) միջոցով։  
 Մասնավորապես, օրինակում, ստանում է նաև պարամետրերի հետ աշխատելու `IParametersService` սերվիսը։
 
 ```c#
@@ -188,7 +188,7 @@ public UserAccounts(IParametersService parameterService, IServiceProvider servic
 
 ### Validate
 
-Դաշտերի արժեքների ստուգման անհրաժեշտության դեպքում override անել [Validate](/src/server_api/definitions/document.md#validate) մեթոդը:
+Դաշտերի արժեքների ստուգման անհրաժեշտության դեպքում override անել [Validate](document.md#validate) մեթոդը:
 
 ```c#
 public override Task Validate(ValidateEventArgs args)
@@ -203,7 +203,7 @@ public override Task Validate(ValidateEventArgs args)
 
 ### Action
 
-Փաստաթղթի գրանցման ժամանակ հավելյալ ստուգումներ կատարելու, լոգում, տվյալների բազայի աղյուսակներում փոխկապակցված գրանցումներ կատարելու, ինչ-որ պայմաններից կախված փաստաթղթի էլեմենտների(ռեկվիզիտ, մեմո, աղյուսակ) և հատկությունների արժեքները փոփոխելու համար անհրաժեշտ է override անել [Action](/src/server_api/definitions/document.md#action) մեթոդը:
+Փաստաթղթի գրանցման ժամանակ հավելյալ ստուգումներ կատարելու, լոգում, տվյալների բազայի աղյուսակներում փոխկապակցված գրանցումներ կատարելու, ինչ-որ պայմաններից կախված փաստաթղթի էլեմենտների(ռեկվիզիտ, մեմո, աղյուսակ) և հատկությունների արժեքները փոփոխելու համար անհրաժեշտ է override անել [Action](document.md#action) մեթոդը:
 
 ```c#
 public override async Task Action(ActionEventArgs args)
@@ -217,7 +217,7 @@ public override async Task Action(ActionEventArgs args)
 
 ### Folders
 
-Փաստաթուղթը FOLDERS աղյուսակում գրանցելու համար անհրաժեշտ է override անել [Folders](/src/server_api/definitions/document.md#folders) մեթոդը՝ ստեղծելով և գրանցելով `FolderElement`, որը հանդիսանում է 4x համակարգում նկարագրված [AsFoldElement](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/AsFoldElement.html) դասի համարժեքը։
+Փաստաթուղթը FOLDERS աղյուսակում գրանցելու համար անհրաժեշտ է override անել [Folders](document.md#folders) մեթոդը՝ ստեղծելով և գրանցելով `FolderElement`, որը հանդիսանում է 4x համակարգում նկարագրված [AsFoldElement](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/AsFoldElement.html) դասի համարժեքը։
 
 ```c#
 public override Task Folders(FoldersEventArgs args)
@@ -238,7 +238,7 @@ public override Task Folders(FoldersEventArgs args)
 
 ### Delete
 
-Եթե կա անհրաժեշտություն փաստաթղթի հեռացումից առաջ ստուգումներ կատարելու և կապակցված տվյալներ հեռացնելու, ապա անհրաժեշտ է override անել [Delete](/src/server_api/definitions/document.md#delete) մեթոդը:
+Եթե կա անհրաժեշտություն փաստաթղթի հեռացումից առաջ ստուգումներ կատարելու և կապակցված տվյալներ հեռացնելու, ապա անհրաժեշտ է override անել [Delete](document.md#delete) մեթոդը:
 
 ```c#
 public override async Task Delete(DeleteEventArgs args)

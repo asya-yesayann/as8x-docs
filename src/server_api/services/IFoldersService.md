@@ -40,7 +40,7 @@ public Task<bool> Exists(string folderId);
 public Task<FolderElement> GetElement(string folderId, int isn);
 ```
 
-Վերադարձնում է [թղթապանակի տարրը նկարագրող դասը](/src/server_api/services/FolderElement.md)՝ ըստ թղթապանակի ներքին անվան և թղթապանակում գրանցված փաստաթղթի ներքին նույնականացման համարի։
+Վերադարձնում է [թղթապանակի տարրը նկարագրող դասը](FolderElement.md)՝ ըստ թղթապանակի ներքին անվան և թղթապանակում գրանցված փաստաթղթի ներքին նույնականացման համարի։
 
 **Պարամետրեր**
 
@@ -53,7 +53,7 @@ public Task<FolderElement> GetElement(string folderId, int isn);
 public Task<FolderElement> GetElement(string folderId, string key, bool noLock = false);
 ```
 
-Վերադարձնում է [թղթապանակի տարրը նկարագրող դասը](/src/server_api/services/FolderElement.md)՝ ըստ թղթապանակի ներքին անվան և տարրի կոդի։
+Վերադարձնում է [թղթապանակի տարրը նկարագրող դասը](FolderElement.md)՝ ըստ թղթապանակի ներքին անվան և տարրի կոդի։
 
 **Պարամետրեր**
 
@@ -67,7 +67,7 @@ public Task<FolderElement> GetElement(string folderId, string key, bool noLock =
 public Task<List<FolderElement>> GetElements(string folderID);
 ```
 
-Վերադարձնում է թղթապանակի բոլոր [տարրերը նկարագրող դասերը](/src/server_api/services/FolderElement.md)։
+Վերադարձնում է թղթապանակի բոլոր [տարրերը նկարագրող դասերը](FolderElement.md):
 
 **Պարամետրեր**
 
@@ -79,7 +79,7 @@ public Task<List<FolderElement>> GetElements(string folderID);
 public Task<List<FolderElement>> GetElements(string folderID, List<string> keys);
 ```
 
-Վերադարձնում է թղթապանակի նշված կոդերով [տարրերը նկարագրող դասերը](/src/server_api/services/FolderElement.md)։
+Վերադարձնում է թղթապանակի նշված կոդերով [տարրերը նկարագրող դասերը](FolderElement.md):
 
 **Պարամետրեր**
 
@@ -105,7 +105,7 @@ public Task<int> GetISN(string folderId, string key);
 public Task Store(int isn, List<FolderElement> folderElements, string defaultComment, bool existsInDb);
 ```
 
-Գրանցում է ՝folderElements՝ արգումենտում նշված [թղթապանակների տարրերը](/src/server_api/services/FolderElement.md) տվյալների պահոցի [FOLDERS](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Folders.html) աղյուսակում։
+Գրանցում է ՝folderElements՝ արգումենտում նշված [թղթապանակների տարրերը](FolderElement.md) տվյալների պահոցի [FOLDERS](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Folders.html) աղյուսակում։
 
 **Պարամետրեր**
 
