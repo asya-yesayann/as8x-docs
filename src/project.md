@@ -5,7 +5,7 @@ title: "Պրոյեկտների կառուցվածք"
 
 Այս բաժնում նկարագրված է լուծման մեջ առկա պրոյեկտները, նրանց կառուցվածքը, կարգավորումնորը։
 
-* [AS-8X համակարգի պրոյեկտների նկարագրություն](project/projects_structure.md)
+* [8X համակարգի պրոյեկտների նկարագրություն](project/projects_structure.md)
 * [Կազմակերպության սեփական ընդլայնումները պարունակող պրոյեկտի ստեղծում](project/customer_specific_extensions_project.md)
 * [Ինյեկցիա (Dependency Injection)](project/injection.md)
 * [appsettings.json Կարգավորման ֆայլ](project/appsettings_json.md)
