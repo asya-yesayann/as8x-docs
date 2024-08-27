@@ -119,8 +119,11 @@ public class TreeNode : DataSource<TreeNode.DataRow, TreeNode.Param>
 
 ### Controller-ում օգտագործման օրինակ
 
-`TreeController` դասը, որը նախատեսված է ծառերի և ծառերի հանգույցներին վերաբերող Http հարցումների կատարաման համար,  իր կախվածությունները (IApiClientInfoService, TreeService, [TreeElementService](../server_api/services/TreeElementsService.md)) ստանում է կոնստրուկտորով ինյեկցիայի միջոցով: 
+`TreeController` դասը, որը նախատեսված է ծառերի և ծառերի հանգույցներին վերաբերող Http հարցումների կատարաման համար, իր կախվածությունները (TreeService, [TreeElementService](../server_api/services/TreeElementsService.md)) ստանում է կոնստրուկտորով ինյեկցիայի միջոցով: 
 Այս սերվիսները վերագրվում են դասի ներսում նախապես հայտարարված լոկալ փոփոխականներին և օգտագործվում են դասի ներսում: 
+
+Հնարավոր է նաև սերվիսները ինյեկցիա անել Controller-ի action-ում՝ պարամետրի կողքը ավելացնելով `FromServices` ատրիբուտը։
+Այս եղանակը հիմնականում օգտագործվում է երբ սերվիսը օգտագործվում է տվյալ action-ում միայն, ոչ թե Controller-ի բոլոր action-ներում։
 
 ```c#
 [Produces("application/json")]
@@ -131,16 +134,22 @@ public class TreeController
 {
     private readonly TreeService treeService;
     private readonly TreeElementService treeElementService;
-    private readonly IApiClientInfoService apiClientInfoService;
 
-    public TreeController(TreeService treeService, TreeElementService treeElementService, IApiClientInfoService apiClientInfoService)
+    public TreeController(TreeService treeService, TreeElementService treeElementService)
     {
         this.treeService = treeService;
         this.treeElementService = treeElementService;
-        this.apiClientInfoService = apiClientInfoService;
     }
 
-    ....
+    [HttpGet]
+    public async Task<TreeElementModel> Get([FromQuery] string treeId,
+                                            [FromQuery] string key,
+                                            [FromServices] IApiClientInfoService apiClientInfoService)
+    {
+        //...
+    }
+
+    // ...
 }
 ```
 
