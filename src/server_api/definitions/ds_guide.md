@@ -83,6 +83,7 @@ sublinks:
 Ստորև նկարագրված դասերը որպես կանոն սահմանվում են Տվյալների աղբյուրի ստեղծվող դասի ներքին դասեր։
 
 - Ստեղծել տվյալների աղբյուրի սյուները նկարագրող դաս՝ որպես հատկություններ ավելացնելով սյուները, որը պարտադիր պետք է իրականացնի `IExtendableRow` ինտերֆեյսը։
+
   ```c#
   public class DataRow : IExtendableRow
   {
@@ -101,7 +102,8 @@ sublinks:
   }
   ```
 
-- Հայտատարել դաս, որը ունի տվյալների աղբյուրի ներքին անվանումը պարունակող `DataSource` ատրիբուտը և  ժառանգում է `DataSource<R, P>` դասը՝ որպես R փոխանցելով տվյալների աղբյուրի սյուները նկարագրող դասը, իսկ որպես P՝ պարամետրերը նկարագրող դասը։ Եթե տվյալների աղբյուրը չի պարունակում պարամետրեր, ապա որպես P անհրաժեշտ է փոխանցել `NoParam` դասը։
+- Հայտատարել դաս, որը ունի տվյալների աղբյուրի ներքին անունը պարունակող `DataSource` ատրիբուտը և  ժառանգում է `DataSource<R, P>` դասը՝ որպես R փոխանցելով տվյալների աղբյուրի սյուները նկարագրող դասը, իսկ որպես P՝ պարամետրերը նկարագրող դասը։ Եթե տվյալների աղբյուրը չի պարունակում պարամետրեր, ապա որպես P անհրաժեշտ է փոխանցել `NoParam` դասը։
+
   ```c#
   [DataSource("TreeNode")]
   public class TreeNode : DataSource<TreeNode.DataRow, TreeNode.Param>
@@ -112,6 +114,7 @@ sublinks:
 *Ստորև նկարագրված կոնստրուկտորը և սխեման կարող են ձևավորվել [CodeGen][CodeGenDS] գործիքով։*
 
 - Ձևավորել տվյալների աղբյուրի կոնստրուկտորը՝ IServiceProvider տիպի պարտադիր պարամետրով, որը պիտի կանչի base DataSource<R, P> դասի կոնստրուկտորը և փոխանցի IServiceProvider տիպի պարամետրը: Կոնստուկտորում անհրաժեշտ է [ինյեկցիա](../../project/injection.md) անել աշխատանքի համար անհրաժեշտ service-ները։
+
   ```c#
   private readonly IDBService dbService;
   
@@ -129,6 +132,7 @@ sublinks:
   - `englishCaption` - Սխեմայի անգլերեն անվանումը։
   - `rowType` - Տվյալների աղբյուրի սյուները նկարագրող դասի տիպը։
   - `paramType` - Տվյալների աղբյուրի պարամետրերը նկարագրող դասի տիպը:
+
   ```c#
   this.Schema = new Schema(this.Name, "Ծառի հանգույցներ".ToArmenianANSI(), "Tree nodes", typeof(DataRow), typeof(Param));
   ```
@@ -139,6 +143,7 @@ sublinks:
   - `armenianCaption` - Սյան հայերեն անվանումը ANSI կոդավորմամբ։
   - `englishCaption` - Սյան անգլերեն անվանումը։
   - `columnType` - Սյան համակարգային տիպը։
+
   ```c#
   this.Schema.AddColumn(nameof(DataRow.Code), "Code", "Կոդ".ToArmenianANSI(), "Code", FieldTypeProvider.GetStringFieldType(20));
   this.Schema.AddColumn(nameof(DataRow.Name), "Name", "Անվանում".ToArmenianANSI(), "Name", FieldTypeProvider.GetStringFieldType(50));
@@ -149,6 +154,7 @@ sublinks:
   - `description` - Պարամետրի հայերեն անվանումը ANSI կոդավորմամբ։
   - `eDescription` - Պարամետրի անգլերեն անվանումը։
   - `columnType` - Պարամետրի համակարգային տիպը։
+  
   ```c#
   this.Schema.AddParam(nameof(Param.TreeId), "Ծառի իդենտիֆիկատոր".ToArmenianANSI(), FieldTypeProvider.GetStringFieldType(4), eDescription:   "TreeId");
   this.Schema.AddParam(nameof(Param.NodeType), "Ծառի հանգույցներ".ToArmenianANSI(), FieldTypeProvider.GetStringFieldType(1), eDescription:   "Tree nodes");

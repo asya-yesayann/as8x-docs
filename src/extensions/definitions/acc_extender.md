@@ -7,17 +7,16 @@ tags: [Accounting, ACCEXTENDER]
 ## Բովանդակություն
 
 - [Ներածություն](#ներածություն)
-- [ACCEXTENDER](#accextender)
+- [ACCEXTENDER նկարագրություն](#accextender-նկարագրություն)
 - [Հատկություններ](#հատկություններ)
   - [NAME](#name)
   - [CAPTION](#caption)
   - [ECAPTION](#ecaption)
   - [CSSOURCE](#cssource)
-- [DocumentExtender դաս](#documentextender-դաս)
+- [AccountingExtender դաս](#accextender-նկարագրություն)
 - [Մեթոդներ](#մեթոդներ)
   - [PreOnDelete](#preondelete)
   - [PostOnDelete](#postondelete)
-
 
 ## Ներածություն
 
@@ -26,10 +25,12 @@ tags: [Accounting, ACCEXTENDER]
 
 8X համակարգում փաստաթղթի ընդլայնում նկարագրելու համար հարկավոր է ունենալ
 
-* .as ընդլայնմամբ ֆայլ սկրիպտերում ACCEXTENDER նկարագրությամբ, որը պարունակում է մետատվյալներ ընդլայնման մասին,
+* .as ընդլայնմամբ ֆայլ սկրիպտերում [ACCEXTENDER](#accextender-նկարագրություն) նկարագրությամբ, որը պարունակում է մետատվյալներ ընդլայնման մասին,
 * .cs ընդլայնմամբ ֆայլ, որը պարունակում է սերվերում աշխատող տրամաբանությունը։
 
-## ACCEXTENDER
+.as և .cs ընդլայնմամբ ֆայլերը լրացնելուց հետո անհրաժեշտ է .as ընդլայնմամբ ֆայլը ներմուծել համակարգ `SYSCON` գործիքի միջոցով, որի արդյունքում կներմուծվի նաև .cs ընդլայնմամբ ֆայլը։
+
+## ACCEXTENDER նկարագրություն
 
 ``` as4x
 ACCEXTENDER {
@@ -59,9 +60,11 @@ ACCEXTENDER {
 * Եթե extend.as գտվում է "C:\WorkingDir\Scripts\App\extend.as" հասցեում, իսկ extend.cs-ը՝ "C:\WorkingDir\SubFolder1\SubFolder2\extend.as" հասցեում, ապա `CSSOURCE = "..\..\SubFolder1\SubFolder2\extend.cs";`։  
 * Կամ կլինի գրել ամբողջական ճանապարհը, ինչը խրախուսելի չէ `CSSOURCE = "C:\WoringDir\SubFolder1\SubFolder2\extend.cs";`
 
-## DocumentExtender դաս
+## AccountingExtender դաս
 
 Հաշվառման ընդլայնման համար անհրաժեշտ է սահմանել դաս, որը ժառանգում է `AccountingExtender` դասը և ունի `AccountingExtender` ատրիբուտը։
+
+**Օրինակ**
 
 ```c#
 [AccountingExtender]

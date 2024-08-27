@@ -8,10 +8,17 @@ tags: [DS, DataSource]
 
 - [Ներածություն](#ներածություն)
 - [Օրինակներ](#օրինակներ)
+- [DATA նկարագրություն](#data-նկարագրություն)
+- [Հատկություններ](#հատկություններ)
+  - [NAME](#name)
+  - [CAPTION](#caption)
+  - [ECAPTION](#ecaption)
+  - [DATASOURCE](#datasource)
+- [Document դաս](#document-դաս)
 - [Ոչ վիրտուալ հատկություններ](#ոչ-վիրտուալ-հատկություններ)
   - [ArmenianCaption](#armeniancaption)
   - [EnglishCaption](#englishcaption)
-  - [Name](#name)
+  - [Name](#name-1)
   - [IsParametersSupported](#isparameterssupported)
   - [Progress](#progress)
   - [QueryTimeOut](#querytimeout)
@@ -40,20 +47,9 @@ tags: [DS, DataSource]
 
 Տվյալների պահոցից աղյուսակային տեսքով տվյալներ կարդալու և ցույց տալու համար նկարագրվում է տվյալների աղբյուր։
 
-```c#
-    public abstract class DataSource<R, P> : IDataSource
-         where P : class, new()
-         where R : class, new()
-```
-
-DataSource աբստրակտ դասը հիմք է հանդիսանում է տվյալների աղբյուրների սահմանման համար։ 
-Բոլոր տվյալների աղբյուրները ունեն `DataSource` ատրիբուտը և ժառանգ են հանդիսանում այս դասից, որը տրամադրում է վիրտուալ մեթոդներ սեփական սերվերային տրամաբանության սահմանման համար և հատկություններ տվյալների աղբյուրի մետատվյալների ստացման համար։
-
-**Օրինակ**
-```c#
-[DataSource("TreeNode")]
-public class TreeNode : DataSource<TreeNode.DataRow, TreeNode.Param>
-```
+8X համակարգում տվյալների աղբյուր նկարագրելու համար հարկավոր է ունենալ
+* .as ընդլայնմամբ ֆայլ սկրիպտերում [DATA](#data-նկարագրություն) նկարագրությամբ։ Այն անհրաժեշտ է ներմուծել տվյալների բազա `Syscon` գործիքի միջոցով։
+* .cs ընդլայնմամբ ֆայլ, որը պարունակում է սերվերում աշխատող տրամաբանությունը։
 
 ## Օրինակներ
 
@@ -61,6 +57,42 @@ public class TreeNode : DataSource<TreeNode.DataRow, TreeNode.Param>
 * [DataSourceService դաս](../services/DataSourceService.md)
 * [Տվյալների աղբյուրի ընդլայնման բազային դաս](../../extensions/definitions/ds_extender.md)
 * [Տվյալների աղբյուրի ընդլայնման նկարագրման ձեռնարկ](../../extensions/definitions/ds_extender_guide.md)
+
+## DATA նկարագրություն
+
+```as4x
+DSEXTENDER {
+  NAME = ...;
+  CAPTION = ...;
+  ECAPTION = ...;
+  PROCESSINGMODE = ...;
+};
+```
+
+## Հատկություններ
+
+### NAME
+Տվյալների աղբյուրի ներքին անունը։
+
+### CAPTION 
+Տվյալների աղբյուրի հայերեն անվանումը ANSI կոդավորմամբ։
+
+### ECAPTION 
+Տվյալների աղբյուրի անգլերեն անվանումը։
+
+### DATASOURCE 
+Տվյալների աղբյուրի կատարման ռեժիմը։
+
+## Document դաս
+
+Տվյալների աղբյուրի համար անհրաժեշտ է սահմանել դաս, որը ունի տվյալների աղբյուրի ներքին անունը պարունակող `DataSource` ատրիբուտը և  ժառանգում է `DataSource<R, P>` դասը՝ որպես R փոխանցելով տվյալների աղբյուրի սյուները նկարագրող դասը, իսկ որպես P՝ պարամետրերը նկարագրող դասը։ Եթե տվյալների աղբյուրը չի պարունակում պարամետրեր, ապա որպես P անհրաժեշտ է փոխանցել `NoParam` դասը։
+
+**Օրինակ**
+
+```c#
+[DataSource("DocSets")]
+public class DocumentSettings : DataSource<DocumentSettings.DataRow, DocumentSettings.Param>
+```
   
 ## Ոչ վիրտուալ հատկություններ
 
