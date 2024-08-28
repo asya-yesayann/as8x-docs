@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Փաստաթղթի իրադարձությունների ընդլայնում"
+title: "Փաստաթղթի իրադարձությունների ընդլայնման նկարագրություն"
 tags: [DocExtender, DOCUMENTEXTENDER]
 sublinks: 
 - { title: "DOCUMENTEXTENDER նկարագրություն", ref: documentextender-նկարագրություն }

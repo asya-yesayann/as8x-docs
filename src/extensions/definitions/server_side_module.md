@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Սերվերային մոդուլ (SERVERSIDEMODULE)" 
+title: "Սերվերային մոդուլի նկարագրություն (SERVERSIDEMODULE)" 
 ---
 
 ## Բովանդակություն

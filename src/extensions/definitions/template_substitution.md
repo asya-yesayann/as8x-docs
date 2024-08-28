@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Տպելու ձևերի ընդլայնում"
+title: "Տպելու ձևի ընդլայնման նկարագրություն"
 tags:
 - TemplateSubstitutionExtender
 - ITemplateSubstitutionExtender

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Տվյալների աղբյուրի ընդլայնում"
+title: "Տվյալների աղբյուրի ընդլայնման նկարագրություն"
 tags: [Extender, DSEXTENDER]
 sublinks:
 - { title: "Օրինակներ", ref: օրինակներ }

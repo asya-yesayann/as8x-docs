@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Հաշվառման ընդլայնում"
+title: "Հաշվառման ընդլայնման նկարագրություն"
 tags: [Accounting, ACCEXTENDER]
 ---
 
