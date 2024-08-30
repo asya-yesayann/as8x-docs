@@ -5,6 +5,7 @@ tags: DBService
 ---
 
 ## Բովանդակություն
+
 - [Ներածություն](#ներածություն)
 - [Մեթոդներ](#մեթոդներ)
   - [ActiveTrans](#activetrans)
@@ -67,11 +68,11 @@ public Task AppLock(string resource, string errorMsg = "", string mode = "Exclus
 
 **Պարամետրեր**
 * `resource` - [Ռեսուրսի ներքին անունը](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----nresource)։
-* `errorMsg` - Արգելափակման տեղադրման չստացվելու դեպքում առաջացող սխալի հաղորդագրությունը։
-* `mode` - [Արգելափակման տեղադրման եղանակը](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----lockmode):
-* `owner` - [Արգելափակման տեղադրման սեփականատերը](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----lockowner)։
-* `timeout` - [Արգելափակման տեղադրման առավելագույն ժամանակը միլիվայրկյաններով](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----locktimeout)։
-* `dbPrincipal` - [Տվյալների պահոցում իրավասություն ունեցող կողմ](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----ndbprincipal)
+* `errorMsg` - Արգելափակման տեղադրման չստացվելու դեպքում առաջացող սխալի հաղորդագրությունը։ Լռությամբ արժեքը **string.Empty** է։
+* `mode` - [Արգելափակման տեղադրման եղանակը](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----lockmode): Լռությամբ արժեքը **Exclusive** է։
+* `owner` - [Արգելափակման տեղադրման սեփականատերը](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----lockowner)։ Լռությամբ արժեքը **Transaction** է։
+* `timeout` - [Արգելափակման տեղադրման առավելագույն ժամանակը միլիվայրկյաններով](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----locktimeout)։ Լռությամբ արժեքը **0** է։
+* `dbPrincipal` - [Տվյալների պահոցում իրավասություն ունեցող կողմ](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----ndbprincipal): Լռությամբ արժեքը **public** է։
 
 ### BeginSqlServerDistributedTransaction
 
@@ -130,9 +131,9 @@ public SqlConnection CreateAdditionalConnection(bool pooling = true, string conn
 Ստեղծում է լրացուցիչ Sql միացում դեպի 8X սերվիսի կողմից օգտագործվող տվյալների բազա։
 
 **Պարամետրեր**
-* `pooling` - [Pooling](https://www.linkedin.com/pulse/how-sql-connection-pool-works-prashant-pathak/)-ի միացման հայտանիշ։ Լռությամբ արժեքը true է։
-* `connectionName` - Այն ծրագրի անունը, որը միանալու է Sql-ին։
-* `isReadonly` - Ցույց է տալիս, արդյոք ընթացիկ տվյալների բազային միացումը միայն կարդալու իրավասությամբ է (Read-only), թե ոչ։
+* `pooling` - [Pooling](https://www.linkedin.com/pulse/how-sql-connection-pool-works-prashant-pathak/)-ի միացման հայտանիշ։ Լռությամբ արժեքը **true** է։
+* `connectionName` - Այն ծրագրի անունը, որը միանալու է Sql-ին։ Լռությամբ արժեքը **string.Empty** է։
+* `isReadonly` - Ցույց է տալիս, արդյոք տվյալների բազային ընթացիկ միացումը միայն կարդալու իրավասությամբ է (Read-only), թե ոչ։ Լռությամբ արժեքը **false** է։
 
 ### CreateCommand
 
@@ -144,7 +145,7 @@ public SqlCommand CreateCommand(TimeoutType timeoutType = TimeoutType.QueryTimeo
 
 **Պարամետրեր**
 
-- `timeoutType` - [Sql հարցման կատարման առավելագույն ժամանակը](TimeoutType.md)։
+- `timeoutType` - [Sql հարցման կատարման առավելագույն ժամանակը](TimeoutType.md)։ Լռությամբ արժեքը **TimeoutType.QueryTimeout** է։
 
 ### CreateConnectionString
 
@@ -162,10 +163,10 @@ public string CreateConnectionString(string sqlServer, string dbName, string log
 * `login` - Տվյալների բազայի սերվերին մուտք գործելու համար օգտագործվող մուտքանունը։
 * `password` - Տվյալների բազայի սերվերին մուտք գործելու համար օգտագործվող գաղտնաբառը։
 * `encrypt` - Նշում է, թե արդյոք տվյալների բազային միացումը ծածկագրվի, թե ոչ։
-* `pooling` - [Pooling](https://www.linkedin.com/pulse/how-sql-connection-pool-works-prashant-pathak/)-ի միացման հայտանիշ։ Լռությամբ արժեքը true է։
-* `connectionName` - Այն ծրագրի անունը, որը միանալու է Sql-ին։
-* `maxPoolSize` - Տվյալների բազայի [միացումների Pool](https://www.linkedin.com/pulse/how-sql-connection-pool-works-prashant-pathak/)-ում միացումների առավելագույն քանակը։
-* `withoutDecrypting` - Նշում է, արդյոք գաղտնաբառը օգտագործվի առանց ապակոդավորելու։ Լռությամբ արժեքը false է։
+* `pooling` - [Pooling](https://www.linkedin.com/pulse/how-sql-connection-pool-works-prashant-pathak/)-ի միացման հայտանիշ։ Լռությամբ արժեքը **true** է։
+* `connectionName` - Այն ծրագրի անունը, որը միանալու է Sql-ին։ Լռությամբ արժեքը **"MAIN"** է։
+* `maxPoolSize` - Տվյալների բազայի [միացումների Pool](https://www.linkedin.com/pulse/how-sql-connection-pool-works-prashant-pathak/)-ում միացումների առավելագույն քանակը։ Լռությամբ արժեքը **null** է։
+* `withoutDecrypting` - Նշում է, արդյոք գաղտնաբառը օգտագործվի առանց ապակոդավորելու։ Լռությամբ արժեքը **false** է։
 
 ### CreateReadOnlyConnection
 
@@ -176,7 +177,7 @@ public SqlConnection CreateReadOnlyConnection(bool pooling = true);
 Ստեղծում է միայն կարդալու իրավասությամբ (Read-only) լրացուցիչ Sql միացում դեպի 8X սերվիսի կողմից օգտագործվող տվյալների բազա։
 
 **Պարամետրեր**
-* `pooling` - [Pooling](https://www.linkedin.com/pulse/how-sql-connection-pool-works-prashant-pathak/)-ի միացման հայտանիշ։ Լռությամբ արժեքը true է։
+* `pooling` - [Pooling](https://www.linkedin.com/pulse/how-sql-connection-pool-works-prashant-pathak/)-ի միացման հայտանիշ։ Լռությամբ արժեքը **true** է։
 
 ### GetApplicationName
 
@@ -203,10 +204,10 @@ public byte[] GetContext(string defaultValue = null);
 ```
 
 8X սերվիս լոգին լինելուց բացվում է սեսսիա, որի մեջ պահվում է մուտք գործողի մասին ինֆորմացիան։
-Մեթոդը վերադարձնում է սեսսիայի մասին կոնտեքստային ինֆորմացիան(մուտք գործած օգտատիրոջ, բացված սեսսիայի id-ները, օգտատիրոջ աշխատանքային տեղի անունը և `defaultValue` պարամետրը) որպես byte-երի զանգված։ 
+Մեթոդը վերադարձնում է սեսսիայի մասին կոնտեքստային ինֆորմացիան (մուտք գործած օգտատիրոջ, բացված սեսսիայի id-ները, օգտատիրոջ աշխատանքային տեղի անունը և `defaultValue` պարամետրը) որպես byte-երի զանգված։ 
 
 **Պարամետրեր**
-* `defaultValue` - Սովորաբար նշվում է այն դասի անունը, որը կանչում է այս մեթոդը։
+* `defaultValue` - Սովորաբար նշվում է այն դասի անունը, որը կանչում է այս մեթոդը։ Լռությամբ արժեքը **null** է։
 
 ### SetContext
 
@@ -216,7 +217,7 @@ public void SetContext(string value);
 
 8X սերվիս լոգին լինելուց բացվում է սեսսիա, որի մեջ պահվում է մուտք գործողի մասին ինֆորմացիան։
 
-Մեթոդը գրանցում է սեսսիայի մասին կոնտեքստային ինֆորմացիան(մուտք գործած օգտատիրոջ, բացված սեսսիայի id-ները, օգտատիրոջ աշխատանքային տեղի անունը և `defaultValue` պարամետրը) որպես byte-երի զանգված տվյալների բազայի [sys.dm_exec_requests](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-exec-requests-transact-sql?view=sql-server-ver16), [sys.dm_exec_sessions](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-exec-sessions-transact-sql?view=sql-server-ver16), [sys.sysprocesses](https://learn.microsoft.com/en-us/sql/relational-databases/system-compatibility-views/sys-sysprocesses-transact-sql?view=sql-server-ver16) համակարգային աղյուսակներում [CONTEXT_INFO](https://learn.microsoft.com/en-us/sql/t-sql/statements/set-context-info-transact-sql?view=sql-server-ver16) ֆունկցիայի միջոցով։
+Մեթոդը գրանցում է սեսսիայի մասին կոնտեքստային ինֆորմացիան (մուտք գործած օգտատիրոջ, բացված սեսսիայի id-ները, օգտատիրոջ աշխատանքային տեղի անունը և `defaultValue` պարամետրը) որպես byte-երի զանգված տվյալների բազայի [sys.dm_exec_requests](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-exec-requests-transact-sql?view=sql-server-ver16), [sys.dm_exec_sessions](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-exec-sessions-transact-sql?view=sql-server-ver16), [sys.sysprocesses](https://learn.microsoft.com/en-us/sql/relational-databases/system-compatibility-views/sys-sysprocesses-transact-sql?view=sql-server-ver16) համակարգային աղյուսակներում [CONTEXT_INFO](https://learn.microsoft.com/en-us/sql/t-sql/statements/set-context-info-transact-sql?view=sql-server-ver16) ֆունկցիայի միջոցով։
 
 **Պարամետրեր**
 * `value` - Սովորաբար նշվում է այն դասի անունը, որը կանչում է այս մեթոդը։
@@ -287,10 +288,10 @@ public Task TryAppLock(string resource, string errorMsg = "", string mode = "Exc
 
 **Պարամետրեր**
 * `resource` - [Ռեսուրսի ներքին անունը](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----nresource)։
-* `errorMsg` - Արգելափակման տեղադրման չստացվելու դեպքում առաջացող սխալի հաղորդագրությունը։
-* `mode` - [Արգելափակման տեղադրման եղանակը](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----lockmode):
-* `owner` - [Արգելափակման տեղադրման սեփականատերը](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----lockowner)։
-* `dbPrincipal` - [Տվյալների պահոցում իրավասություն ունեցող կողմ](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----ndbprincipal)
+* `errorMsg` - Արգելափակման տեղադրման չստացվելու դեպքում առաջացող սխալի հաղորդագրությունը։ Լռությամբ արժեքը **string.Empty** է։
+* `mode` - [Արգելափակման տեղադրման եղանակը](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----lockmode): Լռությամբ արժեքը **Exclusive** է։
+* `owner` - [Արգելափակման տեղադրման սեփականատերը](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----lockowner)։ Լռությամբ արժեքը **Transaction** է։
+* `dbPrincipal` - [Տվյալների պահոցում իրավասություն ունեցող կողմ](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----ndbprincipal): Լռությամբ արժեքը **public** է։
 
 ## Հատկություններ
 
@@ -300,7 +301,7 @@ public Task TryAppLock(string resource, string errorMsg = "", string mode = "Exc
 public bool AllowSnapshotIsolation { get; }
 ```
 
-Տվյալների աղբյուրի հարցումների կատարման միացման վրա [Snapshot](https://www.dremio.com/wiki/snapshot-isolation/#:~:text=Snapshot%20Isolation%20is%20a%20database,being%20affected%20by%20concurrent%20transactions.) իզոլյացիայի մակարդակի միացման հայտանիշ։
+Ցույց է տալիս, է արդյոք թույլատված է տվյալների աղբյուրի հարցումների կատարումը [Snapshot](https://www.dremio.com/wiki/snapshot-isolation/#:~:text=Snapshot%20Isolation%20is%20a%20database,being%20affected%20by%20concurrent%20transactions.) իզոլյացիայի մակարդակով։
 
 ### Connection
 
@@ -344,12 +345,15 @@ public string Server { get; }
 public bool TransDeferred { get; set; }
 ```
 
+Վերադարձնում կամ նշանակում է Fact տիպի օբյեկտների տվյալների պահոցում հետաձգված գրանցման հայտանիշը։
+**true** արժեքի դեպքում [DocumentService](IDocumentService.md) դասի [StoreFact](IDocumentService.md#storefact) մեթոդի կանչի արդյունքում հաշվառումները պահվում են փաստաթղթի [StoredFacts](../definitions/document.md#storedfacts) ցուցակում և գրանցվում տվյալների պահոցում փաստաթղթի գրանցման ժամանակ, հակառակ դեպքում գրանցվում են տվյալների պահոցում անմիջապես։
+
 ### ReadOnly
 
 ```c#
 public bool ReadOnly { get; }
 ```
 
-Ցույց է տալիս, արդյոք ընթացիկ տվյալների բազային միացումը միայն կարդալու իրավասությամբ է (Read-only), թե ոչ։ 
+Ցույց է տալիս, արդյոք տվյալների բազային ընթացիկ միացումը միայն կարդալու իրավասությամբ է (Read-only), թե ոչ։ 
 
 Այն անհրաժեշտ է նախապես սահմանել [appsettings.json](../../project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [db](../../project/appsettings_json.md#db) բաժնի `readOnly` պարամետրում։
