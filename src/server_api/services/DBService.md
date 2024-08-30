@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "DBService" 
-tags: DBService
+tags: [DBService, db]
 ---
 
 ## Բովանդակություն
@@ -35,9 +35,9 @@ tags: DBService
   - [Connection](#connection)
   - [CurrentIsolationLevel](#currentisolationlevel)
   - [Database](#database)
+  - [ReadOnly](#readonly)
   - [Server](#server)
   - [TransDeferred](#transdeferred)
-  - [ReadOnly](#readonly)
 
 ## Ներածություն
 
@@ -204,6 +204,7 @@ public byte[] GetContext(string defaultValue = null);
 ```
 
 8X սերվիս լոգին լինելուց բացվում է սեսսիա, որի մեջ պահվում է մուտք գործողի մասին ինֆորմացիան։
+
 Մեթոդը վերադարձնում է սեսսիայի մասին կոնտեքստային ինֆորմացիան (մուտք գործած օգտատիրոջ, բացված սեսսիայի id-ները, օգտատիրոջ աշխատանքային տեղի անունը և `defaultValue` պարամետրը) որպես byte-երի զանգված։ 
 
 **Պարամետրեր**
@@ -255,6 +256,7 @@ public void SetIsolationLevel(IsolationLevel level);
 ```
 
 Սահմանում է բացվող [տրանզակցիաների](https://www.tutorialspoint.com/sql/sql-transactions.htm) իզոլյացիայի [մակարդակը](https://www.geeksforgeeks.org/transaction-isolation-levels-dbms/)։ 
+
 Տրանզակցիաների լռությամբ իզոլյացիայի մակարդակը [Read committed](https://sqlperformance.com/2014/04/t-sql-queries/the-read-committed-isolation-level)-ն է։
 
 **Պարամետրեր**
@@ -267,7 +269,8 @@ public void SetIsolationLevel(IsolationLevel level);
 public Task SetIsolationLevelAsync(IsolationLevel level);
 ```
 
-Սահմանում է բացվող [տրանզակցիաների](https://www.tutorialspoint.com/sql/sql-transactions.htm) իզոլյացիայի [մակարդակը](https://www.geeksforgeeks.org/transaction-isolation-levels-dbms/)  ասինխրոն եղանակով։
+Սահմանում է բացվող [տրանզակցիաների](https://www.tutorialspoint.com/sql/sql-transactions.htm) իզոլյացիայի [մակարդակը](https://www.geeksforgeeks.org/transaction-isolation-levels-dbms/) ասինխրոն եղանակով։
+
 Տրանզակցիաների լռությամբ իզոլյացիայի մակարդակը [Read committed](https://sqlperformance.com/2014/04/t-sql-queries/the-read-committed-isolation-level)-ն է։
 
 **Պարամետրեր**
@@ -277,7 +280,7 @@ public Task SetIsolationLevelAsync(IsolationLevel level);
 ### TryAppLock
 
 ```c#
-public Task TryAppLock(string resource, string errorMsg = "", string mode = "Exclusive", string owner = "Transaction", string dbPrincipal = "public");
+public Task<bool> TryAppLock(string resource, string mode = "Exclusive", string owner = "Transaction", string dbPrincipal = "public");
 ```
 
 Ստեղծում է SQL արգելափակում (lock) տրված անունով ռեսուրսի վրա և վերադարձնում է արժեք, որը ցույց է տալիս արդյոք արգելափակման տեղադրումը հաջողվել է, թե ոչ։
@@ -288,7 +291,6 @@ public Task TryAppLock(string resource, string errorMsg = "", string mode = "Exc
 
 **Պարամետրեր**
 * `resource` - [Ռեսուրսի ներքին անունը](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----nresource)։
-* `errorMsg` - Արգելափակման տեղադրման չստացվելու դեպքում առաջացող սխալի հաղորդագրությունը։ Լռությամբ արժեքը **string.Empty** է։
 * `mode` - [Արգելափակման տեղադրման եղանակը](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----lockmode): Լռությամբ արժեքը **Exclusive** է։
 * `owner` - [Արգելափակման տեղադրման սեփականատերը](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----lockowner)։ Լռությամբ արժեքը **Transaction** է։
 * `dbPrincipal` - [Տվյալների պահոցում իրավասություն ունեցող կողմ](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-getapplock-transact-sql?view=sql-server-ver16#----ndbprincipal): Լռությամբ արժեքը **public** է։
@@ -301,7 +303,7 @@ public Task TryAppLock(string resource, string errorMsg = "", string mode = "Exc
 public bool AllowSnapshotIsolation { get; }
 ```
 
-Ցույց է տալիս, է արդյոք թույլատված է տվյալների աղբյուրի հարցումների կատարումը [Snapshot](https://www.dremio.com/wiki/snapshot-isolation/#:~:text=Snapshot%20Isolation%20is%20a%20database,being%20affected%20by%20concurrent%20transactions.) իզոլյացիայի մակարդակով։
+Ցույց է տալիս, արդյոք թույլատված է տվյալների աղբյուրի հարցումների կատարումը [Snapshot](https://www.dremio.com/wiki/snapshot-isolation/#:~:text=Snapshot%20Isolation%20is%20a%20database,being%20affected%20by%20concurrent%20transactions.) իզոլյացիայի մակարդակով։
 
 ### Connection
 
@@ -329,6 +331,16 @@ string Database { get; }
 
 Այն անհրաժեշտ է նախապես սահմանել [appsettings.json](../../project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [db](../../project/appsettings_json.md#db) բաժնի `database` պարամետրում։
 
+### ReadOnly
+
+```c#
+public bool ReadOnly { get; }
+```
+
+Ցույց է տալիս, արդյոք տվյալների բազային ընթացիկ միացումը միայն կարդալու իրավասությամբ է (Read-only), թե ոչ։ 
+
+Այն անհրաժեշտ է նախապես սահմանել [appsettings.json](../../project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [db](../../project/appsettings_json.md#db) բաժնի `readOnly` պարամետրում։
+
 ### Server
 
 ```c#
@@ -346,14 +358,5 @@ public bool TransDeferred { get; set; }
 ```
 
 Վերադարձնում կամ նշանակում է Fact տիպի օբյեկտների տվյալների պահոցում հետաձգված գրանցման հայտանիշը։
+
 **true** արժեքի դեպքում [DocumentService](IDocumentService.md) դասի [StoreFact](IDocumentService.md#storefact) մեթոդի կանչի արդյունքում հաշվառումները պահվում են փաստաթղթի [StoredFacts](../definitions/document.md#storedfacts) ցուցակում և գրանցվում տվյալների պահոցում փաստաթղթի գրանցման ժամանակ, հակառակ դեպքում գրանցվում են տվյալների պահոցում անմիջապես։
-
-### ReadOnly
-
-```c#
-public bool ReadOnly { get; }
-```
-
-Ցույց է տալիս, արդյոք տվյալների բազային ընթացիկ միացումը միայն կարդալու իրավասությամբ է (Read-only), թե ոչ։ 
-
-Այն անհրաժեշտ է նախապես սահմանել [appsettings.json](../../project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [db](../../project/appsettings_json.md#db) բաժնի `readOnly` պարամետրում։
