@@ -980,7 +980,7 @@ public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, Sch
 ```
 Ֆունկցիան կիրառելի է միայն Univer տեսակի պայմանագրերի համար։ Վերադարձնում է AgrScheduleRow տիպի օբյեկտների ցուցակ (List), որտեղ յուրաքանչյուր էլեմենտը պարունակում է հետևյալ հատկությունները՝
 
-* `Date`
+* `Date` 
 * `Summa`
 * `ReduceDateMark`
 * `RowNumByFirstSch`
@@ -988,10 +988,18 @@ public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, Sch
 
 **Պարամետրեր**
 
-* `isn` - Պարտադիր։ Փաստաթղթի ISN։
-* `requestDate` - Պարտադիր։ Փաստաթղթի ISN։
-* `valueType` - 
-* `schKind` - 
+- `isn` - Պարտադիր։ Փաստաթղթի ISN։
+- `requestDate` -Պարտադիր։ Ամսաթվիվ, որի դրությամբ պահանջվում է ստանալ ընթացիկ գրաֆիկը 
+- `valueType` - Պարտադիր։ Հնարավոր արժեքներն են՝
+  - Agr = 1,  մայր գումարի գրաֆիկ
+  - Base = 11,  հիմնական ամսաթվերի գրաֆիկ
+  - Per = 2, տոկոսների գրաֆիկ
+  - PerProl = 22, երկարաձգված տոկոսների գրաֆիկ
+  - ServFee = 7,  - վարձավճարի գրաֆիկ
+  - ServFeeProl = 27,  երկարաձգված վարձավճարի գրաֆիկ
+  - Lim = 6, - սահմանաչափի գրաֆիկ
+  - Dis = 8 զեղջատոկոսի գրաֆիկ
+- `schKind` - 
 
 
 
