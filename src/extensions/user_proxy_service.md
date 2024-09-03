@@ -1049,6 +1049,8 @@ public Task<decimal> GetFutPerDbt(int agrISN, DateTime dateStart, DateTime dateE
 
 
 ```c#
+using System.Collections.Generic;
+
 //Ստանում ենք 80662379 isn ով վճարային քարտի արժույթը և հաճախորդի կոդը պարունակով dictionary: 
 Dictionary<string, object> pcard = await proxyService.GetPCardData("fCUR, fCLICODE", isn: 80662376);
 
