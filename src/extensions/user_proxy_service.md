@@ -1008,7 +1008,7 @@ public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, Sch
      ``` c#
           public enum ScheduleBasis : short
           {
-              Any = -2, // Կամայական 
+              Any = -2, // Կամայական: Լռությամբ արժեք։ 
               AnySchRevision = -1,   // Կամայական վերանայում  0, 9, 10, 11, 12, 13, 14, 15
               RevisionProl = 0, // Վերանայում (Համարելով երկարաձգված)
               RevisionNotProl = 9, // Վերանայում (Չհամարելով երկարաձգված)
