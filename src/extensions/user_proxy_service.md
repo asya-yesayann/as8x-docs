@@ -1036,7 +1036,27 @@ public Task<decimal> GetFutPerDbt(int agrISN, DateTime dateStart, DateTime dateE
                                  bool includeClosed = true,
                                  bool throwException = true)
 ```
+Վերադարձնում է dictionary, որը պարունակում է վճարային քարտի fieldList պարամետրով փոխանցված CARDS աղյուսակի դաշտերի արժեքներով։ Պլաստիկ քարտի փնտրումը հնարավոր է իրականացնել՝ քարտի համարով, քարտային հաշվով կամ isn- ով։
 
+**Պարամետրեր**
+
+* `fieldList` - Պարտադիր։ CARDS աղյուսակի դաշտերի անվանումները բաժանված ստորակետով որոնք անհրաժեշտ է վերադարձնել։
+* `cardNum` - Ոչ պարտադիր։ Քարտի համար։
+* `cardAcc` - Ոչ պարտադիր։ Քարտի հաշիվ:
+* `isn` - Ոչ պարտադիր։ Քարտի isn: 
+* `includeClosed` - Ոչ պարտադիր։ Փնտրել նաև փակվածների մեջ։ Լռությամբ փնտրվում է։
+* `throwException` - Ոչ պարտադիր։ Սահմանված պայմաններով քարտ չգտնելու դեպքում բերել սխալի հաղորդագրություն։ Լռությամբ՝ այո։
+
+
+```c#
+//Ստանում ենք 80662379 isn ով վճարային քարտի արժույթը և հաճախորդի կոդը պարունակով dictionary: 
+Dictionary<string, object> pcard = await proxyService.GetPCardData("fCUR, fCLICODE", isn: 80662376);
+
+
+await proxyService.TryAddAtomicAsync("param1", async () => (string) pcard["fCUR"], templateSubstitutionArgs);
+await proxyService.TryAddAtomicAsync("param2", async () => (string) pcard["fCLICODE"], templateSubstitutionArgs);
+
+```
 
 
 
