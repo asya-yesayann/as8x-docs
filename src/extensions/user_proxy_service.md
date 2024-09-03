@@ -982,9 +982,6 @@ public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, Sch
 
 * `Date` 
 * `Summa`
-* `ReduceDateMark`
-* `RowNumByFirstSch`
-* `PerDateMark` 
 
 **Պարամետրեր**
 
