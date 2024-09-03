@@ -1041,7 +1041,7 @@ public Task<decimal> GetFutPerDbt(int agrISN, DateTime dateStart, DateTime dateE
 
 * `agrISN` - Պարտադիր։ Պայմանագրի ISN։
 * `dateStart` - Պարտադիր։ Սկզբի ամսաթիվ։
-* `dateEnd` - Պարտադիր։ Վերջի ամսաթիվ
+* `dateEnd` - Պարտադիր։ Վերջի ամսաթիվ։
 
 
 
@@ -1057,7 +1057,7 @@ public Task<decimal> GetFutPerDbt(int agrISN, DateTime dateStart, DateTime dateE
 
 * `agrISN` - Պարտադիր։ Պայմանագրի ISN։
 * `dateStart` - Պարտադիր։ Սկզբի ամսաթիվ։
-* `dateEnd` - Պարտադիր։ Վերջի ամսաթիվ
+* `dateEnd` - Պարտադիր։ Վերջի ամսաթիվ։
 
 
 
