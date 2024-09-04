@@ -1031,7 +1031,7 @@ public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, Sch
 
 ``` c#
 
-// Օրինակում հաշվարկվում է 21/01/20-ի դրությամբ գործող, 1433755346 isn -ով պայմանագրի գրաֆիկում առկա տոկոսագումարների հանրագումարը։
+// Օրինակում հաշվարկվում է 1433755346 isn -ով պայմանագրի, 21/01/20-ի դրությամբ գործող գրաֆիկում առկա տոկոսագումարների հանրագումարը։
 
       List<ScheduleRow> sched = await proxyService.AgrSchedule(1433755346, DateTime.Parse("2020-01-21"), ScheduleValueType.Per);
       decimal PerSum = 0;
