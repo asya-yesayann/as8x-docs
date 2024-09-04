@@ -55,11 +55,11 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetFutServFeeDbt](#getfutservfeedbt)
 * [GetPCardData](#getpcarddata)
 * [GetPCardDoc](#GetPCardDoc)
+* [AsCCur](#AsCCur)
 
 
 
 
-AsCCur
 DealRate
 SumInWordsAsync
 WKDATE
@@ -1120,9 +1120,18 @@ public Task<Card> GetPCardDoc(string cardNum = "", string cardAcc = "", bool thr
 * `cardAcc` - Ոչ պարտադիր։ Քարտային հաշիվ։
 * `throwException` - Ոչ պարտադիր։ Բերել սխալի հաղորդագրություն փնտրվող պայմաններով քարտի բացակայության դեպքում։ Լռությամբ true:
 
+## AsCCur
+
+```c#
+
+```
 
 
-AsCCur
+
+
+
+
+
 DealRate
 SumInWordsAsync
 WKDATE
