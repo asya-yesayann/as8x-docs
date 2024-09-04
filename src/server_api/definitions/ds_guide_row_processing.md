@@ -29,7 +29,7 @@ Sql-based տվյալների աղբյուրի տողերի հավելյալ մշ
 
 ## ProcessRow 
 
-Մեթոդը կանչվում է [MakeSqlCommand](ds.md#makesqlcommand) մեթոդում փևավորված SQL հարցման կատարման ընթացքում, երբ հարցման տվյալները կարդացող [SqlDataReader](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqldatareader)-ը դեռ բաց է:
+Մեթոդը կանչվում է [MakeSqlCommand](ds.md#makesqlcommand) մեթոդում ձևավորված SQL հարցման կատարման ընթացքում, երբ հարցման տվյալները կարդացող [SqlDataReader](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqldatareader)-ը դեռ բաց է:
 
 Մեթոդը է վերադարձնում են bool տիպի արժեք, որը ցույց է տալիս թե ընթացիկ տողը պետք է ընդգրկվի տվյալների աղբյուրի տողերի վերջնական ցուցակում, թե ոչ։
 
@@ -63,7 +63,7 @@ protected override bool ProcessRow(DataSourceArgs<Param> args, DataRow row, SqlD
 
 Ներկայացված է տվյալների աղբյուրի տողերի ֆիլտրացիայի օրինակ՝ վերջնական տողերի ցուցակում ընդգրկվում են այն տողերը, որտեղ ստուգվում է տարիքը։
 
-reader-ից տողերը կարդալը առավել արագացնելու համար կարելի է `AfterExecuteSQLCommand` մեթոդում ստանալ reader-ի մեջ հարկավոր դիրքերը։
+reader-ից տողերը կարդալը առավել արագացնելու համար կարելի է [AfterExecuteSQLCommand](../definitions.md#afterexecutesqlcommand) մեթոդում ստանալ reader-ի մեջ հարկավոր դիրքերը։
 
 ```c#
 private int ageOrdinal;
