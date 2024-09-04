@@ -13,7 +13,7 @@ tags: [Accounting, ACCEXTENDER]
   - [CAPTION](#caption)
   - [ECAPTION](#ecaption)
   - [CSSOURCE](#cssource)
-- [AccountingExtender դաս](#accextender-նկարագրություն)
+- [AccountingExtender դաս](#accountingextender-դաս)
 - [Մեթոդներ](#մեթոդներ)
   - [PreOnDelete](#preondelete)
   - [PostOnDelete](#postondelete)

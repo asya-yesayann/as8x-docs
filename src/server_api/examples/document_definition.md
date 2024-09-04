@@ -13,6 +13,7 @@ DOCUMENT {
   NAME = UsrAccs;
   CAPTION = "Օգտագործողի հաշիվներ";
   ECAPTION = "User's accounts";
+  ALLOWSTOREINSERVICE = 1;
   PROCESSINGMODE = 8; '#DocProcessingMode2
 
   PAGE { CAPTION = "Ընդհանուր"; ECAPTION = "General";

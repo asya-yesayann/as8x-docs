@@ -58,7 +58,6 @@ tags: [DS, DataSource]
 * [DataSourceService դաս](../services/DataSourceService.md)
 * [Տվյալների աղբյուրի ընդլայնման բազային դաս](../../extensions/definitions/ds_extender.md)
 * [Տվյալների աղբյուրի ընդլայնման նկարագրման ձեռնարկ](../../extensions/definitions/ds_extender_guide.md)
-
 ## DATA նկարագրություն
 
 ```as4x
