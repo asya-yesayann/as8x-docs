@@ -989,7 +989,7 @@ public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, Sch
 - `requestDate` -Պարտադիր։ Ամսաթվիվ, որի դրությամբ պահանջվում է ստանալ ընթացիկ գրաֆիկը 
 - `valueType` - Պարտադիր։ Հնարավոր արժեքներն են՝
     ``` c#
-      public enum ScheduleType : short
+      public enum ScheduleValueType : short
       {
           Agr = 1, // մայր գումարի գրաֆիկ
           Base = 11, // հիմնական ամսաթվերի գրաֆիկ 
@@ -1028,6 +1028,19 @@ public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, Sch
           }   
           
           ```
+
+``` c#
+
+// Օրինակում հաշվարկվում է 21/01/20-ի դրությամբ գործող, 1433755346 isn -ով պայմանագրի գրաֆիկում առկա տոկոսագումարների հանրագումարը։
+
+      List<ScheduleRow> sched = await proxyService.AgrSchedule(1433755346, DateTime.Parse("2020-01-21"), ScheduleValueType.Per);
+      decimal PerSum = 0;
+      foreach (ScheduleRow sc in sched)
+      {
+          PerSum += sc.Sum;
+      }
+
+```
 
 ## GetFutPerDbt
 
