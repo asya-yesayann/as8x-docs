@@ -3,7 +3,7 @@ layout: page
 title: "Սերվերային API" 
 ---
 
-Այս բաժնում ներկայացված են սերվերում նկարագրվող օբյկտեները, սերվիսները և ներքին դասերը։
+Այս բաժնում ներկայացված են սերվերում նկարագրվող օբյեկտները, սերվիսները և ներքին դասերը։
 
 ## Նկարագրություններ
 * [Փաստաթղթի ստեղծման ձեռնարկ](server_api/definitions/document_guide.md)
@@ -21,14 +21,16 @@ title: "Սերվերային API"
 * [IFoldersService](server_api/services/IFoldersService.md)
 * [IParametersService](server_api/services/IParametersService.md)
 * [DataSourceService](server_api/services/DataSourceService.md)
+* [LiteDocumentService](server_api/services/LiteDocumentService.md)
 * [TreeElementsService](server_api/services/TreeElementsService.md)
 
 ## Այլ դասեր
-[LanguageService](server_api/services/LanguageService.md)
-[Language](server_api/services/Language.md)
-[DocumentCheckLevel](server_api/services/DocumentCheckLevel.md)
-[DocumentOrigin](server_api/services/DocumentOrigin.md)
-[FolderElement](server_api/services/FolderElement.md)
-[GridLoadMode](server_api/services/GridLoadMode.md)
-[TimeoutType](server_api/services/TimeoutType.md)
-[TreeElement](server_api/services/TreeElement.md)
+
+* [LanguageService](server_api/services/LanguageService.md)
+* [Language](server_api/services/Language.md)
+* [DocumentCheckLevel](server_api/services/DocumentCheckLevel.md)
+* [DocumentOrigin](server_api/services/DocumentOrigin.md)
+* [FolderElement](server_api/services/FolderElement.md)
+* [GridLoadMode](server_api/services/GridLoadMode.md)
+* [TimeoutType](server_api/services/TimeoutType.md)
+* [TreeElement](server_api/services/TreeElement.md)
