@@ -54,11 +54,11 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetFutPerDbt](#getfutperdbt)
 * [GetFutServFeeDbt](#getfutservfeedbt)
 * [GetPCardData](#getpcarddata)
+* [GetPCardDoc](#GetPCardDoc)
 
 
 
 
-GetPCardDoc
 AsCCur
 DealRate
 SumInWordsAsync
@@ -1107,9 +1107,21 @@ await proxyService.TryAddAtomicAsync("param2", async () => (string) pcard["fCLIC
 
 ```
 
+## GetPCardDoc
+```c#
+public Task<Card> GetPCardDoc(string cardNum = "", string cardAcc = "", bool throwException = true)
+```
+
+Վերադարձնում է պլաստիկ քարտի փաստաթղթի օբյեկտը քարտի համարով կամ քարտային հաշվի միջոցով։
+
+**Պարամետրեր**
+
+* `cardNum` - Ոչ պարտադիր։ Քարտի համարը։
+* `cardAcc` - Ոչ պարտադիր։ Քարտային հաշիվ։
+* `throwException` - Ոչ պարտադիր։ Բերել սխալի հաղորդագրություն փնտրվող պայմաններով քարտի բացակայության դեպքում։ Լռությամբ true:
 
 
-GetPCardDoc
+
 AsCCur
 DealRate
 SumInWordsAsync
