@@ -166,8 +166,6 @@ public SqlConnection CreateAdditionalConnection(bool pooling = true,
 
 Բացում և վերադարձնում է նոր [SQL միացում](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlconnection) դեպի տվյալների պահոց։
 
-https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlconnection.connectionstring
-
 **Պարամետրեր**
 * `pooling` - Օգտագործել միացումների քեշ, թե ոչ։
   Փոխանցում է [SqlConnectionStringBuilder](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlconnectionstringbuilder).[Pooling](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlconnectionstringbuilder.pooling) հատկությանը։
@@ -397,7 +395,7 @@ public bool TransDeferred { get; set; }
 ```
 
 Վերադարձնում կամ նշանակում է Fact տիպի օբյեկտների տվյալների պահոցում հետաձգված գրանցման հայտանիշը։
-Նախնական արժեքը **true** ՝։
+Նախնական արժեքը **true** է։
 
 **true** արժեքի դեպքում [DocumentService](IDocumentService.md).[StoreFact](IDocumentService.md#storefact) մեթոդի կանչի արդյունքում հաշվառումները պահվում են փաստաթղթի [StoredFacts](../definitions/document.md#storedfacts) ցուցակում և գրանցվում տվյալների պահոցում փաստաթղթի գրանցման հետ միասին։ 
 **false** արժեքրի դեպքում՝ գրանցվում են անմիջապես։
