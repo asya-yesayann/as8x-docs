@@ -56,11 +56,12 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetPCardData](#getpcarddata)
 * [GetPCardDoc](#GetPCardDoc)
 * [AsCCur](#AsCCur)
+* [DealRate](#DealRate)
 
 
 
 
-DealRate
+
 SumInWordsAsync
 WKDATE
 CURRENT_DATE
@@ -1135,10 +1136,26 @@ public static decimal AsCCur(string stringValue)
 decimal cur = UserProxyService.AsCCur("158832.26");
 ```
 
+## DealRate
+
+```c#
+public decimal DealRate(string curCode1, string curCode2, string pusa, string cash, DateTime calcdate, string sMaxCreationDate = "")
+```
+
+Վերադարձնում է տրված արժույթների համար սահմված կանխիկ / անկանխիկ, առքի / վաճառքի դիլինգային փոխարժեքները։ Հնարավոր է նաև սահմանել նաև ժամանակը, որի դրությամբ գործող փոխարժեքները անհրաժեշտ է վերադարձնել։
+
+```c#
+// Ստանում ենք ԱՄՆ դոլարի  առքի և վաճառքի, կանխիկի և անկանխիկի համար սահմանված ՀՀ դրամով փոխարժեքը, որոնք գործել են   05/09/24-ի 15։00 դրությամբ։
+
+decimal CashBuyRate = proxyService.DealRate("001", "000", "1", "0", DateTime.Parse("2024-09-05"), "2024-09-05 15:00");
+decimal NonCashBuyRate = proxyService.DealRate("001", "000", "1", "1", DateTime.Parse("2024-09-05"), "2024-09-05 15:00");
+decimal CashSellRate = proxyService.DealRate("001", "000", "2", "0", DateTime.Parse("2024-09-05"), "2024-09-05 15:00");
+decimal NonCashSellRate = proxyService.DealRate("001", "000", "2", "1", DateTime.Parse("2024-09-05"), "2024-09-05 15:00");
+
+```
 
 
 
-DealRate
 SumInWordsAsync
 WKDATE
 CURRENT_DATE
