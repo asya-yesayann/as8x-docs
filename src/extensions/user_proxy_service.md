@@ -1123,11 +1123,17 @@ public Task<Card> GetPCardDoc(string cardNum = "", string cardAcc = "", bool thr
 ## AsCCur
 
 ```c#
-
+public static decimal AsCCur(string stringValue)
 ```
+Վերափոխում է տողով (string) փոխանցված թիվը տասնորդական թվի (decimal)։ Դատարկ տող փոխանցելու դեպքում կրերադարձվի 0։ 
 
+**Պարամետրեր**
 
+* `stringValue` - Պարտադիր։ Թիվ պարունակով տող։
 
+``` c#
+decimal cur = UserProxyService.AsCCur("158832.26");
+```
 
 
 
