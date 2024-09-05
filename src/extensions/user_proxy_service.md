@@ -1165,13 +1165,25 @@ decimal NonCashSellRate = proxyService.DealRate("001", "000", "2", "1", DateTime
 ```
 
 ## SumInWordsAsync
+
 ```c#
 public async Task<string> SumInWordsAsync(decimal value, string integerCurrency = "", string precisionCurrency = "", bool toUpperFirstChar = true, bool isArmenian = true, bool isUnicode = false)
 ```
 
+Վերադարձնում է գումարը բառերով հայերեն կամ անգլերեն լեզվով։
 
+**Պարամետրեր**
 
+* `value` - Պարտադիր։ Թիվը, որի համար անհրաժեշտ է ստանալ բառերեվ արտահայտությունը։
+* `integerCurrency` - Ոչ Պարտադիր։ Արժույթի անվանումը պահանջվող լեզվով։  
+* `precisionCurrency` - Ոչ Պարտադիր։ Մանրադրամի անվանումը պահանջվող լեզվով։ 
+* `toUpperFirstChar` - Ոչ Պարտադիր։ Առաջին բառը գրել մեծատառով։ Լռությամբ true: 
+* `isArmenian` - Ոչ պարտադիր։ Լռությամբ true: Տեքստը վերադարձնել հայերեն։ false արժեքի դեպքում տեքստը կարտացոլվի անգլերեն լեզվով։ 
+* `isUnicode` - Ոչ պարտադիր։ Վերադարձնել Unicode կոդավորմամբ։ Լռությամբ true:
 
+```c#
+string sumInW = await proxyService.SumInWordsAsync(15.66m, "Dram", "Luma", isArmenian: false, isUnicode: false);
+```
 
 
 
