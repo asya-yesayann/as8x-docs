@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "FolderElement" 
-tags: [FolderElement, AsFoldElement]
+tags: AsFoldElement
 ---
 
 Այս դասը նախատեսված է թղթապանակի տարրի նկարագրման համար։
