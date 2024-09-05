@@ -72,7 +72,7 @@ DSEXTENDER {
 ## Հատկություններ
 
 ### NAME
-Ընդլայնման ներքին անվանումը (առավ. 50 նիշ)։
+Ընդլայնման ներքին անունը (առավ. 50 նիշ)։
 
 ### CAPTION 
 Ընդլայնման հայերեն անվանումը ANSI կոդավորմամբ։
@@ -81,7 +81,7 @@ DSEXTENDER {
 Ընդլայնման անգլերեն անվանումը։
 
 ### DATASOURCE 
-Ընդլայնվող տվյալների աղբյուրի ներքին անվանումը։
+Ընդլայնվող տվյալների աղբյուրի ներքին անունը։
 
 ### CSSOURCE 
 Ընդլայնող C# ֆայլի [հարաբերական ճանապարհը](https://phoenixnap.com/kb/absolute-path-vs-relative-path) .as ֆայլի նկատմամբ։
@@ -99,39 +99,40 @@ public abstract class Extender<R, P> : IExtender
     where R : class, new()
 ```
 
-Տվյալների աղբյուրի ընդլայման համար անհրաժեշտ է սահմանել դաս, որը ժառանգում է Extender<R, P> դասը՝ որպես R փոխանցելով տվյալների աղբյուրի ընդլայման սյուները նկարագրող դասը, իսկ որպես P՝ պարամետրերը նկարագրող դասը։  
+Տվյալների աղբյուրի ընդլայման համար անհրաժեշտ է սահմանել դաս, որը ժառանգում է `Extender<R, P>` դասը՝ որպես `R` փոխանցելով տվյալների աղբյուրի ընդլայման սյուները նկարագրող դասը, իսկ որպես `P`՝ պարամետրերը նկարագրող դասը։  
 Եթե նոր պարամետր չի ավելացվում ընդլայնմամբ, ապա որպես `P` անհրաժեշտ է փոխանցել `NoParam` դասը։
 Եթե նոր սյուն չի ավելացվում ընդլայնմամբ, ապա որպես `R` անհրաժեշտ է փոխանցել `NoColumns` դասը։
 
 Դասը պարտադիր պետք է ունենա `DataSourceExtender` ատրիբուտը։ 
-* Եթե դասի անունը համընկնում է .as ֆայլում նկարագրված [ներքին անվանման](#name) հետ, ապա ատրիբուտին արժեք փոխանցելու կարիք չկա:
+* Եթե դասի անունը համընկնում է .as ֆայլում նկարագրված [ներքին անվան](#name) հետ, ապա ատրիբուտին արժեք փոխանցելու կարիք չկա:
 
-**Օրինակ**
-```as4x
-DSEXTENDER {
-  NAME = AllOperExtended;
-  ...
-};
-```
+  **Օրինակ**
+  ```as4x
+  DSEXTENDER {
+    NAME = AllOperExtended;
+    ...
+  };
+  ```
+  
+  ```c#
+  [DataSourceExtender]
+  public class AllOperExtended : Extender<NoColumns, AllOperExtended.Params>
+  ```
 
-```c#
-[DataSourceExtender]
-public class AllOperExtended : Extender<NoColumns, AllOperExtended.Params>
-```
-* Եթե դասի անունը չի համընկնում .as ֆայլում նկարագրված [ներքին անվանման](#name) հետ, ապա ատրիբուտին պետք է փոխանցել ընդլայնման [ներքին անվանումը](#name)։
+* Եթե դասի անունը չի համընկնում .as ֆայլում նկարագրված [ներքին անվան](#name) հետ, ապա ատրիբուտին պետք է փոխանցել ընդլայնման [ներքին անունը](#name)։
 
-**Օրինակ**
-```as4x
-DSEXTENDER {
-  NAME = AllOperExt;
-  ...
-};
-```
-
-```c#
-[DataSourceExtender("AllOperExt")]
-public class AllOperExtended : Extender<NoColumns, AllOperExtended.Params>
-```
+  **Օրինակ**
+  ```as4x
+  DSEXTENDER {
+    NAME = AllOperExt;
+    ...
+  };
+  ```
+  
+  ```c#
+  [DataSourceExtender("AllOperExt")]
+  public class AllOperExtended : Extender<NoColumns, AllOperExtended.Params>
+  ```
 
 ## Հատկություններ
 
@@ -188,7 +189,7 @@ public void AddParam(string name, string description, FieldType fieldType)
 
 **Պարամետրեր**
 
-* `name` - Պարամետրի ներքին անվանումը։
+* `name` - Պարամետրի ներքին անունը։
 * `description` - Պարամետրի հայերեն նկարագրությունը։ Անհրաժեշտ է փոխանցել ANSI կոդավորմամբ։
 * `fieldType` - Պարամետրի համակարգային տիպը:
 

@@ -1,7 +1,13 @@
 ---
 layout: page
-title: "DataSourceService" 
+title: "DataSourceService սերվիս" 
 tags: [DataSourceService, DS, DataSource]
+sublinks:
+- { title: "ExecuteDataSource", ref: executedatasource }
+- { title: "ExecuteDataSource", ref: executedatasource-1 }
+- { title: "GetColumnsDefinition", ref: getcolumnsdefinition }
+- { title: "GetDataSource", ref: getdatasource }
+- { title: "GetDefinition", ref: getdefinition }
 ---
 
 ## Բովանդակություն
@@ -31,10 +37,10 @@ public Task<List<T>> ExecuteDataSource<T>(string dsName, Dictionary<string, obje
 
 * `dsName` - Տվյալների աղբյուրի ներքին անունը:
 * `parameters` - Տվյալների աղբյուրի պարամետրերի ցանկը:
-* `cancellationToken` - Չեղարկման տոկենը:
-* `T` - Տվյալների աղբյուրի սյուները նկարագրող դասը։
+* `cancellationToken` - Ընդհատման օբյեկտ:
+* `T` - Տվյալների աղբյուրի տողը նկարագրող դասը։
 
-Օգտագործման օրինակին ծանոթանալու համար [տե՛ս](../examples/ds.md#1-չտիպիզացված-կատարում):
+Օգտագործման օրինակին ծանոթանալու համար [տե՛ս](../examples/ds.md#չտիպիզացված-կատարում):
 
 ### ExecuteDataSource
 
@@ -46,12 +52,12 @@ public Task<List<T>> ExecuteDataSource<T>(Type dsType, Dictionary<string, object
 
 **Պարամետրեր**
 
-* `dsType` - Տվյալների աղբյուրը նկարագրող դասի տիպը։
+* `dsType` - Տվյալների աղբյուրի տիպը։
 * `parameters` - Տվյալների աղբյուրի պարամետրերի ցանկը:
-* `cancellationToken` - Չեղարկման տոկենը:
-* `T` - Տվյալների աղբյուրի սյուները նկարագրող դասը:
+* `cancellationToken` - Ընդհատման օբյեկտ:
+* `T` - Տվյալների աղբյուրի տողը նկարագրող դասը:
 
-Օգտագործման օրինակին ծանոթանալու համար [տե՛ս](../examples/ds.md#1-չտիպիզացված-կատարում):
+Օգտագործման օրինակին ծանոթանալու համար [տե՛ս](../examples/ds.md#չտիպիզացված-կատարում):
 
 ### GetColumnsDefinition
 
@@ -74,9 +80,9 @@ public T GetDataSource<T>() where T : IDataSource
 
 **Պարամետրեր**
 
-* `T` - Տվյալների աղբյուրը նկարագրող դասը:
+* `T` - Տվյալների աղբյուրի տիպը:
 
-Օգտագործման օրինակին ծանոթանալու համար [տե՛ս](../examples/ds.md#2-տիպիզացված-կատարում):
+Օգտագործման օրինակին ծանոթանալու համար [տե՛ս](../examples/ds.md#տիպիզացված-կատարում):
 
 ### GetDefinition
 
@@ -84,7 +90,7 @@ public T GetDataSource<T>() where T : IDataSource
 public Task<DataSourceDefinition> GetDefinition(string dsName, bool isFull = false)
 ```
 
-Վերադարձնում է տվյալների աղբյուրի նկարագրությունը, որը պարունակում է տվյալների աղբյուրի մետատվյալները և հատկությունները(ներքին անուն, հայերեն, անգլերեն անվանումներ, SqlBased է թե ոչ, ...):
+Վերադարձնում է տվյալների աղբյուրի նկարագրությունը, որը պարունակում է տվյալների աղբյուրի մետատվյալները և հատկությունները(ներքին անուն, հայերեն, անգլերեն անվանումներ, SqlBased է թե ոչ...):
 
 **Պարամետրեր**
 * `dsName` - Տվյալների աղբյուրի ներքին անունը:
