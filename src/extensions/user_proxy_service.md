@@ -60,14 +60,14 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [SumInWordsAsync](#SumInWordsAsync)
 * [WKDATE](#WKDATE)
 * [CURRENT_DATE](#CURRENT_DATE)
+* [WEEK_BEGIN](#WEEK_BEGIN)
+* [WEEK_END](#WEEK_END)
 
 
 
 
 
 
-WEEK_BEGIN
-WEEK_END
 MONTH_BEGIN
 MONTH_END
 PREVIOUS_MONTH_BEGIN
@@ -1214,11 +1214,28 @@ public DateTime CURRENT_DATE()
 DateTime dt = proxyService.CURRENT_DATE();
 ```
 
+## WEEK_BEGIN
+
+```c#
+DateTime dt = proxyService.WEEK_BEGIN();
+```
+Վերադարձնում է ընթացիկ շաբաթվա առաջին օրվա ամսաթիվը։
+
+```c#
+DateTime dt = proxyService.WEEK_BEGIN();
+```
+
+
+## WEEK_END
+```c#
+ public DateTime WEEK_END(object parDate = null)
+```
+
+Վերադարձնում է ընթացիկ շաբաթվա վերջին օրվա ամսաթիվը։
 
 
 
-WEEK_BEGIN
-WEEK_END
+
 MONTH_BEGIN
 MONTH_END
 PREVIOUS_MONTH_BEGIN
