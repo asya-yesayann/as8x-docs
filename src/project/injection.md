@@ -70,7 +70,7 @@ var treeElementService2 = serviceProvider.GetService<TreeElementService>();
 
 ### Սերվիսում օգտագործման օրինակ
 
-[TreeElementService](../server_api/services/TreeElementsService.md) դասը իր կախվածությունները ([IDBService](../server_api/services/DBService.md), TimeStampService, TreeService և IErrorHandlingService) ստանում է կոնստրուկտորով ինյեկցիայի միջոցով: 
+[TreeElementService](../server_api/services/TreeElementsService.md) դասը իր կախվածությունները ([IDBService](../server_api/services/IDBService.md), TimeStampService, TreeService և IErrorHandlingService) ստանում է կոնստրուկտորով ինյեկցիայի միջոցով: 
 Այս սերվիսները վերագրվում են դասի ներսում նախապես հայտարարված լոկալ փոփոխականներին և օգտագործվում են դասի ներսում: 
 
 ```c#
@@ -97,7 +97,7 @@ public class TreeElementService
 
 ### Տվյալների աղբյուրում օգտագործման օրինակ
 
-`TreeNode` դասը իր կախվածությունը՝ [IDBService](../server_api/services/DBService.md), ստանում է կոնստրուկտորով ինյեկցիայի միջոցով, ինչպես նաև `IServiceProvider`, որը փոխանցում է բազային [DataSource](../server_api/definitions/ds.md) դասին: 
+`TreeNode` դասը իր կախվածությունը՝ [IDBService](../server_api/services/IDBService.md), ստանում է կոնստրուկտորով ինյեկցիայի միջոցով, ինչպես նաև `IServiceProvider`, որը փոխանցում է բազային [DataSource](../server_api/definitions/ds.md) դասին: 
 Այս դասը վերագրվում է դասի ներսում նախապես հայտարարված լոկալ փոփոխականին (`dbService`) և օգտագործվում է դասի ներսում: 
 
 Օրինակում օգտագործված տվյալների աղբյուրի նկարագրման ձեռնարկին ծանոթանալու համար [տե՛ս](../server_api/definitions/ds_guide.md):  

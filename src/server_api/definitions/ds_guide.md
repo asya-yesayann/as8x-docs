@@ -169,7 +169,7 @@ sublinks:
 
 Վերևում նշված [ընդհանուր քայլերից](#տվյալների-աղբյուրի-նկարագրման-համար-անհրաժեշտ-ընդհանուր-քայլեր) կատարումից հետո անհրաժեշտ է override անել [MakeSQLCommand](ds.md#makesqlcommand) մեթոդը։
 
-[MakeSQLCommand](ds.md#makesqlcommand) մեթոդում անհրաժեշտ է ստեղծել և վերադարձնել [SqlCommand](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlcommand) դասի օբյեկտ՝ [IDBService](../services/DBService.md) դասի [CreateCommand](../services/DBService.md#createcommand) մեթոդի միջոցով։  
+[MakeSQLCommand](ds.md#makesqlcommand) մեթոդում անհրաժեշտ է ստեղծել և վերադարձնել [SqlCommand](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlcommand) դասի օբյեկտ՝ [IDBService](../services/IDBService.md) դասի [CreateCommand](../services/IDBService.md#createcommand) մեթոդի միջոցով։  
 Այստեղ հարկավոր է ձևավորել sql հարցման տեքստը հաշվի առնելով նաև փոխանցված պարամետրերի արժեքները։
 
 ```c#

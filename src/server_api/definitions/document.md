@@ -410,7 +410,7 @@ public List<Fact> StoredFacts { get; internal set; }
 
 Վերադարձնում է փաստաթղթի ժամանակավոր պահված հաշվառումների գրառումների բազմությունը [DocumentService](../services/IDocumentService.md).[StoreFact](../services/IDocumentService.md#storefact) ֆունկցիյով ավելացնելուց հետո։
 
-Այստեղ ժամանակավոր պահվում են, եթե [DbService](../services/DBService.md).[TransDeferred](../services/DBService.md#transdeferred) հատկությունը `true` է։
+Այստեղ ժամանակավոր պահվում են, եթե [IDBService](../services/IDBService.md).[TransDeferred](../services/IDBService.md#transdeferred) հատկությունը `true` է։
 
 ### StoreSnapshot
 

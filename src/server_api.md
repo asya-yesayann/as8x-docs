@@ -17,7 +17,7 @@ title: "Սերվերային API"
 
 ## Սերվիսներ
 * [IDocumentService](server_api/services/IDocumentService.md)
-* [IDBService](server_api/services/DBService.md)
+* [IDBService](server_api/services/IDBService.md)
 * [IFoldersService](server_api/services/IFoldersService.md)
 * [IParametersService](server_api/services/IParametersService.md)
 * [DataSourceService](server_api/services/DataSourceService.md)
