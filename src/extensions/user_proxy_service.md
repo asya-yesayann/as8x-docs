@@ -58,14 +58,14 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [AsCCur](#AsCCur)
 * [DealRate](#DealRate)
 * [SumInWordsAsync](#SumInWordsAsync)
+* [WKDATE](#WKDATE)
+* [CURRENT_DATE](#CURRENT_DATE)
 
 
 
 
 
 
-WKDATE
-CURRENT_DATE
 WEEK_BEGIN
 WEEK_END
 MONTH_BEGIN
@@ -1186,10 +1186,37 @@ public async Task<string> SumInWordsAsync(decimal value, string integerCurrency 
 string sumInW = await proxyService.SumInWordsAsync(15.66m, "Dram", "Luma", isArmenian: false, isUnicode: false);
 ```
 
+## WKDATE
+
+```c#
+public DateTime WKDATE()
+```
+
+Վերադարձնում է ՀԾ-Բանկ համակարգի դրույթներում սահմանված "ընթացիկ օրը"։
+
+```c#
+DateTime dt = proxyService.WKDATE();
+```
+
+```c#
+DateTime dt = proxyService.WKDATE();
+```
+
+## CURRENT_DATE
+
+```c#
+public DateTime CURRENT_DATE()
+```
+
+Վերադարձնում է ընթացիկ օրը և ժամը
+
+```
+DateTime dt = proxyService.CURRENT_DATE();
+```
 
 
-WKDATE
-CURRENT_DATE
+
+
 WEEK_BEGIN
 WEEK_END
 MONTH_BEGIN
