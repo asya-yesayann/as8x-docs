@@ -57,12 +57,13 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetPCardDoc](#GetPCardDoc)
 * [AsCCur](#AsCCur)
 * [DealRate](#DealRate)
+* [SumInWordsAsync](#SumInWordsAsync)
 
 
 
 
 
-SumInWordsAsync
+
 WKDATE
 CURRENT_DATE
 WEEK_BEGIN
@@ -1142,7 +1143,16 @@ decimal cur = UserProxyService.AsCCur("158832.26");
 public decimal DealRate(string curCode1, string curCode2, string pusa, string cash, DateTime calcdate, string sMaxCreationDate = "")
 ```
 
-Վերադարձնում է տրված արժույթների համար սահմված կանխիկ / անկանխիկ, առքի / վաճառքի դիլինգային փոխարժեքները։ Հնարավոր է նաև սահմանել նաև ժամանակը, որի դրությամբ գործող փոխարժեքները անհրաժեշտ է վերադարձնել։
+Վերադարձնում է տրված արժույթների համար սահմված կանխիկ / անկանխիկ, առքի / վաճառքի դիլինգային փոխարժեքները։ Հնարավոր է սահմանել նաև ժամանակը, որի դրությամբ գործող փոխարժեքները անհրաժեշտ է վերադարձնել։
+
+**Պարամետրեր**
+
+* `curCode1` - Պարտադիր։ Արժույթ 1։
+* `curCode2` - Պարտադիր։ Արժույթ 2։
+* `pusa` -  Պարտադիր։ Առք / վաճառք։ Հնարավոր արժեքներն են՝ 1 - առք, 2 - վաճառք։
+* `cash` -  Պարտադիր։ Կանխիկ / անկանխիկ։ Հնարավոր արժեքներն են՝ 0 - կանխիկ, 1 - անկանխիկ։
+* `calcdate` - Պարտադիր։ Փոխարժեքի ամսաթիվ։ 
+* `sMaxCreationDate` - Ոչ պարտադիր։ Օգտագործվում է այն ժամանակ երբ նույն օրվա ընթացքում սահմանվել են մի քանի փոխարժեքներ և անհրաժեշտ է ստանալ սահմանված ժամին գործողը։
 
 ```c#
 // Ստանում ենք ԱՄՆ դոլարի  առքի և վաճառքի, կանխիկի և անկանխիկի համար սահմանված ՀՀ դրամով փոխարժեքը, որոնք գործել են   05/09/24-ի 15։00 դրությամբ։
@@ -1154,9 +1164,17 @@ decimal NonCashSellRate = proxyService.DealRate("001", "000", "2", "1", DateTime
 
 ```
 
+## SumInWordsAsync
+```c#
+public async Task<string> SumInWordsAsync(decimal value, string integerCurrency = "", string precisionCurrency = "", bool toUpperFirstChar = true, bool isArmenian = true, bool isUnicode = false)
+```
 
 
-SumInWordsAsync
+
+
+
+
+
 WKDATE
 CURRENT_DATE
 WEEK_BEGIN
