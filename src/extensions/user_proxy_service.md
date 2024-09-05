@@ -1182,6 +1182,7 @@ public async Task<string> SumInWordsAsync(decimal value, string integerCurrency 
 * `isUnicode` - Ոչ պարտադիր։ Վերադարձնել Unicode կոդավորմամբ։ Լռությամբ true:
 
 ```c#
+// Օրինակում վերադարձվում է անգլերեն ANSI կոդավորմամբ։
 string sumInW = await proxyService.SumInWordsAsync(15.66m, "Dram", "Luma", isArmenian: false, isUnicode: false);
 ```
 
