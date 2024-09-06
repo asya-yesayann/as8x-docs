@@ -73,7 +73,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [YEAR_BEGIN](#YEAR_BEGIN)
 * [GetExchangeRate](#GetExchangeRate)
 * [SERVER_DATE](#SERVER_DATE)
-* [FormatDDMMYY FormatDDMMYYYY](#FormatDDMMYY-FormatDDMMYYYY)
+* [FormatDDMMYY FormatDDMMYYYY FormatYYYYMMDD](#FormatDDMMYY-FormatDDMMYYYY-FormatYYYYMMDD)
 
 
 
@@ -83,7 +83,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-FormatYYYYMMDD
+
 CurrencyFormat
 FormatToPrint
 TryAddAtomicAsync
@@ -1410,13 +1410,13 @@ public async Task<DateTime> SERVER_DATE()
 DateTime dt = await proxyService.SERVER_DATE();
 ```
 
-## FormatDDMMYY FormatDDMMYYYY
+## FormatDDMMYY FormatDDMMYYYY FormatYYYYMMDD
 ```C#
 public string FormatDDMMYY(DateTime? date)
 public string FormatDDMMYYYY(DateTime? date)
 
 ```
-Վերադարձնում է ֆորմատավորված ամսաթվի տող։ Պարամետրի null արժեքի դեպքում կվերադարձվի դատարկ ամսաթվի ՝ " / / " տողը։
+Վերադարձնում է ֆորմատավորված ամսաթվի տող։ Առաջին երկու դեպքերում տարեթիվը կարտացոլվի երկու, մյուս դեպքում չորս նիշերով։ Պարամետրի ՝null՝ արժեքի դեպքում կվերադարձվի դատարկ ամսաթվի ՝ " / / " տողը։ FormatYYYYMMDD ֆունկցիայի վերադարձրած տողի օրինակ է՝ "20240906"։ ՝null՝ արժեքի դեպքում տողը կունենա հետևյալ տեսքը՝ "00000000"
 
 **Պարամետրեր**
 
@@ -1424,11 +1424,13 @@ public string FormatDDMMYYYY(DateTime? date)
 
 
 ```C#
-// Բերված օրինակում dt փոփոխականը կստանա ընթացիկ ամսաթվի տողը, օրինակ՝ "06/09/24"։ dt2 -ի արժեքը կլինի " / / "։
+// Բերված օրինակում dt փոփոխականը կստանա ընթացիկ ամսաթվի տողը, օրինակ՝ "06/09/24"։ dt2 -ի արժեքը կլինի " / / "։ dt3 -ի արժեքը կլինի 20240906
+
 
 DateTime dtObj = DateTime.Now;
 string dt = proxyService.FormatDDMMYY(dtObj);
 string dt2 = proxyService.FormatDDMMYYYY(null);
+string dt3 = proxyService.FormatYYYYMMDD(dtObj);
 ```
 
 
@@ -1440,8 +1442,8 @@ string dt2 = proxyService.FormatDDMMYYYY(null);
 
 
 
-FormatDDMMYYYY
-FormatYYYYMMDD
+
+
 CurrencyFormat
 FormatToPrint
 TryAddAtomicAsync
