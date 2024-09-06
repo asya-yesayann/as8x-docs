@@ -71,6 +71,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [PREVIOUS_QUARTE_BEGIN](#PREVIOUS_QUARTE_BEGIN)
 * [PREVIOUS_QUARTE_END](#PREVIOUS_QUARTE_END)
 * [YEAR_BEGIN](#YEAR_BEGIN)
+* [GetExchangeRate](#GetExchangeRate)
 
 
 
@@ -79,7 +80,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-GetExchangeRate
 SERVER_DATE
 FormatDDMMYY
 FormatDDMMYYYY
@@ -1383,34 +1383,25 @@ public DateTime YEAR_BEGIN(object parDate = null)
 DateTime dt = proxyService.YEAR_BEGIN(DateTime.Parse("2024-08-17"));
 ```
 
+## GetExchangeRate
+```c#
+public async Task<decimal> GetExchangeRate(string codCurrency, DateTime date, DateTime? maxCreationDate = null)
+```
+Վերադարձնում է ՀՀ ԿԲ հաշվարկային փոխարժեքը ըստ արժույթի և ամսաթվի։
+
+**Պարամետրեր**
+
+* `codCurrency` - Պարտադիր։ արժույթի կոդը։
+* `date` - Պարտադիր։ Փոխարժեքի ամսաթիվը։
+* `maxCreationDate` - Ոչ պարտադիր։ Սահմանվում է ամսաթիվը և ժամը, որի դրությամբ գործող փոխարժեքը պետք է վերադարձնել։ Օգտագործվում է այն դեպքում երբ մեկ օրվա ընթացքում սահմանվել է մի քանի փոխարժեք։
+```c#
+// Վերադարձվում է 06/09/24 -ի 15։12 դրությամբ գործող ԱՄՆ դոլարի հաշվարկային փոխարժեքը։
+decimal cur = await proxyService.GetExchangeRate("001", DateTime.Parse("2024-09-06"), DateTime.Parse("2024-09-06 15:12"));
+```
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-GetExchangeRate
 SERVER_DATE
 FormatDDMMYY
 FormatDDMMYYYY
