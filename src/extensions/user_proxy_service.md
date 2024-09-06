@@ -62,13 +62,13 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [CURRENT_DATE](#CURRENT_DATE)
 * [WEEK_BEGIN](#WEEK_BEGIN)
 * [WEEK_END](#WEEK_END)
+* [MONTH_BEGIN](#MONTH_BEGIN)
 
 
 
 
 
 
-MONTH_BEGIN
 MONTH_END
 PREVIOUS_MONTH_BEGIN
 PREVIOUS_MONTH_END
@@ -1233,9 +1233,19 @@ public DateTime WEEK_END(object parDate = null)
 DateTime dt = proxyService.WEEK_BEGIN();
 ```
 
+## MONTH_BEGIN
+```c#
+public DateTime MONTH_BEGIN(object parDate = null)
+```
+
+Վերադարձնում է parDate պարամետրով փոխանցած կամ ընթացիկ
 
 
-MONTH_BEGIN
+
+
+
+
+
 MONTH_END
 PREVIOUS_MONTH_BEGIN
 PREVIOUS_MONTH_END
