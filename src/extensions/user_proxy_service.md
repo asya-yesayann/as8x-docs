@@ -1198,17 +1198,13 @@ public DateTime WKDATE()
 DateTime dt = proxyService.WKDATE();
 ```
 
-```c#
-DateTime dt = proxyService.WKDATE();
-```
-
 ## CURRENT_DATE
 
 ```c#
 public DateTime CURRENT_DATE()
 ```
 
-Վերադարձնում է ընթացիկ օրը և ժամը
+Վերադարձնում է ընթացիկ օրը և ժամը:
 
 ```
 DateTime dt = proxyService.CURRENT_DATE();
@@ -1217,7 +1213,7 @@ DateTime dt = proxyService.CURRENT_DATE();
 ## WEEK_BEGIN
 
 ```c#
-DateTime dt = proxyService.WEEK_BEGIN();
+public DateTime WEEK_BEGIN(object parDate = null)
 ```
 Վերադարձնում է ընթացիկ շաբաթվա առաջին օրվա ամսաթիվը։
 
@@ -1228,11 +1224,14 @@ DateTime dt = proxyService.WEEK_BEGIN();
 
 ## WEEK_END
 ```c#
- public DateTime WEEK_END(object parDate = null)
+public DateTime WEEK_END(object parDate = null)
 ```
 
 Վերադարձնում է ընթացիկ շաբաթվա վերջին օրվա ամսաթիվը։
 
+```c#
+DateTime dt = proxyService.WEEK_BEGIN();
+```
 
 
 
