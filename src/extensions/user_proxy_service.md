@@ -66,17 +66,18 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [MONTH_END](#MONTH_END)
 * [PREVIOUS_MONTH_BEGIN](#PREVIOUS_MONTH_BEGIN)
 * [PREVIOUS_MONTH_END](#PREVIOUS_MONTH_END)
+* [QUARTE_BEGIN](#QUARTE_BEGIN)
+* [QUARTE_END](#QUARTE_END)
+* [PREVIOUS_QUARTE_BEGIN](#PREVIOUS_QUARTE_BEGIN)
+* [PREVIOUS_QUARTE_END](#PREVIOUS_QUARTE_END)
+* [YEAR_BEGIN](#YEAR_BEGIN)
 
 
 
 
 
 
-QUARTE_BEGIN
-QUARTE_END
-PREVIOUS_QUARTE_BEGIN
-PREVIOUS_QUARTE_END
-YEAR_BEGIN
+
 
 GetExchangeRate
 SERVER_DATE
@@ -1307,16 +1308,107 @@ public DateTime PREVIOUS_MONTH_END(object parDate = null)
 DateTime dt = proxyService.PREVIOUS_MONTH_END(DateTime.Parse("2024-08-17"));
 ```
 
+## QUARTE_BEGIN
+```c#
+public DateTime QUARTE_BEGIN(object parDate = null)
+```
+Վերադարձնում է parDate պարամետրով փոխանցած կամ ընթացիկ ամսաթվի եռամսյակի սկզբի օրը։
+
+**Պարամետրեր**
+
+* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել եռամսյակի սկիզբը։
+
+```c#
+// Ֆունկցիան կվերադարձնի 01/08/2024 0:00:00 ամսաթիվը։
+DateTime dt = proxyService.QUARTE_BEGIN(DateTime.Parse("2024-08-17"));
+```
+
+## QUARTE_END
+```c#
+public DateTime QUARTE_END(object parDate = null)
+```
+Վերադարձնում է parDate պարամետրով փոխանցած կամ ընթացիկ ամսաթվի եռամսյակի վերջին օրը։
+
+**Պարամետրեր**
+
+* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել եռամսյակի վերջը։
+
+```c#
+// Ֆունկցիան կվերադարձնի 30/09/2024 0:00:00 ամսաթիվը։
+DateTime dt = proxyService.QUARTE_END(DateTime.Parse("2024-08-17"));
+```
+
+## PREVIOUS_QUARTE_BEGIN
+```c#
+public DateTime PREVIOUS_QUARTE_BEGIN(object parDate = null)
+```
+Վերադարձնում է parDate պարամետրով փոխանցած կամ ընթացիկ ամսաթվին նախորդող եռամսյակի սկզբի օրը։
+
+**Պարամետրեր**
+
+* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել նախորդող եռամսյակի սկիզբը։
+
+```c#
+// Ֆունկցիան կվերադարձնի 01/04/2024 0:00:00 ամսաթիվը։
+DateTime dt = proxyService.PREVIOUS_QUARTE_BEGIN(DateTime.Parse("2024-08-17"));
+```
+
+## PREVIOUS_QUARTE_END
+```c#
+public DateTime PREVIOUS_QUARTE_END(object parDate = null)
+```
+Վերադարձնում է parDate պարամետրով փոխանցած կամ ընթացիկ ամսաթվին նախորդող եռամսյակի վերջին օրը։
+
+**Պարամետրեր**
+
+* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել նախորդող եռամսյակի վերջը։
+
+```c#
+// Ֆունկցիան կվերադարձնի 30/06/2024 0:00:00 ամսաթիվը։
+DateTime dt = proxyService.PREVIOUS_QUARTE_END(DateTime.Parse("2024-08-17"));
+```
+
+## YEAR_BEGIN
+```c#
+public DateTime YEAR_BEGIN(object parDate = null)
+```
+Վերադարձնում է parDate պարամետրով փոխանցած կամ ընթացիկ ամսաթվի տարվա սկզբի օրը։
+
+**Պարամետրեր**
+
+* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել տարվա սկիզբը։
+
+```c#
+// Ֆունկցիան կվերադարձնի 01/01/2024 0:00:00 ամսաթիվը։
+DateTime dt = proxyService.YEAR_BEGIN(DateTime.Parse("2024-08-17"));
+```
 
 
 
 
 
-QUARTE_BEGIN
-QUARTE_END
-PREVIOUS_QUARTE_BEGIN
-PREVIOUS_QUARTE_END
-YEAR_BEGIN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 GetExchangeRate
 SERVER_DATE
