@@ -73,6 +73,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [YEAR_BEGIN](#YEAR_BEGIN)
 * [GetExchangeRate](#GetExchangeRate)
 * [SERVER_DATE](#SERVER_DATE)
+* [FormatDDMMYY FormatDDMMYYYY](#FormatDDMMYY-FormatDDMMYYYY)
 
 
 
@@ -81,8 +82,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-FormatDDMMYY
-FormatDDMMYYYY
+
 FormatYYYYMMDD
 CurrencyFormat
 FormatToPrint
@@ -1410,13 +1410,36 @@ public async Task<DateTime> SERVER_DATE()
 DateTime dt = await proxyService.SERVER_DATE();
 ```
 
+## FormatDDMMYY FormatDDMMYYYY
+```C#
+public string FormatDDMMYY(DateTime? date)
+public string FormatDDMMYYYY(DateTime? date)
+
+```
+Վերադարձնում է ֆորմատավորված ամսաթվի տող։ Պարամետրի null արժեքի դեպքում կվերադարձվի դատարկ ամսաթվի ՝ " / / " տողը։
+
+**Պարամետրեր**
+
+* `date` - Ոչ պարտադիր։ Ամսաթվի օբյեկտը։
+
+
+```C#
+// Բերված օրինակում dt փոփոխականը կստանա ընթացիկ ամսաթվի տողը, օրինակ՝ "06/09/24"։ dt2 -ի արժեքը կլինի " / / "։
+
+DateTime dtObj = DateTime.Now;
+string dt = proxyService.FormatDDMMYY(dtObj);
+string dt2 = proxyService.FormatDDMMYYYY(null);
+```
 
 
 
 
 
 
-FormatDDMMYY
+
+
+
+
 FormatDDMMYYYY
 FormatYYYYMMDD
 CurrencyFormat
