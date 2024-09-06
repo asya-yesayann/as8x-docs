@@ -1215,25 +1215,29 @@ DateTime dt = proxyService.CURRENT_DATE();
 ```c#
 public DateTime WEEK_BEGIN(object parDate = null)
 ```
-Վերադարձնում է ընթացիկ շաբաթվա առաջին օրվա ամսաթիվը։
+Վերադարձնում է ընթացիկ կամ parDate պարամետրով փոխանցված ամսաթվի շաբաթվա առաջին օրվա ամսաթիվը։
 
 ```c#
+// Ստանում ենք ընթացիկ շաբաթվա առաջին օրը։
 DateTime dt = proxyService.WEEK_BEGIN();
 ```
 
 
 ## WEEK_END
+
 ```c#
 public DateTime WEEK_END(object parDate = null)
 ```
 
-Վերադարձնում է ընթացիկ շաբաթվա վերջին օրվա ամսաթիվը։
+Վերադարձնում է ընթացիկ կամ parDate պարամետրով փոխանցված ամսաթվի շաբաթվա վերջին օրվա ամսաթիվը։
 
 ```c#
-DateTime dt = proxyService.WEEK_BEGIN();
+// Ստանում ենք ընթացիկ շաբաթվա վերջին օրը։
+DateTime dt = proxyService.WEEK_END();
 ```
 
 ## MONTH_BEGIN 
+
 ```c#
 public DateTime MONTH_BEGIN(object parDate = null)
 ```
