@@ -72,6 +72,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [PREVIOUS_QUARTE_END](#PREVIOUS_QUARTE_END)
 * [YEAR_BEGIN](#YEAR_BEGIN)
 * [GetExchangeRate](#GetExchangeRate)
+* [SERVER_DATE](#SERVER_DATE)
 
 
 
@@ -80,7 +81,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-SERVER_DATE
 FormatDDMMYY
 FormatDDMMYYYY
 FormatYYYYMMDD
@@ -1399,10 +1399,23 @@ public async Task<decimal> GetExchangeRate(string codCurrency, DateTime date, Da
 decimal cur = await proxyService.GetExchangeRate("001", DateTime.Parse("2024-09-06"), DateTime.Parse("2024-09-06 15:12"));
 ```
 
+## SERVER_DATE
+```c#
+public async Task<DateTime> SERVER_DATE()
+```
+
+Վերադարձնում է տվյալների բազաների սերվերի անվանումը։
+
+```c#
+DateTime dt = await proxyService.SERVER_DATE();
+```
 
 
 
-SERVER_DATE
+
+
+
+
 FormatDDMMYY
 FormatDDMMYYYY
 FormatYYYYMMDD
