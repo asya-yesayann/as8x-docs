@@ -74,6 +74,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetExchangeRate](#GetExchangeRate)
 * [SERVER_DATE](#SERVER_DATE)
 * [FormatDDMMYY FormatDDMMYYYY FormatYYYYMMDD](#FormatDDMMYY-FormatDDMMYYYY-FormatYYYYMMDD)
+* [CurrencyFormat](#CurrencyFormat)
 
 
 
@@ -84,7 +85,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-CurrencyFormat
 FormatToPrint
 TryAddAtomicAsync
 TryAddAtomic
@@ -1414,7 +1414,7 @@ DateTime dt = await proxyService.SERVER_DATE();
 ```C#
 public string FormatDDMMYY(DateTime? date)
 public string FormatDDMMYYYY(DateTime? date)
-
+public string FormatYYYYMMDD(DateTime? date)
 ```
 Վերադարձնում է ֆորմատավորված ամսաթվի տող։ Առաջին երկու դեպքերում տարեթիվը կարտացոլվի երկու, մյուս դեպքում չորս նիշերով։ Պարամետրի ՝null՝ արժեքի դեպքում կվերադարձվի դատարկ ամսաթվի ՝ " / / " տողը։ FormatYYYYMMDD ֆունկցիայի վերադարձրած տողի օրինակ է՝ "20240906"։ ՝null՝ արժեքի դեպքում տողը կունենա հետևյալ տեսքը՝ "00000000"
 
@@ -1433,6 +1433,24 @@ string dt2 = proxyService.FormatDDMMYYYY(null);
 string dt3 = proxyService.FormatYYYYMMDD(dtObj);
 ```
 
+## CurrencyFormat
+```c#
+public string CurrencyFormat(decimal value, short length = 20, short precision = 2)
+```
+Վերադարձնում է ֆորմատավորված գումարի տող։ Սահմանված երկարությունից նիշերի քանակը ավելի փոքր լինելու պակասող նիշերը ձախից կհամալրվեն բացատներով"
+
+**Պարամետրեր**
+
+* `value` - Պարտադիր։ Տասնորդական թիվ, որի համար ձևավորվում է ֆորմատավորված տող։
+* `length` - Ոչ պարտադիր։ Տողի երկարությունը։ Լռությամբ 20։
+* `precision` - Ոչ պարտադիր։ Ստորակետից հետո նիշերի քանակը։
+
+```c#
+Բերված օրինակում st փոփոխականի արժեքը կլինի՝ "1,500.3"
+
+Decimal amount = 1500.266m;
+string st = proxyService.CurrencyFormat(amount, precision:1);
+```
 
 
 
@@ -1440,11 +1458,6 @@ string dt3 = proxyService.FormatYYYYMMDD(dtObj);
 
 
 
-
-
-
-
-CurrencyFormat
 FormatToPrint
 TryAddAtomicAsync
 TryAddAtomic
