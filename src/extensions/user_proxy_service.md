@@ -75,6 +75,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [SERVER_DATE](#SERVER_DATE)
 * [FormatDDMMYY FormatDDMMYYYY FormatYYYYMMDD](#FormatDDMMYY-FormatDDMMYYYY-FormatYYYYMMDD)
 * [CurrencyFormat](#CurrencyFormat)
+* [FormatToPrint](#FormatToPrint)
 
 
 
@@ -85,7 +86,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-FormatToPrint
 TryAddAtomicAsync
 TryAddAtomic
 InList
@@ -1446,10 +1446,25 @@ public string CurrencyFormat(decimal value, short length = 20, short precision =
 * `precision` - Ոչ պարտադիր։ Ստորակետից հետո նիշերի քանակը։
 
 ```c#
-// Բերված օրինակում st փոփոխականի արժեքը կլինի՝ "1,500.3"
-
-Decimal amount = 1500.266m;
+// Բերված օրինակում st փոփոխականի արժեքը կլինի՝ "             1,500.3"
+decimal amount = 1500.266m;
 string st = proxyService.CurrencyFormat(amount, precision:1);
+```
+
+## FormatToPrint
+```c#
+public string FormatToPrint(decimal value)
+```
+Վերադարձնում է տասնորդական թվի, տպելու համար նախատեսված, ֆորմատավորված տող։
+
+**Պարամետրեր**
+
+* `value` - Պարտադիր։ Տասնորդական թիվ, որի համար ձևավորվում է ֆորմատավորված տող։
+
+```c#
+// st փոփոխականի արժեքը կլինի՝ "1,500.266"
+decimal amount = 1500.266m;
+string st = proxyService.FormatToPrint(amount);
 ```
 
 
@@ -1457,8 +1472,6 @@ string st = proxyService.CurrencyFormat(amount, precision:1);
 
 
 
-
-FormatToPrint
 TryAddAtomicAsync
 TryAddAtomic
 InList
