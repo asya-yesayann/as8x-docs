@@ -1,10 +1,9 @@
 ---
 layout: page
 title: "Language" 
-tags: Language
 ---
 
-Language enum-ը է սահմանում է ծրագրում հասանելի լեզուները՝ հայերեն, ռուսերեն, անգլերեն։
+Լեզուների ցուցակ՝ հայերեն, ռուսերեն, անգլերեն։
 
 ```c#
 public enum Language

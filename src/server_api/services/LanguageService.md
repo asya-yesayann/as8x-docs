@@ -1,7 +1,11 @@
 ---
 layout: page
 title: "LanguageService" 
-tags: [LanguageService, language]
+sublinks:
+- { title: "CurrentUICultureName", ref: currentuiculturename }
+- { title: "IsArmenian", ref: isarmenian }
+- { title: "IsEnglish", ref: isenglish }
+- { title: "Language", ref: language }
 ---
 
 ## Բովանդակություն
@@ -14,7 +18,9 @@ tags: [LanguageService, language]
 
 ## Ներածություն
 
-LanguageService-ը ստատիկ դաս է, որը նախատեսված է 8X Service և 8X Client ծրագրերի լեզվի կարգավորումները կառավարելու համար: Այն տրամադրում է ֆունկցիոնալություն՝ ընթացիկ լեզուն սահմանելու, ստուգելու, ստանալու  և ընթացիկ UI Culture-ի անվանումը ստանալու համար:
+LanguageService-ը ստատիկ դաս է, որը նախատեսված է ծրագրի ընթացիկ լեզվի կարգավորումները կառավարելու համար: 
+
+8X-ի պրոյեկտներում գոյություն ունեցող ռեսուրսները (Resources) նայում են հենց այս դասի տված հատկություններին հայերեն/անգլերեն տեքստը վերադարձնելու համար։
 
 ## Հատկություններ
 
@@ -24,7 +30,7 @@ LanguageService-ը ստատիկ դաս է, որը նախատեսված է 8X Ser
 public static string CurrentUICultureName { get; }
 ```
 
-Վերադարձնում է ծրագրի ընթացիկ [UI Culture](https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo.currentuiculture?view=net-8.0)-ի անունը:
+Վերադարձնում է ծրագրի ընթացիկ [UI Culture](https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo.currentuiculture)-ի անունը:
 
 ### IsArmenian
 
@@ -32,7 +38,7 @@ public static string CurrentUICultureName { get; }
 public static bool IsArmenian { get; }
 ```
 
-Ցույց է տալիս արդյոք ծրագրի ընթացիկ լեզուն անգլերենն է։
+Ցույց է տալիս արդյոք ծրագրի ընթացիկ լեզուն հայերենն է։
 
 ### IsEnglish
 
