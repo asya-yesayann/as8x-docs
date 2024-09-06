@@ -64,14 +64,14 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [WEEK_END](#WEEK_END)
 * [MONTH_BEGIN](#MONTH_BEGIN)
 * [MONTH_END](#MONTH_END)
+* [PREVIOUS_MONTH_BEGIN](#PREVIOUS_MONTH_BEGIN)
+* [PREVIOUS_MONTH_END](#PREVIOUS_MONTH_END)
 
 
 
 
 
 
-PREVIOUS_MONTH_BEGIN
-PREVIOUS_MONTH_END
 QUARTE_BEGIN
 QUARTE_END
 PREVIOUS_QUARTE_BEGIN
@@ -1217,6 +1217,10 @@ public DateTime WEEK_BEGIN(object parDate = null)
 ```
 Վերադարձնում է ընթացիկ կամ parDate պարամետրով փոխանցված ամսաթվի շաբաթվա առաջին օրվա ամսաթիվը։
 
+**Պարամետրեր**
+
+* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել շաբաթվա սկիզվը։
+
 ```c#
 // Ստանում ենք ընթացիկ շաբաթվա առաջին օրը։
 DateTime dt = proxyService.WEEK_BEGIN();
@@ -1231,6 +1235,10 @@ public DateTime WEEK_END(object parDate = null)
 
 Վերադարձնում է ընթացիկ կամ parDate պարամետրով փոխանցված ամսաթվի շաբաթվա վերջին օրվա ամսաթիվը։
 
+**Պարամետրեր**
+
+* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել շաբաթվա վերջը։
+
 ```c#
 // Ստանում ենք ընթացիկ շաբաթվա վերջին օրը։
 DateTime dt = proxyService.WEEK_END();
@@ -1244,6 +1252,10 @@ public DateTime MONTH_BEGIN(object parDate = null)
 
 Վերադարձնում է parDate պարամետրով փոխանցած ամսաթվի կամ ընթացիկ ամսաթվի ամսվա առաջին օրը։
 
+**Պարամետրեր**
+
+* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել ամսվա սկիզվը։
+
 ```c#
 // Ստորև բերված դեպքում կվերադրաձվի՝ 01/08/2024 0:00:00։  
 DateTime dt = proxyService.MONTH_BEGIN(DateTime.Parse("2024-08-17"));
@@ -1256,16 +1268,50 @@ public DateTime MONTH_END(object parDate = null)
 
 Վերադարձնում է parDate պարամետրով փոխանցած ամսաթվի կամ ընթացիկ ամսաթվի ամսվա վերջին օրը։
 
+**Պարամետրեր**
+
+* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել ամսվա վերջը։
+
 ```c#
 // Ստորև բերված դեպքում կվերադրաձվի՝ 31/08/2024 0:00:00։  
 DateTime dt = proxyService.MONTH_END(DateTime.Parse("2024-08-17"));
 ```
 
+## PREVIOUS_MONTH_BEGIN
+```c#
+public DateTime PREVIOUS_MONTH_BEGIN(object parDate = null)
+```
+Վերադարձնում է parDate պարամետրով փոխանցած կամ ընթացիկ ամսաթվին նախորդող ամսվա առաջին օրը։
+
+**Պարամետրեր**
+
+* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել նախորդ ամսվա սկիզվը։
+
+```c#
+// Ֆունկցիան կվերադարձնի 01/07/2024 0:00:00 ամսաթիվը։
+DateTime dt = proxyService.PREVIOUS_MONTH_BEGIN(DateTime.Parse("2024-08-17"));
+```
+
+## PREVIOUS_MONTH_END
+```c#
+public DateTime PREVIOUS_MONTH_END(object parDate = null)
+```
+Վերադարձնում է parDate պարամետրով փոխանցած կամ ընթացիկ ամսաթվին նախորդող ամսվա վերջին օրը։
+
+**Պարամետրեր**
+
+* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել նախորդ ամսվա վերջը։
+
+```c#
+// Ֆունկցիան կվերադարձնի  31/07/2024 0:00:00 ամսաթիվը։
+DateTime dt = proxyService.PREVIOUS_MONTH_END(DateTime.Parse("2024-08-17"));
+```
 
 
 
-PREVIOUS_MONTH_BEGIN
-PREVIOUS_MONTH_END
+
+
+
 QUARTE_BEGIN
 QUARTE_END
 PREVIOUS_QUARTE_BEGIN
