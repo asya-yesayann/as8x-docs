@@ -1446,7 +1446,7 @@ public string CurrencyFormat(decimal value, short length = 20, short precision =
 * `precision` - Ոչ պարտադիր։ Ստորակետից հետո նիշերի քանակը։
 
 ```c#
-Բերված օրինակում st փոփոխականի արժեքը կլինի՝ "1,500.3"
+// Բերված օրինակում st փոփոխականի արժեքը կլինի՝ "1,500.3"
 
 Decimal amount = 1500.266m;
 string st = proxyService.CurrencyFormat(amount, precision:1);
