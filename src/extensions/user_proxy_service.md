@@ -63,13 +63,13 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [WEEK_BEGIN](#WEEK_BEGIN)
 * [WEEK_END](#WEEK_END)
 * [MONTH_BEGIN](#MONTH_BEGIN)
+* [MONTH_END](#MONTH_END)
 
 
 
 
 
 
-MONTH_END
 PREVIOUS_MONTH_BEGIN
 PREVIOUS_MONTH_END
 QUARTE_BEGIN
@@ -1233,20 +1233,33 @@ public DateTime WEEK_END(object parDate = null)
 DateTime dt = proxyService.WEEK_BEGIN();
 ```
 
-## MONTH_BEGIN
+## MONTH_BEGIN 
 ```c#
 public DateTime MONTH_BEGIN(object parDate = null)
 ```
 
-Վերադարձնում է parDate պարամետրով փոխանցած կամ ընթացիկ
+Վերադարձնում է parDate պարամետրով փոխանցած ամսաթվի կամ ընթացիկ ամսաթվի ամսվա առաջին օրը։
+
+```c#
+// Ստորև բերված դեպքում կվերադրաձվի՝ 01/08/2024 0:00:00։  
+DateTime dt = proxyService.MONTH_BEGIN(DateTime.Parse("2024-08-17"));
+```
+
+## MONTH_END 
+```c#
+public DateTime MONTH_END(object parDate = null)
+```
+
+Վերադարձնում է parDate պարամետրով փոխանցած ամսաթվի կամ ընթացիկ ամսաթվի ամսվա վերջին օրը։
+
+```c#
+// Ստորև բերված դեպքում կվերադրաձվի՝ 31/08/2024 0:00:00։  
+DateTime dt = proxyService.MONTH_END(DateTime.Parse("2024-08-17"));
+```
 
 
 
 
-
-
-
-MONTH_END
 PREVIOUS_MONTH_BEGIN
 PREVIOUS_MONTH_END
 QUARTE_BEGIN
