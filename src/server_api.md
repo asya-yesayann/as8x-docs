@@ -20,6 +20,7 @@ title: "Սերվերային API"
 * [IDBService](server_api/services/IDBService.md)
 * [IFoldersService](server_api/services/IFoldersService.md)
 * [IParametersService](server_api/services/IParametersService.md)
+* [IStorageService](server_api/services/IStorageService.md)
 * [DataSourceService](server_api/services/DataSourceService.md)
 * [LiteDocumentService](server_api/services/LiteDocumentService.md)
 * [TreeElementsService](server_api/services/TreeElementsService.md)
