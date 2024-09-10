@@ -1,27 +1,38 @@
 ---
 layout: page
-title: "TreeElementService" 
-tags: TreeElementService
+title: "TreeElementService սերվիս" 
+sublinks:
+- { title: "AddNode", ref: addnode }
+- { title: "DeleteNode", ref: deletenode }
+- { title: "EditNode", ref: editnode }
+- { title: "ExistsInDB", ref: existsindb }
+- { title: "Get", ref: get }
+- { title: "GetTreeElements", ref: gettreeelements }
 ---
 
 ## Բովանդակություն
-- [Բովանդակություն](#բովանդակություն)
 - [Ներածություն](#ներածություն)
 - [Մեթոդներ](#մեթոդներ)
   - [AddNode](#addnode)
-  - [CheckAndLoadIfNeeded](#checkandloadifneeded)
-  - [ClearOldsFromCache](#clearoldsfromcache)
+  <!-- - [CheckAndLoadIfNeeded](#checkandloadifneeded) -->
+  <!-- - [ClearOldsFromCache](#clearoldsfromcache) -->
   - [DeleteNode](#deletenode)
   - [EditNode](#editnode)
   - [ExistsInDB](#existsindb)
   - [Get](#get)
   - [GetTreeElements](#gettreeelements)
-  - [Store](#store)
+  <!-- - [Store](#store) -->
 
 
 ## Ներածություն
 
 TreeElementService դասը նախատեսված է ծառի հանգույցների հետ աշխատանքը ապահովելու համար։
+
+Ծառւ էլեմենտները ծրագրային ստեղծվում են երկու ձևով, 
+- փաստաթղթերի հետ կապված [IDocumentService](IDocumentService.md).[StoreInTree](IDocumentService.md#storeintree) ֆունկցիայով,
+- անկախ հանգույցներ [AddNode](#addnode) ֆունկցիայով։
+
+Ծառի հանգույցները պահվում են [TREES](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Trees.html) աղյուսակում։
 
 ## Մեթոդներ
 
@@ -31,14 +42,15 @@ TreeElementService դասը նախատեսված է ծառի հանգույցն�
 public Task<List<TreeNode>> AddNode(TreeElement treeElement, bool overwrite = false)
 ```
 
-Ավելացնում է ծառի նոր հանգույց տվյալների պահոցի [TREES](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Trees.html) աղյուսակում։
+Ավելացնում է ծառի նոր հանգույց տվյալների պահոցում։
 
 **Պարամետրեր**
 
-* `treeElement` - [Ծառի հանգույցը նկարագրող դասը](TreeElement.md)։
-* `overwrite` - Տվյալների պահոցում ծառի հանգույցի առկայության դեպքում հանգույցի վերագրանցման հայտանիշ։ Այս հնարավորությունը հասանելի է միայն փաստաթղթի հետ չկապակցված ծառի հանգույցների համար։ Լռությամբ արժեքը `false` է։
+* `treeElement` - [Ծառի տարր](TreeElement.md)։
+* `overwrite` - Տվյալների պահոցում ծառի հանգույցի առկայության դեպքում հանգույցի վերագրանցման հայտանիշ։ 
+  Այս հնարավորությունը հասանելի է միայն փաստաթղթի հետ չկապակցված ծառի հանգույցների համար։ 
 
-### CheckAndLoadIfNeeded
+<!-- ### CheckAndLoadIfNeeded
 
 ```c#
 public Task<(bool, byte[], Dictionary<string, TreeElement>)> CheckAndLoadIfNeeded(string treeId, byte[] ts)
@@ -51,9 +63,9 @@ public Task<(bool, byte[], Dictionary<string, TreeElement>)> CheckAndLoadIfNeede
 **Պարամետրեր**
 
 * `treeID` - Ծառի ներքին անունը։
-* `ts` - 
+* `ts` -  -->
 
-### ClearOldsFromCache
+<!-- ### ClearOldsFromCache
 
 ```c#
 public static void ClearOldsFromCache(SqlConnection connection, string treeId = null)
@@ -64,7 +76,7 @@ public static void ClearOldsFromCache(SqlConnection connection, string treeId = 
 **Պարամետրեր**
 
 * `connection` - [SqlConnection](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlconnection?view=sqlclient-dotnet-standard-5.2) դեպի ծառը պարունակող տվյալների պահոց։
-* `treeID` - Ծառի ներքին անունը։
+* `treeID` - Ծառի ներքին անունը։ -->
 
 ### DeleteNode
 
@@ -85,12 +97,11 @@ public Task<TreeNode> DeleteNode(string treeID, string key)
 public Task<List<TreeNode>> EditNode(TreeElement treeElement)
 ```
 
-Խմբագրում է ծառի հանգույցը և գրանցում տվյալների պահոցի [TREES](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Trees.html) աղյուսակում։
+Խմբագրում է ծառի հանգույցը և գրանցում տվյալների պահոցում։
 
 **Պարամետրեր**
 
-* `treeElement` - [Ծառի հանգույցը նկարագրող դասը](TreeElement.md)։
-* `overwrite` - Տվյալների պահոցում ծառի հանգույցի առկայության դեպքում հանգույցի վերագրանցման հայտանիշ։ Այս հնարավորությունը հասանելի է միայն փաստաթղթի հետ չկապակցված ծառի հանգույցների համար։
+* `treeElement` - [Ծառի տարրը](TreeElement.md)։
 
 ### ExistsInDB
 
@@ -98,7 +109,7 @@ public Task<List<TreeNode>> EditNode(TreeElement treeElement)
 public Task<bool> ExistsInDB(string treeId, string key)
 ```
 
-Ստուգում է ծառի հանգույցի առկայությունը տվյալների պահոցի [TREES](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Trees.html) աղյուսակում։
+Ստուգում է ծառի հանգույցի առկայությունը տվյալների պահոցում։
 
 **Պարամետրեր**
 
@@ -111,7 +122,7 @@ public Task<bool> ExistsInDB(string treeId, string key)
 public Task<TreeElement> Get(string treeId, string key, bool useCache = true)
 ```
 
-Վերադարձնում է ծառի հանգույցը նկարագրող դասը՝ ստանալով ծառի ներքին անունը և հանգույցի կոդը։
+Բեռնում է [ծառի տարրը](TreeElement.md) տվյալների պահոցից կամ քեշից, եթե ծառը քեշավոևվող է։
 
 **Պարամետրեր**
 
@@ -122,21 +133,25 @@ public Task<TreeElement> Get(string treeId, string key, bool useCache = true)
 ### GetTreeElements
 
 ```c#
-public Task<Dictionary<string, TreeElement>> GetTreeElements(string treeId, string nodeType = null, string key = null, CacheUsage cacheUsage = CacheUsage.Use);
+public Task<Dictionary<string, TreeElement>> GetTreeElements(string treeId, 
+                                                             string nodeType = null, 
+                                                             string key = null, 
+                                                             CacheUsage cacheUsage = CacheUsage.Use);
 ```
 
-Վերադարձնում է ծառի հանգույցները։
+Վերադարձնում է ծառի տարրերը տվյալների պահոցից կամ քեշից, եթե ծառը քեշավոևվող է։  
+Վերադարձվող Dictionary-ում որպես բանալի հանդես է գալիս ծառի հանգույցի կոդը։
 
 **Պարամետրեր**
 
 * `treeId` - Ծառի ներքին անունը։
-* `nodeType` - Ծառի հանգույցի տեսակը։
-               "0" - հանգույցը հանդիսանում է տերև։
-               "1" - հանգույցը չի հանդիսանում տերև։
+* `nodeType` - Ծառի հանգույցի տեսակը՝  
+    `"0"` - Բեռնել միայն տերևները։  
+    `"1"` - Բեռնել միայն ոչ տերևները։  
 * `key` - Ծառի հանգույցի կոդը։
 * `cacheUsage` - Քեշում հանգույցի նկարագրության առկայության դեպքում քեշից բեռնման հայտանիշ։ 
 
-### Store
+<!-- ### Store
 
 ```c#
 public Task<List<TreeNode>> Store(int isn, Dictionary<string, TreeElement> cols, bool existsInDB, bool returnModifiedTreeNodes)
@@ -149,4 +164,4 @@ public Task<List<TreeNode>> Store(int isn, Dictionary<string, TreeElement> cols,
 * `isn` - Գրանցման ենթակա ծառի հանգույցներին տարրերին կապակցված փաստաթղթի ներքին նույնակականացման համարը։
 * `cols` - Գրանցման ենթակա ծառի հանգույցների ցուցակը։
 * `existsInDB` - 
-* `returnModifiedTreeNodes` - 
+* `returnModifiedTreeNodes` -  -->
