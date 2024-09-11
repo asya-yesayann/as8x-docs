@@ -367,7 +367,7 @@ public virtual bool ShowProgress { get { return false; } }
 ```
 
 Ցույց է տալիս փաստաթղթի գրանցումը/հեռացումը UI-ում անհրաժեշտ է կատարել պրոգրեսի պատուհանով թե ոչ։
-
+        
 ### Snapshots
 
 ```c#

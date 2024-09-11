@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "IDocumentService" 
-tags: [IDocumentService, DocumentService]
+tags: [AsDoc, Doc, DocumentService]
 ---
 
 ## Բովանդակություն
@@ -79,9 +79,9 @@ public Task Approve(Document document, DocumentCheckLevel checkLevel = DocumentC
 
 **Պարամետրեր**
 
-* `document` - Փաստաթուղթը նկարագրող դասը։
+* `document` - [Փաստաթղթի օբյեկտը](../definitions/document.md)։
 * `checkLevel` - [Փաստաթղթի ստուգման մակարդակը](DocumentCheckLevel.md)։
-* `logComment` - Փաստաթղթի պատմության մեջ գրանցվող հաղորդագրություն։
+* `logComment` - Փաստաթղթի պատմության մեջ գրանցվող հաղորդագրությունը։
 
 ### CheckAndStore
 
@@ -97,11 +97,11 @@ public Task CheckAndStore(Document document,
 
 **Պարամետրեր**
 
-* `document` - Փաստաթուղթը նկարագրող դասը։
-* `mode` - Փաստաթղթի պահպանման ռեժիմը։
+* `document` - [Փաստաթղթի օբյեկտը](../definitions/document.md)։
+* `mode` - [Փաստաթղթի պահպանման ռեժիմը](StoreMode.md)։
 * `checkLevel` - [Փաստաթղթի ստուգման մակարդակը](DocumentCheckLevel.md)։
 * `stateBeforeCallPostMessage` - Փաստաթղթի վիճակը PostMessage մեթոդի կանչից առաջ։
-* `logComment` - Փաստաթղթի պատմության մեջ գրանցվող հաղորդագրություն։
+* `logComment` - Փաստաթղթի պատմության մեջ գրանցվող հաղորդագրությունը։
 
 ### CheckProcessingMode
 
@@ -109,7 +109,7 @@ public Task CheckAndStore(Document document,
 public Task CheckProcessingMode(string docType);
 ```
 
-Ստուգում է տրված տեսակի փաստաթղթերի գրանցման/հեռացման հնարավորությունը սերվիսում(փաստաթղթի կատարման ռեժիմը = է 0-ի թե ոչ)։ 
+Ստուգում է տրված տեսակի փաստաթղթերի գրանցման/հեռացման հնարավորությունը սերվիսում (փաստաթղթի կատարման ռեժիմը = է 0-ի թե ոչ)։ 
 
 **Պարամետրեր**
 
@@ -127,8 +127,9 @@ public Task CleanDeleted(DateTime startDate, DateTime endDate, string docType = 
 
 * `startDate` - ժամանակահատվածի սկզբի ամսաթիվ։
 * `endDate` - ժամանակահատվածի վերջին ամսաթիվ։
-* `docType` - Սահմանում է փաստաթղթերի տիպերի ֆիլտր։ Մաքրվում են այն հեռացված փաստաթղերը, որոնք սկսվում են docType արժեքով։
-              Չլրացնելու դեպքում մաքրվում են նշված ժամանակահատվածում հեռացված բոլոր փաստաթղթերը։
+* `docType` - Սահմանում է փաստաթղթերի տիպերի ֆիլտր։ 
+Մաքրվում են այն հեռացված փաստաթղերը, որոնք սկսվում են docType արժեքով։
+Չլրացնելու դեպքում մաքրվում են նշված ժամանակահատվածում հեռացված բոլոր փաստաթղթերը։
 
 ### Copy
 
@@ -142,12 +143,11 @@ public Task<Document> Copy(int isn, object beforeCopyParam = null, int copyDocMo
 **Պարամետրեր**
 
 * `isn` - Պատճենման ենթակա փաստաթղթի ներքին նույնականացման համար:
-* `beforeCopyParam` - Տվյալ պարամետրի արժեքը փոխանցվում է փաստաթղթի [BeforeCopy](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) իրադարձությանը։ 
+* `beforeCopyParam` - Տվյալ պարամետրի արժեքը փոխանցվում է փաստաթղթի [BeforeCopy](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) մեթոդին։ 
 * `copyDocMode` - Փաստաթղթի պատճենման ռեժիմը։ Լռությամբ արժեքը 0 է:
 
   `0` - Պատճենվում են բոլոր դաշտերի արժեքները։  
-  `1` - Պատճենման ռեժիմը կախված է փաստաթղթի նկարագրության [CopyAsRepeatable](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Defs/doc.md) 
-   հատկության արժեքից։  
+  `1` - Պատճենման ռեժիմը կախված է փաստաթղթի նկարագրության [CopyAsRepeatable](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Defs/doc.md) հատկության արժեքից։  
   `2` - Պատճենվում են միայն այն դաշտերը, որոնք պարունակում են `N` հայտանիշը։  
 
 ### Create
@@ -160,9 +160,10 @@ public Task<T> Create<T>(List<int> parentsISN = null, DocumentOrigin origin = Do
 
 **Պարամետրեր**
 
+* `T` - Վերադարձվող փաստաթղթի տիպը, որը պետք է ժառանգ հանդիսանա բազային [Document](../definitions/document.md) դասից։
 * `parentsISN` - Փաստաթղթի ծնող փաստաթղթերի ISN-ների ցուցակը:
 * `origin` - Սահմանում է [փաստաթղթի ստեղծման աղբյուրը](DocumentOrigin.md):
-* `parameters` - Արգումենտների զանգված, որոնք փոխանցվում են փաստաթղթի կոնսրուկտորին և պիտի թվով, հերթականությամբ, տիպերով համընկնեն կանչվող կոնստրուկտորի շարահյուսությանը։
+* `parameters` - Արգումենտների զանգված, որոնք փոխանցվում են փաստաթղթի կոնստրուկտորին և պիտի թվով, հերթականությամբ, տիպերով համընկնեն կանչվող կոնստրուկտորի շարահյուսությանը։
 Չփոխանցելու դեպքում փաստաթղթի նոր օբյեկտը ստեղծվելու է պարամետրեր չպարունակող կոնստրուկտորի միջոցով։
 
 ### Create
@@ -175,9 +176,10 @@ public Task<T> Create<T>(int parentISN, DocumentOrigin origin = DocumentOrigin.A
 
 **Պարամետրեր**
 
+* `T` - Վերադարձվող փաստաթղթի տիպը, որը պետք է ժառանգ հանդիսանա բազային [Document](../definitions/document.md) դասից։
 * `parentsISN` - Փաստաթղթի ծնող փաստաթղթի ISN-ը:
 * `origin` - Սահմանում է [փաստաթղթի ստեղծման աղբյուրը](DocumentOrigin.md): 
-* `parameters` - Արգումենտների զանգված, որոնք փոխանցվում են փաստաթղթի կոնսրուկտորին և պիտի թվով, հերթականությամբ, տիպերով համընկնեն կանչվող կոնստրուկտորի շարահյուսությանը։
+* `parameters` - Արգումենտների զանգված, որոնք փոխանցվում են փաստաթղթի կոնստրուկտորին և պիտի թվով, հերթականությամբ, տիպերով համընկնեն կանչվող կոնստրուկտորի շարահյուսությանը։
 Չփոխանցելու դեպքում փաստաթղթի նոր օբյեկտը ստեղծվելու է պարամետրեր չպարունակող կոնստրուկտորի միջոցով։
 
 ### Create
@@ -192,9 +194,9 @@ public  Task<Document> Create(string typeName, List<int> parentISN = null, Type 
 
 * `typeName` - Փաստաթղթի տեսակ։
 * `parentsISN` - Փաստաթղթի ծնող փաստաթղթերի ISN-ների ցուցակը:
-* `instanceType` - ??
+* `instanceType` - [Document](../definitions/document.md) դասից ժառանգ հանդիսացող դաս, որ տիպի փաստաթղթի օբյեկտ պետք է ստեղծվի: Չփոխանցելու դեպքում ստեղծվում է [Document](../definitions/document.md) բազային տիպի փաստաթղթի օբյեկտ։
 * `origin` - Սահմանում է [փաստաթղթի ստեղծման աղբյուրը](DocumentOrigin.md):
-* `parameters` - Արգումենտների զանգված, որոնք փոխանցվում են փաստաթղթի կոնսրուկտորին և պիտի թվով, հերթականությամբ, տիպերով համընկնեն կանչվող կոնստրուկտորի շարահյուսությանը։
+* `parameters` - Արգումենտների զանգված, որոնք փոխանցվում են փաստաթղթի կոնստրուկտորին և պիտի թվով, հերթականությամբ, տիպերով համընկնեն կանչվող կոնստրուկտորի շարահյուսությանը։
 Չփոխանցելու դեպքում փաստաթղթի նոր օբյեկտը ստեղծվելու է պարամետրեր չպարունակող կոնստրուկտորի միջոցով։
 
 ### CreateFactsUsingStateMoverFrom
@@ -202,6 +204,13 @@ public  Task<Document> Create(string typeName, List<int> parentISN = null, Type 
 ```c#
 public Task CreateFactsUsingStateMoverFrom(Document document, int state);
 ```
+
+Հետագայում ստեղծվող հաշվառումների ստեղծող նշանակում է այն օգտագործողին, որը փաստաթուղթը բերել է նշված վիճակի։
+
+**Պարամետրեր**
+
+* `document` - [Փաստաթղթի օբյեկտը](../definitions/document.md)։
+* `state` - Փաստաթղթի վիճակը։
 
 ### CreateParentLinkDB
 
@@ -213,7 +222,7 @@ public Task CreateParentLinkDB(int isn, int parentIsn = -1);
 Ֆունկցիան ստեղծում է կապը անմիջապես տվյալների պահոցում։ 
 Զավակ փաստաթուղթը պետք է գրանցված լինի տվյալների պահոցում։
 
-Ի տարբերություն  [MakeParentLink](#makeparentlink)-ի այս ֆունկցիան կարելի է կանչել ամենուրեք։
+Ի տարբերություն [MakeParentLink](#makeparentlink)-ի այս ֆունկցիան կարելի է կանչել ամենուրեք։
 
 **Պարամետրեր**
 
@@ -286,6 +295,13 @@ public Task CutParentLink(int isn, int parentIsn = -1);
 public string DecodeDocLogState(string operationCode, string comment);
 ```
 
+Վերադարձնում է փաստաթղթի պատմությունում գրանցված գործողության կոդին համապատասխան հաղորդագրությունը՝ աջից ավելացնելով `comment` պարամետրում գրված հաղորդագրությունը ծրագրի ընթացիկ լեզվով։
+
+**Պարամետրեր**
+
+* `operationCode` - Փաստաթղթի պատմությունում գրանցված գործողության կոդ։
+* `comment` - Լրացուցիչ հաղորդագրություն։
+
 ### Delete
 
 ```c#
@@ -335,7 +351,7 @@ public Task<DeletedDoc> Delete(Document document,
 
 **Պարամետրեր**
 
-* `document` - Ջնջվող փաստաթուղթը նկարագրող դասը։
+* `document` - Ջնջվող [Փաստաթղթի օբյեկտը](../definitions/document.md)։
 * `fullDelete` - Փաստաթղթի վերջնական ջնջման հայտանիշ։ Վերջնական ջնջման ժամանակ փաստաթուղթը ջնջվում է բոլոր միջուկային աղյուսակներից աղյուսակներից՝ [DOCP](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocP.html), [FOLDERS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Folders.html), [TREES](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Trees.html), [HIPAR](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/HiPar.html), [HIREST](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hirest.html), [HIREST2](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hirest2.html), [ACCESS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Access.html), [HI](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hi.html) և [HI2](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Hi2.html)։
 Ոչ վերջնական ջնջման ժամանակ փաստաթուղթը մնում է [DOCS](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Docs.html), [DOCLOG](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocLog.html), [DOCSG](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/DocsG.html), [DOCSIM](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/Database/Docsim.html) աղյուսակների մեջ և վիճակը լինում է 999:
 Լռությամբ արժեքը `false` է։
@@ -372,6 +388,14 @@ public Task DeleteAll(List<int> isnList, bool fullDelete, string comment, bool c
 ```c#
 public Task<Document> DeserializeRequestBody(DocumentModel request, bool isExtended = false);
 ```
+
+`request` պարամետրում պարունակվող `DocumentModel` դասի օբյեկտը convert է անում [Document](../definitions/document.md) դասի օբյեկտի։
+Սովորաբար օգտագործվում է փաստաթղթի [DeserializeComplexObjects](../definitions/document.md#deserializecomplexobjects) մեթոդում։
+
+**Պարամետրեր**
+
+* `request` - Convert-ի ենթակա դասը։
+* `isExtended` - Ցույց է տալիս արդյոք փաստաթղթի դաշտերը պետք է բերվեն `ANSI` կոդավորման և հեռացվեն ավելորդ բացատներից թե ոչ։  Լռությամբ արժեքը **false** է։
 
 ### ExistInDb
 
@@ -560,7 +584,8 @@ public Task<List<int>> GetGrandChildren(int isn, string docType1 = "", string do
 public Task<int> GetParentIsn(int isn);
 ```
 
-Վերադարձնում է փաստաթղթի առաջին ծնող փաստաթղթի ներքին նույնականացման համարը։ Եթե ծնող փաստաթղթը չկա, ապա վերադառնում է -1։
+Վերադարձնում է փաստաթղթի առաջին ծնող փաստաթղթի ներքին նույնականացման համարը։ 
+Եթե ծնող փաստաթղթը չկա, ապա վերադառնում է -1։
 
 ### GetParentIsn
 
@@ -568,7 +593,8 @@ public Task<int> GetParentIsn(int isn);
 public Task<int> GetParentIsn(int isn, string docTypeLike);
 ```
 
-Վերադարձնում է փաստաթղթի առաջին ծնող փաստաթղթի ներքին նույնականացման համարը։ Եթե ծնող փաստաթղթը չկա, ապա վերադառնում է -1։
+Վերադարձնում է փաստաթղթի առաջին ծնող փաստաթղթի ներքին նույնականացման համարը։ 
+Եթե ծնող փաստաթղթը չկա, ապա վերադառնում է -1։
 
 **Պարամետրեր**
 
@@ -583,13 +609,13 @@ public Task<int> GetParentIsn(int isn, string docTypeLike);
 public short GetPassedState(int isn, List<short> states, bool lastState = true, bool inStates = true);
 ```
 
-Ստուգում է և վերադարձնում է փաստաթղթի վերջին կամ առաջին նշանակված վիճակը տրված վիճակների ցուցակից։
+Ստուգում է և վերադարձնում փաստաթղթի վերջին կամ առաջին նշանակված վիճակը տրված վիճակների ցուցակից։
 
 **Պարամետրեր**
 
 * `isn` - Փաստաթղթի ներքին նույնականացման համար։
 * `states` - Փաստաթղթի վիճակների ցուցակ։
-* `lastState` - `true` արժեքի դեպքում վերադառնում է վերջին նշանակված վիճակը, հակառակ դեպքում՝ առաջինը։
+* `lastState` - `true` արժեքի դեպքում վերադարձնում է վերջին նշանակված վիճակը, հակառակ դեպքում՝ առաջինը։
 * `inStates` - true` արժեքի դեպքում փնտրվում է վիճակ, տրված վիճակների ցուցակից։ Հակառակ դեպքում՝ ցուցակից դուրս։
 
 ### GetPassedState
@@ -598,13 +624,13 @@ public short GetPassedState(int isn, List<short> states, bool lastState = true, 
 public short GetPassedState(int isn, string statesSubQuery, bool lastState = true, bool inStates = true);
 ```
 
-Ստուգում է և վերադարձնում է փաստաթղթի վերջին կամ առաջին նշանակված վիճակը վիճակների ցուցակը սահմանող sql հարցում արդյունքից։
+Ստուգում է և վերադարձնում փաստաթղթի վերջին կամ առաջին նշանակված վիճակը վիճակների ցուցակը սահմանող sql հարցում արդյունքից։
 
 **Պարամետրեր**
 
 * `isn` - Փաստաթղթի ներքին նույնականացման համար։
 * `statesSubQuery` - Փաստաթղթի վիճակները սահմանող sql հարցում:
-* `lastState` - `true` արժեքի դեպքում վերադառնում է վերջին նշանակված վիճակը, հակառակ դեպքում՝ առաջինը։
+* `lastState` - `true` արժեքի դեպքում վերադարձնում է վերջին նշանակված վիճակը, հակառակ դեպքում՝ առաջինը։
 * `inStates` - true` արժեքի դեպքում փնտրվում է վիճակ, վիճակների ցուցակը սահմանող sql հարցում արդյունքից։ Հակառակ դեպքում՝ արդյունքից դուրս։
 
 ### GetPassedState
@@ -619,14 +645,14 @@ public short GetPassedState(int isn, short state, bool lastState = true, bool in
 
 * `isn` - Փաստաթղթի ներքին նույնականացման համար։
 * `state` - Փաստաթղթի վիճակ։
-* `lastState` - `true` արժեքի դեպքում վերադառնում է վերջին վիճակը, հակառակ դեպքում՝ առաջինը։
+* `lastState` - `true` արժեքի դեպքում վերադարձնում է վերջին նշանակված վիճակը, հակառակ դեպքում՝ առաջինը։
 * `inStates` - `true` արժեքի դեպքում փնտրվում է վիճակ, որը վիճակների ցուցակի միջից է։ Հակառակ դեպքում՝ ցուցակի միջից չէ։
 
 
 ### GetPassedState
 
 ```c#
-public short GetPassedState(int isn, short state, bool lastState = true, bool inStates = true);
+public short GetPassedState(int isn, bool lastState = true);
 ```
 
 Վերադարձնում է փաստաթղթի վերջին կամ առաջին նշանակված վիճակը։
@@ -634,7 +660,7 @@ public short GetPassedState(int isn, short state, bool lastState = true, bool in
 **Պարամետրեր**
 
 * `isn` - Փաստաթղթի ներքին նույնականացման համար։
-* `lastState` - `true` արժեքի դեպքում վերադառնում է վերջին վիճակը, հակառակ դեպքում՝ առաջինը։
+* `lastState` - `true` արժեքի դեպքում վերադարձնում է վերջին նշանակված վիճակը, հակառակ դեպքում՝ առաջինը։
 
 ### GetParentIsn
 
@@ -642,7 +668,7 @@ public short GetPassedState(int isn, short state, bool lastState = true, bool in
 public Task<int> GetParentIsn(int isn, string docType);
 ```
 
-Վերադարձնում է առաջին 2 ծնող փաստաթղթերի ներքին նույնականացման համարները։Ծնող փաստաթղթերի բացակայության դեպքում վերադառնում է -1։
+Վերադարձնում է առաջին 2 ծնող փաստաթղթերի ներքին նույնականացման համարները։ Ծնող փաստաթղթերի բացակայության դեպքում վերադառնում է -1։
 
 **Պարամետրեր**
 
@@ -670,13 +696,13 @@ public  Task<DocumentProcessingModes> GetProcessingModes(string docType);
 public Task<(bool exists, short suid, string dateTime)> GetSUIDAndDate(int isn, int state, bool sort = true);
 ```
 
-Ստուգում է նշված վիճակին համապատասխան տողի առկայությունը փաստաթղթի պատմության մեջ ([DOCLOG](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocLog.html) աղյուսակում)։
+Ստուգում է նշված վիճակին համապատասխան տողի առկայությունը փաստաթղթի պատմության մեջ ([DOCLOG](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocLog.html) աղյուսակում։
 
 **Պարամետրեր**
 
 * `isn` - Փաստաթղթի ներքին նույնականացման համար:
 * `state` - Փնտրվող վիճակ։
-* `sort` - Փաստաթուղթը նշված վիճակին բերած առաջին (`true`) կամ վերջին (`false`) անգամ վիճակը հասնելը։ Լռությամբ արժեքը true է։
+* `sort` - Փաստաթուղթը նշված վիճակին բերած առաջին (`true`) կամ վերջին (`false`) անգամ վիճակը հասնելը։ Լռությամբ արժեքը **true** է։
 
 ### HiDelete
 
@@ -684,26 +710,28 @@ public Task<(bool exists, short suid, string dateTime)> GetSUIDAndDate(int isn, 
 public Task<(bool had01AccRow, bool hadHIRow)> HiDelete(Document doc, bool deleteDoc);
 ```
 
-Ջնջում է փաստաթղթի նախկինում գրանցած հաշվառումները [HI](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Hi.html) աղյուսակից։  
-Եթե մեթոդը կանչում են  [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html)  իրադարձության մշակիչից, ապա սահմանաչափերի ստուգումները կկատարվեն Action-ի ավարտից հետո։ Իսկ եթե այլ տեղից է կանչած, ապա ստուգումները կկատարվեն անմիջապես։
+Ջնջում է փաստաթղթի նախկինում գրանցած հաշվառումները [HI](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Hi.html) աղյուսակից։
+
+Եթե մեթոդը կանչում են [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) մեթոդից, ապա սահմանաչափերի ստուգումները կկատարվեն Action-ի ավարտից հետո։ Իսկ եթե այլ տեղից է կանչած, ապա ստուգումները կկատարվեն անմիջապես։
 
 **Պարամետրեր**
 
-* `doc` - Փաստաթուղթը նկարագրող դասը։
-* `deleteDoc` - ???
+* `doc` - [Փաստաթղթի օբյեկտը](../definitions/document.md)։
+* `deleteDoc` - Տվյալ պարամետրի արժեքը փոխանցվում է հաշվառման `OnLimitFault` մեթոդին։
 
 ### HiDeleteAll
 
 ```c#
-public Task HiDeleteAll(Document doc)
+public Task HiDeleteAll(Document doc);
 ```
 
-Ջնջում է փաստաթղթի նախկինում գրանցած հաշվառումները [HI](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Hi.html), [HI2](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Hi2.html) աղյուսակներից։  
-Եթե մեթոդը կանչում են  [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html)  իրադարձության մշակիչից, ապա սահմանաչափերի ստուգումները կկատարվեն Action-ի ավարտից հետո։ Իսկ եթե այլ տեղից է կանչած, ապա ստուգումները կկատարվեն անմիջապես։
+Ջնջում է փաստաթղթի նախկինում գրանցած հաշվառումները [HI](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Hi.html), [HI2](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Hi2.html) աղյուսակներից։ 
+
+Եթե մեթոդը կանչում են [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) մեթոդից, ապա սահմանաչափերի ստուգումները կկատարվեն Action-ի ավարտից հետո։ Իսկ եթե այլ տեղից է կանչած, ապա ստուգումները կկատարվեն անմիջապես։
 
 **Պարամետրեր**
 
-* `doc` - Փաստաթուղթը նկարագրող դասը։
+* `doc` - [Փաստաթղթի օբյեկտը](../definitions/document.md)։
 
 ### HiParDelete
 
@@ -715,7 +743,7 @@ public Task HiParDelete(Document doc);
 
 **Պարամետրեր**
 
-* `doc` - Փաստաթուղթը նկարագրող դասը։
+* `doc` - [Փաստաթղթի օբյեկտը](../definitions/document.md)։
 
 ### IsArchived
 
@@ -744,12 +772,12 @@ public Task<Document> Load(int isn, GridLoadMode gridLoadMode = GridLoadMode.Ful
 
 * `isn` - Բեռնվող փաստաթղթի ներքին նույնականացման համարը։
 * `gridLoadMode` - [Գրիդերի բեռնման ռեժիմը](GridLoadMode.md)։
-* `loadImagesAndMemos` - Նկարների ու մեծ մուտքագրման դաշտերի բեռնման հայտանիշ։ Լռությամբ արժեքը  true է։
-* `lockTableRow` -  Տվյալների պահոցում արգելափակման (lock) միացման հայտանիշ։ true արժեքի դեպքում դրվում է թարմացման (update) արգելափակում։ Լռությամբ արժեքը false է:
-* `throwExceptionIfDeleted` - Պահանջվող փաստաթղթի հեռացված լինելու դեպքում սխալի գեներացման հայտանիշ։ Լռությամբ արժեքը true է:
-* `lookInArc` - Արխիվացված փաստաթղթի բեռնման հայտանիշ։ `true` արժեքի դեպքում փաստաթղթի բեռնումը փորձում է կատարել նաև արխիվային տվյալների պահոցից, եթե այնտեղ նույնպես փաստաթութը առկա չէ, առաջանում է սխալ։ Լռությամբ արժեքը  true է։
-* `instanceType` - ??
-* `loadParents` - Ծնող փաստաթղթերի ISN-ների ցուցակի բեռնման հայտանիշ։ Լռությամբ արժեքը false է։
+* `loadImagesAndMemos` - Նկարների ու մեծ մուտքագրման դաշտերի բեռնման հայտանիշ։ Լռությամբ արժեքը **true** է։
+* `lockTableRow` -  Տվյալների պահոցում արգելափակման (lock) միացման հայտանիշ։ true արժեքի դեպքում դրվում է թարմացման (update) արգելափակում։ Լռությամբ արժեքը **false** է։
+* `throwExceptionIfDeleted` - Պահանջվող փաստաթղթի հեռացված լինելու դեպքում սխալի գեներացման հայտանիշ։ Լռությամբ արժեքը **true** է։
+* `lookInArc` - Արխիվացված փաստաթղթի բեռնման հայտանիշ։ `true` արժեքի դեպքում փաստաթղթի բեռնումը փորձում է կատարել նաև արխիվային տվյալների պահոցից, եթե այնտեղ նույնպես փաստաթութը առկա չէ, առաջանում է սխալ։ Լռությամբ արժեքը **true** է։
+* `instanceType` - [Document](../definitions/document.md) դասից ժառանգ հանդիսացող դաս, որ տիպի փաստաթղթի օբյեկտ պետք է ստեղծվի: Չփոխանցելու դեպքում ստեղծվում է [Document](../definitions/document.md) բազային տիպի փաստաթղթի օբյեկտ։
+* `loadParents` - Ծնող փաստաթղթերի ISN-ների ցուցակի բեռնման հայտանիշ։ Լռությամբ արժեքը **false** է։
 
 ### Load
 
@@ -763,13 +791,14 @@ public Task<T> Load<T>(int isn, GridLoadMode gridLoadMode = GridLoadMode.Full, b
 
 **Պարամետրեր**
 
+* `T` - Վերադարձվող փաստաթղթի տիպը, որը պետք է ժառանգ հանդիսանա բազային [Document](../definitions/document.md) դասից։
 * `isn` - Բեռնվող փաստաթղթի ներքին նույնականացման համարը։
 * `gridLoadMode` - [Գրիդերի բեռնման ռեժիմը](GridLoadMode.md)։
-* `loadImagesAndMemos` - Նկարների ու մեծ մուտքագրման դաշտերի բեռնման հայտանիշ։ Լռությամբ արժեքը  true է։
-* `lockTableRow` -  Տվյալների պահոցում արգելափակման (lock) միացման հայտանիշ։ true արժեքի դեպքում դրվում է թարմացման (update) արգելափակում։ Լռությամբ արժեքը false է:
-* `throwExceptionIfDeleted` - Պահանջվող փաստաթղթի հեռացված լինելու դեպքում սխալի գեներացման հայտանիշ։ Լռությամբ արժեքը true է:
-* `lookInArc` - Արխիվացված փաստաթղթի բեռնման հայտանիշ։ `true` արժեքի դեպքում փաստաթղթի բեռնումը փորձում է կատարել նաև արխիվային տվյալների պահոցից, եթե այնտեղ նույնպես փաստաթութը առկա չէ, առաջանում է սխալ։ Լռությամբ արժեքը  true է։
-* `loadParents` - Ծնող փաստաթղթերի ISN-ների ցուցակի բեռնման հայտանիշ։ Լռությամբ արժեքը false է։
+* `loadImagesAndMemos` - Նկարների ու մեծ մուտքագրման դաշտերի բեռնման հայտանիշ։ Լռությամբ արժեքը **true** է։
+* `lockTableRow` -  Տվյալների պահոցում արգելափակման (lock) միացման հայտանիշ։ true արժեքի դեպքում դրվում է թարմացման (update) արգելափակում։ ւթյամբ արժեքը **false** է։
+* `throwExceptionIfDeleted` - Պահանջվող փաստաթղթի հեռացված լինելու դեպքում սխալի գեներացման հայտանիշ։ Լռությամբ արժեքը **true** է։
+* `lookInArc` - Արխիվացված փաստաթղթի բեռնման հայտանիշ։ `true` արժեքի դեպքում փաստաթղթի բեռնումը փորձում է կատարել նաև արխիվային տվյալների պահոցից, եթե այնտեղ նույնպես փաստաթութը առկա չէ, առաջանում է սխալ։ Լռությամբ արժեքը **true** է։
+* `loadParents` - Ծնող փաստաթղթերի ISN-ների ցուցակի բեռնման հայտանիշ։ Լռությամբ արժեքը **false** է։
 
 ### LoadFromFolder
 
@@ -785,9 +814,9 @@ public Task<Document> LoadFromFolder(string folder, string key, GridLoadMode gri
 * `folder` - Թղթապանակի ներքին անուն։
 * `key` - Թղթապանակի տարրի բանալի։
 * `gridLoadMode` - [Գրիդերի բեռնման ռեժիմը](GridLoadMode.md)։
-* `loadImagesAndMemos` - Նկարների ու մեծ մուտքագրման դաշտերի բեռնման հայտանիշ։ Լռությամբ արժեքը true է։
-* `instanceType` - ??
-* `loadParents` - Ծնող փաստաթղթերի ISN-ների ցուցակի բեռնման հայտանիշ։ Լռությամբ արժեքը false է։
+* `loadImagesAndMemos` - Նկարների ու մեծ մուտքագրման դաշտերի բեռնման հայտանիշ։ Լռությամբ արժեքը **true** է։
+* `instanceType` - [Document](../definitions/document.md) դասից ժառանգ հանդիսացող դաս, որ տիպի փաստաթղթի օբյեկտ պետք է ստեղծվի: Չփոխանցելու դեպքում ստեղծվում է [Document](../definitions/document.md) բազային տիպի փաստաթղթի օբյեկտ։
+* `loadParents` - Ծնող փաստաթղթերի ISN-ների ցուցակի բեռնման հայտանիշ։ Լռությամբ արժեքը **false** է։
 
 ### LoadFromFolder
 
@@ -800,11 +829,12 @@ public Task<T> LoadFromFolder<T>(string folder, string key, GridLoadMode gridLoa
 
 **Պարամետրեր**
 
+* `T` - Վերադարձվող փաստաթղթի տիպը, որը պետք է ժառանգ հանդիսանա բազային [Document](../definitions/document.md) դասից։
 * `folder` - Թղթապանակի ներքին անուն։
 * `key` - Թղթապանակի տարրի բանալի։
 * `gridLoadMode` - [Գրիդերի բեռնման ռեժիմը](GridLoadMode.md)։
-* `loadImagesAndMemos` - Նկարների ու մեծ մուտքագրման դաշտերի բեռնման հայտանիշ։ Լռությամբ արժեքը true է։
-* `loadParents` - Ծնող փաստաթղթերի ISN-ների ցուցակի բեռնման հայտանիշ։ Լռությամբ արժեքը false է։
+* `loadImagesAndMemos` - Նկարների ու մեծ մուտքագրման դաշտերի բեռնման հայտանիշ։ Լռությամբ արժեքը **true** է։
+* `loadParents` - Ծնող փաստաթղթերի ISN-ների ցուցակի բեռնման հայտանիշ։ Լռությամբ արժեքը **false** է։
 
 ### MakeParentLink
 
@@ -814,14 +844,14 @@ public Task MakeParentLink(Document document, int parentIsn, bool removeExisting
 
 Ընթացիկ փաստաթղի համար սահմանում է ծնողի հետ կապ։ Ընթացիկ փաստաթուղթը կարող է դեռ գրանցված չլինել տվյալների պահոցում։
 
-Մեթոդը նախատեսված է [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) իրադարձության մշակիչում կանչելու համար։  
-Եթե փաստաթուղթը տվյալների պահոցում դեռ գրանցված չէ, ապա այս մեթոդի կանչից հետո ծնող-զավակ կապերը անմիջապես չեն գրանցվում տվյալների պահոցում, դրանց գրանցումը կատարվում է [Action](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/Action.md)  իրադարձության մշակիչի ավարտից հետո։
+Մեթոդը նախատեսված է [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) մեթոդում կանչելու համար։  
+Եթե փաստաթուղթը տվյալների պահոցում դեռ գրանցված չէ, ապա այս մեթոդի կանչից հետո ծնող-զավակ կապերը անմիջապես չեն գրանցվում տվյալների պահոցում, դրանց գրանցումը կատարվում է [Action](https://github.com/armsoft/as4x-docs/blob/master/HTM/ProgrGuide/ScriptProcs/Action.md)  մեթոդից հետո։
 
 **Պարամետրեր**
 
-* `document` - Փաստաթուղթը նկարագրող դասը։
+* `document` - [Փաստաթղթի օբյեկտը](../definitions/document.md)։
 * `parentIsn` - Ծնող փաստաթղթի ներքին նույնականացման համար։
-* `removeExistingLinks` - `true` արժեքի դեպքում ստեղծվող կապը լինում է միակը և նախորդ եղած կապերը հեռացվում են։ `false` արժեքի դեպքում ծնողների ցուցակում ավելանում է ևս մեկը։ Լռությամբ արժեքը true է։
+* `removeExistingLinks` - `true` արժեքի դեպքում ստեղծվող կապը լինում է միակը և նախորդ եղած կապերը հեռացվում են։ `false` արժեքի դեպքում ծնողների ցուցակում ավելանում է ևս մեկը։ Լռությամբ արժեքը **true** է։
 
 ### ReFolder
 
@@ -833,8 +863,8 @@ public Task ReFolder(Document document, StoreMode mode);
 
 **Պարամետրեր**
 
-* `document` - Փաստաթուղթը նկարագրող դասը։
-* `mode` - Փաստաթղթի պահպանման ռեժիմը։
+* `document` - [Փաստաթղթի օբյեկտը](../definitions/document.md)։
+* `mode` - [Փաստաթղթի պահպանման ռեժիմը](StoreMode.md)։
 
 ### Store
 
@@ -846,9 +876,9 @@ public Task Store(Document document, DocumentCheckLevel checkLevel = DocumentChe
 
 **Պարամետրեր**
 
-* `document` - Փաստաթուղթը նկարագրող դասը։
+* `document` - [Փաստաթղթի օբյեկտը](../definitions/document.md)։
 * `checkLevel` - [Փաստաթղթի ստուգման մակարդակը](DocumentCheckLevel.md)։
-* `logComment` - Փաստաթղթի պատմության մեջ գրանցվող հաղորդագրություն։
+* `logComment` - Փաստաթղթի պատմության մեջ գրանցվող հաղորդագրությունը։
 
 ### StoreFact
 
@@ -856,11 +886,11 @@ public Task Store(Document document, DocumentCheckLevel checkLevel = DocumentChe
 public Task StoreFact(Document document, Fact fact);
 ```
 
-Գրանցում է փաստաթղթի հաշվառումը։
+Գրանցում է փաստաթղթի հաշվառումը տվյալների պահոցում:
 
 **Պարամետրեր**
 
-* `document` - Փաստաթուղթը նկարագրող դասը։
+* `document` - [Փաստաթղթի օբյեկտը](../definitions/document.md)։
 * `fact` - Գրանցման ենթակա հաշվառումը նկարագրող դասը։
 
 ### StoreInFolder
@@ -869,12 +899,12 @@ public Task StoreFact(Document document, Fact fact);
 public void StoreInFolder(Document document, FolderElement folderElement);
 ```
 
-Գրանցում է թղթապանակի տարրը։
+Գրանցում է թղթապանակի տարրը տվյալների պահոցում:
 
 **Պարամետրեր**
 
-* `document` - Փաստաթուղթը նկարագրող դասը։
-* `folderElement` - Թղթապանակի տարրը նկարագրող դասը։
+* `document` - [Փաստաթղթի օբյեկտը](../definitions/document.md)։
+* `folderElement` - [Թղթապանակի տարրը](FolderElement.md):
 
 ### StoreInTree
 
@@ -882,9 +912,9 @@ public void StoreInFolder(Document document, FolderElement folderElement);
 public void StoreInTree(Document document, TreeElement treeElement);
 ```
 
-Գրանցում է ծառի տարրը։
+Գրանցում է ծառի տարրը տվյալների պահոցում:
 
 **Պարամետրեր**
 
-* `document` - Փաստաթուղթը նկարագրող դասը։
-* `folderElement` - Ծառի տարրը նկարագրող դասը։
+* `document` - [Փաստաթղթի օբյեկտը](../definitions/document.md)։
+* `folderElement` - [Ծառի տարրը](TreeElement.md):
