@@ -76,43 +76,30 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [FormatDDMMYY FormatDDMMYYYY FormatYYYYMMDD](#FormatDDMMYY-FormatDDMMYYYY-FormatYYYYMMDD)
 * [CurrencyFormat](#CurrencyFormat)
 * [FormatToPrint](#FormatToPrint)
-
-
-
-
-
-
-
-
-
-
-TryAddAtomicAsync
-TryAddAtomic
-InList
-GetBranchParam
-AcName
-AcEName
-LoadAccountDescByCode
-LoadClientDescByCode
-CliName
-CliEName
-GetAccCodeByAgrISN
-GetGuaranteeISNsByAgrISN
-GetLinkedMortSum
-GetLinkedGuarSum
-GetPenJDaysCount
-GetRating
-GetRatingCode
-ExistsContractByCliISN
-ExistsContractByCliCode
-GetAgrTypeByISN
-GetAllDayAgrJ
-GetAllDayJCount
-GetDayAgrJ
-GetDayPerJ
-MaxOverdueDaysCount
-
-
+* [TryAddAtomicAsync TryAddAtomic](#TryAddAtomicAsync-TryAddAtomic)
+* [InList](#InList)
+* [GetBranchParam](#GetBranchParam)
+* [AcName](#AcName)
+* [AcEName](#AcEName)
+* [LoadAccountDescByCode](#LoadAccountDescByCode)
+* [LoadClientDescByCode](#LoadClientDescByCode)
+* [CliName](#CliName)
+* [CliEName](#CliEName)
+* [GetAccCodeByAgrISN](#GetAccCodeByAgrISN)
+* [GetGuaranteeISNsByAgrISN](#GetGuaranteeISNsByAgrISN)
+* [GetLinkedMortSum](#GetLinkedMortSum)
+* [GetLinkedGuarSum](#GetLinkedGuarSum)
+* [GetPenJDaysCount](#GetPenJDaysCount)
+* [GetRating](#GetRating)
+* [GetRatingCode](#GetRatingCode)
+* [ExistsContractByCliISN](#ExistsContractByCliISN)
+* [ExistsContractByCliCode](#ExistsContractByCliCode)
+* [GetAgrTypeByISN](#GetAgrTypeByISN)
+* [GetAllDayAgrJ](#GetAllDayAgrJ)
+* [GetAllDayJCount](#GetAllDayJCount)
+* [GetDayAgrJ](#GetDayAgrJ)
+* [GetDayPerJ](#GetDayPerJ)
+* [MaxOverdueDaysCount](#MaxOverdueDaysCount)
 * [Պայմանագրերի հաշվառումների կոդեր](#պայմանագրերի-հաշվառումների-կոդեր)
 * [Հաշվառումների գործողությունների կոդեր](#հաշվառումների-գործողությունների-կոդեր)
   
