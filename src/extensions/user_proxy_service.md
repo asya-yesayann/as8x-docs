@@ -1474,7 +1474,58 @@ TryAddAtomic ֆունկցիան օգտագործվում է այն դեպքու�
 * `templateSubstitutionArgs` - TemplateSubstitutionExtenderArgs տեսակի օբյեկտ, որը ստանում է Calculate ֆունկցիան։
 
 
+```c#
+{
+    [TemplateSubstitutionExtender]
+    public class Test : ITemplateSubstitutionExtender
+    {
+        private readonly UserProxyService proxyService;
+        
+        private string clicode;
 
+        public Test(UserProxyService proxyService)
+        {
+            this.proxyService = proxyService;
+        }
+
+        public async Task Calculate(TemplateSubstitutionExtenderArgs templateSubstitutionArgs)
+        {
+            clicode = "00000418";
+            await proxyService.TryAddAtomicAsync("param1", Bnak, templateSubstitutionArgs);
+        }
+
+        public async Task<string> Bnak()
+        {
+            var cl = await proxyService.LoadClientDoc(clicode);
+            return (string) cl["COMMUNITY"];
+
+        }
+    }
+}
+```
+
+```c#
+    [TemplateSubstitutionExtender]
+    public class Test : ITemplateSubstitutionExtender
+    {
+        private readonly UserProxyService proxyService;
+        
+        private string clicode;
+
+        public Test(UserProxyService proxyService)
+        {
+            this.proxyService = proxyService;
+        }
+
+        public async Task Calculate(TemplateSubstitutionExtenderArgs templateSubstitutionArgs)
+        {
+            string yb = proxyService.YEAR_BEGIN().ToString();
+            proxyService.TryAddAtomic("param1", () => yb, templateSubstitutionArgs);
+        }
+     
+    }
+}
+```
 
 
 
