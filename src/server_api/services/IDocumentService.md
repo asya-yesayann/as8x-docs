@@ -1,7 +1,57 @@
 ---
 layout: page
-title: "IDocumentService" 
+title: "IDocumentService սերվիս" 
 tags: [AsDoc, Doc, DocumentService]
+sublinks:
+- { title: "Approve", ref: approve }
+- { title: "CheckProcessingMode", ref: checkprocessingmode }
+- { title: "CleanDeleted", ref: cleandeleted }
+- { title: "Copy", ref: copy }
+- { title: "Create", ref: create }
+- { title: "Create", ref: create-1 }
+- { title: "Create", ref: create-2 }
+- { title: "CreateFactsUsingStateMoverFrom", ref: createfactsusingstatemoverfrom }
+- { title: "CreateParentLinkDB", ref: createparentlinkdb }
+- { title: "CreateParentLinksDB", ref: createparentlinksdb }
+- { title: "CreationDate", ref: creationdate }
+- { title: "CutChildLink", ref: cutchildlink }
+- { title: "CutParentLink", ref: cutparentlink }
+- { title: "Delete", ref: delete }
+- { title: "Delete", ref: delete-1 }
+- { title: "DeserializeRequestBody", ref: deserializerequestbody }
+- { title: "ExistInDb", ref: existindb }
+- { title: "FieldToAnsi", ref: fieldtoansi }
+- { title: "FieldsToAnsi", ref: fieldstoansi }
+- { title: "GetDocsInfo", ref: getdocsinfo }
+- { title: "GetDocumentChildren", ref: getdocumentchildren }
+- { title: "GetDocumentParents", ref: getdocumentparents }
+- { title: "GetDocumentState", ref: getdocumentstate }
+- { title: "GetDocumentStatus", ref: getdocumentstatus }
+- { title: "GetDocumentType", ref: getdocumenttype }
+- { title: "GetDocumentTypeFromFolder", ref: getdocumenttypefromfolder }
+- { title: "GetGrandChildren", ref: getgrandchildren }
+- { title: "GetParentIsn", ref: getparentisn }
+- { title: "GetParentIsn", ref: getparentisn-1 }
+- { title: "GetPassedState", ref: getpassedstate }
+- { title: "GetPassedState", ref: getpassedstate-1 }
+- { title: "GetPassedState", ref: getpassedstate-2 }
+- { title: "GetPassedState", ref: getpassedstate-3 }
+- { title: "GetProcessingModes", ref: getprocessingmodes }
+- { title: "GetSUIDAndDate", ref: getsuidanddate }
+- { title: "HiDelete", ref: hidelete }
+- { title: "HiDeleteAll", ref: hideleteall }
+- { title: "HiParDelete", ref: hipardelete }
+- { title: "IsArchived", ref: isarchived }
+- { title: "Load", ref: load }
+- { title: "Load", ref: load-1 }
+- { title: "LoadFromFolder", ref: loadfromfolder }
+- { title: "LoadFromFolder", ref: loadfromfolder-1 }
+- { title: "MakeParentLink", ref: makeparentlink }
+- { title: "ReFolder", ref: refolder }
+- { title: "Store", ref: store }
+- { title: "StoreFact", ref: storefact }
+- { title: "StoreInFolder", ref: storeinfolder }
+- { title: "StoreInTree", ref: storeintree }
 ---
 
 ## Բովանդակություն
