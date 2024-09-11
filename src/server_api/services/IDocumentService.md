@@ -5,6 +5,7 @@ tags: [IDocumentService, DocumentService]
 ---
 
 ## Բովանդակություն
+
 - [Ներածություն](#ներածություն)
 - [Մեթոդներ](#մեթոդներ)
   - [Approve](#approve)
@@ -732,9 +733,9 @@ public Task<bool> IsArchived(int isn);
 
 ```c#
 public Task<Document> Load(int isn, GridLoadMode gridLoadMode = GridLoadMode.Full,
-                                 bool loadImagesAndMemos = true, bool lockTableRow = false,
-                                 bool throwExceptionIfDeleted = true, bool lookInArc = true,
-                                 Type instanceType = null, bool loadParents = false);
+                           bool loadImagesAndMemos = true, bool lockTableRow = false,
+                           bool throwExceptionIfDeleted = true, bool lookInArc = true,
+                           Type instanceType = null, bool loadParents = false);
 ```
 
 Բեռնում է տվյալների պահոցում գոյություն ունեցող փաստաթուղթը ըստ ներքին նույնականացման համարի։
@@ -754,7 +755,8 @@ public Task<Document> Load(int isn, GridLoadMode gridLoadMode = GridLoadMode.Ful
 
 ```c#
 public Task<T> Load<T>(int isn, GridLoadMode gridLoadMode = GridLoadMode.Full, bool loadImagesAndMemos = true,
-                bool lockTableRow = false, bool throwExceptionIfDeleted = true, bool lookInArc = true, bool loadParents = false) where T : Document;
+                       bool lockTableRow = false, bool throwExceptionIfDeleted = true, bool lookInArc = true, 
+                       bool loadParents = false) where T : Document;
 ```
 
 Բեռնում է տվյալների պահոցում գոյություն ունեցող փաստաթուղթը ըստ ներքին նույնականացման համարի։
@@ -773,7 +775,7 @@ public Task<T> Load<T>(int isn, GridLoadMode gridLoadMode = GridLoadMode.Full, b
 
 ```c#
 public Task<Document> LoadFromFolder(string folder, string key, GridLoadMode gridLoadMode = GridLoadMode.Full,
-                              bool loadImagesAndMemos = true, Type instanceType = null, bool loadParents = false);
+                                     bool loadImagesAndMemos = true, Type instanceType = null, bool loadParents = false);
 ```
 
 Բեռնում է փաստաթուղթը ըստ թղթապանակի և բանալու։
@@ -791,7 +793,7 @@ public Task<Document> LoadFromFolder(string folder, string key, GridLoadMode gri
 
 ```c#
 public Task<T> LoadFromFolder<T>(string folder, string key, GridLoadMode gridLoadMode = GridLoadMode.Full,
-                          bool loadImagesAndMemos = true, bool loadParents = false) where T : Document;
+                                 bool loadImagesAndMemos = true, bool loadParents = false) where T : Document;
 ```
 
 Բեռնում է փաստաթուղթը ըստ թղթապանակի և բանալու։
