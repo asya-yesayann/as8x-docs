@@ -1533,7 +1533,7 @@ public static bool InList(string sValue, params string[] lValues)
 public static bool InList(string sValue, IEnumerable<string> lValues)
 ```
 
-Ստուգում է ենթատողի առկայությունը տողի / տողերի մեջ։
+Ստուգում է ենթատողի առկայությունը տողի / տողերի կամ որևէ կոլեկցիայի մեջ։
 
 **Պարամետրեր**
 
@@ -1545,10 +1545,20 @@ bool abcExist = UserProxyService.InList("abc", "ab", "cd", "abc");
 bool abcExist = UserProxyService.InList("abc", ["ab", "cd", "abc"]);
 ```
 
+## GetBranchParam
+```c#
+public Task<string> GetBranchParam(string paramCode, string branchCode = "")
+```
+Վերադարձնում է սահմանված կոդով գրասենյակի փաստաթղթի դաշտերի արժեքները։
+
+**Պարամետրեր**
+
+* `paramCode` - Պարտադիր։ Դաշտի ներքին անվանում։
+* `branchCode` - Պարտադիր։ Գրասենյակի կոդ։
 
 
 
-GetBranchParam
+
 AcName
 AcEName
 LoadAccountDescByCode
