@@ -3,7 +3,10 @@ layout: page
 title: "StoreMode" 
 ---
 
-Այս դասը նախատեսված է փաստաթղթի պահպանման ռեժիմի սահմանման համար։
+## Փաստաթղթի պահպանման ռեժիմը
+
+Այս դասը նախատեսված է փաստաթղթի պահպանման ռեժիմի սահմանման համար։  
+Տե՛ս [Document](../definitions/document.md).[StoreMode](../definitions/document.md#storemode) հատկությունը։
 
 
 ```c#
