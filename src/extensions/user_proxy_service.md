@@ -1454,13 +1454,39 @@ decimal amount = 1500.266m;
 string st = proxyService.FormatToPrint(amount);
 ```
 
+## TryAddAtomicAsync TryAddAtomic
+```c#
+public async Task TryAddAtomicAsync(string key, Func<Task<string>> operation, TemplateSubstitutionExtenderArgs templateSubstitutionArgs)
+
+public void TryAddAtomic(string key, Func<string> operation, TemplateSubstitutionExtenderArgs templateSubstitutionArgs)
+```
+
+TryAddAtomicAsync և TryAddAtomic ֆունկցիաները օգտագործվում են տպվող ձևերում օգտագործողի կողմից նկարագրվող պարամետրերի ավելացման համար։
+
+TryAddAtomicAsync ֆունկցիան օգտագործվում է այն դեպքում երբ երկրորդ պարամետրով պետք է փոխանցել ֆունկցիա (սովորական, static, լոկալ, լամբդա արտահայտություն), որը վերադարձնում է Task<string>։ Նշված ֆունկցիայի միջոցով հաշվարկվում է պարամետրի արժեքը։
+
+TryAddAtomic ֆունկցիան օգտագործվում է այն դեպքում երբ երկրորդ պարամետրով փոխանցված ֆունկցիան (սովորական, static, լոկալ, լամբդա արտահայտություն) վերադարձնում է string։
+
+**Պարամետրեր**
+
+* `key` - Պարտադիր։ Տպվող պարամետրի կոդը։
+* `operation` - Պարտադիր։ ֆունկցիա որը վերադարձնում է պարամետրի արժեքը
+* `templateSubstitutionArgs` - TemplateSubstitutionExtenderArgs տեսակի օբյեկտ, որը ստանում է Calculate ֆունկցիան։
 
 
 
 
 
-TryAddAtomicAsync
-TryAddAtomic
+
+
+
+
+
+
+
+
+
+
 InList
 GetBranchParam
 AcName
