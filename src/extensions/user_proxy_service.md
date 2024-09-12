@@ -81,7 +81,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetBranchParam](#GetBranchParam)
 * [AcName AcEName](#AcName-AcEName)
 * [LoadAccountDescByCode](#LoadAccountDescByCode)
-* [LoadClientDescByCode](#LoadClientDescByCode)
 * [CliName](#CliName)
 * [CliEName](#CliEName)
 * [GetAccCodeByAgrISN](#GetAccCodeByAgrISN)
@@ -267,16 +266,20 @@ public Task<ClientDesc> LoadClientDescByISN(int isn)
 
 
 ## LoadClientDescByCode
-
 ```c#
 public Task<ClientDesc> LoadClientDescByCode(string code)
 ```
-
-Վերադարձնում է հաճախորդ տեսակի փաստաթղթի հիմնական դաշտերը պարունակող օբյեկտ ըստ հաճախորդի կոդի։ Այս մեթոդի կատարման ժամանակը ավելի փոքր է համեմատած LoadClientDoc - ի։
+Վերադարձնում է հաճախորդի հիմնական դաշտերը պարունակով օբյեկտ ըստ հաճախորդի կոդի։ 
 
 **Պարամետրեր**
 
-* `code`- Պարտադիր։ Հաճախորդի կոդը։
+* `code` - Պարտադիր։ Հաճախորդի կոդ։
+
+```c#
+Օրինակում ստանում ենք 00006473 կոդով հաճախորդի հեռախոսահամարը։
+ClientDesc cl = await proxyService.LoadClientDescByCode("00006473");
+proxyService.TryAddAtomic("param1", () => cl.Tel.ToString(), templateSubstitutionArgs);
+```
 
 
 
@@ -1597,21 +1600,7 @@ public Task<AccountDesc> LoadAccountDescByCode(string code, bool throwException 
 AccountDesc acc= await proxyService.LoadAccountDescByCode("004438700", true);
 ```
 
-## LoadClientDescByCode
-```c#
-public Task<ClientDesc> LoadClientDescByCode(string code)
-```
-Վերադարձնում է հաճախորդի հիմնական դաշտերը պարունակով օբյեկտ ըստ հաճախորդի կոդի։ 
 
-**Պարամետրեր**
-
-* `code` - Պարտադիր։ Հաճախորդի կոդ։
-
-```c#
-Օրինակում ստանում ենք 00006473 կոդով հաճախորդի հեռախոսահամարը։
-ClientDesc cl = await proxyService.LoadClientDescByCode("00006473");
-proxyService.TryAddAtomic("param1", () => cl.Tel.ToString(), templateSubstitutionArgs);
-```
 
 
 
