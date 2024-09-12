@@ -1615,6 +1615,12 @@ public async Task<string> CliEName(string code)
 string clName = await proxyService.CliName("00006473");
 ```
 
+## GetAccCodeByAgrISN
+```c#
+public Task<string> GetAccCodeByAgrISN(string agrType, int agrISN, string accName = "", string agrRisk = "", bool accFormat = true)
+```
+
+Վերադարձնում է պայմանագրի հաշվապահական հավելման ՝՝՝accName՝՝՝ պարամետրով փոխանցված հաշվի ներքին անվանումով հաշվի համարը։
 
 
 
@@ -1622,7 +1628,8 @@ string clName = await proxyService.CliName("00006473");
 
 
 
-GetAccCodeByAgrISN
+
+
 GetGuaranteeISNsByAgrISN
 GetLinkedMortSum
 GetLinkedGuarSum
