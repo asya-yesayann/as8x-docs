@@ -79,8 +79,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [TryAddAtomicAsync TryAddAtomic](#TryAddAtomicAsync-TryAddAtomic)
 * [InList](#InList)
 * [GetBranchParam](#GetBranchParam)
-* [AcName](#AcName)
-* [AcEName](#AcEName)
+* [AcName AcEName](#AcName-AcEName)
 * [LoadAccountDescByCode](#LoadAccountDescByCode)
 * [LoadClientDescByCode](#LoadClientDescByCode)
 * [CliName](#CliName)
@@ -1564,10 +1563,26 @@ string accountantName = await proxyService.GetBranchParam("CHIEFACCTNT", "B01");
 ```
 
 
-## AcName
+## AcName AcEName
+```c#
+public async Task<string> AcName(string code)
+```
+Վերադարձնում է փոխանցված հաշվի համարի անվանումը / անգլերեմ անվանումը։
+
+**Պարամետրեր**
+
+* `code` - Պարտադիր։ Հաշվի համար։
+
+```c#
+// Ստանում ենք 004438799 հաշվի անվանումը։ 
+string accName = await proxyService.AcName("004438799"); 
+```
 
 
-AcEName
+
+
+
+
 LoadAccountDescByCode
 LoadClientDescByCode
 CliName
