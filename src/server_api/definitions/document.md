@@ -577,6 +577,20 @@ public virtual Task DeserializeComplexObjects(DeserializeComplexObjectsEventArgs
 
 Մեթոդը անհրաժեշտ է մշակել այն դեպքում, երբ 4X-ական փաստաթղթի `Properties` հատկությունով եկած բարդ օբյեկտները անհրաժեշտ է բերել համապատասխան c#-ական տիպերի 8X-ում։
 
+**Օրինակ**
+```c#
+public override async Task DeserializeComplexObjects(DeserializeComplexObjectsEventArgs args)
+{
+  foreach (var key in args.ComplexObjectsJson.Keys)
+  {
+    if (key.StartsWith("StmKey"))
+    {
+      this.Properties.Add(key, await this.DocumentService.DeserializeRequestBody(args.Deserialize<DocumentModel>(key)));
+    }
+  }
+}
+```
+
 ### ExistsGrid
 
 ```c#
@@ -907,7 +921,7 @@ public Task Store(DocumentCheckLevel checkLevel = DocumentCheckLevel.None, strin
 
 **Պարամետրեր**
 
-* `checkLevel` - [Փաստաթղթի ստուգման մակարդակը](../services/DocumentCheckLevel.md), որը որոշում է թե ինչ ստանդարտ ստուգումներ և մշակիչներ ([Action](#action), [Validate](#validate)) կարող են անջատվել կամ միացվել փաստաթղթի գրանցման ընթացքում, ինչպես նաև, թե ինչ լրացուցիչ մշակիչներ պետք է գործարկվեն։
+* `checkLevel` - [Փաստաթղթի գրանցման եղանակ](../services/DocumentCheckLevel.md), որը որոշում է թե ինչ ստանդարտ ստուգումներ և մշակիչներ ([Action](#action), [Validate](#validate)) կարող են անջատվել կամ միացվել փաստաթղթի գրանցման ընթացքում, ինչպես նաև, թե ինչ լրացուցիչ մշակիչներ պետք է գործարկվեն։
 * `logComment` - Փաստաթղթի պատմության մեջ գրվող տեքստը։
 
 ### StoreGrids
