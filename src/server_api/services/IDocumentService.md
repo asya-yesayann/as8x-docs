@@ -898,7 +898,6 @@ public Task<(bool had01AccRow, bool hadHIRow)> HiDelete(Document doc, bool delet
 public Task HiDeleteAll(Document doc);
 ```
 
-<<<<<<< HEAD
 Ջնջում է փաստաթղթի նախկինում գրանցած հաշվառումները [HI](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Hi.html), [HI2](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Hi2.html) և այլ համարժեք աղյուսակներից։  
 Եթե մեթոդը կանչում են [Action](../definitions/document.md#action) իրադարձության մշակիչից, ապա սահմանաչափերի ստուգումները կկատարվեն Action-ի ավարտից հետո։ 
 Իսկ եթե այլ տեղից է կանչած, ապա ստուգումները կկատարվեն անմիջապես։
@@ -906,15 +905,6 @@ public Task HiDeleteAll(Document doc);
 **Պարամետրեր**
 
 * `doc` - [Փաստաթղթի օբյեկտ](../definitions/document.md)։
-=======
-Ջնջում է փաստաթղթի նախկինում գրանցած հաշվառումները [HI](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Hi.html), [HI2](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Hi2.html) աղյուսակներից։ 
-
-Եթե մեթոդը կանչում են [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) մեթոդից, ապա սահմանաչափերի ստուգումները կկատարվեն Action-ի ավարտից հետո։ Իսկ եթե այլ տեղից է կանչած, ապա ստուգումները կկատարվեն անմիջապես։
-
-**Պարամետրեր**
-
-* `doc` - [Փաստաթղթի օբյեկտ](../definitions/document.md)։
->>>>>>> 10743d2cefa38acdcddbf00df01d42d835e0fbdb
 
 ### HiParDelete
 
@@ -1095,14 +1085,6 @@ public Task StoreFact(Document document, Fact fact)
 
 * `document` - [Փաստաթղթի օբյեկտ](../definitions/document.md)։
 * `fact` - Գրանցման ենթակա հաշվառում։
-=======
-Գրանցում է փաստաթղթի հաշվառումը տվյալների պահոցում:
-
-**Պարամետրեր**
-
-* `document` - [Փաստաթղթի օբյեկտ](../definitions/document.md)։
-* `fact` - Գրանցման ենթակա հաշվառումը նկարագրող դասը։
->>>>>>> 10743d2cefa38acdcddbf00df01d42d835e0fbdb
 
 ### StoreInFolder
 
