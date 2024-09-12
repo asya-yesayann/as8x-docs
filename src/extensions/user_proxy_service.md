@@ -1600,11 +1600,27 @@ public Task<AccountDesc> LoadAccountDescByCode(string code, bool throwException 
 AccountDesc acc= await proxyService.LoadAccountDescByCode("004438700", true);
 ```
 
+## CliName
+```c#
+public async Task<string> CliName(string code)
+```
+Վերադարձնում է հաճախորդի անվանումը ըստ կոդի։
+
+**Պարամետրեր**
+
+* `code` - Պարտադիր։ Հաճախորդի կոդը։
+
+```c#
+// Ստանում ենք 00006473 կոդով հաճախորդի անվանումը։
+string clName = await proxyService.CliName("00006473");
+```
 
 
 
 
-CliName
+
+
+
 CliEName
 GetAccCodeByAgrISN
 GetGuaranteeISNsByAgrISN
