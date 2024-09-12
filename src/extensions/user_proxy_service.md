@@ -1566,6 +1566,7 @@ string accountantName = await proxyService.GetBranchParam("CHIEFACCTNT", "B01");
 ## AcName AcEName
 ```c#
 public async Task<string> AcName(string code)
+public async Task<string> AcEName(string code)
 ```
 Վերադարձնում է փոխանցված հաշվի համարի անվանումը / անգլերեմ անվանումը։
 
@@ -1578,12 +1579,28 @@ public async Task<string> AcName(string code)
 string accName = await proxyService.AcName("004438799"); 
 ```
 
+## LoadAccountDescByCode
+
+```c#
+public Task<AccountDesc> LoadAccountDescByCode(string code, bool throwException = false)
+```
+Վերադարձնում է հաշվի հիմնական դաշտերը պարունակով օբյեկտ ըստ հաշվի համարի։ throwException պարամետրի ```true``` արժեքի դեպքում հաշվի համարի բացակայության դեպքում կառաջանա սխալ, հակառակ դեպքում կվերադարձվի ```null```:
+
+**Պարամետրեր**
+
+* `code` - Պարտադիր։ Հաշվի համար։
+* `throwException` - Ոչ պարտադիր։ Հաշվի համարի բացակայության դեպքում արտացոլել հաշվի բացակայության մասին սխալի հաղորդագրություն։
+
+
+```c#
+// Ստանում ենք 004438700 հաշվի տվյալները պարունակող օբյեկտ։ Հաշվի համարը սխալ փոխանցված լինելու դեպքում կարտացոլվի սխալի մասին հաղորդագրություն։ 
+AccountDesc acc= await proxyService.LoadAccountDescByCode("004438700", true);
+```
 
 
 
 
 
-LoadAccountDescByCode
 LoadClientDescByCode
 CliName
 CliEName
