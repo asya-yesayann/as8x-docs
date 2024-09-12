@@ -81,8 +81,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetBranchParam](#GetBranchParam)
 * [AcName AcEName](#AcName-AcEName)
 * [LoadAccountDescByCode](#LoadAccountDescByCode)
-* [CliName](#CliName)
-* [CliEName](#CliEName)
+* [CliName CliEName](#CliName-CliEName)
 * [GetAccCodeByAgrISN](#GetAccCodeByAgrISN)
 * [GetGuaranteeISNsByAgrISN](#GetGuaranteeISNsByAgrISN)
 * [GetLinkedMortSum](#GetLinkedMortSum)
@@ -1600,11 +1599,12 @@ public Task<AccountDesc> LoadAccountDescByCode(string code, bool throwException 
 AccountDesc acc= await proxyService.LoadAccountDescByCode("004438700", true);
 ```
 
-## CliName
+## CliName CliEName
 ```c#
 public async Task<string> CliName(string code)
+public async Task<string> CliEName(string code)
 ```
-Վերադարձնում է հաճախորդի անվանումը ըստ կոդի։
+Վերադարձնում է հաճախորդի անվանումը / անգլերեն անվանումը ըստ կոդի։
 
 **Պարամետրեր**
 
@@ -1621,7 +1621,7 @@ string clName = await proxyService.CliName("00006473");
 
 
 
-CliEName
+
 GetAccCodeByAgrISN
 GetGuaranteeISNsByAgrISN
 GetLinkedMortSum
