@@ -1597,11 +1597,24 @@ public Task<AccountDesc> LoadAccountDescByCode(string code, bool throwException 
 AccountDesc acc= await proxyService.LoadAccountDescByCode("004438700", true);
 ```
 
+## LoadClientDescByCode
+```c#
+public Task<ClientDesc> LoadClientDescByCode(string code)
+```
+Վերադարձնում է հաճախորդի հիմնական դաշտերը պարունակով օբյեկտ ըստ հաճախորդի կոդի։ 
+
+**Պարամետրեր**
+
+* `code` - Պարտադիր։ Հաճախորդի կոդ։
+
+```c#
+Օրինակում ստանում ենք 00006473 կոդով հաճախորդի հեռախոսահամարը։
+ClientDesc cl = await proxyService.LoadClientDescByCode("00006473");
+proxyService.TryAddAtomic("param1", () => cl.Tel.ToString(), templateSubstitutionArgs);
+```
 
 
 
-
-LoadClientDescByCode
 CliName
 CliEName
 GetAccCodeByAgrISN
