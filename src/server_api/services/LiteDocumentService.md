@@ -15,6 +15,7 @@ sublinks:
 ---
 
 ## Բովանդակություն
+
 - [Ներածություն](#ներածություն)
 - [Մեթոդներ](#մեթոդներ)
   - [ClearCache](#clearcache)
@@ -22,7 +23,6 @@ sublinks:
   - [Load](#load-1)
   - [LoadFromFolder](#loadfromfolder)
   - [LoadGrids](#loadgrids)
-  <!-- - [LoadIntoCache](#loadintocache) -->
   - [LookUpInCache](#lookupincache)
   - [LookUpInCache](#lookupincache-1)
   - [RemoveFromCache](#removefromcache)
@@ -53,6 +53,9 @@ public Task<LiteDocument> Load(int isn,
 
 Բեռնում է փաստաթուղթը տվյալների պահոցից ըստ փաստաթղթի ներքին նույնականացման համարի։
 
+Վերադարձնում է փաստաթղթի օբյեկտը, եթե հայտնաբերվել է։
+Եթե չի հայտնաբերվել առաջացնում է սխալ կամ վերադարձնում է **null** կախված throwExceptionIfDeleted պարամետրից։
+
 **Պարամետրեր**
 
 * `isn` - Բեռնվող փաստաթղթի ներքին նույնականացման համարը։
@@ -69,7 +72,7 @@ public Task<Dictionary<int, LiteDocument>> Load(IEnumerable<int> isnList);
 Բեռնում է նշված ներքին նույնականացման համարներով փաստաթղթերը հիմնական տվյալների պահոցից՝ առանց աղյուսակների բեռնման և արխիվային տվյալների ստուգման:
 
 Վերադարձնում է միայն այն փաստաթղթերի բազմությունը, որոնք գտնվել են տվյալների պահոցում։
-Dictionary-ում բանակին փաստաթղթի ISN-ն է, իսկ արժեքը փաստաթուղթը։
+Վերադարձվող Dictionary-ում բանալին փաստաթղթի ISN-ն է, իսկ արժեքը՝ փաստաթուղթը։
 
 **Պարամետրեր**
 
@@ -78,10 +81,14 @@ Dictionary-ում բանակին փաստաթղթի ISN-ն է, իսկ արժեք
 ### LoadFromFolder
 
 ```c#
-public Task<LiteDocument> LoadFromFolder(string folderID, string folderKey, bool loadGrids = false);
+public Task<LiteDocument> LoadFromFolder(string folderID, 
+                                         string folderKey, 
+                                         bool loadGrids = false);
 ```
 
 Բեռնում է փաստաթուղթը տվյալների պահոցից ըստ փաստաթուղթը պարունակող թղթապանակի ներքին անվան և թղթապանակի տարրի կոդի։
+
+Վերադարձնում է փաստաթղթի օբյեկտը, եթե հայտնաբերվել է, հակառակ դեպքում վերադարձնում է **null**:
 
 **Պարամետրեր**
 
@@ -167,7 +174,7 @@ public Task<LiteDocument> LookUpInCache(string folderID,
 public void RemoveFromCache(int isn);
 ```
 
-Հեռացնում է նշված փաստաթուղթը քեշից։
+Հեռացնում է փաստաթուղթը քեշից՝ ըստ ներքին նույնականացման համարի։
 
 **Պարամետրեր**
 
