@@ -1634,6 +1634,17 @@ public Task<string> GetAccCodeByAgrISN(string agrType, int agrISN, string accNam
 <br>
 
 
+## GetGuaranteeISNsByAgrISN
+``` c#
+public Task<List<int>> GetGuaranteeISNsByAgrISN(string agreemCode, string agreemType)
+```
+Վերադարձնում է տվյալ պայմանագրին կապակցված գրավների ISN-ները (ավանդային գրավի դեպքում վերադարձնում Է N3DepMor պայմանագիրը, ոչ թե ավանդային գրավի ենթապայմանագրերը):
+
+**Պարամետրեր**
+
+* `agreemCode` - Պարտադիր։ Պայմանագրի համարը։
+
+* `agreemType` - Պարտադիր։ Պայմանագրի տիպ։
 
 
 
@@ -1641,8 +1652,6 @@ public Task<string> GetAccCodeByAgrISN(string agrType, int agrISN, string accNam
 
 
 
-
-GetGuaranteeISNsByAgrISN
 GetLinkedMortSum
 GetLinkedGuarSum
 GetPenJDaysCount
