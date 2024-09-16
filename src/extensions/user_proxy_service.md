@@ -83,7 +83,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [LoadAccountDescByCode](#LoadAccountDescByCode)
 * [CliName CliEName](#CliName-CliEName)
 * [GetAccCodeByAgrISN](#GetAccCodeByAgrISN)
-* [GetPerSumPayDate, GetAgrSumPayDate](#GetPerSumPayDate-GetAgrSumPayDate )  
+* [GetPerSumPayDate, GetAgrSumPayDate](#GetPerSumPayDate,-GetAgrSumPayDate )  
 
 
 
