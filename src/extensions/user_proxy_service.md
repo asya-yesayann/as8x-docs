@@ -92,7 +92,8 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 
-* [GetGuaranteeISNsByAgrISN](#GetGuaranteeISNsByAgrISN)
+
+* [GetCollateralISNsByAgrNum](#GetCollateralISNsByAgrNum)
 * [GetLinkedMortSum](#GetLinkedMortSum)
 * [GetLinkedGuarSum](#GetLinkedGuarSum)
 * [GetPenJDaysCount](#GetPenJDaysCount)
@@ -1663,27 +1664,21 @@ DateTime? dt2 = await proxyService.GetPerSumPayDate(false, 1081528567, DateTime.
 ```
 
 
-
-
-
-
-
-
-
-
-## GetGuaranteeISNsByAgrISN
+## GetCollateralISNsByAgrNum
 ``` c#
-public Task<List<int>> GetGuaranteeISNsByAgrISN(string agreemCode, string agreemType)
+public Task<List<int>> GetCollateralISNsByAgrNum(string agreemCode, string agreemType)
 ```
 Վերադարձնում է տվյալ պայմանագրին կապակցված գրավների ISN-ները (ավանդային գրավի դեպքում վերադարձնում Է N3DepMor պայմանագիրը, ոչ թե ավանդային գրավի ենթապայմանագրերը):
 
 **Պարամետրեր**
 
 * `agreemCode` - Պարտադիր։ Պայմանագրի համարը։
+* `agreemType` - Պարտադիր։ Հնարավոր արժեքներն են "C", "D", "M"(տրամադրված երաշխավորությունների դեպքում) ։
 
-* `agreemType` - Պարտադիր։ Պայմանագրի տիպ։
-
-
+```c#
+// Ստանում ենք TV-8900 վարկային պայմանագրին կապակցված գրավի և երաշխավորությունների պայմանագրերի ISN-ները:
+List<int> cISNs = await proxyService.GetCollateralISNsByAgrNum("TV-8900", "C");
+```
 
 
 
