@@ -83,7 +83,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [LoadAccountDescByCode](#LoadAccountDescByCode)
 * [CliName CliEName](#CliName-CliEName)
 * [GetAccCodeByAgrISN](#GetAccCodeByAgrISN)
-* [GetPerSumPayDate, GetAgrSumPayDate](#GetPerSumPayDate-GetAgrSumPayDate )  
+* [GetPerSumPayDate, GetAgrSumPayDate](#GetPerSumPayDate,-GetAgrSumPayDate)  
 
 
 
@@ -1642,7 +1642,7 @@ public Task<string> GetAccCodeByAgrISN(string agrType, int agrISN, string accNam
 > ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
 <br>
 
-##GetPerSumPayDate GetAgrSumPayDate
+## GetPerSumPayDate, GetAgrSumPayDate
 ```c#
 public async Task<DateTime?> GetAgrSumPayDate(bool previous, int agrIsn, DateTime requestDate)
 public async Task<DateTime?> GetPerSumPayDate(bool previous, int agrIsn, DateTime requestDate)
