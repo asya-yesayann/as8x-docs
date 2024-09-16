@@ -76,7 +76,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [FormatDDMMYY, FormatDDMMYYYY, FormatYYYYMMDD](#FormatDDMMYY-FormatDDMMYYYY-FormatYYYYMMDD)
 * [CurrencyFormat](#CurrencyFormat)
 * [FormatToPrint](#FormatToPrint)
-* [TryAddAtomicAsync TryAddAtomic](#TryAddAtomicAsync-TryAddAtomic)
+* [TryAddAtomicAsync, TryAddAtomic](#TryAddAtomicAsync-TryAddAtomic)
 * [InList](#InList)
 * [GetBranchParam](#GetBranchParam)
 * [AcName, AcEName](#AcName-AcEName)
@@ -84,6 +84,14 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [CliName CliEName](#CliName-CliEName)
 * [GetAccCodeByAgrISN](#GetAccCodeByAgrISN)
 * [GetPerSumPayDate, GetAgrSumPayDate](#GetPerSumPayDate-GetAgrSumPayDate )  
+
+
+
+
+
+
+
+
 * [GetGuaranteeISNsByAgrISN](#GetGuaranteeISNsByAgrISN)
 * [GetLinkedMortSum](#GetLinkedMortSum)
 * [GetLinkedGuarSum](#GetLinkedGuarSum)
@@ -1633,6 +1641,34 @@ public Task<string> GetAccCodeByAgrISN(string agrType, int agrISN, string accNam
 > [!TIP]
 > ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
 <br>
+
+##GetPerSumPayDate, GetAgrSumPayDate
+```c#
+public async Task<DateTime?> GetAgrSumPayDate(bool previous, int agrIsn, DateTime requestDate)
+public async Task<DateTime?> GetPerSumPayDate(bool previous, int agrIsn, DateTime requestDate)
+```
+Ֆունկցիաները վերադարձնում են սահմանված ամսաթվին նախորդող կամ հաջորդող վարկի կամ տոկոսի մարման ամսաթվերը եթե նրանք առկա են։ Ֆունկցիաները հնարավոր է կիրառել միայն գրաֆիկով (Univer) տեսակի պայմանագրերի համար։
+
+**Պարամետրեր**
+
+* `previous` - Պարտադիր։ `true` արժեքի դեպքում կվերադարձվի `requestDate` պարամետրով սահմանված ամսաթվին նախորդող, իսկ `false` արեժքի դեպքում հաջորդող մարման ամսաթիվը։
+* `agrIsn` - Պարտադիր։ Պայմանագրի ISN-ը։
+* `requestDate` - Պարտադիր։ Հարցման ամսաթիվ։
+
+```c#
+
+// Օրինակում հաշվարկվում է 1081528567 ISN -ով պայմանագրի 12/03/24-ին հաջորդող վարկի և տոկոսի մարման ամսաթվերը։
+DateTime? dt1 = await proxyService.GetAgrSumPayDate(false, 1081528567, DateTime.Parse("2024-03-12"));
+DateTime? dt2 = await proxyService.GetPerSumPayDate(false, 1081528567, DateTime.Parse("2024-03-12"));
+```
+
+
+
+
+
+
+
+
 
 
 ## GetGuaranteeISNsByAgrISN
