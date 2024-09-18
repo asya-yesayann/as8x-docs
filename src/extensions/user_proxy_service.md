@@ -1699,6 +1699,11 @@ public async Task<decimal> GetLinkedGuarSum(int agrISN, DateTime date, string ag
 * `agrType` - Պարտադիր։ Առաջին ապարամետրով սահմանված isn ով պայմանագրի Ենթահամակարգի կոդը։ Օրինակ` "C1", "C3": Պարամետրի արժեքը փոխանցվում է արագագործության համար։
 * `returnCurr` - Պարտադիր։ Արժույթի կոդը, որով պետք է արտացոլված լինի վերադարձվող գումարը։ 
 
+```c#
+//Օրինակում հաշվակվում են 253711148 isn-ով պայմանագրին կապակցված գրավի և երաշխավությունների ընդհանուր գումարները։ Երաշխավորության դեպքում գումարը կարտացոլվի ԱՄՆ դոլարով։
+decimal am1 = await proxyService.GetLinkedMortSum(253711148, DateTime.Parse("2024-09-16"), "C1", "000");
+decimal am2 = await proxyService.GetLinkedGuarSum(253711148, DateTime.Parse("2024-09-16"), "C1", "001");
+```
 
 
 ## GetPenJDaysCount
