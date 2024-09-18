@@ -94,8 +94,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 
 * [GetCollateralISNsByAgrNum](#GetCollateralISNsByAgrNum)
-* [GetLinkedMortSum](#GetLinkedMortSum)
-* [GetLinkedGuarSum](#GetLinkedGuarSum)
+* [GetLinkedMortSum, GetLinkedGuarSum](#GetLinkedMortSum-GetLinkedGuarSum)
 * [GetPenJDaysCount](#GetPenJDaysCount)
 * [GetRating](#GetRating)
 * [GetRatingCode](#GetRatingCode)
@@ -922,7 +921,7 @@ HI2 / HIREST2 աղյուսակներում  fCURSUM, fSUM / fCURREM, fREM  դա�
 * `remDate` - Ոչ պարտադիր։ Մնացորդի ամսաթիվ։ Նշված չլինելու դեպքում կվերադարձվի վերջին գրանցված մնացորդը։
 
 > [!IMPORTANT]
-> Ֆունկցիան կանչելիս անհրաժեշտ է սահմանել առնվազն `isn` կամ `isnGl` պարամետրերից մեկը։
+> Ֆունկցիան կանչելիս անհրաժեշտ է փոխանցել առնվազն `isn` կամ `isnGl` պարամետրերից մեկը։
 
 
 Ստորև բերված օրինակում հաշվարկվում է 13047440 ISN -ով հաճախորդի քարտի գծով 100095 ISN -ով արժույթով (տվյալ դեպքում ՀՀ դրամ) կանխիկի հաշվառման ("10") մնացորդը 06/12/2018-ով։
@@ -1685,24 +1684,28 @@ public Task<List<int>> GetCollateralISNsByAgrNum(string agreemCode, string agree
 // Ստանում ենք TV-8900 վարկային պայմանագրին կապակցված գրավի և երաշխավորությունների պայմանագրերի ISN-ները:
 List<int> cISNs = await proxyService.GetCollateralISNsByAgrNum("TV-8900", "C");
 ```
-## GetLinkedMortSum
+## GetLinkedMortSum, GetLinkedGuarSum
 ```c#
 public async Task<decimal> GetLinkedMortSum(int agrISN, DateTime date, string agrType, string returnCurr)
+public async Task<decimal> GetLinkedGuarSum(int agrISN, DateTime date, string agrType, string returnCurr)
 ```
 
-Վերադարձնում է պայմանագրին կապակցված գրավների ընդհանուր գումարը սահմանված ամսաթվով։
+Վերադարձնում է պայմանագրին կապակցված գրավների / երաշխավորությունների ընդհանուր գումարը սահմանված ամսաթվով։
 
 **Պարամետրեր**
 
 * `agrISN` - Պարտադիր։ Պայմանագրի ISN։
 * `date` - Պարտադիր։ Հարցման ամսաթիվ։
-* `agrType` - Պարտադիր։ Պայմանագրի համարը։
-* `returnCurr` - Պարտադիր։ Պայմանագրի համարը։ 
+* `agrType` - Պարտադիր։ Առաջին ապարամետրով սահմանված isn ով պայմանագրի Ենթահամակարգի կոդը։ Օրինակ` "C1", "C3": Պարամետրի արժեքը փոխանցվում է արագագործության համար։
+* `returnCurr` - Պարտադիր։ Արժույթի կոդը, որով պետք է արտացոլված լինի վերադարձվող գումարը։ 
 
 
 
-GetLinkedGuarSum
-GetPenJDaysCount
+## GetPenJDaysCount
+```c#
+public async Task<int> GetPenJDaysCount(int agrISN, DateTime date)
+```
+
 GetRating
 GetRatingCode
 ExistsContractByCliISN
