@@ -33,7 +33,7 @@ public Task<AttachmentModel> Add(AttachmentAddModel attachment);
 
 **Պարամետրեր**
 
-* `attachment` - Կցվող ֆայլի նկարագրություն, որը պարունակում է կցվող ֆայլի տվյալները և փաստաթղթի ներքին նույնականացման համարը (isn):
+* `attachment` - [Կցվող ֆայլի նկարագրություն](AttachmentAddModel.md), որը պարունակում է կցվող ֆայլի տվյալները և փաստաթղթի ներքին նույնականացման համարը (isn):
 
 **Կարևոր**
 
@@ -60,11 +60,12 @@ private async Task AttachPassportPhotoToClient(string filePath, int isn)
             FileContentStorageInfo = new Models.StorageInfo
             {
                 BlobName = blobName,
-                Container = this.storageService.Container / /ընթացիկ սեսսիայի կոնտեյներ
+                Container = this.storageService.Container // ընթացիկ սեսսիայի կոնտեյներ
             },
             Type = AttachmentTypes.File,
             Comment = "Client's passport",
-            //փաստաթղթի isn-ը, որին պետք է կցվի ֆայլ և ինչ անունով պետք է ֆայլը պահվի
+
+            // փաստաթղթի isn-ը, որին պետք է կցվի ֆայլ և ինչ անունով պետք է ֆայլը պահվի
             Identifier = new AttachmentIdentifier
             {
                 ISN = isn,
@@ -88,7 +89,7 @@ public Task<AttachmentModel> ChangeComment(AttachmentCommentModel attachment);
 
 **Պարամետրեր**
 
-* `attachment` - Փաստաթղթին կցված ֆայլի տվյալները և նոր մեկնաբանությունը պարունակող մոդել։
+* `attachment` - Փաստաթղթին կցված ֆայլի տվյալները և նոր մեկնաբանությունը պարունակող [մոդել](AttachmentCommentModel.md)։
 
 ### Delete
 
@@ -146,7 +147,9 @@ public Task<List<AttachmentModel>> GetAll(int isn);
 public Task<StorageInfo> GetContent(int isn, string fileName);
 ```
 
-Բեռնում է փաստաթղթին կցված ֆայլը տվյալների պահոցի [DOCSATTACH](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocsAttach.html) աղյուսակից և պահում [ընթացիկ սեսսիայի կոնտեյներում](IStorageService.md#container)։ Վերադարձնում ֆայլը պարունակող [կոնտեյների](IStorageService.md#container) և ֆայլի անունները։
+Բեռնում է փաստաթղթին կցված ֆայլը տվյալների պահոցի [DOCSATTACH](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocsAttach.html) աղյուսակից և պահում [ընթացիկ սեսսիայի կոնտեյներում](IStorageService.md#container)։ 
+
+Վերադարձնում է ֆայլը պարունակող [կոնտեյների](IStorageService.md#container) և ֆայլի անունները։
 
 **Պարամետրեր**
 
