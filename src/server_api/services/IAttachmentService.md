@@ -26,10 +26,12 @@ IAttachmentService դասը նախատեսված է փաստաթղթին կցվ�
 ### Add
 
 ```c#
-public Task<AttachmentModel> Add(AttachmentAddModel attachment);
+public Task<AttachmentModel> Add(AttachmentAddModel attachment)
 ```
 
 Կցում է ֆայլը փաստաթղթին և գրանցում տվյալների պահոցի [DOCSATTACH](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocsAttach.html) աղյուսակում։
+
+Փաստաթղթին կարելի է կցել առավելագույնը 10 մբ չափով ֆայլ։
 
 **Պարամետրեր**
 
@@ -57,7 +59,7 @@ private async Task AttachPassportPhotoToClient(string filePath, int isn)
         var attach = new AttachmentAddModel()
         {
             // ֆայլը պարունակող կոնտեյների և ֆայլի անուններ
-            FileContentStorageInfo = new Models.StorageInfo
+            FileContentStorageInfo = new StorageInfo
             {
                 BlobName = blobName,
                 Container = this.storageService.Container // ընթացիկ սեսսիայի կոնտեյներ
@@ -82,7 +84,7 @@ private async Task AttachPassportPhotoToClient(string filePath, int isn)
 ### ChangeComment
 
 ```c#
-public Task<AttachmentModel> ChangeComment(AttachmentCommentModel attachment);
+public Task<AttachmentModel> ChangeComment(AttachmentCommentModel attachment)
 ```
 
 Թարմացնում է փաստաթղթին կցված ֆայլի մեկնաբանությունը տվյալների պահոցի [DOCSATTACH](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocsAttach.html) աղյուսակում։
@@ -94,7 +96,7 @@ public Task<AttachmentModel> ChangeComment(AttachmentCommentModel attachment);
 ### Delete
 
 ```c#
-public Task Delete(int isn, string fileName);
+public Task Delete(int isn, string fileName)
 ```
 
 Հեռացնում է փաստաթղթին կցված ֆայլը տվյալների պահոցի [DOCSATTACH](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocsAttach.html) աղյուսակից՝ ըստ ֆայլի անվան և փաստաթղթի ներքին նույնականացման համարի (isn)։
@@ -107,7 +109,7 @@ public Task Delete(int isn, string fileName);
 ### DeleteAll
 
 ```c#
-public Task DeleteAll(int isn);
+public Task DeleteAll(int isn)
 ```
 
 Հեռացնում է փաստաթղթին կցված բոլոր ֆայլերը տվյալների պահոցի [DOCSATTACH](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocsAttach.html) աղյուսակից։
@@ -119,7 +121,7 @@ public Task DeleteAll(int isn);
 ### Get
 
 ```c#
-public Task<AttachmentModel> Get(int isn, string fileName);
+public Task<AttachmentModel> Get(int isn, string fileName)
 ```
 
 Վերադարձնում է փաստաթղթին կցված ֆայլի նկարագրությունը տվյալների պահոցի [DOCSATTACH](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocsAttach.html) աղյուսակից՝ ըստ ֆայլի անվան և փաստաթղթի ներքին նույնականացման համարի (isn)։
@@ -132,7 +134,7 @@ public Task<AttachmentModel> Get(int isn, string fileName);
 ### GetAll
 
 ```c#
-public Task<List<AttachmentModel>> GetAll(int isn);
+public Task<List<AttachmentModel>> GetAll(int isn)
 ```
 
 Վերադարձնում է փաստաթղթին կցված բոլոր ֆայլերի նկարագրությունները տվյալների պահոցի [DOCSATTACH](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocsAttach.html) աղյուսակում։
@@ -144,7 +146,7 @@ public Task<List<AttachmentModel>> GetAll(int isn);
 ### GetContent
 
 ```c#
-public Task<StorageInfo> GetContent(int isn, string fileName);
+public Task<StorageInfo> GetContent(int isn, string fileName)
 ```
 
 Բեռնում է փաստաթղթին կցված ֆայլը տվյալների պահոցի [DOCSATTACH](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocsAttach.html) աղյուսակից և պահում [ընթացիկ սեսսիայի կոնտեյներում](IStorageService.md#container)։ 
@@ -159,19 +161,60 @@ public Task<StorageInfo> GetContent(int isn, string fileName);
 ### UpdateContent
 
 ```c#
-public Task<DateTime> UpdateContent(AttachmentContentModel attachmentContent);
+public Task<DateTime> UpdateContent(AttachmentContentModel attachmentContent)
 ```
 
-Թարմացնում է փաստաթղթին կցված ֆայլի նկարագրությունը տվյալների պահոցի [DOCSATTACH](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocsAttach.html) աղյուսակում։
+Թարմացնում է փաստաթղթին կցված ֆայլի նկարագրությունը տվյալների պահոցի [DOCSATTACH](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocsAttach.html) աղյուսակում:
+
+Փաստաթղթին կարելի է կցել առավելագույնը 10 մբ չափով ֆայլ։
 
 **Պարամետրեր**
 
 * `attachment` - Կցված ֆայլի թարմացված նկարագրությունը։
 
+**Կարևոր**
+
+Փաստաթղթին կցված ֆայլը թարմացնելու համար անհրաժեշտ է նոր ֆայլը նախապես պահպանել [ընթացիկ սեսսիայի կոնտեյներ](../services/IStorageService.md#container)-ում [IStorageService](IStorageService.md).[UploadTempBlobAsync](IStorageService.md#uploadtempblobasync) մեթոդով։
+
+```c#
+private async Task AttachContractToDocument(string contractPath, int isn)
+{
+    if (!string.IsNullOrWhiteSpace(contractPath))
+    {
+        // ֆայլը դարձնում է byte-երի զանգված և պահում stream-ում
+        byte[] contractBytes = await File.ReadAllBytesAsync(contractPath);
+        using var stream = new MemoryStream(contractBytes);
+
+        // ֆայլը պահում է ընթացիկ սեսսիայի կոնտեյներում և վերադարձնում ֆայլի անունը
+        await this.storageService.UploadTempBlobAsync(Path.GetExtension(contractPath), out string blobName, stream);   
+
+        // ստեղծում է կցված ֆայլի նկարագրությունը
+        var attach = new AttachmentContentModel()
+        {
+            // ֆայլը պարունակող կոնտեյների և ֆայլի անուններ
+            FileContentStorageInfo = new StorageInfo
+            {
+                BlobName = blobName,
+                Container = this.storageService.Container
+            },
+
+            // թարմացման ենթակա կցված ֆայլի անունը և ֆայլը պարունակող փաստաթղթի isn-ը
+            Identifier = new AttachmentIdentifier
+            {
+                ISN = isn,
+                FileName = "Contract.pdf"
+            }
+        };
+        
+        await this.attachmentService.UpdateContent(attach);
+    }
+}
+```
+
 ### Copy
 
 ```c#
-public Task Copy(int copyFromISN, int copyToISN, bool updateExisted = true);
+public Task Copy(int copyFromISN, int copyToISN, bool updateExisted = true)
 ```
 
 Պատճենում է տրված փաստաթղթի կցված ֆայլերը մեկ այլ փաստաթղթի մեջ և գրանցում այն տվյալների պահոցի [DOCSATTACH](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocsAttach.html) աղյուսակում։
@@ -180,4 +223,4 @@ public Task Copy(int copyFromISN, int copyToISN, bool updateExisted = true);
 
 * `copyFromISN` - Փաստաթղթի ներքին նույնականացման համար, որից պետք է պատճենվեն կցված ֆայլերը:
 * `copyToISN` - Փաստաթղթի ներքին նույնականացման համար, որտեղ պետք է պատճենվեն կցված ֆայլերը:
-* `updateExisted` - `copyToISN` ներքին նույնականացման համարով փաստաթղթին կցված ֆայլերի առակայության դեպքում ֆայլերի վերագրանցման հայտանիշ։
+* `updateExisted` - `copyToISN` ներքին նույնականացման համարով փաստաթղթին կցված ֆայլերի առկայության դեպքում ֆայլերի վերագրանցման հայտանիշ։
