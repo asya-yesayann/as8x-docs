@@ -84,15 +84,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [CliName CliEName](#CliName-CliEName)
 * [GetAccCodeByAgrISN](#GetAccCodeByAgrISN)
 * [GetPerSumPayDate, GetAgrSumPayDate](#GetPerSumPayDate-GetAgrSumPayDate)  
-
-
-
-
-
-
-
-
-
 * [GetCollateralISNsByAgrNum](#GetCollateralISNsByAgrNum)
 * [GetLinkedMortSum, GetLinkedGuarSum](#GetLinkedMortSum-GetLinkedGuarSum)
 * [GetRating](#GetRating)
@@ -1754,14 +1745,14 @@ public Task<string> GetRatingCode(string clientCode, DateTime dateIn, string ope
 // Օրինակում հաշվարկվում է 00007776 կոդով հաճախորդի Կարճաժամկետ Մուդիզ վարկանշի արժեքը 19/09/24 ամսաթվի դրությամբ և վերադարձվում է համապատասխան "Վարկանիշային սիմվոլներ" փաստաթղթի "Համար" դաշտի արժեքը։ Վերադարձված արժեքը՝ 20։
  
 string mdsr = await proxyService.GetRating("00007776", DateTime.Parse("2024-09-19"), "MDS");
-
+```
+## ExistsContractByCliISN
+```c#
+public bool ExistsContractByCliISN(int cliISN, string contractKey, bool checkClosed = false)
 ```
 
 
 
-
-
-ExistsContractByCliISN
 ExistsContractByCliCode
 GetAgrTypeByISN
 GetAllDayAgrJ
