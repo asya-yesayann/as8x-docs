@@ -34,6 +34,8 @@ tags: AsRepViewer
 
 Համակարգում տեղեկատուի տեսքով հաշվետվություն ցույց տալու համար նկարագրվում է TextReport։
 
+TextReport-ի ստեղծման, լրացման ու պահման օրինակի համար [տե՛ս](dpr_guide.md#execute):
+
 ## Հատկություններ
 
 ### ArmenianCaption
@@ -58,7 +60,7 @@ public string Caption { get; }
 public bool DocBased { get; set; }
 ```
 
-Վերադարձնում կամ նշանակում է հաշվետվության փաստաթղթեր ունենալու հայտանիշը։ 
+Վերադարձնում կամ նշանակում է հաշվետվությունում փաստաթղթեր ունենալու հայտանիշը։ 
 
 `true` արժեքի դեպքում այն տողերում, որտեղ նշվում է փաստաթղթի ներքին նույնականացման համարը (isn), հասանելի կդառնան փաստաթղթի գործողությունները կոնտեքստային մենյույում։
 
@@ -130,8 +132,7 @@ public int UnmoveHeadCount { get; set; }
 var report = new TextReport(storageService);
 report.AddHeader("Հաշվետվություն");
 report.AddHeader("Շահառուի եկամուտների և ծախսերի վերաբերյալ");
-report.AddHeader("Շահառուի տվյալներ");
-report.UnmoveHeadCount = 2;
+report.UnmoveHeadCount = 1;
 ```
 
 ### UseFormatting
@@ -184,7 +185,12 @@ public void AddHeader(string header)
 
 * `width` - Ավելացվող տողի տեքստ։
 
+**Օրինակ**
 
+```c#
+report.AddHeader("Հաշվետվություն");
+report.AddHeader("Շահառուի եկամուտների և ծախսերի վերաբերյալ");
+```
 
 ### AddRow
 
@@ -202,6 +208,8 @@ public void AddRow(string row, int isn = -1, string rowDesc = "", int splitSize 
 * `isn` - Հաշվետվությանը կապակցված փաստաթղթի ներքին նույնականացման համար։
 * `rowDesc` - Ավելացվող տողի նկարագրություն։
 * `splitSize` - Ավելացվող տեքստի մասնատման երկարություն։ Ավելացվող տեքստը բաժանվում է այս պարամետրում նշված երկարությամբ մասերի և յուրաքանչյուր մասը ավելացվում է նոր տողից։ Արժեք չփոխանցելու դեպքում տեքստը ավելանում է որպես մեկ ամբողջական տող։
+
+**Օրինակ**
 
 ```c#
 var report = new TextReport(storageService);
