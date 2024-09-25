@@ -95,7 +95,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 
 * [GetCollateralISNsByAgrNum](#GetCollateralISNsByAgrNum)
 * [GetLinkedMortSum, GetLinkedGuarSum](#GetLinkedMortSum-GetLinkedGuarSum)
-* [GetPenJDaysCount](#GetPenJDaysCount)
 * [GetRating](#GetRating)
 * [GetRatingCode](#GetRatingCode)
 * [ExistsContractByCliISN](#ExistsContractByCliISN)
@@ -1706,15 +1705,73 @@ decimal am2 = await proxyService.GetLinkedGuarSum(253711148, DateTime.Parse("202
 ```
 
 
-## GetPenJDaysCount
-```c#
-public async Task<int> GetPenJDaysCount(int agrISN, DateTime date)
-```
-
 ## GetRating
 ```c#
-public async Task<int> GetPenJDaysCount(int agrISN, DateTime date)
+public Task<string> GetRating(string clientCode, DateTime dateIn, string operation)
 ```
+Վերադարձնում է հաճախորդի համապատասխան վարկանիշը (սահմանվում է Վարկանշման ԱՇՏ-ում) սահմանված ամսաթվով։
+
+**Պարամետրեր**
+
+* `clientCode` - Պարտադիր։ Հաճախորդի կոդը։
+* `dateIn` - Պարտադիր։ Հարցման ամսաթիվը։
+* `operation` - Վարկանիշի կոդը։
+
+    /// <summary>
+    /// Կարճաժամկետ Մուդիզ
+    /// </summary>
+    MDS,
+
+    /// <summary>
+    /// Երկարաժամկետ Մուդիզ 
+    /// </summary>
+    MDL, 
+
+    /// <summary>
+    /// Կարճաժամկետ Ստանդարտ և Փուրզ
+    /// </summary>
+    SPS, 
+
+    /// <summary>
+    /// Երկարաժամկետ Ստանդարտ և Փուրզ
+    /// </summary>
+    SPL, 
+
+    /// <summary>
+    /// Կարճաժամկետ Ֆիթչ
+    /// </summary>
+    FTS, 
+
+    /// <summary>
+    /// Երկարաժամկետ Ֆիթչ
+    /// </summary>
+    FTL, 
+
+    /// <summary>
+    /// Կենտրոնական Բանկի
+    /// </summary>
+    CBR, 
+
+    /// <summary>
+    /// Բանկի Ներքին
+    /// </summary>
+    INR 
+
+
+```c#
+string mdsr = await proxyService.GetRating("00007776", DateTime.Parse("2024-09-19"), "MDS");
+
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
