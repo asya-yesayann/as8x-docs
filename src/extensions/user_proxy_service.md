@@ -1715,48 +1715,20 @@ public Task<string> GetRating(string clientCode, DateTime dateIn, string operati
 
 * `clientCode` - Պարտադիր։ Հաճախորդի կոդը։
 * `dateIn` - Պարտադիր։ Հարցման ամսաթիվը։
-* `operation` - Վարկանիշի կոդը։
+* `operation` - Վարկանիշի կոդը։ Հնարավոր արժեքները թվարկված են ստորև աղյուսակում։
 
-    /// <summary>
-    /// Կարճաժամկետ Մուդիզ
-    /// </summary>
-    MDS,
 
-    /// <summary>
-    /// Երկարաժամկետ Մուդիզ 
-    /// </summary>
-    MDL, 
-
-    /// <summary>
-    /// Կարճաժամկետ Ստանդարտ և Փուրզ
-    /// </summary>
-    SPS, 
-
-    /// <summary>
-    /// Երկարաժամկետ Ստանդարտ և Փուրզ
-    /// </summary>
-    SPL, 
-
-    /// <summary>
-    /// Կարճաժամկետ Ֆիթչ
-    /// </summary>
-    FTS, 
-
-    /// <summary>
-    /// Երկարաժամկետ Ֆիթչ
-    /// </summary>
-    FTL, 
-
-    /// <summary>
-    /// Կենտրոնական Բանկի
-    /// </summary>
-    CBR, 
-
-    /// <summary>
-    /// Բանկի Ներքին
-    /// </summary>
-    INR 
-
+Կոդ | Վարկանիշ
+-|-
+MDS | Կարճաժամկետ Մուդիզ|
+MDL | Երկարաժամկետ Մուդիզ  |
+SPS | Կարճաժամկետ Ստանդարտ և Փուրզ |
+SPL | Երկարաժամկետ Ստանդարտ և Փուրզ |
+FTS | Կարճաժամկետ Ֆիթչ |
+FTL | Երկարաժամկետ Ֆիթչ |
+CBR | Կենտրոնական Բանկի |
+INR | Բանկի Ներքին|
+   
 
 ```c#
 string mdsr = await proxyService.GetRating("00007776", DateTime.Parse("2024-09-19"), "MDS");
