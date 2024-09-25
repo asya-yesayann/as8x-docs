@@ -1711,7 +1711,13 @@ decimal am2 = await proxyService.GetLinkedGuarSum(253711148, DateTime.Parse("202
 public async Task<int> GetPenJDaysCount(int agrISN, DateTime date)
 ```
 
-GetRating
+## GetRating
+```c#
+public async Task<int> GetPenJDaysCount(int agrISN, DateTime date)
+```
+
+
+
 GetRatingCode
 ExistsContractByCliISN
 ExistsContractByCliCode
