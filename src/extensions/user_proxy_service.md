@@ -1750,7 +1750,13 @@ string mdsr = await proxyService.GetRating("00007776", DateTime.Parse("2024-09-1
 ```c#
 public bool ExistsContractByCliISN(int cliISN, string contractKey, bool checkClosed = false)
 ```
+Ստուգվում է սահմանված isn -ով հաճախորդին կից սահմանված տեսակի պայմանագրերի առկայությունը։
 
+**Պարամետրեր**
+
+* `cliISN` - Պարտադիր։ Հաճախորդի քարտի։
+* `contractKey` - Պարտադիր։ Ենթահամակարգի կոդ։
+* `checkClosed` - Ոչ պարտադիր։ Ստուգել փակվածները թե ոչ։
 
 
 ExistsContractByCliCode
