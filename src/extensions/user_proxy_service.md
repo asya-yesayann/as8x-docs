@@ -1777,7 +1777,7 @@ bool agrExist2 = await proxyService.ExistsContractByCliCode("00101953", "N2");
 ```c#
 public string GetAgrTypeByISN(int docISN)
 ```
-Վերադարձնում է սահմանված isn -ով պայմանագրի համապատասխան ենթահամակարգերին պատկանելու հայտանիշը։ Օրիանալ՝ C, D, N:  
+Վերադարձնում է սահմանված isn -ով պայմանագրի համապատասխան ենթահամակարգերին պատկանելու հայտանիշը։ Օրիանակ՝ C, D, N:  
 
 **Պարամետրեր**
 
@@ -1788,12 +1788,36 @@ public string GetAgrTypeByISN(int docISN)
 string agType = proxyService.GetAgrTypeByISN(607802582);
 ```
 
+## GetAllDayAgrJ
+```c#
+public Task<short> GetAllDayAgrJ(int agrIsn, DateTime getDate)
+```
+
+Վերադարձնում է պայմանագրի ընդհանուր ժամկետանց օրերի քանակը։
+
+**Պարամետրեր**
+
+* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
+* `getDate` - Պարտադիր։ Հարցման ամսաթիվը:
+
+```c#
+// Հաշվարկվում է 905721123 պայմանագրի ընդհանուր ժամկետանց օրերի քանակը 26/09/24 ամսաթվի դրությամբ։
+short agrJ = await proxyService.GetAllDayAgrJ(905721123, DateTime.Parse("2024-09-26"));
+```
+
+## GetAllDayJCount
 
 
 
 
-GetAllDayAgrJ
-GetAllDayJCount
+
+
+
+
+
+
+
+
 GetDayAgrJ
 GetDayPerJ
 MaxOverdueDaysCount
