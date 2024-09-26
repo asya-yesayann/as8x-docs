@@ -1801,8 +1801,8 @@ public Task<short> GetAllDayAgrJ(int agrIsn, DateTime getDate)
 * `getDate` - Պարտադիր։ Հարցման ամսաթիվը:
 
 ```c#
-// Հաշվարկվում է 905721123 պայմանագրի ընդհանուր ժամկետանց օրերի քանակը 26/09/24 ամսաթվի դրությամբ։
-short agrJ = await proxyService.GetAllDayAgrJ(905721123, DateTime.Parse("2024-09-26"));
+// Հաշվարկվում է 905721123 պայմանագրի ընդհանուր ժամկետանց օրերի քանակը ընթացիկ ամսաթվի դրությամբ։
+short agrJ = await proxyService.GetAllDayAgrJ(905721123, DateTime.Now);
 ```
 
 ## GetAllDayJCount
