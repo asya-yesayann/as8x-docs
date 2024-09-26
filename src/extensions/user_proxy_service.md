@@ -1807,9 +1807,20 @@ short agrJ = await proxyService.GetAllDayAgrJ(905721123, DateTime.Now);
 
 ## GetAllDayJCount
 
+```c#
+public Task<short> GetAllDayJCount(int agrIsn, DateTime repDate)
+```
+Վերադարձնում է տվյալ isn -ով պայմանագրի անընդմեջ ժամկետանց լինելու քանակը։
 
+**Պարամետրեր**
 
+* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
+* `getDate` - Պարտադիր։ Հարցման ամսաթիվը:
 
+```c#
+// Հաշվարկվում է 905721123 պայմանագրի գծով անընդմեջ ժամկետանց լինելու քանակը ընթացիկ ամսաթվի դրությամբ։
+short agrJc = await proxyService.GetAllDayJCount(905721123, DateTime.Now); 
+```
 
 
 
