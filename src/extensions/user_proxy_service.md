@@ -88,8 +88,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetLinkedMortSum, GetLinkedGuarSum](#GetLinkedMortSum-GetLinkedGuarSum)
 * [GetRating](#GetRating)
 * [GetRatingCode](#GetRatingCode)
-* [ExistsContractByCliISN](#ExistsContractByCliISN)
-* [ExistsContractByCliCode](#ExistsContractByCliCode)
+* [ExistsContractByCliISN, ExistsContractByCliCode](#ExistsContractByCliISN-ExistsContractByCliCode)
 * [GetAgrTypeByISN](#GetAgrTypeByISN)
 * [GetAllDayAgrJ](#GetAllDayAgrJ)
 * [GetAllDayJCount](#GetAllDayJCount)
@@ -1748,7 +1747,7 @@ public Task<string> GetRatingCode(string clientCode, DateTime dateIn, string ope
  
 string mdsr = await proxyService.GetRating("00007776", DateTime.Parse("2024-09-19"), "MDS");
 ```
-## ExistsContractByCliISN
+## ExistsContractByCliISN, ExistsContractByCliCode
 ```c#
 public bool ExistsContractByCliISN(int cliISN, string contractKey, bool checkClosed = false)
 ```
@@ -1775,7 +1774,7 @@ bool agrExist = proxyService.ExistsContractByCliISN(898692403, "N2");
 
 
 
-ExistsContractByCliCode
+
 GetAgrTypeByISN
 GetAllDayAgrJ
 GetAllDayJCount
