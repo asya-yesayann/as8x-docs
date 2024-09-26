@@ -1750,12 +1750,13 @@ string mdsr = await proxyService.GetRating("00007776", DateTime.Parse("2024-09-1
 ## ExistsContractByCliISN, ExistsContractByCliCode
 ```c#
 public bool ExistsContractByCliISN(int cliISN, string contractKey, bool checkClosed = false)
+public async Task<bool> ExistsContractByCliCode(string cliCode, string contractKey, bool checkClosed = false)
 ```
-Ստուգվում է սահմանված isn -ով հաճախորդին կից սահմանված տեսակի պայմանագրերի առկայությունը։
+Ստուգվում է սահմանված isn -ով / հաճախորդի կոդով հաճախորդին կից սահմանված տեսակի պայմանագրերի առկայությունը։
 
 **Պարամետրեր**
 
-* `cliISN` - Պարտադիր։ Հաճախորդի քարտի։
+* `cliISN` /  `cliCode` - Պարտադիր։ Հաճախորդի isn / հաճախորդի կոդ։
 * `contractKey` - Պարտադիր։ Ենթահամակարգի կոդ։
 * `checkClosed` - Ոչ պարտադիր։ Ստուգել փակվածները թե ոչ։
 
@@ -1764,18 +1765,22 @@ public bool ExistsContractByCliISN(int cliISN, string contractKey, bool checkClo
 <br>
 
 ```c#
-/* Օրինակում agrExist փոփոխականը կստանա true կամ false արժեքը կապված 898692403 ins-ով հաճախորդի
+/* Օրինակում agrExist / agrExist2 փոփոխականները կստանան true կամ false արժեքը կապված 898692403 ins-ով / "00101953" կոդով հաճախորդի
 գծով բացված, գործող տրամադրված երաշխավորության պայմանագրերի առկայությունից։ */
 
-bool agrExist = proxyService.ExistsContractByCliISN(898692403, "N2"); 
+bool agrExist = proxyService.ExistsContractByCliISN(898692403, "N2");
+bool agrExist2 = await proxyService.ExistsContractByCliCode("00101953", "N2");     
 ```
 
+## GetAgrTypeByISN
 
 
 
 
 
-GetAgrTypeByISN
+
+
+
 GetAllDayAgrJ
 GetAllDayJCount
 GetDayAgrJ
