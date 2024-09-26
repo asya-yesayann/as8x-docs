@@ -1774,8 +1774,19 @@ bool agrExist2 = await proxyService.ExistsContractByCliCode("00101953", "N2");
 
 ## GetAgrTypeByISN
 
+```c#
+public string GetAgrTypeByISN(int docISN)
+```
+Վերադարձնում է սահմանված isn -ով պայմանագրի համապատասխան ենթահամակարգերին պատկանելու հայտանիշը։ Օրիանալ՝ C, D, N:  
 
+**Պարամետրեր**
 
+* `docISN` - Պարտադիր։ Պայմանագրի isn:
+
+```c#
+// Օրինակում agType փոփոխականը կստանա "C" արժեքը քանի որ, 607802582 isn -ով պայմանագիրը հանդիսանում է տեղաբաշխված վարկ։
+string agType = proxyService.GetAgrTypeByISN(607802582);
+```
 
 
 
