@@ -1822,14 +1822,12 @@ public Task<short> GetAllDayJCount(int agrIsn, DateTime repDate)
 short agrJc = await proxyService.GetAllDayJCount(905721123, DateTime.Now); 
 ```
 
+## GetDayAgrJ
+
+Վերադարձնում է պայմանագրի մայր-գումարի ժամկետանց օրերի քանակը։
 
 
 
-
-
-
-
-GetDayAgrJ
 GetDayPerJ
 MaxOverdueDaysCount
 
