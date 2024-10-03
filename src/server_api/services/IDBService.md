@@ -184,7 +184,7 @@ public SqlCommand CreateCommand(TimeoutType timeoutType = TimeoutType.QueryTimeo
 
 **Պարամետրեր**
 
-- `timeoutType` - [SQL հարցման կատարման առավելագույն ժամանակի տիպը](TimeoutType.md)՝ սովորական հարցումների կամ հաշվետվությունների հարցման համար։ 
+- `timeoutType` - [SQL հարցման կատարման առավելագույն ժամանակի տիպը](../types/TimeoutType.md)՝ սովորական հարցումների կամ հաշվետվությունների հարցման համար։ 
 
 <!-- ### CreateConnectionString
 

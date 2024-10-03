@@ -69,7 +69,7 @@ public DeleteDocsByIsnDPR(IDocumentService documentService, IStorageService stor
 
 DPR-ի կատարման տրամաբանությունը անհրաժեշտ է մշակելու համար անհրաժեշտ է override անել բազային դասի [Execute](dpr.md#execute) մեթոդը՝ փոխանցելով պարամետրերը նկարագրող դասը և վերադարձնելով կատարման արդյունքում ստացվող տվյալները նկարագրող դասը։
 
-Օրինակում նկարագրված DPR-ը հեռացնում է կատարման պարամետրում տրված ISN-ներով փաստաթղթերը համակարգից [IDocumentService](../services/IDocumentService.md).[Delete](../services/IDocumentService.md#delete) մեթոդի միջոցով, ստեղծում է [TextReport](TextReport.md)՝ կատարման ընթացքում առաջացած սխալները տեքստային հաշվետվությունում գրանցելու, որպես ֆայլ պահելու և վերադարձնելու համար։
+Օրինակում նկարագրված DPR-ը հեռացնում է կատարման պարամետրում տրված ISN-ներով փաստաթղթերը համակարգից [IDocumentService](../services/IDocumentService.md).[Delete](../services/IDocumentService.md#delete) մեթոդի միջոցով, ստեղծում է [TextReport](../types/TextReport.md)՝ կատարման ընթացքում առաջացած սխալները տեքստային հաշվետվությունում գրանցելու, որպես ֆայլ պահելու և վերադարձնելու համար։
 
 ```c#
 public override async Task<DeleteDocsByIsnResponse> Execute(DeleteDocsByIsnRequest request, CancellationToken stoppingToken)

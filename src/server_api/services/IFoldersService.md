@@ -47,7 +47,7 @@ public Task<bool> Exists(string folderId);
 public Task<FolderElement> GetElement(string folderId, int isn);
 ```
 
-Վերադարձնում է [թղթապանակի տարրը](FolderElement.md)՝ ըստ թղթապանակի ներքին անվան և փաստաթղթի ներքին նույնականացման համարի։
+Վերադարձնում է [թղթապանակի տարրը](../types/FolderElement.md)՝ ըստ թղթապանակի ներքին անվան և փաստաթղթի ներքին նույնականացման համարի։
 
 Տարրի առկա չլինելու դեպքում վերադարձնում է **null**։
 
@@ -62,7 +62,7 @@ public Task<FolderElement> GetElement(string folderId, int isn);
 public Task<FolderElement> GetElement(string folderId, string key, bool noLock = false);
 ```
 
-Վերադարձնում է [թղթապանակի տարրը](FolderElement.md)՝ ըստ թղթապանակի ներքին անվան և բանալու։
+Վերադարձնում է [թղթապանակի տարրը](../types/FolderElement.md)՝ ըստ թղթապանակի ներքին անվան և բանալու։
 
 Տարրի առկա չլինելու դեպքում վերադարձնում է **null**։
 
@@ -78,7 +78,7 @@ public Task<FolderElement> GetElement(string folderId, string key, bool noLock =
 public Task<List<FolderElement>> GetElements(string folderID);
 ```
 
-Վերադարձնում է թղթապանակի բոլոր [տարրերը](FolderElement.md):
+Վերադարձնում է թղթապանակի բոլոր [տարրերը](../types/FolderElement.md):
 
 **Պարամետրեր**
 
@@ -90,7 +90,7 @@ public Task<List<FolderElement>> GetElements(string folderID);
 public Task<List<FolderElement>> GetElements(string folderID, List<string> keys);
 ```
 
-Վերադարձնում է թղթապանակի նշված բանալիներով [տարրերը](FolderElement.md):
+Վերադարձնում է թղթապանակի նշված բանալիներով [տարրերը](../types/FolderElement.md):
 
 **Պարամետրեր**
 

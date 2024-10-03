@@ -5,7 +5,7 @@ title: "AttachmentCommentModel"
 
 Այդ դասը նախատեսված է փաստաթղթին կցված ֆայլի մեկնաբանությունը նկարագրելու համար։
 
-Օգտագործվում է [IAttachmentService](IAttachmentService.md).[ChangeComment](IAttachmentService.md#changecomment) մեթոդով փաստաթղթին կցված ֆայլի մեկնաբանությունը թարմացնելիս։
+Օգտագործվում է [IAttachmentService](../services/IAttachmentService.md).[ChangeComment](../services/IAttachmentService.md#changecomment) մեթոդով փաստաթղթին կցված ֆայլի մեկնաբանությունը թարմացնելիս։
 
 ```c#
 public class AttachmentCommentModel 

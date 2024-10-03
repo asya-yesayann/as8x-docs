@@ -54,4 +54,4 @@ public static bool IsEnglish { get; }
 public static Language Language { get; set; }
 ```
 
-Վերադարձնում կամ նշանակում է ծրագրի [ընթացիկ լեզուն](Language.md)։
+Վերադարձնում կամ նշանակում է ծրագրի [ընթացիկ լեզուն](../types/Language.md)։

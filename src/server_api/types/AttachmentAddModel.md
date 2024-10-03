@@ -5,11 +5,11 @@ title: "AttachmentAddModel"
 
 Այդ դասը նախատեսված է փաստաթղթին կցվող ֆայլը նկարագրելու համար։
 
-Օգտագործվում է [IAttachmentService](IAttachmentService.md).[Add](IAttachmentService.md#add) մեթոդով փաստաթղթին ֆայլ կցելիս։
+Օգտագործվում է [IAttachmentService](../services/IAttachmentService.md).[Add](../services/IAttachmentService.md#add) մեթոդով փաստաթղթին ֆայլ կցելիս։
 
 **Կարևոր**
 
-Փաստաթղթին ֆայլ կցելու համար անհրաժեշտ է կցվող ֆայլը նախապես պահպանել [ընթացիկ սեսսիայի կոնտեյներ](../services/IStorageService.md#container)-ում [IStorageService](IStorageService.md).[UploadTempBlobAsync](IStorageService.md#uploadtempblobasync) մեթոդով։
+Փաստաթղթին ֆայլ կցելու համար անհրաժեշտ է կցվող ֆայլը նախապես պահպանել [ընթացիկ սեսսիայի կոնտեյներ](../services/IStorageService.md#container)-ում [IStorageService](../services/IStorageService.md).[UploadTempBlobAsync](../services/IStorageService.md#uploadtempblobasync) մեթոդով։
 
 ```c#
 public class AttachmentAddModel

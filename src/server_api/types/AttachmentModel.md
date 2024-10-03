@@ -5,7 +5,7 @@ title: "AttachmentModel"
 
 Այդ դասը նախատեսված է փաստաթղթին կցված ֆայլի նկարագրությունը վերադարձնելու համար։
 
-Օգտագործվում է [IAttachmentService](IAttachmentService.md)-ի [Get](IAttachmentService.md#get), [GetAll](IAttachmentService.md#getall) մեթոդներով փաստաթղթին կցավծ ֆայլ(եր)ի նկարագրություն(ներ)ը վերադարձնելիս, [Add](IAttachmentService.md#add), [ChangeComment](IAttachmentService.md#changecomment) մեթոդների կանչի արդյունքում ստեղծված կցված ֆայլի նկարագրությունը վերադարձնելու համար։ 
+Օգտագործվում է [IAttachmentService](../services/IAttachmentService.md)-ի [Get](../services/IAttachmentService.md#get), [GetAll](../services/IAttachmentService.md#getall) մեթոդներով փաստաթղթին կցավծ ֆայլ(եր)ի նկարագրություն(ներ)ը վերադարձնելիս, [Add](../services/IAttachmentService.md#add), [ChangeComment](../services/IAttachmentService.md#changecomment) մեթոդների կանչի արդյունքում ստեղծված կցված ֆայլի նկարագրությունը վերադարձնելու համար։ 
 
 ```c#
 public class AttachmentModel 

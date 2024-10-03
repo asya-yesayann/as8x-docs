@@ -339,7 +339,7 @@ public StorageInfo NestedTransactionReport { get; internal set; }
 public DocumentOrigin Origin { get; internal set; }
 ```
 
-Վերադարձնում է փաստաթուղթը գրանցող [աղբյուրը](../services/DocumentOrigin.md):
+Վերադարձնում է փաստաթուղթը գրանցող [աղբյուրը](../types/DocumentOrigin.md):
 
 ### Progress 
 
@@ -390,7 +390,7 @@ public short State { get; set; }
 public StoreMode StoreMode { get; internal set; }
 ```
 
-Վերադարձնում է տվյալների պահոցում [փաստաթղթի գրանցման ռեժիմը](../services/StoreMode.md) գրանցման մեթոդների ընթացքում։
+Վերադարձնում է տվյալների պահոցում [փաստաթղթի գրանցման ռեժիմը](../types/StoreMode.md) գրանցման մեթոդների ընթացքում։
 
 ### StoredFacts
 
@@ -553,7 +553,7 @@ public void BuildEmbeddedUIRequest<T>(T uiRequestExecutionProgress) where T : IU
 public virtual Task DefaultComment(DefaultCommentEventArgs args);
 ```
 
-Մեթոդը կանչվում է միջուկի կողմից փաստաթղթի [թղթապանակի տարր](../services/FolderElement.md) ստեղծելուց մեկնաբանություն լրացնելու համար։
+Մեթոդը կանչվում է միջուկի կողմից փաստաթղթի [թղթապանակի տարր](../types/FolderElement.md) ստեղծելուց մեկնաբանություն լրացնելու համար։
 
 Հանդիսանում է 4x համակարգում նկարագրված [DefaultComment](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/DefaultComment.html) իրադարձության համարժեքը:
 
@@ -648,7 +648,7 @@ public bool GetCheckValue(string fieldName);
 public FieldType GetFieldType(string fieldName);
 ```
 
-Վերադարձնում է փաստաթղթի տրված ներքին անունով դաշտի [համակարգային տիպը](../../system_types.md)։
+Վերադարձնում է փաստաթղթի տրված ներքին անունով դաշտի [համակարգային տիպը](../types/system_types.md)։
 
 **Պարամետրեր**
 
@@ -732,7 +732,7 @@ protected virtual Task DoLoadGrids(LoadGridsEventArgs args);
 
 **Պարամետրեր**
 
-* `args` - LoadGridsEventArgs տիպի օբյեկտ, որը պարունակում է [GridLoadMode](../services/GridLoadMode.md) տիպի օբյեկտ, որը սահմանում է փաստաթղթի աղյուսակների բեռնման ռեժիմը։
+* `args` - LoadGridsEventArgs տիպի օբյեկտ, որը պարունակում է [GridLoadMode](../types/GridLoadMode.md) տիպի օբյեկտ, որը սահմանում է փաստաթղթի աղյուսակների բեռնման ռեժիմը։
 
 ### LoadGrids
 
@@ -744,7 +744,7 @@ public Task LoadGrids(LoadGridsEventArgs args);
 
 **Պարամետրեր**
 
-* `args` - LoadGridsEventArgs տիպի օբյեկտ, որը պարունակում է [GridLoadMode](../services/GridLoadMode.md) տիպի օբյեկտ, որը սահմանում է փաստաթղթի աղյուսակների բեռնման ռեժիմը։
+* `args` - LoadGridsEventArgs տիպի օբյեկտ, որը պարունակում է [GridLoadMode](../types/GridLoadMode.md) տիպի օբյեկտ, որը սահմանում է փաստաթղթի աղյուսակների բեռնման ռեժիմը։
 
 ### LoadImagesAndMemos
 
@@ -921,7 +921,7 @@ public Task Store(DocumentCheckLevel checkLevel = DocumentCheckLevel.None, strin
 
 **Պարամետրեր**
 
-* `checkLevel` - [Փաստաթղթի գրանցման եղանակ](../services/DocumentCheckLevel.md), որը որոշում է թե ինչ ստանդարտ ստուգումներ և մշակիչներ ([Action](#action), [Validate](#validate)) կարող են անջատվել կամ միացվել փաստաթղթի գրանցման ընթացքում, ինչպես նաև, թե ինչ լրացուցիչ մշակիչներ պետք է գործարկվեն։
+* `checkLevel` - [Փաստաթղթի գրանցման եղանակ](../types/DocumentCheckLevel.md), որը որոշում է թե ինչ ստանդարտ ստուգումներ և մշակիչներ ([Action](#action), [Validate](#validate)) կարող են անջատվել կամ միացվել փաստաթղթի գրանցման ընթացքում, ինչպես նաև, թե ինչ լրացուցիչ մշակիչներ պետք է գործարկվեն։
 * `logComment` - Փաստաթղթի պատմության մեջ գրվող տեքստը։
 
 ### StoreGrids

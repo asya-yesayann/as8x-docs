@@ -133,7 +133,7 @@ public Task Approve(Document document,
 **Պարամետրեր**
 
 * `document` - [Փաստաթղթի օբյեկտ](../definitions/document.md)։
-* `checkLevel` - [Փաստաթղթի գրանցման եղանակ](DocumentCheckLevel.md)։
+* `checkLevel` - [Փաստաթղթի գրանցման եղանակ](../types/DocumentCheckLevel.md)։
 * `logComment` - Փաստաթղթի պատմության մեջ գրանցվող հաղորդագրություն։
 
 <!-- ### CheckAndStore
@@ -217,7 +217,7 @@ public Task<T> Create<T>(List<int> parentsISN = null,
 
 * `T` - Փաստաթղթի նկարագրված դաս 8X-ում, [Document](../definitions/document.md) դասի ժառանգ։
 * `parentsISN` - Փաստաթղթի ծնող փաստաթղթերի ISN-ների ցուցակ:
-* `origin` - [Փաստաթղթի ստեղծման աղբյուրը](DocumentOrigin.md):
+* `origin` - [Փաստաթղթի ստեղծման աղբյուրը](../types/DocumentOrigin.md):
 <!-- * `parameters` - Արգումենտների զանգված, որոնք փոխանցվում են փաստաթղթի կոնստրուկտորին և պիտի թվով, հերթականությամբ, տիպերով համընկնեն կանչվող կոնստրուկտորի շարահյուսությանը։
 Չփոխանցելու դեպքում փաստաթղթի նոր օբյեկտը ստեղծվելու է պարամետրեր չպարունակող կոնստրուկտորի միջոցով։ -->
 
@@ -236,7 +236,7 @@ public Task<T> Create<T>(int parentISN,
 
 * `T` - Փաստաթղթի նկարագրված դաս 8X-ում, [Document](../definitions/document.md) դասի ժառանգ։
 * `parentISN` - Փաստաթղթի ծնող փաստաթղթի ISN-ը:
-* `origin` - [Փաստաթղթի ստեղծման աղբյուրը](DocumentOrigin.md):
+* `origin` - [Փաստաթղթի ստեղծման աղբյուրը](../types/DocumentOrigin.md):
 <!-- * `parameters` - Արգումենտների զանգված, որոնք փոխանցվում են փաստաթղթի կոնստրուկտորին և պիտի թվով, հերթականությամբ, տիպերով համընկնեն կանչվող կոնստրուկտորի շարահյուսությանը։
 Չփոխանցելու դեպքում փաստաթղթի նոր օբյեկտը ստեղծվելու է պարամետրեր չպարունակող կոնստրուկտորի միջոցով։ -->
 
@@ -257,7 +257,7 @@ public Task<Document> Create(string typeName,
 * `typeName` - Փաստաթղթի ներքին անուն (տեսակ)։
 * `parentsISN` - Փաստաթղթի ծնող փաստաթղթերի ISN-ների ցուցակ:
 * `instanceType` - Փաստաթղթի նկարագրված դաս 8X-ում, [Document](../definitions/document.md) դասի ժառանգ։։
-* `origin` - [Փաստաթղթի ստեղծման աղբյուրը](DocumentOrigin.md):
+* `origin` - [Փաստաթղթի ստեղծման աղբյուրը](../types/DocumentOrigin.md):
 <!-- * `parameters` - Արգումենտների զանգված, որոնք փոխանցվում են փաստաթղթի կոնստրուկտորին և պիտի թվով, հերթականությամբ, տիպերով համընկնեն կանչվող կոնստրուկտորի շարահյուսությանը։
 Չփոխանցելու դեպքում փաստաթղթի նոր օբյեկտը ստեղծվելու է պարամետրեր չպարունակող կոնստրուկտորի միջոցով։ -->
 
@@ -947,7 +947,7 @@ public Task<Document> Load(int isn, GridLoadMode gridLoadMode = GridLoadMode.Ful
 **Պարամետրեր**
 
 * `isn` - Բեռնվող փաստաթղթի ներքին նույնականացման համարը։
-* `gridLoadMode` - [Աղյուսակների բեռնման հայտանիշ](GridLoadMode.md)։
+* `gridLoadMode` - [Աղյուսակների բեռնման հայտանիշ](../types/GridLoadMode.md)։
 * `loadImagesAndMemos` - Նկարների ու մեծ մուտքագրման դաշտերի բեռնման հայտանիշ։ 
 * `lockTableRow` - Տվյալների պահոցում արգելափակման (lock) միացման հայտանիշ։ 
   true արժեքի դեպքում դրվում է թարմացման (update) արգելափակում։ 
@@ -976,7 +976,7 @@ public Task<T> Load<T>(int isn, GridLoadMode gridLoadMode = GridLoadMode.Full,
 
 * `T` - Փաստաթղթի նկարագրված դաս 8X-ում, [Document](../definitions/document.md) դասի ժառանգ։
 * `isn` - Բեռնվող փաստաթղթի ներքին նույնականացման համարը։
-* `gridLoadMode` - [Աղյուսակների բեռնման հայտանիշ](GridLoadMode.md)։
+* `gridLoadMode` - [Աղյուսակների բեռնման հայտանիշ](../types/GridLoadMode.md)։
 * `loadImagesAndMemos` - Նկարների ու մեծ մուտքագրման դաշտերի բեռնման հայտանիշ։ 
 * `lockTableRow` - Տվյալների պահոցում արգելափակման (lock) միացման հայտանիշ։ 
   **true** արժեքի դեպքում դրվում է թարմացման (update) արգելափակում։ 
@@ -998,7 +998,7 @@ public Task<Document> LoadFromFolder(string folder, string key, GridLoadMode gri
 
 * `folder` - Թղթապանակի ներքին անուն։
 * `key` - Թղթապանակի տարրի բանալի։
-* `gridLoadMode` - [Աղյուսակների բեռնման հայտանիշ](GridLoadMode.md)։
+* `gridLoadMode` - [Աղյուսակների բեռնման հայտանիշ](../types/GridLoadMode.md)։
 * `loadImagesAndMemos` - Նկարների ու մեծ մուտքագրման դաշտերի բեռնման հայտանիշ։ 
 * `instanceType` - Փաստաթղթի նկարագրված դաս 8X-ում, [Document](../definitions/document.md) դասի ժառանգ։։
 * `loadParents` - Ծնող փաստաթղթերի ISN-ների ցուցակի բեռնման հայտանիշ։ 
@@ -1017,7 +1017,7 @@ public Task<T> LoadFromFolder<T>(string folder, string key, GridLoadMode gridLoa
 * `T` - Փաստաթղթի նկարագրված դաս 8X-ում, [Document](../definitions/document.md) դասի ժառանգ։
 * `folder` - Թղթապանակի ներքին անուն։
 * `key` - Թղթապանակի տարրի բանալի։
-* `gridLoadMode` - [Աղյուսակների բեռնման հայտանիշ](GridLoadMode.md)։
+* `gridLoadMode` - [Աղյուսակների բեռնման հայտանիշ](../types/GridLoadMode.md)։
 * `loadImagesAndMemos` - Նկարների ու մեծ մուտքագրման դաշտերի բեռնման հայտանիշ։ 
 * `loadParents` - Ծնող փաստաթղթերի ISN-ների ցուցակի բեռնման հայտանիշ։ 
 
@@ -1052,7 +1052,7 @@ public Task ReFolder(Document document, StoreMode mode)
 **Պարամետրեր**
 
 * `document` - [Փաստաթղթի օբյեկտ](../definitions/document.md)։
-* `mode` - [Փաստաթղթի պահպանման ռեժիմը](StoreMode.md)։
+* `mode` - [Փաստաթղթի պահպանման ռեժիմը](../types/StoreMode.md)։
   Տե՛ս [Document](../definitions/document.md).[StoreMode](../definitions/document.md#storemode) հատկությունը։
 
 ### Store
@@ -1068,7 +1068,7 @@ public Task Store(Document document,
 **Պարամետրեր**
 
 * `document` - [Փաստաթղթի օբյեկտ](../definitions/document.md)։
-* `checkLevel` - [Փաստաթղթի ստուգման մակարդակը](DocumentCheckLevel.md)։
+* `checkLevel` - [Փաստաթղթի ստուգման մակարդակը](../types/DocumentCheckLevel.md)։
 * `logComment` - Փաստաթղթի պատմության մեջ գրանցվող հաղորդագրությունը։
 
 ### StoreFact
@@ -1099,7 +1099,7 @@ public void StoreInFolder(Document document, FolderElement folderElement)
 **Պարամետրեր**
 
 * `document` - [Փաստաթղթի օբյեկտ](../definitions/document.md)։
-* `folderElement` - [Թղթապանակի տարր](FolderElement.md)։
+* `folderElement` - [Թղթապանակի տարր](../types/FolderElement.md)։
 
 ### StoreInTree
 
@@ -1114,4 +1114,4 @@ public void StoreInTree(Document document, TreeElement treeElement)
 **Պարամետրեր**
 
 * `document` - [Փաստաթղթի օբյեկտ](../definitions/document.md)։
-* `treeElement` - [Ծառի տարր](TreeElement.md):
+* `treeElement` - [Ծառի տարր](../types/TreeElement.md):

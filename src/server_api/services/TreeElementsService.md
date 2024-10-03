@@ -46,7 +46,7 @@ public Task<List<TreeNode>> AddNode(TreeElement treeElement, bool overwrite = fa
 
 **Պարամետրեր**
 
-* `treeElement` - [Ծառի տարր](TreeElement.md)։
+* `treeElement` - [Ծառի տարր](../types/TreeElement.md)։
 * `overwrite` - Տվյալների պահոցում ծառի հանգույցի առկայության դեպքում հանգույցի վերագրանցման հայտանիշ։ 
   Այս հնարավորությունը հասանելի է միայն փաստաթղթի հետ չկապակցված ծառի հանգույցների համար։ 
 
@@ -101,7 +101,7 @@ public Task<List<TreeNode>> EditNode(TreeElement treeElement)
 
 **Պարամետրեր**
 
-* `treeElement` - [Ծառի տարրը](TreeElement.md)։
+* `treeElement` - [Ծառի տարրը](../types/TreeElement.md)։
 
 ### ExistsInDB
 
@@ -122,7 +122,7 @@ public Task<bool> ExistsInDB(string treeId, string key)
 public Task<TreeElement> Get(string treeId, string key, bool useCache = true)
 ```
 
-Բեռնում է [ծառի տարրը](TreeElement.md) տվյալների պահոցից կամ քեշից, եթե ծառը քեշավոևվող է։
+Բեռնում է [ծառի տարրը](../types/TreeElement.md) տվյալների պահոցից կամ քեշից, եթե ծառը քեշավոևվող է։
 
 **Պարամետրեր**
 

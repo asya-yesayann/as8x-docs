@@ -59,7 +59,7 @@ public void AddColumn(string name, string source, string armenianCaption, string
 * `source` - Sql-based տվյալների աղբյուրի դեպքում նշվում է SQL-ից կարդացվող սյան անունը, իսկ Array-based-ի դեպքում՝ սյան համարը։
 * `armenianCaption` - Սյան հայերեն անվանումը `ANSI` կոդավորմամբ։
 * `englishCaption` - Սյան անգլերեն անվանումը։
-* `columnType` - Սյան [համակարգային տիպը](../../system_types.md)։
+* `columnType` - Սյան [համակարգային տիպը](system_types.md)։
 * `isPermanent` - Սյունը հավերժական է թե ոչ: 
                   Ընթացիկ դիտելու ձևից ծրագրային կարելի է կարդալ միայն հավերժական սյունակները։ Լռությամբ արժեքը false է։
 * `start` - Սահմանում է մեկնարկային դիրքը, որից սկսած ցույց է տալիս արժեք որևէ ձևաչափված դաշտից։ 
@@ -71,7 +71,7 @@ public void AddColumn(string name, string source, string armenianCaption, string
                   Լռությամբ արժեքը true է։
 * `armenianDescription` - Սյան հայերեն նկարագրությունը `ANSI` կոդավորմամբ։ Լռությամբ արժեքը null է։
 * `englishDescription` - Սյան անգլերեն նկարագրությունը `ANSI` կոդավորմամբ։ Լռությամբ արժեքը null է։
-* `showType` - Սահմանում է [համակարգային տիպը](../../system_types.md) ցուցադրման ժամանակ։ 
+* `showType` - Սահմանում է [համակարգային տիպը](system_types.md) ցուցադրման ժամանակ։ 
                Եթե այս պարամետրը բացակայում է, ապա օգտագործվում է columnType հատկության արժեքը։ 
                Սովորոբար այս հատկությունը օգտագործում են, եթե տվյալների տիպը, որը համապատասխանում է սյունակի արժեքներին, հարմար չի ցուցադրման համար։
                Օրինակ եթե columnType = FieldTypeProvider.GetStringFieldType(150) է, բայց շատ դեպքերում բավական է տեսնել տողի սկիզբը, ապա կարելի է սահմանել showType = FieldTypeProvider.GetStringFieldType(32):
@@ -107,7 +107,7 @@ public void AddParam(string name, string description, FieldType fieldType, strin
 
 * `name` - Պարամետրի ներքին անունը։
 * `description` - Պարամետրի հայերեն նկարագրությունը `ANSI` կոդավորմամբ։
-* `fieldType` - Պարամետրի [համակարգային տիպը](../../system_types.md):
+* `fieldType` - Պարամետրի [համակարգային տիպը](system_types.md):
 * `userReportValue` - Սահմանում է պարամետրի արժեքը օգտագործողի կողմից նկարագրվող հաշվետվություններում։ 
                       Այս արժեքը չի կարող փոփոխվել օգտագործողի կողմից: Լռությամբ արժեքը null է։
 * `supportedFilterType` - Եթե պարամետրի տիպը ժառանգ է  ParamValuePair<T> դասից, ապա պետք է նշել պարամետրի ֆիլտրման հասանելի  տիպերը: 
@@ -115,7 +115,7 @@ public void AddParam(string name, string description, FieldType fieldType, strin
 * `required` - Պարամետրի արժեքի լրացումը պարտադիր է, թե ոչ: Լռությամբ արժեքը false է։
 * `eDescription` - Պարամետրի անգլերեն նկարագրությունը: Լռությամբ արժեքը string.Empty է։
 * `nullable` - Պարամետրը կարող է ընդունել null տիպի արժեք թե ոչ: Լռությամբ արժեքը false է։
-* `allowTime` - Եթե պարամետրի [համակարգային տիպը](../../system_types.md) ամսաթվային տիպի է (Date, DateLong, DateRep), ապա ամսաթվի հետ միասին լինի ժամանակը թե ոչ: Լռությամբ արժեքը false է։
+* `allowTime` - Եթե պարամետրի [համակարգային տիպը](system_types.md) ամսաթվային տիպի է (Date, DateLong, DateRep), ապա ամսաթվի հետ միասին լինի ժամանակը թե ոչ: Լռությամբ արժեքը false է։
                 
 **Օրինակ**
 

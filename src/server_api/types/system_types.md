@@ -5,7 +5,7 @@ tags: [FieldType, FieldTypes, type]
 ---
 
 ## Բովանդակություն
-- [Բովանդակություն](#բովանդակություն)
+
 - [Ներածություն](#ներածություն)
 - [AmAccFieldType](#amaccfieldtype)
 - [AmountFieldType](#amountfieldtype)
@@ -77,7 +77,7 @@ AmountPositiveFieldType investmentAmount = FieldTypeProvider.AmountPositive;
 Հանդիսանում է 4x-ում նկարագրված [Boolean](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/Boolean.html) համակարգային տիպի համարժեքը 8x-ում։
 Համարժեք c#-ական ներդրված տիպը [bool](https://learn.microsoft.com/en-us/dotnet/api/system.boolean)-ն է։
 
-Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](field_type_provider.md) ստատիկ դասի [Boolean]((field_type_provider.md#boolean)) հատկությունը։
+Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](field_type_provider.md) ստատիկ դասի [Boolean](field_type_provider.md#boolean) հատկությունը։
 
 **Օրինակ**
 
@@ -193,7 +193,7 @@ NumPairFieldType period =  FieldTypeProvider.GetNumPairFieldType(
 Հանդիսանում է 4x-ում նկարագրված [Path](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Types/Path.html) համակարգային տիպի համարժեքը 8x-ում։
 Համարժեք c#-ական ներդրված տիպը [string](https://learn.microsoft.com/en-us/dotnet/api/system.string)-ն է:
 
-Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](field_type_provider.md) ստատիկ դասի [Path](/main/src/field_type_provider.md#path) հատկությունը։
+Տիպի նոր օբյեկտ ստեղծելու համար անհրաժեշտ է կանչել [FieldTypeProvider](field_type_provider.md) ստատիկ դասի [Path](field_type_provider.md#path) հատկությունը։
 
 **Օրինակ**
 
