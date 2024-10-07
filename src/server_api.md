@@ -9,7 +9,7 @@ title: "Սերվերային API"
 
 * [Փաստաթղթի ստեղծման ձեռնարկ](server_api/definitions/document_guide.md)
 * [Տվյալների աղբյուրի ստեղծման ձեռնարկ](server_api/definitions/ds_guide.md)
-* [DPR Երկար աշխատող պրոցեսի ձեռնարկ](server_api/definitions/dpr_guide.md)
+* [Տվյալների մշակման հարցման (DPR) ձեռնարկ](server_api/definitions/dpr_guide.md)
 * [Հաշվառման ընդլայնման ձեռնարկ](extensions/definitions/acc_extender_guide.md)
 * [Փաստաթղթի իրադարձությունների ընդլայնման ձեռնարկ](extensions/definitions/document_extender_guide.md)
 * [Տվյալների աղբյուրի ընդլայնման ձեռնարկ](extensions/definitions/ds_extender_guide.md)

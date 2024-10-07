@@ -142,7 +142,7 @@ public class DocumentSettings : DataSource<DocumentSettings.DataRow, DocumentSet
 public string ArmenianCaption { get; }
 ```
 
-Վերադարձնում է տվյալների աղբյուրի հայերեն անվանումը:
+Վերադարձնում է տվյալների աղբյուրի հայերեն անվանումը ANSI կոդավորմամբ:
 
 ### EnglishCaption
 

@@ -494,9 +494,10 @@ public  Task<object> FieldToAnsi(string docType, string name, object value)
 * `value` - Ցանցով փոխանցված արժեք։
 
 **Օրինակ**
-Երբ ունենք [երկար աշխատող պրոցես](../definitions/dpr.md), որը պարամետրոր է ստանում թե յունիկոդով աշխատող կիենտից, թե ANSI-ով աշխատող կլիենտից, ապա ստացված պարամետրերը կարիք է լինում ձևափոխել ANSI-ի կախված կլիենտի տեսակից։
+Երբ ունենք [Տվյալների մշակման հարցում](../definitions/dpr.md), որը պարամետրեր է ստանում թե՛ յունիկոդով աշխատող կիենտից, թե՛ ANSI-ով աշխատող կլիենտից, ապա ստացված պարամետրերը կարիք է լինում ձևափոխել ANSI-ի կախված կլիենտի տեսակից։
 
-CreateFinalCalculationsForSelectedRows DPR-ի մեջ 
+<!-- CreateFinalCalculationsForSelectedRows DPR-ի մեջ  -->
+**Օրինակ**
 ```c#
 private async Task CreateVacationFromHR(Request.EmployeeFinalCalculation emplData, Request request)
 {
