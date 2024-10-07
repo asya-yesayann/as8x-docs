@@ -106,7 +106,7 @@ namespace ArmSoft.AS8X.Core.DPRImplementation.DocumentOperations
 
 ## DPR-ի սկրիպտից կանչի եղանակ
 
-```as4x
+```vb
 Public Sub DeleteDocs()
 	Dim ErrReport As AsRepViewer
 
@@ -129,12 +129,12 @@ Public Sub DeleteDocs()
 	dictISNs.Add("DocumentIsns", arrISNs)
 
 	' DPR-ը կատարելու համար անհրաժեշտ է կանչել ExecuteDPR մեթոդը՝ նշելով DPR-ի տեսակը, ներքին անունը,
-    ' կատարման համար անհրաժեշտ պարամետրերը ու արդյունքում առաջացող տվյալների լրացման համար օբյեկտ
+        ' կատարման համար անհրաժեշտ պարամետրերը ու արդյունքում առաջացող տվյալների լրացման համար օբյեկտ
 	ExecuteDPR(DPRType.Other, "DeleteDocByIsnDPR", dictISNs, dictResponse)
 
 	' Այս DPR-Ի կատարման արդյունքում վերադարձվում է StorageInfo, որը պարունակում է փաստաթղթերի հեռացման ընթացքում առաջացած սխալները
-    ' պարունակող TextReport-ը պարունակող կոնտեյների ու ֆայլի անունները
-    ' StorageInfo-ի container ու blobName դաշտերը վերագրվում են oStorageInfo օբյեկտի համապատասխան դաշտերին
+        ' պարունակող TextReport-ը պարունակող կոնտեյների ու ֆայլի անունները
+        ' StorageInfo-ի container ու blobName դաշտերը վերագրվում են oStorageInfo օբյեկտի համապատասխան դաշտերին
 	oStorageInfo.Container = dictResponse.Item("container")
 	oStorageInfo.BlobName = dictResponse.Item("blobName")
 
