@@ -1,33 +1,36 @@
 ---
 layout: page
 title: "TemplateService սերվիս" 
-tags: template
+sublinks:
+- { title: "ExistsTemplate", ref: existstemplate }
+- { title: "GetDefinition", ref: getdefinition }
+- { title: "GetTemplateNameAndType", ref: gettemplatenameandtype }
 ---
 
 ## Բովանդակություն
 
 - [Ներածություն](#ներածություն)
-  - [Copy](#copy)
-  - [Delete](#delete)
-  - [Edit](#edit)
+  <!-- - [Copy](#copy) -->
+  <!-- - [Delete](#delete) -->
+  <!-- - [Edit](#edit) -->
   - [ExistsTemplate](#existstemplate)
-  - [GetCount](#getcount)
-  - [GetDataGroups](#getdatagroups)
+  <!-- - [GetCount](#getcount) -->
+  <!-- - [GetDataGroups](#getdatagroups) -->
   - [GetDefinition](#getdefinition)
-  - [GetFileContent](#getfilecontent)
-  - [GetMappingCount](#getmappingcount)
-  - [GetPrintDataGroups](#getprintdatagroups)
-  - [GetRowId](#getrowid)
+  <!-- - [GetFileContent](#getfilecontent) -->
+  <!-- - [GetMappingCount](#getmappingcount) -->
+  <!-- - [GetPrintDataGroups](#getprintdatagroups) -->
+  <!-- - [GetRowId](#getrowid) -->
   - [GetTemplateNameAndType](#gettemplatenameandtype)
-  - [GetType](#gettype)
-  - [Store](#store)
-  - [UpdateDataGroups](#updatedatagroups)
+  <!-- - [GetType](#gettype) -->
+  <!-- - [Store](#store) -->
+  <!-- - [UpdateDataGroups](#updatedatagroups) -->
 
 ## Ներածություն
 
 TemplateService դասը նախատեսված է տպելու ձևանմուշների նկարագրության հետ աշխատանքը ապահովելու համար։
 
-### Copy
+<!-- ### Copy
 
 ```c#
 public Task<int> Copy(TemplateDefinition definition)
@@ -63,7 +66,7 @@ public Task Edit(TemplateDefinition definition)
 **Պարամետրեր**
 
 * `description` - Տպելու ձևանմուշի նկարագրություն:
-
+ -->
 ### ExistsTemplate
 
 ```c#
@@ -77,7 +80,19 @@ public Task<bool> ExistsTemplate(string name, string type)
 * `name` - Տպելու ձևանմուշի ներքին անուն:
 * `type` - Տպելու ձևանմուշի տիպ:
 
-### GetCount
+**Օրինակ**
+
+```c#
+// templateNameType  =>  "AgrState\7"
+
+var (_, templateName, templateType) = TemplateService.GetTemplateNameAndType(templateNameType);
+if (!await templateService.ExistsTemplate(templateName, templateType))
+{
+  throw new RESTException(string.Format("'{0}' անունով և '{1}' տիպով ձևանմուշ գոյություն չունի".ToArmenianANSI(), templateName, templateType));
+}
+```
+
+<!-- ### GetCount
 
 ```c#
 public Task<int> GetCount(string name)
@@ -102,7 +117,7 @@ public Task<string> GetDataGroups(int rowId)
 **Պարամետրեր**
 
 * `rowId` - Տպելու ձևանմուշի ներքին նույնականացման համար։
-
+ -->
 ### GetDefinition
 
 ```c#
@@ -116,7 +131,7 @@ public Task<TemplateDefinition> GetDefinition(string name, string type)
 * `name` - Տպելու ձևանմուշի ներքին անուն:
 * `type` - Տպելու ձևանմուշի տիպ:
 
-### GetFileContent
+<!-- ### GetFileContent
 
 ```c#
 public Task<StorageInfo> GetFileContent(int rowId)
@@ -168,15 +183,16 @@ public Task<int> GetRowId(string name, string type)
 
 * `name` - Տպելու ձևանմուշի ներքին անուն:
 * `type` - Տպելու ձևանմուշի տիպ:
-
+ -->
 ### GetTemplateNameAndType
 
 ```c#
-public static (bool result, string templateName, string templateType) GetTemplateNameAndType(string templateNameWithType, 
-                                                                                             bool isBackSlash = true)
+public static (bool result, string templateName, string templateType) 
+    GetTemplateNameAndType(string templateNameWithType, bool isBackSlash = true)
 ```
 
-Բաժանում է `templateNameWithType` պարամետրում միավորված տպելու ձևանմուշի ներքին անունը (կոդը) և տիպը և վերադարձնում
+Բաժանում է `templateNameWithType` պարամետրում միավորված տպելու ձևանմուշի ներքին անունը (կոդը) և տիպը:  
+Վերադարձնում է՝
 * `result` - Ցույց է տալիս, արդյոք բաժանումը հաջողվել է:
 * `name` - Տպելու ձևանմուշի ներքին անուն: Բաժանման չհաջողվելու դեպքում վերադարձնում է `templateNameWithType` պարամետրի արժեքը։
 * `type` - Տպելու ձևանմուշի տիպ: Բաժանման չհաջողվելու դեպքում վերադարձնում է `string.Empty`։
@@ -186,7 +202,23 @@ public static (bool result, string templateName, string templateType) GetTemplat
 * `templateNameWithType` - Տպելու ձևանմուշի միավորված ներքին անուն (կոդ) և տիպ։
 * `isBackSlash` - `true` արժեքի դեպքում բաժանումը կատարվում է ըստ `"\"` նիշի, հակառակ դեպքում՝ ըստ `"/"` նիշի։
 
-### GetType
+
+**Օրինակ**
+
+```c#
+// templateNameType  =>  "AgrState\7"
+
+var (_, templateName, templateType) = TemplateService.GetTemplateNameAndType(templateNameType);
+// templateName  =>  "AgrState"
+// templateType  =>  "7"
+
+if (templateType != Constants.TempTypeHTML) 
+{
+  throw new RESTException("Ձևանմուշի տիպը պետք է լինի Html".ToArmenianANSI());
+}
+```
+
+<!-- ### GetType
 
 ```c#
 public Task<string> GetType(string name)
@@ -224,3 +256,4 @@ public Task UpdateDataGroups(int rowId, string dataGroups)
 
 * `rowId` - Տպելու ձևանմուշի ներքին նույնականացման համար։
 * `dataGroups` - Տպելու ձևանմուշի տվյալների խմբերի անունները որպես տեքստ, որտեղ խմբերը անհրաժեշտ է իրարից տարանջատել ստորակետերով։ Օրինակ **TRN,TRNAMD**:
+ -->
