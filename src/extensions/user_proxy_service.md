@@ -95,6 +95,23 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetDayAgrJ](#GetDayAgrJ)
 * [GetDayPerJ](#GetDayPerJ)
 * [MaxOverdueDaysCount](#MaxOverdueDaysCount)
+* [GetContractISN](#GetContractISN)
+* [LoadClientDocRO](#LoadClientDocRO)
+* [YEAR_END](#YEAR_END)
+* [CurrencyName](#CurrencyName)
+* [CurrencyISOCode](#CurrencyISOCode)
+* [CliName](#CliName)
+* [CliEName](#CliEName)
+* [GetPenJDaysCount](#GetPenJDaysCount)
+* [GetPerFutur](#GetPerFutur)
+* [GetFutAgrDbt](#GetFutAgrDbt)
+* [GetPerSumJ](#GetPerSumJ)
+* [GetAgrSumJ](#GetAgrSumJ)
+
+
+
+
+  
 * [Պայմանագրերի հաշվառումների կոդեր](#պայմանագրերի-հաշվառումների-կոդեր)
 * [Հաշվառումների գործողությունների կոդեր](#հաշվառումների-գործողությունների-կոդեր)
   
@@ -1870,6 +1887,29 @@ public Task<short> MaxOverdueDaysCount(int agrIsn, DateTime dateB, DateTime date
 // Հաշվարկվում է 30/08/24 -ից 15/01/25 ժամանակահատվածում 822631021 isn-ով պայմանագրի գծով եղած վարկի կամ տոկոսի առավելագույն ժամկետանց օրերի քանակը։
 short maxOverd = await proxyService.MaxOverdueDaysCount(822631021, DateTime.Parse("2024-08-30"), DateTime.Parse("2025-01-15"));
 ```
+
+
+
+
+GetContractISN
+LoadClientDocRO
+YEAR_END
+CurrencyName
+CurrencyISOCode
+CliName
+CliEName
+GetPenJDaysCount
+GetPerFutur
+GetFutAgrDbt
+GetPerSumJ
+GetAgrSumJ
+
+
+
+
+
+
+
 
 
 ## Պայմանագրերի հաշվառումների կոդեր
