@@ -1839,9 +1839,21 @@ public async Task<short> GetDayAgrJ(int agrIsn, string agrType, DateTime getDate
 short overdDays = await proxyService.GetDayAgrJ(815929352,"", DateTime.Parse("2024-10-15")); 
 ```
 
+## GetDayPerJ
+```c#
+public async Task<short> GetDayAgrJ(int agrIsn, string agrType, DateTime getDate)
+```
+Վերադարձնում է պայմանագրի տոկոսների ժամկետանց օրերի քանակը։
 
+* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
+* `agrType` - Պարտադիր։ Պայմանագրի տիպը։ Օրինակ՝ C1Univer, C5Univer, C1Simpl: Դատարկ տող փոխանցելու դեպքում փաստաթղթի տեսակի կորոշվի ավտոմատ։
+* `getDate` - Պարտադիր։ Հարցման ամսաթիվը։
 
-GetDayPerJ
+```c#
+// Հաշվարկվում է 836420323 isn-ով պայմանագրի գծով տոկոսների ժամկետանց օրերի քանակը ընթացիկ ամսաթվի դրությամբ։
+short overdPerDays = await proxyService.GetDayPerJ(836420323, DateTime.Parse("2024-10-15"));
+```
+
 MaxOverdueDaysCount
 
 
