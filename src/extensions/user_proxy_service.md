@@ -1841,12 +1841,11 @@ short overdDays = await proxyService.GetDayAgrJ(815929352,"", DateTime.Parse("20
 
 ## GetDayPerJ
 ```c#
-public async Task<short> GetDayAgrJ(int agrIsn, string agrType, DateTime getDate)
+public async Task<short> GetDayPerJ(int agrIsn, DateTime getDate)
 ```
 Վերադարձնում է պայմանագրի տոկոսների ժամկետանց օրերի քանակը։
 
 * `agrIsn` - Պարտադիր։ Պայմանագրի isn:
-* `agrType` - Պարտադիր։ Պայմանագրի տիպը։ Օրինակ՝ C1Univer, C5Univer, C1Simpl: Դատարկ տող փոխանցելու դեպքում փաստաթղթի տեսակի կորոշվի ավտոմատ։
 * `getDate` - Պարտադիր։ Հարցման ամսաթիվը։
 
 ```c#
