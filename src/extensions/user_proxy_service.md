@@ -1888,10 +1888,21 @@ public Task<short> MaxOverdueDaysCount(int agrIsn, DateTime dateB, DateTime date
 short maxOverd = await proxyService.MaxOverdueDaysCount(822631021, DateTime.Parse("2024-08-30"), DateTime.Parse("2025-01-15"));
 ```
 
+## GetContractISN
+```c#
+public Task<int> GetContractISN(string agrType, string agrCode, string agrLevelCheck = "")
+```
+Վերադարձնում է պայմանագրի isn-ը ըստ պաիմանագրի համարի։
+
+**Պարամետրեր**
+
+* `agrType` - Պարտադիր։ Պայմանագրի isn:
+* `agrCode` - Պարտադիր։ Ժամանակահատվածի սկիզբ։
+* `agrLevelCheck` - Պարտադիր։ "AGRPARENTS","AGREEMENTS","AGRCHILDREN"։
 
 
 
-GetContractISN
+
 LoadClientDocRO
 YEAR_END
 CurrencyName
