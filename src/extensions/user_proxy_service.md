@@ -1845,6 +1845,8 @@ public async Task<short> GetDayPerJ(int agrIsn, DateTime getDate)
 ```
 Վերադարձնում է պայմանագրի տոկոսների ժամկետանց օրերի քանակը։
 
+**Պարամետրեր**
+
 * `agrIsn` - Պարտադիր։ Պայմանագրի isn:
 * `getDate` - Պարտադիր։ Հարցման ամսաթիվը։
 
@@ -1852,8 +1854,22 @@ public async Task<short> GetDayPerJ(int agrIsn, DateTime getDate)
 // Հաշվարկվում է 836420323 isn-ով պայմանագրի գծով տոկոսների ժամկետանց օրերի քանակը ընթացիկ ամսաթվի դրությամբ։
 short overdPerDays = await proxyService.GetDayPerJ(836420323, DateTime.Parse("2024-10-15"));
 ```
+## MaxOverdueDaysCount
+```c#
+public Task<short> MaxOverdueDaysCount(int agrIsn, DateTime dateB, DateTime dateE)
+```
+Վերադարձնում է dateB և dateE պարամետրերով սահմանված ժամանակահատվածում վարկի մայր-գումարի և տոկոսկների առավելագույն ժամկետանց օրերի քանակը։ 
 
-MaxOverdueDaysCount
+**Պարամետրեր**
+
+* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
+* `dateB` - Պարտադիր։ Ժամանակահատվածի սկիզբ։
+* `dateE` - Պարտադիր։ Ժամանակահատվածի վերջ։
+
+```c#
+// Հաշվարկվում է 30/08/24 -ից 15/01/25 ժամանակահատվածում 822631021 isn-ով պայմանագրի գծով եղած վարկի կամ տոկոսի առավելագույն ժամկետանց օրերի քանակը։
+short am1 = await proxyService.MaxOverdueDaysCount(822631021, DateTime.Parse("2024-08-30"), DateTime.Parse("2025-01-15"));
+```
 
 
 ## Պայմանագրերի հաշվառումների կոդեր
