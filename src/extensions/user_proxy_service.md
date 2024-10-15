@@ -1818,13 +1818,26 @@ public Task<short> GetAllDayJCount(int agrIsn, DateTime repDate)
 * `getDate` - Պարտադիր։ Հարցման ամսաթիվը:
 
 ```c#
-// Հաշվարկվում է 905721123 պայմանագրի գծով անընդմեջ ժամկետանց լինելու քանակը ընթացիկ ամսաթվի դրությամբ։
+// Հաշվարկվում է 905721123 isn-ով պայմանագրի գծով անընդմեջ ժամկետանց լինելու քանակը ընթացիկ ամսաթվի դրությամբ։
 short agrJc = await proxyService.GetAllDayJCount(905721123, DateTime.Now); 
 ```
 
 ## GetDayAgrJ
-
+```c#
+public async Task<short> GetDayAgrJ(int agrIsn, string agrType, DateTime getDate)
+```
 Վերադարձնում է պայմանագրի մայր-գումարի ժամկետանց օրերի քանակը։
+
+**Պարամետրեր**
+
+* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
+* `agrType` - Պարտադիր։ Պայմանագրի տիպը։ Օրինակ՝ C1Univer, C5Univer, C1Simpl: Դատարկ տող փոխանցելու դեպքում փաստաթղթի տեսակի կորոշվի ավտոմատ։
+* `getDate` - Պարտադիր։ Հարցման ամսաթիվը։
+  
+```c#
+// Հաշվարկվում է 905721123 isn-ով պայմանագրի գծով մայր-գումարի ժամկետանց օրերի քանակը ընթացիկ ամսաթվի դրությամբ։
+short overdDays = await proxyService.GetDayAgrJ(815929352,"", DateTime.Parse("2024-10-15")); 
+```
 
 
 
