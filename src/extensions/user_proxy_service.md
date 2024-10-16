@@ -1896,11 +1896,18 @@ public Task<int> GetContractISN(string agrType, string agrCode, string agrLevelC
 
 **Պարամետրեր**
 
-* `agrType` - Պարտադիր։ Պայմանագրի isn:
-* `agrCode` - Պարտադիր։ Ժամանակահատվածի սկիզբ։
+* `agrType` - Պարտադիր։ Պայմանագրի տեսակ:
+* `agrCode` - Պարտադիր։ Պայմանագրի N։
 * `agrLevelCheck` - Պարտադիր։ "AGRPARENTS","AGREEMENTS","AGRCHILDREN"։
 
+> [!TIP]
+> ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
+<br>
 
+```
+// Ստանում ենք AS80-001 համարով վարկային պայմանագրի isn-ը։
+int agIsn = await proxyService.GetContractISN("C", "AS80-001", "AGRPARENTS");
+```
 
 
 LoadClientDocRO
