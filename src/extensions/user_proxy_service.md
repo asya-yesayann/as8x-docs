@@ -1928,20 +1928,34 @@ public Task<(string amName, string enName)> CurrencyName(string codCurrency)
 
 ```c#
 /* Ստանում ենք 001 արժույթի հայերեն և անգլերեն անվանումները՝
-curAMD - ԱՄՆ Dոլար
+curAMD - ԱՄՆ Դոլար
 curUSD - US Dollar */
-
  
 (string curAMD, string curUSD) = await proxyService.CurrencyName("001");
 
-proxyService.TryAddAtomic("param1", () => curAMD, templateSubstitutionArgs);
-proxyService.TryAddAtomic("param2", () => curUSD, templateSubstitutionArgs);
+```
+
+
+## CurrencyISOCode
+```c#
+public Task<string> CurrencyISOCode(string codCurrency)
+```
+
+Վերադարձնում է արժույթի ISO կոդը ըստ ՀԾ-Բանկ-ի Արժույթներ տեղեկատուում գրանցված կոդի։
+
+**Պարամետրեր**
+
+`codCurrency` = Պարտադիր։ Արժույթի կոդը։ Օրինակ՝ 001 
+
+```c#
+// curISO - փոփոխականը կստանա "USD" արժեքը։
+string curISO = await proxyService.CurrencyISOCode("001");
 ```
 
 
 
 
-CurrencyISOCode
+
 CliName
 CliEName
 GetPenJDaysCount
