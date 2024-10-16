@@ -240,17 +240,6 @@ public Task<Document> LoadContractDoc(string agrType, string agrCode, string agr
 > ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
 <br>
 
-
-## GetContractISN
-
-```c#
-public Task<int> GetContractISN(string agrType, string agrCode, string agrLevelCheck = "")??????????????
-```
-
-Վերադարձնում է պայմանագրի ISN-ը։
-
-
-
 ## LoadClientDoc
 
 ```c#
