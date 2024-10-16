@@ -1898,9 +1898,25 @@ public Task<int> GetContractISN(string agrType, string agrCode, string agrLevelC
 int agIsn = await proxyService.GetContractISN("C", "AS80-001", "AGRPARENTS");
 ```
 
+## LoadClientDocRO
 
-LoadClientDocRO
-YEAR_END
+
+## YEAR_END
+```c#
+public DateTime YEAR_END(object parDate = null)
+```
+Վերադարձնում է ՝parDate՝ պարամետրով փոխանցված ամսաթվին համապատախանող տարվա վերջին օրը։
+**Պարամետրեր**
+
+* `parDate` - Ոչ պարտադիր։ Ամսաթիվ, որի տարվա վերջին օրը անհրաժեշտ է ստանալ: Պարամետր լրացված չլինելու դեպքում կվերադարձվի ընթացիկ տարվա վերջին օրը։
+
+```c#
+// Հաշվարկի արդյունքում կստանանք "2021-12-31" ամսաթիվը։
+DateTime yr =  proxyService.YEAR_END(DateTime.Parse("2021-06-23"));
+```
+
+
+
 CurrencyName
 CurrencyISOCode
 CliName
