@@ -76,6 +76,8 @@ public SessionInfo GetInfo()
 
 Վերադարձնում է ընթացիկ [սեսսիայի մասին ինֆորմացիան](../types/SessionInfo.md)։
 
+Օգտագործման օրինակին ծանոթանալու համար [տե՛ս](../types/SessionInfo.md#օգտագործման-օրինակ):
+
 ### GetInfo
 
 ```c#
