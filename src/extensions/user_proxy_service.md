@@ -1916,9 +1916,31 @@ public DateTime YEAR_END(object parDate = null)
 DateTime yr =  proxyService.YEAR_END(DateTime.Parse("2021-06-23"));
 ```
 
+## CurrencyName
+```c#
+public Task<(string amName, string enName)> CurrencyName(string codCurrency)
+```
+Վերադարձնում է փոխանցված կոդով արժույթի հայերեն և անգլերեն անվանումները համապատասխան "Արժույթներ" տեղեկատուի։
+
+**Պարամետրեր**
+
+`codCurrency` = Պարտադիր։ Արժույթի կոդը։ Օրինակ՝ 001 
+
+```c#
+/* Ստանում ենք 001 արժույթի հայերեն և անգլերեն անվանումները՝
+curAMD - ԱՄՆ Dոլար
+curUSD - US Dollar */
+
+ 
+(string curAMD, string curUSD) = await proxyService.CurrencyName("001");
+
+proxyService.TryAddAtomic("param1", () => curAMD, templateSubstitutionArgs);
+proxyService.TryAddAtomic("param2", () => curUSD, templateSubstitutionArgs);
+```
 
 
-CurrencyName
+
+
 CurrencyISOCode
 CliName
 CliEName
