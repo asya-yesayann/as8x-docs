@@ -20,7 +20,7 @@ tags: session
 
 ## Ներածություն
 
-ISessionInfoService դասը նախատեսված է [սեսսիաների](../types/session_info.md) հետ աշխատանքը ապահովելու համար։
+ISessionInfoService դասը նախատեսված է [սեսսիաների](../types/SessionInfo.md) հետ աշխատանքը ապահովելու համար։
 
 ## Հատկություններ
 
@@ -30,7 +30,7 @@ ISessionInfoService դասը նախատեսված է [սեսսիաների](../t
 public string CurrentSessionGuid { get }
 ```
 
-Վերադարձնում է ընթացիկ [սեսսիայի](../types/session_info.md) ներքին նույնականացման համարը (Guid):
+Վերադարձնում է ընթացիկ [սեսսիայի](../types/SessionInfo.md) ներքին նույնականացման համարը (Guid):
 
 ## Մեթոդներ
 
@@ -40,13 +40,13 @@ public string CurrentSessionGuid { get }
 public Task Add(SessionInfo sessionInfo)
 ```
 
-Ավելացնում է նոր [սեսսիա](../types/session_info.md) տվյալների պահոցի `SESSIONINFO` աղյուսակում և քեշում։
+Ավելացնում է նոր [սեսսիա](../types/SessionInfo.md) տվյալների պահոցի `SESSIONINFO` աղյուսակում և քեշում։
 
 Նոր սեսսիա ավտոմատ կերպով բացվում է ծրագիր մուտք գործելիս։
 
 **Պարամետրեր**
 
-* `sessionInfo` - Ավելացվող [սեսսիայի ինֆորմացիան](../types/session_info.md)։
+* `sessionInfo` - Ավելացվող [սեսսիայի ինֆորմացիան](../types/SessionInfo.md)։
 
 ### Delete
 
@@ -54,7 +54,7 @@ public Task Add(SessionInfo sessionInfo)
 public Task Delete()
 ```
 
-Հեռացնում է ընթացիկ [սեսսիան](../types/session_info.md) տվյալների պահոցի `SESSIONINFO` աղյուսակից և քեշից։
+Հեռացնում է ընթացիկ [սեսսիան](../types/SessionInfo.md) տվյալների պահոցի `SESSIONINFO` աղյուսակից և քեշից։
 
 Ընթացիկ սեսսիան ավտոմատ կերպով հեռացվում է ծրագրից դուրս գալուց։
 
@@ -66,7 +66,7 @@ public Task<List<string>> DeleteExpirations()
 
 Հեռացնում է բոլոր ժամկետանց սեսսիաները տվյալների պահոցի `SESSIONINFO` աղյուսակից և քեշից։
 
-Վերադարձնում է հեռացված [սեսսիաների](../types/session_info.md) ներքին նույնականացման համարների (Guid-ների) ցուցակը։
+Վերադարձնում է հեռացված [սեսսիաների](../types/SessionInfo.md) ներքին նույնականացման համարների (Guid-ների) ցուցակը։
 
 ### GetInfo
 
@@ -74,7 +74,7 @@ public Task<List<string>> DeleteExpirations()
 public SessionInfo GetInfo()
 ```
 
-Վերադարձնում է ընթացիկ [սեսսիայի մասին ինֆորմացիան](../types/session_info.md)։
+Վերադարձնում է ընթացիկ [սեսսիայի մասին ինֆորմացիան](../types/SessionInfo.md)։
 
 ### GetInfo
 
@@ -82,7 +82,7 @@ public SessionInfo GetInfo()
 public SessionInfo GetInfo(string sessionGuid)
 ```
 
-Վերադարձնում է նշված ներքին նույնականացման համարով [սեսսիայի մասին ինֆորմացիան](../types/session_info.md) քեշից։
+Վերադարձնում է նշված ներքին նույնականացման համարով [սեսսիայի մասին ինֆորմացիան](../types/SessionInfo.md) քեշից։
 
 Քեշում բացակայության դեպքում բեռնում է սեսսիայի մասին ինֆորմացիան տվյալների պահոցի `SESSIONINFO` աղյուսակից և ավելացնում քեշում։
 
@@ -96,7 +96,7 @@ public SessionInfo GetInfo(string sessionGuid)
 public List<SessionInfo> GetInfos()
 ```
 
-Վերադարձնում է տվյալների պահոցի `SESSIONINFO` աղյուսակում պահված բոլոր [սեսսիաների մասին ինֆորմացիան](../types/session_info.md) և ավելացնում քեշում։
+Վերադարձնում է տվյալների պահոցի `SESSIONINFO` աղյուսակում պահված բոլոր [սեսսիաների մասին ինֆորմացիան](../types/SessionInfo.md) և ավելացնում քեշում։
 
 ### Update
 
