@@ -1952,14 +1952,20 @@ public Task<string> CurrencyISOCode(string codCurrency)
 string curISO = await proxyService.CurrencyISOCode("001");
 ```
 
+## GetPenJDaysCount
+
+```c#
+
+```
+
+## GetPerFutur
+```c#
+public Task<decimal> GetPerFutur(int agrIsn, DateTime requestDate, string curDefault)
+```
+Վերադարձնում է փոխանցված ապագա ամսաթվով Univer տեսկի պայմանագրի գծով մարման ենթակա տոկոսագումարը։
 
 
 
-
-CliName
-CliEName
-GetPenJDaysCount
-GetPerFutur
 GetFutAgrDbt
 GetPerSumJ
 GetAgrSumJ
