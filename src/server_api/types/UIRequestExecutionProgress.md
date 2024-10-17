@@ -67,3 +67,30 @@ public Task<MessageBoxResult> MessageBox(string prompt, MessageBoxButtons messag
 * `title` - Հաղորդագրության պատուհանի գլխագիրը։ Չլրացնելու դեպքում գլխագիր հանդիսանալու է ծրագրի անունը, օրինակ "ՀԾ Բանկ", "ՀԾ Ձեռնարկություն"...:
 * `millisecondsToShow` - Հաղորդագրության պատուհանի էկրանին երևալու ժամանակը միլիվայրկյաններով: Չլրացնելու դեպքում պատուհանը փակվելու է 15 վրկ հետո՝ սեղմելով լռությամբ ընտրված կոճակը (`messageBoxDefaultButton`)։
 * `id` - Հաղորդագրության պատուհանի ներքին նույնականացման համարը (id):
+
+## Օրինակ
+
+Այս օրինակում ներկայացված է  փաստաթղթի հեռացման տրանզակցիայում աշխատող [Delete](../definitions/document.md#delete) իրադարձության մշակիչում ուղարկվում է հաղորդագրություն սերվերից կլիենտին [MessageBox](#messagebox) մեթոդի միջոցով։
+
+```c#
+public override async Task Delete(DeleteEventArgs args)
+{
+  // բեռնում է "Պայմանագիր" փաստաթղթի զավակ փաստաթղթերը
+  var childs = await this.DocumentService.GetDocumentChildren(this.ISN);
+
+  if (childs.Count > 0)
+  {
+    // MessageBox մեթոդի կանչի արդյունքում կլիենտում բացվում է հաղոորդագրւթյան պատուհան
+    // "Հեռացնել պայմանագրի հաշիվները" տեքստով և "Այո" կոճակ սեղմման դեպքում հեռացվում է "Պայմանագիր" փաստաթղթի
+    // և իր զավակ "Հաշիվ" փաստաթղթերի միջև կապերը։
+    if ((await this.Progress.MessageBox("Հեռացնել պայմանագրի հաշիվները".ToArmenianANSI()),
+        MessageBoxButtons.YesNo, MessageBoxIconType.Question)).UIRequestResult == MessageBoxRequestResult.Yes)
+    {
+        foreach (var (childISN, _) in childs)
+        {
+            await this.DocumentService.CutParentLink(childISN, this.ISN);          
+        }           
+    }
+  }
+}
+```
