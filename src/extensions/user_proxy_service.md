@@ -1975,10 +1975,11 @@ public Task<decimal> GetPerFutur(int agrIsn, DateTime requestDate, string curDef
 decimal fPer = await proxyService.GetPerFutur(1533697979, DateTime.Parse("2024-11-18"), "000")
 ```
 
+## GetFutAgrDbt
 
 
 
-GetFutAgrDbt
+
 GetPerSumJ
 GetAgrSumJ
 
