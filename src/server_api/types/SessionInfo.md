@@ -45,9 +45,9 @@ public class SessionInfo
 
 ## Օգտագործման օրինակ
 
-Օրինակում ստեղծվում է (https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlcommand) դասի օբյեկտ՝ [IDBService](../services/IDBService.md) դասի [CreateCommand](../services/IDBService.md#createcommand) մեթոդի միջոցով` Sql հարցումներ կատարելու համար։
+Օրինակում ստեղծվում է [SqlCommand](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlcommand) դասի օբյեկտ՝ [IDBService](../services/IDBService.md) դասի [CreateCommand](../services/IDBService.md#createcommand) մեթոդի միջոցով` Sql հարցումներ կատարելու համար։
 
-Որպես հարցման կատարման առավելագույն ժամանակ սեսսիայի `DsQueryTimeout` հատկության արժեքը և սեսսիայի ինֆորմացիայի որոշ մասը գրանցվում է տվյալների պահոցում։ 
+Որպես հարցման կատարման առավելագույն ժամանակ դրվում է սեսսիայի `DsQueryTimeout` հատկության արժեքը և սեսսիայի ինֆորմացիայի որոշ մասը գրանցվում է տվյալների պահոցում։ 
 
 ```c#
 public async Task WriteLog(string operationCode, string comment)
