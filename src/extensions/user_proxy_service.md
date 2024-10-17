@@ -1981,6 +1981,8 @@ decimal fPer = await proxyService.GetPerFutur(1533697979, DateTime.Parse("2024-1
 ```
 Վերադարձնում է սահմանված ժամանակահատվածում մայր-գումարի վճարվելիք ընդհանուր գումարը։ Կիրառելի է Univer տեսակի պայմանագրերի համար։
 
+**Պարամետրեր**
+
 * `agrIsn` - Պարտադիր։ Պայմանագրի isn:
 * `startDate` - Պարտադիր։ Մարման ժամանակահատվածի սկիզբ։
 * `endDate` - Պարտադիր։ Մարման ժամանակահատվածի վերջ։ 
@@ -1990,10 +1992,30 @@ decimal fPer = await proxyService.GetPerFutur(1533697979, DateTime.Parse("2024-1
 decimal paym = await proxyService.GetFutAgrDbt(1533697979, DateTime.Parse("2025-01-17"),DateTime.Parse("2025-02-17"));
 ```
 
+## GetPerSumJ
+```c#
+public Task<(decimal OverduePerSum, decimal NotOverduePerSum)> GetPerSumJ(int agrIsn, DateTime requestDate)
+```
+Վերադարձնում է պայմանագրի սահմանված ամսաթվով ժամկետանց և ժամկետային տոկոսագումարը
+
+**Պարամետրեր**
+
+* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
+* `requestDate` - Պարտադիր։ Մնացորդների ամսաթիվը։
+
+```c#
+// Բերված օրինակում ovPer փոփոխականը կստանա 1533697979 isn -ով պայմանագրի, 20/02/25-ի դրությամբ, ժամկետանց տոկոսի մնացորդը իսկ per-ը ժամկետային։
+
+(decimal ovPer, decimal per) = await proxyService.GetPerSumJ(1533697979, DateTime.Parse("2025-02-20"));
+```
 
 
 
-GetPerSumJ
+
+
+
+
+
 GetAgrSumJ
 
 
