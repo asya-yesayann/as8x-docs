@@ -102,7 +102,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [CurrencyISOCode](#CurrencyISOCode)
 * [CliName](#CliName)
 * [CliEName](#CliEName)
-* [GetPenJDaysCount](#GetPenJDaysCount)
 * [GetPerFutur](#GetPerFutur)
 * [GetFutAgrDbt](#GetFutAgrDbt)
 * [GetPerSumJ, GetAgrSumJ](#GetPerSumJ-GetAgrSumJ)
@@ -1949,12 +1948,6 @@ public Task<string> CurrencyISOCode(string codCurrency)
 ```c#
 // curISO - փոփոխականը կստանա "USD" արժեքը։
 string curISO = await proxyService.CurrencyISOCode("001");
-```
-
-## GetPenJDaysCount
-
-```c#
-
 ```
 
 ## GetPerFutur
