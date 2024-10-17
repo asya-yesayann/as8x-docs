@@ -105,8 +105,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetPenJDaysCount](#GetPenJDaysCount)
 * [GetPerFutur](#GetPerFutur)
 * [GetFutAgrDbt](#GetFutAgrDbt)
-* [GetPerSumJ](#GetPerSumJ)
-* [GetAgrSumJ](#GetAgrSumJ)
+* [GetPerSumJ, GetAgrSumJ](#GetPerSumJ-GetAgrSumJ)
 
 
 
@@ -1992,11 +1991,12 @@ decimal fPer = await proxyService.GetPerFutur(1533697979, DateTime.Parse("2024-1
 decimal paym = await proxyService.GetFutAgrDbt(1533697979, DateTime.Parse("2025-01-17"),DateTime.Parse("2025-02-17"));
 ```
 
-## GetPerSumJ
+## GetPerSumJ, GetAgrSumJ
 ```c#
 public Task<(decimal OverduePerSum, decimal NotOverduePerSum)> GetPerSumJ(int agrIsn, DateTime requestDate)
+public Task<(decimal OverduePerSum, decimal NotOverduePerSum)> GetAgrSumJ(int agrIsn, DateTime requestDate)
 ```
-Վերադարձնում է պայմանագրի սահմանված ամսաթվով ժամկետանց և ժամկետային տոկոսագումարը
+OverduePerSum ֆունկցիան վերադարձնում է պայմանագրի սահմանված ամսաթվով ժամկետանց և ժամկետային տոկոսագումարը, իսկ GetAgrSumJ - ը մայր-գումարի ժաակետանց և ժամկետային մասերը։
 
 **Պարամետրեր**
 
@@ -2004,19 +2004,14 @@ public Task<(decimal OverduePerSum, decimal NotOverduePerSum)> GetPerSumJ(int ag
 * `requestDate` - Պարտադիր։ Մնացորդների ամսաթիվը։
 
 ```c#
-// Բերված օրինակում ovPer փոփոխականը կստանա 1533697979 isn -ով պայմանագրի, 20/02/25-ի դրությամբ, ժամկետանց տոկոսի մնացորդը իսկ per-ը ժամկետային։
+// Բերված օրինակներում ovSum փոփոխականը կստանա 1533697979 isn-ով պայմանագրի, 20/02/25-ի դրությամբ, ժամկետանց տոկոսի / մայր-գումարի մնացորդը, իսկ sum-ը ժամկետային։
 
-(decimal ovPer, decimal per) = await proxyService.GetPerSumJ(1533697979, DateTime.Parse("2025-02-20"));
+(decimal ovSum, decimal sum) = await proxyService.GetPerSumJ(1533697979, DateTime.Parse("2025-02-20"));
+(decimal ovSum, decimal sum) = await proxyService.GetAgrSumJ(1533697979, DateTime.Parse("2025-02-20"));
 ```
 
 
 
-
-
-
-
-
-GetAgrSumJ
 
 
 
