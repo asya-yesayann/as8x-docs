@@ -1976,6 +1976,19 @@ decimal fPer = await proxyService.GetPerFutur(1533697979, DateTime.Parse("2024-1
 ```
 
 ## GetFutAgrDbt
+```c#
+ public Task<decimal> GetFutAgrDbt(int agrIsn, DateTime startDate, DateTime endDate)
+```
+Վերադարձնում է սահմանված ժամանակահատվածում մայր-գումարի վճարվելիք ընդհանուր գումարը։ Կիրառելի է Univer տեսակի պայմանագրերի համար։
+
+* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
+* `startDate` - Պարտադիր։ Մարման ժամանակահատվածի սկիզբ։
+* `endDate` - Պարտադիր։ Մարման ժամանակահատվածի վերջ։ 
+
+```c#
+/* Հաշվարկվում է 1533697979 isn-ով պայմանագրի գծով 17/01/25 -ից մինչև 17/02/25 ժամանակահատվածը վճարվելիք մայր-գումարի ընդհանուր թիվը։ */
+decimal paym = await proxyService.GetFutAgrDbt(1533697979, DateTime.Parse("2025-01-17"),DateTime.Parse("2025-02-17"));
+```
 
 
 
