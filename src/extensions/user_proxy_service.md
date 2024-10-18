@@ -192,14 +192,11 @@ public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.
 * `lookInArc` - Ոչ պարտադիր։ Փնտրել փաստաթուղթը նաև արխիվացվածների մեջ։ Լռությամբ՝ **false**:
 * `loadImagesAndMemos` - Ոչ պարտադիր։ Բեռնել նաև փաստաթղթի մեմոները և նկարները։ Լռությամբ՝ **false**:
 
+
+### Աշխատանք փաստաթղթի աղյուսակների հետ
 ```c#
-// *Աշխատանք փաստաթղթերի գրիդերի հետ*
-
-
 /* Օրինակներում respAndPassCode1 և respAndPassCode2 փոփոխականներին կվերագրվի տող, որը պարունակում է 304663812 isn-ով հաճախորդի քարտի "Պատասխանատուների ցուցակ" գրիդի առաջին տողում լրացված արժեքները (պատասխանատույի անվանում, անձնագրի կոդ)։
-
 Օրինակ՝ "Պողոս Պողոսյան - AA1023065" */
-
 
 var cli1 = await proxyService.LoadDoc(304663812, GridLoadMode.Full);
 string respAndPassCode1 = cli1.Grid("RESP").RowCount > 0 ? 
