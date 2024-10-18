@@ -192,6 +192,17 @@ public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.
 * `lookInArc` - Ոչ պարտադիր։ Փնտրել փաստաթուղթը նաև արխիվացվածների մեջ։ Լռությամբ՝ **false**:
 * `loadImagesAndMemos` - Ոչ պարտադիր։ Բեռնել նաև փաստաթղթի մեմոները և նկարները։ Լռությամբ՝ **false**:
 
+```c#
+/* Օրինակում respAndPassCode փոփոխականին կվերագրվի տող, որը պարունակում է 304663812 isn-ով հաճախորդի քարտի "Պատասխանատուների ցուցակ" գրիդի  առաջին տողում լրացված արժեքները (պատասխանատույի անվանում, անձնագրի կոդ )։
+
+Օրինակ՝ "Պողոս Պողոսյան - AA1023065" */
+
+ Client cli = (Client) await proxyService.LoadDoc(304663812, GridLoadMode.Full );
+ string respAndPassCode = $"{cli.RESP[0].RESPNAME} - {cli.RESP[0].RESPPASCODE}";
+```
+
+
+
 
 
 ### LoadDocFromFolder
