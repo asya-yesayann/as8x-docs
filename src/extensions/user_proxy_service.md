@@ -193,12 +193,22 @@ public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.
 * `loadImagesAndMemos` - Ոչ պարտադիր։ Բեռնել նաև փաստաթղթի մեմոները և նկարները։ Լռությամբ՝ **false**:
 
 ```c#
-/* Օրինակում respAndPassCode փոփոխականին կվերագրվի տող, որը պարունակում է 304663812 isn-ով հաճախորդի քարտի "Պատասխանատուների ցուցակ" գրիդի  առաջին տողում լրացված արժեքները (պատասխանատույի անվանում, անձնագրի կոդ )։
+// *Աշխատանք փաստաթղթերի գրիդերի հետ*
+
+
+/* Օրինակներում respAndPassCode1 և respAndPassCode2 փոփոխականներին կվերագրվի տող, որը պարունակում է 304663812 isn-ով հաճախորդի քարտի "Պատասխանատուների ցուցակ" գրիդի առաջին տողում լրացված արժեքները (պատասխանատույի անվանում, անձնագրի կոդ)։
 
 Օրինակ՝ "Պողոս Պողոսյան - AA1023065" */
 
- Client cli = (Client) await proxyService.LoadDoc(304663812, GridLoadMode.Full );
- string respAndPassCode = $"{cli.RESP[0].RESPNAME} - {cli.RESP[0].RESPPASCODE}";
+
+var cli1 = await proxyService.LoadDoc(304663812, GridLoadMode.Full);
+string respAndPassCode1 = cli1.Grid("RESP").RowCount > 0 ? 
+     $"{(string) cli1.Grid("RESP")[0]["RESPNAME"]} - {(string)cli1.Grid("RESP")[0]["RESPPASCODE"]}" : "";
+
+// cli2 փոփոխականը բերվում է Client տիպի
+Client cli2 = (Client) await proxyService.LoadDoc(304663812, GridLoadMode.Full);
+string respAndPassCode2 = cli2.RESP.RowCount > 0 ? 
+     $"{cli2.RESP[0].RESPNAME} - {cli2.RESP[0].RESPPASCODE}" :"";
 ```
 
 
