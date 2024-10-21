@@ -193,7 +193,7 @@ public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.
 * `loadImagesAndMemos` - Ոչ պարտադիր։ Բեռնել նաև փաստաթղթի մեմոները և նկարները։ Լռությամբ՝ **false**:
 
 
-** Աշխատանք փաստաթղթի աղյուսակների հետ **
+**Աշխատանք փաստաթղթի աղյուսակների հետ**
 ```c#
 // Օրինակներում respAndPassCode1 և respAndPassCode2 փոփոխականներին կվերագրվի տող, որը պարունակում է 304663812 isn-ով 
 // հաճախորդի քարտի "Պատասխանատուների ցուցակ" գրիդի առաջին տողում լրացված արժեքները (պատասխանատույի անվանում, անձնագրի կոդ)։ 
@@ -211,14 +211,15 @@ string respAndPassCode2 = cli2.RESP.RowCount > 0 ?
 
 ** Աշխատանք նկարների հետ **
 ```c#
-Բերված օրինակում բեռնվում է 102711 isn -ով հաճախորդի քարտը կից նկարների հետ։ Այնուհետև ավելացվում է cliPhoto անունով պարամետր, որը տպվող ձևի ստեղծման ժամանակ կփոխարինվի հաճախորդի քարտում "Ֆոտոնկար" դաշտում ներբեռնված նկարով։
-...
+// Բերված օրինակում բեռնվում է 102711 isn -ով հաճախորդի քարտը կից նկարների հետ։ Այնուհետև ավելացվում է cliPhoto անունով
+// պարամետր, որը տպվող ձևի ստեղծման ժամանակ կփոխարինվի հաճախորդի քարտում "Ֆոտոնկար" դաշտում ներբեռնված նկարով։
+// ...
  public async Task Calculate(TemplateSubstitutionExtenderArgs templateSubstitutionArgs)
 {
    Client clientDocument = (Client)  await proxyService.LoadDoc(102711, loadImagesAndMemos: true);
    var imageBytes = clientDocument.PICTURE1;
    templateSubstitutionArgs.Substitution.ImageSubstitutions.Add("cliPhoto", file: imageBytes,width:500, height: 550);
- ...
+// ...
 ```
 
 
