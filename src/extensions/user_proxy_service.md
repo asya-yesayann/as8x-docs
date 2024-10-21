@@ -211,13 +211,14 @@ string respAndPassCode2 = cli2.RESP.RowCount > 0 ?
 
 ** Աշխատանք նկարների հետ **
 ```c#
-Բերված օրինակում 
-  public async Task Calculate(TemplateSubstitutionExtenderArgs templateSubstitutionArgs)
-  {
-     Client clientDocument = await proxyService.LoadClientDoc("00000110", loadImagesAndMemos: true);
-     var imageBytes = clientDocument.PICTURE2;
-     templateSubstitutionArgs.Substitution.ImageSubstitutions.Add("cliPhoto", file: imageBytes,width:500, height: 550);
-    ...
+Բերված օրինակում բեռնվում է 102711 isn -ով հաճախորդի քարտը կից նկարների հետ։ Այնուհետև ավելացվում է cliPhoto անունով պարամետր, որը տպվող ձևի ստեղծման ժամանակ կփոխարինվի հաճախորդի քարտում "Ֆոտոնկար" դաշտում ներբեռնված նկարով։
+...
+ public async Task Calculate(TemplateSubstitutionExtenderArgs templateSubstitutionArgs)
+{
+   Client clientDocument = (Client)  await proxyService.LoadDoc(102711, loadImagesAndMemos: true);
+   var imageBytes = clientDocument.PICTURE1;
+   templateSubstitutionArgs.Substitution.ImageSubstitutions.Add("cliPhoto", file: imageBytes,width:500, height: 550);
+ ...
 ```
 
 
