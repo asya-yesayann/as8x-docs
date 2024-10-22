@@ -37,7 +37,7 @@ public Task<MessageBoxResult> MessageBox(string prompt, MessageBoxButtons messag
                                          string title, TimeSpan timeSpanToShow, int? id = null)
 ```
 
-Կա հնարավորություն [DataSource](../definitions/ds.md), [DPR](../definitions/dpr.md), [Document](../definitions/document.md)-ի կատարման ընթացքում 8X սերվիսից 4X կամ 8X կլիենտին հաղորդագրություն ուղարկելու, հաղորդագրության պատասխանը ստանալու և այն սերվիսում մշակելու նպատակով։
+Այս մեթոդը օգտագործվում է [DataSource](../definitions/ds.md), [DPR](../definitions/dpr.md), [Document](../definitions/document.md)-ի կատարման ընթացքում 8X սերվիսից 4X կամ 8X կլիենտին հաղորդագրություն ուղարկելու, հաղորդագրության պատասխանը ստանալու և այն սերվիսում մշակելու համար։
 
 **Պարամետրեր**
 
@@ -57,6 +57,8 @@ public Task<MessageBoxResult> MessageBox(string prompt, MessageBoxButtons messag
                                          MessageBoxDefaultButton messageBoxDefaultButton = MessageBoxDefaultButton.DefaultButton1,
                                          string title = "", int millisecondsToShow = 15000, int? id = null)
 ```
+
+Այս մեթոդը օգտագործվում է [DataSource](../definitions/ds.md), [DPR](../definitions/dpr.md), [Document](../definitions/document.md)-ի կատարման ընթացքում 8X սերվիսից 4X կամ 8X կլիենտին հաղորդագրություն ուղարկելու, հաղորդագրության պատասխանը ստանալու և այն սերվիսում մշակելու համար։
 
 **Պարամետրեր**
 
