@@ -249,7 +249,7 @@ string respAndPassCode2 = cli2.RESP.RowCount > 0 ?
 // Օրինակում ստանում ենք 102711 isn-ով հաճախորդի քարտի "Տեքստ" էջի նույնանուն դաշտում լրացված տեքստը։
 
 Client clientDocument = (Client)  await proxyService.LoadDoc(102711, loadImagesAndMemos: true);
-string memo = clientDocument.GetMemo("MEMO");
+string memo = clientDocument.GetMemo("INFO");
 ```
 
 
