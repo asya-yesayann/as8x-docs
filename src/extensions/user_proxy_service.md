@@ -172,6 +172,7 @@ decimal sum = UserProxyService.AsCCur("15.86")
 
 
 ### LoadDoc
+---
 
 ```c#
 public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.Full,
@@ -254,6 +255,7 @@ string memo = clientDocument.GetMemo("INFO");
 
 
 ### LoadDocFromFolder
+---
 
 ```c#
 public Task<Document> LoadDocFromFolder(string folder, string key,
@@ -297,7 +299,8 @@ public Task<Document> LoadContractDoc(string agrType, string agrCode, string agr
 > ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
 <br>
 
-## LoadClientDoc
+### LoadClientDoc
+---
 
 ```c#
 public Task<Client> LoadClientDoc(string clientCode)
@@ -311,7 +314,8 @@ public Task<Client> LoadClientDoc(string clientCode)
 
 
 
-## LoadClientDescByISN
+### LoadClientDescByISN
+---
 
 ```c#
 public Task<ClientDesc> LoadClientDescByISN(int isn)
@@ -325,7 +329,8 @@ public Task<ClientDesc> LoadClientDescByISN(int isn)
 
 
 
-## LoadClientDescByCode
+### LoadClientDescByCode
+---
 ```c#
 public Task<ClientDesc> LoadClientDescByCode(string code)
 ```
@@ -341,10 +346,8 @@ ClientDesc cl = await proxyService.LoadClientDescByCode("00006473");
 proxyService.TryAddAtomic("param1", () => cl.Tel.ToString(), templateSubstitutionArgs);
 ```
 
-
-
-## LoadClientDocRObyISN
- 
+### LoadClientDocRObyISN
+--- 
 ```c#
 public Task<ClientRO> LoadClientDocRObyISN(int isn)
 ```
@@ -357,8 +360,8 @@ public Task<ClientRO> LoadClientDocRObyISN(int isn)
 
 
 
-## LoadClientDocROByCode
- 
+### LoadClientDocROByCode
+--- 
 ```c#
 public Task<ClientRO> LoadClientDocROByCode(string cliCode)
 ```
@@ -370,9 +373,8 @@ public Task<ClientRO> LoadClientDocROByCode(string cliCode)
 * `code`- Պարտադիր։ Հաճախորդի կոդը։
 
 
-
-## GetClientISN
-
+### GetClientISN
+---
 ```c#
 public Task<int> GetClientISN(string cliCode)
 ```
@@ -383,11 +385,8 @@ public Task<int> GetClientISN(string cliCode)
 
 * `cliCode`- Պարտադիր։ Հաճախորդի կոդը։
 
-
-
-
-## GetClientISNByAcc
-
+### GetClientISNByAcc
+---
 ```c#
 public Task<int> GetClientISNByAcc(string acc)
 ```
@@ -398,10 +397,8 @@ public Task<int> GetClientISNByAcc(string acc)
 
 * `acc`- Պարտադիր։ Հաճախորդի հաշիվեհամարներից որևէ մեկը։
 
-
-
-## GetClientFullName
-
+### GetClientFullName
+---
 ```c#
 public Task<string> GetClientFullName(string firstName, string lastName, string ptronymic, bool arm)
 ```
@@ -416,9 +413,8 @@ public Task<string> GetClientFullName(string firstName, string lastName, string 
 * `arm`- Պարտադիր։ Անվանումը հայերեն է։ Այս դեպքում անուն, ազգանունի, հայրանունի հերթականությունը կորոշվի CLINAMEORDER պարամետրով կատարված կարգավորմամբ։ **false** արժեքը օգտագոևծվում է այն դեպքում երբ անվանումը անգլերեն է։ Այս դեպքում անվան հերթականությունը կորորշվի CLINAMEORDERENG պարամետրով։ 
 
 
-
-## GetClientAMDAcc
-
+### GetClientAMDAcc
+---
 ```c#
 public Task<string> GetClientAMDAcc(string cliCode)
 ```
@@ -431,8 +427,8 @@ public Task<string> GetClientAMDAcc(string cliCode)
 
 
 
-## GetClientRezJurVolortByAccount
-
+### GetClientRezJurVolortByAccount
+---
 ```c#
 public Task<(string residence, string jurState, string volort)>GetClientRezJurVolortByAccount(string accCode)
 ```
@@ -445,8 +441,8 @@ public Task<(string residence, string jurState, string volort)>GetClientRezJurVo
 
 
 
-## GetCliContractNamesByISN
-
+### GetCliContractNamesByISN
+---
 ```c#
 public async Task<string> GetCliContractNamesByISN(int cliISN, bool showClosed = false)
 ```
@@ -458,10 +454,8 @@ public async Task<string> GetCliContractNamesByISN(int cliISN, bool showClosed =
 * `cliISN`- Պարտադիր։ Հաճախորդի քարտի ISN -ը։
 * `showClosed` - Ոչ պարտադիր։ Ցույց տալ նաև փակվածները։
 
-  
-
-## GetCliContractNamesByCode
-
+### GetCliContractNamesByCode
+---
 ```c#
 public async Task<string> GetCliContractNamesByCode(string cliCode, bool showClosed = false)
 ```
@@ -475,8 +469,8 @@ public async Task<string> GetCliContractNamesByCode(string cliCode, bool showClo
 
 
 
-## LoadAccountDescByIsn
-
+### LoadAccountDescByIsn
+---
 ```c#
 public Task<AccountDesc> LoadAccountDescByIsn(int isn, bool throwException = false)
 ```
@@ -490,8 +484,8 @@ public Task<AccountDesc> LoadAccountDescByIsn(int isn, bool throwException = fal
 
 
 
-## LoadAccountDescByCode
-
+### LoadAccountDescByCode
+---
 ```c#
 public Task<AccountDesc> LoadAccountDescByCode(string code, bool throwException = false)
 ```
@@ -504,10 +498,8 @@ public Task<AccountDesc> LoadAccountDescByCode(string code, bool throwException 
 * `throwException`- Ոչ պարտադիր։ Առաջացնել սխալ հաշվեհամարի բացակության դեպքում։ Լռությամբ՝ **false**։
 
 
-
-
-## LoadShortAccountDescByIsn
-
+### LoadShortAccountDescByIsn
+---
 ```c#
 public Task<AccountDescShort> LoadShortAccountDescByIsn(int isn, bool throwException = false)
 ```
@@ -519,10 +511,8 @@ public Task<AccountDescShort> LoadShortAccountDescByIsn(int isn, bool throwExcep
 * `isn`- Պարտադիր։ Հաշվի ISN։
 * `throwException` -  Ոչ պարտադիր։ Առաջացնել սխալ հաշվի բացակության դեպքում։ Լռությամբ՝ **false**։
 
-
-
-## LoadShortAccountDescByCode
-
+### LoadShortAccountDescByCode
+---
 ```c#
 public Task<AccountDescShort> LoadShortAccountDescByCode(string code, bool throwException = false)
 ```
@@ -535,8 +525,8 @@ public Task<AccountDescShort> LoadShortAccountDescByCode(string code, bool throw
 * `throwException` - Ոչ պարտադիր։ Առաջացնել սխալ հաշվի բացակության դեպքում։ Լռությամբ՝ **false**։
 
 
-## LoadAccountDoc
-
+### LoadAccountDoc
+---
 ```c#
 public Task<Account> LoadAccountDoc(string accCode)
 ```
@@ -549,8 +539,8 @@ public Task<Account> LoadAccountDoc(string accCode)
 
 
 
-## LoadNBAccountDescByCode
-
+### LoadNBAccountDescByCode
+---
 ```c#
 public Task<NBAccountDesc> LoadNBAccountDescByCode(string code, bool throwException = false)
 ```
@@ -562,10 +552,8 @@ public Task<NBAccountDesc> LoadNBAccountDescByCode(string code, bool throwExcept
 * `code`- Պարտադիր։ Ետհաշվեկշռային հաշվի համար։ Ետհաշվեկշռային հաշվի համարը պետք փոխանցել հետևյալ ֆորմատով՝ "հաշվային_պլանի_հաշիվ/անալիտիկ_հաշիվ"։ Օրինակ՝ "8000001/803813"
 * `throwException` - Ոչ պատադիր։ Առաջացնել սխալ հաշվի բավակայության դեպքում։ Լռությամբ՝ **false**: 
 
-
-
-## LoadNBAccountDesc
-
+### LoadNBAccountDesc
+---
 ```c#
 public Task<NBAccountDesc> LoadNBAccountDesc(int isn, bool throwException = false)
 ```
@@ -579,8 +567,8 @@ public Task<NBAccountDesc> LoadNBAccountDesc(int isn, bool throwException = fals
 
 
 
-## GetAccountISN
-
+### GetAccountISN
+---
 ```c#
 public Task<int> GetAccountISN(string acc)
 ```
@@ -593,8 +581,8 @@ public Task<int> GetAccountISN(string acc)
 
 
 
-## GetCliCodeByAcc
-
+### GetCliCodeByAcc
+---
 ```c#
 public Task<string> GetCliCodeByAcc(string account)
 ```
@@ -607,8 +595,8 @@ public Task<string> GetCliCodeByAcc(string account)
 
 
 
-## IsKasAcc
-
+### IsKasAcc
+---
 ```c#
 public Task<bool> IsKasAcc(string account)
 ```
@@ -620,9 +608,8 @@ public Task<bool> IsKasAcc(string account)
 * `account`- Պարտադիր։ Հաշվի համար։
 
 
-
-## IsIncExpAcc
-
+### IsIncExpAcc
+---
 ```c#
 public Task<bool> IsIncExpAcc(string account)
 ```
@@ -634,9 +621,8 @@ public Task<bool> IsIncExpAcc(string account)
 * `account`- Պարտադիր։ Հաշվի համար։
 
 
-
-## CalculateAtmInd
-
+### CalculateAtmInd
+---
 ```c#
 public decimal CalculateAtmInd(string codFormList, DateTime dateFirst, DateTime dateLast, string acsBranch = "",
         string skv = "", string calcCurCode = "", int precision = 2)
@@ -655,8 +641,8 @@ public decimal CalculateAtmInd(string codFormList, DateTime dateFirst, DateTime 
 * `precision`- Ոչ պարտադիր։ Լռությամբ՝ 2։
 
 
-## CalculateOlapFormula
-
+### CalculateOlapFormula
+---
 ```c#
 public decimal CalculateOlapFormula(string codFormList, string branch, DateTime dateFirst, DateTime dateLast,
                 string skv = "", string calcCurCode = "", int precision = 2)
@@ -676,7 +662,8 @@ public decimal CalculateOlapFormula(string codFormList, string branch, DateTime 
 
 
 
-## Udf
+### Udf
+---
 ```c#
 public decimal Udf(string codeForm, params object[] @params)
 ```
@@ -695,10 +682,8 @@ public decimal Udf(string codeForm, params object[] @params)
 decimal agrs = proxyService.Udf("AvRem", DateTime.Parse("2024-07-01"), DateTime.Parse("2024-07-31"),  "01", "006");
 ```
 
-  
-
-## TreeElProp
-
+### TreeElProp
+---
 ```c#
 public Task<TreeElement> TreeElProp(string treeId, string key, bool useCache = true)
 ```
@@ -719,8 +704,8 @@ string DistrName = (await proxyService.TreeElProp("LRDistr", "001")).Comment;
 
 
 
-## TreeElPropComment
-
+### TreeElPropComment
+---
 ```c#
 public async Task<string> TreeElPropComment(string treeId, string key, bool useCache = true)
 ```
@@ -734,8 +719,8 @@ public async Task<string> TreeElPropComment(string treeId, string key, bool useC
 * `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true: Լռությամբ քեշի թարմացումը տեղի է ունենում 10 րոպեն մեկ, սակայն այդ ժամանակահատվածը հնարավոր է փոփոխել խմբագրելով appsettings.json ֆայլը (CacheRefreshPeriods պարամետր)։ false արժեքի դեպքում տվյալները կվերցվեն տվյալների բազայից։
 
 
-## TreeElPropEComment
-
+### TreeElPropEComment
+---
 ```c#
 public async Task<string> TreeElPropComment(string treeId, string key, bool useCache = true)
 ```
@@ -749,8 +734,8 @@ public async Task<string> TreeElPropComment(string treeId, string key, bool useC
 * `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ քեշի թարմացումը տեղի է ունենում 10 րոպեն մեկ, սակայն այդ ժամանակահատվածը հնարավոր է փոփոխել խմբագրելով appsettings.json ֆայլը (CacheRefreshPeriods պարամետր)։ false արժեքի դեպքում տվյալները կվերցվեն տվյալների բազայից։
 
 
-## FolderElProp
-
+### FolderElProp
+---
 ```c#
 public Task<FolderElement> FolderElProp(string folderId, string key, bool noLock = true)
 ```
@@ -771,8 +756,8 @@ int schedISN = (await proxyService.FolderElProp("Agr.243335599", "C1TSDtUn")).IS
 
 
 
-## FolderElPropSpec
-
+### FolderElPropSpec
+---
 ```c#
 public async Task<string> FolderElPropSpec(string folderId, string key, bool noLock = true)
 ```
@@ -788,8 +773,8 @@ public async Task<string> FolderElPropSpec(string folderId, string key, bool noL
 
 
 
-## LoadContractDescByISN
-
+### LoadContractDescByISN
+---
 ```c#
 public Task<ContractDesc> LoadContractDescByISN(int isn)
 ```
@@ -801,8 +786,8 @@ public Task<ContractDesc> LoadContractDescByISN(int isn)
 
 
 
-## LoadContractDescByCode
-
+### LoadContractDescByCode
+---
 ```c#
 public Task<ContractDesc> LoadContractDescByCode(string agrType, string code)
 ```
@@ -819,8 +804,8 @@ public Task<ContractDesc> LoadContractDescByCode(string agrType, string code)
 
 
 
-## GetAgrRem
-
+### GetAgrRem
+---
 ```c#
 public async Task<decimal> GetAgrRem(int isn, Rem accType, DateTime requestDate, string agrTypeName = null, string sourceCur = "", string targetCur  = "")
 ```
@@ -843,8 +828,8 @@ decimal agrRem = await proxyService.GetAgrRem(653013562, Subsystems.Enums.Accoun
 
 
 
-## GetAgrTurn
-
+### GetAgrTurn
+---
 ```c#
 public Task<decimal> GetAgrTurn(int isn, DateTime startDate, DateTime endDate, Rem accType,
                                                string accOp, string dbCr, string opCur = "", string convertCur = "")
@@ -871,8 +856,8 @@ decimal agrRem = await proxyService.GetAgrTurn(812735354, DateTime.Parse("2009-0
 
 
 
-## GetSSFactValueDate GetSSFactValueString GetSSFactValueInt GetSSFactValueDecimal GetSSFactValuePercent GetSSFactValueStringDecimal
-
+### GetSSFactValueDate GetSSFactValueString GetSSFactValueInt GetSSFactValueDecimal GetSSFactValuePercent GetSSFactValueStringDecimal
+---
 ```c#
 public Task<string> GetSSFactValueString(int isn, NoRem accType, string accOp, DateTime requestDate)
 
@@ -901,8 +886,8 @@ deciaml perc = (await proxyService.GetSSFactValuePercent(812735354, Subsystems.E
 
 
 
-## GetAgrFactValueDate GetAgrFactValuePercent GetAgrFactValueDecimal GetAgrFactValueString
-
+### GetAgrFactValueDate GetAgrFactValuePercent GetAgrFactValueDecimal GetAgrFactValueString
+---
 ```c#
 public Task<DateTime?> GetAgrFactValueDate(int isn, NoRem accType, string accOp, DateTime requestDate, MinMax minMax, bool 
                                                   onlyOpenChildren, string agrTypeName)
@@ -936,8 +921,8 @@ deciaml perc = ( await proxyService.GetAgrFactValuePercent(307245031, Subsystems
 
 
 
-## GetRemSS
-
+### GetRemSS
+---
 ```c#
 public Task<decimal> GetRemSS(int isn, Rem accType, DateTime requestDate)
 ```
@@ -952,7 +937,8 @@ public Task<decimal> GetRemSS(int isn, Rem accType, DateTime requestDate)
 
 
 
-## GetRemHI2
+### GetRemHI2
+---
 ```c#
   public Task<(decimal CRem, decimal NCRem)> GetRemHI2(string accounting, int isn = -1,
                                                   int isnGl = -1, DateTime? remDate = null)
@@ -983,8 +969,8 @@ HI2 / HIREST2 աղյուսակներում  fCURSUM, fSUM / fCURREM, fREM  դա�
 
 <br>
 
-## SSLastOpDate
-
+### SSLastOpDate
+---
 ```c#
   public Task<(DateTime? Date, string Time)> SSLastOpDate(int isn, NoRem accType, DateTime requestDate,
                                                               string accOp = "", int baseISN = -1)
@@ -1025,8 +1011,8 @@ DUA - Պայմանագրի ժամկետ, PNE - Բանկի արդյունավետ
     DateTime? opDate3 = (await proxyService.SSLastOpDate(812735354, NoRem.N0, DateTime.Parse("2024-01-28"), "PAG")).Item1;
  
 ```
-## AgrSchedule
-
+### AgrSchedule
+---
 ```c#
 public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, ScheduleValueType valueType, ScheduleBasis schKind = ScheduleBasis.Any)
 ```
@@ -1094,8 +1080,8 @@ public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, Sch
 
 ```
 
-## GetFutPerDbt
-
+### GetFutPerDbt
+---
 ```c#
 public Task<decimal> GetFutPerDbt(int agrISN, DateTime dateStart, DateTime dateEnd)
 ```
@@ -1108,10 +1094,8 @@ public Task<decimal> GetFutPerDbt(int agrISN, DateTime dateStart, DateTime dateE
 * `dateStart` - Պարտադիր։ Սկզբի ամսաթիվ։
 * `dateEnd` - Պարտադիր։ Վերջի ամսաթիվ։
 
-
-
-## GetFutServFeeDbt
-
+### GetFutServFeeDbt
+---
 ```c#
  public Task<decimal> GetFutServFeeDbt(int agrISN, DateTime begDate, DateTime endDate)
 ```
@@ -1125,8 +1109,8 @@ public Task<decimal> GetFutPerDbt(int agrISN, DateTime dateStart, DateTime dateE
 * `dateEnd` - Պարտադիր։ Վերջի ամսաթիվ։
 
 
-
-## GetPCardData
+### GetPCardData
+---
 ```c#
  public Task<Dictionary<string, object>> GetPCardData(string fieldList,
                                  string cardNum = "",
@@ -1159,7 +1143,8 @@ await proxyService.TryAddAtomicAsync("param2", async () => (string) pcard["fCLIC
 
 ```
 
-## GetPCardDoc
+### GetPCardDoc
+---
 ```c#
 public Task<Card> GetPCardDoc(string cardNum = "", string cardAcc = "", bool throwException = true)
 ```
@@ -1172,8 +1157,8 @@ public Task<Card> GetPCardDoc(string cardNum = "", string cardAcc = "", bool thr
 * `cardAcc` - Ոչ պարտադիր։ Քարտային հաշիվ։
 * `throwException` - Ոչ պարտադիր։ Բերել սխալի հաղորդագրություն փնտրվող պայմաններով քարտի բացակայության դեպքում։ Լռությամբ true:
 
-## AsCCur
-
+### AsCCur
+---
 ```c#
 public static decimal AsCCur(string stringValue)
 ```
@@ -1187,8 +1172,8 @@ public static decimal AsCCur(string stringValue)
 decimal cur = UserProxyService.AsCCur("158832.26");
 ```
 
-## DealRate
-
+### DealRate
+---
 ```c#
 public decimal DealRate(string curCode1, string curCode2, string pusa, string cash, DateTime calcdate, string sMaxCreationDate = "")
 ```
@@ -1214,8 +1199,8 @@ decimal NonCashSellRate = proxyService.DealRate("001", "000", "2", "1", DateTime
 
 ```
 
-## SumInWordsAsync
-
+### SumInWordsAsync
+---
 ```c#
 public async Task<string> SumInWordsAsync(decimal value, string integerCurrency = "", string precisionCurrency = "", bool toUpperFirstChar = true, bool isArmenian = true, bool isUnicode = false)
 ```
@@ -1236,8 +1221,8 @@ public async Task<string> SumInWordsAsync(decimal value, string integerCurrency 
 string sumInW = await proxyService.SumInWordsAsync(15.66m, "Dram", "Luma", isArmenian: false, isUnicode: false);
 ```
 
-## WKDATE
-
+### WKDATE
+---
 ```c#
 public DateTime WKDATE()
 ```
@@ -1248,8 +1233,8 @@ public DateTime WKDATE()
 DateTime dt = proxyService.WKDATE();
 ```
 
-## CURRENT_DATE
-
+### CURRENT_DATE
+---
 ```c#
 public DateTime CURRENT_DATE()
 ```
@@ -1261,7 +1246,7 @@ DateTime dt = proxyService.CURRENT_DATE();
 ```
 
 ## WEEK_BEGIN
-
+---
 ```c#
 public DateTime WEEK_BEGIN(object parDate = null)
 ```
@@ -1276,9 +1261,8 @@ public DateTime WEEK_BEGIN(object parDate = null)
 DateTime dt = proxyService.WEEK_BEGIN();
 ```
 
-
-## WEEK_END
-
+### WEEK_END
+---
 ```c#
 public DateTime WEEK_END(object parDate = null)
 ```
@@ -1294,8 +1278,8 @@ public DateTime WEEK_END(object parDate = null)
 DateTime dt = proxyService.WEEK_END();
 ```
 
-## MONTH_BEGIN 
-
+### MONTH_BEGIN 
+---
 ```c#
 public DateTime MONTH_BEGIN(object parDate = null)
 ```
@@ -1312,6 +1296,7 @@ DateTime dt = proxyService.MONTH_BEGIN(DateTime.Parse("2024-08-17"));
 ```
 
 ## MONTH_END 
+---
 ```c#
 public DateTime MONTH_END(object parDate = null)
 ```
@@ -1327,7 +1312,8 @@ public DateTime MONTH_END(object parDate = null)
 DateTime dt = proxyService.MONTH_END(DateTime.Parse("2024-08-17"));
 ```
 
-## PREVIOUS_MONTH_BEGIN
+### PREVIOUS_MONTH_BEGIN
+---
 ```c#
 public DateTime PREVIOUS_MONTH_BEGIN(object parDate = null)
 ```
@@ -1342,7 +1328,8 @@ public DateTime PREVIOUS_MONTH_BEGIN(object parDate = null)
 DateTime dt = proxyService.PREVIOUS_MONTH_BEGIN(DateTime.Parse("2024-08-17"));
 ```
 
-## PREVIOUS_MONTH_END
+### PREVIOUS_MONTH_END
+---
 ```c#
 public DateTime PREVIOUS_MONTH_END(object parDate = null)
 ```
@@ -1357,7 +1344,8 @@ public DateTime PREVIOUS_MONTH_END(object parDate = null)
 DateTime dt = proxyService.PREVIOUS_MONTH_END(DateTime.Parse("2024-08-17"));
 ```
 
-## QUARTE_BEGIN
+### QUARTE_BEGIN
+---
 ```c#
 public DateTime QUARTE_BEGIN(object parDate = null)
 ```
@@ -1372,7 +1360,8 @@ public DateTime QUARTE_BEGIN(object parDate = null)
 DateTime dt = proxyService.QUARTE_BEGIN(DateTime.Parse("2024-08-17"));
 ```
 
-## QUARTE_END
+### QUARTE_END
+---
 ```c#
 public DateTime QUARTE_END(object parDate = null)
 ```
@@ -1387,7 +1376,8 @@ public DateTime QUARTE_END(object parDate = null)
 DateTime dt = proxyService.QUARTE_END(DateTime.Parse("2024-08-17"));
 ```
 
-## PREVIOUS_QUARTE_BEGIN
+### PREVIOUS_QUARTE_BEGIN
+---
 ```c#
 public DateTime PREVIOUS_QUARTE_BEGIN(object parDate = null)
 ```
@@ -1402,7 +1392,8 @@ public DateTime PREVIOUS_QUARTE_BEGIN(object parDate = null)
 DateTime dt = proxyService.PREVIOUS_QUARTE_BEGIN(DateTime.Parse("2024-08-17"));
 ```
 
-## PREVIOUS_QUARTE_END
+### PREVIOUS_QUARTE_END
+---
 ```c#
 public DateTime PREVIOUS_QUARTE_END(object parDate = null)
 ```
@@ -1417,7 +1408,8 @@ public DateTime PREVIOUS_QUARTE_END(object parDate = null)
 DateTime dt = proxyService.PREVIOUS_QUARTE_END(DateTime.Parse("2024-08-17"));
 ```
 
-## YEAR_BEGIN
+### YEAR_BEGIN
+---
 ```c#
 public DateTime YEAR_BEGIN(object parDate = null)
 ```
@@ -1432,7 +1424,8 @@ public DateTime YEAR_BEGIN(object parDate = null)
 DateTime dt = proxyService.YEAR_BEGIN(DateTime.Parse("2024-08-17"));
 ```
 
-## GetExchangeRate
+### GetExchangeRate
+---
 ```c#
 public async Task<decimal> GetExchangeRate(string codCurrency, DateTime date, DateTime? maxCreationDate = null)
 ```
@@ -1448,18 +1441,20 @@ public async Task<decimal> GetExchangeRate(string codCurrency, DateTime date, Da
 decimal cur = await proxyService.GetExchangeRate("001", DateTime.Parse("2024-09-06"), DateTime.Parse("2024-09-06 15:12"));
 ```
 
-## SERVER_DATE
+### SERVER_DATE
+---
 ```c#
 public async Task<DateTime> SERVER_DATE()
 ```
 
 Վերադարձնում է տվյալների բազաների սերվերի անվանումը։
-
+---
 ```c#
 DateTime dt = await proxyService.SERVER_DATE();
 ```
 
 ## FormatDDMMYY FormatDDMMYYYY FormatYYYYMMDD
+---
 ```C#
 public string FormatDDMMYY(DateTime? date)
 public string FormatDDMMYYYY(DateTime? date)
@@ -1482,7 +1477,8 @@ string dt2 = proxyService.FormatDDMMYYYY(null);
 string dt3 = proxyService.FormatYYYYMMDD(dtObj);
 ```
 
-## CurrencyFormat
+### CurrencyFormat
+---
 ```c#
 public string CurrencyFormat(decimal value, short length = 20, short precision = 2)
 ```
@@ -1500,7 +1496,8 @@ decimal amount = 1500.266m;
 string st = proxyService.CurrencyFormat(amount, precision:1);
 ```
 
-## FormatToPrint
+### FormatToPrint
+---
 ```c#
 public string FormatToPrint(decimal value)
 ```
@@ -1516,7 +1513,8 @@ decimal amount = 1500.266m;
 string st = proxyService.FormatToPrint(amount);
 ```
 
-## TryAddAtomicAsync TryAddAtomic
+### TryAddAtomicAsync TryAddAtomic
+---
 ```c#
 public async Task TryAddAtomicAsync(string key, Func<Task<string>> operation, TemplateSubstitutionExtenderArgs templateSubstitutionArgs)
 
@@ -1589,7 +1587,8 @@ TryAddAtomic ֆունկցիան օգտագործվում է այն դեպքու�
 }
 ```
 
-## InList
+### InList
+---
 ```c#
 public static bool InList(string sValue, params string[] lValues)
 public static bool InList(string sValue, IEnumerable<string> lValues)
@@ -1607,7 +1606,8 @@ bool abcExist = UserProxyService.InList("abc", "ab", "cd", "abc");
 bool abcExist = UserProxyService.InList("abc", ["ab", "cd", "abc"]);
 ```
 
-## GetBranchParam
+### GetBranchParam
+---
 ```c#
 public Task<string> GetBranchParam(string paramCode, string branchCode = "")
 ```
@@ -1626,7 +1626,8 @@ string accountantName = await proxyService.GetBranchParam("CHIEFACCTNT", "B01");
 ```
 
 
-## AcName AcEName
+### AcName AcEName
+---
 ```c#
 public async Task<string> AcName(string code)
 public async Task<string> AcEName(string code)
@@ -1642,8 +1643,8 @@ public async Task<string> AcEName(string code)
 string accName = await proxyService.AcName("004438799"); 
 ```
 
-## LoadAccountDescByCode
-
+### LoadAccountDescByCode
+---
 ```c#
 public Task<AccountDesc> LoadAccountDescByCode(string code, bool throwException = false)
 ```
@@ -1660,7 +1661,8 @@ public Task<AccountDesc> LoadAccountDescByCode(string code, bool throwException 
 AccountDesc acc= await proxyService.LoadAccountDescByCode("004438700", true);
 ```
 
-## CliName CliEName
+### CliName CliEName
+---
 ```c#
 public async Task<string> CliName(string code)
 public async Task<string> CliEName(string code)
@@ -1676,7 +1678,8 @@ public async Task<string> CliEName(string code)
 string clName = await proxyService.CliName("00006473");
 ```
 
-## GetAccCodeByAgrISN
+### GetAccCodeByAgrISN
+---
 ```c#
 public Task<string> GetAccCodeByAgrISN(int agrISN, string accName, string agrType = "", string agrRisk = "", bool accFormat = true)
 ```
@@ -1700,7 +1703,8 @@ string acc = await proxyService.GetAccCodeByAgrISN(253711148, "ACCAGR","C");
 ```
 
 
-## GetPerSumPayDate, GetAgrSumPayDate
+### GetPerSumPayDate, GetAgrSumPayDate
+---
 ```c#
 public async Task<DateTime?> GetAgrSumPayDate(bool previous, int agrIsn, DateTime requestDate)
 public async Task<DateTime?> GetPerSumPayDate(bool previous, int agrIsn, DateTime requestDate)
@@ -1721,7 +1725,8 @@ DateTime? dt2 = await proxyService.GetPerSumPayDate(false, 1081528567, DateTime.
 ```
 
 
-## GetCollateralISNsByAgrNum
+### GetCollateralISNsByAgrNum
+---
 ``` c#
 public Task<List<int>> GetCollateralISNsByAgrNum(string agreemCode, string agreemType)
 ```
@@ -1736,7 +1741,8 @@ public Task<List<int>> GetCollateralISNsByAgrNum(string agreemCode, string agree
 // Ստանում ենք TV-8900 վարկային պայմանագրին կապակցված գրավի և երաշխավորությունների պայմանագրերի ISN-ները:
 List<int> cISNs = await proxyService.GetCollateralISNsByAgrNum("TV-8900", "C");
 ```
-## GetLinkedMortSum, GetLinkedGuarSum
+### GetLinkedMortSum, GetLinkedGuarSum
+---
 ```c#
 public async Task<decimal> GetLinkedMortSum(int agrISN, DateTime date, string agrType, string returnCurr)
 public async Task<decimal> GetLinkedGuarSum(int agrISN, DateTime date, string agrType, string returnCurr)
@@ -1759,7 +1765,8 @@ decimal am2 = await proxyService.GetLinkedGuarSum(253711148, DateTime.Parse("202
 ```
 
 
-## GetRating
+### GetRating
+---
 ```c#
 public Task<string> GetRating(string clientCode, DateTime dateIn, string operation)
 ```
@@ -1791,7 +1798,8 @@ string mdsr = await proxyService.GetRating("00007776", DateTime.Parse("2024-09-1
 
 ```
 
-## GetRatingCode
+### GetRatingCode
+---
 ```c#
 public Task<string> GetRatingCode(string clientCode, DateTime dateIn, string operation)
 ```
@@ -1810,7 +1818,8 @@ public Task<string> GetRatingCode(string clientCode, DateTime dateIn, string ope
  
 string mdsr = await proxyService.GetRating("00007776", DateTime.Parse("2024-09-19"), "MDS");
 ```
-## ExistsContractByCliISN, ExistsContractByCliCode
+### ExistsContractByCliISN, ExistsContractByCliCode
+---
 ```c#
 public bool ExistsContractByCliISN(int cliISN, string contractKey, bool checkClosed = false)
 public async Task<bool> ExistsContractByCliCode(string cliCode, string contractKey, bool checkClosed = false)
@@ -1835,8 +1844,8 @@ bool agrExist = proxyService.ExistsContractByCliISN(898692403, "N2");
 bool agrExist2 = await proxyService.ExistsContractByCliCode("00101953", "N2");     
 ```
 
-## GetAgrTypeByISN
-
+### GetAgrTypeByISN
+---
 ```c#
 public string GetAgrTypeByISN(int docISN)
 ```
@@ -1851,7 +1860,8 @@ public string GetAgrTypeByISN(int docISN)
 string agType = proxyService.GetAgrTypeByISN(607802582);
 ```
 
-## GetAllDayAgrJ
+### GetAllDayAgrJ
+---
 ```c#
 public Task<short> GetAllDayAgrJ(int agrIsn, DateTime getDate)
 ```
@@ -1868,8 +1878,8 @@ public Task<short> GetAllDayAgrJ(int agrIsn, DateTime getDate)
 short agrJ = await proxyService.GetAllDayAgrJ(905721123, DateTime.Now);
 ```
 
-## GetAllDayJCount
-
+### GetAllDayJCount
+---
 ```c#
 public Task<short> GetAllDayJCount(int agrIsn, DateTime repDate)
 ```
@@ -1885,7 +1895,8 @@ public Task<short> GetAllDayJCount(int agrIsn, DateTime repDate)
 short agrJc = await proxyService.GetAllDayJCount(905721123, DateTime.Now); 
 ```
 
-## GetDayAgrJ
+### GetDayAgrJ
+---
 ```c#
 public async Task<short> GetDayAgrJ(int agrIsn, string agrType, DateTime getDate)
 ```
@@ -1902,7 +1913,8 @@ public async Task<short> GetDayAgrJ(int agrIsn, string agrType, DateTime getDate
 short overdDays = await proxyService.GetDayAgrJ(815929352,"", DateTime.Parse("2024-10-15")); 
 ```
 
-## GetDayPerJ
+### GetDayPerJ
+---
 ```c#
 public async Task<short> GetDayPerJ(int agrIsn, DateTime getDate)
 ```
@@ -1917,7 +1929,8 @@ public async Task<short> GetDayPerJ(int agrIsn, DateTime getDate)
 // Հաշվարկվում է 836420323 isn-ով պայմանագրի գծով տոկոսների ժամկետանց օրերի քանակը ընթացիկ ամսաթվի դրությամբ։
 short overdPerDays = await proxyService.GetDayPerJ(836420323, DateTime.Parse("2024-10-15"));
 ```
-## MaxOverdueDaysCount
+### MaxOverdueDaysCount
+---
 ```c#
 public Task<short> MaxOverdueDaysCount(int agrIsn, DateTime dateB, DateTime dateE)
 ```
@@ -1934,7 +1947,8 @@ public Task<short> MaxOverdueDaysCount(int agrIsn, DateTime dateB, DateTime date
 short maxOverd = await proxyService.MaxOverdueDaysCount(822631021, DateTime.Parse("2024-08-30"), DateTime.Parse("2025-01-15"));
 ```
 
-## GetContractISN
+### GetContractISN
+---
 ```c#
 public Task<int> GetContractISN(string agrType, string agrCode, string agrLevelCheck = "")
 ```
@@ -1954,10 +1968,11 @@ public Task<int> GetContractISN(string agrType, string agrCode, string agrLevelC
 int agIsn = await proxyService.GetContractISN("C", "AS80-001", "AGRPARENTS");
 ```
 
-## LoadClientDocRO
-
+### LoadClientDocRO
+---
 
 ## YEAR_END
+---
 ```c#
 public DateTime YEAR_END(object parDate = null)
 ```
@@ -1972,7 +1987,8 @@ public DateTime YEAR_END(object parDate = null)
 DateTime yr =  proxyService.YEAR_END(DateTime.Parse("2021-06-23"));
 ```
 
-## CurrencyName
+### CurrencyName
+---
 ```c#
 public Task<(string amName, string enName)> CurrencyName(string codCurrency)
 ```
@@ -1992,7 +2008,8 @@ curUSD - US Dollar */
 ```
 
 
-## CurrencyISOCode
+### CurrencyISOCode
+---
 ```c#
 public Task<string> CurrencyISOCode(string codCurrency)
 ```
@@ -2008,7 +2025,8 @@ public Task<string> CurrencyISOCode(string codCurrency)
 string curISO = await proxyService.CurrencyISOCode("001");
 ```
 
-## GetPerFutur
+### GetPerFutur
+---
 ```c#
 public Task<decimal> GetPerFutur(int agrIsn, DateTime requestDate, string curDefault)
 ```
@@ -2025,7 +2043,8 @@ public Task<decimal> GetPerFutur(int agrIsn, DateTime requestDate, string curDef
 decimal fPer = await proxyService.GetPerFutur(1533697979, DateTime.Parse("2024-11-18"), "000")
 ```
 
-## GetFutAgrDbt
+### GetFutAgrDbt
+---
 ```c#
  public Task<decimal> GetFutAgrDbt(int agrIsn, DateTime startDate, DateTime endDate)
 ```
@@ -2042,7 +2061,8 @@ decimal fPer = await proxyService.GetPerFutur(1533697979, DateTime.Parse("2024-1
 decimal paym = await proxyService.GetFutAgrDbt(1533697979, DateTime.Parse("2025-01-17"),DateTime.Parse("2025-02-17"));
 ```
 
-## GetPerSumJ, GetAgrSumJ
+### GetPerSumJ, GetAgrSumJ
+---
 ```c#
 public Task<(decimal OverduePerSum, decimal NotOverduePerSum)> GetPerSumJ(int agrIsn, DateTime requestDate)
 public Task<(decimal OverduePerSum, decimal NotOverduePerSum)> GetAgrSumJ(int agrIsn, DateTime requestDate)
