@@ -280,7 +280,7 @@ public Task<Document> LoadDocFromFolder(string folder, string key,
 
 
 ### LoadContractDoc
---
+---
 ```c#
 public Task<Document> LoadContractDoc(string agrType, string agrCode, string agrLevelCheck = "")
 ```
