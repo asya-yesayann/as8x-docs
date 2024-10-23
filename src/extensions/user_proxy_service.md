@@ -395,8 +395,9 @@ public Task<ClientDesc> LoadClientDescByCode(string code)
 * `code` - Պարտադիր։ Հաճախորդի կոդ։
 
 ```c#
-Օրինակում ստանում ենք 00006473 կոդով հաճախորդի հեռախոսահամարը։
-ClientDesc cl = await proxyService.LoadClientDescByCode("00006473");
+// Օրինակում ստանում ենք 00006473 կոդով հաճախորդի հեռախոսահամարը։
+
+var cl = await proxyService.LoadClientDescByCode("00006473");
 proxyService.TryAddAtomic("param1", () => cl.Tel.ToString(), templateSubstitutionArgs);
 ```
 
