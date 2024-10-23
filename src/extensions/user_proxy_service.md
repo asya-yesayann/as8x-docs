@@ -302,6 +302,7 @@ public Task<Document> LoadDocFromFolder(string folder, string key,
 տես նաև՝ 
 * [Աշխատանք փաստաթղթի աղյուսակների հետ](#Աշխատանք-փաստաթղթի-աղյուսակների-հետ) 
 * [Աշխատանք նկարների հետ](#Աշխատանք-նկարների-հետ)
+* [Աշխատանք մեմո տեսակի դաշտերի հետ](#Աշխատանք-մեմո-տեսակի-դաշտերի-հետ)
 * [Ծնող-փաստաթղթերի բեռնում](#Ծնող-փաստաթղթերի-բեռնում)
 
 
@@ -338,10 +339,6 @@ public Task<Document> LoadContractDoc(string agrType, string agrCode, string agr
   var agr = await proxyService.LoadContractDoc("C1", "TV2446");
   decimal agrAmount = (decimal) agr["SUMMA"];
 ```
-
-
-
-
 
 ### LoadClientDoc
 ---
