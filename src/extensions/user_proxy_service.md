@@ -353,7 +353,14 @@ public Task<Client> LoadClientDoc(string clientCode)
 
 * `clientCode`- Պարտադիր։ Հաճախորդի կոդը։
 
+```c#
+Բեռնում ենք 00000418 կոդով հաճախորդի քարտը, այնուհետև ստանում ենք անձնագրի համարը։
 
+ArmSoft.AS8X.Bank.General.Clients.DOCS.Client cli;
+cli = await proxyService.LoadClientDoc("00000418");
+string passport = cli.PASCODE;
+
+```
 
 ### LoadClientDescByISN
 ---
