@@ -219,15 +219,16 @@ public Task<Document> LoadDoc(int isn, GridLoadMode gridLoadMode = GridLoadMode.
 // Օրինակ՝ "Պողոս Պողոսյան - AA1023065"
 // Ներկայացված է երկու տարբերակ։ Երկրորդ տարբերակում վերադարձվող օբյեկտը բերվում է Client տիպի։ Առաջին տարբերակում տիպի փոփոխություն չի կատարվում։
 
-// Տարբերակ 1
-var cli1 = await proxyService.LoadDoc(304663812, GridLoadMode.Full);
-string respAndPassCode1 = cli1.Grid("RESP").RowCount > 0 ? 
-     $"{(string) cli1.Grid("RESP")[0]["RESPNAME"]} - {(string)cli1.Grid("RESP")[0]["RESPPASCODE"]}" : "";
+  // Տարբերակ 1
+  var cli1 = await proxyService.LoadDoc(304663812, GridLoadMode.Full);
+  string respAndPassCode1 = cli1.Grid("RESP").RowCount > 0 ?
+       $"{(string)cli1.Grid("RESP")[0]["RESPNAME"]} - {(string)cli1.Grid("RESP")[0]["RESPPASCODE"]}" : "";
 
-// Տարբերակ 2
-Client cli2 = (Client) await proxyService.LoadDoc(304663812, GridLoadMode.Full); // cli2 փոփոխականը բերվում է Client տիպի
-string respAndPassCode2 = cli2.RESP.RowCount > 0 ? 
-     $"{cli2.RESP[0].RESPNAME} - {cli2.RESP[0].RESPPASCODE}" :"";
+  // Տարբերակ 2
+  ArmSoft.AS8X.Bank.General.Clients.DOCS.Client cli2;
+  cli2 = (Client)await proxyService.LoadDoc(304663812, GridLoadMode.Full); // cli2 փոփոխականը բերվում է Client տիպի
+  string respAndPassCode2 = cli2.RESP.RowCount > 0 ?
+       $"{cli2.RESP[0].RESPNAME} - {cli2.RESP[0].RESPPASCODE}" : "";
 ```
 
 #### Աշխատանք նկարների հետ
