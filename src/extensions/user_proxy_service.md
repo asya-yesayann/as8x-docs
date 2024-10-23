@@ -354,7 +354,7 @@ public Task<Client> LoadClientDoc(string clientCode)
 * `clientCode`- Պարտադիր։ Հաճախորդի կոդը։
 
 ```c#
-Բեռնում ենք 00000418 կոդով հաճախորդի քարտը, այնուհետև ստանում ենք անձնագրի համարը։
+// Բեռնում ենք 00000418 կոդով հաճախորդի քարտը, այնուհետև ստանում ենք անձնագրի համարը։
 
 ArmSoft.AS8X.Bank.General.Clients.DOCS.Client cli;
 cli = await proxyService.LoadClientDoc("00000418");
@@ -375,7 +375,13 @@ public Task<ClientDesc> LoadClientDescByISN(int isn)
 
 * `isn`- Պարտադիր։ Հաճախորդ փաստաթղթի ISN-ը։
 
+```c#
+// Ստանում ենք ContractDesc տիպի օբյեկտը 587157500 պայմանագրի համար, այնուհետև պայմանագրի համար։
+// Պայմանագրի ոչ բոլոր դաշտերն է հնարավոր ստանալ ContractDesc տեսակի օբյեկտի միջոցով։
 
+var cDesc = await proxyService.LoadContractDescByISN(587157500);
+string agrCode = cDesc.Code;
+```
 
 ### LoadClientDescByCode
 ---
