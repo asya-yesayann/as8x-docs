@@ -377,6 +377,7 @@ public Task<ClientDesc> LoadClientDescByISN(int isn)
 
 * `isn`- Պարտադիր։ Հաճախորդ փաստաթղթի ISN-ը։
 
+**Օրինակ**
 ```c#
 // Ստանում ենք ContractDesc տիպի օբյեկտը 587157500 պայմանագրի համար, այնուհետև պայմանագրի համար։
 // Պայմանագրի ոչ բոլոր դաշտերն է հնարավոր ստանալ ContractDesc տեսակի օբյեկտի միջոցով։
@@ -396,6 +397,7 @@ public Task<ClientDesc> LoadClientDescByCode(string code)
 
 * `code` - Պարտադիր։ Հաճախորդի կոդ։
 
+**Օրինակ**
 ```c#
 // Օրինակում ստանում ենք 00006473 կոդով հաճախորդի հեռախոսահամարը։
 
@@ -415,6 +417,7 @@ public Task<ClientRO> LoadClientDocRObyISN(int isn)
 
 * `isn`- Պարտադիր։ Հաճախորդ փաստաթղթի ISN-ը։
 
+**Օրինակ**
 ```c#
 //Հաշվարկվում է 103028 isn-ով հաճախորդի ՀՎՀՀ -ն
 var cli = await proxyService.LoadClientDocRObyISN(103028);
@@ -433,6 +436,7 @@ public Task<ClientRO> LoadClientDocROByCode(string cliCode)
 
 * `code`- Պարտադիր։ Հաճախորդի կոդը։
 
+**Օրինակ**
 ```c#
 // Հաշվարկվում է 00006525 կոդով հաճախորդի ՀՎՀՀ -ն
 var cli = await proxyService.LoadClientDocROByCode("00006525");
@@ -445,11 +449,16 @@ string taxCode = cli.TAXCOD;
 public Task<int> GetClientISN(string cliCode)
 ```
 
-Վերադարձնում է հաճախորդի քարտի ISN-ը։
+Վերադարձնում է հաճախորդի քարտի ISN-ը ըստ հաճախորդի կոդի։
 
 **Պարամետրեր**
 
 * `cliCode`- Պարտադիր։ Հաճախորդի կոդը։
+
+**Օրինակ**
+```c#
+int isn = await proxyService.GetClientISN("00006525");
+```
 
 ### GetClientISNByAcc
 ---
@@ -457,11 +466,17 @@ public Task<int> GetClientISN(string cliCode)
 public Task<int> GetClientISNByAcc(string acc)
 ```
 
-Վերադարձնում է հաճախորդի ISN -ը ըստ հաճախորդի հաշվեհամարի։
+Վերադարձնում է հաճախորդի ISN -ը ըստ հաճախորդի որևէ հաշվեհամարի։ Հաշվեհամարի բացակայության կամ հաճախորդի հետ կապակցված չլինելու դեպքում կվերադարձվի -1։
 
 **Պարամետրեր**
 
 * `acc`- Պարտադիր։ Հաճախորդի հաշիվեհամարներից որևէ մեկը։
+
+**Օրինակ**
+```c#
+int isn = await proxyService.GetClientISNByAcc("10000081200");
+```
+
 
 ### GetClientFullName
 ---
@@ -477,6 +492,13 @@ public Task<string> GetClientFullName(string firstName, string lastName, string 
 * `lastName`- Պարտադիր։ Հաճախորդի ազգանուն։
 * `ptronymic`- Պարտադիր։ Հաճախորդի հայրանուն։
 * `arm`- Պարտադիր։ Անվանումը հայերեն է։ Այս դեպքում անուն, ազգանունի, հայրանունի հերթականությունը կորոշվի CLINAMEORDER պարամետրով կատարված կարգավորմամբ։ **false** արժեքը օգտագոևծվում է այն դեպքում երբ անվանումը անգլերեն է։ Այս դեպքում անվան հերթականությունը կորորշվի CLINAMEORDERENG պարամետրով։ 
+
+**Օրինակ**
+```c#
+// Անունը, ազգանունը և հայրանունը կարող են փոխանցվել unicode և armenian ansi կոդավորմամբ։
+string fullName = await proxyService.GetClientFullName("Պողոս", "Պողոսյան", "Պողոսի", true);
+```
+
 
 
 ### GetClientAMDAcc
