@@ -1,6 +1,11 @@
 ---
 layout: page
 title: "IHolidaysService սերվիս" 
+sublinks:
+- { title: "GetNextWorkDay", ref: getnextworkday }
+- { title: "GetPreviousWorkDay", ref: getpreviousworkday }
+- { title: "IsHoliday", ref: isholiday }
+- { title: "IsWorkday", ref: isworkday }
 ---
 
 ## Բովանդակություն
@@ -14,7 +19,7 @@ title: "IHolidaysService սերվիս"
 
 ## Ներածություն
 
-IHolidaysService դասը նախատեսված է աշխատանքային և տոն օրերի որոշման և ստացման համար։
+IHolidaysService դասը նախատեսված է աշխատանքային և տոն/ոչ աշխատանքային օրերի որոշման համար։
 
 ## Մեթոդներ
 
@@ -28,7 +33,7 @@ public Task<DateTime> GetNextWorkDay(DateTime value)
 
 **Պարամետրեր**
 
-* `value`- Ամսաթիվ, որից սկսած որոնվում է հաջորդ աշխատանքային օրը:
+* `value`- Ամսաթիվ:
 
 ### GetPreviousWorkDay
 
@@ -40,7 +45,7 @@ public Task<DateTime> GetPreviousWorkDay(DateTime value)
 
 **Պարամետրեր**
 
-* `value`- Ամսաթիվ, որից սկսած որոնվում է նախորդ աշխատանքային օրը:
+* `value`- Ամսաթիվ:
 
 ### IsHoliday
 
