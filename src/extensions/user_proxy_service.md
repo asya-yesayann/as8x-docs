@@ -413,7 +413,11 @@ public Task<ClientRO> LoadClientDocRObyISN(int isn)
 
 * `isn`- Պարտադիր։ Հաճախորդ փաստաթղթի ISN-ը։
 
-
+```c#
+//Հաշվարկվում է 103028 isn-ով հաճախորդի ՀՎՀՀ -ն
+var cli = await proxyService.LoadClientDocRObyISN(103028);
+string taxCode = cli.TAXCOD;
+```
 
 ### LoadClientDocROByCode
 --- 
@@ -427,6 +431,11 @@ public Task<ClientRO> LoadClientDocROByCode(string cliCode)
 
 * `code`- Պարտադիր։ Հաճախորդի կոդը։
 
+```c#
+// Հաշվարկվում է 00006525 կոդով հաճախորդի ՀՎՀՀ -ն
+var cli = await proxyService.LoadClientDocROByCode("00006525");
+string taxCode = cli.TAXCOD;
+```
 
 ### GetClientISN
 ---
