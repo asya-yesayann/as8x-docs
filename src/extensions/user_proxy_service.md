@@ -500,7 +500,6 @@ string fullName = await proxyService.GetClientFullName("Պողոս", "Պողոս
 ```
 
 
-
 ### GetClientAMDAcc
 ---
 ```c#
@@ -513,6 +512,10 @@ public Task<string> GetClientAMDAcc(string cliCode)
 
 * `cliCode`- Պարտադիր։ Հաճախորդի կոդ։
 
+**Օրինակ**
+```c#
+string acc = await proxyService.GetClientAMDAcc("00006252");
+```
 
 
 ### GetClientRezJurVolortByAccount
@@ -526,8 +529,11 @@ public Task<(string residence, string jurState, string volort)>GetClientRezJurVo
 **Պարամետրեր**
 
 * `acc`- Պարտադիր։ Հաճախորդի հաշիվեհամարներից որևէ մեկը։
-
-
+**Օրինակ**
+  
+```c#
+(string res, string jstat, string volort) = await proxyService.GetClientRezJurVolortByAccount("00315580100");
+```
 
 ### GetCliContractNamesByISN
 ---
