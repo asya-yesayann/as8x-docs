@@ -21,8 +21,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetClientAMDAcc](#getclientamdacc)
 * [GetClientRezJurVolortByAccount](#getclientrezjurvolortbyaccount)
 * [GetCliContractNamesByISN, GetCliContractNamesByCode](#getclicontractnamesbyisn-getclicontractnamesbycode)
-* [LoadAccountDescByIsn](#loadaccountdescbyisn)
-* [LoadAccountDescByCode](#loadaccountdescbycode)
+* [LoadAccountDescByIsn, LoadAccountDescByCode](#loadaccountdescbyisn-loadaccountdescbycode)
 * [LoadShortAccountDescByIsn](#loadshortaccountdescbyisn)
 * [LoadShortAccountDescByCode](#loadshortaccountdescbycode)
 * [LoadAccountDoc](#loadaccountdoc)
@@ -554,40 +553,26 @@ string docTypes = await proxyService.GetCliContractNamesByISN(339923058);
 string docTypes = await proxyService.GetCliContractNamesByCode("00006518");
 ```
 
-### 
----
-```c#
-public async Task<string> GetCliContractNamesByCode(string cliCode, bool showClosed = false)
-```
-
-### LoadAccountDescByIsn
+### LoadAccountDescByIsn LoadAccountDescByCode
 ---
 ```c#
 public Task<AccountDesc> LoadAccountDescByIsn(int isn, bool throwException = false)
+public Task<AccountDesc> LoadAccountDescByCode(string code, bool throwException = false)
 ```
 
-Վերադարձնում է հաշվի հիմնական դաշտերը պարունակող օբյեկտ ըսռ հաշվի ISN-ի։ 
+Վերադարձնում են հաշվի հիմնական դաշտերը պարունակող օբյեկտ ըսռ հաշվի ISN-ի, երկրորդ դեպքում ըստ հաճախորդի կոդի։ 
 
 **Պարամետրեր**
 
 * `isn`- Պարտադիր։ Հաշվի ISN -ը։
-* `throwException`- Ոչ պարտադիր։ Առաջացնել սխալ հաշվեհամարի բացակության դեպքում։ Լռությամբ՝ **false**։
+* `throwException`- Ոչ պարտադիր։ Առաջացնել սխալ isn-ի / հաշվեհամարի բացակության դեպքում։ Լռությամբ՝ **false**։
 
-
-
-### LoadAccountDescByCode
----
+**Օրինակ**
 ```c#
-public Task<AccountDesc> LoadAccountDescByCode(string code, bool throwException = false)
+// Ստանում ենք 211268325 isn -ով հաշվի անվանումը։
+AccountDesc accDesc = await proxyService.LoadAccountDescByIsn(211268325);
+string accName = accDesc.Caption;
 ```
-
-Վերադարձնում է հաշվի հիմնական դաշտերը պարունակող օբյեկտ ըսռ հաշվեհամարի։ 
-
-**Պարամետրեր**
-
-* `code`- Պարտադիր։ Հաշվի համար։
-* `throwException`- Ոչ պարտադիր։ Առաջացնել սխալ հաշվեհամարի բացակության դեպքում։ Լռությամբ՝ **false**։
-
 
 ### LoadShortAccountDescByIsn
 ---
