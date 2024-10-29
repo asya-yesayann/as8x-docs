@@ -678,7 +678,6 @@ public Task<string> GetCliCodeByAcc(string account)
 string cliCode = await proxyService.GetCliCodeByAcc("10200060200");
 ```
 
-
 ### IsKasAcc
 ---
 ```c#
@@ -691,6 +690,9 @@ public Task<bool> IsKasAcc(string account)
 
 * `account`- Պարտադիր։ Հաշվի համար։
 
+```c#
+bool isCashAcc = await proxyService.IsKasAcc("10000081000");
+```
 
 ### IsIncExpAcc
 ---
