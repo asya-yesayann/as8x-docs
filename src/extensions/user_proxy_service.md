@@ -729,6 +729,10 @@ public decimal CalculateAtmInd(string codFormList, DateTime dateFirst, DateTime 
 * `calcCurCode`- Ոչ պարտադիր։ Լռությամբ՝ ""։
 * `precision`- Ոչ պարտադիր։ Լռությամբ՝ 2։
 
+```c#
+// Հաշվարկվում է R9_21602 ատոմար ցուցանիշի արժեքը B00 գրասենյակի համար ։
+decimal sum = proxyService.CalculateAtmInd("R9_21602", DateTime.Parse("2024-10-01"), DateTime.Parse("2024-10-01"),  "B00", calcCurCode:"000");
+```
 
 ### CalculateOlapFormula
 ---
