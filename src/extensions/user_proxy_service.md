@@ -655,6 +655,10 @@ public Task<int> GetAccountISN(string acc)
 
 * `acc`- Պարտադիր։ Հաշվի համար։
 
+```c#
+// Ստանում ենք 10110050601 հաշվի isn-ը։
+int isn = await proxyService.GetAccountISN("10110050601");
+```
 
 
 ### GetCliCodeByAcc
