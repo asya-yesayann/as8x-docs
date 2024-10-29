@@ -24,7 +24,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [LoadAccountDescByIsn, LoadAccountDescByCode](#loadaccountdescbyisn-loadaccountdescbycode)
 * [LoadShortAccountDescByIsn, LoadShortAccountDescByCode](#loadshortaccountdescbyisn-loadshortaccountdescbycode)
 * [LoadAccountDoc](#loadaccountdoc)
-* [LoadNBAccountDesc, LoadNBAccountDescByCode](#loadnbaccountdescbycode-loadnbaccountdesc)
+* [LoadNBAccountDesc, LoadNBAccountDescByCode](#loadnbaccountdesc-loadnbaccountdescbycode)
 * [GetAccountISN](#getaccountisn)
 * [GetCliCodeByAcc](#getclicodebyacc)
 * [IsKasAcc](#iskasacc)
