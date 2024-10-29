@@ -672,7 +672,11 @@ public Task<string> GetCliCodeByAcc(string account)
 **Պարամետրեր**
 
 * `account`- Պարտադիր։ Հաշվի համար։
-
+  
+```c#
+// հաշվարկվում է 10200060200 հաշվի հաշետիրոջ կոդը։
+string cliCode = await proxyService.GetCliCodeByAcc("10200060200");
+```
 
 
 ### IsKasAcc
