@@ -22,8 +22,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetClientRezJurVolortByAccount](#getclientrezjurvolortbyaccount)
 * [GetCliContractNamesByISN, GetCliContractNamesByCode](#getclicontractnamesbyisn-getclicontractnamesbycode)
 * [LoadAccountDescByIsn, LoadAccountDescByCode](#loadaccountdescbyisn-loadaccountdescbycode)
-* [LoadShortAccountDescByIsn](#loadshortaccountdescbyisn)
-* [LoadShortAccountDescByCode](#loadshortaccountdescbycode)
+* [LoadShortAccountDescByIsn, LoadShortAccountDescByCode](#loadshortaccountdescbyisn-loadshortaccountdescbycode)
 * [LoadAccountDoc](#loadaccountdoc)
 * [LoadNBAccountDescByCode](#loadnbaccountdescbycode)
 * [LoadNBAccountDesc](#loadnbaccountdesc)
@@ -536,13 +535,14 @@ public Task<(string residence, string jurState, string volort)>GetClientRezJurVo
 ---
 ```c#
 public async Task<string> GetCliContractNamesByISN(int cliISN, bool showClosed = false)
+public async Task<string> GetCliContractNamesByCode(string cliCode, bool showClosed = false)
 ```
 
 Վերադարձնում են հաճախորդին կապակցված քարտ-փաստաթղթերի, ինչպես նաև վերջնական չհաշվառված վճարային փաստաթղթերի ներքին անվանումները ըստ հաճախորդի ISN-ի, երկրորդ դեպքում ՝ ըստ հաճախորդի կոդի։
 
 **Պարամետրեր**
 
-* `cliISN`- Պարտադիր։ Հաճախորդի քարտի ISN -ը։
+* `cliISN / cliCode`- Պարտադիր։ Հաճախորդի քարտի ISN  / Հաաճախորդի կոդ։
 * `showClosed` - Ոչ պարտադիր։ Ցույց տալ նաև փակվածները։ Լռությամբ false:
 
 **Օրինակ**
@@ -563,7 +563,7 @@ public Task<AccountDesc> LoadAccountDescByCode(string code, bool throwException 
 
 **Պարամետրեր**
 
-* `isn`- Պարտադիր։ Հաշվի ISN -ը։
+* `isn / code`- Պարտադիր։ Հաշվի ISN / հաշվի համար։
 * `throwException`- Ոչ պարտադիր։ Առաջացնել սխալ isn-ի / հաշվեհամարի բացակության դեպքում։ Լռությամբ՝ **false**։
 
 **Օրինակ**
@@ -577,18 +577,30 @@ AccountDesc accDesc2 = await proxyService.LoadAccountDescByCode("004471800");
 string accName2 = accDesc2.Caption;
 ```
 
-### LoadShortAccountDescByIsn
+### LoadShortAccountDescByIsn LoadShortAccountDescByCode
 ---
 ```c#
 public Task<AccountDescShort> LoadShortAccountDescByIsn(int isn, bool throwException = false)
+public Task<AccountDescShort> LoadShortAccountDescByCode(string code, bool throwException = false)
 ```
 
-Վերադարձնում է հաշվի սահմանափակ դաշտերը (ISN, "Հաշվի համար","Արժույթ","Գրասենյակ","Բաժին","Հասանելիության տիպ") պարունակող օբյեկտ ըսռ հաշվի ISN-ի։ 
+Վերադարձնում է հաշվի սահմանափակ դաշտերը (ISN, "Հաշվի համար","Արժույթ","Գրասենյակ","Բաժին","Հասանելիության տիպ") պարունակող օբյեկտ ըսռ հաշվի ISN-ի, երկորդ դեպաում՝ ըստ հաշվի համարի։ 
 
 **Պարամետրեր**
 
-* `isn`- Պարտադիր։ Հաշվի ISN։
+* `isn / code`- Պարտադիր։ Հաշվի ISN / Հաշվի համար։
 * `throwException` -  Ոչ պարտադիր։ Առաջացնել սխալ հաշվի բացակության դեպքում։ Լռությամբ՝ **false**։
+
+**Օրինակ**
+```c#
+// Ստանում ենք 211268325 isn-ով հաշվի արժույթը։
+AccountDescShort accDesc = await proxyService.LoadShortAccountDescByIsn(211268325);
+string accCur = accDesc.Cur;
+
+// Ստանում ենք 004471800 հաշվի արժույթը։
+AccountDescShort accDesc2 = await proxyService.LoadShortAccountDescByCode("004471800");
+string accCur2 = accDesc2.Cur;
+```
 
 ### LoadShortAccountDescByCode
 ---
