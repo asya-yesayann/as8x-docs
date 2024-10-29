@@ -7,6 +7,8 @@ sublinks:
 - { title: "GetTemplateNameAndType", ref: gettemplatenameandtype }
 ---
 
+[4XTemplateSubstitution]: https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/TemplateSubstitution.html
+
 ## Բովանդակություն
 
 - [Ներածություն](#ներածություն)
@@ -29,6 +31,8 @@ sublinks:
 ## Ներածություն
 
 TemplateService դասը նախատեսված է տպելու ձևանմուշների նկարագրության հետ աշխատանքը ապահովելու համար։
+
+Տե՛ս նաև [ITemplateSubstitutionService](ITemplateSubstitutionService.md) տպելու ձևանմուշների լրացման համար։
 
 <!-- ### Copy
 
@@ -53,7 +57,7 @@ public Task Delete(string name, string type)
 **Պարամետրեր**
 
 * `name` - Տպելու ձևանմուշի ներքին անուն:
-* `type` - Տպելու ձևանմուշի տիպ:
+* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
 
 ### Edit
 
@@ -78,7 +82,7 @@ public Task<bool> ExistsTemplate(string name, string type)
 **Պարամետրեր**
 
 * `name` - Տպելու ձևանմուշի ներքին անուն:
-* `type` - Տպելու ձևանմուշի տիպ:
+* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
 
 **Օրինակ**
 
@@ -129,7 +133,7 @@ public Task<TemplateDefinition> GetDefinition(string name, string type)
 **Պարամետրեր**
 
 * `name` - Տպելու ձևանմուշի ներքին անուն:
-* `type` - Տպելու ձևանմուշի տիպ:
+* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
 
 <!-- ### GetFileContent
 
@@ -182,7 +186,7 @@ public Task<int> GetRowId(string name, string type)
 **Պարամետրեր**
 
 * `name` - Տպելու ձևանմուշի ներքին անուն:
-* `type` - Տպելու ձևանմուշի տիպ:
+* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
  -->
 ### GetTemplateNameAndType
 
@@ -195,7 +199,7 @@ public static (bool result, string templateName, string templateType)
 Վերադարձնում է՝
 * `result` - Ցույց է տալիս, արդյոք բաժանումը հաջողվել է:
 * `name` - Տպելու ձևանմուշի ներքին անուն: Բաժանման չհաջողվելու դեպքում վերադարձնում է `templateNameWithType` պարամետրի արժեքը։
-* `type` - Տպելու ձևանմուշի տիպ: Բաժանման չհաջողվելու դեպքում վերադարձնում է `string.Empty`։
+* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]: Բաժանման չհաջողվելու դեպքում վերադարձնում է `string.Empty`։
 
 **Պարամետրեր**
 
@@ -224,7 +228,7 @@ if (templateType != Constants.TempTypeHTML)
 public Task<string> GetType(string name)
 ```
 
-Վերադարձնում է տպելու ձևանմուշի տիպը՝ ըստ տպելու ձևանմուշի ներքին անվան։
+Վերադարձնում է [տպելու ձևանմուշի տիպը][4XTemplateSubstitution]՝ ըստ տպելու ձևանմուշի ներքին անվան։
 
 **Պարամետրեր**
 

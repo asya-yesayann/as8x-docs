@@ -1,6 +1,9 @@
 ---
 layout: page
 title: "IUserService սերվիս" 
+sublinks:
+- { title: "UserElProp", ref: userelprop }
+- { title: "GetList", ref: getlist }
 ---
 
 ## Բովանդակություն
@@ -9,9 +12,9 @@ title: "IUserService սերվիս"
 - [Մեթոդներ](#մեթոդներ)
   - [UserElProp](#userelprop)
   - [GetList](#getlist)
-  - [ChangeName](#changename)
+  <!-- - [ChangeName](#changename)
   - [ValidateNewUsername](#validatenewusername)
-  - [SetAccess](#setaccess)
+  - [SetAccess](#setaccess) -->
 
 ## Ներածություն
 
@@ -39,7 +42,7 @@ public Task<List<UserDescription>> GetList()
 
 Վերադարձնում է համակարգի բոլոր [օգտագործողների նկարագրությունները](../types/UserDescription.md)։
 
-### ChangeName
+<!-- ### ChangeName
 
 ```c#
 public Task ChangeName(short suid, string newName, string oldName)
@@ -80,4 +83,4 @@ public Task SetAccess(short suid, bool hasAccess)
 **Պարամետրեր**
 
 * `suid` - Օգտագործողի ներքին համար (կոդ)։
-* `hasAccess` - Ցույց է տալիս օգտագործողը համակարգ մուտք գործելու իրավասություն թե ոչ։ `true` արժեքի դեպքում արգելում է օգտագործողի մուտքը համակարգ, հակառակ դեպքում՝ թույլատրում։
+* `hasAccess` - Ցույց է տալիս օգտագործողը համակարգ մուտք գործելու իրավասություն թե ոչ։ `true` արժեքի դեպքում արգելում է օգտագործողի մուտքը համակարգ, հակառակ դեպքում՝ թույլատրում։ -->

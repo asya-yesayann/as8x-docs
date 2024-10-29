@@ -1,7 +1,6 @@
 ---
 layout: page
-title: "UserDescription" 
-tags: User
+title: "UserDescription դաս" 
 ---
 
 Այս դասը նախատեսված է համակարգի օգտագործողի նկարագրման համար։
@@ -11,7 +10,7 @@ tags: User
 ```c#
 public class UserDescription
 {
-    public short SUID { get; set; } = -1;
+    public short SUID { get; set; }
     public string Name { get; set; }
     public string FullName { get; set; }
     public string Description { get; set; }
@@ -34,7 +33,7 @@ public class UserDescription
 * `LoginDisabled` - Օգտագործողի համակարգ մուտք գործելու թույլտվության հայտանիշ։
 * `IsHidden` - Օգտագործողի անտեսանելի լինելու հայտանիշ։ `true` արժեքի դեպքում օգտագործողը չի երևում "Օգտագործողներ" հաշվետվությունում։
 * `Expired` - Ցույց է տալիս, թե քանի օրից կլրանա օգտագործողի գաղտանաբառի վավերականության ժամկետը։ -1 արժեքի դեպքում գաղտանաբառը համարվում է միշտ վավեր։
-* `SID` - SQL եղանակով նույնականացված օգտագործողի ներքին նույնականացման համարը։
-* `SidData` - Active Directory եղանակով նույնականացված օգտագործողի ներքին նույնականացման համարը։
+* `SID` - SQL եղանակով նույնականացվող օգտագործողի ներքին նույնականացման համարը։
+* `SidData` - Active Directory եղանակով նույնականացվող օգտագործողի ներքին նույնականացման համարը։
 * `IsActiveDirectoryUser` - Ցույց է տալիս օգտագործողի նույնականացման եղանակը Active Directory տեսակի է, թե ոչ։
 * `IsSqlUser` - Ցույց է տալիս օգտագործողի նույնականացման եղանակը SQL-ով է, թե ոչ։
