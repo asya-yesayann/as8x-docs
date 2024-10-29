@@ -706,6 +706,9 @@ public Task<bool> IsIncExpAcc(string account)
 
 * `account`- Պարտադիր։ Հաշվի համար։
 
+```c#
+bool isIncAcc = await proxyService.IsIncExpAcc("64190050300");
+```
 
 ### CalculateAtmInd
 ---
