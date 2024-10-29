@@ -601,21 +601,6 @@ string accCur = accDesc.Cur;
 AccountDescShort accDesc2 = await proxyService.LoadShortAccountDescByCode("004471800");
 string accCur2 = accDesc2.Cur;
 ```
-
-### LoadShortAccountDescByCode
----
-```c#
-public Task<AccountDescShort> LoadShortAccountDescByCode(string code, bool throwException = false)
-```
-
-Վերադարձնում է հաշվի սահմանափակ դաշտերը (ISN, "Հաշվի համար","Արժույթ","Գրասենյակ","Բաժին","Հասանելիության տիպ") պարունակող օբյեկտ ըսռ հաշվեհամարի։ 
-
-**Պարամետրեր**
-
-* `code`- Պարտադիր։ Հաշվի համար։
-* `throwException` - Ոչ պարտադիր։ Առաջացնել սխալ հաշվի բացակության դեպքում։ Լռությամբ՝ **false**։
-
-
 ### LoadAccountDoc
 ---
 ```c#
@@ -628,7 +613,12 @@ public Task<Account> LoadAccountDoc(string accCode)
 
 * `code`- Պարտադիր։ Հաշվի համար։
 
-
+**Օրինակ**
+```c#
+// Ստանում ենք հաշվի նշումը
+Account acc = await proxyService.LoadAccountDoc("004471800");
+string accNote = acc.ACCNOTE;
+```
 
 ### LoadNBAccountDescByCode
 ---
