@@ -20,8 +20,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [GetClientFullName](#getclientfullname)
 * [GetClientAMDAcc](#getclientamdacc)
 * [GetClientRezJurVolortByAccount](#getclientrezjurvolortbyaccount)
-* [GetCliContractNamesByISN](#getclicontractnamesbyisn)
-* [GetCliContractNamesByCode](#getclicontractnamesbycode)
+* [GetCliContractNamesByISN, GetCliContractNamesByCode](#getclicontractnamesbyisn-getclicontractnamesbycode)
 * [LoadAccountDescByIsn](#loadaccountdescbyisn)
 * [LoadAccountDescByCode](#loadaccountdescbycode)
 * [LoadShortAccountDescByIsn](#loadshortaccountdescbyisn)
@@ -529,39 +528,37 @@ public Task<(string residence, string jurState, string volort)>GetClientRezJurVo
 **Պարամետրեր**
 
 * `acc`- Պարտադիր։ Հաճախորդի հաշիվեհամարներից որևէ մեկը։
+
 **Օրինակ**
-  
 ```c#
 (string res, string jstat, string volort) = await proxyService.GetClientRezJurVolortByAccount("00315580100");
 ```
 
-### GetCliContractNamesByISN
+### GetCliContractNamesByISN GetCliContractNamesByCode
 ---
 ```c#
 public async Task<string> GetCliContractNamesByISN(int cliISN, bool showClosed = false)
 ```
 
-Վերադարձնում է հաճախորդի թղթապանակում առկա փաստաթղթերի տեսակների ներքին անվանումների ցանկը ըստ հաճախորդի ISN-ի։
+Վերադարձնում են հաճախորդին կապակցված քարտ-փաստաթղթերի, ինչպես նաև վերջնական չհաշվառված վճարային փաստաթղթերի ներքին անվանումները ըստ հաճախորդի ISN-ի, երկրորդ դեպքում ՝ ըստ հաճախորդի կոդի։
 
 **Պարամետրեր**
 
 * `cliISN`- Պարտադիր։ Հաճախորդի քարտի ISN -ը։
-* `showClosed` - Ոչ պարտադիր։ Ցույց տալ նաև փակվածները։
+* `showClosed` - Ոչ պարտադիր։ Ցույց տալ նաև փակվածները։ Լռությամբ false:
 
-### GetCliContractNamesByCode
+**Օրինակ**
+```c#
+// Վերադարձվող տողի օրինակ ՝ "Acc, C1Univer, Cli, N1Other, NBAcc, REMINDER"
+string docTypes = await proxyService.GetCliContractNamesByISN(339923058);
+string docTypes = await proxyService.GetCliContractNamesByCode("00006518");
+```
+
+### 
 ---
 ```c#
 public async Task<string> GetCliContractNamesByCode(string cliCode, bool showClosed = false)
 ```
-
-Վերադարձնում է հաճախորդի թղթապանակում առկա փաստաթղթերի տեսակների ներքին անվանումների ցանկը ըստ հաճախորդի կոդի։
-
-**Պարամետրեր**
-
-* `cliCode`- Պարտադիր։ Հաճախորդի քարտի ISN -ը։
-* `showClosed` - Ոչ պարտադիր։ Ցույց տալ նաև փակվածները։ Լռությամբ՝ **false**։
-
-
 
 ### LoadAccountDescByIsn
 ---
