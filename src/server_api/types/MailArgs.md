@@ -3,7 +3,7 @@ layout: page
 title: "MailArgs" 
 ---
 
-Այս դասը նախատեսված է էլեկտրոնային հասցեներին ուղարկվող հաղորդագրության տեքստի, հատկությունների և ստացողների նկարագրման համար։
+Այս դասը նախատեսված է էլեկտրոնային հասցե(ներ)ին ուղարկվող հաղորդագրության տեքստի, հատկությունների և ստացողների նկարագրման համար։
 
 Օգտագործվում է [IMailService](../services/IMailService.md).[SendMail](../services/IMailService.md#sendmail) էլեկտրոնային հաղորդագրություն ուղարկելիս։
 
@@ -28,22 +28,21 @@ public class MailArgs
 **Պարամետրեր**
 
 * `BodyFormat` - Հաղորդագրության տեքստի ձևաչափը։
-                 BodyFormatSE.Text - Ստանդարտ, ոչ ֆորմատավորված տեքստ
-                 BodyFormatSE.Html - HTML ձևաչափի տեքստ
+    * BodyFormatSE.Text - Ստանդարտ, ոչ ֆորմատավորված տեքստ
+    * BodyFormatSE.Html - HTML ձևաչափի տեքստ
 * `Importance` - Հաղորդագրության կարևորության աստիճանը։
-                 ImportanceSE.Low - ցածր կարևորության
-                 ImportanceSE.Normal - միջին կարևորության
-                 ImportanceSE.High - բարձր կարևորության
-* `Sensitivity` - Հաղորդագրության գաղտինության աստիճանը։
-                  SensitivitySE.Normal - Ստանդարտ
-                  SensitivitySE.Personal - Պարունակում է անձնական տվյալներ
-                  SensitivitySE.Private - Պարունակում է անձնական/գաղտնի տվյալներ
-                  SensitivitySE.Confidential - Պարունակում է խիստ գաղտնի տվյալներ
+    * ImportanceSE.Low - Ցածր կարևորության
+    * ImportanceSE.Normal - Միջին կարևորության
+    * ImportanceSE.High - Բարձր կարևորության
+* `Sensitivity` - Հաղորդագրության գաղտնիության աստիճանը։
+    * SensitivitySE.Normal - Ստանդարտ
+    * SensitivitySE.Personal - Պարունակում է անձնական տվյալներ
+    * SensitivitySE.Private - Պարունակում է անձնական/գաղտնի տվյալներ
+    * SensitivitySE.Confidential - Պարունակում է խիստ գաղտնի տվյալներ
 * `SmptParameterNamePrefix` - Օգտագործվում է `MailKitMailService`-ով հաղորդագրություն ուղարկելիս։
-* `ProfileName` - Պրոֆիլի անունը, որը օգտագործվում է `DBMailService`-ով [Database Mail](https://learn.microsoft.com/en-us/sql/relational-databases/database-mail/database-mail) ուղարկելիս։
+* `ProfileName` - [Պրոֆիլի անունը](https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-send-dbmail-transact-sql#----profile_name), որը օգտագործվում է `DBMailService`-ով [Database Mail](https://learn.microsoft.com/en-us/sql/relational-databases/database-mail/database-mail) ուղարկելիս։
 * `Recipients` - Հաղորդագրությունը ստացողների էլեկտրոնային հասցեների ցուցակը։
-* `CopyRecipients` - Հաղորդագրության պատճենը ստացողների էլեկտրոնային հասցեների ցուցակը։
-* `BlindCopyRecipients` - Հաղորդագրության պատճենը ստացողների էլեկտրոնային հասցեների ցուցակը, որոնց չեն տեսնելու այն էլեկտրոնային հասցեները (`Recipients`, `CopyRecipients`), որոնց նույնպես ուղարկվելու է հաղորդագրությունը։
+* `CopyRecipients` - Այն էլեկտրոնային հասցեների ցուցակը, որոնք ստանալու են հաղորդագրության պատճենը այնպես, որ հաղորդագրության մնացած ստացողները (`Recipients`, `CopyRecipients`) չկարողանան տեսնել նրանց հասցեները։
 * `Subject` - Հաղորդագրության թեման։
 * `Body` - Հաղորդագրության տեքստը։
 * `FileAttachments` - Հաղորդագրության կցվող ֆայլերի ամբողջական ճանապարհները։ Մի քանի ֆայլ կցելու դեպքում անհրաժեշտ է ճանապարհները իրարից անջատել `;` նշանով։
