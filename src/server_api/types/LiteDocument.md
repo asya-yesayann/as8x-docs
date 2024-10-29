@@ -8,22 +8,22 @@ tags: [cache, Document, AsDoc]
 
 - [Ներածություն](#ներածություն)
 - [Հատկություններ](#հատկություններ)
-  - [DocumentType](#documenttype)
-  - [LastLookup](#lastlookup)
-  - [LastTSCheck](#lasttscheck)
-  - [Fields](#fields)
-  - [TimeStamp](#timestamp)
-  - [indexer](#indexer)
-  - [ISN](#isn)
-  - [State](#state)
-  - [CreatorSUID](#creatorsuid)
   - [Archived](#archived)
   - [CreationDate](#creationdate)
+  - [CreatorSUID](#creatorsuid)
   - [Description](#description)
+  - [DocumentType](#documenttype)
+  - [Fields](#fields)
   - [Grids](#grids)
-  - [GridsLoading](#gridsloading)
   - [GridsInitialized](#gridsinitialized)
   - [GridsLoaded](#gridsloaded)
+  - [GridsLoading](#gridsloading)
+  - [indexer](#indexer)
+  - [ISN](#isn)
+  - [LastLookup](#lastlookup)
+  - [LastTSCheck](#lasttscheck)
+  - [TimeStamp](#timestamp)
+  - [State](#state)
 - [Մեթոդներ](#մեթոդներ)
   - [ExistsRekvizit](#existsrekvizit)
   - [InitGrids](#initgrids)
@@ -35,9 +35,41 @@ tags: [cache, Document, AsDoc]
 
 LiteDocument դասը նախատեսված է փաստաթուղթը քեշավորելու համար։
 
-LiteDocument տեսակի փաստաթուղթը տվյալների պահոցից բեռնելու, քեշում պահելու և քեշից կարդալու համար տես [LiteDocumentService](../services/LiteDocumentService.md):
+LiteDocument տեսակի փաստաթուղթը տվյալների պահոցից բեռնելու, քեշում պահելու և քեշից կարդալու համար տե՛ս [LiteDocumentService](../services/LiteDocumentService.md):
 
 ## Հատկություններ
+
+### Archived 
+
+```c#
+public bool Archived { get; internal set; }
+```
+
+Ցույց է տալիս փաստաթղթի արխիվացված լինելը։
+
+### CreationDate 
+
+```c#
+public DateTime CreationDate { get; internal set; }
+```
+
+Վերադարձնում է փաստաթղթի ստեղծման ամսաթիվը/ժամանակը։
+
+### CreatorSUID
+
+```c#
+public short CreatorSUID { get; internal set; }
+```
+
+Վերադարձնում է փաստաթուղթը ստեղծողի ներքին համարը (user id):
+
+### Description 
+
+```c#
+public DocumentDescription Description { get; internal set; }
+```
+
+Վերադարձնում է փաստաթղթի նկարագրությունը։
 
 ### DocumentType
 
@@ -47,24 +79,6 @@ public string DocumentType
 
 Վերադարձնում է փաստաթղթի տեսակը։
 
-### LastLookup
-
-```c#
-public DateTime LastLookup { get; private set; }
-```
-
-Վերադարձնում է փաստաթղթի քեշում փնտրման և քեշից բեռնման վերջին ամսաթիվը/ժամանակը:
-
-Փաստաթուղթը քեշից բեռնելու համար անհրաժեշտ է կանչել [LiteDocumentService](../services/LiteDocumentService.md).[LookUpInCache](../services/LiteDocumentService.md#lookupincache) մեթոդը։
-
-### LastTSCheck
-
-```c#
-public DateTime LastTSCheck { get; private set; }
-```
-
-Վերադարձնում է փաստաթղթի [TimeStamp](#timestamp)-ի տվյալների պահոցից վերջին ստուգման ամսաթիվը/ժամանակը:
-
 ### Fields
 
 ```c#
@@ -73,13 +87,38 @@ public Dictionary<string, object> Fields { get; private set; }
 
 Վերադարձնում է փաստաթղթի դաշտերը որպես dictionary, որտեղ բանալին՝ դաշտի ներքին անունն է, իսկ արժեքը՝ դաշտի արժեքը:
 
-### TimeStamp
+### Grids
 
 ```c#
-byte[] IDocumentCache.TimeStamp { get; set; }
+public IReadOnlyDictionary<string, IGrid> Grids { get; private set; }
 ```
 
-Նշանակում է կամ վերադարձնում փաստաթղթի վերջին փոփոխման ամսաթիվը և ժամանակը` որպես byte տիպի զանգված:
+Վերադարձնում է փաստաթղթի աղյուսակների բազմությունը՝ որտեղ բանալին աղյուսակի ներքին անունն է, իսկ արժեքը՝ աղյուսակը IGrid ինտերֆեյսով։
+
+### GridsInitialized
+
+```c#
+public bool GridsInitialized { get; protected internal set; }
+```
+
+Ցույց է տալիս փաստաթղթի աղյուսակների ձևավորված լինելը։ 
+
+### GridsLoaded
+
+```c#
+public bool GridsLoaded { get; protected internal set; }
+```
+
+Ցույց է տալիս փաստաթղթի աղյուսակների բեռնված լինելը։ 
+Տե՛ս [Load](../services/LiteDocumentService.md#load), [LoadGrids](../services/LiteDocumentService.md#loadgrids)։
+
+### GridsLoading 
+
+```c#
+public bool GridsLoading { get; internal set; } = false;
+```
+
+Ցույց է տալիս փաստաթղթի աղյուսակները գտնվում են բեռնման պրոցեսում թե ոչ։
 
 ### indexer
 
@@ -101,6 +140,32 @@ public int ISN { get; internal set; }
 
 Վերադարձնում է փաստաթղթի ներքին նույնականացման համարը (isn-ը):
 
+### LastLookup
+
+```c#
+public DateTime LastLookup { get; private set; }
+```
+
+Վերադարձնում է փաստաթղթի քեշում փնտրման և քեշից բեռնման վերջին ամսաթիվը/ժամանակը:
+
+Փաստաթուղթը քեշից բեռնելու համար անհրաժեշտ է կանչել [LiteDocumentService](../services/LiteDocumentService.md).[LookUpInCache](../services/LiteDocumentService.md#lookupincache) մեթոդը։
+
+### LastTSCheck
+
+```c#
+public DateTime LastTSCheck { get; private set; }
+```
+
+Վերադարձնում է փաստաթղթի [TimeStamp](#timestamp)-ի տվյալների պահոցից վերջին ստուգման ամսաթիվը/ժամանակը:
+
+### TimeStamp
+
+```c#
+byte[] IDocumentCache.TimeStamp { get; set; }
+```
+
+Նշանակում է կամ վերադարձնում փաստաթղթի վերջին փոփոխման ամսաթիվը և ժամանակը` որպես byte տիպի զանգված:
+
 ### State
 
 ```c#
@@ -108,71 +173,6 @@ public short State { get; set; }
 ```
 
 Վերադարձնում կամ նշանակում է փաստաթղթի վիճակը:
-
-### CreatorSUID
-
-```c#
-public short CreatorSUID { get; internal set; }
-```
-
-Վերադարձնում է փաստաթուղթը ստեղծողի ներքին համարը (user id):
-
-### Archived 
-
-```c#
-public bool Archived { get; internal set; }
-```
-
-Ցույց է տալիս փաստաթղթի արխիվացված լինելը։
-
-### CreationDate 
-
-```c#
-public DateTime CreationDate { get; internal set; }
-```
-
-Վերադարձնում է փաստաթղթի ստեղծման ամսաթիվը/ժամանակը։
-
-### Description 
-
-```c#
-public DocumentDescription Description { get; internal set; }
-```
-
-Վերադարձնում է փաստաթղթի նկարագրությունը։
-
-### Grids
-
-```c#
-public IReadOnlyDictionary<string, IGrid> Grids { get; private set; }
-```
-
-Վերադարձնում է փաստաթղթի աղյուսակների բազմությունը՝ որտեղ բանալին աղյուսակի ներքին անունն է, իսկ արժեքը՝ աղյուսակը IGrid ինտերֆեյսով։
-
-### GridsLoading 
-
-```c#
-public bool GridsLoading { get; internal set; } = false;
-```
-
-Ցույց է տալիս փաստաթղթի աղյուսակները գտնվում են բեռնման պրոցեսում թե ոչ։
-
-### GridsInitialized
-
-```c#
-public bool GridsInitialized { get; protected internal set; }
-```
-
-Ցույց է տալիս փաստաթղթի աղյուսակների ձևավորված լինելը։ 
-
-### GridsLoaded
-
-```c#
-public bool GridsLoaded { get; protected internal set; }
-```
-
-Ցույց է տալիս փաստաթղթի աղյուսակների բեռնված լինելը։ 
-Տե՛ս [Load](../services/LiteDocumentService.md#load), [LoadGrids](../services/LiteDocumentService.md#loadgrids)։
 
 ## Մեթոդներ
 
