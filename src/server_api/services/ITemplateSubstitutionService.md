@@ -16,8 +16,8 @@ tags: [Template, TemplateSubstitution]
   - [LoadSubstituteAndGetContent](#loadsubstituteandgetcontent)
   - [LoadSubstitutionAndGetStorage](#loadsubstitutionandgetstorage)
   - [LoadTemplateFile](#loadtemplatefile)
-  <!-- - [MergeFile](#mergefile) --> 
-  <!-- - [MergeFile](#mergefile) --> 
+  - [MergeFile](#mergefile)
+  - [MergeFile](#mergefile-1)
   - [Substitute](#substitute)
   - [Substitute](#substitute-1)
   - [SubstituteAndGetContent](#substituteandgetcontent)
@@ -38,9 +38,10 @@ public Task EvalAndAddUserDefinedParameters(string name, SubstitutionType type,
                                             Document.Document document)
 ```
 
-Հաշվարկում է տպելու ձևանմուշի օգտագործողի կողմից նկարագրված պարամետրերը։
+Հաշվարկում է տպելու ձևանմուշի օգտագործողի կողմից նկարագրված պարամետրերը և ավելացնում տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտում՝ `printTemplateSubstitution`:
 
-Տպելու ձևանմուշի օգտագործողի կողմից նկարագրված պարամետրերի հաշվարկի տրամաբանության սահմանման համար անհրաժեշտ է սահմանել տպելու ձևանմուշի ընդլայնման դաս և այն կապակցել տպելու ձևանմուշին։
+Տպելու ձևանմուշի օգտագործողի կողմից նկարագրված պարամետրերի հաշվարկի տրամաբանության սահմանման համար անհրաժեշտ է ստեղծել 
+[սերվերային մոդուլ](../../extensions/definitions/server_side_module.md), որին համապատասխան c# ֆայլում ունենալ դաս `ITemplateSubstitutionExtender` ինտերֆեյսը և այն [կապակցել տպելու ձևանմուշին](../../extensions/definitions/template_substitution_guide.md#ընդլայնման-կապակցում-տպելու-ձևանմուշին)։
 
 Տես նա՛և
 
@@ -52,7 +53,7 @@ public Task EvalAndAddUserDefinedParameters(string name, SubstitutionType type,
 * `name` - Տպելու ձևանմուշի ներքին անուն:
 * `type` - Տպելու ձևանմուշի տիպ:
 * `printTemplateSubstitution` - Տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտ։
-* `document` - Տպելու ձևանմուշի հետ կապակցված [փաստաթուղթը նկարագրող դասը](../definitions/document.md)։
+* `document` - Տպելու ձևանմուշի հետ կապակցված [փաստաթղթի օբյեկտ](../definitions/document.md)։
 
 ### EvalAndAddUserDefinedParametersEx
 
@@ -62,9 +63,10 @@ public Task EvalAndAddUserDefinedParametersEx(string name, SubstitutionType type
                                               Document.Document document)
 ```
 
-Հաշվարկում է տպելու ձևանմուշի օգտագործողի կողմից նկարագրված պարամետրերը։
+Հաշվարկում է տպելու ձևանմուշի օգտագործողի կողմից նկարագրված պարամետրերը և ավելացնում տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտում՝ `printTemplateSubstitution`:
 
-Տպելու ձևանմուշի օգտագործողի կողմից նկարագրված պարամետրերի հաշվարկի տրամաբանության սահմանման համար անհրաժեշտ է սահմանել տպելու ձևանմուշի ընդլայնման դաս և այն կապակցել տպելու ձևանմուշին։
+Տպելու ձևանմուշի օգտագործողի կողմից նկարագրված պարամետրերի հաշվարկի տրամաբանության սահմանման համար անհրաժեշտ է ստեղծել 
+[սերվերային մոդուլ](../../extensions/definitions/server_side_module.md), որին համապատասխան c# ֆայլում ունենալ դաս `ITemplateSubstitutionExtender` ինտերֆեյսը և այն [կապակցել տպելու ձևանմուշին](../../extensions/definitions/template_substitution_guide.md#ընդլայնման-կապակցում-տպելու-ձևանմուշին)։
 
 Տես նա՛և
 
@@ -76,7 +78,7 @@ public Task EvalAndAddUserDefinedParametersEx(string name, SubstitutionType type
 * `name` - Տպելու ձևանմուշի ներքին անուն:
 * `type` - Տպելու ձևանմուշի տիպ:
 * `printTemplateSubstitutionEx` - Տպելու ձևանմուշի տեղադրվող արժեքները տիպիզացված ձևով պարունակող օբյեկտ։
-* `document` - Տպելու ձևանմուշի հետ կապակցված [փաստաթուղթը նկարագրող դասը](../definitions/document.md)։
+* `document` - Տպելու ձևանմուշի հետ կապակցված [փաստաթղթի օբյեկտ](../definitions/document.md)։
 
 ### GetReadyTemplateSubstitution
 
@@ -91,10 +93,10 @@ public Task<ITemplateSubstitution> GetReadyTemplateSubstitution(Document.Documen
 
 **Պարամետրեր**
 
-* `document` - Տպելու ձևանմուշի հետ կապակցված [փաստաթուղթը նկարագրող դասը](../definitions/document.md)։
+* `document` - Տպելու ձևանմուշի հետ կապակցված [փաստաթուղթ](../definitions/document.md)։
 * `templateName` - Տպելու ձևանմուշի ներքին անունը։
 * `templateType` - Տպելու ձևանմուշի տիպը։
-* `parameters` - Տպելու ձևանմուշի լրացման պարամետրեր։
+* `parameters` - Տպելու ձևանմուշի լրացման պարամետրերի Dictionary, որտեղ բանալին՝ պարամետրի անունն է, իսկ արժեքը՝ պարամետրի արժեքը: Այս պարամետրի արժեքը փոխանցվելու է տպելու ձևանմուշի տեղադրվող արժեքները հաշվարկող [TemplateSubstitution](../definitions/document.md#templatesubstitution) իրադարձության մշակիչին։
 
 ### IsTemplateAvailable
 
@@ -102,13 +104,21 @@ public Task<ITemplateSubstitution> GetReadyTemplateSubstitution(Document.Documen
 public Task<bool> IsTemplateAvailable(string templateName, string templateType, Document.Document document)
 ```
 
-Ստուգում է տպելու ձևանմուշի նշված տպելու ձևանմուշի առկայությունը տվյալների պահոցի `TEMPLATES` աղյուսակում։
+Ստուգում է արդյոք նշված ձևանմուշը հասանելի է նշված փաստաթղթի համար, այսինքն փաստաթղթի տիպը նշված է տպվող ձևանմուշի փաստաթղթերի ցանկում և բավարարվում է ակտիվացման բանաձևը սերվիսում։
+
+Սերվիսում ակտիվացման բանաձևի սահմանման համար անհրաժեշտ է ստեղծել [սերվերային մոդուլ](../../extensions/definitions/server_side_module.md), որին համապատասխան c# ֆայլում ունենալ դաս ու ֆունկցիա, որը հաշվարկում է ակտիվացման բանաձևը։
+
+Ակտիվացման բանաձևը հաշվարկող ֆունկցիայի վերադարձվող արժեքի տիպը պետք է լինի `bool` և որպես պարամետր պետք է ստանա [Document](../definitions/document.md) դասի օբյեկտ։
+
+Դասի ու ֆունկցիայի սահմանումից հետո "Փաստաթղթի տպելու ձևանմուշներ" դիտելու ձևի անհրաժեշտ տպելու ձևանմուշի վրայից սեղմելով "Խմբագրել" 
+ֆունկցիայով բացվող պատուհանի "Ակտիվացման բանաձև սերվիսում դաշտում" անհրաժեշտ է այն լրացնել սերվերային մոդուլի անունը, դասի անունը և 
+ֆունկցիայի անւնը՝ իրարից անջատելով կետերով՝ **server_side_module_name.class_name.function_name**:
 
 **Պարամետրեր**
 
 * `templateName` - Տպելու ձևանմուշի ներքին անունը։
 * `templateType` - Տպելու ձևանմուշի տիպը։
-* `document` - Տպելու ձևանմուշի հետ կապակցված [փաստաթուղթը նկարագրող դասը](../definitions/document.md)։
+* `document` - Տպելու ձևանմուշի հետ կապակցված [փաստաթղթի օբյեկտ](../definitions/document.md)։
 
 ### LoadAndSubstitute
 
@@ -126,7 +136,7 @@ public Task<Stream> LoadAndSubstitute(IPrintTemplateSubstitution printTemplateSu
 * `printTemplateSubstitution` - Տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտ։
 * `name` - Տպելու ձևանմուշի ներքին անուն:
 * `type` - Տպելու ձևանմուշի տիպ:
-* `htmlImageOption` - Նախատեսված է Html տպվող տեսքերի [պատկերների տեղադրման եղանակի](../types/HtmlImageOption.md) սահմանման համար։
+* `htmlImageOption` - Html տպվող տեսքերի [պատկերների տեղադրման եղանակ](../types/HtmlImageOption.md)։
 * `outputPassword` - Տպելու ձևանմուշի ֆայլի բացման գաղտնաբառը։
 * `check` - Տպելու ձևանմուշում առկա կոդերի ճիշտ շարահյուսության ստուգման հայտանիշ։
 
@@ -146,7 +156,7 @@ public Task<string> LoadSubstituteAndGetContent(IPrintTemplateSubstitution print
 * `printTemplateSubstitution` - Տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտ։
 * `name` - Տպելու ձևանմուշի ներքին անուն:
 * `type` - Տպելու ձևանմուշի տիպ:
-* `htmlImageOption` - Նախատեսված է Html տպվող տեսքերի [պատկերների տեղադրման եղանակի](../types/HtmlImageOption.md) սահմանման համար։
+* `htmlImageOption` - Html տպվող տեսքերի [պատկերների տեղադրման եղանակ](../types/HtmlImageOption.md)։
 * `check` - Տպելու ձևանմուշում առկա կոդերի ճիշտ շարահյուսության ստուգման հայտանիշ։
 
 ### LoadSubstitutionAndGetStorage
@@ -166,7 +176,7 @@ public Task<StorageInfo> LoadSubstitutionAndGetStorage(IPrintTemplateSubstitutio
 * `printTemplateSubstitution` - Տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտ։
 * `name` - Տպելու ձևանմուշի ներքին անուն:
 * `type` - Տպելու ձևանմուշի տիպ:
-* `htmlImageOption` - Նախատեսված է Html տպվող տեսքերի [պատկերների տեղադրման եղանակի](../types/HtmlImageOption.md) սահմանման համար։
+* `htmlImageOption` - Html տպվող տեսքերի [պատկերների տեղադրման եղանակ](../types/HtmlImageOption.md)։
 * `outputPassword` - Տպելու ձևանմուշի ֆայլի բացման գաղտնաբառը։
 * `check` - Տպելու ձևանմուշում առկա կոդերի ճիշտ շարահյուսության ստուգման հայտանիշ։
 
@@ -176,15 +186,51 @@ public Task<StorageInfo> LoadSubstitutionAndGetStorage(IPrintTemplateSubstitutio
 public Task<(bool IsUnicode, byte[] File, bool Updatable)> LoadTemplateFile(string name, SubstitutionType type)
 ```
 
-Բեռնում է տպելու ձևանմուշի տվյալների պահոցի `TEMPLATES` աղյուսակից և վերադարձնում
+Բեռնում է տպելու ձևանմուշի տվյալները պահոցի `TEMPLATES` աղյուսակից և վերադարձնում
 * `IsUnicode` - Տպելու ձևանմուշը կարող է պարունակել `Unicode` կոդավորմամբ տվյալներ թե ոչ։
 * `File` - Տպելու ձևանմուշի պարունակությունը որպես byte տիպի զանգված։
-* `Updatable` - Տպելու ձևանմուշը կարելի է փոփոխել թե ոչ։
+* `Updatable` - Տպելու ձևանմուշը լրացնելուց հետո կարելի է խմբագրել, թե ոչ։
 
 **Պարամետրեր**
 
 * `name` - Տպելու ձևանմուշի ներքին անուն:
 * `type` - Տպելու ձևանմուշի տիպ:
+
+### MergeFile
+
+```c#
+public Task MergeFile(SubstitutionType type, StorageInfo targetFile, 
+                      StorageInfo sourceFile, bool insertPageBreak,
+                      bool check = false)
+```
+
+Միավորում է երկու տպելու ձևանմուշի ֆայլեր՝ տեղադրելով մեկ ընդհանուր ֆայլի մեջ։
+
+**Պարամետրեր**
+
+* `type` - Տպելու ձևանմուշի տիպ:
+* `targetFile` - Առաջին ֆայլի և ֆայլը պարունակող թղթապանակի անունները, որին կավելանա երկրորդ ֆայլը։
+* `sourceFile` - Երկրորդ ֆայլի և ֆայլը պարունակող թղթապանակի անունները, որը կավելանա առաջինի վերջում։
+* `insertPageBreak` - Երկու ֆայլերի պարունակությունների միջև break-ի նշանի տեղադրման հայտանիշ։
+* `check` - Տպելու ձևանմուշում առկա կոդերի ճիշտ շարահյուսության ստուգման հայտանիշ։
+
+### MergeFile
+
+```c#
+public Task<Stream> MergeFile(SubstitutionType type, byte[] targetFile, 
+                              byte[] sourceFile, bool insertPageBreak, 
+                              bool check = false)
+```
+
+Միավորում է երկու տպելու ձևանմուշի ֆայլեր՝ տեղադրելով մեկ ընդհանուր ֆայլի մեջ և վերադարձնում միավորված ֆայլը որպես [Stream](https://learn.microsoft.com/en-us/dotnet/api/system.io.stream):
+
+**Պարամետրեր**
+
+* `type` - Տպելու ձևանմուշի տիպ:
+* `targetFile` - Առաջին ֆայլը որպես byte տիպի զանգված, որին կավելանա երկրորդ ֆայլը։
+* `sourceFile` - Երկրորդ ֆայլը որպես byte տիպի զանգված, որը կավելանա առաջինի վերջում։
+* `insertPageBreak` - Երկու ֆայլերի պարունակությունների միջև break-ի նշանի տեղադրման հայտանիշ։
+* `check` - Տպելու ձևանմուշում առկա կոդերի ճիշտ շարահյուսության ստուգման հայտանիշ։
 
 ### Substitute
 
@@ -203,10 +249,10 @@ public Task<Stream> Substitute(IPrintTemplateSubstitution printTemplateSubstitut
 * `printTemplateSubstitution` - Տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտ։
 * `file` - Տպելու ձևանմուշի պարունակությունը որպես byte տիպի զանգված։
 * `type` - Տպելու ձևանմուշի տիպ:
-* `htmlImageOption` - Նախատեսված է Html տպվող տեսքերի [պատկերների տեղադրման եղանակի](../types/HtmlImageOption.md) սահմանման համար։
-* `isUnicode` - Տպելու ձևանմուշը կարող է պարունակել `Unicode` կոդավորմամբ տվյալներ թե ոչ։
+* `htmlImageOption` - Html տպվող տեսքերի [պատկերների տեղադրման եղանակ](../types/HtmlImageOption.md)։
+* `isUnicode` - Տպելու ձևանմուշի տվյալների `Unicode` կոդավորմամբ լրացման հայտանիշ։
 * `outputPassword` - Տպելու ձևանմուշի ֆայլի բացման գաղտնաբառը։
-* `protect` - Տպելու ձևանմուշի ֆայլը կարելի է բացել միան կարդալու թույլտվությամբ թե ոչ։
+* `protect` - `true` արժեքի դեպքում տպելու ձևանմուշի ֆայլը բացվում է միայն կարդալու թույլտվությամբ, հակառակ դեպքում՝ կարդալու/խմբագրելու թույլտվությամբ։
 * `check` - Տպելու ձևանմուշում առկա կոդերի ճիշտ շարահյուսության ստուգման հայտանիշ։
 
 ### Substitute
@@ -226,9 +272,9 @@ public Task Substitute(IPrintTemplateSubstitution printTemplateSubstitution,
 * `printTemplateSubstitution` - Տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտ։
 * `file` - Տպելու ձևանմուշը պարունակող ֆայլի և թղթապանակի անունները։
 * `type` - Տպելու ձևանմուշի տիպ:
-* `htmlImageOption` - Նախատեսված է Html տպվող տեսքերի [պատկերների տեղադրման եղանակի](../types/HtmlImageOption.md) սահմանման համար։
-* `isUnicode` - Տպելու ձևանմուշը կարող է պարունակել `Unicode` կոդավորմամբ տվյալներ թե ոչ։
-* `protect` - Տպելու ձևանմուշի ֆայլը կարելի է բացել միան կարդալու թույլտվությամբ թե ոչ։
+* `htmlImageOption` - Html տպվող տեսքերի [պատկերների տեղադրման եղանակ](../types/HtmlImageOption.md)։
+* `isUnicode` - Տպելու ձևանմուշի տվյալների `Unicode` կոդավորմամբ լրացման հայտանիշ։
+* `protect` - `true` արժեքի դեպքում տպելու ձևանմուշի ֆայլը բացվում է միայն կարդալու թույլտվությամբ, հակառակ դեպքում՝ կարդալու/խմբագրելու թույլտվությամբ։
 * `check` - Տպելու ձևանմուշում առկա կոդերի ճիշտ շարահյուսության ստուգման հայտանիշ։
 
 ### SubstituteAndGetContent
@@ -247,8 +293,8 @@ public string SubstituteAndGetContent(IPrintTemplateSubstitution printTemplateSu
 * `printTemplateSubstitution` - Տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտ։
 * `file` - Տպելու ձևանմուշի պարունակությունը որպես byte տիպի զանգված։
 * `type` - Տպելու ձևանմուշի տիպ:
-* `htmlImageOption` - Նախատեսված է Html տպվող տեսքերի [պատկերների տեղադրման եղանակի](../types/HtmlImageOption.md) սահմանման համար։
-* `isUnicode` - Տպելու ձևանմուշը կարող է պարունակել `Unicode` կոդավորմամբ տվյալներ թե ոչ։
+* `htmlImageOption` - Html տպվող տեսքերի [պատկերների տեղադրման եղանակ](../types/HtmlImageOption.md)։
+* `isUnicode` - Տպելու ձևանմուշի տվյալների `Unicode` կոդավորմամբ լրացման հայտանիշ։
 * `check` - Տպելու ձևանմուշում առկա կոդերի ճիշտ շարահյուսության ստուգման հայտանիշ։
 
 ### SubstituteAndGetContent
@@ -267,6 +313,6 @@ public Task<string> SubstituteAndGetContent(IPrintTemplateSubstitution printTemp
 * `printTemplateSubstitution` - Տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտ։
 * `file` - Տպելու ձևանմուշը պարունակող ֆայլի և թղթապանակի անունները։
 * `type` - Տպելու ձևանմուշի տիպ:
-* `htmlImageOption` - Նախատեսված է Html տպվող տեսքերի [պատկերների տեղադրման եղանակի](../types/HtmlImageOption.md) սահմանման համար։
-* `isUnicode` - Տպելու ձևանմուշը կարող է պարունակել `Unicode` կոդավորմամբ տվյալներ թե ոչ։
+* `htmlImageOption` - Html տպվող տեսքերի [պատկերների տեղադրման եղանակ](../types/HtmlImageOption.md)։
+* `isUnicode` - Տպելու ձևանմուշի տվյալների `Unicode` կոդավորմամբ լրացման հայտանիշ։
 * `check` - Տպելու ձևանմուշում առկա կոդերի ճիշտ շարահյուսության ստուգման հայտանիշ։
