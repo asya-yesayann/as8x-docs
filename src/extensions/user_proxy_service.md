@@ -24,8 +24,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [LoadAccountDescByIsn, LoadAccountDescByCode](#loadaccountdescbyisn-loadaccountdescbycode)
 * [LoadShortAccountDescByIsn, LoadShortAccountDescByCode](#loadshortaccountdescbyisn-loadshortaccountdescbycode)
 * [LoadAccountDoc](#loadaccountdoc)
-* [LoadNBAccountDescByCode](#loadnbaccountdescbycode)
-* [LoadNBAccountDesc](#loadnbaccountdesc)
+* [LoadNBAccountDesc, LoadNBAccountDescByCode](#loadnbaccountdescbycode-loadnbaccountdesc)
 * [GetAccountISN](#getaccountisn)
 * [GetCliCodeByAcc](#getclicodebyacc)
 * [IsKasAcc](#iskasacc)
@@ -620,34 +619,30 @@ Account acc = await proxyService.LoadAccountDoc("004471800");
 string accNote = acc.ACCNOTE;
 ```
 
-### LoadNBAccountDescByCode
----
-```c#
-public Task<NBAccountDesc> LoadNBAccountDescByCode(string code, bool throwException = false)
-```
-
-Վերադարձնում է ետհաշվեկշռային հաշվի հիմնական դաշտերը պարունակող օբյետ ըստ ետհաշվեկշռային հաշվի համարի։ 
-
-**Պարամետրեր**
-
-* `code`- Պարտադիր։ Ետհաշվեկշռային հաշվի համար։ Ետհաշվեկշռային հաշվի համարը պետք փոխանցել հետևյալ ֆորմատով՝ "հաշվային_պլանի_հաշիվ/անալիտիկ_հաշիվ"։ Օրինակ՝ "8000001/803813"
-* `throwException` - Ոչ պատադիր։ Առաջացնել սխալ հաշվի բավակայության դեպքում։ Լռությամբ՝ **false**: 
-
-### LoadNBAccountDesc
+### LoadNBAccountDesc LoadNBAccountDescByCode
 ---
 ```c#
 public Task<NBAccountDesc> LoadNBAccountDesc(int isn, bool throwException = false)
+public Task<NBAccountDesc> LoadNBAccountDescByCode(string code, bool throwException = false)
 ```
 
-Վերադարձնում է ետհաշվեկշռային հաշվի հիմնական դաշտերը պարունակող օբյետ ըստ ետհաշվեկշռային հաշվի ISN-ի։ 
+Վերադարձնում է ետհաշվեկշռային հաշվի հիմնական դաշտերը պարունակող օբյետ ըստ ետհաշվեկշռային հաշվի isn-ի, իսկ LoadNBAccountDescByCode ֆունկցիայի դեպքում ըստ հաշվի համարի համարի։ 
 
 **Պարամետրեր**
 
-* `isn`- Պարտադիր։ Ետհաշվեկշռային հաշվի ISN-ը։
+* `isn / code`- Պարտադիր։ Ետհաշվեկշռային հաշվի isn / համար։ Ետհաշվեկշռային հաշվի համարը պետք փոխանցել հետևյալ ֆորմատով՝ "հաշվային_պլանի_հաշիվ/անալիտիկ_հաշիվ"։ Օրինակ՝ "8000001/803813"
 * `throwException` - Ոչ պատադիր։ Առաջացնել սխալ հաշվի բավակայության դեպքում։ Լռությամբ՝ **false**: 
 
+**Օրինակ**
+```c#
+// Ստանում ենք 253011321 isn-ով ետհաշվեկշռային հաշվի բացման ամսաթիվը
+NBAccountDesc nacc = await proxyService.LoadNBAccountDesc(253011321);
+DateTime accNote = nacc.DateOpen;
 
-
+// Ստանում ենք 8000000/4771201 ետհաշվեկշռային հաշվի բացման ամսաթիվը
+NBAccountDesc nacc2 = await proxyService.LoadNBAccountDescByCode("8000000/4771201");
+DateTime accNote2 = nacc.DateOpen;
+```
 ### GetAccountISN
 ---
 ```c#
