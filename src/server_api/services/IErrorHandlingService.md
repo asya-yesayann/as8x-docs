@@ -1,11 +1,14 @@
 ---
 layout: page
 title: "IErrorHandlingService սերվիս" 
+sublinks:
+- { title: "GetSqlExceptionDetails", ref: getsqlexceptiondetails }
+- { title: "GetSqlExceptionText", ref: getsqlexceptiontext }
+- { title: "GetSqlRelatedException", ref: getsqlrelatedexception }
 ---
 
 ## Բովանդակություն
 
-- [Բովանդակություն](#բովանդակություն)
 - [Ներածություն](#ներածություն)
 - [Մեթոդներ](#մեթոդներ)
   - [GetSqlExceptionDetails](#getsqlexceptiondetails)
@@ -14,7 +17,8 @@ title: "IErrorHandlingService սերվիս"
 
 ## Ներածություն
 
-IErrorHandlingService դասը նախատեսված է ծրագրի աշխատանքի ընթացքում առաջացած սխալների մշակման համար։
+IErrorHandlingService դասը նախատեսված է ծրագրի աշխատանքի ընթացքում առաջացած sql սխալների մշակման համար։
+Մեթոդները ճանաչում են [SqlException](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlexception)-ները և դրանք ձևափոխում են։
 
 ## Մեթոդներ
 
@@ -24,7 +28,7 @@ IErrorHandlingService դասը նախատեսված է ծրագրի աշխատա
 public List<ErrorDetail> GetSqlExceptionDetails(SqlException sqlException)
 ```
 
-Վերադարձնում է `exception` պարամետրում նշված SQL-ական սխալում պարունակվող ենթասխալների [նկարագրությունների](../types/ErrorDetail.md) ցուցակը։
+Վերադարձնում է `sqlException` պարամետրում պարունակվող SQL-ական ենթասխալների [մանրամասների](../types/ErrorDetail.md) ցուցակը։
 
 **Պարամետրեր**
 
@@ -36,108 +40,38 @@ public List<ErrorDetail> GetSqlExceptionDetails(SqlException sqlException)
 public string GetSqlExceptionText(SqlException exception, string duplicateErrorMessage = "")
 ```
 
-Մշակում է `exception` պարամետրում նշված SQL-ական սխալի հաղորդագրությունը և վերադարձնում։
+Փորձում է ճանաչել SQL-ական սխալը և վերադարձնել վերջնական օգտագործողներին ավելի հասկանալի հաղորդագրություն։
+Օրինակ. գետևյալ հաղորդագրության փոխարեն վերադարձնում է 
+  - `The connection is broken and recovery is not possible. The client driver attempted to recover the connection one or more times and all attempts failed. Increase the value of ConnectRetryCount to increase the number of recovery attempts.`
+  - `Ցանցային կապի խզում: Կապվեք ցանցի ադմինիստրատորի հետ`
 
 **Պարամետրեր**
 
 * `exception` - [SqlException](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlexception) տիպի սխալ, որի հաղորդագրությունը պետք է վերադարձնել:
-* `duplicateErrorMessage` - Այն հաղորդագրությունը, որը կավելացվի `exception` պարամետրում նշված սխալի հաղորդագրությանը, եթե սխալը առաջացել է տվյալների պահոցում գոյություն ունեցող տվյալ գրանցել փորձելիս։
+* `duplicateErrorMessage` - Այն հաղորդագրությունը, որը կվերադարձնի տվյալների պահոցում տվյալի կրկնության դեպքում։
+  Սա միայն հատուկ թույլատրված աղյուսակների՝ դրանցում կրկնությունների, դեպքում է։
 
 **Օրինակ**
 
-Օրինակում տվյալների պահոցում փորձում է գրանցել պատվերը և եթե պատվերի գրանցման ընթացքում առաջանում է SQL-ական սխալ, մշակում է սխալի հաղորդագրությունը [GetSqlExceptionText](#getsqlexceptiontext) մեթոդի միջոցով գրանցում լոգում։ 
-
-Լոգի կարգավորումները անհրաժեշտ է նախապես սահմանել [appsettings.json](../../project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [Serilog](../../project/appsettings_json.md#serilog) բաժնում:
-
-Տե՛ս նաև
-
-[Ilogger interface](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger)
-[Logging in .NET Core and ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging)
-
-```c#
-using System;
-using System.Threading.Tasks;
-using ArmSoft.AS8X.Core.ErrorHandling;
-using Microsoft.Data.SqlClient;
-using Serilog;
-
-namespace ArmSoft.AS8X.Bank.Subsystems;
-
-public class OrderProcessingService
-{
-    private readonly ILogger logger;
-    private readonly IErrorHandlingService errorHandlingService;
-
-    // ինյեկցիա է արվում աշխատանքի համար անհրաժեշտ սերվիսները
-    public OrderProcessingService(ILogger logger, IErrorHandlingService errorHandlingService)
-    {
-        this.errorHandlingService = errorHandlingService;
-        this.logger = logger;
- 
-        this.logger = Log.ForContext("Connected service", nameof(OrderProcessingService));
-    }
-
-    public async Task ProcessOrder(int orderID, OrderDetails details)
-    {
-        try
-        {
-          // պատվերի գրանցում տվյալների պահոցում
-            await StoreOrderInner(orderID, details);
-        }
-        catch (Exception ex)
-        {
-            string message = ex.Message;
-            if (ex is SqlException)
-            {
-                message = this.errorHandlingService.GetSqlExceptionText(ex as SqlException);
-            }
-            // առաջացած սխալի գրանցում լոգում` որպես լոգի գլխագիր ավելացնելով "Task ProcessOrder"-ը և առաջացած սխալի 
-            // հաղորդագրությունը գրանցելով Error մակարդակով
-            logger.ForContext("Title", "Task ProcessOrder").Information(message);
-        }
-    }
-}
-```
+Տե՛ս օգտագործման [օրինակը](../examples/IErrorHandlingService.md#օրինակ-1)։
 
 ### GetSqlRelatedException
 
 ```c#           
-public Exception GetSqlRelatedException(SqlException exception, string duplicateErrorMessage = "", bool duplicateIsRestException = false)
+public Exception GetSqlRelatedException(SqlException exception, 
+                                        string duplicateErrorMessage = "", 
+                                        bool duplicateIsRestException = false)
 ```
 
-Վերադարձնում է `exception` պարամետրում նշված SQL-ական սխալը բերված բազային [Exception](https://learn.microsoft.com/en-us/dotnet/api/system.exception) տիպի։
+Ձևափոխում է SQL-ական սխալը փոխելով հաղորդագրությունը տեքստը ըստ [GetSqlExceptionText](#getsqlexceptiontext)-ի։
 
 **Պարամետրեր**
 
 * `exception` - [SqlException](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlexception) տիպի սխալ:
-* `duplicateErrorMessage` - Այն հաղորդագրությունը, որը կավելացվի `exception` պարամետրում նշված սխալի հաղորդագրությանը, եթե սխալը առաջացել է տվյալների պահոցում գոյություն ունեցող տվյալ գրանցել փորձելիս։
-* `duplicateIsRestException` - Ցույց է տալիս սխալը RESTException տիպի է թե ոչ։
+* `duplicateErrorMessage` - Այն հաղորդագրությունը, որը կվերադարձնի տվյալների պահոցում տվյալի կրկնության դեպքում։
+  Սա միայն հատուկ թույլատրված աղյուսակների՝ դրանցում կրկնությունների, դեպքում է։
+* `duplicateIsRestException` - Վերադարձնել `RESTException`, եթե տվյալի կրկնության կրկնության սխալ է։
 
 **Օրինակ**
 
-Օրինակում ստեղծվում է [SqlCommand](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlcommand) դասի օբյեկտ՝ [IDBService](../services/IDBService.md) դասի [CreateCommand](../services/IDBService.md#createcommand) մեթոդի միջոցով` Sql հարցումներ կատարելու համար։
-
-Հարցումով տվյալների պահոցում փորձում է գրանցել փաստաթուղթը և եթե տվյալների պահոցում արդեն գոյություն ունի գրանցվող փաստաթղթի isn-ով տվյալ, առաջացած [SqlException](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlexception) սխալի հաղորդագրությունը լրացուցիր մշակվում է, բերվում բազային [Exception](https://learn.microsoft.com/en-us/dotnet/api/system.exception) տիպի [GetSqlRelatedException](#getsqlrelatedexception) մեթոդի միջոցով և կրկին առաջացնում սխալ։
-
-```c#
-private async Task CreateDocumentInner(Document document)
-{
-  try
-  {
-    if (!document.ExistsInDB)
-    {
-      using var cmd = this.DbService.CreateCommand();
-      cmd.CommandType = CommandType.StoredProcedure;
-      cmd.CommandText = "asp_CreateDoc";
-      cmd.Parameters.Add("@ISN", SqlDbType.Int).Value = document.ISN;
-      cmd.Parameters.Add("@NAME", SqlDbType.Char, 8).Value = document.Description.DocType;
-      cmd.Parameters.Add("@BODY", SqlDbType.VarChar).Value = body;
-      await cmd.ExecuteNonQueryAsync();
-    }
-  }
-  catch (SqlException sqlEx)
-  {
-      throw this.ErrorHandlingService.GetSqlRelatedException(sqlEx, string.Format("Նշված isn-ով փաստաթուղթ արդեն գոյություն ունի", document.ISN));
-  }
-}
-```
+Տե՛ս օգտագործման [օրինակը](../examples/IErrorHandlingService.md#օրինակ-2)։
