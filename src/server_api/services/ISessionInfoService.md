@@ -1,28 +1,31 @@
 ---
 layout: page
 title: "ISessionInfoService սերվիս" 
-tags: session
+tags: [SUID, UserID]
+sublinks:
+- { title: "GetInfo", ref: getinfo }
 ---
 
 ## Բովանդակություն
 
 - [Ներածություն](#ներածություն)
-- [Հատկություններ](#հատկություններ)
-  - [CurrentSessionGuid](#currentsessionguid)
+<!-- - [Հատկություններ](#հատկություններ)
+  - [CurrentSessionGuid](#currentsessionguid) -->
 - [Մեթոդներ](#մեթոդներ)
-  - [Add](#add)
+  <!-- - [Add](#add)
   - [Delete](#delete)
-  - [DeleteExpirations](#deleteexpirations)
+  - [DeleteExpirations](#deleteexpirations) -->
   - [GetInfo](#getinfo)
-  - [GetInfo](#getinfo-1)
+  <!-- - [GetInfo](#getinfo-1)
   - [GetInfos](#getinfos)
-  - [Update](#update)
+  - [Update](#update) -->
 
 ## Ներածություն
 
 ISessionInfoService դասը նախատեսված է [սեսսիաների](../types/SessionInfo.md) հետ աշխատանքը ապահովելու համար։
+Հնարավոր է ստանալ ընթացիկ օգտագործողի տվյալներ, ինչպես նաև ընթացիկ պարամետրերի արժեքներ։
 
-## Հատկություններ
+<!-- ## Հատկություններ
 
 ### CurrentSessionGuid
 
@@ -30,11 +33,11 @@ ISessionInfoService դասը նախատեսված է [սեսսիաների](../t
 public string CurrentSessionGuid { get }
 ```
 
-Վերադարձնում է ընթացիկ [սեսսիայի](../types/SessionInfo.md) ներքին նույնականացման համարը (Guid):
+Վերադարձնում է ընթացիկ [սեսսիայի](../types/SessionInfo.md) ներքին նույնականացման համարը (Guid): -->
 
 ## Մեթոդներ
 
-### Add
+<!-- ### Add
 
 ```c#
 public Task Add(SessionInfo sessionInfo)
@@ -66,7 +69,7 @@ public Task<List<string>> DeleteExpirations()
 
 Հեռացնում է բոլոր ժամկետանց սեսսիաները տվյալների պահոցի `SESSIONINFO` աղյուսակից և քեշից։
 
-Վերադարձնում է հեռացված [սեսսիաների](../types/SessionInfo.md) ներքին նույնականացման համարների (Guid-ների) ցուցակը։
+Վերադարձնում է հեռացված [սեսսիաների](../types/SessionInfo.md) ներքին նույնականացման համարների (Guid-ների) ցուցակը։ -->
 
 ### GetInfo
 
@@ -78,7 +81,7 @@ public SessionInfo GetInfo()
 
 Օգտագործման օրինակին ծանոթանալու համար [տե՛ս](../types/SessionInfo.md#օգտագործման-օրինակ):
 
-### GetInfo
+<!-- ### GetInfo
 
 ```c#
 public SessionInfo GetInfo(string sessionGuid)
@@ -110,6 +113,6 @@ public Task Update(SessionInfoModel sessionInfo)
 
 **Պարամետրեր**
 
-* `sessionInfo` - Թարմացումը պարունակող ինֆորմացիան։
+* `sessionInfo` - Թարմացումը պարունակող ինֆորմացիան։ -->
 
 

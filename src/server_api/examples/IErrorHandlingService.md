@@ -3,12 +3,12 @@ layout: page
 title: "Օրինակ IErrorHandlingService" 
 sublinks:
 - { title: "Օրինակ GetSqlExceptionText, ILogger", ref: օրինակ-1 }
-- { title: "Օրինակ GetSqlRelatedException", ref: օրինակ-1 }
+- { title: "Օրինակ GetSqlRelatedException", ref: օրինակ-2 }
 ---
 
 ## Բովանդակություն
 - [IErrorHandlingService, GetSqlExceptionText, ILogger օգտագործման օրինակ](#օրինակ-1)
-- [IErrorHandlingService, GetSqlRelatedException օգտագործման օրինակ](#օրինակ-1)
+- [IErrorHandlingService, GetSqlRelatedException օգտագործման օրինակ](#օրինակ-2)
 
 ## Օրինակ 1
 
