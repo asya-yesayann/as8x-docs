@@ -33,8 +33,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [CalculateOlapFormula](#calculateolapformula)
 * [Udf](#udf)
 * [TreeElProp](#treeelprop)
-* [TreeElPropComment](#treeelpropcomment)
-* [TreeElPropEComment](#treeelpropecomment)
+* [TreeElPropComment, TreeElPropEComment](#treeelpropcomment-treeelpropecomment)
 * [FolderElProp](#folderelprop)
 * [FolderElPropSpec](#folderelpropspec)
 * [LoadContractDescByISN](#loadcontractdescbyisn)
@@ -791,11 +790,11 @@ public decimal Udf(string codeForm, params object[] @params)
 * `codeForm`- Պարտադիր։ բանաձևի կոդը։
 * `params object[] @params` - Պարտադիր։ Օգտոգործողի կողմից նկարագրվող բանաձևի բոլոր պարամետրերի արժեքները։
 
-Բերված օրինակում հաշվարկվում է AvRem բանաձևը, որը վերադարձնում է 01 տիպի 006 Նշում ունեցող հաշիվների միջին մնացորդը 
-01/07/24-31/07/24 ժամանակահատվածի համար։
-
+**Օրինակ**
 ```c#
-decimal agrs = proxyService.Udf("AvRem", DateTime.Parse("2024-07-01"), DateTime.Parse("2024-07-31"),  "01", "006");
+/* Բերված օրինակում հաշվարկվում է AvRem բանաձևը, որը վերադարձնում է 01 տիպի 006 Նշում ունեցող հաշիվների միջին մնացորդը 
+01/07/24-31/07/24 ժամանակահատվածի համար։ */
+decimal agrs = proxyService.Udf("AvRem", DateTime.Parse("2024-07-01"), DateTime.Parse("2024-07-31"),  "01", "006"); 
 ```
 
 ### TreeElProp
@@ -812,21 +811,19 @@ public Task<TreeElement> TreeElProp(string treeId, string key, bool useCache = t
 * `key` - Պարտադիր։ Հանգույցի կոդը։
 * `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true:
 
-Բերված օրինակում ստանում ենք մարզերի տեղեկատուի 001 կոդով հանգույցի անվանումը օգտագործելով քեշավորված տվյալները։  
-
+**Օրինակ**
 ```c#
+// Բերված օրինակում ստանում ենք մարզերի տեղեկատուի 001 կոդով հանգույցի անվանումը օգտագործելով քեշավորված տվյալները։  
 string DistrName = (await proxyService.TreeElProp("LRDistr", "001")).Comment;
 ```
 
-
-
-### TreeElPropComment
+### TreeElPropComment TreeElPropEComment
 ---
 ```c#
 public async Task<string> TreeElPropComment(string treeId, string key, bool useCache = true)
 ```
 
-Վերադարձնում է սահմանված կոդով, ծառ-տեղեկատուի հանգույցի անվանումը։ 
+Վերադարձնում է սահմանված կոդով, ծառ-տեղեկատուի հանգույցի հայերեն իսկ TreeElPropEComment ֆունկցիայի դեպքում անգլերեն անվանումը։ 
 
 **Պարամետրեր**
 
@@ -834,21 +831,13 @@ public async Task<string> TreeElPropComment(string treeId, string key, bool useC
 * `key` - Պարտադիր։ Հանգույցի կոդը։
 * `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true: Լռությամբ քեշի թարմացումը տեղի է ունենում 10 րոպեն մեկ, սակայն այդ ժամանակահատվածը հնարավոր է փոփոխել խմբագրելով appsettings.json ֆայլը (CacheRefreshPeriods պարամետր)։ false արժեքի դեպքում տվյալները կվերցվեն տվյալների բազայից։
 
-
-### TreeElPropEComment
----
+**Օրինակ**
 ```c#
-public async Task<string> TreeElPropComment(string treeId, string key, bool useCache = true)
+// Ստանում ենք "Մարզեր" ծառ-տեղեկատուի 002 հանգույցի հայերեն և անգլերեն անվանումները։
+
+string marz = await proxyService.TreeElPropComment("LRDistr", "002");
+string marzEng = await proxyService.TreeElPropEComment("LRDistr", "002");
 ```
-
-Վերադարձնում է սահմանված կոդով, ծառ-տեղեկատուի հանգույցի անգլերեն անվանումը։ 
-
-**Պարամետրեր**
-
-* `treeId`- Պարտադիր։ Ծառի ներքին անվանումը։
-* `key` - Պարտադիր։ Հանգույցի կոդը։
-* `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ քեշի թարմացումը տեղի է ունենում 10 րոպեն մեկ, սակայն այդ ժամանակահատվածը հնարավոր է փոփոխել խմբագրելով appsettings.json ֆայլը (CacheRefreshPeriods պարամետր)։ false արժեքի դեպքում տվյալները կվերցվեն տվյալների բազայից։
-
 
 ### FolderElProp
 ---
