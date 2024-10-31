@@ -924,7 +924,12 @@ public Task<ContractDesc> LoadContractDescByCode(string agrType, string code)
 > ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
 <br>
 
+```c#
+// Ստանում ենք TV2446 համարով վարկային պայմանագրի Նշում դաշտի արժեքը։
 
+ContractDesc cDesc = await proxyService.LoadContractDescByCode("C","TV2446");
+string note = cDesc.Note;
+```
 
 ### GetAgrRem
 ---
