@@ -1223,6 +1223,7 @@ public Task<decimal> GetFutPerDbt(int agrISN, DateTime dateStart, DateTime dateE
 * `dateStart` - Պարտադիր։ Սկզբի ամսաթիվ։
 * `dateEnd` - Պարտադիր։ Վերջի ամսաթիվ։
 
+**Օրինակ**
 ```c#
 // Հաշվարկվում է 605404534 isn -ով պայմանագրի ապագա վճարվելիք տոկոսագումարը 05/01/25 - 03/04/25 ժամանակահատվածի համար։
 decimal fDbt = await proxyService.GetFutPerDbt(605404534, DateTime.Parse("2025-01-05"), DateTime.Parse("2025-04-03"));
@@ -1243,7 +1244,6 @@ decimal fDbt = await proxyService.GetFutPerDbt(605404534, DateTime.Parse("2025-0
 * `agrISN` - Պարտադիր։ Պայմանագրի ISN։
 * `dateStart` - Պարտադիր։ Սկզբի ամսաթիվ։
 * `dateEnd` - Պարտադիր։ Վերջի ամսաթիվ։
-
 
 ### GetPCardData
 ---
@@ -1266,17 +1266,15 @@ decimal fDbt = await proxyService.GetFutPerDbt(605404534, DateTime.Parse("2025-0
 * `includeClosed` - Ոչ պարտադիր։ Փնտրել նաև փակվածների մեջ։ Լռությամբ փնտրվում է։
 * `throwException` - Ոչ պարտադիր։ Սահմանված պայմաններով քարտ չգտնելու դեպքում բերել սխալի հաղորդագրություն։ Լռությամբ՝ այո։
 
-
+**Օրինակ**
 ```c#
 using System.Collections.Generic;
 
 //Ստանում ենք 80662376 isn ով վճարային քարտի արժույթը և հաճախորդի կոդը պարունակով dictionary: 
 Dictionary<string, object> pcard = await proxyService.GetPCardData("fCUR, fCLICODE", isn: 80662376);
 
-
 await proxyService.TryAddAtomicAsync("param1", async () => (string) pcard["fCUR"], templateSubstitutionArgs);
 await proxyService.TryAddAtomicAsync("param2", async () => (string) pcard["fCLICODE"], templateSubstitutionArgs);
-
 ```
 
 ### GetPCardDoc
