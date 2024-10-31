@@ -924,6 +924,7 @@ public Task<ContractDesc> LoadContractDescByCode(string agrType, string code)
 > ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
 <br>
 
+**Օրինակ**
 ```c#
 // Ստանում ենք TV2446 համարով վարկային պայմանագրի Նշում դաշտի արժեքը։
 
@@ -947,13 +948,12 @@ public async Task<decimal> GetAgrRem(int isn, Rem accType, DateTime requestDate,
 * `sourceCur` - Ոչ պարտադիր։ Լռությամբ ""։ Պայմանագրի մնացորդի արժույթի թվային կոդը։ Օրինակ՝ "000", "001"։ Կիրառվում է `targetCur` պարամետրի հետ միասին։ 
 * `targetCur ` - Ոչ պարտադիր, Լռությամբ ""։ Վերահաշվակվի արժույթի թվային կոդը։ Օրինակ՝ "000", "001"։ Այս պարամետրը սահմանվում է `sourceCur` պարամետրի հետ միասին։ Սահմանված լինելու դեպքում մնացորդը կվերահաշվարկվի ըստ տվյալ արժույթի համար `requestDate` ապարամետրով սահմանված ամսաթվով ՀՀ ԿԲ հաշվարկային փոխարժեքի։ Սահմանված չլինելու դեպքում գումարը կվերադարձվի հաշվառման արժությով։
 
-
-Բերված օրինակում կհաշվարկվի 653013562 ISN-ով, ԱՄՆ- դոլարով պայմանագրի մնացորդը 13/08/24 -ի դրությամբ վերահաշվարկված ԵՎՐՈ-ով։
+**Օրինակ**
 ```c#
+// Բերված օրինակում կհաշվարկվի 653013562 ISN-ով, ԱՄՆ- դոլարով պայմանագրի մնացորդը 13/08/24 -ի
+// դրությամբ վերահաշվարկված ԵՎՐՈ-ով։
 decimal agrRem = await proxyService.GetAgrRem(653013562, Subsystems.Enums.Accountings.Rem.R1, DateTime.Parse("2024-08-13"), "C1Univer", "001", "049");
 ```
-
-
 
 ### GetAgrTurn
 ---
@@ -976,12 +976,10 @@ public Task<decimal> GetAgrTurn(int isn, DateTime startDate, DateTime endDate, R
 
 Բերված օրինակում հաշվարկվում է 812735354 ISN-ով, դրամային պայմանագրի գծով, սահմանված ժամանակահատվածում կատարված տրամադրումների ընդհանուր գումարը վերահաշվարկված ԱՄՆ դոլարի։
 
+**Օրինակ**
 ```c#
 decimal agrRem = await proxyService.GetAgrTurn(812735354, DateTime.Parse("2009-07-10"), DateTime.Parse("2009-07-25"), Subsystems.Enums.Accountings.Rem.R1,"AGR","D", "000", "001");
 ```
-
-
-
 
 ### GetSSFactValueDate GetSSFactValueString GetSSFactValueInt GetSSFactValueDecimal GetSSFactValuePercent GetSSFactValueStringDecimal
 ---
@@ -1007,11 +1005,10 @@ public Task<InterestRate> GetSSFactValuePercent(int isn, NoRem accType, string a
 
 Բերված օրինակում ստանում ենք 812735354 ISN -ով պայմանագրի տոկոսադրույքը 15/08/24 ամսաթվի դրությամբ։ 
 
+**Օրինակ**
 ```c#
 deciaml perc = (await proxyService.GetSSFactValuePercent(812735354, Subsystems.Enums.Accountings.NoRem.N0, "PAG", DateTime.Parse("2024-08-15"))).Rate;
 ```
-
-
 
 ### GetAgrFactValueDate GetAgrFactValuePercent GetAgrFactValueDecimal GetAgrFactValueString
 ---
@@ -1042,11 +1039,10 @@ MinMax, MinMaxLast enum -ների արժներից վերադարձվող արժ
 
 Բերված օրինակում ստանում ենք 307245031 ISN -ով բարդ պայմանագրի ենթապայմանագրերի գծով 29/12/24 ամսաթվի դրությամբ նշանակված վերջին տոկոսադրույքը։ 
 
+**Օրինակ**
 ```c#
 deciaml perc = ( await proxyService.GetAgrFactValuePercent(307245031, Subsystems.Enums.Accountings.NoRem.N0, "PAG", DateTime.Parse("2024-12-29"), MinMaxLast.Last, true, "C1Compl")).Rate;
 ```
-
-
 
 ### GetRemSS
 ---
