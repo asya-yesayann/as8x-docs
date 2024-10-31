@@ -472,7 +472,6 @@ public Task<int> GetClientISNByAcc(string acc)
 int isn = await proxyService.GetClientISNByAcc("10000081200");
 ```
 
-
 ### GetClientFullName
 ---
 ```c#
@@ -494,7 +493,6 @@ public Task<string> GetClientFullName(string firstName, string lastName, string 
 string fullName = await proxyService.GetClientFullName("Պողոս", "Պողոսյան", "Պողոսի", true);
 ```
 
-
 ### GetClientAMDAcc
 ---
 ```c#
@@ -511,7 +509,6 @@ public Task<string> GetClientAMDAcc(string cliCode)
 ```c#
 string acc = await proxyService.GetClientAMDAcc("00006252");
 ```
-
 
 ### GetClientRezJurVolortByAccount
 ---
@@ -655,6 +652,7 @@ public Task<int> GetAccountISN(string acc)
 
 * `acc`- Պարտադիր։ Հաշվի համար։
 
+**Օրինակ**
 ```c#
 // Ստանում ենք 10110050601 հաշվի isn-ը։
 int isn = await proxyService.GetAccountISN("10110050601");
@@ -672,7 +670,8 @@ public Task<string> GetCliCodeByAcc(string account)
 **Պարամետրեր**
 
 * `account`- Պարտադիր։ Հաշվի համար։
-  
+
+**Օրինակ**
 ```c#
 // հաշվարկվում է 10200060200 հաշվի հաշետիրոջ կոդը։
 string cliCode = await proxyService.GetCliCodeByAcc("10200060200");
@@ -690,6 +689,7 @@ public Task<bool> IsKasAcc(string account)
 
 * `account`- Պարտադիր։ Հաշվի համար։
 
+**Օրինակ**
 ```c#
 bool isCashAcc = await proxyService.IsKasAcc("10000081000");
 ```
@@ -706,6 +706,7 @@ public Task<bool> IsIncExpAcc(string account)
 
 * `account`- Պարտադիր։ Հաշվի համար։
 
+**Օրինակ**
 ```c#
 bool isIncAcc = await proxyService.IsIncExpAcc("64190050300");
 ```
@@ -738,6 +739,7 @@ public decimal CalculateAtmInd(string codFormList, DateTime dateFirst, DateTime 
 > [!TIP]
 > Ժամանակահատվածի սկզբի, վերջի, ինչպես նաև **acsBranch**, **skv**, **calcCurCode**, **precision** պարամտերերի արժեքները ավտոմատ կփոխանցվեն ատոմար ցուցանիշում լրացված բանաձևերի համապատասխան պարամետրերին եթե նրանք առկա են։ Ժամանակաշրջանը սահնմանված չլինելու դեպքում հաշվարկը կկատարվի ՀԾ-Բանկ համակարգում սահմանված ընթացիկ օրով։
 
+**Օրինակ**
 ```c#
 // Հաշվարկվում է pak մնացորդային ատոմար ցուցանիշի արժեքը B10 գրասենյակի համար 31/10/24 ամսաթվով 001 արժույթի համար։
 decimal sum = proxyService.CalculateAtmInd("pak", DateTime.Parse("2024-10-31"), acsBranch: "B10", skv:"001");
@@ -770,6 +772,7 @@ public decimal CalculateOlapFormula(string codFormList, string branch, DateTime 
 > [!TIP]
 > Ժամանակահատվածի սկզբի, վերջի, ինչպես նաև **branch**, **skv**, **calcCurCode**, **precision** պարամտերերի արժեքները ավտոմատ կփոխանցվեն OLAP ցուցանիշում լրացված բանաձևերի համապատասխան պարամետրերին եթե նրանք առկա են։ 
 
+**Օրինակ**
 ```c#
 decimal sum = proxyService.CalculateOlapFormula("_BIA", "99997", DateTime.Parse("2024-10-31"), DateTime.Parse("2024-10-31"));
 ```
