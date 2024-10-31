@@ -18,15 +18,20 @@ title: "Սերվերային API"
 
 ## Սերվիսներ
 
+* [AppLogService](server_api/services/AppLogService.md)
 * [IAttachmentService](server_api/services/IAttachmentService.md)
 * [IDocumentService](server_api/services/IDocumentService.md)
 * [IDBService](server_api/services/IDBService.md)
+* [IErrorHandlingService](server_api/services/IErrorHandlingService.md)
 * [IFactService](server_api/services/IFactService.md)
 * [IFoldersService](server_api/services/IFoldersService.md)
 * [IHolidaysService](server_api/services/IHolidaysService.md)
+* [IMailService](server_api/services/IMailService.md)
 * [IParametersService](server_api/services/IParametersService.md)
 * [ISessionInfoService](server_api/services/ISessionInfoService.md)
 * [IStorageService](server_api/services/IStorageService.md)
+* [ITemplateSubstitutionService](server_api/services/ITemplateSubstitutionService.md)
+* [IUserService](server_api/services/IUserService.md)
 * [DataSourceService](server_api/services/DataSourceService.md)
 * [LiteDocumentService](server_api/services/LiteDocumentService.md)
 * [TemplateService](server_api/services/TemplateService.md)
