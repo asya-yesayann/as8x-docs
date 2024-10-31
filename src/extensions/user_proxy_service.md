@@ -1058,6 +1058,11 @@ public Task<decimal> GetRemSS(int isn, Rem accType, DateTime requestDate)
 * `accType` - Պարտադիր։ Հաշվառման կոդ։ Սահմանվում է Subsystems.Enums.Accountings.Rem դասի համապատասխան հատկությունը։ Նշված դասի հատկությունների անվանումները համապատասխանում են [պայմանագրերի հաշվառման կոդերին](#պայմանագրերի-հաշվառումների-կոդեր)։
 * `requestDate` - Պարտադիր։ Մնացորդի ամսաթիվը։
 
+**Օրինակ**
+```c#
+// Հաշվարկում ենք 587157500 isn-ով պայմանագրի մայր-գումարի մնացորդը ընթացիկ օրվա դրությամբ
+decimal agrem = await proxyService.GetRemSS(587157500, ArmSoft.AS8X.Bank.Subsystems.Enums.Accountings.Rem.R1,DateTime.Now);
+```
 
 
 ### GetRemHI2
