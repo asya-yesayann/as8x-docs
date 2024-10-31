@@ -1,11 +1,11 @@
 ---
 layout: page
-title: "AttachmentCommentModel" 
+title: "AttachmentCommentModel դաս" 
 ---
 
-Այդ դասը նախատեսված է փաստաթղթին կցված ֆայլի մեկնաբանությունը նկարագրելու համար։
+Դասը պարունակում է փաստաթղթին կցված ֆայլի մեկնաբանությունը փոխելու տվյալներ։
 
-Օգտագործվում է [IAttachmentService](../services/IAttachmentService.md).[ChangeComment](../services/IAttachmentService.md#changecomment) մեթոդով փաստաթղթին կցված ֆայլի մեկնաբանությունը թարմացնելիս։
+Օգտագործվում է [IAttachmentService](../services/IAttachmentService.md).[ChangeComment](../services/IAttachmentService.md#changecomment) մեթոդով փաստաթղթին կցված ֆայլի մեկնաբանությունը փոխելուց։
 
 ```c#
 public class AttachmentCommentModel 
@@ -15,5 +15,5 @@ public class AttachmentCommentModel
 }
 ```
 
-* `Identifier` - Կցված ֆայլը պարունակող փաստաթղթի ներքին նույնականացման համարը (isn) և ֆայլի անունը՝ ներառյալ ընդլայնումը։
+* `Identifier` - Փաստաթղթի ներքին նույնականացման համարը (ISN), որին կցված է ֆայլը և կցված ֆայլի անունը՝ ներառյալ ընդլայնումը։
 * `Comment` - Կցված ֆայլի նոր մեկնաբանությունը։

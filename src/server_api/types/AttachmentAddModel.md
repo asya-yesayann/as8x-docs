@@ -1,15 +1,13 @@
 ---
 layout: page
-title: "AttachmentAddModel" 
+title: "AttachmentAddModel դաս" 
 ---
 
-Այդ դասը նախատեսված է փաստաթղթին կցվող ֆայլը նկարագրելու համար։
+Դասը պարունակում է փաստաթղթին նոր ֆայլ կցելու տվյալներ։
 
 Օգտագործվում է [IAttachmentService](../services/IAttachmentService.md).[Add](../services/IAttachmentService.md#add) մեթոդով փաստաթղթին ֆայլ կցելիս։
 
-**Կարևոր**
-
-Փաստաթղթին ֆայլ կցելու համար անհրաժեշտ է կցվող ֆայլը նախապես պահպանել [ընթացիկ սեսսիայի կոնտեյներ](../services/IStorageService.md#container)-ում [IStorageService](../services/IStorageService.md).[UploadTempBlobAsync](../services/IStorageService.md#uploadtempblobasync) մեթոդով։
+Տե՛ս [օրինակը](../examples/IAttachmentService.md#օրինակ-1)։
 
 ```c#
 public class AttachmentAddModel
@@ -22,8 +20,8 @@ public class AttachmentAddModel
 }
 ```
 
-* `Identifier` - Փաստաթղթի ներքին նույնականացման համարը (isn), որին կցվել է ֆայլը և ֆայլի անունը՝ ներառյալ ընդլայնումը։
+* `Identifier` - Փաստաթղթի ներքին նույնականացման համարը (ISN), որին կցվելու է ֆայլը և կցվող ֆայլի անունը՝ ներառյալ ընդլայնումը։
 * `Comment` - Կցվող ֆայլի մեկնաբանությունը։
-* `Type` - Կցվող ֆայլի տեսակ։
-* `FileContentStorageInfo` - Ֆայլը պարունակող կոնտեյների և ֆայլի անունները։
+* `Type` - Ֆայլի Կցման ձևը (ֆայլ կամ հղում)։
+* `FileContentStorageInfo` - Ֆայլի նույնականացուցիչ սերվերային պահոցում։
 * `DocumentType` - Փաստաթղթի տեսակ (ներքին անուն)։

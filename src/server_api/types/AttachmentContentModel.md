@@ -3,13 +3,11 @@ layout: page
 title: "AttachmentContentModel" 
 ---
 
-Այդ դասը նախատեսված է փաստաթղթին կցվող ֆայլի նկարագրությունը թարմացնելու համար։
+Դասը պարունակում է փաստաթղթին կցված ֆայլի պարունակությունը փոխելու տվյալներ։
 
-Օգտագործվում է [IAttachmentService](../services/IAttachmentService.md).[UpdateContent](../services/IAttachmentService.md#updatecontent) մեթոդով փաստաթղթին ֆայլ նկարագրությունը թարմացնելիս։
+Օգտագործվում է [IAttachmentService](../services/IAttachmentService.md).[UpdateContent](../services/IAttachmentService.md#updatecontent) մեթոդով փաստաթղթին կցված ֆայլը փոխելուց։
 
-**Կարևոր**
-
-Փաստաթղթին ֆայլ կցելու համար անհրաժեշտ է կցվող ֆայլը նախապես պահպանել [ընթացիկ սեսսիայի կոնտեյներ](../services/IStorageService.md#container)-ում [IStorageService](../services/IStorageService.md).[UploadTempBlobAsync](../services/IStorageService.md#uploadtempblobasync) մեթոդով։
+Տե՛ս [օրինակը](../examples/IAttachmentService.md#օրինակ-2)։
 
 ```c#
 public class AttachmentContentModel 
@@ -19,5 +17,5 @@ public class AttachmentContentModel
 }
 ```
 
-* `Identifier` - Փաստաթղթի ներքին նույնականացման համարը (isn), որին կցվել է ֆայլը և ֆայլի անունը՝ ներառյալ ընդլայնումը։
-* `FileContentStorageInfo` - Ֆայլը պարունակող կոնտեյների և ֆայլի անունները։
+* `Identifier` - Փաստաթղթի ներքին նույնականացման համարը (ISN), որին կցված է ֆայլը և կցված ֆայլի անունը՝ ներառյալ ընդլայնումը։
+* `FileContentStorageInfo` - Նոր պարունակությամբ ֆայլի նույնականացուցիչը սերվերային պահոցում։
