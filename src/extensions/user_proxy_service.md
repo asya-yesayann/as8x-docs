@@ -371,14 +371,13 @@ public Task<ClientDesc> LoadClientDescByISN(int isn)
 
 * `isn`- Պարտադիր։ Հաճախորդ փաստաթղթի ISN-ը։
 
-**Օրինակ**
 ```c#
-// Ստանում ենք ContractDesc տիպի օբյեկտը 587157500 պայմանագրի համար, այնուհետև պայմանագրի համար։
-// Պայմանագրի ոչ բոլոր դաշտերն է հնարավոր ստանալ ContractDesc տեսակի օբյեկտի միջոցով։
-
-var cDesc = await proxyService.LoadContractDescByISN(587157500);
-string agrCode = cDesc.Code;
+// Ստանում ենք 304663812 isn-ով հաճախորդի հասցեն։
+ClientDesc cDesc = await proxyService.LoadClientDescByISN(304663812);
+string address = cDesc.Address;
 ```
+
+
 
 ### LoadClientDescByCode
 ---
@@ -393,10 +392,10 @@ public Task<ClientDesc> LoadClientDescByCode(string code)
 
 **Օրինակ**
 ```c#
-// Օրինակում ստանում ենք 00006473 կոդով հաճախորդի հեռախոսահամարը։
+// Ստանում ենք 00006473 կոդով հաճախորդի հեռախոսահամարը։
 
-var cl = await proxyService.LoadClientDescByCode("00006473");
-proxyService.TryAddAtomic("param1", () => cl.Tel.ToString(), templateSubstitutionArgs);
+ClientDesc clientDesc = await proxyService.LoadClientDescByCode("00006473");
+string tel = clientDesc.Tel;
 ```
 
 ### LoadClientDocRObyISN
@@ -899,6 +898,14 @@ public Task<ContractDesc> LoadContractDescByISN(int isn)
 
 * `isn`- Պարտադիր։ Պայմանագրի ISN։
 
+**Օրինակ**
+```c#
+// Ստանում ենք ContractDesc տիպի օբյեկտը 587157500 պայմանագրի համար, այնուհետև պայմանագրի համար։
+// Պայմանագրի ոչ բոլոր դաշտերն է հնարավոր ստանալ ContractDesc տեսակի օբյեկտի միջոցով։
+
+var cDesc = await proxyService.LoadContractDescByISN(587157500);
+string agrCode = cDesc.Code;
+```
 
 
 ### LoadContractDescByCode
