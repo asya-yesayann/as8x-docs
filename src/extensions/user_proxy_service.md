@@ -342,7 +342,7 @@ public Task<Document> LoadContractDoc(string agrType, string agrCode, string agr
 public Task<Client> LoadClientDoc(string clientCode)
 ```
 
-Վերադարձնում է հաճախորդի քարտի օբյեկտը։ Oգտագործվում է `await` բանալի բառով:
+Վերադարձնում է հաճախորդի քարտի օբյեկտը։
 
 **Պարամետրեր**
 
