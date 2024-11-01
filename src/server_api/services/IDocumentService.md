@@ -1028,7 +1028,7 @@ public Task<T> LoadFromFolder<T>(string folder, string key, GridLoadMode gridLoa
 public Task MakeParentLink(Document document, int parentIsn, bool removeExistingLinks = true)
 ```
 
-Ընթացիկ փաստաթղի համար սահմանում է ծնողի հետ կապ։ 
+Ընթացիկ փաստաթղթի համար սահմանում է ծնողի հետ կապ։ 
 Ընթացիկ փաստաթուղթը կարող է դեռ գրանցված չլինել տվյալների պահոցում։
 
 Մեթոդը նախատեսված է [Action](../definitions/document.md#action) իրադարձության մշակիչում կանչելու համար։  
