@@ -1,11 +1,35 @@
 ---
 layout: page
-title: "IParametersService սերվիս" 
+title: "IParametersService սերվիս"
+tags: [Param, BankParametersService, EnterpriseParametersService, WagesParametersService]
+sublinks:
+- { title: "Exists", ref: exists }
+- { title: "ExistsHiPar", ref: existshipar }
+- { title: "GetBooleanValue", ref: getbooleanvalue }
+- { title: "GetBooleanValue", ref: getbooleanvalue-1 }
+- { title: "GetDateTimeValue", ref: getdatetimevalue }
+- { title: "GetDateTimeValue", ref: getdatetimevalue-1 }
+- { title: "GetDecimalValue", ref: getdecimalvalue }
+- { title: "GetDecimalValue", ref: getdecimalvalue-1 }
+- { title: "GetDetailedDescription", ref: getdetaileddescription }
+- { title: "GetHiPar", ref: gethipar }
+- { title: "GetIntegerValue", ref: getintegervalue }
+- { title: "GetIntegerValue", ref: getintegervalue-1 }
+- { title: "GetShortValue", ref: getshortvalue }
+- { title: "GetShortValue", ref: getshortvalue-1 }
+- { title: "GetStringValue", ref: getstringvalue }
+- { title: "GetStringValue", ref: getstringvalue1 }
+- { title: "GetTimeSpanValue", ref: gettimespanvalue }
+- { title: "GetTimeSpanValue", ref: gettimespanvalue-1 }
+- { title: "SetHiPar", ref: sethipar }
+- { title: "SetValue", ref: setvalue }
+- { title: "SetValueWithAdditionalConnection", ref: setvaluewithadditionalconnection }
 ---
 
 ## Բովանդակություն
 
 - [Ներածություն](#ներածություն)
+- [Մեթոդներ](#մեթոդներ)
   - [Exists](#exists)
   - [ExistsHiPar](#existshipar)
   - [GetBooleanValue](#getbooleanvalue)
@@ -21,7 +45,7 @@ title: "IParametersService սերվիս"
   - [GetShortValue](#getshortvalue)
   - [GetShortValue](#getshortvalue-1)
   - [GetStringValue](#getstringvalue)
-  - [GetStringValue](#getstringvalue-1)
+  - [GetStringValue](#getstringvalue1)
   - [GetTimeSpanValue](#gettimespanvalue)
   - [GetTimeSpanValue](#gettimespanvalue-1)
   - [SetHiPar](#sethipar)
@@ -30,9 +54,20 @@ title: "IParametersService սերվիս"
 
 ## Ներածություն
 
-Համակարգում նկարագրվում են պարամետրեր, որոնց միջոցով հնարավոր է սահմանել օգտագործողների որոշ իրավասություններ, ծրագրի կարգավորումներ...։
+Համակարգում նկարագրվում են պարամետրեր, որոնց միջոցով հնարավոր է սահմանել օգտագործողների որոշ իրավասություններ, ծրագրի կարգավորումներ։
+Պարամետրերի արժեքները կարող են լինել [համակարգային տիպի](../types/system_types.md)։  
+Պարամետրի արժեքը կարող է պահվել մեկը, կամ ըստ օգտագործողի կտրվածքի՝ այս դեպքում ամեն օգտագործող կարող է ունենալ պարամետրի սեփական արժեքը։  
+Համակարգային պարամետրերը պահվում են տվյալների պահոցի [PARAMS](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Params.html) աղյուսակում։ Ըստ օգտագործողի արժեքները պահվում են [USERPARAMS](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/User%20Params.html) աղյուսակում:  
+Համակարգային պարամետրերը ստեղծվում են տեքստային ֆայլով [ներմուծման միջոցով](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Import_Files/Parameter_Import.html)։
 
-Պարամետրերը պահվում են տվյալների պահոցի [PARAMS](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Params.html), [USERPARAMS](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/User%20Params.html), [HIPAR](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/HiPar.html) աղյուսակներում։
+Բացի համակարգային պարամետրերից առկա են նաև ժամանակագրական պարամետրեր։ Արժեքներ պահվում են ըստ ամսաթվի, և մեկ օրվա ընթացքում կարող է գրանցվել մի քանի արժեք։  
+Պարամետրերի արժեքները կարող են լինել միայն տողային։
+Ժամանակագրական պարամետրերը պահվում են տվյալների պահոցի [HIPAR](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/HiPar.html) աղյուսակում։
+
+ՀԾ-Բանկի, ՀԾ-Ձեռնարկության և ՀԾ-Աշխատավարձի պրոյեկտներում առկա են բազային IParametersService-ի ժառանգ դասեր (BankParametersService, EnterpriseParametersService, WagesParametersService), որոնցում առկա են խիստ տիպիզացված մեթոդներ պարամետրերի արժեքները ստանալու համար։
+
+
+## Մեթոդներ
 
 ### Exists
 
@@ -40,7 +75,7 @@ title: "IParametersService սերվիս"
 public bool Exists(string paramId)
 ```
 
-Ստուգում է համակարգային պարամետրի առկայությունը` ըստ պարամետրի ներքին անվան։
+Ստուգում է համակարգային պարամետրի գոյությունը՝ ըստ պարամետրի ներքին անվան։
 
 **Պարամետրեր**
 
@@ -55,22 +90,24 @@ public Task<bool> ExistsHiPar(string paramID,
                               string searchValue = null)
 ```
 
-Ստուգում է ժամանակագրական պարամետրի առկայությունը [HIPAR](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/HiPar.html) աղյուսակում:
+Ստուգում է ժամանակագրական պարամետրի նշանակված արժեքի առկայությունը:
 
 **Պարամետրեր**
 
 * `paramID` - Պարամետրի ներքին անուն (id)։
 * `date` - Պարամետրի որոնման ամսաթիվ։
 * `softGet` - **true** արժեքի դեպքում մեթոդը ստուգում է `date` ամսաթվի դրությամբ պարամետրի որևէ արժեքի նշանակված լինելը, հակառակ դեպքում՝ միմիայն `date` ամսաթվին նշանակված արժեքի գոյությունը։
-* `searchValue` - 
+* `searchValue` - Փոխանցված լինելու դեպքում որոնում է այդ արժեքը։
 
 ### GetBooleanValue
 
 ```c#
-public Task<bool> GetBooleanValue(string paramId);
+public Task<bool> GetBooleanValue(string paramId)
 ```
 
-Վերադարձնում է bool տիպի պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան։
+Վերադարձնում է [տրամաբանական տիպի](../types/system_types.md#booleanfieldtype) պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան։  
+Տիպի անհամապատասխանության դեպքում առաջանում է սխալ։  
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
 
 **Պարամետրեր**
 
@@ -79,10 +116,12 @@ public Task<bool> GetBooleanValue(string paramId);
 ### GetBooleanValue
 
 ```c#
-public Task<bool> GetBooleanValue(string paramId, short suid);
+public Task<bool> GetBooleanValue(string paramId, short suid)
 ```
 
-Վերադարձնում է պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան և օգտագործողի համարի։
+Վերադարձնում է [տրամաբանական տիպի](../types/system_types.md#booleanfieldtype) պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան և օգտագործողի համարի։  
+Տիպի անհամապատասխանության դեպքում առաջանում է սխալ։  
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
 
 **Պարամետրեր**
 
@@ -92,22 +131,26 @@ public Task<bool> GetBooleanValue(string paramId, short suid);
 ### GetDateTimeValue
 
 ```c#
-public Task<DateTime?> GetDateTimeValue(string paramId);
+public Task<DateTime?> GetDateTimeValue(string paramId)
 ```
 
-Վերադարձնում է պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան։
+Վերադարձնում է ամսաթիվ տիպի ([DATE](../types/system_types.md#datefieldtype), [DATELONG](../types/system_types.md#datefieldtype)) պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան։  
+Տիպի անհամապատասխանության դեպքում առաջանում է սխալ։  
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
 
 **Պարամետրեր**
 
-* `paramId` - 
+* `paramId` - Պարամետրի ներքին անուն (id)։
 
 ### GetDateTimeValue
 
 ```c#
-public Task<DateTime?> GetDateTimeValue(string paramId, short suid);
+public Task<DateTime?> GetDateTimeValue(string paramId, short suid)
 ```
 
-Վերադարձնում է պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան և օգտագործողի համարի։
+Վերադարձնում է ամսաթիվ տիպի ([DATE](../types/system_types.md#datefieldtype), [DATELONG](../types/system_types.md#datefieldtype)) պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան և օգտագործողի համարի։  
+Տիպի անհամապատասխանության դեպքում առաջանում է սխալ։  
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
 
 **Պարամետրեր**
 
@@ -117,10 +160,12 @@ public Task<DateTime?> GetDateTimeValue(string paramId, short suid);
 ### GetDecimalValue
 
 ```c#
-public Task<decimal> GetDecimalValue(string paramId);
+public Task<decimal> GetDecimalValue(string paramId)
 ```
 
-Վերադարձնում է պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան։
+Վերադարձնում է կոտորակային թիվ տիպի ([N](../types/system_types.md#numericfieldtype), [NP](../types/system_types.md#numericpositivefieldtype), [SUMMA](../types/system_types.md#amountfieldtype), [SUMMAP](../types/system_types.md#amountpositivefieldtype)) պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան։  
+Տիպի անհամապատասխանության դեպքում առաջանում է սխալ։  
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
 
 **Պարամետրեր**
 
@@ -129,10 +174,12 @@ public Task<decimal> GetDecimalValue(string paramId);
 ### GetDecimalValue
 
 ```c#
-public Task<decimal> GetDecimalValue(string paramId, short suid);
+public Task<decimal> GetDecimalValue(string paramId, short suid)
 ```
 
-Վերադարձնում է պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան և օգտագործողի համարի։
+Վերադարձնում է կոտորակային թիվ տիպի ([N](../types/system_types.md#numericfieldtype), [NP](../types/system_types.md#numericpositivefieldtype), [SUMMA](../types/system_types.md#amountfieldtype), [SUMMAP](../types/system_types.md#amountpositivefieldtype)) պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան և օգտագործողի համարի։  
+Տիպի անհամապատասխանության դեպքում առաջանում է սխալ։  
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
 
 **Պարամետրեր**
 
@@ -145,7 +192,9 @@ public Task<decimal> GetDecimalValue(string paramId, short suid);
 public Task<string> GetDetailedDescription(string paramId)
 ```
 
-Վերադարձնում է պարամետրի մանրամասն հայերեն նկարագրությունը։
+Վերադարձնում է պարամետրի մանրամասն նկարագրությունը։
+
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
 
 **Պարամետրեր**
 
@@ -154,27 +203,32 @@ public Task<string> GetDetailedDescription(string paramId)
 ### GetHiPar
 
 ```c#
-public Task<(string Value, DateTime? SoftDate)> GetHiPar(string paramID, DateTime date, bool softGet, string exceptionMessage = "", bool notThrowExeption = false, DateTime? maxCreationDate = null);
+public Task<(string Value, DateTime? SoftDate)> GetHiPar(
+    string paramID, DateTime date, bool softGet, string exceptionMessage = "", 
+    bool notThrowExeption = false, DateTime? maxCreationDate = null)
 ```
 
-Վերադարձնում է ժամանակագրական պարամետրի արժեքը նշված ամսաթվով տվյալների պահոցի [HIPAR](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/HiPar.html) աղյուսակից։
+Վերադարձնում է ժամանակագրական պարամետրի արժեքը և նշանակման ամսաթիվը։
 
 **Պարամետրեր**
 
 * `paramID` - Պարամետրի ներքին անուն (id)։
 * `date` - Պարամետրի որոնման ամսաթիվ։
 * `softGet` - **true** արժեքի դեպքում մեթոդը ստուգում է `date` ամսաթվի դրությամբ պարամետրի որևէ արժեքի նշանակված լինելը, հակառակ դեպքում՝ միմիայն `date` ամսաթվին նշանակված արժեքի գոյությունը։
-* `exceptionMessage` - Արժեքի չգտնելու դեպքում ցույց տրվող սխալի հաղորդագրությունը: Եթե արժեք տրված չէ, ապա կառաջանա ստանդարտ սխալի հաղորդագրություն։ 
-* `notThrowExeption` - Արժեքի չգտնելու դեպքում սխալի գեներացման հայտանիշ։ `true` արժեքի դեպքում տվյալների պահոցում պարամետրի արժեքի բացակայության դեպքում վերադարձնում է դատարկ տող, հակառակ դեպքում գեներացնում է սխալ։
-`maxCreationDate` -	Փոխանցված լինելու դեպքում մեթոդը փնտրում է արժեք, որի ստեղծման ամսաթիվը չի գերազանցում փոխանցված ամսաթիվը:
+* `exceptionMessage` - Արժեքի չգտնելու դեպքում ցույց տրվող սխալի հաղորդագրությունը: 
+  Եթե արժեք տրված չէ, ապա կառաջանա ստանդարտ սխալի հաղորդագրություն։ 
+* `notThrowExeption` - `true` արժեքի դեպքում տվյալների պահոցում պարամետրի արժեքի բացակայության դեպքում վերադարձնում է դատարկ տող, հակառակ դեպքում առաջացնում է սխալ։
+* `maxCreationDate` -	Փոխանցված լինելու դեպքում մեթոդը փնտրում է արժեք, որի նշանակման ամսաթիվը չի գերազանցում փոխանցված ամսաթիվը:
 
 ### GetIntegerValue
 
 ```c#
-public Task<int> GetIntegerValue(string paramId);
+public Task<int> GetIntegerValue(string paramId)
 ```
 
-Վերադարձնում է պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան։
+Վերադարձնում է ամբողջ թիվ տիպի ([N](../types/system_types.md#numericfieldtype), [NP](../types/system_types.md#numericpositivefieldtype)) պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան։  
+Տիպի անհամապատասխանության դեպքում առաջանում է սխալ։  
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
 
 **Պարամետրեր**
 
@@ -183,10 +237,12 @@ public Task<int> GetIntegerValue(string paramId);
 ### GetIntegerValue
 
 ```c#
-public Task<int> GetIntegerValue(string paramId, short suid);
+public Task<int> GetIntegerValue(string paramId, short suid)
 ```
 
-Վերադարձնում է պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան և օգտագործողի համարի։
+Վերադարձնում է ամբողջ թիվ տիպի ([N](../types/system_types.md#numericfieldtype), [NP](../types/system_types.md#numericpositivefieldtype)) պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան և օգտագործողի համարի։  
+Տիպի անհամապատասխանության դեպքում առաջանում է սխալ։  
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
 
 **Պարամետրեր**
 
@@ -196,10 +252,12 @@ public Task<int> GetIntegerValue(string paramId, short suid);
 ### GetShortValue
 
 ```c#
-public Task<short> GetShortValue(string paramId);
+public Task<short> GetShortValue(string paramId)
 ```
 
-Վերադարձնում է պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան։
+Վերադարձնում է կարճ ամբողջ թիվ տիպի ([N](../types/system_types.md#numericfieldtype), [NP](../types/system_types.md#numericpositivefieldtype)) պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան։  
+Տիպի անհամապատասխանության դեպքում առաջանում է սխալ։  
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
 
 **Պարամետրեր**
 
@@ -208,10 +266,12 @@ public Task<short> GetShortValue(string paramId);
 ### GetShortValue
 
 ```c#
-public Task<short> GetShortValue(string paramId, short suid);
+public Task<short> GetShortValue(string paramId, short suid)
 ```
 
-Վերադարձնում է պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան և օգտագործողի համարի։
+Վերադարձնում է կարճ ամբողջ թիվ տիպի ([N](../types/system_types.md#numericfieldtype), [NP](../types/system_types.md#numericpositivefieldtype)) պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան և օգտագործողի համարի։  
+Տիպի անհամապատասխանության դեպքում առաջանում է սխալ։  
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
 
 **Պարամետրեր**
 
@@ -221,10 +281,12 @@ public Task<short> GetShortValue(string paramId, short suid);
 ### GetStringValue
 
 ```c#
-public Task<string> GetStringValue(string paramId);
+public Task<string> GetStringValue(string paramId)
 ```
 
-Վերադարձնում է պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան։
+Վերադարձնում է տող տիպի ([C](../types/system_types.md#stringfieldtype), [CH](../types/system_types.md#chfieldtype), [FOLDER](../types/system_types.md#folderfieldtype), [AMACC](../types/system_types.md#amaccfieldtype), [TREE](../types/system_types.md#treefieldtype), [FULLTREE](../types/system_types.md#treefieldtype), [PATH](../types/system_types.md#pathfieldtype), [FILE](../types/system_types.md#filefieldtype)) պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան։  
+Տիպի անհամապատասխանության դեպքում առաջանում է սխալ։  
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
 
 **Պարամետրեր**
 
@@ -233,10 +295,12 @@ public Task<string> GetStringValue(string paramId);
 ### GetStringValue
 
 ```c#
-public Task<string> GetStringValue(string paramId, short suid);
+public Task<string> GetStringValue(string paramId, short suid)
 ```
 
-Վերադարձնում է պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան և օգտագործողի համարի։
+Վերադարձնում է տող տիպի ([C](../types/system_types.md#stringfieldtype), [CH](../types/system_types.md#chfieldtype), [FOLDER](../types/system_types.md#folderfieldtype), [AMACC](../types/system_types.md#amaccfieldtype), [TREE](../types/system_types.md#treefieldtype), [FULLTREE](../types/system_types.md#treefieldtype), [PATH](../types/system_types.md#pathfieldtype), [FILE](../types/system_types.md#filefieldtype)) պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան և օգտագործողի համարի։  
+Տիպի անհամապատասխանության դեպքում առաջանում է սխալ։  
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
 
 **Պարամետրեր**
 
@@ -246,10 +310,12 @@ public Task<string> GetStringValue(string paramId, short suid);
 ### GetTimeSpanValue
 
 ```c#
-public Task<TimeSpan> GetTimeSpanValue(string paramId);
+public Task<TimeSpan> GetTimeSpanValue(string paramId)
 ```
 
-Վերադարձնում է պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան։
+Վերադարձնում է ժամ տիպի ([TIME](../types/system_types.md#timefieldtype), [TIMELONG](../types/system_types.md#timefieldtype)) պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան։  
+Տիպի անհամապատասխանության դեպքում առաջանում է սխալ։  
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
 
 **Պարամետրեր**
 
@@ -258,10 +324,12 @@ public Task<TimeSpan> GetTimeSpanValue(string paramId);
 ### GetTimeSpanValue
 
 ```c#
-public Task<TimeSpan> GetTimeSpanValue(string paramId, short suid);
+public Task<TimeSpan> GetTimeSpanValue(string paramId, short suid)
 ```
 
-Վերադարձնում է պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան և օգտագործողի համարի։
+Վերադարձնում է ժամ տիպի ([TIME](../types/system_types.md#timefieldtype), [TIMELONG](../types/system_types.md#timefieldtype)) պարամետրի արժեքը՝ ըստ պարամետրի ներքին անվան և օգտագործողի համարի։  
+Տիպի անհամապատասխանության դեպքում առաջանում է սխալ։  
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
 
 **Պարամետրեր**
 
@@ -276,15 +344,17 @@ public Task SetHiPar(string parID, DateTime changeDate,
                      string errMsg = "", DateTime? creationDate = null)
 ```
 
-Գրանցում է ժամանակագրական պարամետրի նոր արժեք տրված ամսաթվով տվյալների պահոցի [HIPAR](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/HiPar.html) աղյուսակում:
+Գրանցում է ժամանակագրական պարամետրի նոր արժեք տրված ամսաթվով:
 
 **Պարամետրեր**
 
 * `parID` - Պարամետրի ներքին անուն (id)։
 * `changeDate` - Նոր արժեքի նշանակման ամսաթիվ։
 * `isn` - Նոր արժեքը նշանակող հիմքային փաստաթղթի ներքին նույնականացման համար։
-* `newValue` - Պարամետրի նոր արժեք։
-* `errMsg` - Կրկնվող տվյալների առկայության դեպքում ցույց տրվող սխալի հաղորդագրություն: Եթե արժեք տրված չէ, ապա կառաջանա ստանդարտ սխալի հաղորդագրություն։ Կրկնությունը ստուգվում է ըստ պարամետրի ներքին անվան,  արժեքի նշանակման ամսաթվի և հիմքային փաստաթղթի փաստաթղթի (`parID`, `changeDate`, `isn`)։
+* `newValue` - Նոր արժեք։
+* `errMsg` - Կրկնվող տվյալների առկայության դեպքում ցույց տրվող սխալի հաղորդագրություն: 
+  Եթե արժեք տրված չէ, ապա կառաջանա ստանդարտ սխալի հաղորդագրություն։ 
+  Կրկնությունը ստուգվում է ըստ պարամետրի ներքին անվան, արժեքի նշանակման ամսաթվի և հիմքային փաստաթղթի (`parID`, `changeDate`, `isn`)։
 * `creationDate` - Արժեքի ստեղծման ամսաթիվ։
 
 ### SetValue
@@ -293,12 +363,14 @@ public Task SetHiPar(string parID, DateTime changeDate,
 public Task SetValue(string name, object value)
 ```
 
-Փոխում է համակարգային պարամետրի արժեքը տվյալների պահոցում։
+Փոխում է համակարգային պարամետրի արժեքը։  
+Նոր արժեքի և պարամետրի տիպի անհամապատասխանության դեպքում առաջանում է սխալ։  
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
 
 **Պարամետրեր**
 
-* `name` - Պարամետրի ներքին անուն (id)։ Նշված ներքին անունով պարամետրի բացակայության դեպքում առաջանում է սխալ։
-* `value` - Վերագրվող արժեք։ Տիպի անհամապատասխանության դեպքում առաջանում է սխալ։
+* `name` - Պարամետրի ներքին անուն (id)։ 
+* `value` - Վերագրվող արժեք։ 
 
 ### SetValueWithAdditionalConnection
 
@@ -306,10 +378,12 @@ public Task SetValue(string name, object value)
 public Task SetValueWithAdditionalConnection(string name, object value)
 ```
 
-Փոխում է համակարգային պարամետրի արժեքը տվյալների պահոցում լրացուցիչ sql միացման միջոցով։
+Փոխում է համակարգային պարամետրի արժեքը [լրացուցիչ sql միացման](IDBService.md#createadditionalconnection) միջոցով։  
+Նոր արժեքի և պարամետրի տիպի անհամապատասխանության դեպքում առաջանում է սխալ։  
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
 
 **Պարամետրեր**
 
-* `name` - Պարամետրի ներքին անուն (id)։ Նշված ներքին անունով պարամետրի բացակայության դեպքում առաջանում է սխալ։
-* `value` - Վերագրվող արժեք։ Տիպի անհամապատասխանության դեպքում առաջանում է սխալ։
+* `name` - Պարամետրի ներքին անուն (id)։ 
+* `value` - Վերագրվող արժեք։ 
 
