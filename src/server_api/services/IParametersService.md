@@ -28,8 +28,11 @@ sublinks:
 
 ## Բովանդակություն
 
+- [Բովանդակություն](#բովանդակություն)
 - [Ներածություն](#ներածություն)
 - [Մեթոդներ](#մեթոդներ)
+  - [DefaultBranch](#defaultbranch)
+  - [DefaultBranch](#defaultbranch-1)
   - [Exists](#exists)
   - [ExistsHiPar](#existshipar)
   - [GetBooleanValue](#getbooleanvalue)
@@ -38,6 +41,7 @@ sublinks:
   - [GetDateTimeValue](#getdatetimevalue-1)
   - [GetDecimalValue](#getdecimalvalue)
   - [GetDecimalValue](#getdecimalvalue-1)
+  - [GetDescriptor](#getdescriptor)
   - [GetDetailedDescription](#getdetaileddescription)
   - [GetHiPar](#gethipar)
   - [GetIntegerValue](#getintegervalue)
@@ -45,9 +49,18 @@ sublinks:
   - [GetShortValue](#getshortvalue)
   - [GetShortValue](#getshortvalue-1)
   - [GetStringValue](#getstringvalue)
-  - [GetStringValue](#getstringvalue1)
+  - [GetStringValue](#getstringvalue-1)
   - [GetTimeSpanValue](#gettimespanvalue)
   - [GetTimeSpanValue](#gettimespanvalue-1)
+  - [OperEnd](#operend)
+  - [OperEnd](#operend-1)
+  - [OPERHOLIDAYS](#operholidays)
+  - [OperStart](#operstart)
+  - [OperStart](#operstart-1)
+  - [REPEND](#repend)
+  - [REPEND](#repend-1)
+  - [REPSTART](#repstart)
+  - [REPSTART](#repstart-1)
   - [SetHiPar](#sethipar)
   - [SetValue](#setvalue)
   - [SetValueWithAdditionalConnection](#setvaluewithadditionalconnection)
@@ -66,8 +79,27 @@ sublinks:
 
 ՀԾ-Բանկի, ՀԾ-Ձեռնարկության և ՀԾ-Աշխատավարձի պրոյեկտներում առկա են բազային IParametersService-ի ժառանգ դասեր (BankParametersService, EnterpriseParametersService, WagesParametersService), որոնցում առկա են խիստ տիպիզացված մեթոդներ պարամետրերի արժեքները ստանալու համար։
 
-
 ## Մեթոդներ
+
+### DefaultBranch
+
+```c#
+public Task<string> DefaultBranch()
+```
+
+Վերադարձնում է **DEFBRANCH** ներքին անունով [տող տիպի](../types/system_types.md#stringfieldtype) պարամետրի արժեքը, որը ցույց է տալիս ընթացիկ օգտագործողի համար առաջարկվող գրասենյակի կոդը։
+
+### DefaultBranch
+
+```c#
+public Task<string> DefaultBranch(short suid)
+```
+
+Վերադարձնում է **DEFBRANCH** ներքին անունով [տող տիպի](../types/system_types.md#stringfieldtype) պարամետրի արժեքը, որը ցույց է տալիս `suid` ներքին համարով օգտագործողի համար առաջարկվող գրասենյակի կոդը։
+
+**Պարամետրեր**
+
+* `suid` - Օգտագործողի ներքին համար (կոդ)։
 
 ### Exists
 
@@ -185,6 +217,20 @@ public Task<decimal> GetDecimalValue(string paramId, short suid)
 
 * `paramId` - Պարամետրի ներքին անուն (id):
 * `suid` - Օգտագործողի ներքին համար (կոդ)։
+
+### GetDescriptor
+
+```c#
+public Descriptor GetDescriptor(string paramId)
+```
+
+Վերադարձնում է համակարգային [պարամետրի նկարագրությունը](../types/Descriptor.md):
+
+Պարամետրի սահմանված չլինելու դեպքում առաջանում է սխալ։
+
+**Պարամետրեր**
+
+* `paramId` - Պարամետրի ներքին անուն (id)։
 
 ### GetDetailedDescription
 
@@ -336,6 +382,94 @@ public Task<TimeSpan> GetTimeSpanValue(string paramId, short suid)
 * `paramId` - Պարամետրի ներքին անուն (id):
 * `suid` - Օգտագործողի ներքին համար (կոդ)։
 
+### OperEnd
+
+```c#
+public Task<DateTime> OperEnd()
+```
+
+Վերադարձնում է **OPEREND** ներքին անունով [ամսաթիվ տիպի](../types/system_types.md#datefieldtype) պարամետրի արժեքը, որը ցույց է տալիս գործառնական ժամանակահատվածի վերջի ամսաթիվը ընթացիկ օգտագործողի համար։
+
+### OperEnd
+
+```c#
+public Task<DateTime> OperEnd(short suid)
+```
+
+Վերադարձնում է **OPEREND** ներքին անունով [ամսաթիվ տիպի](../types/system_types.md#datefieldtype) պարամետրի արժեքը, որը ցույց է տալիս գործառնական ժամանակահատվածի վերջի ամսաթիվը `suid` ներքին համարով օգտագործողի համար։
+
+**Պարամետրեր**
+
+* `suid` - Օգտագործողի ներքին համար (կոդ)։
+
+### OPERHOLIDAYS
+
+```c#
+public Task<bool> OPERHOLIDAYS()
+```
+
+Վերադարձնում է **OPERHOLIDAYS** ներքին անունով [տրամաբանական տիպի](../types/system_types.md#booleanfieldtype) պարամետրի արժեքը, որը ցույց է տալիս, արդյոք բաց գործառնական ժամանակահատվածում հանգստյան օրերի արգելումը ակտիվ է։
+
+### OperStart
+
+```c#
+public Task<DateTime> OperStart()
+```
+
+Վերադարձնում է **OPERSTART** ներքին անունով [ամսաթիվ տիպի](../types/system_types.md#datefieldtype) պարամետրի արժեքը, որը ցույց է տալիս գործառնական ժամանակահատվածի սկզբի ամսաթիվը ընթացիկ օգտագործողի համար։
+
+### OperStart
+
+```c#
+public Task<DateTime> OperStart(short suid)
+```
+
+Վերադարձնում է **OPERSTART** ներքին անունով [ամսաթիվ տիպի](../types/system_types.md#datefieldtype) պարամետրի արժեքը, որը ցույց է տալիս գործառնական ժամանակահատվածի սկզբի ամսաթիվը `suid` ներքին համարով օգտագործողի համար։
+
+**Պարամետրեր**
+
+* `suid` - Օգտագործողի ներքին համար (կոդ)։
+
+### REPEND
+
+```c#
+public Task<DateTime> REPEND()
+```
+
+Վերադարձնում է **REPEND** ներքին անունով [ամսաթիվ տիպի](../types/system_types.md#datefieldtype) պարամետրի արժեքը, որը ցույց է տալիս հաշվետու ժամանակահատվածի վերջի ամսաթիվը ընթացիկ օգտագործողի համար։
+
+### REPEND
+
+```c#
+public Task<DateTime> REPEND(short suid)
+```
+
+Վերադարձնում է **REPEND** ներքին անունով [ամսաթիվ տիպի](../types/system_types.md#datefieldtype) պարամետրի արժեքը, որը ցույց է տալիս հաշվետու ժամանակահատվածի վերջի ամսաթիվը `suid` ներքին համարով օգտագործողի համար։
+
+**Պարամետրեր**
+
+* `suid` - Օգտագործողի ներքին համար (կոդ)։
+
+### REPSTART
+
+```c#
+public Task<DateTime> REPSTART()
+```
+
+Վերադարձնում է **REPSTART** ներքին անունով [ամսաթիվ տիպի](../types/system_types.md#datefieldtype) պարամետրի արժեքը, որը ցույց է տալիս հաշվետու ժամանակահատվածի սկզբի ամսաթիվը ընթացիկ օգտագործողի համար։
+
+### REPSTART
+
+```c#
+public Task<DateTime> REPSTART(short suid)
+```
+
+Վերադարձնում է **REPSTART** ներքին անունով [ամսաթիվ տիպի](../types/system_types.md#datefieldtype) պարամետրի արժեքը, որը ցույց է տալիս հաշվետու ժամանակահատվածի սկզբի ամսաթիվը `suid` ներքին համարով օգտագործողի համար։
+
+**Պարամետրեր**
+
+* `suid` - Օգտագործողի ներքին համար (կոդ)։
+
 ### SetHiPar
 
 ```c#
@@ -386,4 +520,3 @@ public Task SetValueWithAdditionalConnection(string name, object value)
 
 * `name` - Պարամետրի ներքին անուն (id)։ 
 * `value` - Վերագրվող արժեք։ 
-
