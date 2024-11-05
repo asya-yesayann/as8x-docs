@@ -1,6 +1,16 @@
 ---
 layout: page
 title: "IAttachmentService սերվիս" 
+sublinks:
+- { title: "Add", ref: add }
+- { title: "ChangeComment", ref: changecomment }
+- { title: "Delete", ref: delete }
+- { title: "DeleteAll", ref: deleteall }
+- { title: "Get", ref: get }
+- { title: "GetAll", ref: getall }
+- { title: "GetContent", ref: getcontent }
+- { title: "UpdateContent", ref: updatecontent }
+- { title: "Copy", ref: copy }
 ---
 
 ## Բովանդակություն
