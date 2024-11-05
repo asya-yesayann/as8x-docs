@@ -46,14 +46,17 @@ ITemplateSubstitutionService դասը նախատեսված է տպելու ձև�
 
 Տե՛ս նաև [TemplateService](TemplateService.md) տպելու ձևանմուշների հետ աշխատանքի համար։
 
+Տե՛ս [օրինակը](../examples/ITemplateSubstitutionService.md)։
+
 ## Մեթոդներ
 
 ### EvalAndAddUserDefinedParameters
 
 ```c#
-public Task EvalAndAddUserDefinedParameters(string name, SubstitutionType type,
-                                            PrintTemplateSubstitution printTemplateSubstitution,
-                                            Document.Document document)
+public Task EvalAndAddUserDefinedParameters(
+    string name, SubstitutionType type,
+    PrintTemplateSubstitution printTemplateSubstitution,
+    Document.Document document)
 ```
 
 Հաշվարկում է տպելու ձևանմուշի օգտագործողի կողմից նկարագրված պարամետրերը և ավելացնում տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտում՝ `printTemplateSubstitution`:
@@ -71,9 +74,10 @@ public Task EvalAndAddUserDefinedParameters(string name, SubstitutionType type,
 ### EvalAndAddUserDefinedParametersEx
 
 ```c#
-public Task EvalAndAddUserDefinedParametersEx(string name, SubstitutionType type,
-                                              PrintTemplateSubstitutionEx printTemplateSubstitutionEx,
-                                              Document.Document document)
+public Task EvalAndAddUserDefinedParametersEx(
+    string name, SubstitutionType type,
+    PrintTemplateSubstitutionEx printTemplateSubstitutionEx,
+    Document.Document document)
 ```
 
 Հաշվարկում է տպելու ձևանմուշի օգտագործողի կողմից նկարագրված պարամետրերը և ավելացնում տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտում՝ `printTemplateSubstitution`:
@@ -91,13 +95,16 @@ public Task EvalAndAddUserDefinedParametersEx(string name, SubstitutionType type
 ### GetReadyTemplateSubstitution
 
 ```c#
-public Task<ITemplateSubstitution> GetReadyTemplateSubstitution(Document.Document document,
-                                                                string templateName,
-                                                                SubstitutionType templateType,
-                                                                Dictionary<string, object> parameters)
+public Task<ITemplateSubstitution> GetReadyTemplateSubstitution(
+    Document.Document document,
+    string templateName,
+    SubstitutionType templateType,
+    Dictionary<string, object> parameters)
 ```
 
 Հաշվարկում է փաստաթղթին կապակցված տպելու ձևանմուշի տեղադրվող արժեքները, օգտագործողի կողմից նկարագրված պարամետրերը և վերադարձնում տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտը։
+
+Տե՛ս [օրինակը](../examples/ITemplateSubstitutionService.md#օրինակ-1)։
 
 **Պարամետրեր**
 
@@ -110,7 +117,8 @@ public Task<ITemplateSubstitution> GetReadyTemplateSubstitution(Document.Documen
 ### IsTemplateAvailable
 
 ```c#
-public Task<bool> IsTemplateAvailable(string templateName, string templateType, Document.Document document)
+public Task<bool> IsTemplateAvailable(
+    string templateName, string templateType, Document document)
 ```
 
 Ստուգում է արդյոք նշված ձևանմուշը հասանելի է նշված փաստաթղթի համար, այսինքն փաստաթղթի տիպը նշված է տպվող ձևանմուշի փաստաթղթերի ցանկում և բավարարվում է ակտիվացման բանաձևը սերվիսում։
@@ -142,10 +150,11 @@ public bool IsAvailable(Document doc)
 ### LoadAndSubstitute
 
 ```c#
-public Task<Stream> LoadAndSubstitute(IPrintTemplateSubstitution printTemplateSubstitution, 
-                                      string name, SubstitutionType type, 
-                                      HtmlImageOption htmlImageOption = default,
-                                      string outputPassword = "", bool check = false)
+public Task<Stream> LoadAndSubstitute(
+    IPrintTemplateSubstitution printTemplateSubstitution, 
+    string name, SubstitutionType type, 
+    HtmlImageOption htmlImageOption = default,
+    string outputPassword = "", bool check = false)
 ```
 
 Բեռնում է տպելու ձևանմուշը տվյալների պահոցից, լրացնում `printTemplateSubstitution`-ում պարունակվող նախապես հաշվարկված տվյալներով և ստացված ֆայլը վերադարձնում որպես [Stream](https://learn.microsoft.com/en-us/dotnet/api/system.io.stream):
@@ -162,15 +171,18 @@ public Task<Stream> LoadAndSubstitute(IPrintTemplateSubstitution printTemplateSu
 ### LoadSubstituteAndGetContent
 
 ```c#
-public Task<string> LoadSubstituteAndGetContent(IPrintTemplateSubstitution printTemplateSubstitution, 
-                                                string name, SubstitutionType type, 
-                                                HtmlImageOption htmlImageOption = default,
-                                                bool check = false)
+public Task<string> LoadSubstituteAndGetContent(
+    IPrintTemplateSubstitution printTemplateSubstitution, 
+    string name, SubstitutionType type, 
+    HtmlImageOption htmlImageOption = default,
+    bool check = false)
 ```
 
 Բեռնում է տպելու ձևանմուշը տվյալների պահոցից, լրացնում `printTemplateSubstitution`-ում պարունակվող նախապես հաշվարկված տվյալներով և ստացված ֆայլը վերադարձնում որպես տեքստ։
 
 Նախատեսված է `htm` և `txt` տիպի ձևանմուշների լրացումից հետո վերջնական տեքստը ստանալու համար։
+
+Տե՛ս [օրինակը](../examples/ITemplateSubstitutionService.md#օրինակ-1)։
 
 **Պարամետրեր**
 
@@ -183,11 +195,11 @@ public Task<string> LoadSubstituteAndGetContent(IPrintTemplateSubstitution print
 ### LoadSubstitutionAndGetStorage
 
 ```c#
-public Task<StorageInfo> LoadSubstitutionAndGetStorage(IPrintTemplateSubstitution printTemplateSubstitution, 
-                                                       string name,
-                                                       SubstitutionType type, 
-                                                       HtmlImageOption htmlImageOption = default,
-                                                       string outputPassword = "", bool check = false)
+public Task<StorageInfo> LoadSubstitutionAndGetStorage(
+    IPrintTemplateSubstitution printTemplateSubstitution, 
+    string name, SubstitutionType type, 
+    HtmlImageOption htmlImageOption = default,
+    string outputPassword = "", bool check = false)
 ```
 
 Բեռնում է տպելու ձևանմուշը տվյալների պահոցից, լրացնում `printTemplateSubstitution`-ում պարունակվող նախապես հաշվարկված տվյալներով, պահում ֆայլում և վերադարձնում ֆայլի նույնականացուցիչը սերվերում։
@@ -204,7 +216,8 @@ public Task<StorageInfo> LoadSubstitutionAndGetStorage(IPrintTemplateSubstitutio
 ### LoadTemplateFile
 
 ```c#
-public Task<(bool IsUnicode, byte[] File, bool Updatable)> LoadTemplateFile(string name, SubstitutionType type)
+public Task<(bool IsUnicode, byte[] File, bool Updatable)> LoadTemplateFile(
+    string name, SubstitutionType type)
 ```
 
 Բեռնում է տպելու ձևանմուշի տվյալները պահոցի `TEMPLATES` աղյուսակից։ Բեռնման ընթացքում կատարվում է լրացուցիչ ստուգումներ, որից հետո հնարավոր է լրացնել ֆայլը։ 
