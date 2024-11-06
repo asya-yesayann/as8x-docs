@@ -256,7 +256,7 @@ public static decimal AsCCur(string stringValue)
 ```c#
 // Ֆունկցիային փոխանցված տողը փոխարկերպում ենք տասնորդական թվային տիպի։ 
 decimal sum = UserProxyService.AsCCur("102111.26");
-՝՝՝
+```
 
 ### CalculateAtmInd
 ---
