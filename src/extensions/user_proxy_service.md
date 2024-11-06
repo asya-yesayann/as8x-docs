@@ -324,7 +324,7 @@ public decimal CalculateOlapFormula(string codFormList, string branch, DateTime 
 decimal sum = proxyService.CalculateOlapFormula("_BIA", "99997", DateTime.Parse("2024-10-31"), DateTime.Parse("2024-10-31"));
 ```
 
-### CliName CliEName
+### CliName, CliEName
 ---
 ```c#
 public async Task<string> CliName(string code)
