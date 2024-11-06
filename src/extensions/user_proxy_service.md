@@ -6,109 +6,99 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 # UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատուկ սերվիս
 
 ## Բովանդակություն
-* [Ներածություն](#ներածություն)
-* [LoadDoc](#loaddoc)
-* [LoadDocFromFolder](#loaddocfromfolder)
-* [LoadContractDoc](#loadcontractdoc)
-* [LoadClientDoc](#loadclientdoc)
-* [LoadClientDescByISN](#loadclientdescbyisn)
-* [LoadClientDescByCode](#loadclientdescbycode)
-* [LoadClientDocRObyISN](#loadclientdocrobyisn)
-* [LoadClientDocROByCode](#loadclientdocrobycode)
-* [GetClientISN](#getclientisn)
-* [GetClientISNByAcc](#getclientisnbyacc)
-* [GetClientFullName](#getclientfullname)
-* [GetClientAMDAcc](#getclientamdacc)
-* [GetClientRezJurVolortByAccount](#getclientrezjurvolortbyaccount)
-* [GetCliContractNamesByISN, GetCliContractNamesByCode](#getclicontractnamesbyisn-getclicontractnamesbycode)
-* [LoadAccountDescByIsn, LoadAccountDescByCode](#loadaccountdescbyisn-loadaccountdescbycode)
-* [LoadShortAccountDescByIsn, LoadShortAccountDescByCode](#loadshortaccountdescbyisn-loadshortaccountdescbycode)
-* [LoadAccountDoc](#loadaccountdoc)
-* [LoadNBAccountDesc, LoadNBAccountDescByCode](#loadnbaccountdesc-loadnbaccountdescbycode)
-* [GetAccountISN](#getaccountisn)
-* [GetCliCodeByAcc](#getclicodebyacc)
-* [IsKasAcc](#iskasacc)
-* [IsIncExpAcc](#isincexpacc)
+* [AcName, AcEName](#AcName-AcEName)
+* [AgrSchedule](#agrschedule)
+* [AsCCur](#AsCCur)
 * [CalculateAtmInd](#calculateatmind)
 * [CalculateOlapFormula](#calculateolapformula)
-* [Udf](#udf)
-* [TreeElProp](#treeelprop)
-* [TreeElPropComment, TreeElPropEComment](#treeelpropcomment-treeelpropecomment)
+* [CliName, CliEName](#CliName-CliEName)
+* [CurrencyFormat](#CurrencyFormat)
+* [CurrencyISOCode](#CurrencyISOCode)
+* [CurrencyName](#CurrencyName)
+* [CURRENT_DATE](#CURRENT_DATE)
+* [DealRate](#DealRate)
+* [ExistsContractByCliISN, ExistsContractByCliCode](#ExistsContractByCliISN-ExistsContractByCliCode)
 * [FolderElProp](#folderelprop)
 * [FolderElPropSpec](#folderelpropspec)
-* [LoadContractDescByISN](#loadcontractdescbyisn)
-* [LoadContractDescByCode](#loadcontractdescbycode)
+* [FormatDDMMYY, FormatDDMMYYYY, FormatYYYYMMDD](#FormatDDMMYY-FormatDDMMYYYY-FormatYYYYMMDD)
+* [FormatToPrint](#FormatToPrint)
+* [GetAccCodeByAgrISN](#GetAccCodeByAgrISN)
+* [GetAccountISN](#getaccountisn)
+* [GetAgrFactValueDate, GetAgrFactValuePercent, GetAgrFactValueDecimal, GetAgrFactValueString](#getagrfactvaluedate-getagrfactvaluepercent-getagrfactvaluedecimal-getagrfactvaluestring)
 * [GetAgrRem](#getagrrem)
 * [GetAgrTurn](#getagrturn)
-* [GetSSFactValueDate, GetSSFactValueString, GetSSFactValueInt, GetSSFactValueDecimal, GetSSFactValuePercent, GetSSFactValueStringDecimal](#getssfactvaluedate-getssfactvaluestring-getssfactvalueint-getssfactvaluedecimal-getssfactvaluepercent-getssfactvaluestringdecimal)
-* [GetAgrFactValueDate, GetAgrFactValuePercent, GetAgrFactValueDecimal, GetAgrFactValueString](#getagrfactvaluedate-getagrfactvaluepercent-getagrfactvaluedecimal-getagrfactvaluestring)
-* [GetRemSS](#getremss)
-* [GetRemHI2](#getremhi2)
-* [SSLastOpDate](#sslastopdate)
-* [AgrSchedule](#agrschedule)
+* [GetAgrTypeByISN](#GetAgrTypeByISN)
+* [GetAllDayAgrJ](#GetAllDayAgrJ)
+* [GetAllDayJCount](#GetAllDayJCount)
+* [GetBranchParam](#GetBranchParam)
+* [GetCliCodeByAcc](#getclicodebyacc)
+* [GetCliContractNamesByISN, GetCliContractNamesByCode](#getclicontractnamesbyisn-getclicontractnamesbycode)
+* [GetClientAMDAcc](#getclientamdacc)
+* [GetClientFullName](#getclientfullname)
+* [GetClientISN](#getclientisn)
+* [GetClientISNByAcc](#getclientisnbyacc)
+* [GetClientRezJurVolortByAccount](#getclientrezjurvolortbyaccount)
+* [GetCollateralISNsByAgrNum](#GetCollateralISNsByAgrNum)
+* [GetContractISN](#GetContractISN)
+* [GetDayAgrJ](#GetDayAgrJ)
+* [GetDayPerJ](#GetDayPerJ)
+* [GetExchangeRate](#GetExchangeRate)
+* [GetFutAgrDbt](#GetFutAgrDbt)
 * [GetFutPerDbt](#getfutperdbt)
 * [GetFutServFeeDbt](#getfutservfeedbt)
+* [GetLinkedMortSum, GetLinkedGuarSum](#GetLinkedMortSum-GetLinkedGuarSum)
 * [GetPCardData](#getpcarddata)
 * [GetPCardDoc](#GetPCardDoc)
-* [AsCCur](#AsCCur)
-* [DealRate](#DealRate)
-* [SumInWordsAsync](#SumInWordsAsync)
-* [WKDATE](#WKDATE)
-* [CURRENT_DATE](#CURRENT_DATE)
-* [WEEK_BEGIN](#WEEK_BEGIN)
-* [WEEK_END](#WEEK_END)
+* [GetPerFutur](#GetPerFutur)
+* [GetPerSumJ, GetAgrSumJ](#GetPerSumJ-GetAgrSumJ)
+* [GetPerSumPayDate, GetAgrSumPayDate](#GetPerSumPayDate-GetAgrSumPayDate)
+* [GetRating](#GetRating)
+* [GetRatingCode](#GetRatingCode)
+* [GetRemHI2](#getremhi2)
+* [GetRemSS](#getremss)
+* [GetSSFactValueDate, GetSSFactValueString, GetSSFactValueInt, GetSSFactValueDecimal, GetSSFactValuePercent, GetSSFactValueStringDecimal](#getssfactvaluedate-getssfactvaluestring-getssfactvalueint-getssfactvaluedecimal-getssfactvaluepercent-getssfactvaluestringdecimal)
+* [InList](#InList)
+* [IsIncExpAcc](#isincexpacc)
+* [IsKasAcc](#iskasacc)
+* [LoadAccountDescByIsn, LoadAccountDescByCode](#loadaccountdescbyisn-loadaccountdescbycode)
+* [LoadAccountDoc](#loadaccountdoc)
+* [LoadClientDescByCode](#loadclientdescbycode)
+* [LoadClientDescByISN](#loadclientdescbyisn)
+* [LoadClientDoc](#loadclientdoc)
+* [LoadClientDocROByCode](#loadclientdocrobycode)
+* [LoadClientDocRObyISN](#loadclientdocrobyisn)
+* [LoadContractDescByCode](#loadcontractdescbycode)
+* [LoadContractDescByISN](#loadcontractdescbyisn)
+* [LoadContractDoc](#loadcontractdoc)
+* [LoadDoc](#loaddoc)
+* [LoadDocFromFolder](#loaddocfromfolder)
+* [LoadNBAccountDesc, LoadNBAccountDescByCode](#loadnbaccountdesc-loadnbaccountdescbycode)
+* [LoadShortAccountDescByIsn, LoadShortAccountDescByCode](#loadshortaccountdescbyisn-loadshortaccountdescbycode)
+* [MaxOverdueDaysCount](#MaxOverdueDaysCount)
 * [MONTH_BEGIN](#MONTH_BEGIN)
 * [MONTH_END](#MONTH_END)
 * [PREVIOUS_MONTH_BEGIN](#PREVIOUS_MONTH_BEGIN)
 * [PREVIOUS_MONTH_END](#PREVIOUS_MONTH_END)
-* [QUARTE_BEGIN](#QUARTE_BEGIN)
-* [QUARTE_END](#QUARTE_END)
 * [PREVIOUS_QUARTE_BEGIN](#PREVIOUS_QUARTE_BEGIN)
 * [PREVIOUS_QUARTE_END](#PREVIOUS_QUARTE_END)
-* [YEAR_BEGIN](#YEAR_BEGIN)
-* [GetExchangeRate](#GetExchangeRate)
+* [QUARTE_BEGIN](#QUARTE_BEGIN)
+* [QUARTE_END](#QUARTE_END)
 * [SERVER_DATE](#SERVER_DATE)
-* [FormatDDMMYY, FormatDDMMYYYY, FormatYYYYMMDD](#FormatDDMMYY-FormatDDMMYYYY-FormatYYYYMMDD)
-* [CurrencyFormat](#CurrencyFormat)
-* [FormatToPrint](#FormatToPrint)
+* [SSLastOpDate](#sslastopdate)
+* [SumInWordsAsync](#SumInWordsAsync)
+* [TreeElProp](#treeelprop)
+* [TreeElPropComment, TreeElPropEComment](#treeelpropcomment-treeelpropecomment)
 * [TryAddAtomicAsync, TryAddAtomic](#TryAddAtomicAsync-TryAddAtomic)
-* [InList](#InList)
-* [GetBranchParam](#GetBranchParam)
-* [AcName, AcEName](#AcName-AcEName)
-* [CliName CliEName](#CliName-CliEName)
-* [GetAccCodeByAgrISN](#GetAccCodeByAgrISN)
-* [GetPerSumPayDate, GetAgrSumPayDate](#GetPerSumPayDate-GetAgrSumPayDate)  
-* [GetCollateralISNsByAgrNum](#GetCollateralISNsByAgrNum)
-* [GetLinkedMortSum, GetLinkedGuarSum](#GetLinkedMortSum-GetLinkedGuarSum)
-* [GetRating](#GetRating)
-* [GetRatingCode](#GetRatingCode)
-* [ExistsContractByCliISN, ExistsContractByCliCode](#ExistsContractByCliISN-ExistsContractByCliCode)
-* [GetAgrTypeByISN](#GetAgrTypeByISN)
-* [GetAllDayAgrJ](#GetAllDayAgrJ)
-* [GetAllDayJCount](#GetAllDayJCount)
-* [GetDayAgrJ](#GetDayAgrJ)
-* [GetDayPerJ](#GetDayPerJ)
-* [MaxOverdueDaysCount](#MaxOverdueDaysCount)
-* [GetContractISN](#GetContractISN)
-* [LoadClientDocRO](#LoadClientDocRO)
+* [Udf](#udf)
+* [WEEK_BEGIN](#WEEK_BEGIN)
+* [WEEK_END](#WEEK_END)
+* [WKDATE](#WKDATE)
+* [YEAR_BEGIN](#YEAR_BEGIN)
 * [YEAR_END](#YEAR_END)
-* [CurrencyName](#CurrencyName)
-* [CurrencyISOCode](#CurrencyISOCode)
-* [CliName](#CliName)
-* [CliEName](#CliEName)
-* [GetPerFutur](#GetPerFutur)
-* [GetFutAgrDbt](#GetFutAgrDbt)
-* [GetPerSumJ, GetAgrSumJ](#GetPerSumJ-GetAgrSumJ)
-
-
-
-
   
 * [Պայմանագրերի հաշվառումների կոդեր](#պայմանագրերի-հաշվառումների-կոդեր)
 * [Հաշվառումների գործողությունների կոդեր](#հաշվառումների-գործողությունների-կոդեր)
   
-
-
 
 ## Ներածություն
 
@@ -163,7 +153,1433 @@ decimal sum = UserProxyService.AsCCur("15.86")
 
 ## Մեթոդներ
 
+### AcName, AcEName
+---
+```c#
+public async Task<string> AcName(string code)
+public async Task<string> AcEName(string code)
+```
+Վերադարձնում է փոխանցված հաշվի համարի անվանումը / անգլերեմ անվանումը։
 
+**Պարամետրեր**
+
+* `code` - Պարտադիր։ Հաշվի համար։
+
+**Օրինակ**
+```c#
+// Ստանում ենք 004438799 հաշվի անվանումը։ 
+string accName = await proxyService.AcName("004438799"); 
+```
+
+### AgrSchedule
+---
+```c#
+public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, ScheduleValueType valueType, ScheduleBasis schKind = ScheduleBasis.Any)
+```
+Ֆունկցիան կիրառելի է միայն Univer տեսակի պայմանագրերի համար։ Վերադարձնում է AgrScheduleRow տիպի օբյեկտների ցուցակ (List), որտեղ յուրաքանչյուր էլեմենտը պարունակում է հետևյալ հատկությունները՝
+
+* `Date` 
+* `Summa`
+
+**Պարամետրեր**
+
+- `isn` - Պարտադիր։ Փաստաթղթի ISN։
+- `requestDate` -Պարտադիր։ Ամսաթվիվ, որի դրությամբ պահանջվում է ստանալ ընթացիկ գրաֆիկը 
+- `valueType` - Պարտադիր։ Հնարավոր արժեքներն են՝
+    ``` c#
+      public enum ScheduleValueType : short
+      {
+          Agr = 1, // մայր գումարի գրաֆիկ
+          Base = 11, // հիմնական ամսաթվերի գրաֆիկ 
+          Per = 2, // տոկոսների գրաֆիկ
+          PerProl = 22, // երկարաձգված տոկոսների գրաֆիկ
+          ServFee = 7, // վարձավճարի գրաֆիկ
+          ServFeeProl = 27, // երկարաձգված վարձավճարի գրաֆիկ
+          Lim = 6, // սահմանաչափի գրաֆիկ
+          Dis = 8 զեղջատոկոսի գրաֆիկ  
+      }
+
+- `schKind` - Ոչ պարտադիր։ Հնարավոր արժեքներն են՝
+     ``` c#
+          public enum ScheduleBasis : short
+          {
+              Any = -2, // Կամայական: Լռությամբ արժեք։ 
+              AnySchRevision = -1,   // Կամայական վերանայում  0, 9, 10, 11, 12, 13, 14, 15
+              RevisionProl = 0, // Վերանայում (Համարելով երկարաձգված)
+              RevisionNotProl = 9, // Վերանայում (Չհամարելով երկարաձգված)
+              RevisionProlNotLR = 10, // Վերանայում (Չհամարելով երկարաձգված միայն ՎՌ-ում)
+              RevDisbNotProl = 13, // Վերանայումով տրամադրում (Համարելով երկարաձգված)
+              RevDisbProl = 14, // Վերանայումով տրամադրում (Չհամարելով երկարաձգված)
+              RevDisbProlNotLR = 15, // Վերանայումով տրամադրում (Չհամարելով երկարաձգված միայն ՎՌ-ում)
+              InterestRate = 1, // Տոկոսադրույքի փոփոխություն
+              Repayment = 2,   // Մարում
+              Disbursement = 3, // Տրամադրում
+              InterestAdjustment = 4, // Տոկոսագումարի ճշգրտում
+              SecurityOut = 5,   // Արժեթղթի ելք
+              SecurityIn = 6,   // Արժեթղթի մուտք
+              InterestAccum = 7, // Տոկոսների հաշվարկում
+              LimitSchRevision = 11, // Սահմանաչափի գրաֆիկի վերանայում
+              WorkingDayChange = 12, // Ոչ աշխատանքային օրերի փոփոխում
+              IntAccumStartDate = 16, // Տոկոսների հաշվարկման սկզբի ամսաթիվ
+              EndOfLease = 17, // Վարձակալության ավարտ
+              EmergIntProlong = 22 // Տոկոսների արտակարգ երկարաձգում
+          }   
+          
+          ```
+
+**Օրինակ**
+``` c#
+// Օրինակում հաշվարկվում է 1433755346 isn -ով պայմանագրի, 21/01/20-ի դրությամբ գործող գրաֆիկում առկա տոկոսագումարների հանրագումարը։
+
+      List<ScheduleRow> sched = await proxyService.AgrSchedule(1433755346, DateTime.Parse("2020-01-21"), ScheduleValueType.Per);
+      decimal PerSum = 0;
+      foreach (ScheduleRow sc in sched)
+      {
+          PerSum += sc.Sum;
+      }
+
+```
+
+### AsCCur
+---
+```c#
+public static decimal AsCCur(string stringValue)
+```
+Վերափոխում է տողով (string) փոխանցված թիվը տասնորդական թվի (decimal)։ Դատարկ տող, կամ թչ թվային սիմվոլներ պարունակող տող
+փոխանցելու դեպքում կրերադարձվի 0։ 
+
+**Պարամետրեր**
+
+* `stringValue` - Պարտադիր։ Թիվ պարունակով տող։
+
+**Օրինակ**
+```c#
+// Ֆունկցիային փոխանցված տողը փոխարկերպում ենք տասնորդական թվային տիպի։ 
+decimal sum = UserProxyService.AsCCur("102111.26");
+՝՝՝
+
+### CalculateAtmInd
+---
+```c#
+public decimal CalculateAtmInd(string codFormList, DateTime dateFirst, DateTime dateLast, string acsBranch = "",
+        string skv = "", string calcCurCode = "", int precision = 2)
+```
+
+Հաշվարկում է փոխանցված OLAP ատոմար ցուցանիշների գումարը։ 
+
+**Պարամետրեր**
+
+* `codFormList`- Պարտադիր։ Ատոմար ցուցանիշների կոդեր։ Հնարավոր է փոխանցել ինչպես մեկ այնպես էլ մի քանի ատոմար ցուցանիշի կոդ։ Մի քանի կոդ փոխանցելու դեպքում նրանք պետք է առանձնացված լինեն ստորակետով և նրանց արանքը չպիտի տեղադրված լինի բացատ։ Պարամետրի օրինակներ՝ "XXA", "XXA,XXB"։
+
+* `dateFirst`- Ոչ պարտադիր։ Ժամանակաշրջանի սկիզբ, այն դեպքում երբ ցուցանիշը հաշվարկում է որոշակի ժամանակահատվածի համար (օրինակ՝ հաշիվների միջին մնացորդ)։ Մնացորդ վերադարձնելու դեպքում այն հանդիսանում է մնացորդի ամսաթիվը։
+* `dateLast`- Ոչ պարտադիր։ Ժամանակաշրջանի վերջ։ Օգտագործվում է ժամանակահատվածի համար ցուցանշների հաշվարկի դեպքում։ Մնացորդ վերադարձնելու դեպքում այն կանտեսվի։
+* `acsBranch`- Ոչ պարտադիր։ Գրասենյակ։
+* `skv`- Ոչ պարտադիր։ Լռությամբ՝ ""։ Հնարավոր աժեքներն են՝
+  - Պարամետրը չփոխանցելու կամ "0" փոխանցելու դեպքում - Ամբողջ մնացորդը դրամով,
+  - "1"- Միայն ազատ փոխարկելի արժույթով մնացորդ,
+  - "2" - Միայն սահմանափակ փոխարկելի արժույթով մնացորդ,
+  - "3 - Ազատ և սահմանափակ փոխարկելի արժույթներով մնացորդ"։
+  - արժույթի կոդ փոխանցելու դեպքում, հաշվարկը կկատարվի ըստ այդ արժույթի։
+* `calcCurCode`- Ոչ պարտադիր։ Լռությամբ՝ "", այս դեպքում ցուցանիշի հաշվարկը կկատարվի ՀՀ դրամով։ Այլ արժույթի կոդ փոխանցելու դեպքում ցուցանիշը կվերահաշվարկցի այդ արժույթով տվյալ օրվա ՀՀ ԿԲ հաշվարկային փոխարժեքով։ 
+* `precision`- Ոչ պարտադիր։ 1- կլորանել հազար դրամի ճշտությամբ, 2 -չկլորացնել։  Լռությամբ՝ 2։
+
+> [!TIP]
+> Ժամանակահատվածի սկզբի, վերջի, ինչպես նաև **acsBranch**, **skv**, **calcCurCode**, **precision** պարամտերերի արժեքները ավտոմատ կփոխանցվեն ատոմար ցուցանիշում լրացված բանաձևերի համապատասխան պարամետրերին եթե նրանք առկա են։ Ժամանակաշրջանը սահնմանված չլինելու դեպքում հաշվարկը կկատարվի ՀԾ-Բանկ համակարգում սահմանված ընթացիկ օրով։
+
+**Օրինակ**
+```c#
+// Հաշվարկվում է pak մնացորդային ատոմար ցուցանիշի արժեքը B10 գրասենյակի համար 31/10/24 ամսաթվով 001 արժույթի համար։
+decimal sum = proxyService.CalculateAtmInd("pak", DateTime.Parse("2024-10-31"), acsBranch: "B10", skv:"001");
+```
+
+### CalculateOlapFormula
+---
+```c#
+public decimal CalculateOlapFormula(string codFormList, string branch, DateTime dateFirst, DateTime dateLast,
+                string skv = "", string calcCurCode = "", int precision = 2)
+```
+
+Հաշվարկում է փոխանցված կոդերով OLAP բանաձևերի գումարը։
+
+**Պարամետրեր**
+
+* `codFormList`- Պարտադիր։ OLAP ցուցանիշների կոդեր։ Հնարավոր է փոխանցել ինչպես մեկ այնպես էլ մի քանի  ցուցանիշի կոդ։ Մի քանի կոդ փոխանցելու դեպքում նրանք պետք է առանձնացված լինեն ստորակետով և նրանց արանքը չպիտի տեղադրված լինի բացատ։  Պարամետրի օրինակներ՝ "_BIA", "_HKAPITAL,_LKAPITAL"։
+* `branch`- Պարտադիր։ OLAP գրասենյակի կոդը։ Օրինակ՝ 16600, 99997, 99999,  
+* `dateFirst`- Պարտադիր։ Ժամանակաշրջանի սկիզբ։
+* `dateLast`- Պարտադիր։ Ժամանակաշրջանի վերջ
+* `skv`- Ոչ պարտադիր։ Լռությամբ՝ ""։ Հնարավոր աժեքներն են՝
+  - Պարամետրը չփոխանցելու կամ "0" փոխանցելու դեպքում - Ամբողջ մնացորդը դրամով,
+  - "1"- Միայն ազատ փոխարկելի արժույթով մնացորդ,
+  - "2" - Միայն սահմանափակ փոխարկելի արժույթով մնացորդ,
+  - "3 - Ազատ և սահմանափակ փոխարկելի արժույթներով մնացորդ"։
+  - արժույթի կոդ փոխանցելու դեպքում, հաշվարկը կկատարվի ըստ այդ արժույթի։
+* `calcCurCode`- Ոչ պարտադիր։ Լռությամբ՝ "", այս դեպքում ցուցանիշի հաշվարկը կկատարվի ՀՀ դրամով։ Այլ արժույթի կոդ փոխանցելու դեպքում ցուցանիշը կվերահաշվարկցի այդ արժույթով տվյալ օրվա ՀՀ ԿԲ հաշվարկային փոխարժեքով։ 
+* `precision`- Ոչ պարտադիր։ 1- կլորանել հազար դրամի ճշտությամբ, 2 -չկլորացնել։  Լռությամբ՝ 2։
+
+> [!TIP]
+> Ժամանակահատվածի սկզբի, վերջի, ինչպես նաև **branch**, **skv**, **calcCurCode**, **precision** պարամտերերի արժեքները ավտոմատ կփոխանցվեն OLAP ցուցանիշում լրացված բանաձևերի համապատասխան պարամետրերին եթե նրանք առկա են։ 
+
+**Օրինակ**
+```c#
+decimal sum = proxyService.CalculateOlapFormula("_BIA", "99997", DateTime.Parse("2024-10-31"), DateTime.Parse("2024-10-31"));
+```
+
+### CliName CliEName
+---
+```c#
+public async Task<string> CliName(string code)
+public async Task<string> CliEName(string code)
+```
+Վերադարձնում է հաճախորդի անվանումը / անգլերեն անվանումը ըստ կոդի։
+
+**Պարամետրեր**
+
+* `code` - Պարտադիր։ Հաճախորդի կոդը։
+
+**Օրինակ**
+```c#
+// Ստանում ենք 00006473 կոդով հաճախորդի անվանումը։
+string clName = await proxyService.CliName("00006473");
+```
+
+### CurrencyFormat
+---
+```c#
+public string CurrencyFormat(decimal value, short length = 20, short precision = 2)
+```
+Վերադարձնում է ֆորմատավորված գումարի տող։ Սահմանված երկարությունից նիշերի քանակը ավելի փոքր լինելու պակասող նիշերը ձախից կհամալրվեն բացատներով"
+
+**Պարամետրեր**
+
+* `value` - Պարտադիր։ Տասնորդական թիվ, որի համար ձևավորվում է ֆորմատավորված տող։
+* `length` - Ոչ պարտադիր։ Տողի երկարությունը։ Լռությամբ 20։
+* `precision` - Ոչ պարտադիր։ Ստորակետից հետո նիշերի քանակը։
+
+**Օրինակ**
+```c#
+// Բերված օրինակում st փոփոխականի արժեքը կլինի՝ "             1,500.3"
+decimal amount = 1500.266m;
+string st = proxyService.CurrencyFormat(amount, precision:1);
+```
+
+### CurrencyISOCode
+---
+```c#
+public Task<string> CurrencyISOCode(string codCurrency)
+```
+
+Վերադարձնում է արժույթի ISO կոդը ըստ ՀԾ-Բանկ-ի Արժույթներ տեղեկատուում գրանցված կոդի։
+
+**Պարամետրեր**
+
+* `codCurrency` - Պարտադիր։ Արժույթի կոդը։ Օրինակ՝ 001 
+
+**Օրինակ**
+```c#
+// curISO - փոփոխականը կստանա "USD" արժեքը։
+string curISO = await proxyService.CurrencyISOCode("001");
+```
+
+### CurrencyName
+---
+```c#
+public Task<(string amName, string enName)> CurrencyName(string codCurrency)
+```
+Վերադարձնում է փոխանցված կոդով արժույթի հայերեն և անգլերեն անվանումները համապատասխան "Արժույթներ" տեղեկատուի։
+
+**Պարամետրեր**
+
+* `codCurrency` - Պարտադիր։ Արժույթի կոդը։ Օրինակ՝ 001 
+
+**Օրինակ**
+```c#
+/* Ստանում ենք 001 արժույթի հայերեն և անգլերեն անվանումները՝
+curAMD - ԱՄՆ Դոլար
+curUSD - US Dollar */
+ 
+(string curAMD, string curUSD) = await proxyService.CurrencyName("001");
+```
+
+### CURRENT_DATE
+---
+```c#
+public DateTime CURRENT_DATE()
+```
+
+Վերադարձնում է ընթացիկ օրը և ժամը:
+
+**Օրինակ**
+```c#
+DateTime dt = proxyService.CURRENT_DATE();
+```
+
+### DealRate
+---
+```c#
+public decimal DealRate(string curCode1, string curCode2, string pusa, string cash, DateTime calcdate, string sMaxCreationDate = "")
+```
+
+Վերադարձնում է տրված արժույթների համար սահմված կանխիկ / անկանխիկ, առքի / վաճառքի դիլինգային փոխարժեքները։ Հնարավոր է սահմանել նաև ժամանակը, որի դրությամբ գործող փոխարժեքները անհրաժեշտ է վերադարձնել։
+
+**Պարամետրեր**
+
+* `curCode1` - Պարտադիր։ Արժույթ 1։
+* `curCode2` - Պարտադիր։ Արժույթ 2։
+* `pusa` -  Պարտադիր։ Առք / վաճառք։ Հնարավոր արժեքներն են՝ 1 - առք, 2 - վաճառք։
+* `cash` -  Պարտադիր։ Կանխիկ / անկանխիկ։ Հնարավոր արժեքներն են՝ 0 - կանխիկ, 1 - անկանխիկ։
+* `calcdate` - Պարտադիր։ Փոխարժեքի ամսաթիվ։ 
+* `sMaxCreationDate` - Ոչ պարտադիր։ Օգտագործվում է այն ժամանակ երբ նույն օրվա ընթացքում սահմանվել են մի քանի փոխարժեքներ և անհրաժեշտ է ստանալ սահմանված ժամին գործողը։
+
+**Օրինակ**
+```c#
+// Ստանում ենք ԱՄՆ դոլարի  առքի և վաճառքի, կանխիկի և անկանխիկի համար սահմանված ՀՀ դրամով փոխարժեքը, որոնք գործել են   05/09/24-ի 15։00 դրությամբ։
+
+decimal CashBuyRate = proxyService.DealRate("001", "000", "1", "0", DateTime.Parse("2024-09-05"), "2024-09-05 15:00");
+decimal NonCashBuyRate = proxyService.DealRate("001", "000", "1", "1", DateTime.Parse("2024-09-05"), "2024-09-05 15:00");
+decimal CashSellRate = proxyService.DealRate("001", "000", "2", "0", DateTime.Parse("2024-09-05"), "2024-09-05 15:00");
+decimal NonCashSellRate = proxyService.DealRate("001", "000", "2", "1", DateTime.Parse("2024-09-05"), "2024-09-05 15:00");
+```
+
+### ExistsContractByCliISN, ExistsContractByCliCode
+---
+```c#
+public bool ExistsContractByCliISN(int cliISN, string contractKey, bool checkClosed = false)
+public async Task<bool> ExistsContractByCliCode(string cliCode, string contractKey, bool checkClosed = false)
+```
+Ստուգվում է սահմանված isn -ով / հաճախորդի կոդով հաճախորդին կից սահմանված տեսակի պայմանագրերի առկայությունը։
+
+**Պարամետրեր**
+
+* `cliISN` /  `cliCode` - Պարտադիր։ Հաճախորդի isn / հաճախորդի կոդ։
+* `contractKey` - Պարտադիր։ Ենթահամակարգի կոդ։
+* `checkClosed` - Ոչ պարտադիր։ Ստուգել փակվածները թե ոչ։
+
+> [!TIP]
+> ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
+<br>
+
+**Օրինակ**
+```c#
+/* Օրինակում agrExist / agrExist2 փոփոխականները կստանան true կամ false արժեքը կապված 898692403 ins-ով / "00101953" կոդով հաճախորդի
+գծով բացված, գործող տրամադրված երաշխավորության պայմանագրերի առկայությունից։ */
+
+bool agrExist = proxyService.ExistsContractByCliISN(898692403, "N2");
+bool agrExist2 = await proxyService.ExistsContractByCliCode("00101953", "N2");     
+```
+
+### FolderElProp
+---
+```c#
+public Task<FolderElement> FolderElProp(string folderId, string key, bool noLock = true)
+```
+
+Վերադարձնում է FolderElement տիպի օբյեկտ ըստ ֆոլդեռի անվան և բանալու։ Ֆոլդեռները գրանցվում են հիմնական բազայի FOLDERS աղյուսակում։
+
+**Պարամետրեր**
+
+* `folderId`- Պարտադիր։ Ծառի ներքին անվանումը։ Համապատասխանում է FOLDERS աղյուսակի fFOLDERID դաշտին։
+* `key` - Պարտադիր։ Հանգույցի կոդը։ Համապատասխանում է FOLDERS աղյուսակի fKEY դաշտին։
+* `noLock` = Ոչ պարտադիր։ Լռությամբ՝ true: false արժեքի դեպքում հաշվարկի ժամանակ տվյալների փոփոխման տրանզակցիաների առկայության դեպքում տվյալների ստացումը կկատարվի նրանց ավարտից հետո ապահովվելով նրանց վերջնական վիճակը։ true արժեքի՝ հակառակը։ Վերջինի դեպքում աշվարկը կկատարվի ավելի արագ։
+
+
+**Օրինակ**
+```c#
+// Բերված օրինակում ստանում ենք վարկային պայմանագրի ընթացիկ գրաֆիկի ISN -ը, պայմանագրի թղթապանակից։
+// Agr.243335599 -ն հանդիսանում է 243335599 ISN -ով պայմանագրի թղթապանակը, C1TSDtUn -ն
+// հանդիսանում է թղթապանակում ընթացիկ գրաֆիկի բանալին։
+
+int schedISN = (await proxyService.FolderElProp("Agr.243335599", "C1TSDtUn")).ISN;
+```
+
+### FolderElPropSpec
+---
+```c#
+public async Task<string> FolderElPropSpec(string folderId, string key, bool noLock = true)
+```
+
+Վերադարձնում է FOLDERS աղյուսակի fSPEC դաշտի արժեքը ըստ ֆոլդեռ-ի անվան և հղման բանալու։
+
+**Պարամետրեր**
+
+* `folderId`- Պարտադիր։ Ծառի ներքին անվանումը։ Համապատասխանում է FOLDERS աղյուսակի fFOLDERID դաշտին։
+* `key` - Պարտադիր։ Հանգույցի կոդը։ Համապատասխանում է FOLDERS աղյուսակի fKEY դաշտին։
+* `noLock` - Ոչ պարտադիր։ Լռությամբ՝ true: false արժեքի դեպքում հաշվարկի ժամանակ տվյալների փոփոխման տրանզակցիաների առկայության դեպքում տվյալների ստացումը կկատարվի նրանց ավարտից հետո ապահովվելով նրանց վերջնական վիճակը։ true արժեքի՝ հակառակը։ Վերջինի դեպքում աշվարկը կկատարվի ավելի արագ։
+
+**Օրինակ**
+```c#
+// Ստանում ենք C.304663812 պանակի (304663812 isn -ով հաճախորդի թղթապանակ) 1065495882
+// բանալիով տողի fSPEC դաշտի արժեքը՝
+// "004480000    Արժ.- 000  Տիպ- 01  Հ/Հաշիվ- 3022000   Անվանում-Պողոսյան Պողոս" 
+
+string accDetails = await proxyService.FolderElPropSpec("C.304663812", "1065495882");
+```
+
+## FormatDDMMYY FormatDDMMYYYY FormatYYYYMMDD
+---
+```C#
+public string FormatDDMMYY(DateTime? date)
+public string FormatDDMMYYYY(DateTime? date)
+public string FormatYYYYMMDD(DateTime? date)
+```
+Վերադարձնում է ֆորմատավորված ամսաթվի տող։ Առաջին երկու դեպքերում տարեթիվը կարտացոլվի երկու, մյուս դեպքում չորս նիշերով։ Պարամետրի ՝null՝ արժեքի դեպքում կվերադարձվի դատարկ ամսաթվի ՝ " / / " տողը։ FormatYYYYMMDD ֆունկցիայի վերադարձրած տողի օրինակ է՝ "20240906"։ ՝null՝ արժեքի դեպքում տողը կունենա հետևյալ տեսքը՝ "00000000"
+
+**Պարամետրեր**
+
+* `date` - Ոչ պարտադիր։ Ամսաթվի օբյեկտը։
+
+**Օրինակ**
+```C#
+// Բերված օրինակում dt փոփոխականը կստանա ընթացիկ ամսաթվի տողը, օրինակ՝ "06/09/24"։ dt2 -ի արժեքը կլինի " / / "։ dt3 -ի արժեքը կլինի 20240906
+
+DateTime dtObj = DateTime.Now;
+string dt = proxyService.FormatDDMMYY(dtObj);
+string dt2 = proxyService.FormatDDMMYYYY(null);
+string dt3 = proxyService.FormatYYYYMMDD(dtObj);
+```
+
+### FormatToPrint
+---
+```c#
+public string FormatToPrint(decimal value)
+```
+Վերադարձնում է տասնորդական թվի, տպելու համար նախատեսված, ֆորմատավորված տող։
+
+**Պարամետրեր**
+
+* `value` - Պարտադիր։ Տասնորդական թիվ, որի համար ձևավորվում է ֆորմատավորված տող։
+
+**Օրինակ**
+```c#
+// st փոփոխականի արժեքը կլինի՝ "1,500.266"
+decimal amount = 1500.266m;
+string st = proxyService.FormatToPrint(amount);
+```
+
+### GetAccCodeByAgrISN
+---
+```c#
+public Task<string> GetAccCodeByAgrISN(int agrISN, string accName, string agrType = "", string agrRisk = "", bool accFormat = true)
+```
+Վերադարձնում է պայմանագրի հաշվապահական հավելվածի համապատասխան դաշտում լրացված հաշվեհամարը, որի ներքին անվանումը փոխանցվում է accName պարամետրի միջոցով։
+
+**Պարամետրեր**
+
+* `agrISN` - Պարտադիր։ Պայմանագրի ISN-ը։
+* `accName` - Պարտադիր։ Հաշվապահական հավելվածի համապատասխան դաշտի ներքին անվանումը։
+* `agrType` - Ոչ պարտադիր։ Ենթահամակարգի տեսակ` C, D, M, N, B, Q։ Պարամետրի լրացված լինելու դեպքում հաշվարկը հաշվարկը կկատարվի ավելի արագ։
+* `agrRisk` - Ոչ պարտադիր։ Պայմանագրի ռիսկի դասիչը։ Օգտագործվում է միայն պահուստավորման հետ կապված հաշիվների ստացման համար (Հաշվապաահական հավելվածի "Պահուստավորման հաշիվներ" աղյուսակ)։ 
+* `accFormat` - Ոչ պարտադիր։ true արժեքի դեպքում հետհաշվեկշռային հաշիվները կվերադարձվեն 20 իսկ հաշվեկշռային հաշիվները 11 երկարությամբ։ Եթե հաշվեհամարը ավելի կարճ է բացակայող նիշերը աջից կհամալրվեմ բացատներով։ false արժեքի դեպքում հաշվեհամարները կվերադարձվեն առանց բացատների։
+
+> [!TIP]
+> ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
+<br>
+
+**Օրինակ**
+```c#
+// Ստանում ենք 253711148 ISN-ով պայմանագրի տոկոսների հաշվարկման հաշիվը։
+string acc = await proxyService.GetAccCodeByAgrISN(253711148, "ACCAGR","C");
+```
+
+### GetAccountISN
+---
+```c#
+public Task<int> GetAccountISN(string acc)
+```
+
+Վերադարձնում է հաշվի հիմնական ISN-ը ըստ հաշվի համարի։ 
+
+**Պարամետրեր**
+
+* `acc`- Պարտադիր։ Հաշվի համար։
+
+**Օրինակ**
+```c#
+// Ստանում ենք 10110050601 հաշվի isn-ը։
+int isn = await proxyService.GetAccountISN("10110050601");
+```
+
+### GetAgrFactValueDate GetAgrFactValuePercent GetAgrFactValueDecimal GetAgrFactValueString
+---
+```c#
+public Task<DateTime?> GetAgrFactValueDate(int isn, NoRem accType, string accOp, DateTime requestDate, MinMax minMax, bool 
+                                                  onlyOpenChildren, string agrTypeName)
+public Task<InterestRate> GetAgrFactValuePercent(int isn, NoRem accType, string accOp, DateTime requestDate, MinMaxLast 
+                                                  minMaxLast, bool onlyOpenChildren, string agrTypeName)
+public Task<decimal?> GetAgrFactValueDecimal(int isn, NoRem accType, string accOp, DateTime requestDate, MinMax minMax, 
+                                                  bool onlyOpenChildren, string agrTypeName)
+public Task<string> GetAgrFactValueString(int isn, NoRem accType, string accOp, DateTime requestDate, MinMax minMax, bool 
+                                                   onlyOpenChildren, string agrTypeName)
+```
+Ֆունկցիաները վերադարձնում են պայմանագրի, սահմանված ամսաթվով, ոչ [ոչ մնացորդային հաշվառումների](#ոչ-մնացորդային-հաշվառումներ) արժեքները։
+Ի տարբերություն GetSSFactValue անվամբ սկսվող ֆունկցիաների այս ֆունկցիաները նախատեսված են բարդ պայմանագրերի հետ աշխատելու համար։ Կապված 
+MinMax, MinMaxLast enum -ների արժներից վերադարձվող արժեքները կարող են լինել ենթապայմանագրի գծով, սահմանված ամսաթվով, առավելագույն (MinMax.Max, MinMaxLast.Max) նվազագույն (MinMax.Min, MinMaxLast.Min) կամ վերջին նշակաված արժեքները (MinMaxLast.Last)։ 
+
+**Պարամետրեր**
+
+* `isn` -  Պարտադիր։ Պայմանագրի ISN։
+* `accType` - Պարտադիր։ Հաշվառման կոդ։ Սահմանվում է Subsystems.Enums.Accountings.Rem դասի համապատասխան հատկությունը։ Նշված դասի հատկությունների անվանումները համապատասխանում են [պայմանագրերի հաշվառման կոդերին](#պայմանագրերի-հաշվառումների-կոդեր)։
+* `accOp` - Պարտադիր։ Սահմանվում է Subsystems.Enums.Accountings.NoRem դասի համապատասխան հատկությունը։ Նշված դասի հատկությունների անվանումները համապատասխանում են [գործողությունների կոդերին](#հաշվառումների-գործողությունների-կոդեր)։ 
+* `requestDate` - Պարտադիր։ Մնացորդի ամսաթիվը։
+* `MinMax`, `MinMaxLast` - Պարտադիր։ Նվազագույն, առավելագույն կամ վերջին նշանակված արժեքը ըստ ենթապայմանագրերի։
+* `onlyOpenChildren` - Պարտադիր։ Դիտարկել միայն հարցման ամսաթվով գործող ենթապայմանագրերը։
+* `agrTypeName` - Ոչ պարտադիր։ Հասանելի չէ GetAgrFactValueDate ֆունկցիայի համար։ Սահմանվում է `isn` պարամետրով սահմանված պայմանագրի փաստաթղթի տեսակը։ 
+
+
+**Օրինակ**
+```c#
+// Բերված օրինակում ստանում ենք 307245031 ISN -ով բարդ պայմանագրի ենթապայմանագրերի գծով 
+// 29/12/24 ամսաթվի դրությամբ նշանակված վերջին տոկոսադրույքը։ 
+deciaml perc = ( await proxyService.GetAgrFactValuePercent(307245031, Subsystems.Enums.Accountings.NoRem.N0, "PAG", DateTime.Parse("2024-12-29"), MinMaxLast.Last, true, "C1Compl")).Rate;
+```
+
+### GetAgrRem
+---
+```c#
+public async Task<decimal> GetAgrRem(int isn, Rem accType, DateTime requestDate, string agrTypeName = null, string sourceCur = "", string targetCur  = "")
+```
+Վերադարձնում է պայմանագրի հաշվառման մնացորդը (ըստ բոլոր ենթապայմանագրերի)։
+
+**Պարամետրեր**
+
+* `isn` -  Պարտադիր։ Պայմանագրի ISN։
+* `accType` - Պարտադիր։ Հաշվառման կոդ։ Սահմանվում է Subsystems.Enums.Accountings.Rem դասի համապատասխան հատկությունը։ Նշված դասի հատկությունների անվանումները համապատասխանում են [պայմանագրերի հաշվառման կոդերին](#պայմանագրերի-հաշվառումների-կոդեր)։
+* `requestDate` - Պարտադիր։ Մնացորդի ամսաթիվ։
+* `agrTypeName` - Ոչ պարտադիր։ Պայմանագրի փաստաթղթի տեսակ։ Լռությամբ՝ null: Սահմանելու դեպքում ֆունկցիայի կատարման ժամանակը կկրճատվի։
+* `sourceCur` - Ոչ պարտադիր։ Լռությամբ ""։ Պայմանագրի մնացորդի արժույթի թվային կոդը։ Օրինակ՝ "000", "001"։ Կիրառվում է `targetCur` պարամետրի հետ միասին։ 
+* `targetCur ` - Ոչ պարտադիր, Լռությամբ ""։ Վերահաշվակվի արժույթի թվային կոդը։ Օրինակ՝ "000", "001"։ Այս պարամետրը սահմանվում է `sourceCur` պարամետրի հետ միասին։ Սահմանված լինելու դեպքում մնացորդը կվերահաշվարկվի ըստ տվյալ արժույթի համար `requestDate` ապարամետրով սահմանված ամսաթվով ՀՀ ԿԲ հաշվարկային փոխարժեքի։ Սահմանված չլինելու դեպքում գումարը կվերադարձվի հաշվառման արժությով։
+
+**Օրինակ**
+```c#
+// Բերված օրինակում կհաշվարկվի 653013562 ISN-ով, ԱՄՆ- դոլարով պայմանագրի մնացորդը 13/08/24 -ի
+// դրությամբ վերահաշվարկված ԵՎՐՈ-ով։
+decimal agrRem = await proxyService.GetAgrRem(653013562, Subsystems.Enums.Accountings.Rem.R1, DateTime.Parse("2024-08-13"), "C1Univer", "001", "049");
+```
+
+### GetAgrTurn
+---
+```c#
+public Task<decimal> GetAgrTurn(int isn, DateTime startDate, DateTime endDate, Rem accType,
+                                               string accOp, string dbCr, string opCur = "", string convertCur = "")
+```
+Վերադարձնում է պայմանագրի շրջանառաությունը ըստ սահմանված գործողության տեսակի (բոլոր ենթապայմանագրերով) և ժամանակահատվածի։
+
+**Պարամետրեր**
+
+* `isn` -  Պարտադիր։ Պայմանագրի ISN։
+* `startDate` - Պարտադիր։ Սկզբի ամսաթիվ։
+* `endDate` - Պարտադիր։ Վերջի ամսաթիվ։
+* `accType` - Պարտադիր։ Հաշվառման կոդ։
+* `accOp` - Պարտադիր։ [Գործողության կոդ](#հաշվառումների-գործողությունների-կոդեր)։ 
+* `dbCr` - Պարտադիր։ Լրացվում է "D" եթե տվյալ գործողության արդյունքում տեղի է ունենում հաշվառման ավելացում և "C" նվազման դեպքում։
+* `opCur` - Ոչ պարտադիր։ Լռությամբ ""։ Գործողության կատարման արժույթի թվային կոդը։ Օրինակ՝ "001", "000" Կիրառվում է `convertCur` պարամետրի հետ միասին։ Սահմանված չլինելու դեպքում գումարը կվերադարձվի գործողության արժույթով։
+* `convertCur` - Ոչ պարտադիր։ Լռությամբ ""։ Վերահաշվակվի արժույթի թվային կոդը։ Այս պարամետրը սահմանվում է `opCur` պարամետրի հետ միասին։  Սահմանված չլինելու դեպքում գումարը կվերադարձվի գործողության արժույթով։
+
+Բերված օրինակում հաշվարկվում է 812735354 ISN-ով, դրամային պայմանագրի գծով, սահմանված ժամանակահատվածում կատարված տրամադրումների ընդհանուր գումարը վերահաշվարկված ԱՄՆ դոլարի։
+
+**Օրինակ**
+```c#
+decimal agrRem = await proxyService.GetAgrTurn(812735354, DateTime.Parse("2009-07-10"), DateTime.Parse("2009-07-25"), Subsystems.Enums.Accountings.Rem.R1,"AGR","D", "000", "001");
+```
+
+### GetAgrTypeByISN
+---
+```c#
+public string GetAgrTypeByISN(int docISN)
+```
+Վերադարձնում է սահմանված isn -ով պայմանագրի համապատասխան ենթահամակարգերին պատկանելու հայտանիշը։ Օրիանակ՝ C, D, N:  
+
+**Պարամետրեր**
+
+* `docISN` - Պարտադիր։ Պայմանագրի isn:
+
+**Օրինակ**
+```c#
+// Օրինակում agType փոփոխականը կստանա "C" արժեքը քանի որ, 607802582 isn -ով պայմանագիրը հանդիսանում է տեղաբաշխված վարկ։
+string agType = proxyService.GetAgrTypeByISN(607802582);
+```
+
+### GetAllDayAgrJ
+---
+```c#
+public Task<short> GetAllDayAgrJ(int agrIsn, DateTime getDate)
+```
+
+Վերադարձնում է պայմանագրի ընդհանուր ժամկետանց օրերի քանակը։
+
+**Պարամետրեր**
+
+* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
+* `getDate` - Պարտադիր։ Հարցման ամսաթիվը:
+
+**Օրինակ**
+```c#
+// Հաշվարկվում է 905721123 պայմանագրի ընդհանուր ժամկետանց օրերի քանակը ընթացիկ ամսաթվի դրությամբ։
+short agrJ = await proxyService.GetAllDayAgrJ(905721123, DateTime.Now);
+```
+
+### GetAllDayJCount
+---
+```c#
+public Task<short> GetAllDayJCount(int agrIsn, DateTime repDate)
+```
+Վերադարձնում է տվյալ isn -ով պայմանագրի անընդմեջ ժամկետանց լինելու քանակը։
+
+**Պարամետրեր**
+
+* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
+* `getDate` - Պարտադիր։ Հարցման ամսաթիվը:
+
+**Օրինակ**
+```c#
+// Հաշվարկվում է 905721123 isn-ով պայմանագրի գծով անընդմեջ ժամկետանց լինելու քանակը ընթացիկ ամսաթվի դրությամբ։
+short agrJc = await proxyService.GetAllDayJCount(905721123, DateTime.Now); 
+```
+
+### GetBranchParam
+---
+```c#
+public Task<string> GetBranchParam(string paramCode, string branchCode = "")
+```
+Գրասենյակի կոդը փոխանցված լինելու դեպքում վերադարձնում է սահմանված կոդով գրասենյակի փաստաթղթի (ACSBRANCH տեսակի փաստաթուղթ) դաշտի արժեքը։ Փոխանցված չլինելու դեպքում կվերադարձվի առաջին պարամետրով փոխանցված Գրասենյակ փաստաթղթի դաշտի նույնանուն համակարգային պարամետրերի արժեքը։
+
+**Պարամետրեր**
+
+* `paramCode` - Պարտադիր։ Գրասենյակ փաստաթղթի դաշտի ներքին անվանում կամ նույնանուն համակարգային պարամետրի կոդ։
+* `branchCode` - Ոչ պարտադիր։ Գրասենյակի կոդը՝ համապատասխանում է Գրասենյակ տեսակի փաստաթղթի Կոդ դաշտի արժեքին։
+
+**Օրինակ**
+```c#
+// Ստանում ենք B01 կոդով գրասենյակի գլխավոր հաշվապահի անունը։ 
+string accountantName = await proxyService.GetBranchParam("CHIEFACCTNT", "B01"); 
+```
+
+### GetCliCodeByAcc
+---
+```c#
+public Task<string> GetCliCodeByAcc(string account)
+```
+
+Վերադարձնում է Հաճախորդի կոդը ըստ հաշվի համարի։ 
+
+**Պարամետրեր**
+
+* `account`- Պարտադիր։ Հաշվի համար։
+
+**Օրինակ**
+```c#
+// Հաշվարկվում է 10200060200 հաշվի հաշետիրոջ կոդը։
+string cliCode = await proxyService.GetCliCodeByAcc("10200060200");
+```
+
+### GetCliContractNamesByISN GetCliContractNamesByCode
+---
+```c#
+public async Task<string> GetCliContractNamesByISN(int cliISN, bool showClosed = false)
+public async Task<string> GetCliContractNamesByCode(string cliCode, bool showClosed = false)
+```
+
+Վերադարձնում են հաճախորդին կապակցված քարտ-փաստաթղթերի, ինչպես նաև վերջնական չհաշվառված վճարային փաստաթղթերի ներքին անվանումները ըստ հաճախորդի ISN-ի, երկրորդ դեպքում ՝ ըստ հաճախորդի կոդի։
+
+**Պարամետրեր**
+
+* `cliISN / cliCode`- Պարտադիր։ Հաճախորդի քարտի ISN  / Հաաճախորդի կոդ։
+* `showClosed` - Ոչ պարտադիր։ Ցույց տալ նաև փակվածները։ Լռությամբ false:
+
+**Օրինակ**
+```c#
+// Վերադարձվող տողի օրինակ ՝ "Acc, C1Univer, Cli, N1Other, NBAcc, REMINDER"
+string docTypes = await proxyService.GetCliContractNamesByISN(339923058);
+string docTypes = await proxyService.GetCliContractNamesByCode("00006518");
+```
+
+### GetClientAMDAcc
+---
+```c#
+public Task<string> GetClientAMDAcc(string cliCode)
+```
+
+Վերադարձնում է հաճախորդի քարտում լրացված հիմնական դրամային հաշիվը ("Պայմաններ" էջ, "Հիմնական դրամային հաշիվ (գանձ. պայմ% մար-տրմդր)")։
+
+**Պարամետրեր**
+
+* `cliCode`- Պարտադիր։ Հաճախորդի կոդ։
+
+**Օրինակ**
+```c#
+string acc = await proxyService.GetClientAMDAcc("00006252");
+```
+
+### GetClientFullName
+---
+```c#
+public Task<string> GetClientFullName(string firstName, string lastName, string ptronymic, bool arm)
+```
+
+Վերադարձնում է հաճախորդի անուն, ազգանուն, հայրանունը համակարգում սահմանված հերթականությամբ (հերթականությունը սահմանվում է ՝ CLINAMEORDER -"Հաճախորդի անվան հերթականություն", CLINAMEORDERENG - "Հաճախորդի անգլ. անվան հերթականություն" պարամետրերով)։
+
+**Պարամետրեր**
+
+* `firstName`- Պարտադիր։ Հաճախորդի անուն։
+* `lastName`- Պարտադիր։ Հաճախորդի ազգանուն։
+* `ptronymic`- Պարտադիր։ Հաճախորդի հայրանուն։
+* `arm`- Պարտադիր։ Անվանումը հայերեն է։ Այս դեպքում անուն, ազգանունի, հայրանունի հերթականությունը կորոշվի CLINAMEORDER պարամետրով կատարված կարգավորմամբ։ **false** արժեքը օգտագոևծվում է այն դեպքում երբ անվանումը անգլերեն է։ Այս դեպքում անվան հերթականությունը կորորշվի CLINAMEORDERENG պարամետրով։ 
+
+**Օրինակ**
+```c#
+// Անունը, ազգանունը և հայրանունը կարող են փոխանցվել unicode և armenian ansi կոդավորմամբ։
+string fullName = await proxyService.GetClientFullName("Պողոս", "Պողոսյան", "Պողոսի", true);
+```
+
+### GetClientISN
+---
+```c#
+public Task<int> GetClientISN(string cliCode)
+```
+
+Վերադարձնում է հաճախորդի քարտի ISN-ը ըստ հաճախորդի կոդի։
+
+**Պարամետրեր**
+
+* `cliCode`- Պարտադիր։ Հաճախորդի կոդը։
+
+**Օրինակ**
+```c#
+int isn = await proxyService.GetClientISN("00006525");
+```
+
+### GetClientISNByAcc
+---
+```c#
+public Task<int> GetClientISNByAcc(string acc)
+```
+
+Վերադարձնում է հաճախորդի ISN -ը ըստ հաճախորդի որևէ հաշվեհամարի։ Հաշվեհամարի բացակայության կամ հաճախորդի հետ կապակցված չլինելու դեպքում կվերադարձվի -1։
+
+**Պարամետրեր**
+
+* `acc`- Պարտադիր։ Հաճախորդի հաշիվեհամարներից որևէ մեկը։
+
+**Օրինակ**
+```c#
+int isn = await proxyService.GetClientISNByAcc("10000081200");
+```
+
+### GetClientRezJurVolortByAccount
+---
+```c#
+public Task<(string residence, string jurState, string volort)>GetClientRezJurVolortByAccount(string accCode)
+```
+
+Վերադարձնում է հաճախորդի ռեզիդենտությունը (1-ռեզիդենտ, 2-ոչ ռեզիդենտ), իրավաբանական կարգավիճակի և ոլորտի համապատասխան ծառի կոդերը ըստ հաճախորդի հաշվեհամարի։
+
+**Պարամետրեր**
+
+* `acc`- Պարտադիր։ Հաճախորդի հաշիվեհամարներից որևէ մեկը։
+
+**Օրինակ**
+```c#
+(string res, string jstat, string volort) = await proxyService.GetClientRezJurVolortByAccount("00315580100");
+```
+
+### GetCollateralISNsByAgrNum
+---
+``` c#
+public Task<List<int>> GetCollateralISNsByAgrNum(string agreemCode, string agreemType)
+```
+Վերադարձնում է տվյալ պայմանագրին կապակցված գրավների ISN-ները (ավանդային գրավի դեպքում վերադարձնում Է N3DepMor պայմանագիրը, ոչ թե ավանդային գրավի ենթապայմանագրերը):
+
+**Պարամետրեր**
+
+* `agreemCode` - Պարտադիր։ Պայմանագրի համարը։
+* `agreemType` - Պարտադիր։ Հնարավոր արժեքներն են "C", "D", "M"(տրամադրված երաշխավորությունների դեպքում) ։
+
+**Օրինակ**
+```c#
+// Ստանում ենք TV-8900 վարկային պայմանագրին կապակցված գրավի և երաշխավորությունների պայմանագրերի ISN-ները:
+List<int> cISNs = await proxyService.GetCollateralISNsByAgrNum("TV-8900", "C");
+```
+
+### GetContractISN
+---
+```c#
+public Task<int> GetContractISN(string agrType, string agrCode, string agrLevelCheck = "")
+```
+Վերադարձնում է պայմանագրի isn-ը ըստ պաիմանագրի համարի։
+
+**Պարամետրեր**
+
+* `agrType` - Պարտադիր։ Պայմանագրի տեսակ:
+* `agrCode` - Պարտադիր։ Պայմանագրի N։
+
+> [!TIP]
+> ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
+<br>
+
+**Օրինակ**
+```c#
+// Ստանում ենք AS80-001 համարով վարկային պայմանագրի isn-ը։
+int agIsn = await proxyService.GetContractISN("C", "AS80-001", "AGRPARENTS");
+```
+
+### GetDayAgrJ
+---
+```c#
+public async Task<short> GetDayAgrJ(int agrIsn, string agrType, DateTime getDate)
+```
+Վերադարձնում է պայմանագրի մայր-գումարի ժամկետանց օրերի քանակը։
+
+**Պարամետրեր**
+
+* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
+* `agrType` - Պարտադիր։ Պայմանագրի տիպը։ Օրինակ՝ C1Univer, C5Univer, C1Simpl: Դատարկ տող փոխանցելու դեպքում փաստաթղթի տեսակի կորոշվի ավտոմատ։
+* `getDate` - Պարտադիր։ Հարցման ամսաթիվը։
+
+**Օրինակ**  
+```c#
+// Հաշվարկվում է 905721123 isn-ով պայմանագրի գծով մայր-գումարի ժամկետանց օրերի քանակը ընթացիկ ամսաթվի դրությամբ։
+short overdDays = await proxyService.GetDayAgrJ(815929352,"", DateTime.Parse("2024-10-15")); 
+```
+
+### GetDayPerJ
+---
+```c#
+public async Task<short> GetDayPerJ(int agrIsn, DateTime getDate)
+```
+Վերադարձնում է պայմանագրի տոկոսների ժամկետանց օրերի քանակը։
+
+**Պարամետրեր**
+
+* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
+* `getDate` - Պարտադիր։ Հարցման ամսաթիվը։
+
+**Օրինակ**
+```c#
+// Հաշվարկվում է 836420323 isn-ով պայմանագրի գծով տոկոսների ժամկետանց օրերի քանակը ընթացիկ ամսաթվի դրությամբ։
+short overdPerDays = await proxyService.GetDayPerJ(836420323, DateTime.Parse("2024-10-15"));
+```
+
+### GetExchangeRate
+---
+```c#
+public async Task<decimal> GetExchangeRate(string codCurrency, DateTime date, DateTime? maxCreationDate = null)
+```
+Վերադարձնում է ՀՀ ԿԲ հաշվարկային փոխարժեքը ըստ արժույթի և ամսաթվի։
+
+**Պարամետրեր**
+
+* `codCurrency` - Պարտադիր։ արժույթի կոդը։
+* `date` - Պարտադիր։ Փոխարժեքի ամսաթիվը։
+* `maxCreationDate` - Ոչ պարտադիր։ Սահմանվում է ամսաթիվը և ժամը, որի դրությամբ պետք է վերադարձնել գործող փոխարժեքը։ Օգտագործվում է այն դեպքում երբ մեկ օրվա ընթացքում սահմանվել է մի քանի փոխարժեք։
+
+**Օրինակ**
+```c#
+// Վերադարձվում է 06/09/24 -ի 15։12 դրությամբ գործող ԱՄՆ դոլարի հաշվարկային փոխարժեքը։
+decimal cur = await proxyService.GetExchangeRate("001", DateTime.Parse("2024-09-06"), DateTime.Parse("2024-09-06 15:12"));
+```
+
+### GetFutAgrDbt
+---
+```c#
+ public Task<decimal> GetFutAgrDbt(int agrIsn, DateTime startDate, DateTime endDate)
+```
+Վերադարձնում է սահմանված ժամանակահատվածում մայր-գումարի վճարվելիք ընդհանուր գումարը։ Կիրառելի է Univer տեսակի պայմանագրերի համար։
+
+**Պարամետրեր**
+
+* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
+* `startDate` - Պարտադիր։ Մարման ժամանակահատվածի սկիզբ։
+* `endDate` - Պարտադիր։ Մարման ժամանակահատվածի վերջ։ 
+
+**Օրինակ**
+```c#
+/* Հաշվարկվում է 1533697979 isn-ով պայմանագրի գծով 17/01/25 -ից մինչև 17/02/25 ժամանակահատվածը վճարվելիք մայր-գումարի ընդհանուր թիվը։ */
+decimal paym = await proxyService.GetFutAgrDbt(1533697979, DateTime.Parse("2025-01-17"),DateTime.Parse("2025-02-17"));
+```
+
+### GetFutPerDbt
+---
+```c#
+public Task<decimal> GetFutPerDbt(int agrISN, DateTime dateStart, DateTime dateEnd)
+```
+
+Վերադարձնում է Univer տեսակի պայմանագրի, նշված ժամանակահատվածում ընկած, մարման ենթակա տոկոսագումարը հաշվի առնելով տոկոսագումարի կանխավճարը։
+
+**Պարամետրեր**
+
+* `agrISN` - Պարտադիր։ Պայմանագրի ISN։
+* `dateStart` - Պարտադիր։ Սկզբի ամսաթիվ։
+* `dateEnd` - Պարտադիր։ Վերջի ամսաթիվ։
+
+**Օրինակ**
+```c#
+// Հաշվարկվում է 605404534 isn -ով պայմանագրի ապագա վճարվելիք տոկոսագումարը 05/01/25 - 03/04/25 ժամանակահատվածի համար։
+decimal fDbt = await proxyService.GetFutPerDbt(605404534, DateTime.Parse("2025-01-05"), DateTime.Parse("2025-04-03"));
+```
+
+### GetFutServFeeDbt
+---
+```c#
+ public Task<decimal> GetFutServFeeDbt(int agrISN, DateTime begDate, DateTime endDate)
+```
+
+Վերադարձնում է Univer տեսակի պայմանագրի, նշված ժամանակահատվածում ընկած, մարման ենթակա վարձավճարը հաշվի առնելով վարձավճարի կանխավճարը։
+
+**Պարամետրեր**
+
+* `agrISN` - Պարտադիր։ Պայմանագրի ISN։
+* `dateStart` - Պարտադիր։ Սկզբի ամսաթիվ։
+* `dateEnd` - Պարտադիր։ Վերջի ամսաթիվ։
+
+**Օրինակ**
+```c#
+// Հաշվարկվում է 287232600 isn-ով պայմանագրի գծով 25/03/25-17/04/25 ժամանակահատվածում վճարվելիք վարձավճարի գումարը։
+decimal dbt = await proxyService.GetFutServFeeDbt(287232600, DateTime.Parse("2025-03-25"), DateTime.Parse("2025-04-17"));
+՝՝՝
+
+### GetLinkedMortSum, GetLinkedGuarSum
+---
+```c#
+public async Task<decimal> GetLinkedMortSum(int agrISN, DateTime date, string agrType, string returnCurr)
+public async Task<decimal> GetLinkedGuarSum(int agrISN, DateTime date, string agrType, string returnCurr)
+```
+
+Վերադարձնում է պայմանագրին կապակցված գրավների / երաշխավորությունների ընդհանուր գումարը սահմանված ամսաթվով։
+
+**Պարամետրեր**
+
+* `agrISN` - Պարտադիր։ Պայմանագրի ISN։
+* `date` - Պարտադիր։ Հարցման ամսաթիվ։
+* `agrType` - Պարտադիր։ Առաջին ապարամետրով սահմանված isn ով պայմանագրի Ենթահամակարգի կոդը։ Օրինակ` "C1", "C3": Պարամետրի արժեքը փոխանցվում է արագագործության համար։
+* `returnCurr` - Պարտադիր։ Արժույթի կոդը, որով պետք է արտացոլված լինի վերադարձվող գումարը։ 
+
+**Օրինակ**
+```c#
+/* Օրինակում հաշվակվում են 253711148 isn-ով պայմանագրին կապակցված գրավի և երաշխավությունների
+ընդհանուր գումարները։ Երաշխավորության դեպքում գումարը կարտացոլվի ԱՄՆ դոլարով։ */
+decimal am1 = await proxyService.GetLinkedMortSum(253711148, DateTime.Parse("2024-09-16"), "C1", "000");
+decimal am2 = await proxyService.GetLinkedGuarSum(253711148, DateTime.Parse("2024-09-16"), "C1", "001");
+```
+
+### GetPCardData
+---
+```c#
+ public Task<Dictionary<string, object>> GetPCardData(string fieldList,
+                                 string cardNum = "",
+                                 string cardAcc = "",
+                                 long isn = 0,
+                                 bool includeClosed = true,
+                                 bool throwException = true)
+```
+Վերադարձնում է dictionary, որը պարունակում է վճարային քարտի fieldList պարամետրով փոխանցված CARDS աղյուսակի դաշտերի արժեքներով։ Պլաստիկ քարտի փնտրումը հնարավոր է իրականացնել՝ քարտի համարով, քարտային հաշվով կամ isn- ով։
+
+**Պարամետրեր**
+
+* `fieldList` - Պարտադիր։ CARDS աղյուսակի դաշտերի անվանումները բաժանված ստորակետով որոնք անհրաժեշտ է վերադարձնել։
+* `cardNum` - Ոչ պարտադիր։ Քարտի համար։
+* `cardAcc` - Ոչ պարտադիր։ Քարտի հաշիվ:
+* `isn` - Ոչ պարտադիր։ Քարտի isn: 
+* `includeClosed` - Ոչ պարտադիր։ Փնտրել նաև փակվածների մեջ։ Լռությամբ փնտրվում է։
+* `throwException` - Ոչ պարտադիր։ Սահմանված պայմաններով քարտ չգտնելու դեպքում բերել սխալի հաղորդագրություն։ Լռությամբ՝ այո։
+
+**Օրինակ**
+```c#
+//Ստանում ենք 80662376 isn ով վճարային քարտի արժույթը և հաճախորդի կոդը պարունակով dictionary: 
+using System.Collections.Generic;
+
+Dictionary<string, object> pcard = await proxyService.GetPCardData("fCUR, fCLICODE", isn: 80662376);
+
+await proxyService.TryAddAtomicAsync("param1", async () => (string) pcard["fCUR"], templateSubstitutionArgs);
+await proxyService.TryAddAtomicAsync("param2", async () => (string) pcard["fCLICODE"], templateSubstitutionArgs);
+```
+
+### GetPCardDoc
+---
+```c#
+public Task<Card> GetPCardDoc(string cardNum = "", string cardAcc = "", bool throwException = true)
+```
+
+Վերադարձնում է պլաստիկ քարտի փաստաթղթի օբյեկտը քարտի համարով կամ քարտային հաշվի միջոցով։
+
+**Պարամետրեր**
+
+* `cardNum` - Ոչ պարտադիր։ Քարտի համարը։
+* `cardAcc` - Ոչ պարտադիր։ Քարտային հաշիվ։
+* `throwException` - Ոչ պարտադիր։ Բերել սխալի հաղորդագրություն փնտրվող պայմաններով քարտի բացակայության դեպքում։ Լռությամբ true:
+
+**Օրինակ**
+```c#
+// Ստանում ենք 9051231000001578 համարով քարտի հաշվեհամարը։
+var pCard = await proxyService.GetPCardDoc("9051231000001578");
+string cardAcc = pCard.ACC;
+```
+
+### GetPerFutur
+---
+```c#
+public Task<decimal> GetPerFutur(int agrIsn, DateTime requestDate, string curDefault)
+```
+Վերադարձնում է փոխանցված ամսաթվից մինչև պայմանագրի ավարտը ընկած մարման օրերին մարման ենթակա տոկոսագումարը։ Ֆունկցիան կիրառելի է Univer տեսակի պայմանագրերի համար։
+
+**Պարամետրեր**
+
+* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
+* `requestDate` - Պարտադիր։ Հարցման ամսաթիվ։ Կդիտարկվեն միայն տվյալ ամսաթվին և նրան հաջորդող մարման օրերին վճարվելիք տոկոսագումարները։
+* `curDefault` - Պարտադիր։ Արժույթի կոդը։ Օրինակ՝ 001 
+
+**Օրինակ**
+```c#
+// Հաշվարկվում է 18/11/24-ին և նրան հաջորդող մարման օրերին վճարվելիք ընդհանուր տոկոսագումարը։
+decimal fPer = await proxyService.GetPerFutur(1533697979, DateTime.Parse("2024-11-18"), "000")
+```
+
+### GetPerSumJ, GetAgrSumJ
+---
+```c#
+public Task<(decimal OverduePerSum, decimal NotOverduePerSum)> GetPerSumJ(int agrIsn, DateTime requestDate)
+public Task<(decimal OverduePerSum, decimal NotOverduePerSum)> GetAgrSumJ(int agrIsn, DateTime requestDate)
+```
+OverduePerSum ֆունկցիան վերադարձնում է պայմանագրի սահմանված ամսաթվով ժամկետանց և ժամկետային տոկոսագումարը, իսկ GetAgrSumJ - ը մայր-գումարի ժաակետանց և ժամկետային մասերը։
+
+**Պարամետրեր**
+
+* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
+* `requestDate` - Պարտադիր։ Մնացորդների ամսաթիվը։
+
+**Օրինակ**
+```c#
+// Բերված օրինակներում ovSum փոփոխականը կստանա 1533697979 isn-ով պայմանագրի, 20/02/25-ի դրությամբ, ժամկետանց տոկոսի / մայր-գումարի մնացորդը, իսկ sum-ը ժամկետային։
+
+(decimal ovSum, decimal sum) = await proxyService.GetPerSumJ(1533697979, DateTime.Parse("2025-02-20"));
+(decimal ovSum, decimal sum) = await proxyService.GetAgrSumJ(1533697979, DateTime.Parse("2025-02-20"));
+```
+
+### GetPerSumPayDate, GetAgrSumPayDate
+---
+```c#
+public async Task<DateTime?> GetAgrSumPayDate(bool previous, int agrIsn, DateTime requestDate)
+public async Task<DateTime?> GetPerSumPayDate(bool previous, int agrIsn, DateTime requestDate)
+```
+Ֆունկցիաները վերադարձնում են սահմանված ամսաթվին նախորդող կամ հաջորդող վարկի կամ տոկոսի մարման ամսաթվերը եթե նրանք առկա են։ Ֆունկցիաները հնարավոր է կիրառել միայն գրաֆիկով (Univer) տեսակի պայմանագրերի համար։
+
+**Պարամետրեր**
+
+* `previous` - Պարտադիր։ `true` արժեքի դեպքում կվերադարձվի `requestDate` պարամետրով սահմանված ամսաթվին նախորդող, իսկ `false` արեժքի դեպքում հաջորդող մարման ամսաթիվը։
+* `agrIsn` - Պարտադիր։ Պայմանագրի ISN-ը։
+* `requestDate` - Պարտադիր։ Հարցման ամսաթիվ։
+
+**Օրինակ**
+```c#
+// Օրինակում հաշվարկվում է 1081528567 ISN -ով պայմանագրի 12/03/24-ին հաջորդող վարկի և տոկոսի մարման ամսաթվերը։
+DateTime? dt1 = await proxyService.GetAgrSumPayDate(false, 1081528567, DateTime.Parse("2024-03-12"));
+DateTime? dt2 = await proxyService.GetPerSumPayDate(false, 1081528567, DateTime.Parse("2024-03-12"));
+```
+
+### GetRating
+---
+```c#
+public Task<string> GetRating(string clientCode, DateTime dateIn, string operation)
+```
+Վերադարձնում է հաճախորդի համապատասխան վարկանիշը (սահմանվում է Վարկանշման ԱՇՏ-ում) սահմանված ամսաթվով։
+
+**Պարամետրեր**
+
+* `clientCode` - Պարտադիր։ Հաճախորդի կոդը։
+* `dateIn` - Պարտադիր։ Հարցման ամսաթիվը։
+* `operation` - Վարկանիշի կոդը։ Հնարավոր արժեքները թվարկված են ստորև աղյուսակում։
+
+
+Կոդ | Վարկանիշ
+-|-
+MDS | Կարճաժամկետ Մուդիզ|
+MDL | Երկարաժամկետ Մուդիզ  |
+SPS | Կարճաժամկետ Ստանդարտ և Փուրզ |
+SPL | Երկարաժամկետ Ստանդարտ և Փուրզ |
+FTS | Կարճաժամկետ Ֆիթչ |
+FTL | Երկարաժամկետ Ֆիթչ |
+CBR | Կենտրոնական Բանկի |
+INR | Բանկի Ներքին|
+   
+**Օրինակ**
+```c#
+// Օրինակում հաշվարկվում է 00007776 կոդով հաճախորդի Կարճաժամկետ Մուդիզ վարկանշի արժեքը 19/09/24 ամսաթվի դրությամբ։ Վերադարձված արժեքը՝ Պ-1։
+ 
+string mdsr = await proxyService.GetRating("00007776", DateTime.Parse("2024-09-19"), "MDS");
+```
+
+### GetRatingCode
+---
+```c#
+public Task<string> GetRatingCode(string clientCode, DateTime dateIn, string operation)
+```
+
+**Պարամետրեր**
+
+* `clientCode` - Պարտադիր։ Հաճախորդի կոդը։
+* `dateIn` - Պարտադիր։ Հարցման ամսաթիվը։
+* `operation` - Վարկանիշի կոդը։ Հնարավոր արժեքները թվարկված են [GetRating](#GetRating) ֆունկցիայի նկարագրության մեջ։
+
+Վերադարձնում է տվյալ հաճախորդին համապատասխանող վարկանիշին համապատասխանող "Վարկանիշային սիմվոլներ" փաստաթղթի "Դաշտի արժեքը"։
+
+**Օրինակ**
+```c#
+/* Օրինակում հաշվարկվում է 00007776 կոդով հաճախորդի Կարճաժամկետ Մուդիզ վարկանշի արժեքը 19/09/24 ամսաթվի դրությամբ և վերադարձվում է
+համապատասխան "Վարկանիշային սիմվոլներ" փաստաթղթի "Համար" դաշտի արժեքը։ Վերադարձված արժեքը՝ 20։ */
+ 
+string mdsr = await proxyService.GetRating("00007776", DateTime.Parse("2024-09-19"), "MDS");
+```
+
+### GetRemHI2
+---
+```c#
+  public Task<(decimal CRem, decimal NCRem)> GetRemHI2(string accounting, int isn = -1,
+                                                  int isnGl = -1, DateTime? remDate = null)
+```
+Օգտագործվում է, միաժամանակ երկու օբյեկտի հետ կապակցված հաշվառումների մնացորդները ստանալու համար։ 
+Օրինակ HA - "Ռեպո համ-ով ձեռք բերված արժ.հակ.ռեպոյով վաճառված մաս" հաշվառումը զուգահեռ կապված է 
+արժեթղթի և ռեպո պայմանագրերի հետ։ Բոլոր նմանատիպ հաշվառումների շրջանառությունը գրանցվում է HI2 
+աղյուսակում (իսկ սկզբնական և վերջնական հասանելի մնացորդները HIREST2 աղյուսակում)։ 
+Այս ֆինկցիայով որոշակի հաշվառման մնացորդի ստացման հնարավորությունը կարելի է ստուգել 
+տվյալ հաշվառման առկայությամբ HI2 կամ HIREST2 աղյուսակներում (fTYPE դաշտ)։ 
+
+Մնացորդի հաշվարկը կատարվում է HI2-ում գրանցված շրջանառության և HIREST2-ի սկզբնական և վերջնական
+մնացորդների հիման վրա։  Ֆունկցիան վերադարձնում է tuple երկու արժեքով՝ մնացորդ արժույթով
+(հաշվարկվում է HIREST2 աղյուսակի fCURREM և HI2 աղյուսակի fCURSUM դաշտերի միջոցով) և մնացորդ 
+ՀՀ դրամով (fSUM / fREM դաշտեր)։ 
+
+HI2 / HIREST2 աղյուսակներում  fCURSUM, fSUM / fCURREM, fREM  դաշտերի լրացումը կատարվում է հաշվի
+առնելով իրագործման առանձնահատկությունները, որի պատճառով հնարավոր են դեպքեր երբ դաշտերից մեկն է լրացված։
+
+**Պարամետրեր**
+
+* `accounting` -  Պարտադիր։ Հաշվառման կոդը։
+* `isn` -   Ոչ Պարտադիր։ Համապատասխանում է HI2 աղյուսակի fOBJECT դաշտի արժեքին: 
+* `isnGl ` - Ոչ պարտադիր։ Համապատասխանում է HI2 աղյուսակի fGLACC դաշտի արժեքին:
+* `remDate` - Ոչ պարտադիր։ Մնացորդի ամսաթիվ։ Նշված չլինելու դեպքում կվերադարձվի վերջին գրանցված մնացորդը։
+
+> [!IMPORTANT]
+> Ֆունկցիան կանչելիս անհրաժեշտ է փոխանցել առնվազն `isn` կամ `isnGl` պարամետրերից մեկը։
+
+**Օրինակ**
+```c#
+// Ստորև բերված օրինակում հաշվարկվում է 13047440 ISN -ով հաճախորդի քարտի գծով 100095 ISN -ով
+// արժույթով (տվյալ դեպքում ՀՀ դրամ) կանխիկի հաշվառման ("10") մնացորդը 06/12/2018-ով։
+
+(decimal CRem, decimal NCRem) = await proxyService.GetRemHI2("10", 13047440, 100095, DateTime.Parse("2018-12-06"));
+```
+
+### GetRemSS
+---
+```c#
+public Task<decimal> GetRemSS(int isn, Rem accType, DateTime requestDate)
+```
+
+Վերադարձնում է պայմանագրի մնացորդը։ Չի նախատեսված բարդ պայմանագրերի համար։ Բարդ պայմանագրերի ենթապայմանագրերի հաշվառումների մնացորդների ստացման համար նախատեսված է [GetAgrRem](#GetAgrRem) ֆունկցիան։
+
+**Պարամետրեր**
+
+* `isn` -  Պարտադիր։ Պայմանագրի ISN։
+* `accType` - Պարտադիր։ Հաշվառման կոդ։ Սահմանվում է Subsystems.Enums.Accountings.Rem դասի համապատասխան հատկությունը։ Նշված դասի հատկությունների անվանումները համապատասխանում են [պայմանագրերի հաշվառման կոդերին](#պայմանագրերի-հաշվառումների-կոդեր)։
+* `requestDate` - Պարտադիր։ Մնացորդի ամսաթիվը։
+
+**Օրինակ**
+```c#
+// Հաշվարկում ենք 587157500 isn-ով պայմանագրի մայր-գումարի մնացորդը ընթացիկ օրվա դրությամբ։
+decimal agrem = await proxyService.GetRemSS(587157500, ArmSoft.AS8X.Bank.Subsystems.Enums.Accountings.Rem.R1,DateTime.Now);
+```
+
+### GetSSFactValueDate GetSSFactValueString GetSSFactValueInt GetSSFactValueDecimal GetSSFactValuePercent GetSSFactValueStringDecimal
+---
+```c#
+public Task<string> GetSSFactValueString(int isn, NoRem accType, string accOp, DateTime requestDate)
+
+public Task<int?> GetSSFactValueInt(int isn, NoRem accType, string accOp, DateTime requestDate)
+
+public Task<decimal?> GetSSFactValueDecimal(int isn, NoRem accType, string accOp, DateTime requestDate)
+
+public Task<InterestRate> GetSSFactValuePercent(int isn, NoRem accType, string accOp, DateTime requestDate)
+
+```
+
+Ֆունկցիաները վերադարձնում են պայմանագրի, սահմանված ամսաթվով, ոչ [ոչ մնացորդային հաշվառումների](#ոչ-մնացորդային-հաշվառումներ) արժեքները։
+
+**Պարամետրեր**
+
+* `isn` -  Պարտադիր։ Պայմանագրի ISN։
+* `accType` - Պարտադիր։ Հաշվառման կոդ։ Սահմանվում է Subsystems.Enums.Accountings.Rem դասի համապատասխան հատկությունը։ Նշված դասի հատկությունների անվանումները համապատասխանում են [պայմանագրերի հաշվառման կոդերին](#պայմանագրերի-հաշվառումների-կոդեր)։
+* `accOp` - Պարտադիր։ Սահմանվում է Subsystems.Enums.Accountings.NoRem դասի համապատասխան հատկությունը։ Նշված դասի հատկությունների անվանումները համապատասխանում են [գործողությունների կոդերին](#հաշվառումների-գործողությունների-կոդեր)։ 
+* `requestDate` - Պարտադիր։ Մնացորդի ամսաթիվը։
+
+**Օրինակ**
+```c#
+//Բերված օրինակում ստանում ենք 812735354 ISN -ով պայմանագրի տոկոսադրույքը 15/08/24 
+// ամսաթվի դրությամբ։ 
+deciaml perc = (await proxyService.GetSSFactValuePercent(812735354, Subsystems.Enums.Accountings.NoRem.N0, "PAG", DateTime.Parse("2024-08-15"))).Rate;
+```
+
+### InList
+---
+```c#
+public static bool InList(string sValue, params string[] lValues)
+public static bool InList(string sValue, IEnumerable<string> lValues)
+```
+
+Ստուգում է ենթատողի առկայությունը տողի / տողերի կամ որևէ կոլեկցիայի մեջ։
+
+**Պարամետրեր**
+
+* `sValue` - Պարտադիր։ Փնտրվող ենթատող։
+* `lValues` - Պարտադիր։ Տող / տողեր, զանգված կամ այլ տեսակի կոլեկցիա, որտեղ փնտրվում է ենթատողը։
+
+**Օրինակ**
+```c#
+bool abcExist = UserProxyService.InList("abc", "ab", "cd", "abc");
+bool abcExist = UserProxyService.InList("abc", ["ab", "cd", "abc"]);
+```
+
+### IsIncExpAcc
+---
+```c#
+public Task<bool> IsIncExpAcc(string account)
+```
+
+Վերադարձնում է **true** երբ փոխանցված հաշվի համարը եկամտի կամ ծախսի հաշիվ է։ 
+
+**Պարամետրեր**
+
+* `account`- Պարտադիր։ Հաշվի համար։
+
+**Օրինակ**
+```c#
+bool isIncAcc = await proxyService.IsIncExpAcc("64190050300");
+```
+
+### IsKasAcc
+---
+```c#
+public Task<bool> IsKasAcc(string account)
+```
+
+Վերադարձնում է **true** երբ փոխանցված հաշվի համարը դրամարկղային է։ 
+
+**Պարամետրեր**
+
+* `account`- Պարտադիր։ Հաշվի համար։
+
+**Օրինակ**
+```c#
+bool isCashAcc = await proxyService.IsKasAcc("10000081000");
+```
+
+### LoadAccountDescByIsn LoadAccountDescByCode
+---
+```c#
+public Task<AccountDesc> LoadAccountDescByIsn(int isn, bool throwException = false)
+public Task<AccountDesc> LoadAccountDescByCode(string code, bool throwException = false)
+```
+
+Վերադարձնում են հաշվի հիմնական դաշտերը պարունակող օբյեկտ ըսռ հաշվի ISN-ի, երկրորդ դեպքում ըստ հաճախորդի կոդի։ 
+
+**Պարամետրեր**
+
+* `isn / code`- Պարտադիր։ Հաշվի ISN / հաշվի համար։
+* `throwException`- Ոչ պարտադիր։ Առաջացնել սխալ isn-ի / հաշվեհամարի բացակության դեպքում։ Լռությամբ՝ **false**։
+
+**Օրինակ**
+```c#
+// Ստանում ենք 211268325 isn -ով հաշվի անվանումը։
+AccountDesc accDesc = await proxyService.LoadAccountDescByIsn(211268325);
+string accName = accDesc.Caption;
+
+// Ստանում ենք 004471800 հաշվի անվանումը։
+AccountDesc accDesc2 = await proxyService.LoadAccountDescByCode("004471800");
+string accName2 = accDesc2.Caption;
+```
+
+### LoadAccountDoc
+---
+```c#
+public Task<Account> LoadAccountDoc(string accCode)
+```
+Վերադարձնում է հաշվի ամբողջական դաշտերը պարունակող օբյեկտ ըստ հաշվեհամարի։ 
+
+**Պարամետրեր**
+
+* `code`- Պարտադիր։ Հաշվի համար։
+
+**Օրինակ**
+```c#
+// Ստանում ենք հաշվի նշումը
+Account acc = await proxyService.LoadAccountDoc("004471800");
+string accNote = acc.ACCNOTE;
+```
+
+### LoadClientDescByCode
+---
+```c#
+public Task<ClientDesc> LoadClientDescByCode(string code)
+```
+Վերադարձնում է հաճախորդի հիմնական դաշտերը պարունակով օբյեկտ ըստ հաճախորդի կոդի։ 
+
+**Պարամետրեր**
+
+* `code` - Պարտադիր։ Հաճախորդի կոդ։
+
+**Օրինակ**
+```c#
+// Ստանում ենք 00006473 կոդով հաճախորդի հեռախոսահամարը։
+
+ClientDesc clientDesc = await proxyService.LoadClientDescByCode("00006473");
+string tel = clientDesc.Tel;
+```
+
+### LoadClientDescByISN
+---
+
+```c#
+public Task<ClientDesc> LoadClientDescByISN(int isn)
+```
+
+Վերադարձնում է հաճախորդ տեսակի փաստաթղթի հիմնական դաշտերը պարունակող օբյեկտ ըստ հաճախորդի քարտի ISN-ի։ Այս մեթոդի կատարման ժամանակը ավելի փոքր է համեմատած LoadClientDoc - ի։ 
+
+**Պարամետրեր**
+
+* `isn`- Պարտադիր։ Հաճախորդ փաստաթղթի ISN-ը։
+
+```c#
+// Ստանում ենք 304663812 isn-ով հաճախորդի հասցեն։
+ClientDesc cDesc = await proxyService.LoadClientDescByISN(304663812);
+string address = cDesc.Address;
+```
+
+### LoadClientDoc
+---
+
+```c#
+public Task<Client> LoadClientDoc(string clientCode)
+```
+
+Վերադարձնում է հաճախորդի քարտի օբյեկտը։
+
+**Պարամետրեր**
+
+* `clientCode`- Պարտադիր։ Հաճախորդի կոդը։
+
+**Օրինակ**
+```c#
+// Բեռնում ենք 00000418 կոդով հաճախորդի քարտը, այնուհետև ստանում ենք անձնագրի համարը։
+
+ArmSoft.AS8X.Bank.General.Clients.DOCS.Client cli;
+cli = await proxyService.LoadClientDoc("00000418");
+string passport = cli.PASCODE;
+```
+
+### LoadClientDocROByCode
+--- 
+```c#
+public Task<ClientRO> LoadClientDocROByCode(string cliCode)
+```
+
+Վերադարձնում է համապատասխան հաճախորդի կոդով հաճախորդ տեսակի փաստաթուղթը, որտեղ դաշտերը գրահաս չեն։ 
+
+**Պարամետրեր**
+
+* `code`- Պարտադիր։ Հաճախորդի կոդը։
+
+**Օրինակ**
+```c#
+// Հաշվարկվում է 00006525 կոդով հաճախորդի ՀՎՀՀ -ն
+var cli = await proxyService.LoadClientDocROByCode("00006525");
+string taxCode = cli.TAXCOD;
+```
+
+### LoadClientDocRObyISN
+--- 
+```c#
+public Task<ClientRO> LoadClientDocRObyISN(int isn)
+```
+
+Վերադարձնում է համապատասխան ISN-ով հաճախորդ տեսակի փաստաթուղթը, որտեղ դաշտերը գրահաս չեն։ 
+
+**Պարամետրեր**
+
+* `isn`- Պարտադիր։ Հաճախորդ փաստաթղթի ISN-ը։
+
+**Օրինակ**
+```c#
+//Հաշվարկվում է 103028 isn-ով հաճախորդի ՀՎՀՀ -ն
+var cli = await proxyService.LoadClientDocRObyISN(103028);
+string taxCode = cli.TAXCOD;
+```
+
+### LoadContractDescByCode
+---
+```c#
+public Task<ContractDesc> LoadContractDescByCode(string agrType, string code)
+```
+Վերադարձնում է ContractDesc տիպի օբյեկտ ըստ պայմանագրի համարի, որը պարունակում է պայմանագրի հիմնական դաշտերը։
+
+**Պարամետրեր**
+
+* `agrType` -  Պարտադիր։ Ենթահամակարգի տեսակ` C, D, M, N, B, Q։
+* `code` - Պարտադիր։ Պայմանագրի համար։
+
+> [!TIP]
+> ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
+<br>
+
+**Օրինակ**
+```c#
+// Ստանում ենք TV2446 համարով վարկային պայմանագրի Նշում դաշտի արժեքը։
+
+ContractDesc cDesc = await proxyService.LoadContractDescByCode("C","TV2446");
+string note = cDesc.Note;
+```
+
+### LoadContractDescByISN
+---
+```c#
+public Task<ContractDesc> LoadContractDescByISN(int isn)
+```
+Վերադարձնում է ContractDesc տիպի օբյեկտ ըստ պայմանագրի ISN -ի, որը պարունակում է պայմանագրի հիմնական դաշտերը։
+
+**Պարամետրեր**
+
+* `isn`- Պարտադիր։ Պայմանագրի ISN։
+
+**Օրինակ**
+```c#
+// Ստանում ենք ContractDesc տիպի օբյեկտը 587157500 պայմանագրի համար, այնուհետև պայմանագրի համար։
+// Պայմանագրի ոչ բոլոր դաշտերն է հնարավոր ստանալ ContractDesc տեսակի օբյեկտի միջոցով։
+
+var cDesc = await proxyService.LoadContractDescByISN(587157500);
+string agrCode = cDesc.Code;
+```
+
+### LoadContractDoc
+---
+```c#
+public Task<Document> LoadContractDoc(string agrType, string agrCode, string agrLevelCheck = "")
+```
+
+Վերադարձնում է պայմանագրի օբյեկտը ըստ պայմանագրի համարի:
+
+**Պարամետրեր**
+
+* `agrType`- Պարտադիր։ Ենթահամակարգի տեսակ` C, D, M, N, B, Q։
+* `agrCode`- Պարտադիր։ Պայմանագրի համար։
+* `agrLevelCheck`- Ոչ պարտադիր։ Հնարավոր արժեքներն են ՝"AGRPARENTS", "AGREEMENTS", "AGRCHILDREN"։ Որտեղ AGRPARENTS = 2 Մայր-պայմանագրեր, AGREEMENTS = 2 Պայմանագրեր, AGRCHILDREN = 0 Պարզ պայմանագրեր։ Լռությամբ՝ ""։ Սահմանված լինելու դեպքում, կստուգվի արդյոք փնտրվող պայմանագիրը համապատասխանում է սահմանված մակարդակին։ Չբավարարելու դեպքում ֆունկցիան կվերադարձնի -1։
+
+> [!TIP]
+> ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
+<br>
+
+**Օրինակ**
+```c#
+// Բեռնում ենք TV2446 համարով վարկային պայմանագրի փաստաթուղթը, այնուհետև ստանում ենք պայմանագրի գումարը։
+
+  var agr = await proxyService.LoadContractDoc("C1", "TV2446");
+  decimal agrAmount = (decimal) agr["SUMMA"];
+```
 
 ### LoadDoc
 ---
@@ -266,7 +1682,6 @@ if (agrDoc.GetParents().Result.Count > 0 )
 {
    parIsn = agrDoc.GetParents().Result[0];
 }
-
 ```
 
 ### LoadDocFromFolder
@@ -306,312 +1721,6 @@ public Task<Document> LoadDocFromFolder(string folder, string key,
 
 var sched = await proxyService.LoadDocFromFolder("Agr.147890229", "C1TSDtUn");
 string schedDate = sched["Date"].ToString();
-
-```
-
-### LoadContractDoc
----
-```c#
-public Task<Document> LoadContractDoc(string agrType, string agrCode, string agrLevelCheck = "")
-```
-
-Վերադարձնում է պայմանագրի օբյեկտը ըստ պայմանագրի համարի:
-
-**Պարամետրեր**
-
-* `agrType`- Պարտադիր։ Ենթահամակարգի տեսակ` C, D, M, N, B, Q։
-* `agrCode`- Պարտադիր։ Պայմանագրի համար։
-* `agrLevelCheck`- Ոչ պարտադիր։ Հնարավոր արժեքներն են ՝"AGRPARENTS", "AGREEMENTS", "AGRCHILDREN"։ Որտեղ AGRPARENTS = 2 Մայր-պայմանագրեր, AGREEMENTS = 2 Պայմանագրեր, AGRCHILDREN = 0 Պարզ պայմանագրեր։ Լռությամբ՝ ""։ Սահմանված լինելու դեպքում, կստուգվի արդյոք փնտրվող պայմանագիրը համապատասխանում է սահմանված մակարդակին։ Չբավարարելու դեպքում ֆունկցիան կվերադարձնի -1։
-
-> [!TIP]
-> ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
-<br>
-
-**Օրինակ**
-```c#
-// Բեռնում ենք TV2446 համարով վարկային պայմանագրի փաստաթուղթը, այնուհետև ստանում ենք պայմանագրի գումարը։
-
-  var agr = await proxyService.LoadContractDoc("C1", "TV2446");
-  decimal agrAmount = (decimal) agr["SUMMA"];
-```
-
-### LoadClientDoc
----
-
-```c#
-public Task<Client> LoadClientDoc(string clientCode)
-```
-
-Վերադարձնում է հաճախորդի քարտի օբյեկտը։
-
-**Պարամետրեր**
-
-* `clientCode`- Պարտադիր։ Հաճախորդի կոդը։
-
-**Օրինակ**
-```c#
-// Բեռնում ենք 00000418 կոդով հաճախորդի քարտը, այնուհետև ստանում ենք անձնագրի համարը։
-
-ArmSoft.AS8X.Bank.General.Clients.DOCS.Client cli;
-cli = await proxyService.LoadClientDoc("00000418");
-string passport = cli.PASCODE;
-
-```
-
-### LoadClientDescByISN
----
-
-```c#
-public Task<ClientDesc> LoadClientDescByISN(int isn)
-```
-
-Վերադարձնում է հաճախորդ տեսակի փաստաթղթի հիմնական դաշտերը պարունակող օբյեկտ ըստ հաճախորդի քարտի ISN-ի։ Այս մեթոդի կատարման ժամանակը ավելի փոքր է համեմատած LoadClientDoc - ի։ 
-
-**Պարամետրեր**
-
-* `isn`- Պարտադիր։ Հաճախորդ փաստաթղթի ISN-ը։
-
-```c#
-// Ստանում ենք 304663812 isn-ով հաճախորդի հասցեն։
-ClientDesc cDesc = await proxyService.LoadClientDescByISN(304663812);
-string address = cDesc.Address;
-```
-
-
-
-### LoadClientDescByCode
----
-```c#
-public Task<ClientDesc> LoadClientDescByCode(string code)
-```
-Վերադարձնում է հաճախորդի հիմնական դաշտերը պարունակով օբյեկտ ըստ հաճախորդի կոդի։ 
-
-**Պարամետրեր**
-
-* `code` - Պարտադիր։ Հաճախորդի կոդ։
-
-**Օրինակ**
-```c#
-// Ստանում ենք 00006473 կոդով հաճախորդի հեռախոսահամարը։
-
-ClientDesc clientDesc = await proxyService.LoadClientDescByCode("00006473");
-string tel = clientDesc.Tel;
-```
-
-### LoadClientDocRObyISN
---- 
-```c#
-public Task<ClientRO> LoadClientDocRObyISN(int isn)
-```
-
-Վերադարձնում է համապատասխան ISN-ով հաճախորդ տեսակի փաստաթուղթը, որտեղ դաշտերը գրահաս չեն։ 
-
-**Պարամետրեր**
-
-* `isn`- Պարտադիր։ Հաճախորդ փաստաթղթի ISN-ը։
-
-**Օրինակ**
-```c#
-//Հաշվարկվում է 103028 isn-ով հաճախորդի ՀՎՀՀ -ն
-var cli = await proxyService.LoadClientDocRObyISN(103028);
-string taxCode = cli.TAXCOD;
-```
-
-### LoadClientDocROByCode
---- 
-```c#
-public Task<ClientRO> LoadClientDocROByCode(string cliCode)
-```
-
-Վերադարձնում է համապատասխան հաճախորդի կոդով հաճախորդ տեսակի փաստաթուղթը, որտեղ դաշտերը գրահաս չեն։ 
-
-**Պարամետրեր**
-
-* `code`- Պարտադիր։ Հաճախորդի կոդը։
-
-**Օրինակ**
-```c#
-// Հաշվարկվում է 00006525 կոդով հաճախորդի ՀՎՀՀ -ն
-var cli = await proxyService.LoadClientDocROByCode("00006525");
-string taxCode = cli.TAXCOD;
-```
-
-### GetClientISN
----
-```c#
-public Task<int> GetClientISN(string cliCode)
-```
-
-Վերադարձնում է հաճախորդի քարտի ISN-ը ըստ հաճախորդի կոդի։
-
-**Պարամետրեր**
-
-* `cliCode`- Պարտադիր։ Հաճախորդի կոդը։
-
-**Օրինակ**
-```c#
-int isn = await proxyService.GetClientISN("00006525");
-```
-
-### GetClientISNByAcc
----
-```c#
-public Task<int> GetClientISNByAcc(string acc)
-```
-
-Վերադարձնում է հաճախորդի ISN -ը ըստ հաճախորդի որևէ հաշվեհամարի։ Հաշվեհամարի բացակայության կամ հաճախորդի հետ կապակցված չլինելու դեպքում կվերադարձվի -1։
-
-**Պարամետրեր**
-
-* `acc`- Պարտադիր։ Հաճախորդի հաշիվեհամարներից որևէ մեկը։
-
-**Օրինակ**
-```c#
-int isn = await proxyService.GetClientISNByAcc("10000081200");
-```
-
-### GetClientFullName
----
-```c#
-public Task<string> GetClientFullName(string firstName, string lastName, string ptronymic, bool arm)
-```
-
-Վերադարձնում է հաճախորդի անուն, ազգանուն, հայրանունը համակարգում սահմանված հերթականությամբ (հերթականությունը սահմանվում է ՝ CLINAMEORDER -"Հաճախորդի անվան հերթականություն", CLINAMEORDERENG - "Հաճախորդի անգլ. անվան հերթականություն" պարամետրերով)։
-
-**Պարամետրեր**
-
-* `firstName`- Պարտադիր։ Հաճախորդի անուն։
-* `lastName`- Պարտադիր։ Հաճախորդի ազգանուն։
-* `ptronymic`- Պարտադիր։ Հաճախորդի հայրանուն։
-* `arm`- Պարտադիր։ Անվանումը հայերեն է։ Այս դեպքում անուն, ազգանունի, հայրանունի հերթականությունը կորոշվի CLINAMEORDER պարամետրով կատարված կարգավորմամբ։ **false** արժեքը օգտագոևծվում է այն դեպքում երբ անվանումը անգլերեն է։ Այս դեպքում անվան հերթականությունը կորորշվի CLINAMEORDERENG պարամետրով։ 
-
-**Օրինակ**
-```c#
-// Անունը, ազգանունը և հայրանունը կարող են փոխանցվել unicode և armenian ansi կոդավորմամբ։
-string fullName = await proxyService.GetClientFullName("Պողոս", "Պողոսյան", "Պողոսի", true);
-```
-
-### GetClientAMDAcc
----
-```c#
-public Task<string> GetClientAMDAcc(string cliCode)
-```
-
-Վերադարձնում է հաճախորդի քարտում լրացված հիմնական դրամային հաշիվը ("Պայմաններ" էջ, "Հիմնական դրամային հաշիվ (գանձ. պայմ% մար-տրմդր)")։
-
-**Պարամետրեր**
-
-* `cliCode`- Պարտադիր։ Հաճախորդի կոդ։
-
-**Օրինակ**
-```c#
-string acc = await proxyService.GetClientAMDAcc("00006252");
-```
-
-### GetClientRezJurVolortByAccount
----
-```c#
-public Task<(string residence, string jurState, string volort)>GetClientRezJurVolortByAccount(string accCode)
-```
-
-Վերադարձնում է հաճախորդի ռեզիդենտությունը (1-ռեզիդենտ, 2-ոչ ռեզիդենտ), իրավաբանական կարգավիճակի և ոլորտի համապատասխան ծառի կոդերը ըստ հաճախորդի հաշվեհամարի։
-
-**Պարամետրեր**
-
-* `acc`- Պարտադիր։ Հաճախորդի հաշիվեհամարներից որևէ մեկը։
-
-**Օրինակ**
-```c#
-(string res, string jstat, string volort) = await proxyService.GetClientRezJurVolortByAccount("00315580100");
-```
-
-### GetCliContractNamesByISN GetCliContractNamesByCode
----
-```c#
-public async Task<string> GetCliContractNamesByISN(int cliISN, bool showClosed = false)
-public async Task<string> GetCliContractNamesByCode(string cliCode, bool showClosed = false)
-```
-
-Վերադարձնում են հաճախորդին կապակցված քարտ-փաստաթղթերի, ինչպես նաև վերջնական չհաշվառված վճարային փաստաթղթերի ներքին անվանումները ըստ հաճախորդի ISN-ի, երկրորդ դեպքում ՝ ըստ հաճախորդի կոդի։
-
-**Պարամետրեր**
-
-* `cliISN / cliCode`- Պարտադիր։ Հաճախորդի քարտի ISN  / Հաաճախորդի կոդ։
-* `showClosed` - Ոչ պարտադիր։ Ցույց տալ նաև փակվածները։ Լռությամբ false:
-
-**Օրինակ**
-```c#
-// Վերադարձվող տողի օրինակ ՝ "Acc, C1Univer, Cli, N1Other, NBAcc, REMINDER"
-string docTypes = await proxyService.GetCliContractNamesByISN(339923058);
-string docTypes = await proxyService.GetCliContractNamesByCode("00006518");
-```
-
-### LoadAccountDescByIsn LoadAccountDescByCode
----
-```c#
-public Task<AccountDesc> LoadAccountDescByIsn(int isn, bool throwException = false)
-public Task<AccountDesc> LoadAccountDescByCode(string code, bool throwException = false)
-```
-
-Վերադարձնում են հաշվի հիմնական դաշտերը պարունակող օբյեկտ ըսռ հաշվի ISN-ի, երկրորդ դեպքում ըստ հաճախորդի կոդի։ 
-
-**Պարամետրեր**
-
-* `isn / code`- Պարտադիր։ Հաշվի ISN / հաշվի համար։
-* `throwException`- Ոչ պարտադիր։ Առաջացնել սխալ isn-ի / հաշվեհամարի բացակության դեպքում։ Լռությամբ՝ **false**։
-
-**Օրինակ**
-```c#
-// Ստանում ենք 211268325 isn -ով հաշվի անվանումը։
-AccountDesc accDesc = await proxyService.LoadAccountDescByIsn(211268325);
-string accName = accDesc.Caption;
-
-// Ստանում ենք 004471800 հաշվի անվանումը։
-AccountDesc accDesc2 = await proxyService.LoadAccountDescByCode("004471800");
-string accName2 = accDesc2.Caption;
-```
-
-### LoadShortAccountDescByIsn LoadShortAccountDescByCode
----
-```c#
-public Task<AccountDescShort> LoadShortAccountDescByIsn(int isn, bool throwException = false)
-public Task<AccountDescShort> LoadShortAccountDescByCode(string code, bool throwException = false)
-```
-
-Վերադարձնում է հաշվի սահմանափակ դաշտերը (ISN, "Հաշվի համար","Արժույթ","Գրասենյակ","Բաժին","Հասանելիության տիպ") պարունակող օբյեկտ ըստ հաշվի ISN-ի, երկորդ դեպքում՝ ըստ հաշվի համարի։ 
-
-**Պարամետրեր**
-
-* `isn / code`- Պարտադիր։ Հաշվի ISN / Հաշվի համար։
-* `throwException` -  Ոչ պարտադիր։ Առաջացնել սխալ հաշվի բացակության դեպքում։ Լռությամբ՝ **false**։
-
-**Օրինակ**
-```c#
-// Ստանում ենք 211268325 isn-ով հաշվի արժույթը։
-AccountDescShort accDesc = await proxyService.LoadShortAccountDescByIsn(211268325);
-string accCur = accDesc.Cur;
-
-// Ստանում ենք 004471800 հաշվի արժույթը։
-AccountDescShort accDesc2 = await proxyService.LoadShortAccountDescByCode("004471800");
-string accCur2 = accDesc2.Cur;
-```
-
-### LoadAccountDoc
----
-```c#
-public Task<Account> LoadAccountDoc(string accCode)
-```
-Վերադարձնում է հաշվի ամբողջական դաշտերը պարունակող օբյեկտ ըստ հաշվեհամարի։ 
-
-**Պարամետրեր**
-
-* `code`- Պարտադիր։ Հաշվի համար։
-
-**Օրինակ**
-```c#
-// Ստանում ենք հաշվի նշումը
-Account acc = await proxyService.LoadAccountDoc("004471800");
-string accNote = acc.ACCNOTE;
 ```
 
 ### LoadNBAccountDesc LoadNBAccountDescByCode
@@ -639,802 +1748,48 @@ NBAccountDesc nacc2 = await proxyService.LoadNBAccountDescByCode("8000000/477120
 DateTime accNote2 = nacc.DateOpen;
 ```
 
-### GetAccountISN
+### LoadShortAccountDescByIsn LoadShortAccountDescByCode
 ---
 ```c#
-public Task<int> GetAccountISN(string acc)
+public Task<AccountDescShort> LoadShortAccountDescByIsn(int isn, bool throwException = false)
+public Task<AccountDescShort> LoadShortAccountDescByCode(string code, bool throwException = false)
 ```
 
-Վերադարձնում է հաշվի հիմնական ISN-ը ըստ հաշվի համարի։ 
+Վերադարձնում է հաշվի սահմանափակ դաշտերը (ISN, "Հաշվի համար","Արժույթ","Գրասենյակ","Բաժին","Հասանելիության տիպ") պարունակող օբյեկտ ըստ հաշվի ISN-ի, երկորդ դեպքում՝ ըստ հաշվի համարի։ 
 
 **Պարամետրեր**
 
-* `acc`- Պարտադիր։ Հաշվի համար։
+* `isn / code`- Պարտադիր։ Հաշվի ISN / Հաշվի համար։
+* `throwException` -  Ոչ պարտադիր։ Առաջացնել սխալ հաշվի բացակության դեպքում։ Լռությամբ՝ **false**։
 
 **Օրինակ**
 ```c#
-// Ստանում ենք 10110050601 հաշվի isn-ը։
-int isn = await proxyService.GetAccountISN("10110050601");
+// Ստանում ենք 211268325 isn-ով հաշվի արժույթը։
+AccountDescShort accDesc = await proxyService.LoadShortAccountDescByIsn(211268325);
+string accCur = accDesc.Cur;
+
+// Ստանում ենք 004471800 հաշվի արժույթը։
+AccountDescShort accDesc2 = await proxyService.LoadShortAccountDescByCode("004471800");
+string accCur2 = accDesc2.Cur;
 ```
 
-### GetCliCodeByAcc
+### MaxOverdueDaysCount
 ---
 ```c#
-public Task<string> GetCliCodeByAcc(string account)
+public Task<short> MaxOverdueDaysCount(int agrIsn, DateTime dateB, DateTime dateE)
 ```
-
-Վերադարձնում է Հաճախորդի կոդը ըստ հաշվի համարի։ 
+Վերադարձնում է dateB և dateE պարամետրերով սահմանված ժամանակահատվածում վարկի մայր-գումարի և տոկոսկների առավելագույն ժամկետանց օրերի քանակը։ 
 
 **Պարամետրեր**
 
-* `account`- Պարտադիր։ Հաշվի համար։
+* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
+* `dateB` - Պարտադիր։ Ժամանակահատվածի սկիզբ։
+* `dateE` - Պարտադիր։ Ժամանակահատվածի վերջ։
 
 **Օրինակ**
 ```c#
-// Հաշվարկվում է 10200060200 հաշվի հաշետիրոջ կոդը։
-string cliCode = await proxyService.GetCliCodeByAcc("10200060200");
-```
-
-### IsKasAcc
----
-```c#
-public Task<bool> IsKasAcc(string account)
-```
-
-Վերադարձնում է **true** երբ փոխանցված հաշվի համարը դրամարկղային է։ 
-
-**Պարամետրեր**
-
-* `account`- Պարտադիր։ Հաշվի համար։
-
-**Օրինակ**
-```c#
-bool isCashAcc = await proxyService.IsKasAcc("10000081000");
-```
-
-### IsIncExpAcc
----
-```c#
-public Task<bool> IsIncExpAcc(string account)
-```
-
-Վերադարձնում է **true** երբ փոխանցված հաշվի համարը եկամտի կամ ծախսի հաշիվ է։ 
-
-**Պարամետրեր**
-
-* `account`- Պարտադիր։ Հաշվի համար։
-
-**Օրինակ**
-```c#
-bool isIncAcc = await proxyService.IsIncExpAcc("64190050300");
-```
-
-### CalculateAtmInd
----
-```c#
-public decimal CalculateAtmInd(string codFormList, DateTime dateFirst, DateTime dateLast, string acsBranch = "",
-        string skv = "", string calcCurCode = "", int precision = 2)
-```
-
-Հաշվարկում է փոխանցված OLAP ատոմար ցուցանիշների գումարը։ 
-
-**Պարամետրեր**
-
-* `codFormList`- Պարտադիր։ Ատոմար ցուցանիշների կոդեր։ Հնարավոր է փոխանցել ինչպես մեկ այնպես էլ մի քանի ատոմար ցուցանիշի կոդ։ Մի քանի կոդ փոխանցելու դեպքում նրանք պետք է առանձնացված լինեն ստորակետով և նրանց արանքը չպիտի տեղադրված լինի բացատ։ Պարամետրի օրինակներ՝ "XXA", "XXA,XXB"։
-
-* `dateFirst`- Ոչ պարտադիր։ Ժամանակաշրջանի սկիզբ, այն դեպքում երբ ցուցանիշը հաշվարկում է որոշակի ժամանակահատվածի համար (օրինակ՝ հաշիվների միջին մնացորդ)։ Մնացորդ վերադարձնելու դեպքում այն հանդիսանում է մնացորդի ամսաթիվը։
-* `dateLast`- Ոչ պարտադիր։ Ժամանակաշրջանի վերջ։ Օգտագործվում է ժամանակահատվածի համար ցուցանշների հաշվարկի դեպքում։ Մնացորդ վերադարձնելու դեպքում այն կանտեսվի։
-* `acsBranch`- Ոչ պարտադիր։ Գրասենյակ։
-* `skv`- Ոչ պարտադիր։ Լռությամբ՝ ""։ Հնարավոր աժեքներն են՝
-  - Պարամետրը չփոխանցելու կամ "0" փոխանցելու դեպքում - Ամբողջ մնացորդը դրամով,
-  - "1"- Միայն ազատ փոխարկելի արժույթով մնացորդ,
-  - "2" - Միայն սահմանափակ փոխարկելի արժույթով մնացորդ,
-  - "3 - Ազատ և սահմանափակ փոխարկելի արժույթներով մնացորդ"։
-  - արժույթի կոդ փոխանցելու դեպքում, հաշվարկը կկատարվի ըստ այդ արժույթի։
-* `calcCurCode`- Ոչ պարտադիր։ Լռությամբ՝ "", այս դեպքում ցուցանիշի հաշվարկը կկատարվի ՀՀ դրամով։ Այլ արժույթի կոդ փոխանցելու դեպքում ցուցանիշը կվերահաշվարկցի այդ արժույթով տվյալ օրվա ՀՀ ԿԲ հաշվարկային փոխարժեքով։ 
-* `precision`- Ոչ պարտադիր։ 1- կլորանել հազար դրամի ճշտությամբ, 2 -չկլորացնել։  Լռությամբ՝ 2։
-
-> [!TIP]
-> Ժամանակահատվածի սկզբի, վերջի, ինչպես նաև **acsBranch**, **skv**, **calcCurCode**, **precision** պարամտերերի արժեքները ավտոմատ կփոխանցվեն ատոմար ցուցանիշում լրացված բանաձևերի համապատասխան պարամետրերին եթե նրանք առկա են։ Ժամանակաշրջանը սահնմանված չլինելու դեպքում հաշվարկը կկատարվի ՀԾ-Բանկ համակարգում սահմանված ընթացիկ օրով։
-
-**Օրինակ**
-```c#
-// Հաշվարկվում է pak մնացորդային ատոմար ցուցանիշի արժեքը B10 գրասենյակի համար 31/10/24 ամսաթվով 001 արժույթի համար։
-decimal sum = proxyService.CalculateAtmInd("pak", DateTime.Parse("2024-10-31"), acsBranch: "B10", skv:"001");
-```
-
-### CalculateOlapFormula
----
-```c#
-public decimal CalculateOlapFormula(string codFormList, string branch, DateTime dateFirst, DateTime dateLast,
-                string skv = "", string calcCurCode = "", int precision = 2)
-```
-
-Հաշվարկում է փոխանցված կոդերով OLAP բանաձևերի գումարը։
-
-**Պարամետրեր**
-
-* `codFormList`- Պարտադիր։ OLAP ցուցանիշների կոդեր։ Հնարավոր է փոխանցել ինչպես մեկ այնպես էլ մի քանի  ցուցանիշի կոդ։ Մի քանի կոդ փոխանցելու դեպքում նրանք պետք է առանձնացված լինեն ստորակետով և նրանց արանքը չպիտի տեղադրված լինի բացատ։  Պարամետրի օրինակներ՝ "_BIA", "_HKAPITAL,_LKAPITAL"։
-* `branch`- Պարտադիր։ OLAP գրասենյակի կոդը։ Օրինակ՝ 16600, 99997, 99999,  
-* `dateFirst`- Պարտադիր։ Ժամանակաշրջանի սկիզբ։
-* `dateLast`- Պարտադիր։ Ժամանակաշրջանի վերջ
-* `skv`- Ոչ պարտադիր։ Լռությամբ՝ ""։ Հնարավոր աժեքներն են՝
-  - Պարամետրը չփոխանցելու կամ "0" փոխանցելու դեպքում - Ամբողջ մնացորդը դրամով,
-  - "1"- Միայն ազատ փոխարկելի արժույթով մնացորդ,
-  - "2" - Միայն սահմանափակ փոխարկելի արժույթով մնացորդ,
-  - "3 - Ազատ և սահմանափակ փոխարկելի արժույթներով մնացորդ"։
-  - արժույթի կոդ փոխանցելու դեպքում, հաշվարկը կկատարվի ըստ այդ արժույթի։
-* `calcCurCode`- Ոչ պարտադիր։ Լռությամբ՝ "", այս դեպքում ցուցանիշի հաշվարկը կկատարվի ՀՀ դրամով։ Այլ արժույթի կոդ փոխանցելու դեպքում ցուցանիշը կվերահաշվարկցի այդ արժույթով տվյալ օրվա ՀՀ ԿԲ հաշվարկային փոխարժեքով։ 
-* `precision`- Ոչ պարտադիր։ 1- կլորանել հազար դրամի ճշտությամբ, 2 -չկլորացնել։  Լռությամբ՝ 2։
-
-> [!TIP]
-> Ժամանակահատվածի սկզբի, վերջի, ինչպես նաև **branch**, **skv**, **calcCurCode**, **precision** պարամտերերի արժեքները ավտոմատ կփոխանցվեն OLAP ցուցանիշում լրացված բանաձևերի համապատասխան պարամետրերին եթե նրանք առկա են։ 
-
-**Օրինակ**
-```c#
-decimal sum = proxyService.CalculateOlapFormula("_BIA", "99997", DateTime.Parse("2024-10-31"), DateTime.Parse("2024-10-31"));
-```
-
-
-### Udf
----
-```c#
-public decimal Udf(string codeForm, params object[] @params)
-```
-
-Հաշվարկում է օգտագործողի կողմից նկարագրված բանաձևը։ Մեթոդը հնարավոր է օգտագործել միայն այն դեպքում երբ բանաձևը վերադարձնում է decimal տիպի թիվ։
-
-**Պարամետրեր**
-
-* `codeForm`- Պարտադիր։ բանաձևի կոդը։
-* `params object[] @params` - Պարտադիր։ Օգտոգործողի կողմից նկարագրվող բանաձևի բոլոր պարամետրերի արժեքները։
-
-**Օրինակ**
-```c#
-/* Բերված օրինակում հաշվարկվում է AvRem բանաձևը, որը վերադարձնում է 01 տիպի 006 Նշում ունեցող հաշիվների միջին մնացորդը 
-01/07/24-31/07/24 ժամանակահատվածի համար։ */
-decimal agrs = proxyService.Udf("AvRem", DateTime.Parse("2024-07-01"), DateTime.Parse("2024-07-31"),  "01", "006"); 
-```
-
-### TreeElProp
----
-```c#
-public Task<TreeElement> TreeElProp(string treeId, string key, bool useCache = true)
-```
-
-Վերադարձնում է սահմանված կոդով, ծառ-տեղեկատուի հանգույցի օբյեկտը։ 
-
-**Պարամետրեր**
-
-* `treeId`- Պարտադիր։ Ծառի ներքին անվանումը։
-* `key` - Պարտադիր։ Հանգույցի կոդը։
-* `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true:
-
-**Օրինակ**
-```c#
-// Բերված օրինակում ստանում ենք մարզերի տեղեկատուի 001 կոդով հանգույցի անվանումը օգտագործելով քեշավորված տվյալները։  
-string DistrName = (await proxyService.TreeElProp("LRDistr", "001")).Comment;
-```
-
-### TreeElPropComment TreeElPropEComment
----
-```c#
-public async Task<string> TreeElPropComment(string treeId, string key, bool useCache = true)
-```
-
-Վերադարձնում է սահմանված կոդով, ծառ-տեղեկատուի հանգույցի հայերեն իսկ TreeElPropEComment ֆունկցիայի դեպքում անգլերեն անվանումը։ 
-
-**Պարամետրեր**
-
-* `treeId`- Պարտադիր։ Ծառի ներքին անվանումը։
-* `key` - Պարտադիր։ Հանգույցի կոդը։
-* `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true: Լռությամբ քեշի թարմացումը տեղի է ունենում 10 րոպեն մեկ, սակայն այդ ժամանակահատվածը հնարավոր է փոփոխել խմբագրելով appsettings.json ֆայլը (CacheRefreshPeriods պարամետր)։ false արժեքի դեպքում տվյալները կվերցվեն տվյալների բազայից։
-
-**Օրինակ**
-```c#
-// Ստանում ենք "Մարզեր" ծառ-տեղեկատուի 002 հանգույցի հայերեն և անգլերեն անվանումները։
-
-string marz = await proxyService.TreeElPropComment("LRDistr", "002");
-string marzEng = await proxyService.TreeElPropEComment("LRDistr", "002");
-```
-
-### FolderElProp
----
-```c#
-public Task<FolderElement> FolderElProp(string folderId, string key, bool noLock = true)
-```
-
-Վերադարձնում է FolderElement տիպի օբյեկտ ըստ ֆոլդեռի անվան և բանալու։ Ֆոլդեռները գրանցվում են հիմնական բազայի FOLDERS աղյուսակում։
-
-**Պարամետրեր**
-
-* `folderId`- Պարտադիր։ Ծառի ներքին անվանումը։ Համապատասխանում է FOLDERS աղյուսակի fFOLDERID դաշտին։
-* `key` - Պարտադիր։ Հանգույցի կոդը։ Համապատասխանում է FOLDERS աղյուսակի fKEY դաշտին։
-* `noLock` = Ոչ պարտադիր։ Լռությամբ՝ true: false արժեքի դեպքում հաշվարկի ժամանակ տվյալների փոփոխման տրանզակցիաների առկայության դեպքում տվյալների ստացումը կկատարվի նրանց ավարտից հետո ապահովվելով նրանց վերջնական վիճակը։ true արժեքի՝ հակառակը։ Վերջինի դեպքում աշվարկը կկատարվի ավելի արագ։
-
-
-**Օրինակ**
-```c#
-// Բերված օրինակում ստանում ենք վարկային պայմանագրի ընթացիկ գրաֆիկի ISN -ը, պայմանագրի թղթապանակից։
-// Agr.243335599 -ն հանդիսանում է 243335599 ISN -ով պայմանագրի թղթապանակը, C1TSDtUn -ն
-// հանդիսանում է թղթապանակում ընթացիկ գրաֆիկի բանալին։
-
-int schedISN = (await proxyService.FolderElProp("Agr.243335599", "C1TSDtUn")).ISN;
-```
-
-### FolderElPropSpec
----
-```c#
-public async Task<string> FolderElPropSpec(string folderId, string key, bool noLock = true)
-```
-
-Վերադարձնում է FOLDERS աղյուսակի fSPEC դաշտի արժեքը ըստ ֆոլդեռ-ի անվան և հղման բանալու։
-
-**Պարամետրեր**
-
-* `folderId`- Պարտադիր։ Ծառի ներքին անվանումը։ Համապատասխանում է FOLDERS աղյուսակի fFOLDERID դաշտին։
-* `key` - Պարտադիր։ Հանգույցի կոդը։ Համապատասխանում է FOLDERS աղյուսակի fKEY դաշտին։
-* `noLock` - Ոչ պարտադիր։ Լռությամբ՝ true: false արժեքի դեպքում հաշվարկի ժամանակ տվյալների փոփոխման տրանզակցիաների առկայության դեպքում տվյալների ստացումը կկատարվի նրանց ավարտից հետո ապահովվելով նրանց վերջնական վիճակը։ true արժեքի՝ հակառակը։ Վերջինի դեպքում աշվարկը կկատարվի ավելի արագ։
-
-**Օրինակ**
-```c#
-// Ստանում ենք C.304663812 պանակի (304663812 isn -ով հաճախորդի թղթապանակ) 1065495882
-// բանալիով տողի fSPEC դաշտի արժեքը՝
-// "004480000    Արժ.- 000  Տիպ- 01  Հ/Հաշիվ- 3022000   Անվանում-Պողոսյան Պողոս" 
-
-string accDetails = await proxyService.FolderElPropSpec("C.304663812", "1065495882");
-```
-
-### LoadContractDescByISN
----
-```c#
-public Task<ContractDesc> LoadContractDescByISN(int isn)
-```
-Վերադարձնում է ContractDesc տիպի օբյեկտ ըստ պայմանագրի ISN -ի, որը պարունակում է պայմանագրի հիմնական դաշտերը։
-
-**Պարամետրեր**
-
-* `isn`- Պարտադիր։ Պայմանագրի ISN։
-
-**Օրինակ**
-```c#
-// Ստանում ենք ContractDesc տիպի օբյեկտը 587157500 պայմանագրի համար, այնուհետև պայմանագրի համար։
-// Պայմանագրի ոչ բոլոր դաշտերն է հնարավոր ստանալ ContractDesc տեսակի օբյեկտի միջոցով։
-
-var cDesc = await proxyService.LoadContractDescByISN(587157500);
-string agrCode = cDesc.Code;
-```
-
-### LoadContractDescByCode
----
-```c#
-public Task<ContractDesc> LoadContractDescByCode(string agrType, string code)
-```
-Վերադարձնում է ContractDesc տիպի օբյեկտ ըստ պայմանագրի համարի, որը պարունակում է պայմանագրի հիմնական դաշտերը։
-
-**Պարամետրեր**
-
-* `agrType` -  Պարտադիր։ Ենթահամակարգի տեսակ` C, D, M, N, B, Q։
-* `code` - Պարտադիր։ Պայմանագրի համար։
-
-> [!TIP]
-> ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
-<br>
-
-**Օրինակ**
-```c#
-// Ստանում ենք TV2446 համարով վարկային պայմանագրի Նշում դաշտի արժեքը։
-
-ContractDesc cDesc = await proxyService.LoadContractDescByCode("C","TV2446");
-string note = cDesc.Note;
-```
-
-### GetAgrRem
----
-```c#
-public async Task<decimal> GetAgrRem(int isn, Rem accType, DateTime requestDate, string agrTypeName = null, string sourceCur = "", string targetCur  = "")
-```
-Վերադարձնում է պայմանագրի հաշվառման մնացորդը (ըստ բոլոր ենթապայմանագրերի)։
-
-**Պարամետրեր**
-
-* `isn` -  Պարտադիր։ Պայմանագրի ISN։
-* `accType` - Պարտադիր։ Հաշվառման կոդ։ Սահմանվում է Subsystems.Enums.Accountings.Rem դասի համապատասխան հատկությունը։ Նշված դասի հատկությունների անվանումները համապատասխանում են [պայմանագրերի հաշվառման կոդերին](#պայմանագրերի-հաշվառումների-կոդեր)։
-* `requestDate` - Պարտադիր։ Մնացորդի ամսաթիվ։
-* `agrTypeName` - Ոչ պարտադիր։ Պայմանագրի փաստաթղթի տեսակ։ Լռությամբ՝ null: Սահմանելու դեպքում ֆունկցիայի կատարման ժամանակը կկրճատվի։
-* `sourceCur` - Ոչ պարտադիր։ Լռությամբ ""։ Պայմանագրի մնացորդի արժույթի թվային կոդը։ Օրինակ՝ "000", "001"։ Կիրառվում է `targetCur` պարամետրի հետ միասին։ 
-* `targetCur ` - Ոչ պարտադիր, Լռությամբ ""։ Վերահաշվակվի արժույթի թվային կոդը։ Օրինակ՝ "000", "001"։ Այս պարամետրը սահմանվում է `sourceCur` պարամետրի հետ միասին։ Սահմանված լինելու դեպքում մնացորդը կվերահաշվարկվի ըստ տվյալ արժույթի համար `requestDate` ապարամետրով սահմանված ամսաթվով ՀՀ ԿԲ հաշվարկային փոխարժեքի։ Սահմանված չլինելու դեպքում գումարը կվերադարձվի հաշվառման արժությով։
-
-**Օրինակ**
-```c#
-// Բերված օրինակում կհաշվարկվի 653013562 ISN-ով, ԱՄՆ- դոլարով պայմանագրի մնացորդը 13/08/24 -ի
-// դրությամբ վերահաշվարկված ԵՎՐՈ-ով։
-decimal agrRem = await proxyService.GetAgrRem(653013562, Subsystems.Enums.Accountings.Rem.R1, DateTime.Parse("2024-08-13"), "C1Univer", "001", "049");
-```
-
-### GetAgrTurn
----
-```c#
-public Task<decimal> GetAgrTurn(int isn, DateTime startDate, DateTime endDate, Rem accType,
-                                               string accOp, string dbCr, string opCur = "", string convertCur = "")
-```
-Վերադարձնում է պայմանագրի շրջանառաությունը ըստ սահմանված գործողության տեսակի (բոլոր ենթապայմանագրերով) և ժամանակահատվածի։
-
-**Պարամետրեր**
-
-* `isn` -  Պարտադիր։ Պայմանագրի ISN։
-* `startDate` - Պարտադիր։ Սկզբի ամսաթիվ։
-* `endDate` - Պարտադիր։ Վերջի ամսաթիվ։
-* `accType` - Պարտադիր։ Հաշվառման կոդ։
-* `accOp` - Պարտադիր։ [Գործողության կոդ](#հաշվառումների-գործողությունների-կոդեր)։ 
-* `dbCr` - Պարտադիր։ Լրացվում է "D" եթե տվյալ գործողության արդյունքում տեղի է ունենում հաշվառման ավելացում և "C" նվազման դեպքում։
-* `opCur` - Ոչ պարտադիր։ Լռությամբ ""։ Գործողության կատարման արժույթի թվային կոդը։ Օրինակ՝ "001", "000" Կիրառվում է `convertCur` պարամետրի հետ միասին։ Սահմանված չլինելու դեպքում գումարը կվերադարձվի գործողության արժույթով։
-* `convertCur` - Ոչ պարտադիր։ Լռությամբ ""։ Վերահաշվակվի արժույթի թվային կոդը։ Այս պարամետրը սահմանվում է `opCur` պարամետրի հետ միասին։  Սահմանված չլինելու դեպքում գումարը կվերադարձվի գործողության արժույթով։
-
-Բերված օրինակում հաշվարկվում է 812735354 ISN-ով, դրամային պայմանագրի գծով, սահմանված ժամանակահատվածում կատարված տրամադրումների ընդհանուր գումարը վերահաշվարկված ԱՄՆ դոլարի։
-
-**Օրինակ**
-```c#
-decimal agrRem = await proxyService.GetAgrTurn(812735354, DateTime.Parse("2009-07-10"), DateTime.Parse("2009-07-25"), Subsystems.Enums.Accountings.Rem.R1,"AGR","D", "000", "001");
-```
-
-### GetSSFactValueDate GetSSFactValueString GetSSFactValueInt GetSSFactValueDecimal GetSSFactValuePercent GetSSFactValueStringDecimal
----
-```c#
-public Task<string> GetSSFactValueString(int isn, NoRem accType, string accOp, DateTime requestDate)
-
-public Task<int?> GetSSFactValueInt(int isn, NoRem accType, string accOp, DateTime requestDate)
-
-public Task<decimal?> GetSSFactValueDecimal(int isn, NoRem accType, string accOp, DateTime requestDate)
-
-public Task<InterestRate> GetSSFactValuePercent(int isn, NoRem accType, string accOp, DateTime requestDate)
-
-```
-
-Ֆունկցիաները վերադարձնում են պայմանագրի, սահմանված ամսաթվով, ոչ [ոչ մնացորդային հաշվառումների](#ոչ-մնացորդային-հաշվառումներ) արժեքները։
-
-**Պարամետրեր**
-
-* `isn` -  Պարտադիր։ Պայմանագրի ISN։
-* `accType` - Պարտադիր։ Հաշվառման կոդ։ Սահմանվում է Subsystems.Enums.Accountings.Rem դասի համապատասխան հատկությունը։ Նշված դասի հատկությունների անվանումները համապատասխանում են [պայմանագրերի հաշվառման կոդերին](#պայմանագրերի-հաշվառումների-կոդեր)։
-* `accOp` - Պարտադիր։ Սահմանվում է Subsystems.Enums.Accountings.NoRem դասի համապատասխան հատկությունը։ Նշված դասի հատկությունների անվանումները համապատասխանում են [գործողությունների կոդերին](#հաշվառումների-գործողությունների-կոդեր)։ 
-* `requestDate` - Պարտադիր։ Մնացորդի ամսաթիվը։
-
-**Օրինակ**
-```c#
-//Բերված օրինակում ստանում ենք 812735354 ISN -ով պայմանագրի տոկոսադրույքը 15/08/24 
-// ամսաթվի դրությամբ։ 
-deciaml perc = (await proxyService.GetSSFactValuePercent(812735354, Subsystems.Enums.Accountings.NoRem.N0, "PAG", DateTime.Parse("2024-08-15"))).Rate;
-```
-
-### GetAgrFactValueDate GetAgrFactValuePercent GetAgrFactValueDecimal GetAgrFactValueString
----
-```c#
-public Task<DateTime?> GetAgrFactValueDate(int isn, NoRem accType, string accOp, DateTime requestDate, MinMax minMax, bool 
-                                                  onlyOpenChildren, string agrTypeName)
-public Task<InterestRate> GetAgrFactValuePercent(int isn, NoRem accType, string accOp, DateTime requestDate, MinMaxLast 
-                                                  minMaxLast, bool onlyOpenChildren, string agrTypeName)
-public Task<decimal?> GetAgrFactValueDecimal(int isn, NoRem accType, string accOp, DateTime requestDate, MinMax minMax, 
-                                                  bool onlyOpenChildren, string agrTypeName)
-public Task<string> GetAgrFactValueString(int isn, NoRem accType, string accOp, DateTime requestDate, MinMax minMax, bool 
-                                                   onlyOpenChildren, string agrTypeName)
-```
-Ֆունկցիաները վերադարձնում են պայմանագրի, սահմանված ամսաթվով, ոչ [ոչ մնացորդային հաշվառումների](#ոչ-մնացորդային-հաշվառումներ) արժեքները։
-Ի տարբերություն GetSSFactValue անվամբ սկսվող ֆունկցիաների այս ֆունկցիաները նախատեսված են բարդ պայմանագրերի հետ աշխատելու համար։ Կապված 
-MinMax, MinMaxLast enum -ների արժներից վերադարձվող արժեքները կարող են լինել ենթապայմանագրի գծով, սահմանված ամսաթվով, առավելագույն (MinMax.Max, MinMaxLast.Max) նվազագույն (MinMax.Min, MinMaxLast.Min) կամ վերջին նշակաված արժեքները (MinMaxLast.Last)։ 
-
-**Պարամետրեր**
-
-* `isn` -  Պարտադիր։ Պայմանագրի ISN։
-* `accType` - Պարտադիր։ Հաշվառման կոդ։ Սահմանվում է Subsystems.Enums.Accountings.Rem դասի համապատասխան հատկությունը։ Նշված դասի հատկությունների անվանումները համապատասխանում են [պայմանագրերի հաշվառման կոդերին](#պայմանագրերի-հաշվառումների-կոդեր)։
-* `accOp` - Պարտադիր։ Սահմանվում է Subsystems.Enums.Accountings.NoRem դասի համապատասխան հատկությունը։ Նշված դասի հատկությունների անվանումները համապատասխանում են [գործողությունների կոդերին](#հաշվառումների-գործողությունների-կոդեր)։ 
-* `requestDate` - Պարտադիր։ Մնացորդի ամսաթիվը։
-* `MinMax`, `MinMaxLast` - Պարտադիր։ Նվազագույն, առավելագույն կամ վերջին նշանակված արժեքը ըստ ենթապայմանագրերի։
-* `onlyOpenChildren` - Պարտադիր։ Դիտարկել միայն հարցման ամսաթվով գործող ենթապայմանագրերը։
-* `agrTypeName` - Ոչ պարտադիր։ Հասանելի չէ GetAgrFactValueDate ֆունկցիայի համար։ Սահմանվում է `isn` պարամետրով սահմանված պայմանագրի փաստաթղթի տեսակը։ 
-
-
-**Օրինակ**
-```c#
-// Բերված օրինակում ստանում ենք 307245031 ISN -ով բարդ պայմանագրի ենթապայմանագրերի գծով 
-// 29/12/24 ամսաթվի դրությամբ նշանակված վերջին տոկոսադրույքը։ 
-deciaml perc = ( await proxyService.GetAgrFactValuePercent(307245031, Subsystems.Enums.Accountings.NoRem.N0, "PAG", DateTime.Parse("2024-12-29"), MinMaxLast.Last, true, "C1Compl")).Rate;
-```
-
-### GetRemSS
----
-```c#
-public Task<decimal> GetRemSS(int isn, Rem accType, DateTime requestDate)
-```
-
-Վերադարձնում է պայմանագրի մնացորդը։ Չի նախատեսված բարդ պայմանագրերի համար։ Բարդ պայմանագրերի ենթապայմանագրերի հաշվառումների մնացորդների ստացման համար նախատեսված է [GetAgrRem](#GetAgrRem) ֆունկցիան։
-
-**Պարամետրեր**
-
-* `isn` -  Պարտադիր։ Պայմանագրի ISN։
-* `accType` - Պարտադիր։ Հաշվառման կոդ։ Սահմանվում է Subsystems.Enums.Accountings.Rem դասի համապատասխան հատկությունը։ Նշված դասի հատկությունների անվանումները համապատասխանում են [պայմանագրերի հաշվառման կոդերին](#պայմանագրերի-հաշվառումների-կոդեր)։
-* `requestDate` - Պարտադիր։ Մնացորդի ամսաթիվը։
-
-**Օրինակ**
-```c#
-// Հաշվարկում ենք 587157500 isn-ով պայմանագրի մայր-գումարի մնացորդը ընթացիկ օրվա դրությամբ։
-decimal agrem = await proxyService.GetRemSS(587157500, ArmSoft.AS8X.Bank.Subsystems.Enums.Accountings.Rem.R1,DateTime.Now);
-```
-
-### GetRemHI2
----
-```c#
-  public Task<(decimal CRem, decimal NCRem)> GetRemHI2(string accounting, int isn = -1,
-                                                  int isnGl = -1, DateTime? remDate = null)
-```
-Օգտագործվում է, միաժամանակ երկու օբյեկտի հետ կապակցված հաշվառումների մնացորդները ստանալու համար։ 
-Օրինակ HA - "Ռեպո համ-ով ձեռք բերված արժ.հակ.ռեպոյով վաճառված մաս" հաշվառումը զուգահեռ կապված է 
-արժեթղթի և ռեպո պայմանագրերի հետ։ Բոլոր նմանատիպ հաշվառումների շրջանառությունը գրանցվում է HI2 
-աղյուսակում (իսկ սկզբնական և վերջնական հասանելի մնացորդները HIREST2 աղյուսակում)։ 
-Այս ֆինկցիայով որոշակի հաշվառման մնացորդի ստացման հնարավորությունը կարելի է ստուգել 
-տվյալ հաշվառման առկայությամբ HI2 կամ HIREST2 աղյուսակներում (fTYPE դաշտ)։ 
-
-Մնացորդի հաշվարկը կատարվում է HI2-ում գրանցված շրջանառության և HIREST2-ի սկզբնական և վերջնական
-մնացորդների հիման վրա։  Ֆունկցիան վերադարձնում է tuple երկու արժեքով՝ մնացորդ արժույթով
-(հաշվարկվում է HIREST2 աղյուսակի fCURREM և HI2 աղյուսակի fCURSUM դաշտերի միջոցով) և մնացորդ 
-ՀՀ դրամով (fSUM / fREM դաշտեր)։ 
-
-HI2 / HIREST2 աղյուսակներում  fCURSUM, fSUM / fCURREM, fREM  դաշտերի լրացումը կատարվում է հաշվի
-առնելով իրագործման առանձնահատկությունները, որի պատճառով հնարավոր են դեպքեր երբ դաշտերից մեկն է լրացված։
-
-**Պարամետրեր**
-
-* `accounting` -  Պարտադիր։ Հաշվառման կոդը։
-* `isn` -   Ոչ Պարտադիր։ Համապատասխանում է HI2 աղյուսակի fOBJECT դաշտի արժեքին: 
-* `isnGl ` - Ոչ պարտադիր։ Համապատասխանում է HI2 աղյուսակի fGLACC դաշտի արժեքին:
-* `remDate` - Ոչ պարտադիր։ Մնացորդի ամսաթիվ։ Նշված չլինելու դեպքում կվերադարձվի վերջին գրանցված մնացորդը։
-
-> [!IMPORTANT]
-> Ֆունկցիան կանչելիս անհրաժեշտ է փոխանցել առնվազն `isn` կամ `isnGl` պարամետրերից մեկը։
-
-**Օրինակ**
-```c#
-// Ստորև բերված օրինակում հաշվարկվում է 13047440 ISN -ով հաճախորդի քարտի գծով 100095 ISN -ով
-// արժույթով (տվյալ դեպքում ՀՀ դրամ) կանխիկի հաշվառման ("10") մնացորդը 06/12/2018-ով։
-
-(decimal CRem, decimal NCRem) = await proxyService.GetRemHI2("10", 13047440, 100095, DateTime.Parse("2018-12-06"));
-```
-
-### SSLastOpDate
----
-```c#
-  public Task<(DateTime? Date, string Time)> SSLastOpDate(int isn, NoRem accType, DateTime requestDate,
-                                                              string accOp = "", int baseISN = -1)
-  public Task<DateTime?> SSLastOpDate(int isn, Rem accType, DateTime requestDate,
-                                                              string accOp = "", int baseISN = -1)
-  public Task<DateTime?> SSLastOpDate(int isn, Turn accType, DateTime requestDate,
-                                                              string accOp = "", int baseISN = -1)
-```
-
-ֆունկցիան ունի կանչի երեք տարբերակ, որոնք  վերադարձնում են սահմանված գործողության վերջին կատարման ամսաթիվը (ոչ մնացորդային հաշվառումների գործողությունների դեպքում նաև որոշ դեպքերում ժամանակը)։ 
-
-Վերևում բերված կանչի տարբերակները նախատեսված են ստանալու
-
-1. Ոչ մնացորդային հաշվառումների գծով կատարված վերջին գործողության ամսաթիվն ու ժամը։
-2. Մնացորդային հաշվառումների գծով կատարված վերջին գործողության ամսաթիվը։
-3. HIT աղյուսակում գրանցվող հաշվառումների գծով կատարված վերջին գործողության ամսաթիվը։ նշված հաշվառումները 
-հիմնականում վերաբերում են տոկոսների, տույժերի հաշվեգրումներին և սկսվում են N-ով (բացառությամբ N0)։ 
-Օրինակ՝ N2, N3: Տոկոսների տույժերի մնացորդային հաշվառումներից տարբերվում են նրանով որ այս դեպքում 
-նրանց գրանցումը կատարվում է հաշվարկման ամսաթվով այլ ոչ թե ձևակերպման։ 
-Օրինակ ՝ կիրակի օրվա տոկոսի կուտակումը, որը ձևակերպվել է երկուշաբթի օրով R2 մնացորդային հաշվառման 
-դեպքում կգրանցվի երկուշաբթի օրով, այն դեպքում երբ N2 հաշվառման դեպքում կիրակի օրվա ամսաթվով։
-
-**Պարամետրեր**
-
-* `isn` -   Պարտադիր։ Փաստաթղթի ISN։ 
-* `accType` -  Պարտադիր։ Հաշվառման կոդը, որը համապատասխանում է՝ ArmSoft.AS8X.Bank.Subsystems.Enums.Accountings.NoRem, ArmSoft.AS8X.Bank.Subsystems.Enums.Accountings.Rem կամ ArmSoft.AS8X.Bank.Subsystems.Enums.Accountings.Turn enum-ների արժեքներից մեկին։  
-* `requestDate` - Պարտադիր։ Ամսաթիվը, որին նախորդող մոտակա գործողության ամսաթիվն պետք է գտնել։ 
-* `accOp` - Ոչ պարտադիր։ Սահմանված հաշվառման [գործողության կոդը](#hաշվառումների-գործողությունների-կոդեր)։ Նշված չլինելու դեպքում կվերադարձվի տվյալ հաշվառման գծով վերջին կատարված ցանկացած գործողության ամսաթիվը։
-* `baseISN` - Ոչ պարտադիր։ Հնարավոր է սահմանել գործողության փաստաթղթի ISN -ը, որը պետք է անտեսել ֆունկցիայի աշխատանքի ժամանակ։
-
-**Օրինակ**
-```c#
-// Հաշվարկվում է 28/01/2024-ին նախորդող տտկոսների հաշվարկման վերջին ամսաթիվը 
-    DateTime? opDate = await proxyService.SSLastOpDate(812735354, Turn.N2, DateTime.Parse("2024-01-28"), "N2");
-
-// Հաշվարկվում է 28/01/2024-ին նախորդող տտկոսների ձևակերպման վերջին ամսաթիվը 
-    DateTime? opDate2 = await proxyService.SSLastOpDate(812735354, Rem.R2, DateTime.Parse("2024-01-28"), "PER");
-
-/* Հաշվարկվում է 28/01/2024-ին նախորդող տոկոսադրույքի վերանայման ամսաթիվը։ Տվյալ դեպքում անտեսում ենք ֆունկցիայի
-կողմից վերադարձվող գործողության ժամը, որը հասանելի է միայն հետևյալ գործողությունների դեպքում (LIM - Սահմանաչափ,
-DUA - Պայմանագրի ժամկետ, PNE - Բանկի արդյունավետ տոկոսադրույք)։ */
-    DateTime? opDate3 = (await proxyService.SSLastOpDate(812735354, NoRem.N0, DateTime.Parse("2024-01-28"), "PAG")).Item1;
- 
-```
-### AgrSchedule
----
-```c#
-public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, ScheduleValueType valueType, ScheduleBasis schKind = ScheduleBasis.Any)
-```
-Ֆունկցիան կիրառելի է միայն Univer տեսակի պայմանագրերի համար։ Վերադարձնում է AgrScheduleRow տիպի օբյեկտների ցուցակ (List), որտեղ յուրաքանչյուր էլեմենտը պարունակում է հետևյալ հատկությունները՝
-
-* `Date` 
-* `Summa`
-
-**Պարամետրեր**
-
-- `isn` - Պարտադիր։ Փաստաթղթի ISN։
-- `requestDate` -Պարտադիր։ Ամսաթվիվ, որի դրությամբ պահանջվում է ստանալ ընթացիկ գրաֆիկը 
-- `valueType` - Պարտադիր։ Հնարավոր արժեքներն են՝
-    ``` c#
-      public enum ScheduleValueType : short
-      {
-          Agr = 1, // մայր գումարի գրաֆիկ
-          Base = 11, // հիմնական ամսաթվերի գրաֆիկ 
-          Per = 2, // տոկոսների գրաֆիկ
-          PerProl = 22, // երկարաձգված տոկոսների գրաֆիկ
-          ServFee = 7, // վարձավճարի գրաֆիկ
-          ServFeeProl = 27, // երկարաձգված վարձավճարի գրաֆիկ
-          Lim = 6, // սահմանաչափի գրաֆիկ
-          Dis = 8 զեղջատոկոսի գրաֆիկ  
-      }
-
-- `schKind` - Ոչ պարտադիր։ Հնարավոր արժեքներն են՝
-     ``` c#
-          public enum ScheduleBasis : short
-          {
-              Any = -2, // Կամայական: Լռությամբ արժեք։ 
-              AnySchRevision = -1,   // Կամայական վերանայում  0, 9, 10, 11, 12, 13, 14, 15
-              RevisionProl = 0, // Վերանայում (Համարելով երկարաձգված)
-              RevisionNotProl = 9, // Վերանայում (Չհամարելով երկարաձգված)
-              RevisionProlNotLR = 10, // Վերանայում (Չհամարելով երկարաձգված միայն ՎՌ-ում)
-              RevDisbNotProl = 13, // Վերանայումով տրամադրում (Համարելով երկարաձգված)
-              RevDisbProl = 14, // Վերանայումով տրամադրում (Չհամարելով երկարաձգված)
-              RevDisbProlNotLR = 15, // Վերանայումով տրամադրում (Չհամարելով երկարաձգված միայն ՎՌ-ում)
-              InterestRate = 1, // Տոկոսադրույքի փոփոխություն
-              Repayment = 2,   // Մարում
-              Disbursement = 3, // Տրամադրում
-              InterestAdjustment = 4, // Տոկոսագումարի ճշգրտում
-              SecurityOut = 5,   // Արժեթղթի ելք
-              SecurityIn = 6,   // Արժեթղթի մուտք
-              InterestAccum = 7, // Տոկոսների հաշվարկում
-              LimitSchRevision = 11, // Սահմանաչափի գրաֆիկի վերանայում
-              WorkingDayChange = 12, // Ոչ աշխատանքային օրերի փոփոխում
-              IntAccumStartDate = 16, // Տոկոսների հաշվարկման սկզբի ամսաթիվ
-              EndOfLease = 17, // Վարձակալության ավարտ
-              EmergIntProlong = 22 // Տոկոսների արտակարգ երկարաձգում
-          }   
-          
-          ```
-
-**Օրինակ**
-``` c#
-// Օրինակում հաշվարկվում է 1433755346 isn -ով պայմանագրի, 21/01/20-ի դրությամբ գործող գրաֆիկում առկա տոկոսագումարների հանրագումարը։
-
-      List<ScheduleRow> sched = await proxyService.AgrSchedule(1433755346, DateTime.Parse("2020-01-21"), ScheduleValueType.Per);
-      decimal PerSum = 0;
-      foreach (ScheduleRow sc in sched)
-      {
-          PerSum += sc.Sum;
-      }
-
-```
-
-### GetFutPerDbt
----
-```c#
-public Task<decimal> GetFutPerDbt(int agrISN, DateTime dateStart, DateTime dateEnd)
-```
-
-Վերադարձնում է Univer տեսակի պայմանագրի, նշված ժամանակահատվածում ընկած, մարման ենթակա տոկոսագումարը հաշվի առնելով տոկոսագումարի կանխավճարը։
-
-**Պարամետրեր**
-
-* `agrISN` - Պարտադիր։ Պայմանագրի ISN։
-* `dateStart` - Պարտադիր։ Սկզբի ամսաթիվ։
-* `dateEnd` - Պարտադիր։ Վերջի ամսաթիվ։
-
-**Օրինակ**
-```c#
-// Հաշվարկվում է 605404534 isn -ով պայմանագրի ապագա վճարվելիք տոկոսագումարը 05/01/25 - 03/04/25 ժամանակահատվածի համար։
-decimal fDbt = await proxyService.GetFutPerDbt(605404534, DateTime.Parse("2025-01-05"), DateTime.Parse("2025-04-03"));
-```
-
-### GetFutServFeeDbt
----
-```c#
- public Task<decimal> GetFutServFeeDbt(int agrISN, DateTime begDate, DateTime endDate)
-```
-
-Վերադարձնում է Univer տեսակի պայմանագրի, նշված ժամանակահատվածում ընկած, մարման ենթակա վարձավճարը հաշվի առնելով վարձավճարի կանխավճարը։
-
-**Պարամետրեր**
-
-* `agrISN` - Պարտադիր։ Պայմանագրի ISN։
-* `dateStart` - Պարտադիր։ Սկզբի ամսաթիվ։
-* `dateEnd` - Պարտադիր։ Վերջի ամսաթիվ։
-
-**Օրինակ**
-```c#
-// Հաշվարկվում է 287232600 isn-ով պայմանագրի գծով 25/03/25-17/04/25 ժամանակահատվածում վճարվելիք վարձավճարի գումարը։
-decimal dbt = await proxyService.GetFutServFeeDbt(287232600, DateTime.Parse("2025-03-25"), DateTime.Parse("2025-04-17"));
-՝՝՝
-
-### GetPCardData
----
-```c#
- public Task<Dictionary<string, object>> GetPCardData(string fieldList,
-                                 string cardNum = "",
-                                 string cardAcc = "",
-                                 long isn = 0,
-                                 bool includeClosed = true,
-                                 bool throwException = true)
-```
-Վերադարձնում է dictionary, որը պարունակում է վճարային քարտի fieldList պարամետրով փոխանցված CARDS աղյուսակի դաշտերի արժեքներով։ Պլաստիկ քարտի փնտրումը հնարավոր է իրականացնել՝ քարտի համարով, քարտային հաշվով կամ isn- ով։
-
-**Պարամետրեր**
-
-* `fieldList` - Պարտադիր։ CARDS աղյուսակի դաշտերի անվանումները բաժանված ստորակետով որոնք անհրաժեշտ է վերադարձնել։
-* `cardNum` - Ոչ պարտադիր։ Քարտի համար։
-* `cardAcc` - Ոչ պարտադիր։ Քարտի հաշիվ:
-* `isn` - Ոչ պարտադիր։ Քարտի isn: 
-* `includeClosed` - Ոչ պարտադիր։ Փնտրել նաև փակվածների մեջ։ Լռությամբ փնտրվում է։
-* `throwException` - Ոչ պարտադիր։ Սահմանված պայմաններով քարտ չգտնելու դեպքում բերել սխալի հաղորդագրություն։ Լռությամբ՝ այո։
-
-**Օրինակ**
-```c#
-//Ստանում ենք 80662376 isn ով վճարային քարտի արժույթը և հաճախորդի կոդը պարունակով dictionary: 
-using System.Collections.Generic;
-
-Dictionary<string, object> pcard = await proxyService.GetPCardData("fCUR, fCLICODE", isn: 80662376);
-
-await proxyService.TryAddAtomicAsync("param1", async () => (string) pcard["fCUR"], templateSubstitutionArgs);
-await proxyService.TryAddAtomicAsync("param2", async () => (string) pcard["fCLICODE"], templateSubstitutionArgs);
-```
-
-### GetPCardDoc
----
-```c#
-public Task<Card> GetPCardDoc(string cardNum = "", string cardAcc = "", bool throwException = true)
-```
-
-Վերադարձնում է պլաստիկ քարտի փաստաթղթի օբյեկտը քարտի համարով կամ քարտային հաշվի միջոցով։
-
-**Պարամետրեր**
-
-* `cardNum` - Ոչ պարտադիր։ Քարտի համարը։
-* `cardAcc` - Ոչ պարտադիր։ Քարտային հաշիվ։
-* `throwException` - Ոչ պարտադիր։ Բերել սխալի հաղորդագրություն փնտրվող պայմաններով քարտի բացակայության դեպքում։ Լռությամբ true:
-
-**Օրինակ**
-```c#
-// Ստանում ենք 9051231000001578 համարով քարտի հաշվեհամարը։
-var pCard = await proxyService.GetPCardDoc("9051231000001578");
-string cardAcc = pCard.ACC;
-```
-
-### AsCCur
----
-```c#
-public static decimal AsCCur(string stringValue)
-```
-Վերափոխում է տողով (string) փոխանցված թիվը տասնորդական թվի (decimal)։ Դատարկ տող, կամ թչ թվային սիմվոլներ պարունակող տող
-փոխանցելու դեպքում կրերադարձվի 0։ 
-
-**Պարամետրեր**
-
-* `stringValue` - Պարտադիր։ Թիվ պարունակով տող։
-
-**Օրինակ**
-```c#
-// Ֆունկցիային փոխանցված տողը փոխարկերպում ենք տասնորդական թվային տիպի։ 
-decimal sum = UserProxyService.AsCCur("102111.26");
-՝՝՝
-
-### DealRate
----
-```c#
-public decimal DealRate(string curCode1, string curCode2, string pusa, string cash, DateTime calcdate, string sMaxCreationDate = "")
-```
-
-Վերադարձնում է տրված արժույթների համար սահմված կանխիկ / անկանխիկ, առքի / վաճառքի դիլինգային փոխարժեքները։ Հնարավոր է սահմանել նաև ժամանակը, որի դրությամբ գործող փոխարժեքները անհրաժեշտ է վերադարձնել։
-
-**Պարամետրեր**
-
-* `curCode1` - Պարտադիր։ Արժույթ 1։
-* `curCode2` - Պարտադիր։ Արժույթ 2։
-* `pusa` -  Պարտադիր։ Առք / վաճառք։ Հնարավոր արժեքներն են՝ 1 - առք, 2 - վաճառք։
-* `cash` -  Պարտադիր։ Կանխիկ / անկանխիկ։ Հնարավոր արժեքներն են՝ 0 - կանխիկ, 1 - անկանխիկ։
-* `calcdate` - Պարտադիր։ Փոխարժեքի ամսաթիվ։ 
-* `sMaxCreationDate` - Ոչ պարտադիր։ Օգտագործվում է այն ժամանակ երբ նույն օրվա ընթացքում սահմանվել են մի քանի փոխարժեքներ և անհրաժեշտ է ստանալ սահմանված ժամին գործողը։
-
-**Օրինակ**
-```c#
-// Ստանում ենք ԱՄՆ դոլարի  առքի և վաճառքի, կանխիկի և անկանխիկի համար սահմանված ՀՀ դրամով փոխարժեքը, որոնք գործել են   05/09/24-ի 15։00 դրությամբ։
-
-decimal CashBuyRate = proxyService.DealRate("001", "000", "1", "0", DateTime.Parse("2024-09-05"), "2024-09-05 15:00");
-decimal NonCashBuyRate = proxyService.DealRate("001", "000", "1", "1", DateTime.Parse("2024-09-05"), "2024-09-05 15:00");
-decimal CashSellRate = proxyService.DealRate("001", "000", "2", "0", DateTime.Parse("2024-09-05"), "2024-09-05 15:00");
-decimal NonCashSellRate = proxyService.DealRate("001", "000", "2", "1", DateTime.Parse("2024-09-05"), "2024-09-05 15:00");
-```
-
-### SumInWordsAsync
----
-```c#
-public async Task<string> SumInWordsAsync(decimal value, string integerCurrency = "", string precisionCurrency = "", bool toUpperFirstChar = true, bool isArmenian = true, bool isUnicode = false)
-```
-
-Վերադարձնում է գումարը բառերով հայերեն կամ անգլերեն լեզվով։
-
-**Պարամետրեր**
-
-* `value` - Պարտադիր։ Թիվը, որի համար անհրաժեշտ է ստանալ բառերեվ արտահայտությունը։
-* `integerCurrency` - Ոչ Պարտադիր։ Արժույթի անվանումը պահանջվող լեզվով։  
-* `precisionCurrency` - Ոչ Պարտադիր։ Մանրադրամի անվանումը պահանջվող լեզվով։ 
-* `toUpperFirstChar` - Ոչ Պարտադիր։ Առաջին բառը գրել մեծատառով։ Լռությամբ true: 
-* `isArmenian` - Ոչ պարտադիր։ Լռությամբ true: Տեքստը վերադարձնել հայերեն։ false արժեքի դեպքում տեքստը կարտացոլվի անգլերեն լեզվով։ 
-* `isUnicode` - Ոչ պարտադիր։ Վերադարձնել Unicode կոդավորմամբ։ Լռությամբ true:
-
-**Օրինակ**
-```c#
-// Օրինակում վերադարձվում է գումարը բառերով անգլերեն ANSI կոդավորմամբ։
-string sumInW = await proxyService.SumInWordsAsync(15.66m, "Dram", "Luma", isArmenian: false, isUnicode: false);
-```
-
-### WKDATE
----
-```c#
-public DateTime WKDATE()
-```
-
-Վերադարձնում է ՀԾ-Բանկ համակարգի դրույթներում սահմանված "ընթացիկ օրը"։
-
-**Օրինակ**
-```c#
-DateTime dt = proxyService.WKDATE();
-```
-
-### CURRENT_DATE
----
-```c#
-public DateTime CURRENT_DATE()
-```
-
-Վերադարձնում է ընթացիկ օրը և ժամը:
-
-**Օրինակ**
-```c#
-DateTime dt = proxyService.CURRENT_DATE();
-```
-
-## WEEK_BEGIN
----
-```c#
-public DateTime WEEK_BEGIN(object parDate = null)
-```
-Վերադարձնում է ընթացիկ կամ parDate պարամետրով փոխանցված ամսաթվի շաբաթվա առաջին օրվա ամսաթիվը։
-
-**Պարամետրեր**
-
-* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել շաբաթվա սկիզվը։
-
-**Օրինակ**
-```c#
-// Ստանում ենք ընթացիկ շաբաթվա առաջին օրը։
-DateTime dt = proxyService.WEEK_BEGIN();
-```
-
-### WEEK_END
----
-```c#
-public DateTime WEEK_END(object parDate = null)
-```
-
-Վերադարձնում է ընթացիկ կամ parDate պարամետրով փոխանցված ամսաթվի շաբաթվա վերջին օրվա ամսաթիվը։
-
-**Պարամետրեր**
-
-* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել շաբաթվա վերջը։
-
-**Օրինակ**
-```c#
-// Ստանում ենք ընթացիկ շաբաթվա վերջին օրը։
-DateTime dt = proxyService.WEEK_END();
+// Հաշվարկվում է 30/08/24 -ից 15/01/25 ժամանակահատվածում 822631021 isn-ով պայմանագրի գծով եղած վարկի կամ տոկոսի առավելագույն ժամկետանց օրերի քանակը։
+short maxOverd = await proxyService.MaxOverdueDaysCount(822631021, DateTime.Parse("2024-08-30"), DateTime.Parse("2025-01-15"));
 ```
 
 ### MONTH_BEGIN 
@@ -1507,40 +1862,6 @@ public DateTime PREVIOUS_MONTH_END(object parDate = null)
 DateTime dt = proxyService.PREVIOUS_MONTH_END(DateTime.Parse("2024-08-17"));
 ```
 
-### QUARTE_BEGIN
----
-```c#
-public DateTime QUARTE_BEGIN(object parDate = null)
-```
-Վերադարձնում է parDate պարամետրով փոխանցած կամ ընթացիկ ամսաթվի եռամսյակի սկզբի օրը։
-
-**Պարամետրեր**
-
-* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել եռամսյակի սկիզբը։
-
-**Օրինակ**
-```c#
-// Ֆունկցիան կվերադարձնի 01/08/2024 0:00:00 ամսաթիվը։
-DateTime dt = proxyService.QUARTE_BEGIN(DateTime.Parse("2024-08-17"));
-```
-
-### QUARTE_END
----
-```c#
-public DateTime QUARTE_END(object parDate = null)
-```
-Վերադարձնում է parDate պարամետրով փոխանցած կամ ընթացիկ ամսաթվի եռամսյակի վերջին օրը։
-
-**Պարամետրեր**
-
-* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել եռամսյակի վերջը։
-
-**Օրինակ**
-```c#
-// Ֆունկցիան կվերադարձնի 30/09/2024 0:00:00 ամսաթիվը։
-DateTime dt = proxyService.QUARTE_END(DateTime.Parse("2024-08-17"));
-```
-
 ### PREVIOUS_QUARTE_BEGIN
 ---
 ```c#
@@ -1575,40 +1896,38 @@ public DateTime PREVIOUS_QUARTE_END(object parDate = null)
 DateTime dt = proxyService.PREVIOUS_QUARTE_END(DateTime.Parse("2024-08-17"));
 ```
 
-### YEAR_BEGIN
+### QUARTE_BEGIN
 ---
 ```c#
-public DateTime YEAR_BEGIN(object parDate = null)
+public DateTime QUARTE_BEGIN(object parDate = null)
 ```
-Վերադարձնում է parDate պարամետրով փոխանցած կամ ընթացիկ ամսաթվի տարվա սկզբի օրը։
+Վերադարձնում է parDate պարամետրով փոխանցած կամ ընթացիկ ամսաթվի եռամսյակի սկզբի օրը։
 
 **Պարամետրեր**
 
-* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել տարվա սկիզբը։
+* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել եռամսյակի սկիզբը։
 
 **Օրինակ**
 ```c#
-// Ֆունկցիան կվերադարձնի 01/01/2024 0:00:00 ամսաթիվը։
-DateTime dt = proxyService.YEAR_BEGIN(DateTime.Parse("2024-08-17"));
+// Ֆունկցիան կվերադարձնի 01/08/2024 0:00:00 ամսաթիվը։
+DateTime dt = proxyService.QUARTE_BEGIN(DateTime.Parse("2024-08-17"));
 ```
 
-### GetExchangeRate
+### QUARTE_END
 ---
 ```c#
-public async Task<decimal> GetExchangeRate(string codCurrency, DateTime date, DateTime? maxCreationDate = null)
+public DateTime QUARTE_END(object parDate = null)
 ```
-Վերադարձնում է ՀՀ ԿԲ հաշվարկային փոխարժեքը ըստ արժույթի և ամսաթվի։
+Վերադարձնում է parDate պարամետրով փոխանցած կամ ընթացիկ ամսաթվի եռամսյակի վերջին օրը։
 
 **Պարամետրեր**
 
-* `codCurrency` - Պարտադիր։ արժույթի կոդը։
-* `date` - Պարտադիր։ Փոխարժեքի ամսաթիվը։
-* `maxCreationDate` - Ոչ պարտադիր։ Սահմանվում է ամսաթիվը և ժամը, որի դրությամբ պետք է վերադարձնել գործող փոխարժեքը։ Օգտագործվում է այն դեպքում երբ մեկ օրվա ընթացքում սահմանվել է մի քանի փոխարժեք։
+* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել եռամսյակի վերջը։
 
 **Օրինակ**
 ```c#
-// Վերադարձվում է 06/09/24 -ի 15։12 դրությամբ գործող ԱՄՆ դոլարի հաշվարկային փոխարժեքը։
-decimal cur = await proxyService.GetExchangeRate("001", DateTime.Parse("2024-09-06"), DateTime.Parse("2024-09-06 15:12"));
+// Ֆունկցիան կվերադարձնի 30/09/2024 0:00:00 ամսաթիվը։
+DateTime dt = proxyService.QUARTE_END(DateTime.Parse("2024-08-17"));
 ```
 
 ### SERVER_DATE
@@ -1624,65 +1943,115 @@ public async Task<DateTime> SERVER_DATE()
 DateTime dt = await proxyService.SERVER_DATE();
 ```
 
-## FormatDDMMYY FormatDDMMYYYY FormatYYYYMMDD
+### SSLastOpDate
 ---
-```C#
-public string FormatDDMMYY(DateTime? date)
-public string FormatDDMMYYYY(DateTime? date)
-public string FormatYYYYMMDD(DateTime? date)
+```c#
+  public Task<(DateTime? Date, string Time)> SSLastOpDate(int isn, NoRem accType, DateTime requestDate,
+                                                              string accOp = "", int baseISN = -1)
+  public Task<DateTime?> SSLastOpDate(int isn, Rem accType, DateTime requestDate,
+                                                              string accOp = "", int baseISN = -1)
+  public Task<DateTime?> SSLastOpDate(int isn, Turn accType, DateTime requestDate,
+                                                              string accOp = "", int baseISN = -1)
 ```
-Վերադարձնում է ֆորմատավորված ամսաթվի տող։ Առաջին երկու դեպքերում տարեթիվը կարտացոլվի երկու, մյուս դեպքում չորս նիշերով։ Պարամետրի ՝null՝ արժեքի դեպքում կվերադարձվի դատարկ ամսաթվի ՝ " / / " տողը։ FormatYYYYMMDD ֆունկցիայի վերադարձրած տողի օրինակ է՝ "20240906"։ ՝null՝ արժեքի դեպքում տողը կունենա հետևյալ տեսքը՝ "00000000"
+
+ֆունկցիան ունի կանչի երեք տարբերակ, որոնք  վերադարձնում են սահմանված գործողության վերջին կատարման ամսաթիվը (ոչ մնացորդային հաշվառումների գործողությունների դեպքում նաև որոշ դեպքերում ժամանակը)։ 
+
+Վերևում բերված կանչի տարբերակները նախատեսված են ստանալու
+
+1. Ոչ մնացորդային հաշվառումների գծով կատարված վերջին գործողության ամսաթիվն ու ժամը։
+2. Մնացորդային հաշվառումների գծով կատարված վերջին գործողության ամսաթիվը։
+3. HIT աղյուսակում գրանցվող հաշվառումների գծով կատարված վերջին գործողության ամսաթիվը։ նշված հաշվառումները 
+հիմնականում վերաբերում են տոկոսների, տույժերի հաշվեգրումներին և սկսվում են N-ով (բացառությամբ N0)։ 
+Օրինակ՝ N2, N3: Տոկոսների տույժերի մնացորդային հաշվառումներից տարբերվում են նրանով որ այս դեպքում 
+նրանց գրանցումը կատարվում է հաշվարկման ամսաթվով այլ ոչ թե ձևակերպման։ 
+Օրինակ ՝ կիրակի օրվա տոկոսի կուտակումը, որը ձևակերպվել է երկուշաբթի օրով R2 մնացորդային հաշվառման 
+դեպքում կգրանցվի երկուշաբթի օրով, այն դեպքում երբ N2 հաշվառման դեպքում կիրակի օրվա ամսաթվով։
 
 **Պարամետրեր**
 
-* `date` - Ոչ պարտադիր։ Ամսաթվի օբյեկտը։
+* `isn` -   Պարտադիր։ Փաստաթղթի ISN։ 
+* `accType` -  Պարտադիր։ Հաշվառման կոդը, որը համապատասխանում է՝ ArmSoft.AS8X.Bank.Subsystems.Enums.Accountings.NoRem, ArmSoft.AS8X.Bank.Subsystems.Enums.Accountings.Rem կամ ArmSoft.AS8X.Bank.Subsystems.Enums.Accountings.Turn enum-ների արժեքներից մեկին։  
+* `requestDate` - Պարտադիր։ Ամսաթիվը, որին նախորդող մոտակա գործողության ամսաթիվն պետք է գտնել։ 
+* `accOp` - Ոչ պարտադիր։ Սահմանված հաշվառման [գործողության կոդը](#hաշվառումների-գործողությունների-կոդեր)։ Նշված չլինելու դեպքում կվերադարձվի տվյալ հաշվառման գծով վերջին կատարված ցանկացած գործողության ամսաթիվը։
+* `baseISN` - Ոչ պարտադիր։ Հնարավոր է սահմանել գործողության փաստաթղթի ISN -ը, որը պետք է անտեսել ֆունկցիայի աշխատանքի ժամանակ։
 
 **Օրինակ**
-```C#
-// Բերված օրինակում dt փոփոխականը կստանա ընթացիկ ամսաթվի տողը, օրինակ՝ "06/09/24"։ dt2 -ի արժեքը կլինի " / / "։ dt3 -ի արժեքը կլինի 20240906
+```c#
+// Հաշվարկվում է 28/01/2024-ին նախորդող տտկոսների հաշվարկման վերջին ամսաթիվը 
+    DateTime? opDate = await proxyService.SSLastOpDate(812735354, Turn.N2, DateTime.Parse("2024-01-28"), "N2");
 
-DateTime dtObj = DateTime.Now;
-string dt = proxyService.FormatDDMMYY(dtObj);
-string dt2 = proxyService.FormatDDMMYYYY(null);
-string dt3 = proxyService.FormatYYYYMMDD(dtObj);
-```
+// Հաշվարկվում է 28/01/2024-ին նախորդող տտկոսների ձևակերպման վերջին ամսաթիվը 
+    DateTime? opDate2 = await proxyService.SSLastOpDate(812735354, Rem.R2, DateTime.Parse("2024-01-28"), "PER");
 
-### CurrencyFormat
+/* Հաշվարկվում է 28/01/2024-ին նախորդող տոկոսադրույքի վերանայման ամսաթիվը։ Տվյալ դեպքում անտեսում ենք ֆունկցիայի
+կողմից վերադարձվող գործողության ժամը, որը հասանելի է միայն հետևյալ գործողությունների դեպքում (LIM - Սահմանաչափ,
+DUA - Պայմանագրի ժամկետ, PNE - Բանկի արդյունավետ տոկոսադրույք)։ */
+    DateTime? opDate3 = (await proxyService.SSLastOpDate(812735354, NoRem.N0, DateTime.Parse("2024-01-28"), "PAG")).Item1;
+ ```
+
+### SumInWordsAsync
 ---
 ```c#
-public string CurrencyFormat(decimal value, short length = 20, short precision = 2)
+public async Task<string> SumInWordsAsync(decimal value, string integerCurrency = "", string precisionCurrency = "", bool toUpperFirstChar = true, bool isArmenian = true, bool isUnicode = false)
 ```
-Վերադարձնում է ֆորմատավորված գումարի տող։ Սահմանված երկարությունից նիշերի քանակը ավելի փոքր լինելու պակասող նիշերը ձախից կհամալրվեն բացատներով"
+
+Վերադարձնում է գումարը բառերով հայերեն կամ անգլերեն լեզվով։
 
 **Պարամետրեր**
 
-* `value` - Պարտադիր։ Տասնորդական թիվ, որի համար ձևավորվում է ֆորմատավորված տող։
-* `length` - Ոչ պարտադիր։ Տողի երկարությունը։ Լռությամբ 20։
-* `precision` - Ոչ պարտադիր։ Ստորակետից հետո նիշերի քանակը։
+* `value` - Պարտադիր։ Թիվը, որի համար անհրաժեշտ է ստանալ բառերեվ արտահայտությունը։
+* `integerCurrency` - Ոչ Պարտադիր։ Արժույթի անվանումը պահանջվող լեզվով։  
+* `precisionCurrency` - Ոչ Պարտադիր։ Մանրադրամի անվանումը պահանջվող լեզվով։ 
+* `toUpperFirstChar` - Ոչ Պարտադիր։ Առաջին բառը գրել մեծատառով։ Լռությամբ true: 
+* `isArmenian` - Ոչ պարտադիր։ Լռությամբ true: Տեքստը վերադարձնել հայերեն։ false արժեքի դեպքում տեքստը կարտացոլվի անգլերեն լեզվով։ 
+* `isUnicode` - Ոչ պարտադիր։ Վերադարձնել Unicode կոդավորմամբ։ Լռությամբ true:
 
 **Օրինակ**
 ```c#
-// Բերված օրինակում st փոփոխականի արժեքը կլինի՝ "             1,500.3"
-decimal amount = 1500.266m;
-string st = proxyService.CurrencyFormat(amount, precision:1);
+// Օրինակում վերադարձվում է գումարը բառերով անգլերեն ANSI կոդավորմամբ։
+string sumInW = await proxyService.SumInWordsAsync(15.66m, "Dram", "Luma", isArmenian: false, isUnicode: false);
 ```
 
-### FormatToPrint
+### TreeElProp
 ---
 ```c#
-public string FormatToPrint(decimal value)
+public Task<TreeElement> TreeElProp(string treeId, string key, bool useCache = true)
 ```
-Վերադարձնում է տասնորդական թվի, տպելու համար նախատեսված, ֆորմատավորված տող։
+
+Վերադարձնում է սահմանված կոդով, ծառ-տեղեկատուի հանգույցի օբյեկտը։ 
 
 **Պարամետրեր**
 
-* `value` - Պարտադիր։ Տասնորդական թիվ, որի համար ձևավորվում է ֆորմատավորված տող։
+* `treeId`- Պարտադիր։ Ծառի ներքին անվանումը։
+* `key` - Պարտադիր։ Հանգույցի կոդը։
+* `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true:
 
 **Օրինակ**
 ```c#
-// st փոփոխականի արժեքը կլինի՝ "1,500.266"
-decimal amount = 1500.266m;
-string st = proxyService.FormatToPrint(amount);
+// Բերված օրինակում ստանում ենք մարզերի տեղեկատուի 001 կոդով հանգույցի անվանումը օգտագործելով քեշավորված տվյալները։  
+string DistrName = (await proxyService.TreeElProp("LRDistr", "001")).Comment;
+```
+
+### TreeElPropComment TreeElPropEComment
+---
+```c#
+public async Task<string> TreeElPropComment(string treeId, string key, bool useCache = true)
+```
+
+Վերադարձնում է սահմանված կոդով, ծառ-տեղեկատուի հանգույցի հայերեն իսկ TreeElPropEComment ֆունկցիայի դեպքում անգլերեն անվանումը։ 
+
+**Պարամետրեր**
+
+* `treeId`- Պարտադիր։ Ծառի ներքին անվանումը։
+* `key` - Պարտադիր։ Հանգույցի կոդը։
+* `useCache` = Ոչ պարտադիր։ Վերադարձնել քեշավորված արժեքը։ Լռությամբ՝ true: Լռությամբ քեշի թարմացումը տեղի է ունենում 10 րոպեն մեկ, սակայն այդ ժամանակահատվածը հնարավոր է փոփոխել խմբագրելով appsettings.json ֆայլը (CacheRefreshPeriods պարամետր)։ false արժեքի դեպքում տվյալները կվերցվեն տվյալների բազայից։
+
+**Օրինակ**
+```c#
+// Ստանում ենք "Մարզեր" ծառ-տեղեկատուի 002 հանգույցի հայերեն և անգլերեն անվանումները։
+
+string marz = await proxyService.TreeElPropComment("LRDistr", "002");
+string marzEng = await proxyService.TreeElPropEComment("LRDistr", "002");
 ```
 
 ### TryAddAtomicAsync TryAddAtomic
@@ -1759,385 +2128,90 @@ TryAddAtomic ֆունկցիան օգտագործվում է այն դեպքու�
 }
 ```
 
-### InList
+### Udf
 ---
 ```c#
-public static bool InList(string sValue, params string[] lValues)
-public static bool InList(string sValue, IEnumerable<string> lValues)
+public decimal Udf(string codeForm, params object[] @params)
 ```
 
-Ստուգում է ենթատողի առկայությունը տողի / տողերի կամ որևէ կոլեկցիայի մեջ։
+Հաշվարկում է օգտագործողի կողմից նկարագրված բանաձևը։ Մեթոդը հնարավոր է օգտագործել միայն այն դեպքում երբ բանաձևը վերադարձնում է decimal տիպի թիվ։
 
 **Պարամետրեր**
 
-* `sValue` - Պարտադիր։ Փնտրվող ենթատող։
-* `lValues` - Պարտադիր։ Տող / տողեր, զանգված կամ այլ տեսակի կոլեկցիա, որտեղ փնտրվում է ենթատողը։
+* `codeForm`- Պարտադիր։ բանաձևի կոդը։
+* `params object[] @params` - Պարտադիր։ Օգտոգործողի կողմից նկարագրվող բանաձևի բոլոր պարամետրերի արժեքները։
 
 **Օրինակ**
 ```c#
-bool abcExist = UserProxyService.InList("abc", "ab", "cd", "abc");
-bool abcExist = UserProxyService.InList("abc", ["ab", "cd", "abc"]);
+/* Բերված օրինակում հաշվարկվում է AvRem բանաձևը, որը վերադարձնում է 01 տիպի 006 Նշում ունեցող հաշիվների միջին մնացորդը 
+01/07/24-31/07/24 ժամանակահատվածի համար։ */
+decimal agrs = proxyService.Udf("AvRem", DateTime.Parse("2024-07-01"), DateTime.Parse("2024-07-31"),  "01", "006"); 
 ```
 
-### GetBranchParam
+## WEEK_BEGIN
 ---
 ```c#
-public Task<string> GetBranchParam(string paramCode, string branchCode = "")
+public DateTime WEEK_BEGIN(object parDate = null)
 ```
-Գրասենյակի կոդը փոխանցված լինելու դեպքում վերադարձնում է սահմանված կոդով գրասենյակի փաստաթղթի (ACSBRANCH տեսակի փաստաթուղթ) դաշտի արժեքը։ Փոխանցված չլինելու դեպքում կվերադարձվի առաջին պարամետրով փոխանցված Գրասենյակ փաստաթղթի դաշտի նույնանուն համակարգային պարամետրերի արժեքը։
+Վերադարձնում է ընթացիկ կամ parDate պարամետրով փոխանցված ամսաթվի շաբաթվա առաջին օրվա ամսաթիվը։
 
 **Պարամետրեր**
 
-* `paramCode` - Պարտադիր։ Գրասենյակ փաստաթղթի դաշտի ներքին անվանում կամ նույնանուն համակարգային պարամետրի կոդ։
-* `branchCode` - Ոչ պարտադիր։ Գրասենյակի կոդը՝ համապատասխանում է Գրասենյակ տեսակի փաստաթղթի Կոդ դաշտի արժեքին։
+* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել շաբաթվա սկիզվը։
 
 **Օրինակ**
 ```c#
-// Ստանում ենք B01 կոդով գրասենյակի գլխավոր հաշվապահի անունը։ 
-string accountantName = await proxyService.GetBranchParam("CHIEFACCTNT", "B01"); 
-
+// Ստանում ենք ընթացիկ շաբաթվա առաջին օրը։
+DateTime dt = proxyService.WEEK_BEGIN();
 ```
 
-
-### AcName AcEName
+### WEEK_END
 ---
 ```c#
-public async Task<string> AcName(string code)
-public async Task<string> AcEName(string code)
+public DateTime WEEK_END(object parDate = null)
 ```
-Վերադարձնում է փոխանցված հաշվի համարի անվանումը / անգլերեմ անվանումը։
+
+Վերադարձնում է ընթացիկ կամ parDate պարամետրով փոխանցված ամսաթվի շաբաթվա վերջին օրվա ամսաթիվը։
 
 **Պարամետրեր**
 
-* `code` - Պարտադիր։ Հաշվի համար։
+* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել շաբաթվա վերջը։
 
 **Օրինակ**
 ```c#
-// Ստանում ենք 004438799 հաշվի անվանումը։ 
-string accName = await proxyService.AcName("004438799"); 
+// Ստանում ենք ընթացիկ շաբաթվա վերջին օրը։
+DateTime dt = proxyService.WEEK_END();
 ```
 
-
-### CliName CliEName
+### WKDATE
 ---
 ```c#
-public async Task<string> CliName(string code)
-public async Task<string> CliEName(string code)
+public DateTime WKDATE()
 ```
-Վերադարձնում է հաճախորդի անվանումը / անգլերեն անվանումը ըստ կոդի։
 
-**Պարամետրեր**
-
-* `code` - Պարտադիր։ Հաճախորդի կոդը։
+Վերադարձնում է ՀԾ-Բանկ համակարգի դրույթներում սահմանված "ընթացիկ օրը"։
 
 **Օրինակ**
 ```c#
-// Ստանում ենք 00006473 կոդով հաճախորդի անվանումը։
-string clName = await proxyService.CliName("00006473");
+DateTime dt = proxyService.WKDATE();
 ```
 
-### GetAccCodeByAgrISN
+### YEAR_BEGIN
 ---
 ```c#
-public Task<string> GetAccCodeByAgrISN(int agrISN, string accName, string agrType = "", string agrRisk = "", bool accFormat = true)
+public DateTime YEAR_BEGIN(object parDate = null)
 ```
-Վերադարձնում է պայմանագրի հաշվապահական հավելվածի համապատասխան դաշտում լրացված հաշվեհամարը, որի ներքին անվանումը փոխանցվում է accName պարամետրի միջոցով։
+Վերադարձնում է parDate պարամետրով փոխանցած կամ ընթացիկ ամսաթվի տարվա սկզբի օրը։
 
 **Պարամետրեր**
 
-* `agrISN` - Պարտադիր։ Պայմանագրի ISN-ը։
-* `accName` - Պարտադիր։ Հաշվապահական հավելվածի համապատասխան դաշտի ներքին անվանումը։
-* `agrType` - Ոչ պարտադիր։ Ենթահամակարգի տեսակ` C, D, M, N, B, Q։ Պարամետրի լրացված լինելու դեպքում հաշվարկը հաշվարկը կկատարվի ավելի արագ։
-* `agrRisk` - Ոչ պարտադիր։ Պայմանագրի ռիսկի դասիչը։ Օգտագործվում է միայն պահուստավորման հետ կապված հաշիվների ստացման համար (Հաշվապաահական հավելվածի "Պահուստավորման հաշիվներ" աղյուսակ)։ 
-* `accFormat` - Ոչ պարտադիր։ true արժեքի դեպքում հետհաշվեկշռային հաշիվները կվերադարձվեն 20 իսկ հաշվեկշռային հաշիվները 11 երկարությամբ։ Եթե հաշվեհամարը ավելի կարճ է բացակայող նիշերը աջից կհամալրվեմ բացատներով։ false արժեքի դեպքում հաշվեհամարները կվերադարձվեն առանց բացատների։
-
-> [!TIP]
-> ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
-<br>
+* `parDate` - Պարտադիր։ Ամսաթիվը, որի դրությամբ պետք է հաշվարկել տարվա սկիզբը։
 
 **Օրինակ**
 ```c#
-// Ստանում ենք 253711148 ISN-ով պայմանագրի տոկոսների հաշվարկման հաշիվը։
-string acc = await proxyService.GetAccCodeByAgrISN(253711148, "ACCAGR","C");
+// Ֆունկցիան կվերադարձնի 01/01/2024 0:00:00 ամսաթիվը։
+DateTime dt = proxyService.YEAR_BEGIN(DateTime.Parse("2024-08-17"));
 ```
-
-
-### GetPerSumPayDate, GetAgrSumPayDate
----
-```c#
-public async Task<DateTime?> GetAgrSumPayDate(bool previous, int agrIsn, DateTime requestDate)
-public async Task<DateTime?> GetPerSumPayDate(bool previous, int agrIsn, DateTime requestDate)
-```
-Ֆունկցիաները վերադարձնում են սահմանված ամսաթվին նախորդող կամ հաջորդող վարկի կամ տոկոսի մարման ամսաթվերը եթե նրանք առկա են։ Ֆունկցիաները հնարավոր է կիրառել միայն գրաֆիկով (Univer) տեսակի պայմանագրերի համար։
-
-**Պարամետրեր**
-
-* `previous` - Պարտադիր։ `true` արժեքի դեպքում կվերադարձվի `requestDate` պարամետրով սահմանված ամսաթվին նախորդող, իսկ `false` արեժքի դեպքում հաջորդող մարման ամսաթիվը։
-* `agrIsn` - Պարտադիր։ Պայմանագրի ISN-ը։
-* `requestDate` - Պարտադիր։ Հարցման ամսաթիվ։
-
-**Օրինակ**
-```c#
-// Օրինակում հաշվարկվում է 1081528567 ISN -ով պայմանագրի 12/03/24-ին հաջորդող վարկի և տոկոսի մարման ամսաթվերը։
-DateTime? dt1 = await proxyService.GetAgrSumPayDate(false, 1081528567, DateTime.Parse("2024-03-12"));
-DateTime? dt2 = await proxyService.GetPerSumPayDate(false, 1081528567, DateTime.Parse("2024-03-12"));
-```
-
-
-### GetCollateralISNsByAgrNum
----
-``` c#
-public Task<List<int>> GetCollateralISNsByAgrNum(string agreemCode, string agreemType)
-```
-Վերադարձնում է տվյալ պայմանագրին կապակցված գրավների ISN-ները (ավանդային գրավի դեպքում վերադարձնում Է N3DepMor պայմանագիրը, ոչ թե ավանդային գրավի ենթապայմանագրերը):
-
-**Պարամետրեր**
-
-* `agreemCode` - Պարտադիր։ Պայմանագրի համարը։
-* `agreemType` - Պարտադիր։ Հնարավոր արժեքներն են "C", "D", "M"(տրամադրված երաշխավորությունների դեպքում) ։
-
-**Օրինակ**
-```c#
-// Ստանում ենք TV-8900 վարկային պայմանագրին կապակցված գրավի և երաշխավորությունների պայմանագրերի ISN-ները:
-List<int> cISNs = await proxyService.GetCollateralISNsByAgrNum("TV-8900", "C");
-```
-### GetLinkedMortSum, GetLinkedGuarSum
----
-```c#
-public async Task<decimal> GetLinkedMortSum(int agrISN, DateTime date, string agrType, string returnCurr)
-public async Task<decimal> GetLinkedGuarSum(int agrISN, DateTime date, string agrType, string returnCurr)
-```
-
-Վերադարձնում է պայմանագրին կապակցված գրավների / երաշխավորությունների ընդհանուր գումարը սահմանված ամսաթվով։
-
-**Պարամետրեր**
-
-* `agrISN` - Պարտադիր։ Պայմանագրի ISN։
-* `date` - Պարտադիր։ Հարցման ամսաթիվ։
-* `agrType` - Պարտադիր։ Առաջին ապարամետրով սահմանված isn ով պայմանագրի Ենթահամակարգի կոդը։ Օրինակ` "C1", "C3": Պարամետրի արժեքը փոխանցվում է արագագործության համար։
-* `returnCurr` - Պարտադիր։ Արժույթի կոդը, որով պետք է արտացոլված լինի վերադարձվող գումարը։ 
-
-**Օրինակ**
-```c#
-/* Օրինակում հաշվակվում են 253711148 isn-ով պայմանագրին կապակցված գրավի և երաշխավությունների
-ընդհանուր գումարները։ Երաշխավորության դեպքում գումարը կարտացոլվի ԱՄՆ դոլարով։ */
-decimal am1 = await proxyService.GetLinkedMortSum(253711148, DateTime.Parse("2024-09-16"), "C1", "000");
-decimal am2 = await proxyService.GetLinkedGuarSum(253711148, DateTime.Parse("2024-09-16"), "C1", "001");
-```
-
-### GetRating
----
-```c#
-public Task<string> GetRating(string clientCode, DateTime dateIn, string operation)
-```
-Վերադարձնում է հաճախորդի համապատասխան վարկանիշը (սահմանվում է Վարկանշման ԱՇՏ-ում) սահմանված ամսաթվով։
-
-**Պարամետրեր**
-
-* `clientCode` - Պարտադիր։ Հաճախորդի կոդը։
-* `dateIn` - Պարտադիր։ Հարցման ամսաթիվը։
-* `operation` - Վարկանիշի կոդը։ Հնարավոր արժեքները թվարկված են ստորև աղյուսակում։
-
-
-Կոդ | Վարկանիշ
--|-
-MDS | Կարճաժամկետ Մուդիզ|
-MDL | Երկարաժամկետ Մուդիզ  |
-SPS | Կարճաժամկետ Ստանդարտ և Փուրզ |
-SPL | Երկարաժամկետ Ստանդարտ և Փուրզ |
-FTS | Կարճաժամկետ Ֆիթչ |
-FTL | Երկարաժամկետ Ֆիթչ |
-CBR | Կենտրոնական Բանկի |
-INR | Բանկի Ներքին|
-   
-**Օրինակ**
-```c#
-// Օրինակում հաշվարկվում է 00007776 կոդով հաճախորդի Կարճաժամկետ Մուդիզ վարկանշի արժեքը 19/09/24 ամսաթվի դրությամբ։ Վերադարձված արժեքը՝ Պ-1։
- 
-string mdsr = await proxyService.GetRating("00007776", DateTime.Parse("2024-09-19"), "MDS");
-```
-
-### GetRatingCode
----
-```c#
-public Task<string> GetRatingCode(string clientCode, DateTime dateIn, string operation)
-```
-
-**Պարամետրեր**
-
-* `clientCode` - Պարտադիր։ Հաճախորդի կոդը։
-* `dateIn` - Պարտադիր։ Հարցման ամսաթիվը։
-* `operation` - Վարկանիշի կոդը։ Հնարավոր արժեքները թվարկված են [GetRating](#GetRating) ֆունկցիայի նկարագրության մեջ։
-
-Վերադարձնում է տվյալ հաճախորդին համապատասխանող վարկանիշին համապատասխանող "Վարկանիշային սիմվոլներ" փաստաթղթի "Դաշտի արժեքը"։
-
-**Օրինակ**
-```c#
-/* Օրինակում հաշվարկվում է 00007776 կոդով հաճախորդի Կարճաժամկետ Մուդիզ վարկանշի արժեքը 19/09/24 ամսաթվի դրությամբ և վերադարձվում է
-համապատասխան "Վարկանիշային սիմվոլներ" փաստաթղթի "Համար" դաշտի արժեքը։ Վերադարձված արժեքը՝ 20։ */
- 
-string mdsr = await proxyService.GetRating("00007776", DateTime.Parse("2024-09-19"), "MDS");
-```
-### ExistsContractByCliISN, ExistsContractByCliCode
----
-```c#
-public bool ExistsContractByCliISN(int cliISN, string contractKey, bool checkClosed = false)
-public async Task<bool> ExistsContractByCliCode(string cliCode, string contractKey, bool checkClosed = false)
-```
-Ստուգվում է սահմանված isn -ով / հաճախորդի կոդով հաճախորդին կից սահմանված տեսակի պայմանագրերի առկայությունը։
-
-**Պարամետրեր**
-
-* `cliISN` /  `cliCode` - Պարտադիր։ Հաճախորդի isn / հաճախորդի կոդ։
-* `contractKey` - Պարտադիր։ Ենթահամակարգի կոդ։
-* `checkClosed` - Ոչ պարտադիր։ Ստուգել փակվածները թե ոչ։
-
-> [!TIP]
-> ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
-<br>
-
-**Օրինակ**
-```c#
-/* Օրինակում agrExist / agrExist2 փոփոխականները կստանան true կամ false արժեքը կապված 898692403 ins-ով / "00101953" կոդով հաճախորդի
-գծով բացված, գործող տրամադրված երաշխավորության պայմանագրերի առկայությունից։ */
-
-bool agrExist = proxyService.ExistsContractByCliISN(898692403, "N2");
-bool agrExist2 = await proxyService.ExistsContractByCliCode("00101953", "N2");     
-```
-
-### GetAgrTypeByISN
----
-```c#
-public string GetAgrTypeByISN(int docISN)
-```
-Վերադարձնում է սահմանված isn -ով պայմանագրի համապատասխան ենթահամակարգերին պատկանելու հայտանիշը։ Օրիանակ՝ C, D, N:  
-
-**Պարամետրեր**
-
-* `docISN` - Պարտադիր։ Պայմանագրի isn:
-
-**Օրինակ**
-```c#
-// Օրինակում agType փոփոխականը կստանա "C" արժեքը քանի որ, 607802582 isn -ով պայմանագիրը հանդիսանում է տեղաբաշխված վարկ։
-string agType = proxyService.GetAgrTypeByISN(607802582);
-```
-
-### GetAllDayAgrJ
----
-```c#
-public Task<short> GetAllDayAgrJ(int agrIsn, DateTime getDate)
-```
-
-Վերադարձնում է պայմանագրի ընդհանուր ժամկետանց օրերի քանակը։
-
-**Պարամետրեր**
-
-* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
-* `getDate` - Պարտադիր։ Հարցման ամսաթիվը:
-
-**Օրինակ**
-```c#
-// Հաշվարկվում է 905721123 պայմանագրի ընդհանուր ժամկետանց օրերի քանակը ընթացիկ ամսաթվի դրությամբ։
-short agrJ = await proxyService.GetAllDayAgrJ(905721123, DateTime.Now);
-```
-
-### GetAllDayJCount
----
-```c#
-public Task<short> GetAllDayJCount(int agrIsn, DateTime repDate)
-```
-Վերադարձնում է տվյալ isn -ով պայմանագրի անընդմեջ ժամկետանց լինելու քանակը։
-
-**Պարամետրեր**
-
-* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
-* `getDate` - Պարտադիր։ Հարցման ամսաթիվը:
-
-**Օրինակ**
-```c#
-// Հաշվարկվում է 905721123 isn-ով պայմանագրի գծով անընդմեջ ժամկետանց լինելու քանակը ընթացիկ ամսաթվի դրությամբ։
-short agrJc = await proxyService.GetAllDayJCount(905721123, DateTime.Now); 
-```
-
-### GetDayAgrJ
----
-```c#
-public async Task<short> GetDayAgrJ(int agrIsn, string agrType, DateTime getDate)
-```
-Վերադարձնում է պայմանագրի մայր-գումարի ժամկետանց օրերի քանակը։
-
-**Պարամետրեր**
-
-* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
-* `agrType` - Պարտադիր։ Պայմանագրի տիպը։ Օրինակ՝ C1Univer, C5Univer, C1Simpl: Դատարկ տող փոխանցելու դեպքում փաստաթղթի տեսակի կորոշվի ավտոմատ։
-* `getDate` - Պարտադիր։ Հարցման ամսաթիվը։
-
-**Օրինակ**  
-```c#
-// Հաշվարկվում է 905721123 isn-ով պայմանագրի գծով մայր-գումարի ժամկետանց օրերի քանակը ընթացիկ ամսաթվի դրությամբ։
-short overdDays = await proxyService.GetDayAgrJ(815929352,"", DateTime.Parse("2024-10-15")); 
-```
-
-### GetDayPerJ
----
-```c#
-public async Task<short> GetDayPerJ(int agrIsn, DateTime getDate)
-```
-Վերադարձնում է պայմանագրի տոկոսների ժամկետանց օրերի քանակը։
-
-**Պարամետրեր**
-
-* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
-* `getDate` - Պարտադիր։ Հարցման ամսաթիվը։
-
-**Օրինակ**
-```c#
-// Հաշվարկվում է 836420323 isn-ով պայմանագրի գծով տոկոսների ժամկետանց օրերի քանակը ընթացիկ ամսաթվի դրությամբ։
-short overdPerDays = await proxyService.GetDayPerJ(836420323, DateTime.Parse("2024-10-15"));
-```
-### MaxOverdueDaysCount
----
-```c#
-public Task<short> MaxOverdueDaysCount(int agrIsn, DateTime dateB, DateTime dateE)
-```
-Վերադարձնում է dateB և dateE պարամետրերով սահմանված ժամանակահատվածում վարկի մայր-գումարի և տոկոսկների առավելագույն ժամկետանց օրերի քանակը։ 
-
-**Պարամետրեր**
-
-* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
-* `dateB` - Պարտադիր։ Ժամանակահատվածի սկիզբ։
-* `dateE` - Պարտադիր։ Ժամանակահատվածի վերջ։
-
-**Օրինակ**
-```c#
-// Հաշվարկվում է 30/08/24 -ից 15/01/25 ժամանակահատվածում 822631021 isn-ով պայմանագրի գծով եղած վարկի կամ տոկոսի առավելագույն ժամկետանց օրերի քանակը։
-short maxOverd = await proxyService.MaxOverdueDaysCount(822631021, DateTime.Parse("2024-08-30"), DateTime.Parse("2025-01-15"));
-```
-
-### GetContractISN
----
-```c#
-public Task<int> GetContractISN(string agrType, string agrCode, string agrLevelCheck = "")
-```
-Վերադարձնում է պայմանագրի isn-ը ըստ պաիմանագրի համարի։
-
-**Պարամետրեր**
-
-* `agrType` - Պարտադիր։ Պայմանագրի տեսակ:
-* `agrCode` - Պարտադիր։ Պայմանագրի N։
-
-> [!TIP]
-> ՀԾ-Բանկ համակարգում ենթահամակարգերի կոդերը հնարավոր է դիտել SubSys ծառում (այն հասանելի է "Ադմինիստրատորի ԱՇՏ 4.0" &#8594; "Համակարգային աշխատանքներ" &#8594; "Համակարգային նկարագրություններ" տեղեկատուի մեջ։ Ծառը դիտելու համար անհրաժեշտ է կոնտեքստային մենյուի մեջ գործարկել "Բացել ծառը" հրամանը)։
-<br>
-
-**Օրինակ**
-```c#
-// Ստանում ենք AS80-001 համարով վարկային պայմանագրի isn-ը։
-int agIsn = await proxyService.GetContractISN("C", "AS80-001", "AGRPARENTS");
-```
-
-### LoadClientDocRO
----
 
 ## YEAR_END
 ---
@@ -2155,104 +2229,6 @@ public DateTime YEAR_END(object parDate = null)
 // Հաշվարկի արդյունքում կստանանք "2021-12-31" ամսաթիվը։
 DateTime yr =  proxyService.YEAR_END(DateTime.Parse("2021-06-23"));
 ```
-
-### CurrencyName
----
-```c#
-public Task<(string amName, string enName)> CurrencyName(string codCurrency)
-```
-Վերադարձնում է փոխանցված կոդով արժույթի հայերեն և անգլերեն անվանումները համապատասխան "Արժույթներ" տեղեկատուի։
-
-**Պարամետրեր**
-
-* `codCurrency` - Պարտադիր։ Արժույթի կոդը։ Օրինակ՝ 001 
-
-**Օրինակ**
-```c#
-/* Ստանում ենք 001 արժույթի հայերեն և անգլերեն անվանումները՝
-curAMD - ԱՄՆ Դոլար
-curUSD - US Dollar */
- 
-(string curAMD, string curUSD) = await proxyService.CurrencyName("001");
-```
-
-### CurrencyISOCode
----
-```c#
-public Task<string> CurrencyISOCode(string codCurrency)
-```
-
-Վերադարձնում է արժույթի ISO կոդը ըստ ՀԾ-Բանկ-ի Արժույթներ տեղեկատուում գրանցված կոդի։
-
-**Պարամետրեր**
-
-* `codCurrency` - Պարտադիր։ Արժույթի կոդը։ Օրինակ՝ 001 
-
-**Օրինակ**
-```c#
-// curISO - փոփոխականը կստանա "USD" արժեքը։
-string curISO = await proxyService.CurrencyISOCode("001");
-```
-
-### GetPerFutur
----
-```c#
-public Task<decimal> GetPerFutur(int agrIsn, DateTime requestDate, string curDefault)
-```
-Վերադարձնում է փոխանցված ամսաթվից մինչև պայմանագրի ավարտը ընկած մարման օրերին մարման ենթակա տոկոսագումարը։ Ֆունկցիան կիրառելի է Univer տեսակի պայմանագրերի համար։
-
-**Պարամետրեր**
-
-* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
-* `requestDate` - Պարտադիր։ Հարցման ամսաթիվ։ Կդիտարկվեն միայն տվյալ ամսաթվին և նրան հաջորդող մարման օրերին վճարվելիք տոկոսագումարները։
-* `curDefault` - Պարտադիր։ Արժույթի կոդը։ Օրինակ՝ 001 
-
-**Օրինակ**
-```c#
-// Հաշվարկվում է 18/11/24-ին և նրան հաջորդող մարման օրերին վճարվելիք ընդհանուր տոկոսագումարը։
-decimal fPer = await proxyService.GetPerFutur(1533697979, DateTime.Parse("2024-11-18"), "000")
-```
-
-### GetFutAgrDbt
----
-```c#
- public Task<decimal> GetFutAgrDbt(int agrIsn, DateTime startDate, DateTime endDate)
-```
-Վերադարձնում է սահմանված ժամանակահատվածում մայր-գումարի վճարվելիք ընդհանուր գումարը։ Կիրառելի է Univer տեսակի պայմանագրերի համար։
-
-**Պարամետրեր**
-
-* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
-* `startDate` - Պարտադիր։ Մարման ժամանակահատվածի սկիզբ։
-* `endDate` - Պարտադիր։ Մարման ժամանակահատվածի վերջ։ 
-
-**Օրինակ**
-```c#
-/* Հաշվարկվում է 1533697979 isn-ով պայմանագրի գծով 17/01/25 -ից մինչև 17/02/25 ժամանակահատվածը վճարվելիք մայր-գումարի ընդհանուր թիվը։ */
-decimal paym = await proxyService.GetFutAgrDbt(1533697979, DateTime.Parse("2025-01-17"),DateTime.Parse("2025-02-17"));
-```
-
-### GetPerSumJ, GetAgrSumJ
----
-```c#
-public Task<(decimal OverduePerSum, decimal NotOverduePerSum)> GetPerSumJ(int agrIsn, DateTime requestDate)
-public Task<(decimal OverduePerSum, decimal NotOverduePerSum)> GetAgrSumJ(int agrIsn, DateTime requestDate)
-```
-OverduePerSum ֆունկցիան վերադարձնում է պայմանագրի սահմանված ամսաթվով ժամկետանց և ժամկետային տոկոսագումարը, իսկ GetAgrSumJ - ը մայր-գումարի ժաակետանց և ժամկետային մասերը։
-
-**Պարամետրեր**
-
-* `agrIsn` - Պարտադիր։ Պայմանագրի isn:
-* `requestDate` - Պարտադիր։ Մնացորդների ամսաթիվը։
-
-**Օրինակ**
-```c#
-// Բերված օրինակներում ovSum փոփոխականը կստանա 1533697979 isn-ով պայմանագրի, 20/02/25-ի դրությամբ, ժամկետանց տոկոսի / մայր-գումարի մնացորդը, իսկ sum-ը ժամկետային։
-
-(decimal ovSum, decimal sum) = await proxyService.GetPerSumJ(1533697979, DateTime.Parse("2025-02-20"));
-(decimal ovSum, decimal sum) = await proxyService.GetAgrSumJ(1533697979, DateTime.Parse("2025-02-20"));
-```
-
 
 
 
