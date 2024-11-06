@@ -9,7 +9,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 * [AcName, AcEName](#AcName-AcEName)
 * [AgrSchedule](#agrschedule)
 * [AsCCur](#AsCCur)
-* [CalculateAtmInd](#calculateatmind)
+* [CalculateAtmInd](#calculateAtmInd)
 * [CalculateOlapFormula](#calculateolapformula)
 * [CliName, CliEName](#CliName-CliEName)
 * [CurrencyFormat](#CurrencyFormat)
