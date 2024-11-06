@@ -514,7 +514,7 @@ public async Task<string> FolderElPropSpec(string folderId, string key, bool noL
 string accDetails = await proxyService.FolderElPropSpec("C.304663812", "1065495882");
 ```
 
-## FormatDDMMYY FormatDDMMYYYY FormatYYYYMMDD
+## FormatDDMMYY, FormatDDMMYYYY, FormatYYYYMMDD
 ---
 ```C#
 public string FormatDDMMYY(DateTime? date)
