@@ -5,7 +5,7 @@ title: "CertificateAuthenticateRequest դաս"
 
 Դասը պարունակում է նույնականացման ենթակա սերտիֆիկատով կլիենտ ծրագրի և օգտագործողի տվյալները։
 
-Օգտագործվում է [AuthenticationClient](../AuthenticationClient.md).[AuthenticateWithCertificateAsync](../AuthenticationClient.md#authenticatewithcertificateasync) մեթոդում։
+Օգտագործվում է [AuthenticationClient](../routes/AuthenticationClient.md).[AuthenticateWithCertificateAsync](../routes/AuthenticationClient.md#authenticatewithcertificateasync) մեթոդում։
 
 ```c#
 public class CertificateAuthenticateRequest

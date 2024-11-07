@@ -5,6 +5,7 @@ title: "AuthenticationClient"
 
 ## Բովանդակություն
 
+- [Բովանդակություն](#բովանդակություն)
 - [Ներածություն](#ներածություն)
 - [Կոնստրուկտոր](#կոնստրուկտոր)
 - [Մեթոդներ](#մեթոդներ)
@@ -41,11 +42,11 @@ public class AuthenticationClient(string baseUrl, HttpClient httpClient, ILogger
 public Task<CertificateAuthenticateResponse> AuthenticateWithCertificateAsync(CertificateAuthenticateRequest certificateAuthenticateRequest, CancellationToken cancellationToken = default)
 ```
 
-Նույնականացնում է սերտիֆիկատով նույնականացված կլիենտ ծրագրի օգտագործողի մուտքը համակարգ։ Նույնականացման հաջողման դեպքում վերադարձնում է [օգտագործողի տվյալները և տոկեն՝ դեպի սերվիս հարցումներ կատարելու համար](types/CertificateAuthenticateResponse.md), հակառակ դեպքում վերադարձնում է սխալ։
+Նույնականացնում է սերտիֆիկատով նույնականացված կլիենտ ծրագրի օգտագործողի մուտքը համակարգ։ Նույնականացման հաջողման դեպքում վերադարձնում է [օգտագործողի տվյալները և տոկեն՝ դեպի սերվիս հարցումներ կատարելու համար](../types/CertificateAuthenticateResponse.md), հակառակ դեպքում վերադարձնում է սխալ։
 
 **Պարամետրեր**
 
-* `certificateAuthenticateRequest` - [Նույնականացման ենթակա օգտագործողի և այն ծրագրի տվյալները, որով օգտագործողը մուտք է գործում համակարգ](types/CertificateAuthenticateRequest.md)։
+* `certificateAuthenticateRequest` - [Նույնականացման ենթակա օգտագործողի և այն ծրագրի տվյալները, որով օգտագործողը մուտք է գործում համակարգ](../types/CertificateAuthenticateRequest.md)։
 * `cancellationToken` - Ընդհատման տոկեն։
 
 ### AuthenticateWithSecretAsync
@@ -54,7 +55,7 @@ public Task<CertificateAuthenticateResponse> AuthenticateWithCertificateAsync(Ce
 public Task<AuthenticateResponse> AuthenticateWithSecretAsync(string username, short apiClientId, string secret, CancellationToken cancellationToken = default)
 ```
 
-Նույնականացնում է բանալիով նույնականացված կլիենտ ծրագրի օգտագործողի մուտքը համակարգ։ Նույնականացման հաջողման դեպքում վերադարձնում է [օգտագործողի տվյալները և տոկեն՝ դեպի սերվիս հարցումներ կատարելու համար](types/AuthenticateResponse.md), հակառակ դեպքում վերադարձնում է սխալ։
+Նույնականացնում է բանալիով նույնականացված կլիենտ ծրագրի օգտագործողի մուտքը համակարգ։ Նույնականացման հաջողման դեպքում վերադարձնում է [օգտագործողի տվյալները և տոկեն՝ դեպի սերվիս հարցումներ կատարելու համար](../types/AuthenticateResponse.md), հակառակ դեպքում վերադարձնում է սխալ։
 
 **Պարամետրեր**
 
