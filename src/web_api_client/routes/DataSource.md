@@ -10,15 +10,13 @@ tags : DS
 - [Հատկություններ](#հատկություններ)
   - [Client](#client)
   - [Definition](#definition)
-  - [DynamicHandler](#dynamichandler)
-  - [ExtenderSchema](#extenderschema)
   - [FetchSize](#fetchsize)
   - [FirstFetchSize](#firstfetchsize)
   - [ShowProgress](#showprogress)
   - [EncodeResultUnicode](#encoderesultunicode)
-  - [ThrowExceptionOnPartialExecution](#throwexceptiononpartialexecution)
 - [Մեթոդներ](#մեթոդներ)
   - [ExecuteAsync](#executeasync)
+  - [LoadDefinitionAsync](#loaddefinitionasync)
   - [LongExecuteAsync](#longexecuteasync)
 
 ## Ներածություն
@@ -102,6 +100,19 @@ public Task<DataSourceResult<R>> ExecuteAsync(P param, HashSet<string> columns =
 * `cancellationToken` - Ընդհատման օբյեկտ:
 * `timeout` - Տվյալների աղբյուրի կատարման հարցման առավելագույն ժամանակը։ Արժեք չփոխանցելու դեպքում հարցման կատարման առավելագույն ժամանակ համարվելու է 180 վրկ (3 ր)։
 
+### LoadDefinitionAsync
+
+```c#
+public async Task LoadDefinitionAsync(string name, CancellationToken cancellationToken = default)
+```
+
+Բեռնում է տվյալների աղբյուրի նկարագրությունը և վերագրում [Definition](#definition) հատկությանը։
+
+**Պարամետրեր**
+
+* `param` - Տվյալների աղբյուրի ներքին անունը։
+* `cancellationToken` - Ընդհատման օբյեկտ:
+
 ### LongExecuteAsync
 
 ```c#
@@ -126,3 +137,42 @@ public Task<DataSourceResult<R>> LongExecuteAsync(P param, HashSet<string> colum
 * `isn` - Sql-based տվյալների աղբյուրում տող ավելացնելու, ջնջելու կամ թարմացնելու դեպքում տվյալների աղբյուրի կատարվելիս փոփոխված տողի isn-ը։
 * `cancellationToken` - Ընդհատման օբյեկտ:
 * `timeout` - Տվյալների աղբյուրի կատարման արդյունքի ստացման հարցման առավելագույն ժամանակը։ Արժեք չփոխանցելու դեպքում հարցման կատարման առավելագույն ժամանակ համարվելու է 180 վրկ (3 ր)։
+
+
+**Օրինակ**
+
+Ներկայացված է օգտագործողի նույնականացման ու տվյալների աղբյուրի կանչի օրինակ կլիենտից։
+
+Օրինակում ներկայացված տվյալների աղբյուրի սերվիսային նկարագրությանը ծանոթանալու համար [տե՛ս](../../server_api/examples/ds/sql_based_code.cs):
+
+```c#
+using var httpClient = new HttpClient();
+var loginService = new LoginService();
+
+// նույնականացնում է 51 id-ով և բանալիով նույնականացվող կլիենտ ծրագրի ANNA մուտքանունով օգտագործողին 
+loginService.Authenticate("https://localhost:5001", httpClient, null, 51, "ErUrTE92n05jT8aD3NqZsyS6m4PjTqHQ7v", "ANNA");
+
+// ստեղծում է DataSource դասի օբյեկտ, Client հատկությանը փոխանցելով ApiClient դասի օբյեկտ:
+// Client հատկության արժեքավորումը պարտադիր է, քանի որ այն նախատեսված է տվյալների աղբյուրի կատարման համար 
+// անհրաժեշտ http հարցումներ կլիենտից սերվիս ուղարկելու համար
+var ds = new DataSource()
+{
+    Client = new ApiClient(loginService, httpClient, null)
+};
+
+//բեռնում է տվյալների աղբյուրի նկարագրությունը՝ ըստ ներքին անվան
+await ds.LoadDefinitionAsync("TreeNode");
+
+// պարամետրերի նկարագրման համար անհրաժեշտ է ստեղծել ParameterCollection դասի օբյեկտ՝
+// Definition հատկությանը պարտադիր փոխանցելով տվյալների աղբյուրի Definition-ի Parameters հատկությունը
+var parameters = new ParameterCollection() { Definition = ds.Definition.Parameters };
+
+// parameters օբյեկտի indexer-ի միջոցով անհրաժեշտ է նշել պարամետրերի արժեքները ՝ 
+// նշելով պարամետրի անունը և փոխանցելով անհրաժեշտ արժեքը։
+// Փոխանցվող արժեքը object տիպի է
+parameters["TreeId"] = "Banks";
+parameters["NodeType"] = "1";
+
+// տվյալների աղբյուրը կատարելու համար անհրաժեշտ է կանչել Execute մեթոդը՝ փոխանցելով պարամետրերը
+ds.Execute(parameters);
+```

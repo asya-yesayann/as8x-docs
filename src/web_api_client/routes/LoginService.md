@@ -128,7 +128,7 @@ public string ServiceAddress { get; private set; }
 public string ConfigurationName { get; private set; }
 ```
 
-Վերադարձնում է այն տվյալների պահոցի կարգավորման անունը, որտեղ ուղղվում են օգտագործողի մուտքի արդյունքում բացված [սեսսիայում](../../server_api/types/SessionInfo.md) կատարվող բոլոր հարցումները։
+Այս հատկության արժեքը ցուցադրվում է 8X-ի Status bar-ում։ Սովորաբար որպես արժեք փոխանցվում է տվյալների պահոցի կոնֆիգուրացիայի անունը (օր. Daily build test_bank):
 
 ### Suid
 
@@ -198,7 +198,7 @@ public Task<Exception> AuthenticateAsync(string serviceAddress, HttpClient httpC
 * `apiClientId` - Կլիենտ ծրագրի id-ն։
 * `username` - Կլիենտ ծրագրի օգտագործողի մուտքանունը, որով նույնականացվում է։
 * `password` - Օգտագործողի գաղտնաբառը։
-* `configurationName` - Տվյալների պահոցի կարգավորման անունը, որտեղ ուղղվելու են օգտագործողի մուտքի արդյունքում բացված [սեսսիայում](../../server_api/types/SessionInfo.md) կատարվող բոլոր հարցումները։
+* `configurationName` - Այս պարամետրի արժեքը փոխանցվում է [ConfigurationName](#configurationname) հատկությանը և ցուցադրվում է 8X-ի Status bar-ում։ Սովորաբար որպես արժեք փոխանցվում է տվյալների պահոցի կոնֆիգուրացիայի անունը (օր. Daily build test_bank):
 * `cancellationToken` - Ընդհատման օբյեկտ։
 
 ### Authenticate
@@ -223,7 +223,7 @@ public Exception Authenticate(string serviceAddress, HttpClient httpClient,
 * `apiClientId` - Կլիենտ ծրագրի id-ն։
 * `username` - Կլիենտ ծրագրի օգտագործողի մուտքանունը, որով նույնականացվում է։
 * `password` - Օգտագործողի գաղտնաբառը։
-* `configurationName` - Տվյալների պահոցի կարգավորման անունը, որտեղ ուղղվելու են օգտագործողի մուտքի արդյունքում բացված [սեսսիայում](../../server_api/types/SessionInfo.md) կատարվող բոլոր հարցումները։
+* `configurationName` - Այս պարամետրի արժեքը փոխանցվում է [ConfigurationName](#configurationname) հատկությանը և ցուցադրվում է 8X-ի Status bar-ում։ Սովորաբար որպես արժեք փոխանցվում է տվյալների պահոցի կոնֆիգուրացիայի անունը (օր. Daily build test_bank):
 
 ### AuthenticateAsync
 
@@ -246,7 +246,7 @@ public Task<Exception> AuthenticateAsync(string serviceAddress, HttpClient httpC
 * `apiClientId` - Կլիենտ ծրագրի id-ն։
 * `secret` - Բանալի, որն օգտագործվում է կլիենտ ծրագրի նույնականացման համար:
 * `username` - Կլիենտ ծրագրի օգտագործողի մուտքանունը, որով նույնականացվում է։
-* `configurationName` - Տվյալների պահոցի կարգավորման անունը, որտեղ ուղղվելու են օգտագործողի մուտքի արդյունքում բացված [սեսսիայում](../../server_api/types/SessionInfo.md) կատարվող բոլոր հարցումները։
+* `configurationName` - Այս պարամետրի արժեքը փոխանցվում է [ConfigurationName](#configurationname) հատկությանը և ցուցադրվում է 8X-ի Status bar-ում։ Սովորաբար որպես արժեք փոխանցվում է տվյալների պահոցի կոնֆիգուրացիայի անունը (օր. Daily build test_bank):
 * `cancellationToken` - Ընդհատման օբյեկտ։
 
 ### Authenticate
@@ -269,7 +269,7 @@ public Exception Authenticate(string serviceAddress, HttpClient httpClient,
 * `apiClientId` - Կլիենտ ծրագրի id-ն։
 * `secret` - Բանալի, որն օգտագործվում է կլիենտ ծրագրի նույնականացման համար:
 * `username` - Կլիենտ ծրագրի օգտագործողի մուտքանունը, որով նույնականացվում է։
-* `configurationName` - Տվյալների պահոցի կարգավորման անունը, որտեղ ուղղվելու են օգտագործողի մուտքի արդյունքում բացված [սեսսիայում](../../server_api/types/SessionInfo.md) կատարվող բոլոր հարցումները։
+* `configurationName` - Այս պարամետրի արժեքը փոխանցվում է [ConfigurationName](#configurationname) հատկությանը և ցուցադրվում է 8X-ի Status bar-ում։ Սովորաբար որպես արժեք փոխանցվում է տվյալների պահոցի կոնֆիգուրացիայի անունը (օր. Daily build test_bank):
 
 ### GetToken
 
