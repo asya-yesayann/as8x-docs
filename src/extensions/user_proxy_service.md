@@ -620,7 +620,7 @@ public Task<int> GetAccountISN(string acc)
 int isn = await proxyService.GetAccountISN("10110050601");
 ```
 
-### GetAgrFactValueDate GetAgrFactValuePercent GetAgrFactValueDecimal GetAgrFactValueString
+### GetAgrFactValueDate, GetAgrFactValuePercent, GetAgrFactValueDecimal, GetAgrFactValueString
 ---
 ```c#
 public Task<DateTime?> GetAgrFactValueDate(int isn, NoRem accType, string accOp, DateTime requestDate, MinMax minMax, bool 
