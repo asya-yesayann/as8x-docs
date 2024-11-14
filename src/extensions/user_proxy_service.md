@@ -8,6 +8,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
 ## Բովանդակություն
 * [Ներածություն][#ներածություն]
 * [Մեթոդներ][#մեթոդներ]
+  
    * [AcName, AcEName](#AcName-AcEName)
    * [AgrSchedule](#agrschedule)
    * [AsCCur](#AsCCur)
