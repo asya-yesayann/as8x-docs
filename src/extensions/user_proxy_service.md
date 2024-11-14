@@ -1549,7 +1549,7 @@ public Task<ClientRO> LoadClientDocRObyISN(int isn)
 public Task<ClientRO> LoadClientDocROByCode(string cliCode)
 ```
 
-Վերադարձնում է հաճախորդի քարտի օբյեկտը քարտի isn-ով, իսկ երկրորդ դեպքում կոդով։ 
+Վերադարձնում են հաճախորդի քարտի օբյեկտը քարտի isn-ով, իսկ երկրորդ դեպքում կոդով։ 
 Ստացված օբյեկտում դաշտերը գրահաս չեն։ 
 
 **Պարամետրեր**
