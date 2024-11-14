@@ -22,7 +22,6 @@ tags : DS
 - [Օրինակ 1](#օրինակ-1)
 - [Օրինակ 2](#օրինակ-2)
 - [Օրինակ 3](#օրինակ-3)
-- [Օրինակ 4](#օրինակ-4)
 
 ## Ներածություն
 
@@ -210,7 +209,7 @@ foreach (var row in dsresult.Rows)
 
 ## Օրինակ 2
 
-Ներկայացված է օգտագործողի նույնականացման ու տվյալների աղբյուրի և իր ընդլայնման կանչի օրինակ կլիենտից։
+Ներկայացված է տվյալների աղբյուրի և իր ընդլայնման կանչի օրինակ կլիենտից։
 
 Այս օրինակում տվյալների աղբյուրը կատարվում է [LongExecuteAsync](#longexecuteasync) մեթոդի միջոցով, քանի որ կատարման ժամանակը մեծ է։
 Տվյալների աղբյուրի պարամետրերը և կատարման արդյունքի սյուները ներկայացված են ոչ տիպիզացված եղանակով՝ համապատասխանաբար `ParameterCollection` և `ExtendableRow` դասերի միջոցով։
@@ -230,7 +229,7 @@ var ds = new DataSource()
 };
 
 //Բեռնում է տվյալների աղբյուրի նկարագրությունը՝ ըստ ներքին անվան։
-await ds.LoadDefinitionAsync("CREATDOC");
+await ds.LoadDefinitionAsync("TreeNode");
 
 // Պարամետրերի նկարագրման համար անհրաժեշտ է ստեղծել ParameterCollection դասի օբյեկտ՝
 // Definition հատկությանը պարտադիր փոխանցելով տվյալների աղբյուրի Definition-ի Parameters հատկությունը։
@@ -239,11 +238,11 @@ var parameters = new ParameterCollection() { Definition = ds.Definition.Paramete
 // parameters օբյեկտի indexer-ի միջոցով անհրաժեշտ է նշել պարամետրերի արժեքները՝ 
 // նշելով պարամետրի անունը և փոխանցելով անհրաժեշտ արժեքը։
 // Փոխանցվող արժեքը object տիպի է։
-parameters["StartDate"] = new DateTime(2024, 01, 01);
-parameters["EndDate"] = new DateTime(2024, 11, 14);
+parameters["TreeId"] = "Banks";
+parameters["NodeType"] = "1";
 
 // Ստանում է տվյալների աղբյուրի նկարագրությունը GetSchema մեթոդի միջոցով՝ փոխանցելով ընդլայնման ներքին անունը։
-var extenderDefinition = apiClient.Extender.GetSchema("CreatDocExtended");
+var extenderDefinition = apiClient.Extender.GetSchema("TreeNodeExtended");
 
 // Տվյալների աղբյուրի օբյեկտի ExtenderSchema հատկությանը փոխանցում է այն ընդլայնման նկարագրությունը,
 // որով  կատարվելու է տվյալների աղբյուրը։
@@ -252,14 +251,14 @@ ds.ExtenderSchema = extenderDefinition;
 // Տվյալների աղբյուրի կատարման համար անհրաժեշտ է կանչել LongExecute մեթոդը՝ պարտադիր փոխանցելով կատարման համար անհրաժեշտ պարամետրերը
 // և վերադարձվող սյուների անունները: Ընդլայնման սյուները վերադարձնելու համար անհրաժեշտ է փոխանցել սյան անունները "Entender_" նախածանցով:
 // Վերադարձվող սյուների անունները չնշելու դեպքում վերադարձվելու են տվյալների աղբյուրի և ընդլայնման բոլոր սյուները։
-var columns = new HashSet<string> { "fNAME", "Extender_Amsativ" }; 
+var columns = new HashSet<string> { "Code", "Extender_Amsativ" }; 
 var dsResult = await ds.LongExecuteAsync(parameters, columns);
 
 // Տվյալների աղբյուրի տողերը ստանալու համար անհրաժեշտ է դիմել կատարման արդյունքի Rows հատկությանը։
 foreach (var row in dsresult.Rows)
 {
     // Տողի սյան արժեքը ստանալու համար անհրաժեշտ է դիմել տողի օբյեկտի indexer-ին՝ փոխանցելով անհրաժեշտ սյան անունը։
-    Debug.WriteLine(row["fNAME"]);
+    Debug.WriteLine(row["Code"]);
 
     // ընդլայնման սյան արժեքը ստանալու անհրաժեշտ է դիմել տողի օբյեկտի indexer-ին՝ փոխանցելով ընդլայնման սյան անունը "Entender_" նախածանցով։
     Debug.WriteLine(row["Extender_Amsativ"]);
@@ -268,7 +267,7 @@ foreach (var row in dsresult.Rows)
 
 ## Օրինակ 3
 
-Ներկայացված է օգտագործողի նույնականացման ու տվյալների աղբյուրի կանչի օրինակ կլիենտից։
+Ներկայացված է տվյալների աղբյուրի կանչի օրինակ կլիենտից։
 
 Այս օրինակում տվյալների աղբյուրը կատարվում է [ExecuteAsync](#executeasync) մեթոդի միջոցով, քանի որ կատարման ժամանակը փոքր է։
 
@@ -341,13 +340,13 @@ foreach (var row in dsresult.Rows)
 
 ## Օրինակ 4
 
-Այս օրինակում ներկայացված է տվյալների աղբյուրի կատարման օրինակ, օգտագործելով տվյալների աղբյուրի նկարագրության քեշավորում, որը հանդիսանում է [Օրինակ 1](#օրինակ-1)-ի ձևափոխված տարբերակը։
+Ներկայացված է տվյալների աղբյուրի կատարման օրինակ՝ օգտագործելով տվյալների աղբյուրի նկարագրության քեշավորում, որը հանդիսանում է [Օրինակ 1](#օրինակ-1)-ի ձևափոխված տարբերակը։
 
 ```c#
 public static class DSDefinitionsCache
 {
     //....
-    private static ConcurrentDictionary<string, DataSourceDefinition> dsDefinitions;
+    private static ConcurrentDictionary<string, DataSourceDefinition> dsDefinitions = new();
     public static async Task<DataSourceDefinition> GetDataSourceDefinition(string name)
     {
         if (dsDefinitions.TryGetValue(name, out var result))
@@ -370,6 +369,7 @@ public static class DSDefinitionsCache
 ```
 
 ```c#
+var apiClient = new ApiClient(this.loginService, this.httpClient, null);
 var definition = await DSDefinitionsCache.GetDataSourceDefinition("TreeNode");
 
 // Ստեղծում է DataSource դասի օբյեկտ, Client հատկությանը փոխանցելով ApiClient դասի օբյեկտ:
@@ -377,7 +377,7 @@ var definition = await DSDefinitionsCache.GetDataSourceDefinition("TreeNode");
 // անհրաժեշտ http հարցումներ կլիենտից սերվիս ուղարկելու համար։
 var ds = new DataSource()
 {
-    Client = new ApiClient(this.loginService, this.httpClient, null),
+    Client = this.apiClient,
     Definition = definition
 };
 
