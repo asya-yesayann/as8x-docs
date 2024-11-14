@@ -22,6 +22,7 @@ tags : DS
 - [Օրինակ 1](#օրինակ-1)
 - [Օրինակ 2](#օրինակ-2)
 - [Օրինակ 3](#օրինակ-3)
+- [Օրինակ 4](#օրինակ-4)
 
 ## Ներածություն
 
@@ -338,3 +339,67 @@ foreach (var row in dsresult.Rows)
 }
 ```
 
+## Օրինակ 4
+
+Այս օրինակում ներկայացված է տվյալների աղբյուրի կատարման օրինակ, օգտագործելով տվյալների աղբյուրի նկարագրության քեշավորում, որը հանդիսանում է [Օրինակ 1](#օրինակ-1)-ի ձևափոխված տարբերակը։
+
+```c#
+public static class DSDefinitionsCache
+{
+    //....
+    private static ConcurrentDictionary<string, DataSourceDefinition> dsDefinitions;
+    public static async Task<DataSourceDefinition> GetDataSourceDefinition(string name)
+    {
+        if (dsDefinitions.TryGetValue(name, out var result))
+        {
+            return result;
+        }
+        else
+        {
+            var ds = new DataSource()
+            {
+                Client = this.apiClient
+            };
+            await ds.LoadDefinitionAsync(name);
+            dsDefinitions.TryAdd(name, ds.Definition);
+            return dsDefinitions[name];
+        }
+    }
+    //...
+}
+```
+
+```c#
+var definition = await DSDefinitionsCache.GetDataSourceDefinition("TreeNode");
+
+// Ստեղծում է DataSource դասի օբյեկտ, Client հատկությանը փոխանցելով ApiClient դասի օբյեկտ:
+// Client հատկության արժեքավորումը պարտադիր է, քանի որ այն նախատեսված է տվյալների աղբյուրի կատարման համար 
+// անհրաժեշտ http հարցումներ կլիենտից սերվիս ուղարկելու համար։
+var ds = new DataSource()
+{
+    Client = new ApiClient(this.loginService, this.httpClient, null),
+    Definition = definition
+};
+
+// Պարամետրերի նկարագրման համար անհրաժեշտ է ստեղծել ParameterCollection դասի օբյեկտ՝
+// Definition հատկությանը պարտադիր փոխանցելով տվյալների աղբյուրի Definition-ի Parameters հատկությունը։
+var parameters = new ParameterCollection() { Definition = ds.Definition.Parameters };
+
+// parameters օբյեկտի indexer-ի միջոցով անհրաժեշտ է նշել պարամետրերի արժեքները՝ 
+// նշելով պարամետրի անունը և փոխանցելով անհրաժեշտ արժեքը։
+// Փոխանցվող արժեքը object տիպի է։
+parameters["TreeId"] = "Banks";
+parameters["NodeType"] = "1";
+
+// Տվյալների աղբյուրը կատարելու համար անհրաժեշտ է կանչել ExecuteAsync մեթոդը՝ պարտադիր փոխանցելով պարամետրերը։
+// Քանի որ վերադարձվող սյուների անունները որպես պարամետր փոխանցված չեն, ապա կատարման արդյունքում կվերադարձվեն բոլոր սյուները։
+var dsResult = await ds.ExecuteAsync(parameters);
+
+// Տվյալների աղբյուրի տողերը ստանալու համար անհրաժեշտ է դիմել կատարման արդյունքի Rows հատկությանը։
+foreach (var row in dsresult.Rows)
+{
+    // Տողի սյան արժեքը ստանալու համար անհրաժեշտ է դիմել տողի օբյեկտի indexer-ին՝ փոխանցելով անհրաժեշտ սյան անունը
+    Debug.WriteLine(row["Code"]);
+    Debug.WriteLine(row["Name"]);
+}
+```
