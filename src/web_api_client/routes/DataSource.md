@@ -19,9 +19,6 @@ tags : DS
   - [ExecuteAsync](#executeasync)
   - [LoadDefinitionAsync](#loaddefinitionasync)
   - [LongExecuteAsync](#longexecuteasync)
-- [Օրինակ 1](#օրինակ-1)
-- [Օրինակ 2](#օրինակ-2)
-- [Օրինակ 3](#օրինակ-3)
 
 ## Ներածություն
 
@@ -63,7 +60,7 @@ public ExtenderSchemaEx ExtenderSchema { get; set; }
 ds.ExtenderSchema = apiClient.Extender.GetSchema("CreatDocExtended");
 ```
 
-Օգտագործման օրինակին ծանոթանալու համար [տե՛ս](#օրինակ-2)։
+Օգտագործման օրինակին ծանոթանալու համար [տե՛ս](../examples/DataSource.md#օրինակ-2)։
 
 ### FetchSize
 
@@ -122,6 +119,13 @@ public Task<DataSourceResult<R>> ExecuteAsync(P param, HashSet<string> columns =
 * `cancellationToken` - Ընդհատման օբյեկտ:
 * `timeout` - Տվյալների աղբյուրի կատարման հարցման առավելագույն ժամանակը։ Արժեք չփոխանցելու դեպքում հարցման կատարման առավելագույն ժամանակ համարվելու է 180 վրկ (3 ր)։
 
+Տե՛ս
+
+- [Տվյալների աղբյուրի կլիենտից կանչի օրինակ ոչ տիպիզացված եղանակով](../examples/DataSource.md#օրինակ-1)
+- [Տվյալների աղբյուրի կլիենտից կանչի օրինակ տիպիզացված եղանակով](../examples/DataSource.md#օրինակ-3)
+- [Տվյալների աղբյուրի կլիենտից կանչի օրինակ՝ օգտագործելով քեշավորում](../examples/DataSource.md#օրինակ-4)
+
+
 ### LoadDefinitionAsync
 
 ```c#
@@ -160,246 +164,4 @@ public Task<DataSourceResult<R>> LongExecuteAsync(P param, HashSet<string> colum
 * `cancellationToken` - Ընդհատման օբյեկտ:
 * `timeout` - Տվյալների աղբյուրի կատարման արդյունքի ստացման հարցման առավելագույն ժամանակը։ Արժեք չփոխանցելու դեպքում հարցման կատարման առավելագույն ժամանակ համարվելու է 180 վրկ (3 ր)։
 
-
-## Օրինակ 1
-
-Ներկայացված է օգտագործողի նույնականացման ու տվյալների աղբյուրի կանչի օրինակ կլիենտից։
-Այս օրինակում տվյալների աղբյուրը կատարվում է [ExecuteAsync](#executeasync) մեթոդի միջոցով, քանի որ կատարման ժամանակը փոքր է։
-Տվյալների աղբյուրի պարամետրերը և կատարման արդյունքի սյուները ներկայացված են ոչ տիպիզացված եղանակով՝ համապատասխանաբար `ParameterCollection` և `ExtendableRow` դասերի միջոցով։
-Այս դեպքում պարամետրերի արժեքները փոխանցվում են indexer-ի միջոցով, ինչի պատճառով կոմպիլյացիայի ժամանակ տիպի ստուգում տեղի չի ունենում։
-
-Օրինակում ներկայացված տվյալների աղբյուրի սերվիսային նկարագրությանը ծանոթանալու համար [տե՛ս](../../server_api/examples/ds/sql_based_code.cs):
-
-Տվյալների աղբյուրի կանչի համար անհրաժեշտ է որ լինի նախապես նույնականացված օգտագործող։ Օրինակի համար [տե՛ս](LoginService.md):
-
-```c#
-// Ստեղծում է DataSource դասի օբյեկտ, Client հատկությանը փոխանցելով ApiClient դասի օբյեկտ:
-// Client հատկության արժեքավորումը պարտադիր է, քանի որ այն նախատեսված է տվյալների աղբյուրի կատարման համար 
-// անհրաժեշտ http հարցումներ կլիենտից սերվիս ուղարկելու համար։
-var ds = new DataSource()
-{
-    Client = new ApiClient(this.loginService, this.httpClient, null)
-};
-
-// Բեռնում է տվյալների աղբյուրի նկարագրությունը՝ ըստ ներքին անվան։
-await ds.LoadDefinitionAsync("TreeNode");
-
-// Պարամետրերի նկարագրման համար անհրաժեշտ է ստեղծել ParameterCollection դասի օբյեկտ՝
-// Definition հատկությանը պարտադիր փոխանցելով տվյալների աղբյուրի Definition-ի Parameters հատկությունը։
-var parameters = new ParameterCollection() { Definition = ds.Definition.Parameters };
-
-// parameters օբյեկտի indexer-ի միջոցով անհրաժեշտ է նշել պարամետրերի արժեքները՝ 
-// նշելով պարամետրի անունը և փոխանցելով անհրաժեշտ արժեքը։
-// Փոխանցվող արժեքը object տիպի է։
-parameters["TreeId"] = "Banks";
-parameters["NodeType"] = "1";
-
-// Տվյալների աղբյուրը կատարելու համար անհրաժեշտ է կանչել ExecuteAsync մեթոդը՝ պարտադիր փոխանցելով պարամետրերը։
-// Քանի որ վերադարձվող սյուների անունները որպես պարամետր փոխանցված չեն, ապա կատարման արդյունքում կվերադարձվեն բոլոր սյուները։
-var dsResult = await ds.ExecuteAsync(parameters);
-
-// Տվյալների աղբյուրի տողերը ստանալու համար անհրաժեշտ է դիմել կատարման արդյունքի Rows հատկությանը։
-foreach (var row in dsresult.Rows)
-{
-    // Տողի սյան արժեքը ստանալու համար անհրաժեշտ է դիմել տողի օբյեկտի indexer-ին՝ փոխանցելով անհրաժեշտ սյան անունը
-    Debug.WriteLine(row["Code"]);
-    Debug.WriteLine(row["Name"]);
-}
-```
-
-## Օրինակ 2
-
-Ներկայացված է տվյալների աղբյուրի և իր ընդլայնման կանչի օրինակ կլիենտից։
-
-Այս օրինակում տվյալների աղբյուրը կատարվում է [LongExecuteAsync](#longexecuteasync) մեթոդի միջոցով, քանի որ կատարման ժամանակը մեծ է։
-Տվյալների աղբյուրի պարամետրերը և կատարման արդյունքի սյուները ներկայացված են ոչ տիպիզացված եղանակով՝ համապատասխանաբար `ParameterCollection` և `ExtendableRow` դասերի միջոցով։
-Այս դեպքում պարամետրերի արժեքները փոխանցվում են և սյան արժեքները ստացվում են indexer-ի միջոցով, ինչի պատճառով կոմպիլյացիայի ժամանակ տիպի ստուգում տեղի չի ունենում։
-
-Տվյալների աղբյուրի կանչի համար անհրաժեշտ է, որ լինի նախապես նույնականացված օգտագործող։ Օրինակի համար [տե՛ս](LoginService.md):
-
-```c#
-var apiClient = new ApiClient(this.loginService, this.httpClient, null);
-
-// Ստեղծում է DataSource դասի օբյեկտ, Client հատկությանը փոխանցելով ApiClient դասի օբյեկտ:
-// Client հատկության արժեքավորումը պարտադիր է, քանի որ այն նախատեսված է տվյալների աղբյուրի կատարման համար 
-// անհրաժեշտ http հարցումներ կլիենտից սերվիս ուղարկելու համար։
-var ds = new DataSource()
-{
-    Client = apiClient
-};
-
-//Բեռնում է տվյալների աղբյուրի նկարագրությունը՝ ըստ ներքին անվան։
-await ds.LoadDefinitionAsync("TreeNode");
-
-// Պարամետրերի նկարագրման համար անհրաժեշտ է ստեղծել ParameterCollection դասի օբյեկտ՝
-// Definition հատկությանը պարտադիր փոխանցելով տվյալների աղբյուրի Definition-ի Parameters հատկությունը։
-var parameters = new ParameterCollection() { Definition = ds.Definition.Parameters };
-
-// parameters օբյեկտի indexer-ի միջոցով անհրաժեշտ է նշել պարամետրերի արժեքները՝ 
-// նշելով պարամետրի անունը և փոխանցելով անհրաժեշտ արժեքը։
-// Փոխանցվող արժեքը object տիպի է։
-parameters["TreeId"] = "Banks";
-parameters["NodeType"] = "1";
-
-// Ստանում է տվյալների աղբյուրի նկարագրությունը GetSchema մեթոդի միջոցով՝ փոխանցելով ընդլայնման ներքին անունը։
-var extenderDefinition = apiClient.Extender.GetSchema("TreeNodeExtended");
-
-// Տվյալների աղբյուրի օբյեկտի ExtenderSchema հատկությանը փոխանցում է այն ընդլայնման նկարագրությունը,
-// որով  կատարվելու է տվյալների աղբյուրը։
-ds.ExtenderSchema = extenderDefinition;
-
-// Տվյալների աղբյուրի կատարման համար անհրաժեշտ է կանչել LongExecute մեթոդը՝ պարտադիր փոխանցելով կատարման համար անհրաժեշտ պարամետրերը
-// և վերադարձվող սյուների անունները: Ընդլայնման սյուները վերադարձնելու համար անհրաժեշտ է փոխանցել սյան անունները "Entender_" նախածանցով:
-// Վերադարձվող սյուների անունները չնշելու դեպքում վերադարձվելու են տվյալների աղբյուրի և ընդլայնման բոլոր սյուները։
-var columns = new HashSet<string> { "Code", "Extender_Amsativ" }; 
-var dsResult = await ds.LongExecuteAsync(parameters, columns);
-
-// Տվյալների աղբյուրի տողերը ստանալու համար անհրաժեշտ է դիմել կատարման արդյունքի Rows հատկությանը։
-foreach (var row in dsresult.Rows)
-{
-    // Տողի սյան արժեքը ստանալու համար անհրաժեշտ է դիմել տողի օբյեկտի indexer-ին՝ փոխանցելով անհրաժեշտ սյան անունը։
-    Debug.WriteLine(row["Code"]);
-
-    // ընդլայնման սյան արժեքը ստանալու անհրաժեշտ է դիմել տողի օբյեկտի indexer-ին՝ փոխանցելով ընդլայնման սյան անունը "Entender_" նախածանցով։
-    Debug.WriteLine(row["Extender_Amsativ"]);
-}
-```
-
-## Օրինակ 3
-
-Ներկայացված է տվյալների աղբյուրի կանչի օրինակ կլիենտից։
-
-Այս օրինակում տվյալների աղբյուրը կատարվում է [ExecuteAsync](#executeasync) մեթոդի միջոցով, քանի որ կատարման ժամանակը փոքր է։
-
-Տվյալների աղբյուրի պարամետրերը և կատարման արդյունքի սյուները ներկայացված են տիպիզացված եղանակով՝ այսինքն սահմանված են դասեր տվյալների աղբյուրի պարամետրերի և տողի նկարագրման համար, որոնք ժառանգում են համապատասխանաբար `ParameterCollection` և `ExtendableRow` դասերից։
-
-Այս դեպքում պարամետրերի արժեքները փոխանցվում են դասի հատկությունների միջոցով, հետևաբար կոմպիլյացիայի ժամանակ տիպի ստուգում է տեղի ունենում։
-
-Օրինակում ներկայացված տվյալների աղբյուրի սերվիսային նկարագրությանը ծանոթանալու համար [տե՛ս](../../server_api/examples/ds/sql_based_code.cs):
-
-Տվյալների աղբյուրի կանչի համար անհրաժեշտ է, որ լինի նախապես նույնականացված օգտագործող։ Օրինակի համար [տե՛ս](LoginService.md):
-
-```c#
-public class DataRow : ExtendableRow
-{
-    public string Code { get; set; }
-    public string Name { get; set; }
-}
-
-public class Param : ParameterCollection
-{
-    public string TreeId
-    {
-        get { return (string)base[nameof(this.TreeId)]; }
-        set { base[nameof(this.TreeId)] = value; }
-    }
-    public string NodeType
-    {
-        get { return (string)base[nameof(this.NodeType)]; }
-        set { base[nameof(this.NodeType)] = value; }
-    }
-}
-```
-
-```c#
-var apiClient = new ApiClient(this.loginService, this.httpClient, null);
-
-// Ստեղծում է DataSource դասի օբյեկտ, որը ստանում է պարամետրերը և սյուները նկարագրող տիպիզացված դասերը։
-// DS-ի Client հատկությանը փոխանցում է ApiClient դասի օբյեկտ:
-// Client հատկության արժեքավորումը պարտադիր է, քանի որ այն նախատեսված է տվյալների աղբյուրի կատարման համար 
-// անհրաժեշտ http հարցումներ կլիենտից սերվիս ուղարկելու համար։
-var ds = new DataSource<DataRow, Param>
-{
-    Client = apiClient
-};
-
-// Բեռնում է տվյալների աղբյուրի նկարագրությունը՝ ըստ ներքին անվան։
-await ds.LoadDefinitionAsync("TreeNode");
-
-// Պարամետրերի արժեքավորման համար անհրաժեշտ է պարամետրերը նկարագրող դասի օբյեկտ՝
-// Definition հատկությանը պարտադիր փոխանցելով տվյալների աղբյուրի Definition-ի Parameters հատկությունը և պարամետրերին փոխանցելով անհրաժեշտ արժեքները։
-var parameters = new Param() 
-{ 
-  Definition = ds.Definition.Parameters, 
-  TreeId = "Banks",
-  NodeType = "1"
-};
-
-// Տվյալների աղբյուրը կատարելու համար անհրաժեշտ է կանչել ExecuteAsync մեթոդը՝ պարտադիր փոխանցելով պարամետրերը։
-// Քանի որ վերադարձվող սյուների անունները որպես պարամետր փոխանցված չեն, ապա կատարման արդյունքում կվերադարձվեն բոլոր սյուները։
-var dsResult = await ds.ExecuteAsync(parameters);
-
-// Տվյալների աղբյուրի տողերը ստանալու համար անհրաժեշտ է դիմել կատարման արդյունքի Rows հատկությանը։
-foreach (var row in dsresult.Rows)
-{
-    // Տողի սյան արժեքը ստանալու համար անհրաժեշտ է դիմել տողի օբյեկտի սյան անունով հատկությանը
-    Debug.WriteLine(row.Code);
-    Debug.WriteLine(row.Name);
-}
-```
-
-## Օրինակ 4
-
-Ներկայացված է տվյալների աղբյուրի կատարման օրինակ՝ օգտագործելով տվյալների աղբյուրի նկարագրության քեշավորում, որը հանդիսանում է [Օրինակ 1](#օրինակ-1)-ի ձևափոխված տարբերակը։
-
-```c#
-public static class DSDefinitionsCache
-{
-    //....
-    private static ConcurrentDictionary<string, DataSourceDefinition> dsDefinitions = new();
-    public static async Task<DataSourceDefinition> GetDataSourceDefinition(string name)
-    {
-        if (dsDefinitions.TryGetValue(name, out var result))
-        {
-            return result;
-        }
-        else
-        {
-            var ds = new DataSource()
-            {
-                Client = this.apiClient
-            };
-            await ds.LoadDefinitionAsync(name);
-            dsDefinitions.TryAdd(name, ds.Definition);
-            return dsDefinitions[name];
-        }
-    }
-    //...
-}
-```
-
-```c#
-var apiClient = new ApiClient(this.loginService, this.httpClient, null);
-var definition = await DSDefinitionsCache.GetDataSourceDefinition("TreeNode");
-
-// Ստեղծում է DataSource դասի օբյեկտ, Client հատկությանը փոխանցելով ApiClient դասի օբյեկտ:
-// Client հատկության արժեքավորումը պարտադիր է, քանի որ այն նախատեսված է տվյալների աղբյուրի կատարման համար 
-// անհրաժեշտ http հարցումներ կլիենտից սերվիս ուղարկելու համար։
-var ds = new DataSource()
-{
-    Client = this.apiClient,
-    Definition = definition
-};
-
-// Պարամետրերի նկարագրման համար անհրաժեշտ է ստեղծել ParameterCollection դասի օբյեկտ՝
-// Definition հատկությանը պարտադիր փոխանցելով տվյալների աղբյուրի Definition-ի Parameters հատկությունը։
-var parameters = new ParameterCollection() { Definition = ds.Definition.Parameters };
-
-// parameters օբյեկտի indexer-ի միջոցով անհրաժեշտ է նշել պարամետրերի արժեքները՝ 
-// նշելով պարամետրի անունը և փոխանցելով անհրաժեշտ արժեքը։
-// Փոխանցվող արժեքը object տիպի է։
-parameters["TreeId"] = "Banks";
-parameters["NodeType"] = "1";
-
-// Տվյալների աղբյուրը կատարելու համար անհրաժեշտ է կանչել ExecuteAsync մեթոդը՝ պարտադիր փոխանցելով պարամետրերը։
-// Քանի որ վերադարձվող սյուների անունները որպես պարամետր փոխանցված չեն, ապա կատարման արդյունքում կվերադարձվեն բոլոր սյուները։
-var dsResult = await ds.ExecuteAsync(parameters);
-
-// Տվյալների աղբյուրի տողերը ստանալու համար անհրաժեշտ է դիմել կատարման արդյունքի Rows հատկությանը։
-foreach (var row in dsresult.Rows)
-{
-    // Տողի սյան արժեքը ստանալու համար անհրաժեշտ է դիմել տողի օբյեկտի indexer-ին՝ փոխանցելով անհրաժեշտ սյան անունը
-    Debug.WriteLine(row["Code"]);
-    Debug.WriteLine(row["Name"]);
-}
-```
+Տե՛ս [Տվյալների աղբյուրի և ընդլայնման կլիենտից կանչի օրինակ ոչ տիպիզացված եղանակով](../examples/DataSource.md#օրինակ-2)
