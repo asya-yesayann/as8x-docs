@@ -17,7 +17,7 @@ title: "AuthenticationClient"
 
 Այն անհրաժեշտ է ստեղծել 4X կամ 8X համակարգի UI-ից "**API Client-ներ**" դիտելու ձևից "**Ավելացնել**" կոնտեքստային ֆունկցիայով՝ նշելով կլիենտի վավերականացման եղանակը (սերտիֆիկատով կամ բանալիով) և նկարագրելով Json ֆորմատի **Manifest** ֆայլ, որը սահմանում է կլիենտ ծրագրի իրավասությունները և սահմանափակումները (որ օգտագործողները կարող են մուտք գործել համակարգ, որ տվյալների աղբյուրներին, փաստաթղթերին, DPR-ներին կարող են դիմել ու որ API կանչերը կատարել)։
 
-![api_client_add](../images/api_client_add.png)
+![api_client_add](../../images/api_client_add.png)
 
 Իսկ կլիենտի ծրագրի միջոցով մուտք գործող օգտագործողի նույնականացումը կատարվում է այս դասի մեթոդների միջոցով։
 
@@ -65,25 +65,4 @@ public Task<AuthenticateResponse> AuthenticateWithSecretAsync(string username, s
 
 **Օրինակ**
 
-```c#
-private async Task Authenticate()
-{
-  using var httpClient = new HttpClient();
-  var serviceAdress = "https://services8x/dbank6";
-
-  var secret = "WsAlki3DPVhncIrP0a4r7GhoXAPFvVvFiihP9mOiNhdsgA9azVuZeGCYByRqS7ofJW7HQqswzc0I4dTCt4ycyVLEyuvHmA9U2YscZQvo0cAsvrAf267224JExaYFNRA";
-  var userName = "ADMIN";
-  var clientId = 54;
-
-  // ստեղծում է AuthenticationClient դասի օբյեկտ՝ փոխանցելով սերվիսի հասցեն ու HttpClient դասի օբյեկտ՝ Web API-ին հարցումները ապահովելու համար
-  var client = new AuthenticationClient(httpClient, serviceAdress, null);
-
-  // նույնականացնում է բանալիով կլիենտ ծրագրի օգտագործողին AuthenticateWithSecretAsync մեթոդի միջոցով՝
-  // փոխանցելով օգտագործողի մուտքանունը, կլիենտ ծրագրի id-ն ու բանալին
-  var authenticateResponse = await client.AuthenticateWithSecretAsync(userName, clientId, secret);
-
-  // նույնականացման արդյունքում վերադարձված օբյեկտի Token հատկությունն ենք ստանում, 
-  // որը անհրաժեշտ է կլիենտից սերվիս կատարվող հարցումների նույնականացման համար
-  var token = authenticateResponse.Token;
-}
-```
+Տե՛ս օգտագործման [օրինակը](../examples/AuthenticationClient.md#բանալիով-կլիենտ-ծրագրի-օգտագործողի-նույնականացման-օրինակ)։
