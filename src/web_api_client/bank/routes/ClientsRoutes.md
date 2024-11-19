@@ -27,3 +27,7 @@ public Task<CreatePhysicalClientByFullDataResponse> CreatePhysicalClientByFullDa
 **Պարամետրեր**
 
 * `request` - Ավելացվող հաճախորդի տվյալներ։
+
+**Օրինակ**
+
+Տե՛ս օգտագործման [օրինակը](../examples/ClientsRoutes.md#նոր-ֆիզ-անձ-հաճախորդի-ստեղծման-օրինակ)։
