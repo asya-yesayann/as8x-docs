@@ -59,7 +59,7 @@ foreach (var row in dsresult.Rows)
 
 ## Օրինակ 2
 
-Ներկայացված է օգտագործողի նույնականացման ու տվյալների աղբյուրի և իր ընդլայնման կանչի օրինակ կլիենտից։
+Ներկայացված է տվյալների աղբյուրի և իր ընդլայնման կանչի օրինակ կլիենտից։
 
 Այս օրինակում տվյալների աղբյուրը կատարվում է [LongExecuteAsync](../routes/DataSource.md#longexecuteasync) մեթոդի միջոցով, քանի որ կատարման ժամանակը մեծ է։
 Տվյալների աղբյուրի պարամետրերը և կատարման արդյունքի սյուները ներկայացված են ոչ տիպիզացված եղանակով՝ համապատասխանաբար `ParameterCollection` և `ExtendableRow` դասերի միջոցով։
@@ -92,7 +92,7 @@ parameters["TreeId"] = "Banks";
 parameters["NodeType"] = "1";
 
 // Ստանում է տվյալների աղբյուրի նկարագրությունը GetSchema մեթոդի միջոցով՝ փոխանցելով ընդլայնման ներքին անունը։
-var extenderDefinition = apiClient.Extender.GetSchema("TreeNodeExtended");
+var extenderDefinition = new ExtenderSchemaEx(apiClient.Extender.GetSchema("TreeNodeExtended"));
 
 // Տվյալների աղբյուրի օբյեկտի ExtenderSchema հատկությանը փոխանցում է այն ընդլայնման նկարագրությունը,
 // որով  կատարվելու է տվյալների աղբյուրը։
