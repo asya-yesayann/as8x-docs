@@ -1090,7 +1090,7 @@ decimal fDbt = await proxyService.GetFutPerDbt(605404534, DateTime.Parse("2025-0
 ```c#
 // Հաշվարկվում է 287232600 isn-ով պայմանագրի գծով 25/03/25-17/04/25 ժամանակահատվածում վճարվելիք վարձավճարի գումարը։
 decimal dbt = await proxyService.GetFutServFeeDbt(287232600, DateTime.Parse("2025-03-25"), DateTime.Parse("2025-04-17"));
-՝՝՝
+```
 
 ### GetLinkedMortSum, GetLinkedGuarSum
 ---
