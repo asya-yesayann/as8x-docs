@@ -59,6 +59,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
    * [GetRemHI2](#getremhi2)
    * [GetRemSS](#getremss)
    * [GetSSFactValueDate, GetSSFactValueString, GetSSFactValueInt, GetSSFactValueDecimal, GetSSFactValuePercent, GetSSFactValueStringDecimal](#getssfactvaluedate-getssfactvaluestring-getssfactvalueint-getssfactvaluedecimal-getssfactvaluepercent-getssfactvaluestringdecimal)
+   * [GetSUIDAndDate](#GetSUIDAndDate)
    * [InList](#inlist)
    * [IsIncExpAcc](#isincexpacc)
    * [IsKasAcc](#iskasacc)
@@ -91,6 +92,7 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
    * [TreeElPropComment, TreeElPropEComment](#treeelpropcomment-treeelpropecomment)
    * [TryAddAtomicAsync, TryAddAtomic](#tryaddatomicasync-tryaddatomic)
    * [Udf](#udf)
+   * [UserElProp](#UserElProp)
    * [WEEK_BEGIN](#week_begin)
    * [WEEK_END](#week_end)
    * [WKDATE](#wkdate)
@@ -1387,6 +1389,36 @@ public Task<InterestRate> GetSSFactValuePercent(int isn, NoRem accType, string a
 deciaml perc = (await proxyService.GetSSFactValuePercent(812735354, Subsystems.Enums.Accountings.NoRem.N0, "PAG", DateTime.Parse("2024-08-15"))).Rate;
 ```
 
+### GetSUIDAndDate
+---
+```c#
+public Task<(bool exists, short suid, string dateTime)> GetSUIDAndDate(int isn, int state, bool sort = true)
+```
+Վերադարձնում է փաստաթղթի պատմության մեջ սահմանված վիճակով առաջին կամ վերջին իրադարձության 
+գրանցման ժամանակը և կատարողի կոդը։ Առաջին կամ վերջին իրադարձության ընտրությունը կախված է
+sort պարամետրի արժեքից։
+
+Ֆունկցիան վերադարձնում է tuple երեք արժեքներով՝
+   - **exists** Կախված սահմանված վիճակի առկայությունից փաստաթղթի պատմության մեջ, կստանա true կամ false արժեք։
+   - **suid** Օգտագործողի կոդը, որը կատարել է գործողությունը։ 
+   - **dateTime** Գործողության կատարման օրը և ժամը։
+
+**Պարամետրեր**
+
+* `isn` - Պարտադիր։ Փաստաթղթի isn։
+* `state` - Պարտադիր։ Փաստաթղթի վիճակի համարը։
+* `sort` - Ոչ պարտադիր։ true արժեքի դեպքում կվերադարձվի նշված վիճակով առաջին իրադարձության ժամանակը և    
+           օգտագործողի կոդը, false արժեքի դեպքում՝ վերջին։ 
+
+**Օրինակ**
+```c#
+ /* Ստանում ենք 812735354 isn ով փաստաթղթի 7 վիճակում գրանցված լինելու իրադարձության
+ առկայությունը (exist), նշված վիճակով վերջին իրադարձությունը գրանցած օգտագործղողի կոդը (suid) և 
+ իրադարձության ժամանակը (dateTime)
+ */
+ (bool exist, int suid, string dateTime) = await proxyService.GetSUIDAndDate(812735354, 7, false);
+```
+
 ### InList
 ---
 ```c#
@@ -2231,6 +2263,25 @@ public decimal Udf(string codeForm, params object[] @params)
 /* Բերված օրինակում հաշվարկվում է AvRem բանաձևը, որը վերադարձնում է 01 տիպի 006 Նշում 
 ունեցող հաշիվների միջին մնացորդը 01/07/24-31/07/24 ժամանակահատվածի համար։ */
 decimal agrs = proxyService.Udf("AvRem", DateTime.Parse("2024-07-01"), DateTime.Parse("2024-07-31"),  "01", "006"); 
+```
+
+### UserElProp
+---
+```c#
+public Task<UserDescription> UserElProp(short suid)
+```
+Վերադարձնում է համակարգի օգտագործողի տվյալները պարունակող օբյեկտ ըստ օգտագործողի կոդի։
+
+**Պարամետրեր**
+
+* `suid`- Պարտադիր։ Օգտագործողի կոդ։
+
+**Օրինակ**
+```c#
+//Բերված օրինակում ստանում ենք 139 կոդով օգտագործողի լրիվ անվանունը և նկարագրությունը։
+ArmSoft.AS8X.Models.User.UserDescription user = await proxyService.UserElProp(139);
+string desc = user.Description;
+string fullName = user.FullName;
 ```
 
 ## WEEK_BEGIN
