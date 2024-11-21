@@ -188,6 +188,7 @@ public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, Sch
 - `isn` - Պարտադիր։ Փաստաթղթի isn։
 - `requestDate` -Պարտադիր։ Ամսաթիվ, որի դրությամբ պահանջվում է ստանալ ընթացիկ գրաֆիկը 
 - `valueType` - Պարտադիր։ Հնարավոր արժեքներն են՝
+  
     ``` c#
       public enum ScheduleValueType : short
       {
@@ -200,9 +201,10 @@ public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, Sch
           Lim = 6, // սահմանաչափի գրաֆիկ
           Dis = 8 զեղչատոկոսի գրաֆիկ  
       }
+    ```
 
 - `schKind` - Ոչ պարտադիր։ Հնարավոր արժեքներն են՝
-     ``` c#
+    ``` c#
           public enum ScheduleBasis : short
           {
               Any = -2, // Կամայական: Լռությամբ արժեք։ 
@@ -227,7 +229,7 @@ public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, Sch
               EmergIntProlong = 22 // Տոկոսների արտակարգ երկարաձգում
           }   
           
-          ```
+     ```
 
 **Օրինակ**
 ``` c#
