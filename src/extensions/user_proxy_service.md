@@ -204,32 +204,32 @@ public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, Sch
 ```
 
 - `schKind` - Ոչ պարտադիր։ Հնարավոր արժեքներն են՝
-``` c#
-      public enum ScheduleBasis : short
-      {
-          Any = -2, // Կամայական: Լռությամբ արժեք։ 
-          AnySchRevision = -1,   // Կամայական վերանայում  0, 9, 10, 11, 12, 13, 14, 15
-          RevisionProl = 0, // Վերանայում (Համարելով երկարաձգված)
-          RevisionNotProl = 9, // Վերանայում (Չհամարելով երկարաձգված)
-          RevisionProlNotLR = 10, // Վերանայում (Չհամարելով երկարաձգված միայն ՎՌ-ում)
-          RevDisbNotProl = 13, // Վերանայումով տրամադրում (Համարելով երկարաձգված)
-          RevDisbProl = 14, // Վերանայումով տրամադրում (Չհամարելով երկարաձգված)
-          RevDisbProlNotLR = 15, // Վերանայումով տրամադրում (Չհամարելով երկարաձգված միայն ՎՌ-ում)
-          InterestRate = 1, // Տոկոսադրույքի փոփոխություն
-          Repayment = 2,   // Մարում
-          Disbursement = 3, // Տրամադրում
-          InterestAdjustment = 4, // Տոկոսագումարի ճշգրտում
-          SecurityOut = 5,   // Արժեթղթի ելք
-          SecurityIn = 6,   // Արժեթղթի մուտք
-          InterestAccum = 7, // Տոկոսների հաշվարկում
-          LimitSchRevision = 11, // Սահմանաչափի գրաֆիկի վերանայում
-          WorkingDayChange = 12, // Ոչ աշխատանքային օրերի փոփոխում
-          IntAccumStartDate = 16, // Տոկոսների հաշվարկման սկզբի ամսաթիվ
-          EndOfLease = 17, // Վարձակալության ավարտ
-          EmergIntProlong = 22 // Տոկոսների արտակարգ երկարաձգում
-      }   
-      
- ```
+
+```c#
+  public enum ScheduleBasis : short
+  {
+      Any = -2, // Կամայական: Լռությամբ արժեք։ 
+      AnySchRevision = -1,   // Կամայական վերանայում  0, 9, 10, 11, 12, 13, 14, 15
+      RevisionProl = 0, // Վերանայում (Համարելով երկարաձգված)
+      RevisionNotProl = 9, // Վերանայում (Չհամարելով երկարաձգված)
+      RevisionProlNotLR = 10, // Վերանայում (Չհամարելով երկարաձգված միայն ՎՌ-ում)
+      RevDisbNotProl = 13, // Վերանայումով տրամադրում (Համարելով երկարաձգված)
+      RevDisbProl = 14, // Վերանայումով տրամադրում (Չհամարելով երկարաձգված)
+      RevDisbProlNotLR = 15, // Վերանայումով տրամադրում (Չհամարելով երկարաձգված միայն ՎՌ-ում)
+      InterestRate = 1, // Տոկոսադրույքի փոփոխություն
+      Repayment = 2,   // Մարում
+      Disbursement = 3, // Տրամադրում
+      InterestAdjustment = 4, // Տոկոսագումարի ճշգրտում
+      SecurityOut = 5,   // Արժեթղթի ելք
+      SecurityIn = 6,   // Արժեթղթի մուտք
+      InterestAccum = 7, // Տոկոսների հաշվարկում
+      LimitSchRevision = 11, // Սահմանաչափի գրաֆիկի վերանայում
+      WorkingDayChange = 12, // Ոչ աշխատանքային օրերի փոփոխում
+      IntAccumStartDate = 16, // Տոկոսների հաշվարկման սկզբի ամսաթիվ
+      EndOfLease = 17, // Վարձակալության ավարտ
+      EmergIntProlong = 22 // Տոկոսների արտակարգ երկարաձգում
+  }   
+```
 
 **Օրինակ**
 ``` c#
