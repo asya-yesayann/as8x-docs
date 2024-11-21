@@ -199,7 +199,7 @@ public Task<List<AgrScheduleRow>> AgrSchedule(int isn, DateTime requestDate, Sch
           ServFee = 7, // վարձավճարի գրաֆիկ
           ServFeeProl = 27, // երկարաձգված վարձավճարի գրաֆիկ
           Lim = 6, // սահմանաչափի գրաֆիկ
-          Dis = 8 զեղչատոկոսի գրաֆիկ  
+          Dis = 8 // զեղչատոկոսի գրաֆիկ  
       }
     ```
 
