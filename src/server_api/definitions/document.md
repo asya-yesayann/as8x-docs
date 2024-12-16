@@ -27,6 +27,7 @@ tags: [Doc, Document, AsDoc]
   - [GridsLoading](#gridsloading)
   - [IsCancellationSupported](#iscancellationsupported)
   - [IsLogged](#islogged)
+  - [indexer](#indexer)
   - [InitialSnapshot](#initialsnapshot)
   - [ISN](#isn)
   - [IsNew](#isnew)
@@ -58,6 +59,7 @@ tags: [Doc, Document, AsDoc]
   - [Body](#body)
   - [BuildEmbeddedUIRequest](#buildembeddeduirequest)
   - [DefaultComment](#defaultcomment)
+  - [DefineLimits](#definelimits)
   - [Delete](#delete)
   - [DeserializeComplexObjects](#deserializecomplexobjects)
   - [ExistsGrid](#existsgrid)
@@ -157,7 +159,8 @@ public CancellationToken CancellationToken { get; internal set; }
 ```
 
 Փաստաթղթի գրանցման ժամանակ դադարեցման տոկեն։ 
-Փաստաթղթի գրանցման ժամանակ կանչվող մեթոդներում ([Validate](#validate), [Action](#action)...) տալիս է հնարավորություն ստուգելու արդյոք UI-ում փաստաթղթի գրանցումը դադարեցնել կոճակի միջոցով ընդատված է, թե ոչ։
+
+Փաստաթղթի գրանցման ժամանակ կանչվող մեթոդներում ([Validate](#validate), [Action](#action)...) տալիս է հնարավորություն ստուգելու արդյոք UI-ում փաստաթղթի գրանցումը ընդատված է "Դադարեցնել" կոճակի միջոցով , թե ոչ։
 
 ### CopiedFrom
 
@@ -189,7 +192,7 @@ public DateTime CreationDate { get; internal set; }
 public DocumentDescription Description { get; internal set; }
 ```
 
-Վերադարձնում է փաստաթղթի նկարագրությունը։
+Վերադարձնում է փաստաթղթի նկարագրությունը, որը պարունակում է փաստաթղթի աղյուսակների, դաշտերի, մեմոների, նկարների հատկությունները։
 
 ### DocumentChangeRequest
 
@@ -197,7 +200,7 @@ public DocumentDescription Description { get; internal set; }
 public DocumentChangeRequest DocumentChangeRequest { get; internal set; }
 ```
 
-Վերադարձնում է փաստաթղթի փոփոխման հայտը գրանցման իրադարձություններում (Validate, Action), երբ փոփոխման հայտը հաստատվում է։ 
+Վերադարձնում է փաստաթղթի փոփոխման հայտը գրանցման իրադարձություններում ([Validate](#validate), [Action](#action)), երբ փոփոխման հայտը հաստատվում է։ 
 
 ### DocumentLog
 
@@ -205,7 +208,7 @@ public DocumentChangeRequest DocumentChangeRequest { get; internal set; }
 public DocumentLog DocumentLog { get; internal set; } = new DocumentLog();
 ```
 
-Նախատեսված է փաստաթղթի լոգերի ժամանակավոր պահպանման համար, որոնք գրանցվում են [փաստաթղթի պատմությունում](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocLog.html) փաստաթղթի գրանցման ժամանակ։
+Նախատեսված է փաստաթղթի լոգերի ժամանակավոր պահպանման համար, որոնք գրանցվում են [փաստաթղթի պատմությունում](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocLog.html) փաստաթղթի [գրանցման](#store) ժամանակ։
 
 ### Deleting
 
@@ -213,7 +216,7 @@ public DocumentLog DocumentLog { get; internal set; } = new DocumentLog();
 public bool Deleting { get; internal set; }
 ```
 
-Ցույց է տալիս, որ փաստաթուղթը հեռացման ընթացքում է [IDocumentService](../services/IDocumentService.md) դասի [Delete](../services/IDocumentService.md#delete), [DeleteAll](../services/IDocumentService.md#delete) մեթոդների միջոցով։
+Ցույց է տալիս, արդյոք փաստաթուղթը հեռացման ընթացքում է [IDocumentService](../services/IDocumentService.md) դասի [Delete](../services/IDocumentService.md#delete), [DeleteAll](../services/IDocumentService.md#delete) մեթոդների միջոցով։
 
 ### ExistsInDB
 
@@ -229,7 +232,7 @@ public bool ExistsInDB { get; internal set; }
 public IReadOnlyDictionary<string, IGrid> Grids { get; private set; }
 ```
 
-Վերադարձնում է փաստաթղթի աղյուսակների բազմությունը՝ որտեղ բանալին աղյուսակի ներքին անունն է, իսկ արժեքը՝ աղյուսակը IGrid ինտերֆեյսով։
+Վերադարձնում է փաստաթղթի աղյուսակների բազմությունը, որտեղ բանալին աղյուսակի ներքին անունն է, իսկ արժեքը՝ աղյուսակը IGrid ինտերֆեյսով։
 
 ### GridsInitialized
 
@@ -237,7 +240,7 @@ public IReadOnlyDictionary<string, IGrid> Grids { get; private set; }
 public bool GridsInitialized { get; protected internal set; }
 ```
 
-Ցույց է տալիս փաստաթղթի աղյուսակների ձևավորված լինելը։ 
+Ցույց է տալիս փաստաթղթի [աղյուսակների ձևավորված լինելը](#initgrids)։ 
 
 ### GridsLoaded
 
@@ -246,7 +249,6 @@ public bool GridsLoaded { get; protected internal set; }
 ```
 
 Ցույց է տալիս փաստաթղթի աղյուսակների բեռնված լինելը։ 
-Փաստաթղթի բեռնման ժամանակ հնարավոր է բեռնել միայն դաշտերը։
 Տե՛ս [IDocumentService](../services/IDocumentService.md).[Load](../services/IDocumentService.md#load)։
 
 ### GridsLoading 
@@ -273,7 +275,19 @@ public virtual bool IsCancellationSupported { get { return true; } }
 public bool IsLogged { get; set; }
 ```
 
-Ցույց է տալիս, թե փաստաթղթի լոգերը գրանցվել են [փաստաթղթի պատմությունում](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocLog.html) [WriteLog](#writelog) մեթոդի միջոցով։
+Ցույց է տալիս, արդյոք փաստաթղթի լոգերը գրանցվել են [փաստաթղթի պատմություն](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocLog.html)-ում [WriteLog](#writelog) մեթոդի միջոցով։
+
+### indexer
+
+```c#
+public object this[string name] { get; set; }
+```
+
+Վերադարձնում կամ նշանակում է փաստաթղթի տրված ներքին անունով դաշտի արժեքը։
+
+**Պարամետրեր**
+
+* `name` - Փաստաթղթի դաշտի ներքին անունը։
 
 ### InitialSnapshot
 
@@ -305,7 +319,7 @@ public bool IsNew { get; internal set; }
 public bool IsUIOrigin
 ```
 
-Ցույց է տալիս փաստաթղթի ֆորման երևում է UI-ում, թե ոչ։
+Ցույց է տալիս փաստաթղթի պատուհանը երևում է UI-ում, թե ոչ։
 
 ### LastFixedState
 
@@ -313,9 +327,7 @@ public bool IsUIOrigin
 public short LastFixedState { get; internal set; } = 0;
 ```
 
-Վերադարձնում է փասթաթղթի տվյալների պահոցում գրանցված վերջին վիճակը։
-
-Ի տարբերություն **LastFixedState** հատկության, [State](#state)  հատկությունը վերադարձնում է փաստաթղթի ընթացիկ վիճակը, որը կարող է նաև տվյալների պահոցում գրանցված չլինել։
+Վերադարձնում է փաստաթղթի տվյալների պահոցում գրանցված վերջին վիճակը։
 
 ### LogTransactions
 
@@ -323,7 +335,7 @@ public short LastFixedState { get; internal set; } = 0;
 public bool LogTransactions { get; set; }
 ``` 
 
-Վերադարձնում կամ նշանակում է փաստաթղթի պատմության մեջ հաշվառումների գրանցման վերաբերյալ ավտոմատ լոգավորում կատարելու հայտանիշը։
+Վերադարձնում կամ նշանակում է [փաստաթղթի պատմության](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocLog.html) մեջ հաշվառումների գրանցման վերաբերյալ ավտոմատ լոգավորում կատարելու հայտանիշը։
 
 ### NestedTransactionReport 
 
@@ -331,7 +343,7 @@ public bool LogTransactions { get; set; }
 public StorageInfo NestedTransactionReport { get; internal set; }
 ```
 
-??
+Վերադարձնում է `DocumentService.NestedTransaction` մեթոդի կատարման արդյունքում առաջացած սխալները պարունակող [TextReport](../types/TextReport.md)-ի տեղակայման թղթապանակի և ֆայլի անունները։
 
 ### Origin
 
@@ -339,7 +351,7 @@ public StorageInfo NestedTransactionReport { get; internal set; }
 public DocumentOrigin Origin { get; internal set; }
 ```
 
-Վերադարձնում է փաստաթուղթը գրանցող [աղբյուրը](../types/DocumentOrigin.md):
+Վերադարձնում է փաստաթուղթը ստեղծման [աղբյուրը](../types/DocumentOrigin.md):
 
 ### Progress 
 
@@ -349,8 +361,9 @@ public DocumentExecutionProgress Progress { get; private set; }
 
 Վերադարձնում է փաստաթղթի կատարման պրոգրեսը։
 
-Այս օբյեկտի միջոցով հնարավոր է կառավարել գրանցման փուլերը, UI-ում ցույց տալ այդ փուլերը և UI-ում ցույց տալ հաղորդագրության պատուհան (MessageBox):
-Տե՛ս [օրինակ](../../extensions/examples/document_extender_country.md)։
+Այս օբյեկտի միջոցով հնարավոր է կառավարել գրանցման փուլերը, UI-ում ցույց տալ այդ փուլերը և UI-ում ցույց տալ հաղորդագրության պատուհան ([MessageBox](../types/UIRequestExecutionProgress.md#messagebox-1)):
+
+Տե՛ս օգտագործման [օրինակը](../types/UIRequestExecutionProgress.md#օրինակ)։
 
 ### Properties
 
@@ -358,7 +371,11 @@ public DocumentExecutionProgress Progress { get; private set; }
 public Dictionary<string, object> Properties { get; set; }
 ```
 
-Վերադարձնում է կամ արժեքավորում է փաստաթղթի հատկությունները։
+Այս հատկությունը օգտագործվում է 8X-ից 4X օբյեկտներ փոխանցելու կամ 4X-ից 8X եկող օբյեկտների պահպանման համար։
+
+4X-ից 8X եկած բարդ օբյեկտները օգտագործելու համար անհրաժեշտ է դրանք բերել c#-ական տիպերի [DeserializeComplexObjects](#deserializecomplexobjects) մեթոդի միջոցով։
+
+8X-ից 4X գնացող բարդ օբյեկտներն էլ անհրաժեշտ է բերել 4X-ի կողմից աջակցվող տիպերի [SerializeComplexObjects](#serializecomplexobjects) մեթոդի միջոցով։
 
 ### ShowProgress
 
@@ -383,6 +400,8 @@ public short State { get; set; }
 ```
 
 Վերադարձնում կամ նշանակում է փաստաթղթի վիճակը:
+
+Ի տարբերություն [LastFixedState](#lastfixedstate) հատկության, [State](#state) հատկությունը վերադարձնում է փաստաթղթի ընթացիկ վիճակը, որը կարող է նաև տվյալների պահոցում գրանցված չլինել։
 
 ### StoreMode
 
@@ -416,7 +435,9 @@ public DocumentSnapshot StoreSnapshot { get; private set; }
 public virtual bool TemplateSubstitutionIsExtended { get; }
 ```
 
-??
+Այս հատկության `true` արժեքի դեպքում փաստաթղթի տպելու ձևանմուշի լրացվող արժեքների հաշվարկի համար անհրաժեշտ է մշակել [TemplateSubstitutionEx](#templatesubstitutionex) մեթոդի միջոցով՝ [TemplateSubstitution](#templatesubstitution)-ի փոխարեն։
+
+Այս մեթոդի մշակման դեպքում տպելու ձևանմուշում արժեքները ավելանում են տիպիզացված ձևով, ոչ թե object տիպով։
 
 ### TimeStamp
 
@@ -431,7 +452,7 @@ public byte[] TimeStamp { get; internal set; }
 ### Action
 
 ```c#
-public virtual Task Action(ActionEventArgs args);
+public virtual Task Action(ActionEventArgs args)
 ```
 
 Մեթոդը կանչվում է միջուկի կողմից [IDocumentService](../services/IDocumentService.md).[Store](../services/IDocumentService.md#store) ֆունկցիայով փաստաթուղթը տվյալների պահոցում գրանցելուց առաջ։
@@ -443,7 +464,7 @@ public virtual Task Action(ActionEventArgs args);
 ### AddParent
 
 ```c#
-public Task AddParent(int isn);
+public Task AddParent(int isn)
 ```
 
 Ավելացնում է տրված isn-ով փաստաթուղթը փաստաթղթի ծնող փաստաթղթերի ցուցակում։
@@ -458,7 +479,7 @@ public Task AddParent(int isn);
 ### AfterCommit
 
 ```c#
-public virtual Task AfterCommit(AfterCommitEventArgs args);
+public virtual Task AfterCommit(AfterCommitEventArgs args)
 ```
 
 Մեթոդը կանչվում է միջուկի կողմից [IDocumentService](../services/IDocumentService.md).[Load](../services/IDocumentService.md#load) ֆունկցիայով փաստաթուղթը տվյալների պահոցից բեռնելուց անմիջապես հետո։
@@ -468,74 +489,78 @@ public virtual Task AfterCommit(AfterCommitEventArgs args);
 ### AfterCreate
 
 ```c#
-public virtual Task AfterCreate(AfterCreateEventArgs args);
+public virtual Task AfterCreate(AfterCreateEventArgs args)
 ```
 
 Մեթոդը կանչվում է միջուկի կողմից [IDocumentService](../services/IDocumentService.md).[Create](../services/IDocumentService.md#create) ֆունկցիայով փաստաթղթի օբյեկտը ստեղծելուց հետո։
 
 Փաստաթղթի ներմուծման ժամանակ մեթոդը չի կանչվում։
 
-Հանդիսանում է 4x համակարգում նկարագրված [AfterCreate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterCreate.html)  իրադարձության համարժեքը:
+Հանդիսանում է 4x համակարգում նկարագրված [AfterCreate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterCreate.html) իրադարձության համարժեքը:
 
 ### AfterLoad
 
 ```c#
-public virtual Task AfterLoad(AfterLoadEventArgs args);
+public virtual Task AfterLoad(AfterLoadEventArgs args)
 ```
 
 Մեթոդը կանչվում է միջուկի կողմից [IDocumentService](../services/IDocumentService.md).[Load](../services/IDocumentService.md#load) ֆունկցիայով փաստաթուղթը տվյալների պահոցից բեռնելուց անմիջապես հետո։
 
 Մեթոդում սովորաբար փաստաթղթի դաշտերին տրվում են ժամանակավոր արժեքներ։
 
-Հանդիսանում է 4x համակարգում նկարագրված [AfterLoad](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterLoad.html)  իրադարձության համարժեքը:
+Հանդիսանում է 4x համակարգում նկարագրված [AfterLoad](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterLoad.html) իրադարձության համարժեքը:
 
 ### ApplySnapshot
 
 ```c#
-public void ApplySnapshot(DocumentSnapshot snapshot);
+public void ApplySnapshot(DocumentSnapshot snapshot)
 ```
 
 `snapshot` պարամետրում եղած փաստաթղթի քեշավորված պատկերի արժեքները վերագրում է փաստաթղթի դաշտերին և աղյուսակներին։
 
+**Պարամետրեր**
+
+* `snapshot` - Փաստաթղթի վրա կիրառվող քեշավորված պատկեր օբյեկտ։
+
 ### BeforeCommit
 
 ```c#
-public virtual Task BeforeCommit(BeforeCommitEventArgs args);
+public virtual Task BeforeCommit(BeforeCommitEventArgs args)
 ```
 
 Մեթոդը կանչվում է միջուկի կողմից [IDocumentService](../services/IDocumentService.md).[Store](../services/IDocumentService.md#store) ֆունկցիայով փաստաթուղթը տվյալների պահոցում գրանցելուց տրանզակցիան փակելուց առաջ։
 
-Մեթոդում իմաստ չունի փոխել փաստաթղթի հատկությունները, գեներացնել հաշվառումները և այլն։
+Մեթոդում իմաստ չունի փոխել փաստաթղթի հատկությունները, գեներացնել հաշվառումները և այլն, քանի որ փաստաթուղթը արդեն գրանցվել է տվյալների պահոցում։
 
-Հանդիսանում է 4x համակարգում նկարագրված [BeforeCommit](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCommit.html)  իրադարձության համարժեքը:
+Հանդիսանում է 4x համակարգում նկարագրված [BeforeCommit](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCommit.html) իրադարձության համարժեքը:
 
 ### BeforeCopy
 
 ```c#
-public virtual Task BeforeCopy(BeforeCopyEventArgs args);
+public virtual Task BeforeCopy(BeforeCopyEventArgs args)
 ```
 
 Մեթոդը կանչվում է միջուկի կողմից [IDocumentService](../services/IDocumentService.md).[Copy](../services/IDocumentService.md#copy) ֆունկցիայով փաստաթղթի պատճեն օբյեկտը ստեղծելուց հետո։
 
-Հանդիսանում է 4x համակարգում նկարագրված [BeforeCopy](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html)  իրադարձության համարժեքը:
+Հանդիսանում է 4x համակարգում նկարագրված [BeforeCopy](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) իրադարձության համարժեքը:
 
 ### BeforeImportProcessing
 
 ```c#
-public virtual Task BeforeImportProcessing(BeforeImportProcessingEventArgs args);
+public virtual Task BeforeImportProcessing(BeforeImportProcessingEventArgs args)
 ```
 
 Մեթոդը կանչվում է միջուկի կողմից փաստաթղթերի ներմուծման ժամանակ փաստաթղթի օբյեկտի ստեղծելուց հետո։
 
-Հանդիսանում է 4x համակարգում նկարագրված [BeforeImport](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeImport.html)  իրադարձության համարժեքը:
+Հանդիսանում է 4x համակարգում նկարագրված [BeforeImport](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeImport.html) իրադարձության համարժեքը:
 
 ### Body
 
 ```c#
-public string Body();
+public string Body()
 ```
 
-Վերադարձնում է փաստաթղթի սերիալիզացված դաշտերի բազմությունը որպես տեքստ, ինչպես գրվում է ներմուծման .as ընդլայնմամբ ֆայլում կամ [DOCS](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Docs.html) աղյուսակի `fBODY` սյունում։
+Վերադարձնում է փաստաթղթի սերիալիզացված դաշտերի բազմությունը որպես տեքստ, ինչպես գրված է ներմուծման .as ընդլայնմամբ ֆայլում կամ [DOCS](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Docs.html) աղյուսակի `fBODY` սյունում։
 
 Ներառված չեն փաստաթղթի աղյուսակները, նկարները և մեծ տեքստային դաշտերը (մեմո)։
 
@@ -545,37 +570,57 @@ public string Body();
 public void BuildEmbeddedUIRequest<T>(T uiRequestExecutionProgress) where T : IUIRequestExecutionProgress;
 ```
 
-Փաստաթղթի UI-ում progress-ով մշակման ժամանակ հաղորդագրության պատուհան (messagebox) ցուցադրելու համար անհրաժոշտ է կանչել այս մեթոդը։
+[DPR](dpr.md)-ում փաստաթղթերի գրանցման/հեռացման ընթացքում առաջացող հաղորդագրությունները UI-ում ցուցադրելու համար անհրաժեշտ է [DPR](dpr.md)-ի [Execute](dpr.md#execute) մեթոդում մինչև փաստաթղթի [Store](../services/IDocumentService.md#store)/[Delete](../services/IDocumentService.md#delete) գործողությունները կանչել BuildEmbeddedUIRequest մեթոդը։
+
+**Պարամետրեր**
+
+* `uiRequestExecutionProgress` - DPR-ի կատարման պրոգրեսը։
 
 ### DefaultComment
 
 ```c#
-public virtual Task DefaultComment(DefaultCommentEventArgs args);
+public virtual Task DefaultComment(DefaultCommentEventArgs args)
 ```
 
 Մեթոդը կանչվում է միջուկի կողմից փաստաթղթի [թղթապանակի տարր](../types/FolderElement.md) ստեղծելուց մեկնաբանություն լրացնելու համար։
 
 Հանդիսանում է 4x համակարգում նկարագրված [DefaultComment](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/DefaultComment.html) իրադարձության համարժեքը:
 
+### DefineLimits
+
+```c#
+public void DefineLimits(string accountingType, int isn, DateTime date, decimal upperLimit, decimal lowerLimit)
+```
+
+Սահմանում է հաշվառման վերին և ստորին սահմանաչափերը։
+
+**Պարամետրեր**
+
+* `accountingType` - Հաշվառման կոդը։
+* `isn` - Հաշվառվող օբյեկտի ներքին նույնականացման համար։
+* `date` - Վերին և ստորին սահմանաչափերի նշանակման ամսաթիվը։
+* `upperLimit` - Սահմանվող վերին սահմանաչափը։
+* `lowerLimit` - Սահմանվող ստորին սահմանաչափը։
+
 ### Delete
 
 ```c#
-public virtual Task Delete(DeleteEventArgs args);
+public virtual Task Delete(DeleteEventArgs args)
 ```
 
 Մեթոդը կանչվում է միջուկի կողմից [IDocumentService](../services/IDocumentService.md).[Delete](../services/IDocumentService.md#delete) ֆունկցիայով փաստաթղթի ջնջելուց առաջ։
 
 Նախատեսված է ջնջելուց առաջ ստուգումներ կատարելու և կապակցված տվյալներ ջնջելու համար։
 
-Հանդիսանում է 4x համակարգում նկարագրված [Delete](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Delete.html)  իրադարձության համարժեքը:
+Հանդիսանում է 4x համակարգում նկարագրված [Delete](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Delete.html) իրադարձության համարժեքը:
 
 ### DeserializeComplexObjects
 
 ```c#
-public virtual Task DeserializeComplexObjects(DeserializeComplexObjectsEventArgs args);
+public virtual Task DeserializeComplexObjects(DeserializeComplexObjectsEventArgs args)
 ```
 
-Մեթոդը անհրաժեշտ է մշակել այն դեպքում, երբ 4X-ական փաստաթղթի `Properties` հատկությունով եկած բարդ օբյեկտները անհրաժեշտ է բերել համապատասխան c#-ական տիպերի 8X-ում։
+Մեթոդը անհրաժեշտ է մշակել այն դեպքում, երբ 4X-ական փաստաթղթի [Properties](#properties) հատկությունով եկած բարդ օբյեկտները անհրաժեշտ է բերել համապատասխան c#-ական տիպերի 8X-ում։
 
 **Օրինակ**
 ```c#
@@ -594,7 +639,7 @@ public override async Task DeserializeComplexObjects(DeserializeComplexObjectsEv
 ### ExistsGrid
 
 ```c#
-public bool ExistsGrid(string grid);
+public bool ExistsGrid(string grid)
 ```
 
 Ստուգում է տրված ներքին անունով աղյուսակի առկայությունը փաստաթղթի նկարագրության մեջ։
@@ -606,7 +651,7 @@ public bool ExistsGrid(string grid);
 ### ExistsRekvizit
 
 ```c#
-public bool ExistsRekvizit(string rekv);
+public bool ExistsRekvizit(string rekv)
 ```
 
 Ստուգում է տրված ներքին անունով դաշտի առկայությունը փաստաթղթի նկարագրության մեջ։
@@ -618,25 +663,26 @@ public bool ExistsRekvizit(string rekv);
 ### Folders
 
 ```c#
-public virtual Task Folders(FoldersEventArgs args);
+public virtual Task Folders(FoldersEventArgs args)
 ```
 
 Մեթոդը կանչվում է միջուկի կողմից [IDocumentService](../services/IDocumentService.md).[Store](../services/IDocumentService.md#store) ֆունկցիայով փաստաթուղթը տվյալների պահոցում գրանցելուց առաջ։
 Կանչվում է նաև փաստաթղթերի ինդեքսավորման ժամանակ։
 
-Թղթապանակների, ծառերի տարրերի ստեղծումը և տվյալների պահոցումը գրանցումը հարկավոր է կատարել այս մեթոդում՝ կանչելով [IDocumentService](../services/IDocumentService.md).[StoreInFolder](../services/IDocumentService.md#storeinfolder) և [IDocumentService](../services/IDocumentService.md).[StoreInTree](../services/IDocumentService.md#storeintree) մեթոդների միջոցով։
+Թղթապանակների, ծառերի տարրերի ստեղծումը և տվյալների պահոցումը գրանցումը հարկավոր է կատարել այս մեթոդում՝ կանչելով համապատասխանաբար [IDocumentService](../services/IDocumentService.md).[StoreInFolder](../services/IDocumentService.md#storeinfolder) և [IDocumentService](../services/IDocumentService.md).[StoreInTree](../services/IDocumentService.md#storeintree) մեթոդները։
 
-Հանդիսանում է 4x համակարգում նկարագրված [Folders](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Folders.html)  իրադարձության համարժեքը:
+Հանդիսանում է 4x համակարգում նկարագրված [Folders](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Folders.html) իրադարձության համարժեքը:
 
 ### GetCheckValue
 
 ```c#
-public bool GetCheckValue(string fieldName);
+public bool GetCheckValue(string fieldName)
 ```
 
-Վերադարձնում է փաստաթղթի նշված ներքին անունով դաշտի ստուգման հայտանիշը: 
+Վերադարձնում է փաստաթղթի նշված ներքին անունով դաշտի տիպի ստուգման հայտանիշը: 
+
 `false` արժեքի դեպքում դաշտի լրացման կամ ցուցադրման ժամանակ չի ստուգվում արժեքի առկայությունը ծառում կամ թղթապանակում։ 
-`true` արժեքի դեպքում դաշտի արժեքը պետք է գոյություն ունենա դաշտի համակարգային տիպում նկարագրված ծառում կամ թղթապանակում։
+`true` արժեքի դեպքում դաշտի արժեքը պետք է գոյություն ունենա դաշտի [համակարգային տիպում](../types/system_types.md) նկարագրված ծառում կամ թղթապանակում։
 
 **Պարամետրեր**
 
@@ -645,7 +691,7 @@ public bool GetCheckValue(string fieldName);
 ### GetFieldType
 
 ```c#
-public FieldType GetFieldType(string fieldName);
+public FieldType GetFieldType(string fieldName)
 ```
 
 Վերադարձնում է փաստաթղթի տրված ներքին անունով դաշտի [համակարգային տիպը](../types/system_types.md)։
@@ -657,54 +703,57 @@ public FieldType GetFieldType(string fieldName);
 ### GetImage
 
 ```c#
-public byte[] GetImage(string name);
+public byte[] GetImage(string name)
 ```
 
 Վերադարձնում է փաստաթղթի տրված ներքին անունով նկար դաշտը՝ որպես byte տիպի զանգված։
 
 **Պարամետրեր**
 
-* `fieldName` - Նկարի ներքին անունը։
+* `name` - Նկարի ներքին անունը։
 
 ### GetMemo
 
 ```c#
-public string GetMemo(string name);
+public string GetMemo(string name)
 ```
 
 Վերադարձնում է փաստաթղթի տրված ներքին անունով մեծ տեքստային դաշտի (մեմոյի) արժեքը։
 
 **Պարամետրեր**
 
-* `fieldName` - Մեմոյի ներքին անունը։
+* `name` - Մեմոյի ներքին անունը։
 
 ### GetNextTrans
 
 ```c#
-public int GetNextTrans();
+public int GetNextTrans()
 ```
 
 Վերադարձնում է փաստաթղթի տրանզակցիայի հերթական նոր համարը։
 
 Մի քանի գրանցվող հաշվառում խմբավորելու համար օգտագործվում է Trans հատկությունը, որին տրվում է մեկ տրանզակցիայի համար։ 
-Նոր համար ստացվում է GetNextTrans ֆունկցիայի միջոցով։ 
+Նոր համար ստացվում է այս ֆունկցիայի միջոցով։ 
 
 ### GetParents
 
 ```c#
-public Task<List<int>> GetParents();
+public Task<List<int>> GetParents()
 ```
 
 Վերադարձնում է փաստաթղթի ծնող փաստաթղթերի isn-ների ցուցակը։ 
 
+Քեշում առկայության դեպքում վերադարձնում է քեշից, հակառակ դեպքում բեռնում տվյալների պահոցից։
+
 ### Grid
 
 ```c#
-public IGrid Grid(string name);
+public IGrid Grid(string name)
 ```
 
 Վերադարձնում է փաստաթղթի տրված ներքին անունով աղյուսակը։
-IGrid-ի տակից կարող է լինել չտիպիզացված աղյուսակ, կամ տիպիզացված աղյուսակ, եթե [CodeGen](../CodeGen/CodeGen.md) գործիքով ձևավորվել են տիպիզացված աղյուսակներ։
+
+IGrid-ի տակից կարող է լինել չտիպիզացված կամ տիպիզացված աղյուսակ` կախված նրանից, թե [CodeGen](../CodeGen/CodeGen.md) գործիքի միջոցով աղյուսակերը ձևավորվել են տիպիզացված թե չտիպիզացված ձևով։
 
 **Պարամետրեր**
 
@@ -713,7 +762,7 @@ IGrid-ի տակից կարող է լինել չտիպիզացված աղյուս
 ### InitGrids
 
 ```c#
-protected void InitGrids();
+protected void InitGrids()
 ```
 
 Ձևավորում է փաստաթղթի աղյուսակները՝ առանց տվյալների բեռնելու։ 
@@ -721,7 +770,7 @@ protected void InitGrids();
 ### DoLoadGrids
 
 ```c#
-protected virtual Task DoLoadGrids(LoadGridsEventArgs args);
+protected virtual Task DoLoadGrids(LoadGridsEventArgs args)
 ```
 
 Մեթոդը կանչվում է միջուկի կողմից [IDocumentService](../services/IDocumentService.md).[Load](../services/IDocumentService.md#load) մեթոդի միջոցով փաստաթուղթը բեռնելիս։
@@ -737,10 +786,10 @@ protected virtual Task DoLoadGrids(LoadGridsEventArgs args);
 ### LoadGrids
 
 ```c#
-public Task LoadGrids(LoadGridsEventArgs args);
+public Task LoadGrids(LoadGridsEventArgs args)
 ```
 
-Բեռնում է փաստաթղթի աղյուսակները, եթե մինչ այդ բեռնված չէին [IDocumentService](../services/IDocumentService.md).[Load](../services/IDocumentService.md#load):
+Բեռնում է փաստաթղթի աղյուսակները, եթե մինչ այդ բեռնված չէին [IDocumentService](../services/IDocumentService.md).[Load](../services/IDocumentService.md#load) մեթդով:
 
 **Պարամետրեր**
 
@@ -749,37 +798,37 @@ public Task LoadGrids(LoadGridsEventArgs args);
 ### LoadImagesAndMemos
 
 ```c#
-public Task LoadImagesAndMemos(ArchiveInfo archiveInfo = null);
+public Task LoadImagesAndMemos(ArchiveInfo archiveInfo = null)
 ```
 
-Բեռնում է փաստաթղթի նկարները և մեծ տեքստային դաշտերը (մեմոներ) տվյալների պահոցից։
+Բեռնում է փաստաթղթի նկարները և մեծ տեքստային դաշտերը (մեմոներ) տվյալների պահոցից` մինչև այս բեռնված չլինելու դեպքում։
 
 **Պարամետրեր**
 
-* `archiveInfo` - ArchiveInfo դասի օբյեկտ, որը պարունակում է արխիվացված փաստաթուղթը պարունակող տվյալների պահոցի անունը և [IDBService](../services/IDBService.md) դասի օբյեկտ՝ այդ պահոցի հետ Sql միացում ապահովելու համար։
+* `archiveInfo` - ArchiveInfo դասի օբյեկտ, որը պարունակում է արխիվացված փաստաթուղթը պարունակող տվյալների պահոցի անունը և [IDBService](../services/IDBService.md) դասի օբյեկտ՝ այդ պահոցի հետ Sql միացում ապահովելու համար։ null արժեքի դեպքում նկարները և մեմոները բեռնում է հիմնական տվյալների պահոցից։
 
 ### LoadParents
 
 ```c#
-public Task LoadParents();
+public Task LoadParents()
 ```
 
-Բեռնում է փաստաթղթի ծնող փաստաթղթերի isn-ների ցուցակը տվյալների պահոցից, անկախ այն բանից մինչև այդ բեռնված էին թե ոչ։
+Բեռնում է փաստաթղթի ծնող փաստաթղթերի isn-ների ցուցակը տվյալների պահոցից` անկախ այն փաստից մինչև այդ բեռնված էին թե ոչ։
 
 ### OnConfirmDocumentChangeRequest
 
 ```c#
-public virtual Task OnConfirmDocumentChangeRequest(ConfirmDocumentChangeRequestEventArgs args);
+public virtual Task OnConfirmDocumentChangeRequest(ConfirmDocumentChangeRequestEventArgs args)
 ```
 
-Մեթոդը կանչվում է միջուկի կողմից փաստաթղթի փոփոխման հայտը `IDocumentChangeRequestService.Reject` մեթոդով հաստատելիս։
+Մեթոդը կանչվում է միջուկի կողմից փաստաթղթի փոփոխման հայտը `IDocumentChangeRequestService.Confirm` մեթոդով հաստատելիս։
 
 Հանդիսանում է 4x համակարգում նկարագրված `ONCONFIRMDCR` իրադարձության համարժեքը:
 
 ### OnRefuse
 
 ```c#
-public virtual Task OnRefuse(RefuseEventArgs args);
+public virtual Task OnRefuse(RefuseEventArgs args)
 ```
 
 Մեթոդը կանչվում է միջուկի կողմից [IDocumentService](../services/IDocumentService.md).[Delete](../services/IDocumentService.md#delete) մեթոդի միջոցով փաստաթղթի ջնջելուց առաջ, եթե մեթոդի `callDelete` պարամետրի արժեքը `false` է։ 
@@ -791,7 +840,7 @@ public virtual Task OnRefuse(RefuseEventArgs args);
 ### OnRejectDocumentChangeRequest
 
 ```c#
-public virtual Task OnRejectDocumentChangeRequest(RejectDocumentChangeRequestEventArgs args);
+public virtual Task OnRejectDocumentChangeRequest(RejectDocumentChangeRequestEventArgs args)
 ```
 
 Մեթոդը կանչվում է միջուկի կողմից փաստաթղթի փոփոխման հայտը `IDocumentChangeRequestService.Reject` մեթոդով մերժելիս։
@@ -801,20 +850,20 @@ public virtual Task OnRejectDocumentChangeRequest(RejectDocumentChangeRequestEve
 ### PostMessage
 
 ```c#
-public virtual Task PostMessage(PostMessageEventArgs args);
+public virtual Task PostMessage(PostMessageEventArgs args)
 ```
 
-Մեթոդը կանչվում է միջուկի կողմից երբ կից փաստաթղթից այս փաստաթղթին ուղարկվում է ծրագրային հաղորդագրություն [SendMessage](#sendmessage) ֆունկցիայի միջոցով, դրանից հետո այս փաստաթուղթը գրանցվում տվյալների պահոցում։
+Մեթոդը կանչվում է միջուկի կողմից, երբ կից փաստաթղթից այս փաստաթղթին ուղարկվում է ծրագրային հաղորդագրություն [SendMessage](#sendmessage) ֆունկցիայի միջոցով, դրանից հետո այս փաստաթուղթը գրանցվում է տվյալների պահոցում։
 
-Հանդիսանում է 4x համակարգում նկարագրված [PostMessage](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/PostMessage.html)  իրադարձության համարժեքը:
+Հանդիսանում է 4x համակարգում նկարագրված [PostMessage](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/PostMessage.html) իրադարձության համարժեքը:
 
 ### RefreshTimeStamp
 
 ```c#
-public Task RefreshTimeStamp();
+public Task RefreshTimeStamp()
 ```
 
-Հիշողության մեջ թարմացնում է փաստաթղթի վերջին փոփոխման ամսաթիվը և ժամանակը՝ [TimeStamp](#timestamp)` բեռնելով այն տվյալների պահոցից։
+Բեռնում է փաստաթղթի վերջին փոփոխման ամսաթիվը/ժամանակը տվյալների պահոցից և այն թարմացնում հիշողության մեջ՝ վերագրելով [TimeStamp](#timestamp) հատկությանը։
 
 ### SendMessage
 
@@ -823,17 +872,19 @@ public Task SendMessage(string message,
                         int isn = -1,
                         string messageForDocLog = "",
                         bool raiseErrorIfDocNotExists = true,
-                        bool raiseErrorIfParentNotExists = true);
+                        bool raiseErrorIfParentNotExists = true)
 ```
 
 Ուղարկում է հաղորդագրություն այլ փաստաթղթի (կամ ծնող փաստաթղթերին) աշխատացնելով [PostMessage](#postmessage) ֆունկցիան:  
-Հաղորդագրություն ստանալուց հետո ստացող փաստաթղթի [պատմության](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocLog.html)  մեջ [գրանցվում է](#writelog) հաղորդագրության տեքստը և ստացող փաստաթուղթը գրանցվում է տվյալների պահոցում [StoreMode](#storemode) հատկությանը տալով `ContinueProcessing` արժեքը։
+Հաղորդագրություն ստանալուց հետո ստացող փաստաթղթի [պատմության](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocLog.html)  
+մեջ [գրանցվում է](#writelog) հաղորդագրության տեքստը և ստացող փաստաթուղթը գրանցվում է տվյալների պահոցում [StoreMode](#storemode) հատկությանը տալով `ContinueProcessing` արժեքը։
 
 **Պարամետրեր**
+
 - `message` - Ուղարկվող հաղորդագրության տեքստը։
 - `isn` - Հաղորդագրությունը ստացող փաստաթղթի ներքին նույնականացման համարը։ 
-  Եթե պարամետրը փոխանցված չէ, ապա հաղորդագրությունը կուղարկվի ընթացիկ փաստաթղթի ծնող փաստաթղթերին, եթե այն առկա են։
-- `messageForDocLog` - Ստացող փաստաթղթի պատմության մեջ գրանցվող տեքստը։ 
+  Եթե պարամետրը փոխանցված չէ, ապա հաղորդագրությունը կուղարկվի ընթացիկ փաստաթղթի ծնող փաստաթղթերին, եթե այդպիսիք առկա են։
+- `messageForDocLog` - Ստացող փաստաթղթի [պատմության](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocLog.html) մեջ գրանցվող տեքստը։ 
   Եթե պարամետրը փոխանցված չէ, ապա պատմության մեջ կգրանցվի `message` պարամետրի արժեքը։
 - `raiseErrorIfDocNotExists` - Ստացող փաստաթղթի բացակայության դեպքում սխալի գեներացում։ 
   Լռությամբ արժեքը **true** է։
@@ -843,28 +894,28 @@ public Task SendMessage(string message,
 ### SerializeComplexObjects
 
 ```c#
-public virtual Task SerializeComplexObjects(SerializeComplexObjectsEventArgs args);
+public virtual Task SerializeComplexObjects(SerializeComplexObjectsEventArgs args)
 ```
 
-Մեթոդը անհրաժեշտ է մշակել այն դեպքում, երբ 8X-ական փաստաթղթի `Properties` հատկությունում եկած բարդ օբյեկտները անհրաժեշտ է բերել 4x-ական տիպերի՝ 4X-ում օգտագործելու համար։
+Մեթոդը անհրաժեշտ է մշակել այն դեպքում, երբ 8X-ական փաստաթղթի [Properties](#properties) հատկությունում եկած բարդ օբյեկտները անհրաժեշտ է բերել 4X-ական տիպերի՝ 4X-ում օգտագործելու համար։
 
 ### SetCheckValue
 
 ```c#
-public void SetCheckValue(string fieldName, bool value);
+public void SetCheckValue(string fieldName, bool value)
 ```
 
-Նշանակում է փաստաթղթի նշված ներքին անունով դաշտի ստուգման հայտանիշը:
+Նշանակում է փաստաթղթի նշված ներքին անունով դաշտի [համակարգային տիպի](../types/system_types.md) ստուգման հայտանիշը:
 
 **Պարամետրեր**
 
 - `fieldName` - Դաշտի ներքին անունը։
-- `value` - Սահմանում է դաշտի համակարգային տիպում նշված ծառում կամ թղթապանակում դաշտի արժեքի առկայությունը։
+- `value` - Սահմանում է դաշտի [համակարգային տիպում](../types/system_types.md) նշված ծառում կամ թղթապանակում դաշտի արժեքի առկայությունը։ `false` արժեքի դեպքում դաշտի լրացման կամ ցուցադրման ժամանակ չի ստուգվելու արժեքի առկայությունը ծառում կամ թղթապանակում, `true` արժեքի դեպքում դաշտի արժեքը պետք է գոյություն ունենա դաշտի [համակարգային տիպում](../types/system_types.md) նկարագրված ծառում կամ թղթապանակում։
 
 ### SetDefaultValuesForFields
 
 ```c#
-public void SetDefaultValuesForFields(IList<string> fields);
+public void SetDefaultValuesForFields(IList<string> fields)
 ```
 
 Վերագրում է լռությամբ արժեքներ փաստաթղթի տրված դաշտերին։
@@ -876,7 +927,7 @@ public void SetDefaultValuesForFields(IList<string> fields);
 ### SetDefaultValuesForFields
 
 ```c#
-public void SetDefaultValuesForFields(params string[] fields);
+public void SetDefaultValuesForFields(params string[] fields)
 ```
 
 Վերագրում է լռությամբ արժեքներ փաստաթղթի տրված դաշտերին։
@@ -888,7 +939,7 @@ public void SetDefaultValuesForFields(params string[] fields);
 ### SetImage
 
 ```c#
-public void SetImage(string name, byte[] value);
+public void SetImage(string name, byte[] value)
 ```
 
 Արժեքավորում է փաստաթղթի տրված ներքին անունով նկար դաշտը։
@@ -901,7 +952,7 @@ public void SetImage(string name, byte[] value);
 ### SetMemo
 
 ```c#
-public void SetMemo(string name, string value);
+public void SetMemo(string name, string value)
 ```
 
 Արժեքավորում է փաստաթղթի տրված ներքին անունով մեծ տեքստային դաշտը (մեմո)։
@@ -914,7 +965,7 @@ public void SetMemo(string name, string value);
 ### Store
 
 ```c#
-public Task Store(DocumentCheckLevel checkLevel = DocumentCheckLevel.None, string logComment = "");
+public Task Store(DocumentCheckLevel checkLevel = DocumentCheckLevel.None, string logComment = "")
 ```
 
 Կատարում է պարտադիր ստուգումներ և գրանցում փաստաթուղթը տվյալների պահոցում։
@@ -922,17 +973,18 @@ public Task Store(DocumentCheckLevel checkLevel = DocumentCheckLevel.None, strin
 **Պարամետրեր**
 
 * `checkLevel` - [Փաստաթղթի գրանցման եղանակ](../types/DocumentCheckLevel.md), որը որոշում է թե ինչ ստանդարտ ստուգումներ և մշակիչներ ([Action](#action), [Validate](#validate)) կարող են անջատվել կամ միացվել փաստաթղթի գրանցման ընթացքում, ինչպես նաև, թե ինչ լրացուցիչ մշակիչներ պետք է գործարկվեն։
-* `logComment` - Փաստաթղթի պատմության մեջ գրվող տեքստը։
+* `logComment` - [Փաստաթղթի պատմության](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocLog.html) մեջ գրվող տեքստը։
 
 ### StoreGrids
 
 ```c#
-public virtual Task StoreGrids(StoreGridsEventArgs args);
+public virtual Task StoreGrids(StoreGridsEventArgs args)
 ```
 
 Մեթոդը կանչվում է միջուկի կողմից փաստաթուղթը [IDocumentService](../services/IDocumentService.md).[Store](../services/IDocumentService.md#store) մեթոդի միջոցով տվյալների պահոցում գրանցելուց։
 
 Մեթոդի գերբեռնումը նախատեսված է փաստաթղթի ցանկալի աղյուսակները DOCSG աղյուսակի մեջ չպահպանելու և այլ տեղերում պահպանելու համար։
+
 Այլ տեղում պահպանված աղյուսակները հարկավոր է ավելացնել `args.IgnoreGrids` ցուցակում։
 
 ```c#
@@ -941,21 +993,22 @@ args.IgnoreGrids.AddRange([Grid("CLIENTS"), Grid("STMDATES")]);
 
 Մշակման դեպքում ծրագրավորողը պետք է ապահովի աղյուսակի ճիշտ բեռնումը մշակելով [DoLoadGrids](#doloadgrids) մեթոդը։
 
-Հանդիսանում է 4x համակարգում նկարագրված [StoreGrid](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/StoreGrid.html)  իրադարձության համարժեքը:
+Հանդիսանում է 4x համակարգում նկարագրված [StoreGrid](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/StoreGrid.html) իրադարձության համարժեքը:
 
 ### StoreValuesHistory
 
 ```c#
-public Task StoreValuesHistory();
+public Task StoreValuesHistory()
 ```
 
 Փաստաթղթի դաշտերի արժեքները գրանցում է տվյալների պահոցի `LASTVALUESGROUP` աղյուսակում։
+
 Օգտագործվում է UI-ում փաստաթղթի պատուհանում նախկին օգտագործված արժեքները առաջարկելու համար։
 
 ### TakeSnapshot
 
 ```c#
-public Task TakeSnapshot(SnapshotContent content, string name, bool overwrite = true);
+public Task TakeSnapshot(SnapshotContent content, string name, bool overwrite = true)
 ```
 
 Քեշավորում և պահպանում է փաստաթղթի պատկերը [Snapshots](#snapshots)-ում։
@@ -963,17 +1016,17 @@ public Task TakeSnapshot(SnapshotContent content, string name, bool overwrite = 
 **Պարամետրեր**
 
 * `content` - Սահմանում է փաստաթղթի քեշավորվող կտորները, որը կարող է ընդունել հետևյալ արժեքները՝
-	* SnapshotContent.None - ոչինչ չի քեշավորվում,
-	* SnapshotContent.Requisites - քեշավորվում են միայն դաշտերը,
-	* SnapshotContent.Grids - քեշավորվում են միայն աղյուսակները,
-	* SnapshotContent.All - քեշավորվում են դաշտերը և աղյուսակները։
+	* **SnapshotContent.None** - ոչինչ չի քեշավորվում,
+	* **SnapshotContent.Requisites** - քեշավորվում են միայն դաշտերը,
+	* **SnapshotContent.Grids** - քեշավորվում են միայն աղյուսակները,
+	* **SnapshotContent.All** - քեշավորվում են դաշտերը և աղյուսակները։
 * `name` - Ստեղծվող քեշավորման օբյեկտի ներքին անուն, որը հանդիսանալու է բանալի [Snapshots](#snapshots)-ում։
-* `overwrite` - Բանալիի կրկնության դեպքում վերարտագրման հայտանիշ։
+* `overwrite` - [Snapshots](#snapshots)-ում բանալիի առկայության դեպքում վերարտագրման հայտանիշ։
 
 ### TemplateSubstitution
 
 ```c#
-public virtual Task<TemplateSubstitution> TemplateSubstitution(Dictionary<string, bool> mode, Dictionary<string, object> parameters = null);
+public virtual Task<TemplateSubstitution> TemplateSubstitution(Dictionary<string, bool> mode, Dictionary<string, object> parameters = null)
 ```
 
 Մեթոդը կանչվում է միջուկի կողմից, երբ փաստաթղթի համար ձևավորվում է տպման ձև և անջատված է [TemplateSubstitutionIsExtended](#templatesubstitutionisextended) հատկությունը։ 
@@ -983,17 +1036,17 @@ public virtual Task<TemplateSubstitution> TemplateSubstitution(Dictionary<string
 ### TemplateSubstitutionEx
 
 ```c#
-public virtual Task<TemplateSubstitutionEx> TemplateSubstitutionEx(Dictionary<string, bool> mode, Dictionary<string, object> parameters = null);
+public virtual Task<TemplateSubstitutionEx> TemplateSubstitutionEx(Dictionary<string, bool> mode, Dictionary<string, object> parameters = null)
 ```
 
 Մեթոդը կանչվում է միջուկի կողմից, երբ փաստաթղթի համար ձևավորվում է տպման ձև և միացված է [TemplateSubstitutionIsExtended](#templatesubstitutionisextended) հատկությունը։ 
 
-Հանդիսանում է 4x համակարգում նկարագրված  [TemplateSubstitution](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/TemplateSubstitution.html) իրադարձության համարժեքը:
+Հանդիսանում է 4x համակարգում նկարագրված [TemplateSubstitution](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/TemplateSubstitution.html) իրադարձության համարժեքը:
 
 ### Validate
 
 ```c#
-public virtual Task Validate(ValidateEventArgs args);
+public virtual Task Validate(ValidateEventArgs args)
 ```
 
 Մեթոդը կանչվում է միջուկի կողմից [IDocumentService](../services/IDocumentService.md).[Store](../services/IDocumentService.md#store) ֆունկցիայով փաստաթուղթը տվյալների պահոցում գրանցելուց առաջ։
@@ -1005,16 +1058,16 @@ public virtual Task Validate(ValidateEventArgs args);
 ### WriteLog
 
 ```c#
-public Task WriteLog(string message, int dcrId = -1, bool dcrIdIsISN = false);
+public Task WriteLog(string message, int dcrId = -1, bool dcrIdIsISN = false)
 ```
 
-Ավելացնում է նոր գրառում փաստաթղթի պատմության մեջ։
+Ավելացնում է նոր գրառում [փաստաթղթի պատմության](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocLog.html) մեջ։
 
 Փաստաթղթի կյանքի ընթացքում մի շարք գործողություններ գրանցվում են պատմության մեջ ավտոմատ կերպով, ինչպիսին են փաստաթղթի ստեղծումը կամ խմբագրումը։ 
 Այս մեթոդի միջոցով հնարավոր է ավելացնել լրացուցիչ տողեր։ 
 `dcrIdIsISN` պարամետրի `false` արժեքի դեպքում [DOCLOG](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/DocLog.html) աղյուսակում ավելանում է գրառում `"M"` կոդով, հակառակ դեպքում `"L"` կոդով։
 
-Եթե այս մեթոդը կանչում ենք [Action](#action) մեթոդի մեջ, ապա գրանցումները տվյալների պահոցում կատարվում են մեթոդի ավարտից հետո, հակառակ դեպքում գրանցումը կատարվում է անմիջապես։
+Մեթոդը [Action](#action) մեթոդի մեջ կանչելու դեպքում գրանցումները տվյալների պահոցում կատարվում են [Action](#action) մեթոդի ավարտից հետո, հակառակ դեպքում գրանցումը կատարվում է անմիջապես։
 
 **Պարամետրեր**
 
