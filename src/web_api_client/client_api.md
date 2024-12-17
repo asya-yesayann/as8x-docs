@@ -1,9 +1,13 @@
 ---
 layout: page
-title: "Կլիենտական API" 
+title: "Կլիենտական գրադարանի API" 
 ---
 
-Այս բաժնում ներկայացված են այն դասերը, որոնք նախատեսված են կլիենտական ծրագրից դեպի սերվիս դիմող կանչերի կազմակերպման համար, որոնք բաժանված են ըստ օբյեկտի տիպի։
+Այս բաժնում ներկայացված են այն դասերը, որոնք նախատեսված են կլիենտական ծրագրից դեպի սերվիս դիմող կանչերի կազմակերպման համար։
 
-[LoginService](routes/LoginService.md)
-[DataSource](routes/DataSource.md)
+* [LoginService](routes/LoginService.md)
+* [AuthenticationClient](routes/AuthenticationClient.md)
+* [ApiClient](types/ApiClient.md)
+* [DataSource](routes/DataSource.md)
+
+API-ների հիմնական մասը հասանելի է [ApiClient](ApiClient.md)-ի միջից։

@@ -1,23 +1,18 @@
 ---
 layout: page
-title: "AuthenticationClient" 
+title: "AuthenticationClient օրինակ" 
 ---
 
-## Բովանդակություն
-
-- [Բանալիով կլիենտ ծրագրի օգտագործողի նույնականացման օրինակ](#բանալիով-կլիենտ-ծրագրի-օգտագործողի-նույնականացման-օրինակ)
-
-## Բանալիով կլիենտ ծրագրի օգտագործողի նույնականացման օրինակ  
+Բանալիով կլիենտ ծրագրի օգտագործողի նույնականացման օրինակ:
 
 ```c#
 private async Task Authenticate()
 {
   using var httpClient = new HttpClient();
   var serviceAdress = "https://services8x/dbank6";
-
+  var clientId = 54;
   var secret = "WsAlki3DPVhncIrP0a4r7GhoXAPFvVvFiihP9mOiNhdsgA9azVuZeGCYByRqS7ofJW7HQqswzc0I4dTCt4ycyVLEyuvHmA9U2YscZQvo0cAsvrAf267224JExaYFNRA";
   var userName = "ADMIN";
-  var clientId = 54;
 
   // ստեղծում է AuthenticationClient դասի օբյեկտ՝ փոխանցելով սերվիսի հասցեն ու HttpClient դասի օբյեկտ՝ Web API-ին հարցումները ապահովելու համար
   var client = new AuthenticationClient(httpClient, serviceAdress, null);
