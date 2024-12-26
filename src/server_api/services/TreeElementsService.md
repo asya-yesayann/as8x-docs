@@ -28,7 +28,7 @@ sublinks:
 
 TreeElementService դասը նախատեսված է ծառի հանգույցների հետ աշխատանքը ապահովելու համար։
 
-Ծառւ էլեմենտները ծրագրային ստեղծվում են երկու ձևով, 
+Ծառի հանգույցները ծրագրային ստեղծվում են երկու ձևով, 
 - փաստաթղթերի հետ կապված [IDocumentService](IDocumentService.md).[StoreInTree](IDocumentService.md#storeintree) ֆունկցիայով,
 - անկախ հանգույցներ [AddNode](#addnode) ֆունկցիայով։
 
@@ -139,7 +139,7 @@ public Task<Dictionary<string, TreeElement>> GetTreeElements(string treeId,
                                                              CacheUsage cacheUsage = CacheUsage.Use);
 ```
 
-Վերադարձնում է ծառի տարրերը տվյալների պահոցից կամ քեշից, եթե ծառը քեշավոևվող է։  
+Վերադարձնում է ծառի տարրերը տվյալների պահոցից կամ քեշից, եթե ծառը քեշավորվող է։  
 Վերադարձվող Dictionary-ում որպես բանալի հանդես է գալիս ծառի հանգույցի կոդը։
 
 **Պարամետրեր**

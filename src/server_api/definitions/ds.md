@@ -353,7 +353,7 @@ protected virtual Task<bool> AfterDataReaderClose(DataSourceArgs<P> args, R row)
 
 Մեթոդը կանչվում է միջուկի կողմից SQL հարցման կատարման ավարտից հետո ամեն մի հաշվարկված տողի համար, երբ [SqlDataReader](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqldatareader)-ը արդեն փակ է: 
 
-Մեթոդը է վերադարձնում են bool տիպի արժեք, որը ցույց է տալիս թե ընթացիկ տողը պետք է ընդգրկվի տվյալների աղբյուրի տողերի վերջնական ցուցակում, թե ոչ։
+Մեթոդը վերադարձնում է bool տիպի արժեք, որը ցույց է տալիս թե ընթացիկ տողը պետք է ընդգրկվի տվյալների աղբյուրի տողերի վերջնական ցուցակում, թե ոչ։
 
 Տե՛ս [AfterDataReaderCloseMode](ds.md#afterdatareaderclosemode)։
 
@@ -408,6 +408,6 @@ protected virtual bool ProcessRow(DataSourceArgs<P> args, R row, SqlDataReader r
 
 Մեթոդը կանչվում է միջուկի կողմից [MakeSqlCommand](ds.md#makesqlcommand) մեթոդում ձևավորված SQL հարցման կատարման ընթացքում, երբ հարցման տվյալները կարդացող [SqlDataReader](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqldatareader)-ը դեռ բաց է:
 
-Մեթոդը է վերադարձնում են bool տիպի արժեք, որը ցույց է տալիս թե ընթացիկ տողը պետք է ընդգրկվի տվյալների աղբյուրի տողերի վերջնական ցուցակում, թե ոչ։
+Մեթոդը վերադարձնում է bool տիպի արժեք, որը ցույց է տալիս թե ընթացիկ տողը պետք է ընդգրկվի տվյալների աղբյուրի տողերի վերջնական ցուցակում, թե ոչ։
 
 Տե՛ս [օրինակը](ds_guide_row_processing.md#processrow)։

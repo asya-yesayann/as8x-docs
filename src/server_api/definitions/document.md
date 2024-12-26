@@ -570,7 +570,7 @@ public string Body()
 public void BuildEmbeddedUIRequest<T>(T uiRequestExecutionProgress) where T : IUIRequestExecutionProgress;
 ```
 
-[DPR](dpr.md)-ում փաստաթղթերի գրանցման/հեռացման ընթացքում առաջացող հաղորդագրությունները UI-ում ցուցադրելու համար անհրաժեշտ է [DPR](dpr.md)-ի [Execute](dpr.md#execute) մեթոդում մինչև փաստաթղթի [Store](../services/IDocumentService.md#store)/[Delete](../services/IDocumentService.md#delete) գործողությունները կանչել BuildEmbeddedUIRequest մեթոդը։
+[DPR](dpr.md)-ում (կամ այլ հերթագրվող պրոցեսում) փաստաթղթերի գրանցման/հեռացման ընթացքում առաջացող հաղորդագրությունները UI-ում ցուցադրելու համար անհրաժեշտ է [DPR](dpr.md)-ի [Execute](dpr.md#execute) մեթոդում մինչև փաստաթղթի [Store](../services/IDocumentService.md#store)/[Delete](../services/IDocumentService.md#delete) գործողությունները կանչել BuildEmbeddedUIRequest մեթոդը փոխանցելով [DPR](dpr.md).[Progress](dpr.md#progress)-ը։
 
 **Պարամետրեր**
 
