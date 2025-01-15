@@ -1,15 +1,21 @@
 ---
 layout: page
 title: "Օրինակ LoanApplicationsRoutes" 
+sublinks:
+- { title: "Create", ref: օրինակ-1 }
+- { title: "Sign", ref: օրինակ-2 }
+- { title: "GetPrintForms", ref: օրինակ-3 }
 ---
 
 ## Բովանդակություն
 
-- [Վարկային հայտի ստեղծման օրինակ](#վարկային-հայտի-ստեղծման-օրինակ)
-- [Վարկային հայտի ստորագրման օրինակ](#վարկային-հայտի-ստորագրման-օրինակ)
-- [Վարկային հայտի տպելու ձևանմուշների վերադարձման և օգտագործման օրինակ](#վարկային-հայտի-տպելու-ձևանմուշների-վերադարձման-և-օգտագործման-օրինակ)
+- [Վարկային հայտի ստեղծման օրինակ](#օրինակ-1)
+- [Վարկային հայտի ստորագրման օրինակ](#օրինակ-2)
+- [Վարկային հայտի տպելու ձևանմուշների վերադարձման և օգտագործման օրինակ](#օրինակ-3)
+- [Վարկային հայտերի ցուցակի ստացման օրինակ](#օրինակ-4)
 
-## Վարկային հայտի ստեղծման օրինակ
+## Օրինակ 1
+Վարկային հայտի ստեղծման օրինակ։
 
 ```c#
 private static async Task CreateLoanApplication(BankApiClient apiClient)
@@ -34,9 +40,9 @@ private static async Task CreateLoanApplication(BankApiClient apiClient)
         // տպում է ստեղծված վարկային հայտի կոդը
         Console.WriteLine(res.AppCode);
     }
-    // մեթոդի կանչի ընթացքում սխալի առաջացման դեպքում տպում է սխալի մանրամասները
     catch (ApiException ex)
     {
+        // մեթոդի կանչի ընթացքում սխալի առաջացման դեպքում տպում է սխալի մանրամասները
         Console.WriteLine(ex.Code); // սխալի կոդ
         Console.WriteLine(ex.Message); // սխալի հաղորդագրություն
         Console.WriteLine(ex.StatusCode); // սխալի վիճակի կոդ
@@ -44,7 +50,8 @@ private static async Task CreateLoanApplication(BankApiClient apiClient)
 }
 ```
 
-## Վարկային հայտի ստորագրման օրինակ
+## Օրինակ 2
+Վարկային հայտի ստորագրման օրինակ։
 
 ```c#
 private static async Task SignLoanApplication(BankApiClient apiClient)
@@ -58,9 +65,9 @@ private static async Task SignLoanApplication(BankApiClient apiClient)
             Answer = Answer.Reject
         });
     }
-    // մեթոդի կանչի ընթացքում սխալի առաջացման դեպքում տպում է սխալի մանրամասները
     catch (ApiException ex)
     {
+        // մեթոդի կանչի ընթացքում սխալի առաջացման դեպքում տպում է սխալի մանրամասները
         Console.WriteLine(ex.Code); // սխալի կոդ
         Console.WriteLine(ex.Message); // սխալի հաղորդագրություն
         Console.WriteLine(ex.StatusCode); // սխալի վիճակի կոդ
@@ -68,10 +75,11 @@ private static async Task SignLoanApplication(BankApiClient apiClient)
 }
 ```
 
-## Վարկային հայտի տպելու ձևանմուշների վերադարձման և օգտագործման օրինակ
+## Օրինակ 3
+Վարկային հայտի տպելու ձևանմուշների վերադարձման և օգտագործման օրինակ։
 
 ```c#
-private static async Task GetPrintForms(BankApiClient apiClient)
+private static async Task GetPrintForms(BankApiClient apiClient, string exportDirectory)
 {
     try
     {
@@ -83,9 +91,9 @@ private static async Task GetPrintForms(BankApiClient apiClient)
         });
 
         // նշված ճանապարհով թղթապանակի գոյություն չունենալու դեպքում ստեղծում է այն
-        if (!Directory.Exists(@"D:\Work\Docs\IDLeasing\0012"))
+        if (!Directory.Exists(exportDirectory))
         {
-            Directory.CreateDirectory(@"D:\Work\Docs\IDLeasing\0012");
+            Directory.CreateDirectory(exportDirectory);
         }
 
         // ցիկլով անցնում է վարկային հայտի տպելու ձևանմուշների վրայով
@@ -94,13 +102,47 @@ private static async Task GetPrintForms(BankApiClient apiClient)
             Console.WriteLine(printType);
 
             // նշված ճանապարհով թղթապանակում ստեղծում է ֆայլ և լրացնում վարկային հայտի տպելու ձևանմուշը ֆայլում
-            await File.WriteAllBytesAsync(Path.Combine(@"D:\Work\Docs\IDLeasing\0012", file.FileName), file.Data);
+            await File.WriteAllBytesAsync(Path.Combine(exportDirectory, file.FileName), file.Data);
         }
     }
-
-    // մեթոդի կանչի ընթացքում սխալի առաջացման դեպքում տպում է սխալի մանրամասները
     catch (ApiException ex)
     {
+        // մեթոդի կանչի ընթացքում սխալի առաջացման դեպքում տպում է սխալի մանրամասները
+        Console.WriteLine(ex.Code); // սխալի կոդ
+        Console.WriteLine(ex.Message); // սխալի հաղորդագրություն
+        Console.WriteLine(ex.StatusCode); // սխալի վիճակի կոդ
+    }
+}
+```
+
+## Օրինակ 4
+Վարկային հայտերի ցուցակի ստացման օրինակ։
+
+```c#
+private static async Task GetLoanApplications(BankApiClient apiClient)
+{
+    try
+    {
+        // վերադարձնում է "00000001" կոդով հաճախորդի վարկային հայտերի ցուցակը
+        var res = await apiClient.LoanApplications.GetAll(new()
+        {
+            //AppCode = "0004",
+            CliCode = "00000001",
+            Date = DateTime.Today,
+        });
+
+        foreach (var loanApp in res.AppForms)
+        {
+            Console.WriteLine(loanApp.State);
+            Console.WriteLine(loanApp.ActualRate);
+            Console.WriteLine(loanApp.SumIsGiven);
+            Console.WriteLine(loanApp.AgrIsConf);
+            //...
+        }
+    }
+    catch (ApiException ex)
+    {
+        // մեթոդի կանչի ընթացքում սխալի առաջացման դեպքում տպում է սխալի մանրամասները
         Console.WriteLine(ex.Code); // սխալի կոդ
         Console.WriteLine(ex.Message); // սխալի հաղորդագրություն
         Console.WriteLine(ex.StatusCode); // սխալի վիճակի կոդ

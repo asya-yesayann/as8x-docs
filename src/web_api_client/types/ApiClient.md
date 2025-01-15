@@ -1,14 +1,18 @@
 ---
 layout: page
-title: "ApiClient" 
+title: "ApiClient դաս" 
+sublinks:
+- { title: "Blob", ref: blob }
+- { title: "Document", ref: document }
+- { title: "DPR", ref: dpr }
+- { title: "Extender", ref: extender }
+- { title: "Version", ref: version }
 ---
 
 ## Բովանդակություն
 
-- [Բովանդակություն](#բովանդակություն)
 - [Ներածություն](#ներածություն)
-- [Կոնստրուկտոր](#կոնստրուկտոր)
-- [Կոնստրուկտոր](#կոնստրուկտոր-1)
+- [Կոնստրուկտոր 1](#կոնստրուկտոր) և [Կոնստրուկտոր 2](#կոնստրուկտոր-1)
 - [Հատկություններ](#հատկություններ)
   - [Blob](#blob)
   - [Document](#document)
@@ -18,20 +22,9 @@ title: "ApiClient"
 
 ## Ներածություն
 
-`ApiClient` դասը հնարավորություն է տալիս կլիենտ ծրագրից սերվիս հարցումներ ուղարկել՝ օգտվելով հարցումները կատարող դասերից, որոնք ներառված են `ApiClient`-ում որպես հատկություններ:
+Այս դասը հնարավորություն է տալիս կլիենտ ծրագրից հարցումներ ուղարկել դեպի 8X սերվիս՝ օգտվելով հարցումները կատարող դասերից, որոնք ներառված են որպես հատկություններ:
 
-## Կոնստրուկտոր
-
-```c#
-public ApiClient(string baseUrl, string token, HttpClient httpClient, ILogger logger)
-```
-
-**Պարամետրեր**
-
-* `baseUrl` - Սերվիսի հասցե, որը օգտագործվելու է `ApiClient` դասի միջոցով կատարվող Http հարցումների Url-ների սահմանման համար։
-* `token` - Օգտագործողի տոկենը, որը ստացվել է [նույնականացման](routes/LoginService.md#authenticateasync-1) արդյունքում: 
-* `httpClient` - [HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient) դասի օբյեկտ, որը է կլիենտից անհրաժեշտ Http հարցումներ կատարելու համար։
-* `logger` - [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) դասի օբյեկտ, որը նախատեսված է կատարվող Http հարցումներում առաջացած սխալների լոգավորման համար։ 
+Այս օբյեկտի փոխարեն ցանկալի է օգտագործել ժառանգ դասերից որևէ մեկը (Օրինակ՝ [BankApiClient](../bank/types/BankApiClient.md))։
 
 ## Կոնստրուկտոր
 
@@ -39,11 +32,32 @@ public ApiClient(string baseUrl, string token, HttpClient httpClient, ILogger lo
 public ApiClient(LoginService loginService, HttpClient httpClient, ILogger logger)
 ```
 
+Այս կոնստրուկտորը օգտագործվում է, եթե նույնականացումը կատարվում է [LoginService](../routes/LoginService.md) դասի միջոցով։  
+Այն ավելի պարզ է օգտագործման համար։
+
 **Պարամետրեր**
 
-* `loginService` - [LoginService](routes/LoginService.md) դասի օբյեկտ, որը նախատեսված է ստուգելու օգտագործողի տոկենի վալիդությունը և արդյոք օգատգործողը իրավասություն ունի հարցումը կատարելու։
-* `httpClient` - [HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient) դասի օբյեկտ, որը է կլիենտից անհրաժեշտ Http հարցումներ կատարելու համար։
-* `logger` - [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) դասի օբյեկտ, որը նախատեսված է կատարվող Http հարցումներում առաջացած սխալների լոգավորման համար։
+* `loginService` - Նույնականացված [LoginService](routes/LoginService.md) դասի օբյեկտ։
+* `httpClient` - [HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient) դասի օբյեկտ, որը կլիենտից անհրաժեշտ Http հարցումներ կատարելու համար է։
+* `logger` - [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) դասի օբյեկտ, որը օգտագործվում է հարցումների և արդյունքների լոգավորման համար լոգավորման համար։  
+  Կարող է փոխանցվել `null`։
+
+## Կոնստրուկտոր
+
+```c#
+public ApiClient(string baseUrl, string token, HttpClient httpClient, ILogger logger)
+```
+
+Այս կոնստրուկտորը օգտագործվում է, եթե նույնականացումը կատարվում է [AuthenticationClient](../routes/AuthenticationClient.md) դասի միջոցով և ստացվում է նույնականացման թոքեն։  
+Այն ավելի բարդ է օգտագործման համար և հնարավորություն դեպքում ցանկալի է օգտագործել մյուս կոնստրուկտորը։
+
+**Պարամետրեր**
+
+* `baseUrl` - 8X սերվիսի հասցե։
+* `token` - Նույնականացման թոքեն: 
+* `httpClient` - [HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient) դասի օբյեկտ, որը կլիենտից անհրաժեշտ Http հարցումներ կատարելու համար է։
+* `logger` - [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) դասի օբյեկտ, որը օգտագործվում է հարցումների և արդյունքների լոգավորման համար լոգավորման համար։  
+  Կարող է փոխանցվել `null`։
 
 ## Հատկություններ
 
@@ -53,7 +67,7 @@ public ApiClient(LoginService loginService, HttpClient httpClient, ILogger logge
 public BlobRoutes Blob { get; }
 ```
 
-Վերադարձնում է `BlobRoutes` դասի օբյեկտ, որը պարունակում է մեթոդներ` կլիենտից [StorageService](../server_api/services/IStorageService.md)-ի մեթոդներին դիմելու համար։ 
+Վերադարձնում է [BlobRoutes](../routes/BlobRoutes.md) դասի օբյեկտ, որը պարունակում է մեթոդներ սերվերում պահպանված ֆայլերի հետ աշխատանքը ապահովելու համար։
 
 ### Document
 
@@ -61,7 +75,7 @@ public BlobRoutes Blob { get; }
 public DocumentRoutes Document { get; }
 ```
 
-Վերադարձնում է `DocumentRoutes` դասի օբյեկտ, որը պարունակում է մեթոդներ` կլիենտից փաստաթղթի սերվերային տրամաբանությունը պարունակող [DocumentService](../server_api/services/IDocumentService.md)-ի մեթոդներին դիմելու համար։ 
+Վերադարձնում է [DocumentRoutes](../routes/DocumentRoutes.md) դասի օբյեկտ, որը պարունակում է մեթոդներ փաստաթղթերի հետ աշխատանքը ապահովելու համար։
 
 ### DPR
 
@@ -69,7 +83,7 @@ public DocumentRoutes Document { get; }
 public DataProcessingRequestRoutes DPR { get; }
 ```
 
-Վերադարձնում է `DataProcessingRequestRoutes` դասի օբյեկտ, որը պարունակում է մեթոդներ` կլիենտից [DPR](../server_api/definitions/dpr.md)-ի կատարումը ապահովելու համար։ 
+Վերադարձնում է [DataProcessingRequestRoutes](../routes/DataProcessingRequestRoutes.md) դասի օբյեկտ, որը պարունակում է մեթոդներ տվյալների մշակման հարցումների հետ աշխատանքը ապահովելու համար։
 
 ### Extender
 
@@ -77,7 +91,7 @@ public DataProcessingRequestRoutes DPR { get; }
 public ExtenderRoutes Extender { get; }
 ```
 
-Վերադարձնում է [ExtenderRoutes](../routes/ExtenderRoutes.md) դասի օբյեկտ, որը պարունակում է մեթոդներ` ընդլայնումների հետ աշխատանքը (ընդլայնման նկարագրության ստացում, ընդլայնման կոդի կոմպիլացում...) ապահովելու համար։
+Վերադարձնում է [ExtenderRoutes](../routes/ExtenderRoutes.md) դասի օբյեկտ, որը պարունակում է մեթոդներ ընդլայնումների հետ աշխատանքը (ընդլայնման նկարագրության ստացում, ընդլայնման կոդի կոմպիլացում...) ապահովելու համար։
 
 ### Version
 
@@ -85,4 +99,4 @@ public ExtenderRoutes Extender { get; }
 public VersionRoutes Version { get; }
 ```
 
-Վերադարձնում է `VersionRoutes` դասի օբյեկտ, որը պարունակում է մեթոդներ` պրոյեկտների տարբերակների ստացման համար։
+Վերադարձնում է `VersionRoutes` դասի օբյեկտ, որը պարունակում է մեթոդներ պրոյեկտների տարբերակների ստացման համար։

@@ -1,35 +1,25 @@
 ---
 layout: page
-title: "BankBankApiClient" 
+title: "BankApiClient դաս"
+sublinks:
+- { title: "Clients", ref: clients }
+- { title: "LoanApplications", ref: loanapplications }
+- { title: "Կոնստրուկտոր", ref: կոնստրուկտոր }
 ---
 
 ## Բովանդակություն
 
-- [Բովանդակություն](#բովանդակություն)
 - [Ներածություն](#ներածություն)
-- [Կոնստրուկտոր](#կոնստրուկտոր)
-- [Կոնստրուկտոր](#կոնստրուկտոր-1)
+- [Կոնստրուկտոր 1](#կոնստրուկտոր) և [Կոնստրուկտոր 2](#կոնստրուկտոր-1)
 - [Հատկություններ](#հատկություններ)
   - [Clients](#clients)
   - [LoanApplications](#loanapplications)
 
 ## Ներածություն
 
-`BankApiClient` դասը ժառանգում է [ApiClient](../../types/ApiClient.md) դասից և նախատեսված է ՀԾ-Բանկ համակարգին յուրահատուկ հարցումներ ուղարկելու համար: 
-Այս դասը հնարավորություն է տալիս կլիենտ ծրագրից սերվիս հարցումներ ուղարկել՝ օգտվելով հարցումները կատարող դասերից, որոնք ներառված են `BankApiClient`-ում որպես հատկություններ:
-
-## Կոնստրուկտոր
-
-```c#
-public BankApiClient(string baseUrl, string token, HttpClient httpClient, ILogger logger)
-```
-
-**Պարամետրեր**
-
-* `baseUrl` - Սերվիսի հասցե, որը օգտագործվելու է `BankApiClient` դասի միջոցով կատարվող Http հարցումների Url-ների սահմանման համար։
-* `token` - Օգտագործողի տոկենը, որը ստացվել է [նույնականացման](routes/LoginService.md#authenticateasync-1) արդյունքում: 
-* `httpClient` - [HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient) դասի օբյեկտ, որը է կլիենտից անհրաժեշտ Http հարցումներ կատարելու համար։
-* `logger` - [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) դասի օբյեկտ, որը նախատեսված է կատարվող Http հարցումներում առաջացած սխալների լոգավորման համար։ 
+Այս դասը հնարավորություն է տալիս կլիենտ ծրագրից հարցումներ ուղարկել դեպի 8X սերվիս՝ օգտվելով հարցումները կատարող դասերից, որոնք ներառված են որպես հատկություններ:  
+Այս դասը ժառանգում է միջուկի [ApiClient](../../types/ApiClient.md) դասից և նախատեսված է ՀԾ-Բանկ համակարգին յուրահատուկ հարցումներ ուղարկելու համար: 
+Հասանելի են նաև ծնող [ApiClient](../../types/ApiClient.md) դասի հատկությունները հարցումներ կատարելու համար։
 
 ## Կոնստրուկտոր
 
@@ -37,13 +27,42 @@ public BankApiClient(string baseUrl, string token, HttpClient httpClient, ILogge
 public BankApiClient(LoginService loginService, HttpClient httpClient, ILogger logger)
 ```
 
+Այս կոնստրուկտորը օգտագործվում է, եթե նույնականացումը կատարվում է [LoginService](../../routes/LoginService.md) դասի միջոցով։  
+Այն ավելի պարզ է օգտագործման համար։
+
 **Պարամետրեր**
 
-* `loginService` - [LoginService](routes/LoginService.md) դասի օբյեկտ, որը նախատեսված է ստուգելու օգտագործողի տոկենի վալիդությունը և արդյոք օգատգործողը իրավասություն ունի հարցումը կատարելու։
-* `httpClient` - [HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient) դասի օբյեկտ, որը է կլիենտից անհրաժեշտ Http հարցումներ կատարելու համար։
-* `logger` - [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) դասի օբյեկտ, որը նախատեսված է կատարվող Http հարցումներում առաջացած սխալների լոգավորման համար։
+* `loginService` - Նույնականացված [LoginService](../../routes/LoginService.md) դասի օբյեկտ։
+* `httpClient` - [HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient) դասի օբյեկտ, որը կլիենտից անհրաժեշտ Http հարցումներ կատարելու համար է։
+* `logger` - [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) դասի օբյեկտ, որը օգտագործվում է հարցումների և արդյունքների լոգավորման համար լոգավորման համար։  
+  Կարող է փոխանցվել `null`։
+
+## Կոնստրուկտոր
+
+```c#
+public BankApiClient(string baseUrl, string token, HttpClient httpClient, ILogger logger)
+```
+
+Այս կոնստրուկտորը օգտագործվում է, եթե նույնականացումը կատարվում է [AuthenticationClient](../../routes/AuthenticationClient.md) դասի միջոցով և ստացվում է նույնականացման թոքեն։  
+Այն ավելի բարդ է օգտագործման համար և հնարավորություն դեպքում ցանկալի է օգտագործել մյուս կոնստրուկտորը։
+
+**Պարամետրեր**
+
+* `baseUrl` - 8X սերվիսի հասցե։
+* `token` - Նույնականացման թոքեն: 
+* `httpClient` - [HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient) դասի օբյեկտ, որը կլիենտից անհրաժեշտ Http հարցումներ կատարելու համար է։
+* `logger` - [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) դասի օբյեկտ, որը օգտագործվում է հարցումների և արդյունքների լոգավորման համար լոգավորման համար։  
+  Կարող է փոխանցվել `null`։
 
 ## Հատկություններ
+
+### Accounts
+
+```c#
+public AccountsRoutes Accounts { get; }
+```
+
+Վերադարձնում է [AccountsRoutes](../routes/AccountsRoutes.md) դասի օբյեկտ, որը պարունակում է մեթոդներ հաշիվների տվյալների հետ աշխատանքը ապահովելու համար։
 
 ### Clients
 
@@ -60,6 +79,3 @@ public LoanApplicationsRoutes LoanApplications { get; }
 ```
 
 Վերադարձնում է [LoanApplicationsRoutes](../routes/LoanApplicationsRoutes.md) դասի օբյեկտ, որը պարունակում է մեթոդներ վարկային հայտերի հետ աշխատանքը ապահովելու համար։
-
-
-

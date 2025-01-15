@@ -1,40 +1,63 @@
 ---
 layout: page
-title: "LoginService" 
+title: "LoginService դաս" 
+sublinks:
+- { title: "IsLoggedIn", ref: isloggedin }
+- { title: "AuthenticationMode", ref: authenticationmode }
+- { title: "Username", ref: username }
+- { title: "Name", ref: name }
+- { title: "IsAdmin", ref: isadmin }
+- { title: "DbName", ref: dbname }
+- { title: "Server", ref: server }
+- { title: "SessionGuid", ref: sessionguid }
+- { title: "ServiceUrlData", ref: serviceurldata }
+- { title: "ServiceAddress", ref: serviceaddress }
+- { title: "ConfigurationName", ref: configurationname }
+- { title: "Suid", ref: suid }
+- { title: "TokenValidToUTC", ref: tokenvalidtoutc }
+- { title: "RefreshTokenValidToUTC", ref: refreshtokenvalidtoutc }
+- { title: "MustChangePassword", ref: mustchangepassword }
+- { title: "PasswordState", ref: passwordstate }
+- { title: "AuthenticateAsync(ClientId, ClientSecret)", ref: authenticateasync }
+- { title: "AuthenticateAsync(X509Certificate2, UserName, Password)", ref: authenticateasyncx509certificate2-username-password }
+- { title: "GetToken", ref: gettoken }
+- { title: "Logout", ref: logout }
 ---
 
 ## Բովանդակություն
 
-- [Բովանդակություն](#բովանդակություն)
 - [Ներածություն](#ներածություն)
 - [Հատկություններ](#հատկություններ)
-  - [IsLoggedIn](#isloggedin)
   - [AuthenticationMode](#authenticationmode)
-  - [Username](#username)
-  - [Name](#name)
-  - [IsAdmin](#isadmin)
+  - [ConfigurationName](#configurationname)
   - [DbName](#dbname)
+  - [IsLoggedIn](#isloggedin)
+  - [IsAdmin](#isadmin)
+  - [MustChangePassword](#mustchangepassword)
+  - [Name](#name)
+  - [PasswordState](#passwordstate)
+  - [RefreshTokenValidToUTC](#refreshtokenvalidtoutc)
   - [Server](#server)
-  - [SessionGuid](#sessionguid)
   - [ServiceUrlData](#serviceurldata)
   - [ServiceAddress](#serviceaddress)
-  - [ConfigurationName](#configurationname)
+  - [SessionGuid](#sessionguid)
   - [Suid](#suid)
+  - [Username](#username)
   - [TokenValidToUTC](#tokenvalidtoutc)
-  - [RefreshTokenValidToUTC](#refreshtokenvalidtoutc)
-  - [MustChangePassword](#mustchangepassword)
-  - [PasswordState](#passwordstate)
 - [Մեթոդներ](#մեթոդներ)
-  - [AuthenticateAsync](#authenticateasync)
-  - [Authenticate](#authenticate)
-  - [AuthenticateAsync](#authenticateasync-1)
-  - [Authenticate](#authenticate-1)
+  - [AuthenticateAsync(ClientId, ClientSecret)](#authenticateasyncclientid-clientsecret)
+  - [AuthenticateAsync(X509Certificate2, UserName, Password)](#authenticateasyncx509certificate2-username-password)
   - [GetToken](#gettoken)
   - [Logout](#logout)
 
 ## Ներածություն
 
-LoginService դասը նախատեսված է մուտք գործող օգտագործողին նույնականացնելու և դուրս գալու ֆունկցիոնալությունը ապահովելու համար։
+LoginService դասը նախատեսված է 8X սերվիսին միացման ժամանակ նույնականացնելու համար։ 
+Դասը նաև ապահովում է նույնականացման [թոքենի](#gettoken) արդի լինելը։
+
+Նույնականացումից հետո օգտագործվում է [ApiClient](../types/ApiClient.md) ստեղծելու և դրա միջոցով սերվիսին հարցումներ կատարելու համար։
+
+Տե՛ս օգտագործման [օրինակը](../examples/LoginService.md)։
 
 ## Հատկություններ
 
@@ -44,7 +67,7 @@ LoginService դասը նախատեսված է մուտք գործող օգտագ
 public bool IsLoggedIn { get; }
 ```
 
-Ցույց է տալիս, արդյոք ընթացիկ պահին կա համակարգ մուտք գործած օգտագործող։
+Նույնականացումից հետո ցույց է տալիս, արդյոք նույնականացված է, թե ոչ։
 
 ### AuthenticationMode
 
@@ -52,7 +75,7 @@ public bool IsLoggedIn { get; }
 public AuthenticationMode? AuthenticationMode { get; private set; }
 ```
 
-Վերադարձնում է նույնականացված օգտագործողի նույնականացման եղանակը։
+Նույնականացումից հետո վերադարձնում է նույնականացման եղանակը։
 
 * `AuthenticationMode.ArmSoft` - SQL նույնականացում
 * `AuthenticationMode.AD` - Active Directory նույնականացում
@@ -63,7 +86,7 @@ public AuthenticationMode? AuthenticationMode { get; private set; }
 public string Username { get; private set; }
 ```
 
-Վերադարձնում է նույնականացված օգտագործողի մուտքանունը։
+Նույնականացումից հետո վերադարձնում է նույնականացված օգտագործողի մուտքանունը։
 
 ### Name
 
@@ -71,7 +94,7 @@ public string Username { get; private set; }
 public string Name { get; private set; }
 ```
 
-Վերադարձնում է նույնականացված օգտագործողի անունը։
+Նույնականացումից հետո վերադարձնում է նույնականացված օգտագործողի անունը։
 
 ### IsAdmin
 
@@ -79,7 +102,7 @@ public string Name { get; private set; }
 public bool IsAdmin { get; private set; }
 ```
 
-Վերադարձնում է նույնականացված օգտագործողի ադմինիստրատոր հանդիսանալու հայտանիշը։
+Նույնականացումից հետո վերադարձնում է նույնականացված օգտագործողի ադմինիստրատոր հանդիսանալու հայտանիշը։
 
 ### DbName
 
@@ -87,7 +110,7 @@ public bool IsAdmin { get; private set; }
 public string DbName { get; private set; }
 ```
 
-Վերադարձնում է այն տվյալների պահոցի անունը, որտեղ ուղղվում են օգտագործողի մուտքի արդյունքում բացված [սեսսիայում](../../server_api/types/SessionInfo.md) կատարվող բոլոր հարցումները։
+Նույնականացումից հետո վերադարձնում է հիմնական տվյալների պահոցի անունը։
 
 ### Server
 
@@ -95,7 +118,7 @@ public string DbName { get; private set; }
 public string Server { get; private set; }
 ```
 
-Վերադարձնում է [տվյալների պահոցը](#dbname) պարունակող սերվերի անունը։
+Նույնականացումից հետո վերադարձնում է [տվյալների պահոցը](#dbname) պարունակող սերվերի անունը։
 
 ### SessionGuid
 
@@ -103,7 +126,7 @@ public string Server { get; private set; }
 public string SessionGuid { get; private set; }
 ```
 
-Վերադարձնում է օգտագործողի համակարգ մուտք գործման արդյունքում բացված [սեսսիայի](../../server_api/types/SessionInfo.md) id-ն։
+Նույնականացումից հետո վերադարձնում է օգտագործողի համակարգ մուտք գործման արդյունքում բացված [սեսսիայի](../../server_api/types/SessionInfo.md) id-ն։
 
 ### ServiceUrlData
 
@@ -111,7 +134,7 @@ public string SessionGuid { get; private set; }
 public ServiceUrlData ServiceUrlData { get; private set; }
 ```
 
-Վերադարձնում է այն սերվիսի տվյալները, որին ուղարկվելու են նույնականացման և նույնականացման արդյունքում բացված [սեսսիայի](../../server_api/types/SessionInfo.md) ընթացքում կատարվող Http հարցումները։
+Նույնականացումից հետո վերադարձնում է սերվիսի միացման վերաբերյալ տվյալներ (Host Name, Port, Tls, Url)։
 
 ### ServiceAddress
 
@@ -119,9 +142,7 @@ public ServiceUrlData ServiceUrlData { get; private set; }
 public string ServiceAddress { get; private set; }
 ```
 
-Վերադարձնում է այն սերվիսի հասցեն, որին ուղարկվելու են նույնականացման և նույնականացման արդյունքում բացված [սեսսիայի](../../server_api/types/SessionInfo.md) ընթացքում կատարվող Http հարցումները։
-
-Սերվիսի հասցեն անհրաժեշտ է նախապես սահմանել [appsettings.json](../../project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [Storage](../../project/appsettings_json.md#storage) բաժնի `BaseUri` դաշտում։
+Նույնականացումից հետո վերադարձնում է սերվիսի հասցեն։
 
 ### ConfigurationName
 
@@ -129,7 +150,8 @@ public string ServiceAddress { get; private set; }
 public string ConfigurationName { get; private set; }
 ```
 
-Այս հատկության արժեքը ցուցադրվում է 8X-ի Status bar-ում։ Սովորաբար որպես արժեք փոխանցվում է տվյալների պահոցի կոնֆիգուրացիայի անունը (օր. Daily build test_bank):
+Նույնականացումից հետո վերադարձնում է [AuthenticateAsync](#authenticateasyncclientid-clientsecret) կանչին փոխանցված համապատասխան պարամետրը։ 
+Այն ինֆորմատիվ բնույթ է կրում։
 
 ### Suid
 
@@ -137,7 +159,7 @@ public string ConfigurationName { get; private set; }
 public short Suid { get; private set; }
 ```
 
-Վերադարձնում է նույնականացված օգտագործողի ներքին համարը (կոդ)։
+Նույնականացումից հետո վերադարձնում է նույնականացված օգտագործողի ներքին համարը (կոդ)։
 
 ### TokenValidToUTC
 
@@ -145,7 +167,7 @@ public short Suid { get; private set; }
 public DateTime TokenValidToUTC { get; private set; }
 ```
 
-Վերադարձնում է օգտագործողի նույնականացման արդյունքում ստեղծված տոկենի վավերականության ավարտի ամսաթիվը/ժամանակը։
+Նույնականացումից հետո վերադարձնում է ստեղծված թոքենի վավերականության ավարտի ամսաթիվը/ժամանակը։
 
 ### RefreshTokenValidToUTC
 
@@ -153,7 +175,7 @@ public DateTime TokenValidToUTC { get; private set; }
 public DateTime RefreshTokenValidToUTC { get; private set; }
 ```
 
-Վերադարձնում է օգտագործողի նույնականացման արդյունքում ստեղծված թարմացման տոկենի վավերականության ավարտի ամսաթիվը/ժամանակը։
+Նույնականացումից հետո վերադարձնում է ստեղծված թարմացման թոքենի վավերականության ավարտի ամսաթիվը/ժամանակը։
 
 ### MustChangePassword
 
@@ -161,7 +183,7 @@ public DateTime RefreshTokenValidToUTC { get; private set; }
 public bool MustChangePassword { get; private set; }
 ```
 
-Ցույց է տալիս, արդյոք օգտագործողը պարտավոր է փոխել իր գաղտնաբառը՝ համակարգ մուտք գործելուց հետո։
+Նույնականացումից հետո ցույց է տալիս, արդյոք օգտագործողը պարտավոր է փոխել իր գաղտնաբառը։
 
 ### PasswordState
 
@@ -169,68 +191,15 @@ public bool MustChangePassword { get; private set; }
 public PasswordState? PasswordState { get; private set; }
 ```
 
-Վերադարձնում է նույնականացված օգտագործողի գաղտնաբառի վիճակը։
+Նույնականացումից հետո վերադարձնում է նույնականացված օգտագործողի գաղտնաբառի վիճակը։
 
-* `PasswordState.` - Գաղտնաբառը վավեր է։
-* `PasswordState.` - Գաղտնաբառը նշանակվել է ադմինի կողմից և ենթակա է փոփոխման:
-* `PasswordState.` - Գաղտնաբառը ժամկետանց է։
+* `Normal` - Գաղտնաբառը վավեր է։
+* `PasswordChangedByAdmin` - Գաղտնաբառը նշանակվել է ադմինիստրատորի կողմից և ենթակա է փոփոխման:
+* `PasswordExpired` - Գաղտնաբառի օգտագործման ժամկետը լրացել է։
 
 ## Մեթոդներ
 
-### AuthenticateAsync
-
-```c#
-public Task<Exception> AuthenticateAsync(string serviceAddress, HttpClient httpClient, 
-                                         ILogger logger, X509Certificate2 x509Certificate2, 
-                                         short apiClientId, string username, string password, 
-                                         string configurationName = "", CancellationToken cancellationToken = default)
-```
-
-Նույնականացնում է սերտիֆիկատով նույնականացված կլիենտ ծրագրի օգտագործողի մուտքը համակարգ։
-
-Նույնականացման ձախողման դեպքում վերադարձնում է առաջացած սխալը, հակառակ դեպքում վերադարձնում է null:
-
-Նույնականացման արդյունքում առաջացած տոկենը ստանալու համար անհրաժեշտ է կանչել [GetToken](#gettoken) մեթոդը։
-
-**Պարամետրեր**
-
-* `serviceAddress` - Սերվիսի հասցեն, որին ուղարկվելու են նույնականացման և նույնականացման արդյունքում բացված [սեսսիայի](../../server_api/types/SessionInfo.md) ընթացքում կատարվող Http հարցումները։
-* `httpClient` - [HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient) դասի օբյեկտ, որը նախատեսված է նույնականացման և նույնականացման արդյունքում բացված [սեսսիայի](../../server_api/types/SessionInfo.md) ընթացքում անհրաժեշտ Http հարցումներ կատարելու համար։
-* `logger` - [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) դասի օբյեկտ, որը նախատեսված է նույնականացման և նույնականացման արդյունքում բացված [սեսսիայի](../../server_api/types/SessionInfo.md) ընթացքում կատարվող Http հարցումներում առաջացած սխալների լոգավորման համար։ 
-* `x509Certificate2` - Սերտիֆիկատ, որն օգտագործվում է կլիենտ ծրագրի նույնականացման համար:
-* `apiClientId` - Կլիենտ ծրագրի id-ն։
-* `username` - Կլիենտ ծրագրի օգտագործողի մուտքանունը, որով նույնականացվում է։
-* `password` - Օգտագործողի գաղտնաբառը։
-* `configurationName` - Այս պարամետրի արժեքը փոխանցվում է [ConfigurationName](#configurationname) հատկությանը և ցուցադրվում է 8X-ի Status bar-ում։ Սովորաբար որպես արժեք փոխանցվում է տվյալների պահոցի կոնֆիգուրացիայի անունը (օր. Daily build test_bank):
-* `cancellationToken` - Ընդհատման օբյեկտ։
-
-### Authenticate
-
-```c#
-public Exception Authenticate(string serviceAddress, HttpClient httpClient, 
-                              ILogger logger, X509Certificate2 x509Certificate2, 
-                              short apiClientId, string username, string password, 
-                              string configurationName = "")
-```
-
-Նույնականացնում է սերտիֆիկատով նույնականացված կլիենտ ծրագրի օգտագործողի մուտքը համակարգ։
-
-Նույնականացման ձախողման դեպքում վերադարձնում է առաջացած սխալը, հակառակ դեպքում վերադարձնում է null:
-
-Նույնականացման արդյունքում առաջացած տոկենը ստանալու համար անհրաժեշտ է կանչել [GetToken](#gettoken) մեթոդը։
-
-**Պարամետրեր**
-
-* `serviceAddress` - Սերվիսի հասցեն, որին ուղարկվելու են նույնականացման և նույնականացման արդյունքում բացված [սեսսիայի](../../server_api/types/SessionInfo.md) ընթացքում կատարվող Http հարցումները։
-* `httpClient` - [HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient) դասի օբյեկտ, որը նախատեսված է նույնականացման և նույնականացման արդյունքում բացված [սեսսիայի](../../server_api/types/SessionInfo.md) ընթացքում անհրաժեշտ Http հարցումներ կատարելու համար։
-* `logger` - [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) դասի օբյեկտ, որը նախատեսված է նույնականացման և նույնականացման արդյունքում բացված [սեսսիայի](../../server_api/types/SessionInfo.md) ընթացքում կատարվող Http հարցումներում առաջացած սխալների լոգավորման համար։ 
-* `x509Certificate2` - Սերտիֆիկատ, որն օգտագործվում է կլիենտ ծրագրի նույնականացման համար:
-* `apiClientId` - Կլիենտ ծրագրի id-ն։
-* `username` - Կլիենտ ծրագրի օգտագործողի մուտքանունը, որով նույնականացվում է։
-* `password` - Օգտագործողի գաղտնաբառը։
-* `configurationName` - Այս պարամետրի արժեքը փոխանցվում է [ConfigurationName](#configurationname) հատկությանը և ցուցադրվում է 8X-ի Status bar-ում։ Սովորաբար որպես արժեք փոխանցվում է տվյալների պահոցի կոնֆիգուրացիայի անունը (օր. Daily build test_bank):
-
-### AuthenticateAsync
+### AuthenticateAsync(ClientId, ClientSecret)
 
 ```c#
 public Task<Exception> AuthenticateAsync(string serviceAddress, HttpClient httpClient, 
@@ -239,54 +208,56 @@ public Task<Exception> AuthenticateAsync(string serviceAddress, HttpClient httpC
                                          CancellationToken cancellationToken = default)
 ```
 
-Նույնականացնում է բանալիով նույնականացված կլիենտ ծրագրի օգտագործողի մուտքը համակարգ։
+Նույնականացնում է ինտեգրման ծրագրի համար ստեղծված բանալիով (API Client)։
 
 Նույնականացման ձախողման դեպքում վերադարձնում է առաջացած սխալը, հակառակ դեպքում վերադարձնում է null:
 
-Նույնականացման արդյունքում առաջացած տոկենը ստանալու համար անհրաժեշտ է կանչել [GetToken](#gettoken) մեթոդը։
-
 **Պարամետրեր**
 
-* `serviceAddress` - Սերվիսի հասցեն, որին ուղարկվելու են նույնականացման և նույնականացման արդյունքում բացված [սեսսիայի](../../server_api/types/SessionInfo.md) ընթացքում կատարվող Http հարցումները։
-* `httpClient` - [HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient) դասի օբյեկտ, որը նախատեսված է նույնականացման և նույնականացման արդյունքում բացված [սեսսիայի](../../server_api/types/SessionInfo.md) ընթացքում անհրաժեշտ Http հարցումներ կատարելու համար։
-* `logger` - [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) դասի օբյեկտ, որը նախատեսված է նույնականացման և նույնականացման արդյունքում բացված [սեսսիայի](../../server_api/types/SessionInfo.md) ընթացքում կատարվող Http հարցումներում առաջացած սխալների լոգավորման համար։ 
-* `apiClientId` - Կլիենտ ծրագրի id-ն։
-* `secret` - Բանալի, որն օգտագործվում է կլիենտ ծրագրի նույնականացման համար:
+* `serviceAddress` - 8X սերվիսի հասցեն։
+* `httpClient` - [HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient) դասի օբյեկտ, որը նախատեսված է նույնականացման և նույնականացումից հետո Http հարցումներ կատարելու համար է։
+  Օբյեկտը հարկավոր է բաց պահել քանի դեռ կատարվում են հարցումներ։
+* `logger` - [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) դասի օբյեկտ, որը օգտագործվում է հարցումների և արդյունքների լոգավորման համար լոգավորման համար։  
+  Կարող է փոխանցվել `null`։
+* `apiClientId` - Կլիենտ ծրագրի id-ն (API Client Id)։
+* `secret` - Կլիենտ ծրագրի բանալի (API Client Secret)։
 * `username` - Կլիենտ ծրագրի օգտագործողի մուտքանունը, որով նույնականացվում է։
-* `configurationName` - Այս պարամետրի արժեքը փոխանցվում է [ConfigurationName](#configurationname) հատկությանը և ցուցադրվում է 8X-ի Status bar-ում։ Սովորաբար որպես արժեք փոխանցվում է տվյալների պահոցի կոնֆիգուրացիայի անունը (օր. Daily build test_bank):
+* `configurationName` - Այս պարամետրի արժեքը փոխանցվում է [ConfigurationName](#configurationname) հատկությանը:
+  Այն ինֆորմատիվ բնույթ է կրում։
 * `cancellationToken` - Ընդհատման օբյեկտ։
 
 **Օրինակ**
 
 Տե՛ս օգտագործման [օրինակը](../examples/LoginService.md#բանալիով-կլիենտ-ծրագրի-օգտագործողի-նույնականացման-օրինակ)։
 
-### Authenticate
+### AuthenticateAsync(X509Certificate2, UserName, Password)
 
 ```c#
-public Exception Authenticate(string serviceAddress, HttpClient httpClient, 
-                              ILogger logger, short apiClientId, string secret, 
-                              string username, string configurationName = "")
+public Task<Exception> AuthenticateAsync(string serviceAddress, HttpClient httpClient, 
+                                         ILogger logger, X509Certificate2 x509Certificate2, 
+                                         short apiClientId, string username, string password, 
+                                         string configurationName = "", 
+                                         CancellationToken cancellationToken = default)
 ```
 
-Նույնականացնում է բանալիով նույնականացված կլիենտ ծրագրի օգտագործողի մուտքը համակարգ։
+Նույնականացնում է օգտագործողի մուտքանունով և գաղտնաբառով, պահանջվում է սերտիֆիկատի առկայություն։
 
 Նույնականացման ձախողման դեպքում վերադարձնում է առաջացած սխալը, հակառակ դեպքում վերադարձնում է null:
 
-Նույնականացման արդյունքում առաջացած տոկենը ստանալու համար անհրաժեշտ է կանչել [GetToken](#gettoken) մեթոդը։
-
 **Պարամետրեր**
 
-* `serviceAddress` - Սերվիսի հասցեն, որին ուղարկվելու են նույնականացման և նույնականացման արդյունքում բացված [սեսսիայի](../../server_api/types/SessionInfo.md) ընթացքում կատարվող Http հարցումները։
-* `httpClient` - [HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient) դասի օբյեկտ, որը նախատեսված է նույնականացման և նույնականացման արդյունքում բացված [սեսսիայի](../../server_api/types/SessionInfo.md) ընթացքում անհրաժեշտ Http հարցումներ կատարելու համար։
-* `logger` - [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) դասի օբյեկտ, որը նախատեսված է նույնականացման և նույնականացման արդյունքում բացված [սեսսիայի](../../server_api/types/SessionInfo.md) ընթացքում կատարվող Http հարցումներում առաջացած սխալների լոգավորման համար։ 
-* `apiClientId` - Կլիենտ ծրագրի id-ն։
-* `secret` - Բանալի, որն օգտագործվում է կլիենտ ծրագրի նույնականացման համար:
-* `username` - Կլիենտ ծրագրի օգտագործողի մուտքանունը, որով նույնականացվում է։
-* `configurationName` - Այս պարամետրի արժեքը փոխանցվում է [ConfigurationName](#configurationname) հատկությանը և ցուցադրվում է 8X-ի Status bar-ում։ Սովորաբար որպես արժեք փոխանցվում է տվյալների պահոցի կոնֆիգուրացիայի անունը (օր. Daily build test_bank):
-
-**Օրինակ**
-
-Տե՛ս օգտագործման [օրինակը](../examples/LoginService.md#բանալիով-կլիենտ-ծրագրի-օգտագործողի-նույնականացման-օրինակ)։
+* `serviceAddress` - 8X սերվիսի հասցեն։
+* `httpClient` - [HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient) դասի օբյեկտ, որը նախատեսված է նույնականացման և նույնականացումից հետո Http հարցումներ կատարելու համար է։
+  Օբյեկտը հարկավոր է բաց պահել քանի դեռ կատարվում են հարցումներ։
+* `logger` - [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) դասի օբյեկտ, որը օգտագործվում է հարցումների և արդյունքների լոգավորման համար լոգավորման համար։  
+  Կարող է փոխանցվել `null`։
+* `x509Certificate2` - Սերտիֆիկատ, որն օգտագործվում է կլիենտ ծրագրի նույնականացման համար:
+* `apiClientId` - Կլիենտ ծրագրի id-ն (API Client Id)։
+* `username` - Օգտագործողի մուտքանունը։
+* `password` - Օգտագործողի գաղտնաբառը։
+* `configurationName` - Այս պարամետրի արժեքը փոխանցվում է [ConfigurationName](#configurationname) հատկությանը:
+  Այն ինֆորմատիվ բնույթ է կրում։
+* `cancellationToken` - Ընդհատման օբյեկտ։
 
 ### GetToken
 
@@ -294,13 +265,15 @@ public Exception Authenticate(string serviceAddress, HttpClient httpClient,
 public string GetToken(TimeSpan? timeSpan = null)
 ```
 
-Վերադարձնում է օգտագործողի նույնականացման արդյունքում ստեղծված տոկենը, որը օգտագործվում է օգտագործողի կողմից կատարված հարցումների նույնականացման համար։
+Նույնականացումից հետո վերադարձնում է ստեղծված թոքենը։
+Օգտագործվում է [ApiClient](../types/ApiClient.md) ստեղծելու համար։
 
-Տոկենի վավերականության ժամկետի ավարտի դեպքում տոկենը ավտոմատ թարմացվում է և վերադարձվում թարմացված տոկենը։
+Թոքենի վավերականության ժամկետի ավարտի դեպքում թոքենը ավտոմատ թարմացվում է և վերադարձվում թարմացված թոքենը։
 
 **Պարամետրեր**
 
-* `timeSpan` - Եթե տոկենի վավերականության ավարտին մնացել է ավելի քիչ ժամանակ, քան նշված է այս պարամետրում, ապա տոկենը թարմացնում է և վերադարձնում է թարմացված տոկենը։ Դատարկ արժեքի դեպքում տոկենը թարմացնում է այն դեպքում, երբ տոկենի վավերականության ավարտին մնացել է 2 րոպե կամ ավելի քիչ ժամանակ։
+* `timeSpan` - Եթե թոքենի վավերականության ավարտին մնացել է ավելի քիչ ժամանակ, քան նշված է այս պարամետրում, ապա թոքենը թարմացնում է և վերադարձնում է թարմացված թոքենը։ 
+  Դատարկ արժեքի դեպքում տոկենը թարմացնում է այն դեպքում, երբ տոկենի վավերականության ավարտին մնացել է 2 րոպե կամ ավելի քիչ ժամանակ։
 
 ### Logout
 
@@ -308,7 +281,7 @@ public string GetToken(TimeSpan? timeSpan = null)
 public void Logout()
 ```
 
-Դուրս է հանում ընթացիկ օգտագործողին համակարգից, փակում օգտագործողի [սեսսիան](../../server_api/types/SessionInfo.md) և հեռացնում [սեսսիայի](../../server_api/types/SessionInfo.md) ընթացքում առաջացած ժամանակավոր ֆայլերը, ընդհատում ընթացիկ job-երը։
+Դուրս է հանում ընթացիկ օգտագործողին համակարգից, փակում օգտագործողի [սեսսիան](../../server_api/types/SessionInfo.md) և հեռացնում [սեսսիայի](../../server_api/types/SessionInfo.md) ընթացքում առաջացած ժամանակավոր ֆայլերը, ընդհատում է ընթացիկ առաջադրանքները։
 
 
 
