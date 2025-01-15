@@ -2,6 +2,8 @@
 layout: page
 title: "BankApiClient դաս"
 sublinks:
+- { title: "Accounts", ref: accounts }
+- { title: "Cards", ref: cards }
 - { title: "Clients", ref: clients }
 - { title: "LoanApplications", ref: loanapplications }
 - { title: "Կոնստրուկտոր", ref: կոնստրուկտոր }
@@ -12,6 +14,8 @@ sublinks:
 - [Ներածություն](#ներածություն)
 - [Կոնստրուկտոր 1](#կոնստրուկտոր) և [Կոնստրուկտոր 2](#կոնստրուկտոր-1)
 - [Հատկություններ](#հատկություններ)
+  - [Accounts](#accounts)
+  - [Cards](#cards)
   - [Clients](#clients)
   - [LoanApplications](#loanapplications)
 
@@ -63,6 +67,14 @@ public AccountsRoutes Accounts { get; }
 ```
 
 Վերադարձնում է [AccountsRoutes](../routes/AccountsRoutes.md) դասի օբյեկտ, որը պարունակում է մեթոդներ հաշիվների տվյալների հետ աշխատանքը ապահովելու համար։
+
+### Cards
+
+```c#
+public CardsRoutes Cards { get; }
+```
+
+Վերադարձնում է [CardsRoutes](../routes/CardsRoutes.md) դասի օբյեկտ, որը պարունակում է մեթոդներ քարտերի հետ աշխատանքը ապահովելու համար։
 
 ### Clients
 
