@@ -37,7 +37,7 @@ public ApiClient(LoginService loginService, HttpClient httpClient, ILogger logge
 
 **Պարամետրեր**
 
-* `loginService` - Նույնականացված [LoginService](routes/LoginService.md) դասի օբյեկտ։
+* `loginService` - Նույնականացված [LoginService](../routes/LoginService.md) դասի օբյեկտ։
 * `httpClient` - [HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient) դասի օբյեկտ, որը կլիենտից անհրաժեշտ Http հարցումներ կատարելու համար է։
 * `logger` - [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) դասի օբյեկտ, որը օգտագործվում է հարցումների և արդյունքների լոգավորման համար լոգավորման համար։  
   Կարող է փոխանցվել `null`։

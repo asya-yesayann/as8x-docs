@@ -10,4 +10,4 @@ title: "Կլիենտական գրադարանի API"
 * [ApiClient](types/ApiClient.md)
 * [DataSource](routes/DataSource.md)
 
-API-ների հիմնական մասը հասանելի է [ApiClient](ApiClient.md)-ի միջից։
+API-ների հիմնական մասը հասանելի է [ApiClient](types/ApiClient.md)-ի միջից։
