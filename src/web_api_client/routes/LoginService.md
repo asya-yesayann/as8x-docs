@@ -55,6 +55,8 @@ sublinks:
 LoginService դասը նախատեսված է 8X սերվիսին միացման ժամանակ նույնականացնելու համար։ 
 Դասը նաև ապահովում է նույնականացման [թոքենի](#gettoken) արդի լինելը։
 
+8X սերվիսին որևէ ծրագրից միանալու համար անհրաժեշտ է նախապես սահմանել [API Client](../api_client.md)։
+
 Նույնականացումից հետո օգտագործվում է [ApiClient](../types/ApiClient.md) ստեղծելու և դրա միջոցով սերվիսին հարցումներ կատարելու համար։
 
 Տե՛ս օգտագործման [օրինակը](../examples/LoginService.md)։
@@ -208,7 +210,7 @@ public Task<Exception> AuthenticateAsync(string serviceAddress, HttpClient httpC
                                          CancellationToken cancellationToken = default)
 ```
 
-Նույնականացնում է ինտեգրման ծրագրի համար ստեղծված բանալիով (API Client)։
+Նույնականացնում է ինտեգրման ծրագրի համար ստեղծված բանալիով ([API Client](../api_client.md))։
 
 Նույնականացման ձախողման դեպքում վերադարձնում է առաջացած սխալը, հակառակ դեպքում վերադարձնում է null:
 
@@ -221,7 +223,7 @@ public Task<Exception> AuthenticateAsync(string serviceAddress, HttpClient httpC
   Կարող է փոխանցվել `null`։
 * `apiClientId` - Կլիենտ ծրագրի id-ն (API Client Id)։
 * `secret` - Կլիենտ ծրագրի բանալի (API Client Secret)։
-* `username` - Կլիենտ ծրագրի օգտագործողի մուտքանունը, որով նույնականացվում է։
+* `username` - Օգտագործողի մուտքանունը (ներքին անունը)։
 * `configurationName` - Այս պարամետրի արժեքը փոխանցվում է [ConfigurationName](#configurationname) հատկությանը:
   Այն ինֆորմատիվ բնույթ է կրում։
 * `cancellationToken` - Ընդհատման օբյեկտ։
@@ -240,7 +242,7 @@ public Task<Exception> AuthenticateAsync(string serviceAddress, HttpClient httpC
                                          CancellationToken cancellationToken = default)
 ```
 
-Նույնականացնում է օգտագործողի մուտքանունով և գաղտնաբառով, պահանջվում է սերտիֆիկատի առկայություն։
+Նույնականացնում է օգտագործողի մուտքանունով և գաղտնաբառով, պահանջվում է սերտիֆիկատի առկայություն ([API Client](../api_client.md))։
 
 Նույնականացման ձախողման դեպքում վերադարձնում է առաջացած սխալը, հակառակ դեպքում վերադարձնում է null:
 
