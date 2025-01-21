@@ -5,16 +5,14 @@ title: "Վարկային հոսքագծի ենթահամակարգում օգտ�
 ## Բովանդակություն
 
 * [Ներածություն](#ներածություն)
+* [AppProcessContext դասի ֆունկցիաները](loan_app_functions.md)
 * [Օրինակներ](#օրինակներ)
-* [AppProcessContext դասի ֆունկցիաները](#appprocesscontext-դասի-ֆունկցիաները)
-    * [AppForm](#apform)
-
-
+  
 ## Ներածություն
 
 "Վարկային հոսքագիծ" ենթահամակարգում c# ֆունկցիաները օգտագործվում են ցուցանիշների հաշվարկման, ինչպես նաև յուրահատուկ անցման տեսակներ (C# Ֆունկցիա (Այո/Ոչ)) ստեղծելու համար։
 
-Վարկային հայտերում օգտագործվող յուրաքանչյուր ցուցանիշի հաշվարկման կամ անցման փուլի նկարագրության յուրաքանչյուր ֆունկցիա իրագործվում է առանձին դասով։
+Վարկային հայտերում օգտագործվող յուրաքանչյուր ցուցանիշի հաշվարկման կամ անցման փուլի նկարագրության ֆունկցիա իրագործվում է առանձին դասով։
 
 Ցուցանիշների հաշվարկման համար նախատեսված դասերը իրագործում են ArmSoft.AS8X.Bank.Subsystems.IAppCustomScore ինտերֆեյսը, իսկ անցման փուլերի նկարագրության դասերը՝ ArmSoft.AS8X.Bank.Subsystems.IAppCustomCondition։
 
@@ -23,41 +21,78 @@ title: "Վարկային հոսքագծի ենթահամակարգում օգտ�
 Ֆայլերի պատրաստման և ՀԾ-Բանկ ներմուծման համար տես՝ [Սերվերային մոդուլի ձեռնարկը (SERVERSIDEMODULE)](definitions/server_side_module.md)։
 
 
-## AppProcessContext դասի ֆունկցիաները
+**Ցուցանիշի հաշվարկման համար նախատեսված դասի ձևանմուշ**
 
-### ApForm
----
 ```c#
-public ApForm AppForm()
-```
-Վերադարձնում է հայտի փաստաթուղթը։
+using ArmSoft.AS8X.Bank.Subsystems;
+using ArmSoft.AS8X.Bank.Subsystems.Models;
+using System.Threading;
+using System.Threading.Tasks;
 
-**Օրինակ**
+namespace LoanApplication.CompanyName;
+
+public class CalculateSomeIndex : IAppCustomScore
+{
+
+    public async Task<decimal> Evaluate(AppProcessContext context, CancellationToken cancellationToken)
+    {
+        return await Task.Run(() => 1m);
+    }
+}
+```
+
+**Յուրահատուկ անցման տեսակի ֆունկցիայի դասի ձևանմուշ**
+
 ```c#
- /* Ստանում ենք 812735354 isn ով փաստաթղթի 7 վիճակում գրանցված լինելու իրադարձության
- առկայությունը (exist), նշված վիճակով վերջին իրադարձությունը գրանցած օգտագործղողի կոդը (suid) և 
- իրադարձության ժամանակը (dateTime)
- */
- (bool exist, int suid, string dateTime) = await proxyService.GetSUIDAndDate(812735354, 7, false);
+using ArmSoft.AS8X.Bank.Subsystems;
+using ArmSoft.AS8X.Bank.Subsystems.Models;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace LoanApplication.CompanyName;
+
+public class ProcessSomeVerifications : IAppCustomCondition
+{
+    public async Task<bool> Evaluate(AppProcessContext context, CancellationToken cancellationToken)
+    {
+        return await Task.Run(() => true);
+    }
+}
 ```
 
+Դասերը ծրագրավորելուց հնարավոր է օգտագործել 8x տարբեր սերվիսներ։ Դրա համար անհրաժեշտ է կատարել պահանջվող սերվիսների ինյեկցիա։
 
-public async Task<Client> ClientDoc()
-async Task<AcraReport> AcraData(string reportType)
-public async Task<List<PEKTaxInfo>> EkengPEKData()
-public Task<decimal> EkengPEKTotalNetInc()
-public Task<decimal> EkengPEKAvgNetInc()
-public async Task<int> AllLoansCount()
-public async Task<int> CurrentLoansCount()
-public async Task<decimal> CurrentLoansAmount()
-public async Task<int> RejectedAppsCount()
+```c#
+using ArmSoft.AS8X.Bank.General.Currency;
+using ArmSoft.AS8X.Bank.UserProxy;
 
+public class CalculateSomeIndex : IAppCustomScore
+{
+     private ExchangeRateService exchangeRateService;
+     private readonly UserProxyService proxyService;
+     
+     // Կատարվում է ExchangeRateService սերվիսի ինյեկցիա
+     public CalculateSomeIndex(ExchangeRateService exchangeRateService)
+     {
+        this.exchangeRateService = exchangeRateService;
+     }
 
+        public async Task<decimal> Evaluate(AppProcessContext context, CancellationToken cancellationToken)
+    {
+        decimal appSum = context.AppForm().SUMMA;
+        string currency = context.AppForm().CURRENCY;
+        if (currency != "000")
+        {
+            var rate = await exchangeRateService.GetExchangeRate(currency, DateTime.Now);
+            appSum *= rate.Rate;
+        }
 
-
+        return appSum < 500_000 ? 0.5m : 1m;
+    }
+}
+```
 
 ## Օրինակներ
-
 
 ```c#
 /*
@@ -104,8 +139,3 @@ public class IsConnectedToBank : IAppCustomCondition
     }
 }
 ```
-
-
-
-
-
