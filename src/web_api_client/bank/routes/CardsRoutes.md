@@ -40,15 +40,17 @@ public Task<AttachReservedCardToClientResponse> AttachReservedCardToClient(
 * `CardISN` - քարտի ISN
 * `RespCode` - պատասխանի կոդ (բարեհաջող աշխատանքի դեպքում 00)
 * `ErrorMessage` - սխալի հաղորդագրություն:  
-  Հնարավոր արժեքներն են`
-  | RespCode | ErrorMessage |
-  | -- | -- |
-  | 00 | |
-  | 01 | 12345678 client mobile is not filled |
-  | 02 | 9051010203040506 card is not a reserved card |
-  | 03 | CreateVirtualCard call is failed |
-  | 04 | Incorrect card is attached to client by CreateVirtualCard |
-  | 05 | Other error |
+
+Հնարավոր արժեքներն են`
+
+| RespCode | ErrorMessage |
+| -- | -- |
+| 00 | |
+| 01 | 12345678 client mobile is not filled |
+| 02 | 9051010203040506 card is not a reserved card |
+| 03 | CreateVirtualCard call is failed |
+| 04 | Incorrect card is attached to client by CreateVirtualCard |
+| 05 | Other error |
 
 **Օրինակ**
 
@@ -57,23 +59,20 @@ public Task<AttachReservedCardToClientResponse> AttachReservedCardToClient(
 ### GetCardAgreementFiles
 
 ```c#
-public Task<List<string>> GetCardAgreementFiles(int cardIsn, 
-                                                Language language, 
-                                                string directoryPath)
+public Task<FilesInfoResponse> GetCardAgreementFiles(int cardIsn, Language language)
 ```
+Ներբեռնում է տրված քարտի համար անհրաժեշտ պայմանագրերը։ 
+Պայմանագրերի ձևանմուշները կարգավորվում են հետևյալ կետով՝ «Պլաստիկ քարտերի պայմանագրերի ձևանմուշների կարգավորում»։ 
+Մեթոդի կանչի ժամանակ նշված ձևանմուշներում լրացվում են տրված քարտի և հաճախորդի տվյալները։
 
-Ներբեռնում է տրված քարտի համար անհրաժեշտ պայմանագրերը։  
-Պայմանագրերի ձևանմուշները կարգավորվում են հետևյալ կետով՝ «Պլաստիկ քարտերի պայմանագրերի ձևանմուշների կարգավորում»։  
-Մեթոդի կանչի ժամանակ նշված ձևանմուշներում լրացվում են տրված քարտի և հաճախորդի տվյալները և ֆայլերը գրանցվում են `directoryPath` պարամետրով նշված թղթապանակում։  
-Մեթոդը վերադարձնում է նաև ֆայլերի անունների ցուցակը՝ ամբողջական ճանապարհով։
+Վերադարձնում է ֆայլերի անունները և պարունակությունը (byte[])։
 
 **Պարամետրեր**
 
 * `cardIsn` - Քարտի ISN։
 * `language` - Պայմանագրի լեզու։
-* `directoryPath` - ֆայլերի ներբեռնման թղթապանակ։
 
 **Օրինակ**
 
-Տե՛ս օգտագործման [օրինակը](../examples/CardsRoutes.md#օրինակ-2)։
+Տե՛ս օգտագործման [օրինակը](../examples/CardsRoutes.md#օրինակ-1)։
 

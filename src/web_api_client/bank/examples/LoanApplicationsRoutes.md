@@ -83,14 +83,14 @@ private static async Task GetPrintForms(BankApiClient apiClient, string exportDi
 {
     try
     {
-        // վերադարձնում է "0012" կոդով վարկային հայտի "Պայմանագիր", "Արբիտրաժային համաձայնագիր", "Անհատական թերթիկ" տեսակի տպելու ձևանմուշները
+        // վերադարձնում է "0012" կոդով վարկային հայտի "Պայմանագիր", "Արբիտրաժային համաձայնագիր", "Անհատական թերթիկ" տեսակի տպելու ձևանմուշները լրացված
         var res = await apiClient.LoanApplications.GetPrintForms(new()
         {
             AppCode = "0012",
             AppPrintForms = [PrintFormType.Arbitrage, PrintFormType.Contract, PrintFormType.IndividualSheet]
         });
 
-        // նշված ճանապարհով թղթապանակի գոյություն չունենալու դեպքում ստեղծում է այն
+        // նշված թղթապանակի գոյություն չունենալու դեպքում ստեղծում է այն
         if (!Directory.Exists(exportDirectory))
         {
             Directory.CreateDirectory(exportDirectory);
@@ -101,7 +101,7 @@ private static async Task GetPrintForms(BankApiClient apiClient, string exportDi
         {
             Console.WriteLine(printType);
 
-            // նշված ճանապարհով թղթապանակում ստեղծում է ֆայլ և լրացնում վարկային հայտի տպելու ձևանմուշը ֆայլում
+            // նշված ճանապարհով թղթապանակում ստեղծում է ֆայլ և պահպանում է լրացված ձևանմուշը այդ ֆայլում
             await File.WriteAllBytesAsync(Path.Combine(exportDirectory, file.FileName), file.Data);
         }
     }
