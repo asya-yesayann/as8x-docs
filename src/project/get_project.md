@@ -105,6 +105,7 @@ Microsoft Azure DevOps Services համակարգից օգտվելու համար
 * Համակարգը կառաջարկի լոկալ թղթապանակ բեռնել կոդերը վերջին վիճակով։ Սեղմեք **Yes**  կոճակը։ Կսկսվի ֆայլերի բեռնումը
 
 ![get_project_mapping_window](get_project_mapping_confirmation.png)
+
 ![get_project_progress_of_mapping](get_project_progress_of_mapping.png)
 
 * Կոդերը ստանալուց հետո, եթե Հայկական Ծրագրերի կողմից թարմացում տեղադրվի, ապա այն կարելի է ստանալ **Get latest version** հրամանով։ Օրինակ՝ եթե Ձեզ մոտ արդեն բեռնված է **231228.001** տարբերակի կոդերը և  Հայկական Ծրագրերը թարմացրել է այն **231228.002**-ի, ապա **231228** թղթապանակի վրա կատարում ենք մկնիկի աջ սեղմում և **Get latest version**։
@@ -124,7 +125,9 @@ Microsoft Azure DevOps Services համակարգից օգտվելու համար
 ![get_project_get_specific_version_window_label](get_project_get_specific_version_window_label.png)
 
 * Հետո նշում պրոեկտը, որի վրա փնտրում ենք label, սեղմում **Find** և նշում ցանկալի label-ը, ապա **Ok** կոճակը
+
 ![get_project_find_label_window](get_project_find_label_window.png)
 
 * Կարգավորում նշիչները ըստ ցանկության և սեղմում **Get** կոճակը
+
 ![get_project_get_specific_version_window_get.png](get_project_get_specific_version_window_get.png)
