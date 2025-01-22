@@ -12,10 +12,10 @@ sublinks:
 - [Ինչ է Api Client-ը](#ինչ-է-api-client-ը)
 - [Api Client-ի ստեղծում](#api-client-ի-ստեղծում)
 - [Մանիֆեստ](#մանիֆեստ)
-- [Մանիֆեստի դաշտերի նկարագրություն](#մանիֆեստի-դաշտերի-նկարագրություն)
-- [Մանիֆեստի օրինակ](#մանիֆեստի-օրինակ)
-- [Մանիֆեստի ներմուծում](#մանիֆեստի-ներմուծում)
-- [Մանիֆեստի արտահանում](#մանիֆեստի-արտահանում)
+  - [Մանիֆեստի դաշտերի նկարագրություն](#մանիֆեստի-դաշտերի-նկարագրություն)
+  - [Մանիֆեստի օրինակ](#մանիֆեստի-օրինակ)
+  - [Մանիֆեստի ներմուծում](#մանիֆեստի-ներմուծում)
+  - [Մանիֆեստի արտահանում](#մանիֆեստի-արտահանում)
 
 ## Ինչ է Api Client-ը
 
@@ -40,7 +40,7 @@ sublinks:
 * Կլիենտը ակտիվ է, թե ոչ։
 * Կլիենտը հարցումները կատարելուց օգտագործում է յունիկոդ կոդավորում, թե Ansi կոդավորում:
 
-![api_client_add](../images/api_client_add.png)
+![api_client_add](api_client_add.png)
 
 ## Մանիֆեստ 
 
@@ -55,11 +55,11 @@ JSON Schema-ն օգտագործելու համար անհրաժեշտ է՝
 * բացել Visual Studio-ի **Tools** մենյուի **Options** պատուհանը,
 * պատուհանի **Json -> Schema** բաժնում ավելացնել սխեմաների հասցեն` https://armsoftupdates.blob.core.windows.net/schemas/Catalog.json։
 
-![options_json_schema_add](../images/options_json_schema_add.png)
+![api_client_options_json_schema_add](api_client_options_json_schema_add.png)
 
 Այս քայլերի կատարումից հետո Visual Studio-ի միջավայրում **.json** ընդլայնմամբ ֆայլերի համար Schema անհրաժեշտ է ընտրել https://armsoftupdates.blob.core.windows.net/schemas/ClientManifestJsonSchema.json հասցեով JSON Schema-ն։
 
-![json_schema_apply](../images/json_schema_apply.png)
+![api_client_json_schema_apply](api_client_json_schema_apply.png)
 
 ## Մանիֆեստի դաշտերի նկարագրություն
 
