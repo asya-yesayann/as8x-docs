@@ -1,13 +1,52 @@
 ---
 layout: page
 title: "Օրինակ ClientsRoutes" 
+sublinks:
+- { title: "Օրինակ CreatePhysicalClientByFullData", ref: օրինակ-1 }
+- { title: "Օրինակ CreateClientFromEkeng", ref: օրինակ-2 }
 ---
 
 ## Բովանդակություն
+- [CreateClientFromEkeng-ի օգտագործման օրինակ](#օրինակ-1)
+- [CreatePhysicalClientByFullData-ի օգտագործման օրինակ](#օրինակ-2)
 
-- [Նոր ֆիզ. անձ հաճախորդի ստեղծման օրինակ](#նոր-ֆիզ-անձ-հաճախորդի-ստեղծման-օրինակ)
+## Օրինակ 1
 
-## Նոր ֆիզ. անձ հաճախորդի ստեղծման օրինակ
+Նոր ֆիզ. անձ հաճախորդի ստեղծման օրինակ ԷԿԵՆԳ համակարգից ստանալով անձի տվյալները։
+
+```c#
+public static async Task CreateClientFromEkeng(BankApiClient apiClient)
+{
+    try
+    {
+        // ստեղծում է ֆիզիկական անձ տիպի հաճախորդ՝ նշելով անձը հաստատող փաստաթղթի համարներից մեկը և ռեզիդենտությունը
+        var res = await apiClient.Clients.CreateClientFromEkeng(new()
+        {
+            PersonSSN = "1234567891",     //Սոց.քարտի համարը
+            //PassCode = "AH1234567891",  //Անձնագրի համար
+            //TaxNumber = "1234567891",   //Անհատ ձեռնարկատիրոջ ՀՎՀՀ
+            Resident = true,            //Հաճախորդի ռեզիդենտություն (ՊԱՐՏԱԴԻՐ Է)
+
+            EMail = "test@mail.am",     //էլ.փոստ
+            Mobile = "374 91111111",    //Բջջ.հեռախոսահամար
+        });
+
+        Console.WriteLine(res.IsNewCreated);
+        Console.WriteLine(res.Client);          //Վերադարձնում է ստեղծված հաճախորդի համարը
+    }
+    catch (ApiException ex)
+    {
+        // մեթոդի կանչի ընթացքում սխալի առաջացման դեպքում տպում է սխալի մանրամասները
+        Console.WriteLine(ex.Code); // սխալի կոդ
+        Console.WriteLine(ex.Message); // սխալի հաղորդագրություն
+        Console.WriteLine(ex.StatusCode); // սխալի վիճակի կոդ
+    }
+}
+```
+
+## Օրինակ 2
+
+Նոր ֆիզ. անձ հաճախորդի ստեղծման օրինակ։
 
 ```c#
 private static async Task CreateClient(BankApiClient apiClient)
@@ -41,13 +80,13 @@ private static async Task CreateClient(BankApiClient apiClient)
             SSNType = "2", // սոց. քարտի տիպ
         });
 
-        // տպում է ստեղծված հաճախորդի կոդը
-        Console.WriteLine(res.Client);
+        
+        Console.WriteLine(res.Client);  // տպում է ստեղծված հաճախորդի կոդը
+        Console.WriteLine(res.IsFinalState);  //ստեղծված հաճախորդը վերջնական վիճակում է
     }
-
-    // մեթոդի կանչի ընթացքում սխալի առաջացման դեպքում տպում է սխալի մանրամասները
     catch (ApiException ex)
     {
+        // մեթոդի կանչի ընթացքում սխալի առաջացման դեպքում տպում է սխալի մանրամասները
         Console.WriteLine(ex.Code); // սխալի կոդ
         Console.WriteLine(ex.Message); // սխալի հաղորդագրություն
         Console.WriteLine(ex.StatusCode); // սխալի վիճակի կոդ

@@ -1,6 +1,9 @@
 ---
 layout: page
 title: "AuthenticationClient" 
+sublinks:
+- { title: "AuthenticateWithCertificateAsync", ref: authenticatewithcertificateasync }
+- { title: "AuthenticateWithSecretAsync", ref: authenticatewithsecretasync }
 ---
 
 ## Բովանդակություն
@@ -13,56 +16,68 @@ title: "AuthenticationClient"
 
 ## Ներածություն
 
-8X սերվիս լոգին լինելու համար անհրաժեշտ է նախապես սահմանել մուտք գործող կլիենտ ծրագիր։
+AuthenticationClient դասը նախատեսված է 8X սերվիսին միացման ժամանակ նույնականացնելու համար։ 
 
-Այն անհրաժեշտ է ստեղծել 4X կամ 8X համակարգի UI-ից "**API Client-ներ**" դիտելու ձևից "**Ավելացնել**" կոնտեքստային ֆունկցիայով՝ նշելով կլիենտի վավերականացման եղանակը (սերտիֆիկատով կամ բանալիով) և նկարագրելով Json ֆորմատի **Manifest** ֆայլ, որը սահմանում է կլիենտ ծրագրի իրավասությունները և սահմանափակումները (որ օգտագործողները կարող են մուտք գործել համակարգ, որ տվյալների աղբյուրներին, փաստաթղթերին, DPR-ներին կարող են դիմել ու որ API կանչերը կատարել)։
+Հնարավորության դեպքում նախընտրելի է օգտագործել [LoginService](LoginService.md) դասը նույնականացման համար։
 
-![api_client_add](../../images/api_client_add.png)
+8X սերվիսին որևէ ծրագրից միանալու համար անհրաժեշտ է նախապես սահմանել [API Client](../api_client.md)։
 
-Իսկ կլիենտի ծրագրի միջոցով մուտք գործող օգտագործողի նույնականացումը կատարվում է այս դասի մեթոդների միջոցով։
+Նույնականացումից հետո օգտագործվում է [ApiClient](../types/ApiClient.md) ստեղծելու և դրա միջոցով սերվիսին հարցումներ կատարելու համար։
+
+Տե՛ս օգտագործման [օրինակը](../examples/AuthenticationClient.md)։
 
 ## Կոնստրուկտոր
 
 ```c#
-public class AuthenticationClient(string baseUrl, HttpClient httpClient, ILogger logger)
+public AuthenticationClient(string baseUrl, HttpClient httpClient, ILogger logger)
 ```
 
 **Պարամետրեր**
 
-* `baseUrl` - Սերվիսի հասցեն։
-* `httpClient` - [HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient) դասի օբյեկտ, որը նախատեսված է `AuthenticationClient` դասի մեթոդների միջոցով նույնականացման ընթացքում դեպի Web API հարցումներ կատարելու համար։
-* `logger` - [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) դասի օբյեկտ, որը նախատեսված է `AuthenticationClient` դասի մեթոդների միջոցով նույնականացման ընթացքում առաջացած սխալների լոգավորման համար։ 
+* `baseUrl` - 8X սերվիսի հասցեն։
+* `httpClient` - [HttpClient](https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpclient) դասի օբյեկտ, որը նախատեսված է նույնականացման և նույնականացումից հետո Http հարցումներ կատարելու համար է։
+  Օբյեկտը հարկավոր է բաց պահել քանի դեռ կատարվում են հարցումներ։
+* `logger` - [ILogger](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging.ilogger) դասի օբյեկտ, որը օգտագործվում է հարցումների և արդյունքների լոգավորման համար լոգավորման համար։  
+  Կարող է փոխանցվել `null`։
 
 ## Մեթոդներ
 
 ### AuthenticateWithCertificateAsync
 
 ```c#
-public Task<CertificateAuthenticateResponse> AuthenticateWithCertificateAsync(CertificateAuthenticateRequest certificateAuthenticateRequest, CancellationToken cancellationToken = default)
+public Task<CertificateAuthenticateResponse> AuthenticateWithCertificateAsync(
+    CertificateAuthenticateRequest certificateAuthenticateRequest, 
+    CancellationToken cancellationToken = default)
 ```
 
-Նույնականացնում է սերտիֆիկատով նույնականացված կլիենտ ծրագրի օգտագործողի մուտքը համակարգ։ Նույնականացման հաջողման դեպքում վերադարձնում է [օգտագործողի տվյալները և տոկեն՝ դեպի սերվիս հարցումներ կատարելու համար](../types/CertificateAuthenticateResponse.md), հակառակ դեպքում վերադարձնում է սխալ։
+Նույնականացնում է օգտագործողի մուտքանունով և գաղտնաբառով, պահանջվում է սերտիֆիկատի առկայություն ([API Client](../api_client.md))։
+
+Նույնականացման հաջողման դեպքում վերադարձնում է [օգտագործողի տվյալները և թոքեն՝ դեպի սերվիս հարցումներ կատարելու համար](../types/CertificateAuthenticateResponse.md), հակառակ դեպքում առաջացնում է սխալ։
 
 **Պարամետրեր**
 
-* `certificateAuthenticateRequest` - [Նույնականացման ենթակա օգտագործողի և այն ծրագրի տվյալները, որով օգտագործողը մուտք է գործում համակարգ](../types/CertificateAuthenticateRequest.md)։
-* `cancellationToken` - Ընդհատման տոկեն։
+* `certificateAuthenticateRequest` - [Օգտագործողի և API Client-ի տվյալները](../types/CertificateAuthenticateRequest.md)։
+* `cancellationToken` - Ընդհատման օբյեկտ։
 
 ### AuthenticateWithSecretAsync
 
 ```c#
-public Task<AuthenticateResponse> AuthenticateWithSecretAsync(string username, short apiClientId, string secret, CancellationToken cancellationToken = default)
+public Task<AuthenticateResponse> AuthenticateWithSecretAsync(
+    string username, short apiClientId, string secret, 
+    CancellationToken cancellationToken = default)
 ```
 
-Նույնականացնում է բանալիով նույնականացված կլիենտ ծրագրի օգտագործողի մուտքը համակարգ։ Նույնականացման հաջողման դեպքում վերադարձնում է [օգտագործողի տվյալները և տոկեն՝ դեպի սերվիս հարցումներ կատարելու համար](../types/AuthenticateResponse.md), հակառակ դեպքում վերադարձնում է սխալ։
+Նույնականացնում է ինտեգրման ծրագրի համար ստեղծված բանալիով ([API Client](../api_client.md))։
+
+Նույնականացման հաջողման դեպքում վերադարձնում է [օգտագործողի տվյալները և թոքեն՝ դեպի սերվիս հարցումներ կատարելու համար](../types/AuthenticateResponse.md), հակառակ դեպքում առաջացնում է սխալ։
 
 **Պարամետրեր**
 
 * `username` - Օգտագործողի մուտքանունը (ներքին անունը)։
-* `apiClientId` - Կլիենտ ծրագրի id-ն, որով մուտք է գործում օգտագործողը։
-* `secret` - Կլիենտ ծրագրի բանալին։
-* `cancellationToken` - Ընդհատման տոկեն։
+* `apiClientId` - Կլիենտ ծրագրի id-ն (API Client Id)։
+* `secret` - Կլիենտ ծրագրի բանալի (API Client Secret)։
+* `cancellationToken` - Ընդհատման օբյեկտ։
 
 **Օրինակ**
 
-Տե՛ս օգտագործման [օրինակը](../examples/AuthenticationClient.md#բանալիով-կլիենտ-ծրագրի-օգտագործողի-նույնականացման-օրինակ)։
+Տե՛ս օգտագործման [օրինակը](../examples/AuthenticationClient.md)։
