@@ -18,6 +18,7 @@ sublinks:
   - [VERSION](#version)
   - [CSSOURCE](#cssource)
 - [C# ֆայլի նկարագրություն](#c-ֆայլի-նկարագրություն)
+- [Ներմուծում և օգտագործում](#ներմուծում-և-օգտագործում)
 
 ## Ներածություն
 
@@ -84,14 +85,6 @@ DPR {
 ## C# ֆայլի նկարագրություն
 
 .cs ֆայլում հարկավոր է նկարագրել սերվերում աշխատող տրամաբանությունը, տե՛ս Տվյալների մշակման հարցման [C# ֆայլի նկարագրություն](../../server_api/definitions/dpr_guide.md#c-ֆայլի-նկարագրություն)։
-
-Հարկավոր է որպեսզի `class`-ը ունենա `SourceVersion` ատրիբուտ։
-
-``` c#
-[SourceVersion(1)]
-[DPR(DPRType = DPRType.Other, ArmenianCaption = "Փաստաթղթերի հեռացում", EnglishCaption = "Deletion of documents")]
-public class DeleteDocsByIsnDPR : DataProcessingRequest<DeleteDocsByIsnResponse, DeleteDocsByIsnRequest>
-```
 
 ## Ներմուծում և օգտագործում
 

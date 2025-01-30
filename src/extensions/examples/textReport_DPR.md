@@ -29,7 +29,6 @@ public class ExampleTextReportDPRRequest
     public int DocumentIsn { get; set; }
 }
 
-[SourceVersion(1)]
 [DPR(DPRType = DPRType.Report, ArmenianCaption = "Տեստային հաշվետվություն 1", EnglishCaption = "Test report 1")]
 public class ExampleTextReportDPR : DataProcessingRequest<StorageInfo, ExampleTextReportDPRRequest>
 {

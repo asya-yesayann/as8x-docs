@@ -108,6 +108,7 @@ sublinks:
   - [LoadFromFolder](#loadfromfolder-1)
   - [MakeParentLink](#makeparentlink)
   - [ReFolder](#refolder)
+  - [SetGridDefaultValues](#setgriddefaultvalues)
   - [Store](#store)
   - [StoreFact](#storefact)
   - [StoreInFolder](#storeinfolder)
@@ -1056,6 +1057,19 @@ public Task ReFolder(Document document, StoreMode mode)
 * `document` - [Փաստաթղթի օբյեկտ](../definitions/document.md)։
 * `mode` - [Փաստաթղթի պահպանման ռեժիմը](../types/StoreMode.md)։
   Տե՛ս [Document](../definitions/document.md).[StoreMode](../definitions/document.md#storemode) հատկությունը։
+
+### SetGridDefaultValues 
+
+```c#
+public void SetGridDefaultValues(Document document, Dictionary<string, HashSet<string>> gridColumns)
+```
+
+Վերագրում է լռությամբ արժեքներ փաստաթղթի տրված աղյուսակների տրված սյուներին։
+
+**Պարամետրեր**
+
+* `document` - [Փաստաթղթի օբյեկտ](../definitions/document.md)։
+* `gridColumns` - Dictionary տիպի օբյեկտ, որտեղ բանալի հանդիսանում է աղյուսակի ներքին անունը, իսկ արժեք՝ աղյուսակի այն սյուների ցուցակը, որոնց պետք է տալ լռությամբ արժեքներ։
 
 ### Store
 

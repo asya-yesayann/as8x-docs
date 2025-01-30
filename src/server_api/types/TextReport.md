@@ -29,6 +29,7 @@ tags: AsRepViewer
   - [GetRows](#getrows)
   - [InsertRows](#insertrows)
   - [SaveToStorageAndClose](#savetostorageandclose)
+  - [SaveToStorageAsText](#savetostorageastext)
 
 ## Ներածություն
 
@@ -270,13 +271,13 @@ public Task<List<TextReportRow>> GetRows(long startRow, long rowCount)
 public Task InsertRows(TextReport textReport, long begin = 0, long rowCount = 0)
 ```
 
-Ավելացնում է `textReport` հաշվետվության նշված տողերը ընթացիկ հաշվետվությունում։ 
+Ավելացնում է textReport հաշվետվության նշված տողերը ընթացիկ հաշվետվությունում։ 
 
 **Պարամետրեր**
 
 * `textReport` - Այն հաշվետվությունը, որի տողերը պետք է ավելացվեն ընթացիկ հաշվետվությունում։
-* `begin` - `textReport` հաշվետվության տողի համար, որից սկսած ավելացվում են տողերը ընթացիկ հաշվետվությունում։ 
-* `rowCount` - Ավելացվող տողերի քանակը՝ սկսած `begin` համարի տողից։ 
+* `begin` - `textReport` հաշվետվության տողի համար, որից սկսած ավելացվում են տողերը ընթացիկ հաշվետվությունում։ Արժեք չփոխանցելու դեպքում ավելացումը կսկսվի 0 համարի տողից։
+* `rowCount` - Ավելացվող տողերի քանակը՝ սկսած `begin` համարի տողից։ Արժեք չփոխանցելու դեպքում ավելացվելու են բոլոր տողերը՝ սկսած `begin` համարի տողից։
 
 ### SaveToStorageAndClose
 
@@ -287,3 +288,19 @@ public Task<StorageInfo> SaveToStorageAndClose()
 Փակում է հաշվետվությունը և պահպանում [ընթացիկ սեսսիայի կոնտեյներում](../services/IStorageService.md#container):
 
 Վերադարձնում է հաշվետվությունը պարունակող [կոնտեյների](../services/IStorageService.md#container) և ֆայլի անունները։ 
+
+### SaveToStorageAsText
+
+```c#
+public async Task SaveToStorageAsText(StorageInfo storageInfo, bool replaceTags = false,
+                                      bool htmlformat = false, bool toUnicode = false)
+```
+
+Պահպանում է հաշվետվության տեքսը ֆայլի մեջ։
+
+**Պարամետրեր**
+
+* `storageInfo` - StorageInfo տիպի օբյեկտ, որը պարունակում է այն թղթապանակի ու ֆայլի անունները, որտեղ պահվելու է հաշվետվության տեքստը։
+* `replaceTags` - Հաշվետվության տեքստից թեգերի հեռացման հայտանիշ։
+* `htmlformat` - Հաշվետվության տեքստի HTML ֆորմատով պահման հայտանիշ։
+* `toUnicode` - Հաշվետվության տեքստի Unicode կոդավորմամբ պահման հայտանիշ։ `false` արժեքի դեպքում տեքստը պահվելու է `Ansi` կոդավորմամբ։

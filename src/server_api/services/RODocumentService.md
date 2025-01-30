@@ -107,7 +107,7 @@ public Task<T> Load<T>(int isn,
 ### Load
 
 ```c#
-public Task<Dictionary<int, RODocument>> Load(IEnumerable<int> isnList)
+public Task<Dictionary<int, RODocument>> Load(IEnumerable<int> isnList, bool loadGrids = false)
 ```
 
 Բեռնում է նշված ներքին նույնականացման համարներով փաստաթղթերը հիմնական տվյալների պահոցից՝ առանց աղյուսակների բեռնման և արխիվային տվյալների ստուգման:
@@ -118,6 +118,7 @@ public Task<Dictionary<int, RODocument>> Load(IEnumerable<int> isnList)
 **Պարամետրեր**
 
 * `isnList` - Փաստաթղթերի ներքին նույնականացման համարների ցուցակ։
+* `loadGrids` - Փաստաթղթերի աղյուսակների բեռնման հայտանիշ։
 
 <!-- ### LoadIntoCache
 
