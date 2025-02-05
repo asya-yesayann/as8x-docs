@@ -6,6 +6,7 @@ sublinks:
 - { title: "additionalSettings", ref: additionalsettings }
 - { title: "Autentication", ref: autentication }
 - { title: "db", ref: db }
+- { title: "Extensions", ref: extensions }
 - { title: "Hangfire", ref: hangfire }
 - { title: "JwtConfig", ref: jwtconfig }
 - { title: "redisCachingSettings", ref: rediscachingsettings }
@@ -26,6 +27,7 @@ sublinks:
 - [additionalSettings](#additionalsettings)
 - [Autentication](#autentication)
 - [db](#db)
+- [Extensions](#extensions)
 - [Hangfire](#hangfire)
 - [JwtConfig](#jwtconfig)
 - [redisCachingSettings](#rediscachingsettings)
@@ -142,6 +144,40 @@ Azure AD-ով կամ Windows ADFS-ով նույնականացման կարգավ
 * `maxPoolSize` - Տվյալների բազային [միացումների Pool](https://www.linkedin.com/pulse/how-sql-connection-pool-works-prashant-pathak/)-ում միացումների առավելագույն քանակը։ Լռությամբ արժեքը 100 է։
 * `customerId` - Պատվիրատուի նույնակացման համար։ Օգտագորվում է ՀԾ-Ձեռնարկության և ՀԾ-Աշխատավարձի 8X սերվիսների կողմից։
 * `encrypt` - Նշում է, թե արդյոք տվյալների բազային միացումը ծածկագրվի, թե ոչ։ Լռությամբ արժեքը false է։
+
+## Extensions
+
+Այս բաժինը նախատեսված է կազմակերպության սեփական նկարագրությունները և ընդլայնումները պարունակող պրոյեկտ(ներ)ի սահմանման համար։
+Ընդլայնող պրոյեկտ(ներ)ը անհրաժեշտ է նախապես ստեղծել, կարգավորել (ստեղծման, կարգավորման եղանակին ծանոթանալու համար [տե՛ս](customer_specific_extensions_project.md)) և build անել, որի արդյունքում ձևավորվում են dll-ներ։
+
+```json
+"Extensions": [
+    {
+        "Id": "ACS",
+        "Name": "Organisation Specific Definitions project",
+        "Location": "Organisation-DLLs",
+        "MainAssembly": "Organisation.Specific.Definitions.dll",
+        "SystemType": "Bank",
+        "Assemblies": [
+                "Security.Authentication.dll",
+                "Seq.Api.dll",
+            ]
+        }
+    ],
+```
+
+**Պարամետրեր**
+* `Id` - **Ոչ պարտադիր**: Պրոյեկտի id-ն։
+* `Name` - **Պարտադիր**: Պրոյեկտի անունը, որը օգտագործվում է ընդլայնող dll-(ներ)ի բեռնման ընթացքում առաջացած սխալների լոգավորման համար։
+* `Location` - **Պարտադիր**: Ընդլայնող dll-(ներ)ը պետք է տեղակայված լինեն սերվիսի Publish-ի թղթապանակում և այս դաշտում անհրաժեշտ է նշել այդ dll-ների հարաբերական ճանապարհը Publish-ի թղթապանակի նկատմամբ, որպեսզի դրանք հասանելի լինեն Production-ում։
+Օր․՝ եթե ընդլայնող dll-ները պատճենվել են Publish-ի թղթապանակի "Organisation-DLLs" ենթաթղթապանակում, ապա Location-ի արժեքը պետք է լինի "Organisation-DLLs"։
+**Յուրաքանչյուր նոր տարբերակի տեղադրման դեպքում այս քայլերը պետք է կրկին կատարել 8X սերվիսի բոլոր instance-ների համար։**
+* `MainAssembly` - **Պարտադիր**։ Հիմնական ընդլայնող dll-ի անունը, որը պետք է տեղակայված լինի **Location**-ում նշված հասցեում։ Օրինակ՝ **"Organisation.Specific.Definitions.dll"**։
+* `SystemType` - **Պարտադիր**։ Այն ծրագրի անունը, որում ավելացվելու է ընդլայնող dll-(ներ)ը։ Կարող է ընդունել հետևյալ արժեքները՝
+  * `Wages` - ՀԾ ՄՌԿ
+  * `Enterprise` - ՀԾ Ձեռնարկություն
+  * `Bank` - ՀԾ Բանկ
+* `Assemblies` - **Ոչ պարտադիր**: dll-ների անունների զանգված, որոնք անհրաժեշտ են **MainAssembly**-ում նշված assembly-ին աշխատանքի համար։ dll-ները պետք է տեղակայված լինեն **Location**-ում նշված հասցեում։ 
 
 ## Hangfire
 
