@@ -189,6 +189,42 @@ Azure AD-ով կամ Windows ADFS-ով նույնականացման կարգավ
 * `expirationInMinutes` - JWT Token-ի վավերականության տևողությունը րոպեներով։
 * `refreshExpirationInMinutes` - Թարմացման Token-ի վավերականության տևողությունը րոպեներով:
 
+## OTLP
+
+Այս բաժինը նախատեսված է trace-ների և մետրիկաների կարգավորումների սահմանման համար։ 
+
+```json
+"OTLP": {
+    "Metrics": {
+        "EnableDefaultInstrumantations": false,
+        "PeriodicExporting": {
+            "ExportIntervalMilliseconds": 10000
+            },
+        "CachedItemsCountEnabled": false
+        },
+      "Tracing": {
+          "EnableDefaultInstrumantations": false,
+          "SqlClientInstrumentation": {
+              "Enabled": false,
+              "AddSqlParameters": false
+            }
+        }
+    }
+```
+
+**Պարամետրեր**
+* `Metrics` - Այս բաժինը նախատեսված է մետրիկաների կարգավորման համար։
+  * `EnableDefaultInstrumantations` - Ծրագրի աշխատանքի ընթացքում եկած Api հարցումների մասին մետրիկաների հավաքագրման հայտանիշ։ Լռությամբ արժեքը `false` է։
+  * `PeriodicExporting` - Այս բաժինը նախատեսված է պարբերական մետրիկաների կարգավորման համար։
+    * `ExportIntervalMilliseconds` - Պարբերական մետրիկաների արտահանման ինտերվալը միլիվայրկյաններով։
+  * `CachedItemsCountEnabled` - Lite և RO Document-ների օբյեկտների քանակի գրանցման հայտանիշ։ Լռությամբ արժեքը `false` է։
+
+* `Tracing` - Այս բաժինը նախատեսված է trace-ների կարգավորման համար։
+  * `EnableDefaultInstrumantations` - Ծրագրի աշխատանքի ընթացքում եկած Api հարցումների մասին trace-ների հավաքագրման հայտանիշ։ Լռությամբ արժեքը `false` է։
+  * `SqlClientInstrumentation` - Այս բաժինը նախատեսված է Sql հարցումների համար trace-երի կարգավորման համար։
+    * `Enabled` - Ծրագրի աշխատանքի ընթացքում կատարված Sql հարցումների համար trace-երի հավաքագրման հայտանիշ։ Լռությամբ արժեքը `false` է։
+    * `AddSqlParameters` - Sql հարցման պարամետրերի մասին ինֆորմացիան trace-երում ներառման հայտանիշ։ Լռությամբ արժեքը `false` է։
+
 ## redisCachingSettings
 
 Redis-ը նախատեսված է տվյալների քեշավորման և արագ բեռնման համար։ 
