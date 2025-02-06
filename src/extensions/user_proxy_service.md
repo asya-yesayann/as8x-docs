@@ -707,7 +707,7 @@ public Task<string> GetAgrFactValueString(int isn, NoRem accType, string accOp,
 ```c#
 // ստանում ենք 307245031 ISN-ով բարդ պայմանագրի ենթապայմանագրերի գծով նշանակված վերջին տոկոսադրույքը
 // 29/12/24 ամսաթվի դրությամբ։ 
-deciaml perc = (await proxyService.GetAgrFactValuePercent(307245031, NoRem.N0, 
+decimal perc = (await proxyService.GetAgrFactValuePercent(307245031, NoRem.N0, 
     "PAG", DateTime.Parse("2024-12-29"), MinMaxLast.Last, true, "C1Compl")).Rate;
 ```
 
@@ -1543,7 +1543,7 @@ public Task<InterestRate> GetSSFactValuePercent(int isn, NoRem accType, string a
 
 ```c#
 // ստանում ենք 812735354 ISN -ով պայմանագրի տոկոսադրույքը 15/08/24 ամսաթվի դրությամբ։ 
-deciaml perc = (await proxyService.GetSSFactValuePercent(812735354, NoRem.N0, 
+decimal perc = (await proxyService.GetSSFactValuePercent(812735354, NoRem.N0, 
     "PAG", DateTime.Parse("2024-08-15"))).Rate;
 ```
 
