@@ -9,6 +9,7 @@ sublinks:
 - { title: "Extensions", ref: extensions }
 - { title: "Hangfire", ref: hangfire }
 - { title: "JwtConfig", ref: jwtconfig }
+- { title: "OTLP", ref: otlp }
 - { title: "redisCachingSettings", ref: rediscachingsettings }
 - { title: "redisCachedItems", ref: rediscacheditems }
 - { title: "Serilog", ref: serilog }
@@ -30,6 +31,7 @@ sublinks:
 - [Extensions](#extensions)
 - [Hangfire](#hangfire)
 - [JwtConfig](#jwtconfig)
+- [OTLP](#otlp)
 - [redisCachingSettings](#rediscachingsettings)
   - [redisCachedItems](#rediscacheditems)
 - [Serilog](#serilog)
