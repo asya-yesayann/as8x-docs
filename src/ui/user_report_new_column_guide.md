@@ -39,6 +39,8 @@ tags: [UserReport]
 * սեղմել **Առաջարկվող տարբերակներ** կոճակը,
 * բացված ցանկից ընտրել **ProcessRow - Տողերի մշակում** տարբերակը։
 
+![user_report_code_snippet_geneartion](../gifs/user_report_code_snippet_geneartion.gif)
+
 Արդյունքում կգեներացվի C# կոդ, որը հանդիսանում է ձևանմուշ սյան արժեքների լրացման համար:
 
 ```c#
