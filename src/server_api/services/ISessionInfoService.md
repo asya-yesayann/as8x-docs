@@ -9,16 +9,8 @@ sublinks:
 ## Բովանդակություն
 
 - [Ներածություն](#ներածություն)
-<!-- - [Հատկություններ](#հատկություններ)
-  - [CurrentSessionGuid](#currentsessionguid) -->
 - [Մեթոդներ](#մեթոդներ)
-  <!-- - [Add](#add)
-  - [Delete](#delete)
-  - [DeleteExpirations](#deleteexpirations) -->
   - [GetInfo](#getinfo)
-  <!-- - [GetInfo](#getinfo-1)
-  - [GetInfos](#getinfos)
-  - [Update](#update) -->
 
 ## Ներածություն
 
