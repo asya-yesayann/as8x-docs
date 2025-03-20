@@ -155,7 +155,7 @@ public class TreeController
 
 ### Տպելու ձևանմուշի ընդլայնումում օգտագործման օրինակ
 
-`AccStateAdr_Extander` տպելու ձևանմուշի ընդլայնում հանդիսացող դասը իր կախվածությունը՝ [UserProxyService](../extensions/user_proxy_service.md), ստանում է կոնստրուկտորով ինյեկցիայի միջոցով:
+`AccStateAdr_Extander` տպելու ձևանմուշի ընդլայնում հանդիսացող դասը իր կախվածությունը՝ [UserProxyService](../extensions/bank/user_proxy_service.md), ստանում է կոնստրուկտորով ինյեկցիայի միջոցով:
 Այս դասը վերագրվում է դասի ներսում նախապես հայտարարված լոկալ փոփոխականին (`proxyService`) և օգտագործվում է դասի ներսում: 
 
 Օրինակում օգտագործված տպելու ձևանմուշի ընդլայնման նկարագրման ձեռնարկին ծանոթանալու համար [տե՛ս](../extensions/definitions/template_substitution_guide.md):  

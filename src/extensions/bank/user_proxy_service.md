@@ -1,6 +1,97 @@
 ---
 layout: page
 title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատուկ սերվիս" 
+sublinks:
+- { title: "AppForm", ref: apform }
+- { title: "AcName, AcEName", ref: acname-acename }
+- { title: "AgrSchedule", ref: agrschedule }
+- { title: "AsCCur", ref: asccur }
+- { title: "CalculateAtmInd", ref: calculateatmind }
+- { title: "CalculateOlapFormula", ref: calculateolapformula }
+- { title: "CliName, CliEName", ref: cliname-cliename }
+- { title: "CurrencyFormat", ref: currencyformat }
+- { title: "CurrencyISOCode", ref: currencyisocode }
+- { title: "CurrencyName", ref: currencyname }
+- { title: "CURRENT_DATE", ref: current_date }
+- { title: "DealRate", ref: dealrate }
+- { title: "ExistsContractByCliISN, ExistsContractByCliCode", ref: existscontractbycliisn-existscontractbyclicode }
+- { title: "FolderElProp", ref: folderelprop }
+- { title: "FolderElPropSpec", ref: folderelpropspec }
+- { title: "FormatDDMMYY, FormatDDMMYYYY, FormatYYYYMMDD", ref: formatddmmyy-formatddmmyyyy-formatyyyymmdd }
+- { title: "FormatToPrint", ref: formattoprint }
+- { title: "GetAccCodeByAgrISN", ref: getacccodebyagrisn }
+- { title: "GetAccountISN", ref: getaccountisn }
+- { title: "GetAgrFactValue", ref: getagrfactvalue }
+- { title: "GetAgrRem", ref: getagrrem }
+- { title: "GetAgrTurn", ref: getagrturn }
+- { title: "GetAgrTypeByISN", ref: getagrtypebyisn }
+- { title: "GetAllDayAgrJ", ref: getalldayagrj }
+- { title: "GetAllDayJCount", ref: getalldayjcount }
+- { title: "GetBranchParam", ref: getbranchparam }
+- { title: "GetCliCodeByAcc", ref: getclicodebyacc }
+- { title: "GetCliContractNamesByISN, GetCliContractNamesByCode", ref: getclicontractnamesbyisn-getclicontractnamesbycode }
+- { title: "GetClientAMDAcc", ref: getclientamdacc }
+- { title: "GetClientFullName", ref: getclientfullname }
+- { title: "GetClientISN", ref: getclientisn }
+- { title: "GetClientISNByAcc", ref: getclientisnbyacc }
+- { title: "GetClientRezJurVolortByAccount", ref: getclientrezjurvolortbyaccount }
+- { title: "GetCollateralISNsByAgrNum", ref: getcollateralisnsbyagrnum }
+- { title: "GetContractISN", ref: getcontractisn }
+- { title: "GetDayAgrJ", ref: getdayagrj }
+- { title: "GetDayPerJ", ref: getdayperj }
+- { title: "GetExchangeRate", ref: getexchangerate }
+- { title: "GetFutAgrDbt", ref: getfutagrdbt }
+- { title: "GetFutPerDbt", ref: getfutperdbt }
+- { title: "GetFutServFeeDbt", ref: getfutservfeedbt }
+- { title: "GetLinkedMortSum, GetLinkedGuarSum", ref: getlinkedmortsum-getlinkedguarsum }
+- { title: "GetPCardData", ref: getpcarddata }
+- { title: "GetPCardDoc", ref: getpcarddoc }
+- { title: "GetPerFutur", ref: getperfutur }
+- { title: "GetAgrSumJ, GetPerSumJ", ref: getagrsumj-getpersumj }
+- { title: "GetPerSumPayDate, GetAgrSumPayDate", ref: getpersumpaydate-getagrsumpaydate }
+- { title: "GetRating", ref: getrating }
+- { title: "GetRatingCode", ref: getratingcode }
+- { title: "GetRemHI2", ref: getremhi2 }
+- { title: "GetRemSS", ref: getremss }
+- { title: "GetSSFactValue", ref: getssfactvalue }
+- { title: "GetSUIDAndDate", ref: getsuidanddate }
+- { title: "InList", ref: inlist }
+- { title: "IsIncExpAcc", ref: isincexpacc }
+- { title: "IsKasAcc", ref: iskasacc }
+- { title: "LoadAccountDesc", ref: loadaccountdesc }
+- { title: "LoadAccountDoc", ref: loadaccountdoc }
+- { title: "LoadClientDesc", ref: loadclientdesc }
+- { title: "LoadClientDoc", ref: loadclientdoc }
+- { title: "LoadClientDocRO", ref: loadclientdocro }
+- { title: "LoadContractDescByCode", ref: loadcontractdescbycode }
+- { title: "LoadContractDescByISN", ref: loadcontractdescbyisn }
+- { title: "LoadContractDoc", ref: loadcontractdoc }
+- { title: "LoadDoc", ref: loaddoc }
+- { title: "LoadDocFromFolder", ref: loaddocfromfolder }
+- { title: "LoadNBAccountDesc", ref: loadnbaccountdesc }
+- { title: "LoadShortAccountDesc", ref: loadshortaccountdesc }
+- { title: "MaxOverdueDaysCount", ref: maxoverduedayscount }
+- { title: "MONTH_BEGIN", ref: month_begin }
+- { title: "MONTH_END", ref: month_end }
+- { title: "PREVIOUS_MONTH_BEGIN", ref: previous_month_begin }
+- { title: "PREVIOUS_MONTH_END", ref: previous_month_end }
+- { title: "PREVIOUS_QUARTE_BEGIN", ref: previous_quarte_begin }
+- { title: "PREVIOUS_QUARTE_END", ref: previous_quarte_end }
+- { title: "QUARTE_BEGIN", ref: quarte_begin }
+- { title: "QUARTE_END", ref: quarte_end }
+- { title: "SERVER_DATE", ref: server_date }
+- { title: "SSLastOpDate", ref: sslastopdate }
+- { title: "SumInWordsAsync", ref: suminwordsasync }
+- { title: "TreeElProp", ref: treeelprop }
+- { title: "TreeElPropComment, TreeElPropEComment", ref: treeelpropcomment-treeelpropecomment }
+- { title: "TryAddAtomicAsync, TryAddAtomic", ref: tryaddatomicasync-tryaddatomic }
+- { title: "Udf", ref: udf }
+- { title: "UserElProp", ref: userelprop }
+- { title: "WEEK_BEGIN", ref: week_begin }
+- { title: "WEEK_END", ref: week_end }
+- { title: "WKDATE", ref: wkdate }
+- { title: "YEAR_BEGIN", ref: year_begin }
+- { title: "YEAR_END", ref: year_end }
 ---
 
 ## Բովանդակություն
@@ -95,10 +186,6 @@ title: "UserProxyService - ՀԾ-Բանկի ընդլայնման յուրահատ
    * [WKDATE](#wkdate)
    * [YEAR_BEGIN](#year_begin)
    * [YEAR_END](#year_end)
-  
-* [Պայմանագրերի հաշվառումների կոդեր](#պայմանագրերի-հաշվառումների-կոդեր)
-* [Հաշվառումների գործողությունների կոդեր](#հաշվառումների-գործողությունների-կոդեր)
-  
 
 ## Ներածություն
 
@@ -111,7 +198,7 @@ UserProxyService-ը օգտագործվում է ընդլայնումներ ստ�
 3. Ֆորմատավորել ամսաթվեր, գումարներ։
 4. Հաշվարկել OLAP-ի ատոմար ցուցանիշների կամ օգտագործողի կողմից նկարագրված ֆունկցիաներ։
  
-Ընդլայնումներում UserProxyService-ն օգտագործելու համար անհրաժեշտ է կատարել նշված սերվիսի [ինյեկցիան](../project/injection.md)։ 
+Ընդլայնումներում UserProxyService-ն օգտագործելու համար անհրաժեշտ է կատարել նշված սերվիսի [ինյեկցիան](../../project/injection.md)։ 
 Օրինակ՝  
 ``` c#
 [TemplateSubstitutionExtender]
@@ -509,7 +596,7 @@ bool agrExist2 = await proxyService.ExistsContractByCliCode("00101953", "C1");
 public Task<FolderElement> FolderElProp(string folderId, string key, bool noLock = true)
 ```
 
-Վերադարձնում է [FolderElement](../server_api/types/FolderElement.md) տիպի օբյեկտ ըստ թղթապանակի անվան և բանալիի։ 
+Վերադարձնում է [FolderElement](../../server_api/types/FolderElement.md) տիպի օբյեկտ ըստ թղթապանակի անվան և բանալիի։ 
 Թղթապանակները գրանցվում են հիմնական բազայի FOLDERS աղյուսակում։
 
 **Պարամետրեր**
@@ -1436,7 +1523,7 @@ public Task<string> GetRatingCode(string clientCode, DateTime dateIn, string ope
 
 * `clientCode` - Հաճախորդի կոդը։
 * `dateIn` - Հարցման ամսաթիվը։
-* `operation` - Վարկանիշի կոդը։ Հնարավոր արժեքները թվարկված են [GetRating](#GetRating) ֆունկցիայի նկարագրության մեջ։
+* `operation` - Վարկանիշի կոդը։ Հնարավոր արժեքները թվարկված են [GetRating](#getrating) ֆունկցիայի նկարագրության մեջ։
 
 **Օրինակ**
 
@@ -1497,7 +1584,7 @@ public Task<decimal> GetRemSS(int isn, Rem accType, DateTime requestDate)
 
 Վերադարձնում է պայմանագրի մնացորդը։ 
 Չի նախատեսված բարդ պայմանագրերի համար։ 
-Բարդ պայմանագրերի ենթապայմանագրերի հաշվառումների մնացորդների ստացման համար նախատեսված է [GetAgrRem](#GetAgrRem) ֆունկցիան։
+Բարդ պայմանագրերի ենթապայմանագրերի հաշվառումների մնացորդների ստացման համար նախատեսված է [GetAgrRem](#getagrrem) ֆունկցիան։
 
 **Պարամետրեր**
 
@@ -1834,7 +1921,7 @@ public Task<Document> LoadDoc(int isn,
 **Պարամետրեր**
 
 * `isn` - Փաստաթղթի ISN։
-* `gridLoadMode` -  [Աղյուսակների բեռնման հայտանիշ](../server_api/types/GridLoadMode.md)։
+* `gridLoadMode` -  [Աղյուսակների բեռնման հայտանիշ](../../server_api/types/GridLoadMode.md)։
 * `loadParents` - Ծնող փաստաթղթերի ISN-ների ցուցակի բեռնման հայտանիշ։ 
 * `throwExceptionIfDeleted` - Պահանջվող փաստաթղթի հեռացված լինելու դեպքում սխալի առջացման հայտանիշ։ 
 * `lookInArc` - Արխիվացված փաստաթղթի բեռնման հայտանիշ։ 
@@ -1947,15 +2034,15 @@ public Task<Document> LoadDocFromFolder(string folder, string key,
 
 * `folder` - Թղթապանակի ներքին անուն։
 * `key` -  Թղթապանակի տարրի բանալի։
-* `gridLoadMode` -  [Աղյուսակների բեռնման հայտանիշ](../server_api/types/GridLoadMode.md)։
+* `gridLoadMode` -  [Աղյուսակների բեռնման հայտանիշ](../../server_api/types/GridLoadMode.md)։
 * `loadParents` -  Ծնող փաստաթղթերի ISN-ների ցուցակի բեռնման հայտանիշ։
 * `loadImagesAndMemos` - Նկարների ու մեծ մուտքագրման դաշտերի բեռնման հայտանիշ։
 
 Տե՛ս նաև՝ 
-* [Աշխատանք փաստաթղթի աղյուսակների հետ](#Աշխատանք-փաստաթղթի-աղյուսակների-հետ) 
-* [Աշխատանք նկարների հետ](#Աշխատանք-նկարների-հետ)
-* [Աշխատանք մեմո տեսակի դաշտերի հետ](#Աշխատանք-մեմո-տեսակի-դաշտերի-հետ)
-* [Ծնող-փաստաթղթերի բեռնում](#Ծնող-փաստաթղթերի-բեռնում)
+* [Աշխատանք փաստաթղթի աղյուսակների հետ](#աշխատանք-փաստաթղթի-աղյուսակների-հետ) 
+* [Աշխատանք նկարների հետ](#աշխատանք-նկարների-հետ)
+* [Աշխատանք մեմո տեսակի դաշտերի հետ](#աշխատանք-մեմո-տեսակի-դաշտերի-հետ)
+* [Ծնող-փաստաթղթերի բեռնում](#ծնող-փաստաթղթերի-բեռնում)
 
 **Օրինակ**
 
@@ -2304,7 +2391,7 @@ string sumInW = await proxyService.SumInWordsAsync(15.66m, "Dram", "Luma", isArm
 public Task<TreeElement> TreeElProp(string treeId, string key, bool useCache = true)
 ```
 
-Բեռնում է [ծառի տարրը](../server_api/types/TreeElement.md) տվյալների պահոցից կամ քեշից, եթե ծառը քեշավոևվող է։
+Բեռնում է [ծառի տարրը](../../server_api/types/TreeElement.md) տվյալների պահոցից կամ քեշից, եթե ծառը քեշավոևվող է։
 
 **Պարամետրեր**
 
@@ -2325,7 +2412,7 @@ string DistrName = (await proxyService.TreeElProp("LRDistr", "001")).Comment;
 public Task<string> TreeElPropComment(string treeId, string key, bool useCache = true)
 ```
 
-Բեռնում է [ծառի տարրի](../server_api/types/TreeElement.md) հայերեն/անգլերեն անվանումը։
+Բեռնում է [ծառի տարրի](../../server_api/types/TreeElement.md) հայերեն/անգլերեն անվանումը։
 
 **Պարամետրեր**
 
@@ -2352,7 +2439,7 @@ public Task TryAddAtomicAsync(string key, Func<Task<string>> operation,
     TemplateSubstitutionExtenderArgs args)
 ```
 
-Ֆունկցիաները օգտագործվում են [տպվող ձևերի ընդլայնումներում](../extensions/definitions/template_substitution.md) պարամետրերի ավելացման համար։  
+Ֆունկցիաները օգտագործվում են [տպվող ձևերի ընդլայնումներում](../../extensions/definitions/template_substitution.md) պարամետրերի ավելացման համար։  
 Նախատեսված են այն դեպքերի համար, երբ հարկավոր է արժեքի հաշվարկի ընթացքում առաջացած սխալները անտեսվեն։  
 Ֆունկցիաները որպես երկրորդ պարամետր ստանում են արժեքը հաշվող ֆունկցիա (սովորական, static, լոկալ, լամբդա արտահայտություն)։
 
@@ -2364,7 +2451,7 @@ public Task TryAddAtomicAsync(string key, Func<Task<string>> operation,
 
 * `key` - Տպվող պարամետրի կոդ։
 * `operation` - Արժեքը հաշվող ֆունկցիա։
-* `templateSubstitutionArgs` - [Calculate](../extensions/definitions/template_substitution.md#calculate) ֆունկցիայի մուտքային պարամետր։
+* `templateSubstitutionArgs` - [Calculate](../../extensions/definitions/template_substitution.md#calculate) ֆունկցիայի մուտքային պարամետր։
 
 **Օրինակ**
 
@@ -2420,7 +2507,7 @@ decimal agrs = proxyService.Udf("AvRem", DateTime.Parse("2024-07-01"), DateTime.
 public Task<UserDescription> UserElProp(short suid)
 ```
 
-Վերադարձնում է համակարգի [օգտագործողի նկարագրությունը](../server_api/types/UserDescription.md) ըստ օգտագործողի։
+Վերադարձնում է համակարգի [օգտագործողի նկարագրությունը](../../server_api/types/UserDescription.md) ըստ օգտագործողի։
 
 **Պարամետրեր**
 

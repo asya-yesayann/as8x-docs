@@ -86,7 +86,7 @@ public Task Calculate(TemplateSubstitutionExtenderArgs args)
 }
 ```
 
-Պարամետրի հաշվարկը և ավելացումը հնարավոր է կատարել նաև [UserProxyService](../user_proxy_service.md)-ի [TryAddAtomic](../user_proxy_service.md#tryaddatomic) կամ [TryAddAtomicAsync](../user_proxy_service.md#tryaddatomicasync) մեթոդներով։
+Պարամետրի հաշվարկը և ավելացումը հնարավոր է կատարել նաև [UserProxyService](../bank/user_proxy_service.md)-ի [TryAddAtomic](../bank/user_proxy_service.md#tryaddatomic) կամ [TryAddAtomicAsync](../bank/user_proxy_service.md#tryaddatomicasync) մեթոդներով։
 Այս դեպքում մեկ պարամետրի հաշվարկի ընթացքում առաջացած սխալի դեպքում ծրագրի աշխատանքը չի ընդհատվի՝ շարունակելով մնացած բոլոր պարամետրերի հաշվարկը։
 
 ```c#
