@@ -12,9 +12,6 @@ sublinks:
 - [Մեթոդներ](#մեթոդներ)
   - [UserElProp](#userelprop)
   - [GetList](#getlist)
-  <!-- - [ChangeName](#changename)
-  - [ValidateNewUsername](#validatenewusername)
-  - [SetAccess](#setaccess) -->
 
 ## Ներածություն
 
