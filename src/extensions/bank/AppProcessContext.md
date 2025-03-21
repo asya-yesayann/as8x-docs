@@ -28,7 +28,7 @@ sublinks:
   - [EkengPEKData](#ekengpekdata)
   - [EkengPEKTotalNetInc](#ekengpektotalnetinc)
   - [EkengPEKAvgNetInc](#ekengpekavgnetinc)
-  - [AllLoansCount, CurrentLoansCount](#allloanscount-currentloanscount)
+  - [AllLoansCount CurrentLoansCount NotMortgagedLoansAmount](#allloanscount-currentloanscount-notmortgagedloansamount)
   - [CurrentLoansAmount](#currentloansamount)
 
 ## Ներածություն
@@ -339,15 +339,19 @@ public class CalculateScore : IAppCustomScore
 }
 ```
 
-### AllLoansCount, CurrentLoansAmount
+### AllLoansCount CurrentLoansCount NotMortgagedLoansAmount
 
 ```c#
 public Task<decimal> AllLoansCount(string acsType = "");
-public Task<decimal> CurrentLoansAmount(string acsType = "");
+public Task<decimal> CurrentLoansAmount(string acsType = "", string shablon = "");
+public Task<decimal> NotMortgagedLoansAmount(string acsType = "", string shablon = "");
 ```
 
-AllLoansCount վերադարձնում է հաճախորդի բաց և փակված տեղաբաշխված պայմանագրերի քանակը։  
-CurrentLoansAmount-ը վերադարձնում է հաճախորդի միայն գործող տեղաբաշխված պայմանագրերի քանակը։
+**AllLoansCount** վերադարձնում է հաճախորդի բաց և փակված տեղաբաշխված պայմանագրերի քանակը։  
+**CurrentLoansAmount**-ը վերադարձնում է հաճախորդի միայն գործող տեղաբաշխված պայմանագրերի քանակը։ 
+**NotMortgagedLoansAmount** ֆունկցիան օգտագործվում է հաճախորդի գործող, առանց ապահովվածության, վարկերի գումարը ստանալու համար։ 
+
+**CurrentLoansAmount, NotMortgagedLoansAmount** Ֆունկցիաները հաշվարկելիս հնարավոր է ֆիլտրել պայմանագրերը նաև ըստ ձևանմուշի։
 
 `acsType` պարամետրի լռությամբ արժեքի դեպքում, Ֆունկցիան կվերադարձնի հայտում սահմանված հաճախորդի ստորև թվարկված տեսակի պայմանագրերի քանակները։
 
@@ -370,6 +374,8 @@ CurrentLoansAmount-ը վերադարձնում է հաճախորդի միայն 
   BR   Դեբիտորական պարտք              
   M2   Տրամադրված երաշխավորություն    
 
+* `shablon` - Ձևանմուշների ցուցակ։ Կիրառվում է CurrentLoansAmount և NotMortgagedLoansAmount ֆունկցիաների դեպքում։ Մի քանի ձևանմուշ սահմանելու դեպքում անհրաժեշտ է դրանք տարանջատել ստորակետով։
+
 **Օրինակ**
 ```c#
 //Բերված օրինակում կհաշվարկվի հաճախորդի վարկերի և օվերդրաֆտների ընդհանուր քանակը ներառյալ փակվածները։
@@ -378,6 +384,15 @@ public class CalculateSomeIndex3 : IAppCustomScore
     public async Task<decimal> Evaluate(AppProcessContext context, CancellationToken cancellationToken)
     {
         return await context.AllLoansCount("C1,C3");
+    }
+}
+
+//Հաշվարկվում է հաճախորդի 0065 ձևանմուշով բացված առանց ապահովվածության վարկերի գումարը։
+public class CalculateSomeIndex4 : IAppCustomScore
+{
+    public async Task<decimal> Evaluate(AppProcessContext context, CancellationToken cancellationToken)
+    {
+        return await context.NotMortgagedLoansAmount("C1", "0065" );
     }
 }
 ```
