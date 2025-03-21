@@ -26,7 +26,7 @@ title: "Կազմակերպության սեփական նկարագրությու
     (.csproj ֆայլում  `<ImplicitUsings>disable</ImplicitUsings>`)
   * Nullable
     (.csproj ֆայլում  `<Nullable>disable</Nullable>`)
-* Պրոյեկտին բանկային հիմնական պրոյեկտի հղում  
+* Պրոյեկտին ավելացնել բանկային հիմնական պրոյեկտի հղումը  
   (.csproj ֆայլում `<ProjectReference Include="..\ProjectLocation\Bank\AS-8X\ArmSoft.AS8X.Bank\ArmSoft.AS8X.Bank.csproj" />`)
 
 **Խորհուրդ է տրվում օգտագործել այս տարբերակը, քանի որ այն տալիս է հնարավորություն debug անել 8X սերվիսի կոդը։**
