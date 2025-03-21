@@ -379,7 +379,7 @@ public Task<decimal> NotMortgagedLoansAmount(string acsType = "", string shablon
 **Օրինակ**
 ```c#
 //Բերված օրինակում կհաշվարկվի հաճախորդի վարկերի և օվերդրաֆտների ընդհանուր քանակը ներառյալ փակվածները։
-public class CalculateSomeIndex3 : IAppCustomScore
+public class CalculateScore1 : IAppCustomScore
 {
     public async Task<decimal> Evaluate(AppProcessContext context, CancellationToken cancellationToken)
     {
@@ -388,7 +388,7 @@ public class CalculateSomeIndex3 : IAppCustomScore
 }
 
 //Հաշվարկվում է հաճախորդի 0065 ձևանմուշով բացված առանց ապահովվածության վարկերի գումարը։
-public class CalculateSomeIndex4 : IAppCustomScore
+public class CalculateScore2 : IAppCustomScore
 {
     public async Task<decimal> Evaluate(AppProcessContext context, CancellationToken cancellationToken)
     {
