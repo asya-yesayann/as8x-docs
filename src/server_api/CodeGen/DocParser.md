@@ -50,7 +50,8 @@ public static string Parse(
     DocGeneratorOptions options = null, 
     string parentClass = "",
     bool generateFieldAccessor = false, 
-    bool uppercaseAll = false)
+    bool uppercaseAll = false,
+    List<string> ignoredGrids = null)
 ```
 
 Մեթոդը գեներացնում է փաստաթղթի 4X-ական նկարագրությանը համարժեք 8X-ական դասը, որը պարունակում է փաստաթղթի սերվերային նկարագրությունը։
@@ -93,6 +94,8 @@ public static string Parse(
   Ցույց է տալիս թե գեներացվող դասի բոլոր էլեմենտների(ռեկվիզիտ, մեմո, աղյուսակի սյուն, …) անունները լինեն գեներացվեն ամբողջությամբ մեծատառ թե ոչ։ 
   Չլրացնելու դեպքում էլեմենտների անունները համընկնում են 4x-ի էլեմենտների անունների հետ։
 
+- `ignoredGrids`  
+  Այն աղյուսակների անունները, որոնք անհրաժեշտ չէ գեներացնել փաստաթուղթը նկարագրող դասում։
 
 ### ParseClient
 
@@ -105,7 +108,8 @@ public static string ParseClient(
     string className = "",
     string conditionalCompilationList = "", 
     DocGeneratorOptions options = null, 
-    string parentClass = "")
+    string parentClass = "",
+    List<string> ignoredGrids = null)
 ```
 
 Մեթոդը գեներացնում է փաստաթղթի 4X-ական նկարագրությանը համարժեք 8X-ական դասը, որը պարունակում է փաստաթղթի կլիենտական նկարագրությունը։
@@ -142,6 +146,8 @@ public static string ParseClient(
   Գեներացվող փաստաթուղթի ծնող դասը, որը պետք է ժառանգ լինի Document դասից։ 
   Չլրացնելու դեպքում ծնող դաս է հանդիսանալու Document դասը։
 
+- `ignoredGrids`  
+  Այն աղյուսակների անունները, որոնք անհրաժեշտ չէ գեներացնել փաստաթուղթը նկարագրող դասում։
 
 ### ParseAll
 
@@ -153,7 +159,8 @@ public static string ParseAll(
     string conditionalCompilationList = "", 
     Dictionary<string, DocGeneratorOptions> options = null,
     bool generateFieldAccessor = false, 
-    bool uppercaseAll = false)
+    bool uppercaseAll = false,
+    List<string> ignoredGrids = null)
 ```
 
 Մեթոդը գեներացնում է `.as` ֆայլում գտնվող բոլոր փաստաթղթերի 4X-ական նկարագրություններին համարժեք 8X-ական դասերը, որոնք պարունակում են փաստաթղթերի սերվերային նկարագրությունները։
@@ -185,7 +192,9 @@ public static string ParseAll(
   Ցույց է տալիս թե գեներացվող դասերի բոլոր էլեմենտների(ռեկվիզիտ, մեմո, աղյուսակի սյուն, …) անունները լինեն գեներացվեն ամբողջությամբ մեծատառ թե ոչ։ 
   Չլրացնելու դեպքում էլեմենտների անունները համընկնում են 4X-ի էլեմենտների անունների հետ։
 
-
+- `ignoredGrids`  
+  Այն աղյուսակների անունները, որոնք անհրաժեշտ չէ գեներացնել փաստաթուղթը նկարագրող դասում։
+  
 ### ParseClientAll
 
 ```c#
@@ -194,7 +203,8 @@ public static string ParseClientAll(
     string filename, 
     string namespaceName,
     string conditionalCompilationList = "", 
-    Dictionary<string, DocGeneratorOptions> options = null)
+    Dictionary<string, DocGeneratorOptions> options = null,
+    List<string> ignoredGrids = null)
 ```
 
 Մեթոդը գեներացնում է `.as` ֆայլում գտնվող բոլոր փաստաթղթերի 4X-ական նկարագրություններին համարժեք 8X-ական դասերը, որոնք պարունակում են փաստաթղթերի կլիենտական նկարագրությունները։
@@ -219,6 +229,9 @@ public static string ParseClientAll(
 - `options`  
   Այս հատկությունը հնարավորություն է տալիս վերանվանել փաստաթղթի ռեկվիզիտների ու գրիդի սյուների անունները։
 
+- `ignoredGrids`  
+  Այն աղյուսակների անունները, որոնք անհրաժեշտ չէ գեներացնել փաստաթուղթը նկարագրող դասում։
+
 ### ParseRO
 
 ```c#
@@ -229,7 +242,8 @@ public static string ParseRO(
     string namespaceName,                             
     string className = "", 
     ReadOnlyDocGeneratorOptions options = null, 
-    string conditionalCompilationList = "")
+    string conditionalCompilationList = "",
+    List<string> ignoredGrids = null)
 ```
 
 Մեթոդը գեներացնում է փաստաթղթի 4X-ական նկարագրությանը համարժեք 8X-ական [RODocument](../types/RODocument.md) դասի ժառանգ քեշավորվող դասը, որը պարունակում է միայն փաստաթղթի նկարագրությունը (դաշտեր, աղյուսակներ, մեմոներ) կարդալու իրավասությամբ, որը հնարավոր չէ փոփոխել բեռնելուց հետո։
@@ -250,7 +264,7 @@ public static string ParseRO(
   Գեներացվող դասի namespace-ի վերջին հատվածը (namespace-ի սկիզբը միշտ `ArmSoft.AS8X.` է)։
 
 - `className`  
-  Գեներացվող դասի անունը։ Չլրացնելու դեպքում համընկնելու է փաստաթղթի տեսակի  անվանման հետ՝ `docType`:
+  Գեներացվող դասի անունը։ Չլրացնելու դեպքում համընկնելու է փաստաթղթի տեսակի անվանման հետ՝ `docType`:
 
 - `options`  
 Այս հատկությունը հնարավորություն է տալիս վերանվանել փաստաթղթի ռեկվիզիտների ու գրիդի սյուների անունները։  
@@ -261,6 +275,9 @@ public static string ParseRO(
   Որոշ փաստաթղթեր ընդհանուր են մի քանի համակարգերի համար և տարբերվում են միայն գտնվելու տեղով՝ namespace-ով։ 
   Նույն դասը 2 տեղ չգրելու համար անհրաժեշտ է այն տեղադրել Tfs-ում ընդհանուր հասանելիության թղթապանակում և լինկով միացնել անհրաժեշտ պրոյեկտներում, իսկ `conditionalCompilationList`-ում գրել այն պրոյեկտների անվանումները, որոնց լինկով միացվելու է դասը։ 
   Պրոյեկտների անունները  անհրաժեշտ է իրարից անջատել ստորակետերով։
+
+- `ignoredGrids`  
+  Այն աղյուսակների անունները, որոնք անհրաժեշտ չէ գեներացնել փաստաթուղթը նկարագրող դասում։
 
 ## DocGeneratorOptions
 
