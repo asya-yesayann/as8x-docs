@@ -2,6 +2,94 @@
 layout: page
 title: "Փաստաթղթի նկարագրություն" 
 tags: [Doc, Document, AsDoc]
+sublinks:
+- { title: "DOCUMENT նկարագրություն", ref: document-նկարագրություն }
+- { title: "Document դաս", ref: document-դաս }
+- { title: "Archived", ref: archived }
+- { title: "CancellationToken", ref: cancellationtoken }
+- { title: "CopiedFrom", ref: copiedfrom }
+- { title: "CreatorSUID", ref: creatorsuid }
+- { title: "CreationDate", ref: creationdate }
+- { title: "Description", ref: description }
+- { title: "DocumentChangeRequest", ref: documentchangerequest }
+- { title: "DocumentLog", ref: documentlog }
+- { title: "Deleting", ref: deleting }
+- { title: "ExistsInDB", ref: existsindb }
+- { title: "Grids", ref: grids }
+- { title: "GridsInitialized", ref: gridsinitialized }
+- { title: "GridsLoaded", ref: gridsloaded }
+- { title: "GridsLoading", ref: gridsloading }
+- { title: "IsCancellationSupported", ref: iscancellationsupported }
+- { title: "IsLogged", ref: islogged }
+- { title: "indexer", ref: indexer }
+- { title: "InitialSnapshot", ref: initialsnapshot }
+- { title: "ISN", ref: isn }
+- { title: "IsNew", ref: isnew }
+- { title: "IsUIOrigin", ref: isuiorigin }
+- { title: "LastFixedState", ref: lastfixedstate }
+- { title: "LogTransactions", ref: logtransactions }
+- { title: "NestedTransactionReport", ref: nestedtransactionreport }
+- { title: "Origin", ref: origin }
+- { title: "Progress", ref: progress }
+- { title: "Properties", ref: properties }
+- { title: "ShowProgress", ref: showprogress }
+- { title: "Snapshots", ref: snapshots }
+- { title: "State", ref: state }
+- { title: "StoreMode", ref: storemode }
+- { title: "StoredFacts", ref: storedfacts }
+- { title: "StoreSnapshot", ref: storesnapshot }
+- { title: "TemplateSubstitutionIsExtended", ref: templatesubstitutionisextended }
+- { title: "TimeStamp", ref: timestamp }
+- { title: "Action", ref: action }
+- { title: "AddParent", ref: addparent }
+- { title: "AfterCommit", ref: aftercommit }
+- { title: "AfterCreate", ref: aftercreate }
+- { title: "AfterLoad", ref: afterload }
+- { title: "ApplySnapshot", ref: applysnapshot }
+- { title: "BeforeCommit", ref: beforecommit }
+- { title: "BeforeCopy", ref: beforecopy }
+- { title: "BeforeImportProcessing", ref: beforeimportprocessing }
+- { title: "Body", ref: body }
+- { title: "BuildEmbeddedUIRequest", ref: buildembeddeduirequest }
+- { title: "DefaultComment", ref: defaultcomment }
+- { title: "DefineLimits", ref: definelimits }
+- { title: "Delete", ref: delete }
+- { title: "DeserializeComplexObjects", ref: deserializecomplexobjects }
+- { title: "ExistsGrid", ref: existsgrid }
+- { title: "ExistsRekvizit", ref: existsrekvizit }
+- { title: "Folders", ref: folders }
+- { title: "GetCheckValue", ref: getcheckvalue }
+- { title: "GetFieldType", ref: getfieldtype }
+- { title: "GetImage", ref: getimage }
+- { title: "GetMemo", ref: getmemo }
+- { title: "GetNextTrans", ref: getnexttrans }
+- { title: "GetParents", ref: getparents }
+- { title: "Grid", ref: grid }
+- { title: "InitGrids", ref: initgrids }
+- { title: "DoLoadGrids", ref: doloadgrids }
+- { title: "LoadGrids", ref: loadgrids }
+- { title: "LoadImagesAndMemos", ref: loadimagesandmemos }
+- { title: "LoadParents", ref: loadparents }
+- { title: "OnConfirmDocumentChangeRequest", ref: onconfirmdocumentchangerequest }
+- { title: "OnRefuse", ref: onrefuse }
+- { title: "OnRejectDocumentChangeRequest", ref: onrejectdocumentchangerequest }
+- { title: "PostMessage", ref: postmessage }
+- { title: "RefreshTimeStamp", ref: refreshtimestamp }
+- { title: "SendMessage", ref: sendmessage }
+- { title: "SerializeComplexObjects", ref: serializecomplexobjects }
+- { title: "SetCheckValue", ref: setcheckvalue }
+- { title: "SetDefaultValuesForFields", ref: setdefaultvaluesforfields }
+- { title: "SetDefaultValuesForFields", ref: setdefaultvaluesforfields-1 }
+- { title: "SetImage", ref: setimage }
+- { title: "SetMemo", ref: setmemo }
+- { title: "Store", ref: store }
+- { title: "StoreGrids", ref: storegrids }
+- { title: "StoreValuesHistory", ref: storevalueshistory }
+- { title: "TakeSnapshot", ref: takesnapshot }
+- { title: "TemplateSubstitution", ref: templatesubstitution }
+- { title: "TemplateSubstitutionEx", ref: templatesubstitutionex }
+- { title: "Validate", ref: validate }
+- { title: "WriteLog", ref: writelog }
 ---
 
 ## Բովանդակություն
