@@ -56,7 +56,7 @@ public IEnumerable<DPRInfo> GetList(DPRType type)
 
 **Պարամետրեր**
 
-* `type` - DPR-ի տեսակը, որը նշվում է DPR ատրիբուտում։
+* `type` - DPR-ի տեսակը, որը նշվում է [DPR ատրիբուտում](../../server_api/types/attributes/DPRAttribute.md)։
   * **DPRType.Report** - Հաշվետվությունների տվյալների մշակման հարցում
   * **DPRType.OLAP** - Օլապ տվյալների մշակման հարցում
   * **DPRType.JobElement** - Առաջադրանքների տվյալների մշակման հարցում
@@ -72,7 +72,7 @@ public Task<IEnumerable<DPRInfo>> GetListAsync(DPRType type, CancellationToken c
 
 **Պարամետրեր**
 
-* `type` - DPR-ի տեսակը, որը նշվում է DPR ատրիբուտում։
+* `type` - DPR-ի տեսակը, որը նշվում է [DPR ատրիբուտում](../../server_api/types/attributes/DPRAttribute.md)։
   * **DPRType.Report** - Հաշվետվությունների տվյալների մշակման հարցում
   * **DPRType.OLAP** - Օլապ տվյալների մշակման հարցում
   * **DPRType.JobElement** - Առաջադրանքների տվյալների մշակման հարցում
@@ -89,7 +89,7 @@ public DPRInfoExtended GetObject(DPRType type, string name)
 
 **Պարամետրեր**
 
-* `type` - DPR-ի տեսակը, որը նշվում է DPR ատրիբուտում։
+* `type` - DPR-ի տեսակը, որը նշվում է [DPR ատրիբուտում](../../server_api/types/attributes/DPRAttribute.md)։
   * **DPRType.Report** - Հաշվետվությունների տվյալների մշակման հարցում
   * **DPRType.OLAP** - Օլապ տվյալների մշակման հարցում
   * **DPRType.JobElement** - Առաջադրանքների տվյալների մշակման հարցում
@@ -106,7 +106,7 @@ public Task<DPRInfoExtended> GetObjectAsync(DPRType type, string name, Cancellat
 
 **Պարամետրեր**
 
-* `type` - DPR-ի տեսակը, որը նշվում է DPR ատրիբուտում։
+* `type` - DPR-ի տեսակը, որը նշվում է [DPR ատրիբուտում](../../server_api/types/attributes/DPRAttribute.md)։
   * **DPRType.Report** - Հաշվետվությունների տվյալների մշակման հարցում
   * **DPRType.OLAP** - Օլապ տվյալների մշակման հարցում
   * **DPRType.JobElement** - Առաջադրանքների տվյալների մշակման հարցում
@@ -124,7 +124,7 @@ public DPRJobEnqueueResponse Enqueue(DPRType type, string name, bool enableUIReq
 
 **Պարամետրեր**
 
-* `type` - DPR-ի տեսակը, որը նշվում է DPR ատրիբուտում։
+* `type` - DPR-ի տեսակը, որը նշվում է [DPR ատրիբուտում](../../server_api/types/attributes/DPRAttribute.md)։
   * **DPRType.Report** - Հաշվետվությունների տվյալների մշակման հարցում
   * **DPRType.OLAP** - Օլապ տվյալների մշակման հարցում
   * **DPRType.JobElement** - Առաջադրանքների տվյալների մշակման հարցում
@@ -145,7 +145,7 @@ public Task<DPRJobEnqueueResponse> EnqueueAsync(DPRType type, string name,
 
 **Պարամետրեր**
 
-* `type` - DPR-ի տեսակը, որը նշվում է DPR ատրիբուտում։
+* `type` - DPR-ի տեսակը, որը նշվում է [DPR ատրիբուտում](../../server_api/types/attributes/DPRAttribute.md)։
   * **DPRType.Report** - Հաշվետվությունների տվյալների մշակման հարցում
   * **DPRType.OLAP** - Օլապ տվյալների մշակման հարցում
   * **DPRType.JobElement** - Առաջադրանքների տվյալների մշակման հարցում

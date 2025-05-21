@@ -60,7 +60,7 @@ DPR {
 
 ### TYPE 
 Տվյալների մշակման հարցման տեսակը։
-Հարկավոր է լրացնել նույն արժեքը ինչ լրացված է C# դասի վրա դրված `DPR` ատրիբուտի մեջ` [տե՛ս](../../server_api/definitions/dpr.md#dataprocessingrequest-դաս)։ 
+Հարկավոր է լրացնել նույն արժեքը ինչ լրացված է C# դասի վրա դրված [DPR ատրիբուտի](../../server_api/types/attributes/DPRAttribute.md) մեջ` [տե՛ս](../../server_api/definitions/dpr.md#dataprocessingrequest-դաս)։ 
 
 Արժեքներն են՝
 - `21` - Հաշվետվությունների տվյալների մշակման հարցում (DPR Report)
@@ -76,12 +76,9 @@ DPR {
 Ամբողջ թիվ 0-ից մեծ։
 
 ### CSSOURCE 
-Ընդլայնող C# ֆայլի [հարաբերական ճանապարհը](https://phoenixnap.com/kb/absolute-path-vs-relative-path) .as ֆայլի նկատմամբ։
+Եթե ընդլայնումը [դինամիկ](../../architecture/extension.md#ընդլայնումների-ավելացում-syscon-գործիքով-ներմուծման-միջոցով) է, ապա անհրաժեշտ է ավելացնել նաև `CSSOURCE` դաշտը, որը պարունակում է սերվիսային տրամաբանության C# ֆայլի [հարաբերական ճանապարհը](https://phoenixnap.com/kb/absolute-path-vs-relative-path) .as ֆայլի նկատմամբ։
 
-Օրինակներ՝  
-* Եթե extend.as և extend.cs ֆայլերը գտնվում են նույն թղթապանակում, ապա կգրվի `CSSOURCE = "extend.cs";`։  
-* Եթե extend.as գտվում է "C:\WorkingDir\Scripts\App\extend.as" հասցեում, իսկ extend.cs-ը՝ "C:\WorkingDir\SubFolder1\SubFolder2\extend.as" հասցեում, ապա `CSSOURCE = "..\..\SubFolder1\SubFolder2\extend.cs";`։  
-* Կամ կլինի գրել ամբողջական ճանապարհը, ինչը խրախուսելի չէ `CSSOURCE = "C:\WoringDir\SubFolder1\SubFolder2\extend.cs";`
+Տե՛ս նաև [Նկարագրության CSSOURCE դաշտում հարաբերական ճանապարհի լրացման օրինակներ](../../server_api/examples/relative_path_examples.md):
 
 ## C# ֆայլի նկարագրություն
 

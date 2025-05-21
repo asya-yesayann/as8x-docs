@@ -9,7 +9,6 @@ sublinks:
 - { title: "Name", ref: name }
 - { title: "Progress", ref: progress }
 - { title: "DPRType", ref: dprtype }
-- { title: "IsCancellationSupported", ref: iscancellationsupported }
 - { title: "AfterDeserializeParameter", ref: afterdeserializeparameter }
 - { title: "Execute", ref: execute }
 ---
@@ -24,29 +23,27 @@ sublinks:
   - [Name](#name)
   - [Progress](#progress)
   - [DPRType](#dprtype)
-  - [IsCancellationSupported](#iscancellationsupported)
 - [Մեթոդներ](#մեթոդներ)
   - [AfterDeserializeParameter](#afterdeserializeparameter)
   - [Execute](#execute)
 
 ## Ներածություն
 
-Սերվիսային երկար տևող հարցումներ կատարելու և կատարման ընթացքին հետևելու համար նկարագրվում է Տվյալների մշակման հարցում (DPR - Data Processing Request): 
-
-Տե՛ս [Ասինխրոն մշակում կիրառությունների սերվերի վրա](../../architecture/appserver_async.md)։
+Սերվիսային երկար տևող հարցումներ կատարելու և կատարման ընթացքին հետևելու համար նկարագրվում է Տվյալների մշակման հարցում (`DPR` - Data Processing Request): 
 
 Տվյալների մշակման հարցման (`DPR`-ի) նկարագրության համար հարկավոր է նկարագրել սերվերում աշխատող տրամաբանությունը C# դասում (`.cs` ֆայլում)։  
 Հարկավոր է սահմանել մուտքային և ելքային պարամետրերի դասեր (կարելի է օգտագործել գոյություն ունեցողները)։
 
-Տվյալների մշակման հարցման (`DPR`-ի) ստեղծման ձեռնարկը տե՛ս [այստեղ](dpr_guide.md)։  
-
-Կազմակերպության սեփական Տվյալների մշակման հարցումների (`DPR`-ի) ստեղծման համար [տե՛ս](../../extensions/definitions/dpr_new_guide.md):
+Տե՛ս նաև 
+* [Տվյալների մշակման հարցման (`DPR`-ի) ստեղծման ձեռնարկը](dpr_guide.md)
+* [Կազմակերպության սեփական Տվյալների մշակման հարցումների (`DPR`-ի) ստեղծման ձեռնարկ](../../extensions/definitions/dpr_new_guide.md)
+* [Ասինխրոն մշակում կիրառությունների սերվերի վրա](../../architecture/appserver_async.md)
 
 ## DataProcessingRequest դաս
 
 Տվյալների մշակման հարցման (`DPR`-ի) համար անհրաժեշտ է`
-* սահմանել դաս, որը ժառանգում է `DataProcessingRequest<R, P>` դասը՝ որպես `R` փոխանցելով հարցման կատարման արդյունքում ստացվող տվյալները նկարագրող դասը, իսկ որպես `P`՝ պարամետրերը նկարագրող դասը
-* Այդ դասին վրա դնել [DPR ատրիբուտը](../types/DPRAttribute.md)՝ նշելով DPR-ի տեսակը, հայերեն, անգլերեն անվանումները և թույլատրված է ընդհատումը UI-ից թե ոչ (չնշելու դեպքում լռությամբ թույլատրվում է ընդհատումը UI-ից)
+* Սահմանել դաս, որը ժառանգում է `DataProcessingRequest<R, P>` դասը՝ որպես `R` փոխանցելով հարցման կատարման արդյունքում ստացվող տվյալները նկարագրող դասը, իսկ որպես `P`՝ պարամետրերը նկարագրող դասը:
+* Այդ դասին վրա դնել [DPR ատրիբուտը](../types/attributes/DPRAttribute.md)՝ նշելով DPR-ի տեսակը, հայերեն, անգլերեն անվանումները և թույլատրված է ընդհատումը UI-ից թե ոչ (լռությամբ թույլատրվում է ընդհատումը UI-ից)։
 
 **Օրինակ**
 
@@ -67,7 +64,7 @@ public class EditDocumentsFields : DataProcessingRequest<EditFieldsResponse, Edi
 public string ArmenianCaption { get; }
 ```
 
-Վերադարձնում է հայերեն անվանումը ANSI կոդավորմամբ:
+Վերադարձնում է տվյալների մշակման հարցման (`DPR`-ի) հայերեն անվանումը ANSI կոդավորմամբ:
 
 ### EnglishCaption
 
@@ -75,7 +72,7 @@ public string ArmenianCaption { get; }
 public string EnglishCaption { get; }
 ```
 
-Վերադարձնում է անգլերեն անվանումը:
+Վերադարձնում է տվյալների մշակման հարցման (`DPR`-ի) անգլերեն անվանումը:
 
 <!-- ### IsParametersSupported
 
@@ -91,9 +88,9 @@ public bool IsParametersSupported { get; }
 public string Name { get; }
 ```
 
-Վերադարձնում է ներքին անունը: 
+Վերադարձնում է տվյալների մշակման հարցման (`DPR`-ի) ներքին անունը: 
 
-Եթե [DPR ատրիբուտում](../types/DPRAttribute.md) `Name` դաշտը լրացված է և դատարկ չէ, ապա վերադարձնում է այդ արժեքը, հակառակ դեպքում վերադարձնում է DPR-ը նկարագրող դասի անունը։ 
+Եթե [DPR ատրիբուտում](../types/attributes/DPRAttribute.md) `Name` դաշտը լրացված է և դատարկ չէ, ապա վերադարձնում է այդ արժեքը, հակառակ դեպքում վերադարձնում է DPR-ը նկարագրող դասի անունը։ 
 
 ### Progress
 
@@ -101,9 +98,9 @@ public string Name { get; }
 public DPRExecutionProgress Progress { get; }
 ```
 
-Վերադարձնում է Տվյալների մշակման հարցման կատարման պրոգրեսը:
+Վերադարձնում է տվյալների մշակման հարցման (`DPR`-ի) կատարման պրոգրեսը:
 
-Այս օբյեկտի միջոցով հնարավոր է կառավարել աշխատանքի փուլերը, UI-ում ցույց տալ այդ փուլերը և UI-ում ցույց տալ հաղորդագրության պատուհան ([MessageBox](../types/UIRequestExecutionProgress.md#messagebox-1)):
+Այս օբյեկտի միջոցով հնարավոր է կառավարել կատարման փուլերը, UI-ում ցույց տալ այդ փուլերը և UI-ում ցույց տալ հաղորդագրության պատուհան ([MessageBox](../types/UIRequestExecutionProgress.md#messagebox-1)):
 
 Տե՛ս օգտագործման [օրինակը](../examples/dpr/code.md)։
 
@@ -113,20 +110,12 @@ public DPRExecutionProgress Progress { get; }
 public DPRType DPRType { get; }
 ```
 
-Վերադարձնում է տեսակը, որը լրացված է նկարագրվող դասի վրա [DPR ատրիբուտի](../types/DPRAttribute.md) մեջ։
+Վերադարձնում է տվյալների մշակման հարցման (`DPR`-ի) տեսակը, որը լրացված է նկարագրվող դասի վրա [DPR ատրիբուտի](../types/attributes/DPRAttribute.md) մեջ։
 
 * **DPRType.Report** - Հաշվետվությունների տվյալների մշակման հարցում
 * **DPRType.OLAP** - Օլապ տվյալների մշակման հարցում
 * **DPRType.JobElement** - Առաջադրանքների տվյալների մշակման հարցում
 * **DPRType.Other** - Այլ տվյալների մշակման հարցում
-
-### IsCancellationSupported
-
-```c#
-public virtual bool IsCancellationSupported { get { return true; } }
-```
-
-Այս մշակվող հատկության միջոցով հնարավոր է թույլատրել կամ արգելել UI-ից պրոցեսի դադարեցման (cancellation) հնարավորությունը։
 
 ## Մեթոդներ
 
@@ -138,7 +127,7 @@ protected virtual Task AfterDeserializeParameter(P parameter, JsonElement jsonEl
 
 Մեթոդը կանչվում է միջուկի կողմից DPR-ը հերթագրման դնելուց առաջ։
 Այն հարկավոր է մշակել, եթե հարկավոր է փոխանցված պարամետրերի ստուգումներ կատարել, կամ մուտքային պարամետրերը ձևափոխել։
-Մեթոդի կանչից առաջ `parameter`-ը արդեն իսկ ձևավորված է ըստ ցանցով փոխանցված JSON-ի։
+Մեթոդի կանչից առաջ `parameter`-ը արդեն իսկ ձևավորված է՝ ըստ ցանցով փոխանցված JSON-ի։
 
 **Պարամետրեր**
 

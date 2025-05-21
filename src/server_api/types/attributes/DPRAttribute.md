@@ -3,12 +3,13 @@ layout: page
 title: "DPRAttribute դաս" 
 ---
 
-DPR ատրբուտը նախատեսված է [DPR](../definitions/dpr.md)-ը նկարագրող դասի վրա դնելու համար։
+DPR ատրիբուտը նախատեսված է [DPR](../../definitions/dpr.md)-ը նկարագրող դասի վրա դնելու համար։
 
+```c#
 public class DPRAttribute
 {
     public string Name { get; protected set; }
-
+    
     public DPRType DPRType { get; set; }
 
     public string ArmenianCaption { get; set; }
@@ -17,6 +18,7 @@ public class DPRAttribute
 
     public FeatureAvailability IsCancellationSupported { get; set; } = FeatureAvailability.Enabled;
 }
+```
 
 * `Name` - DPR-ի ներքին անունը։ Չլրացնելու դեպքում հանդիսանալու է DPR-ը նկարագրող դասի անունը։
 * `DPRType` - DPR-ի տեսակը։
@@ -27,8 +29,8 @@ public class DPRAttribute
 * `ArmenianCaption` - DPR-ի հայերեն անվանումը:
 * `EnglishCaption` - DPR-ի անգլերեն անվանումը:
 * `IsCancellationSupported` - Թույլատրված է արդյոք DPR-ի ընդհատումը UI-ից։ Չլրացնելու դեպքում թույլատրվում է ընդհատումը UI-ից։
-    * **FeatureAvailability.Enabled** - Թույլատրված է DPR-ի ընդհատումը UI-ից
-    * **FeatureAvailability.Disabled** - Արգելված է DPR-ի ընդհատումը UI-ից
+    * **FeatureAvailability.Enabled** - Թույլատրված է DPR-ի ընդհատումը UI-ից:
+    * **FeatureAvailability.Disabled** - Արգելված է DPR-ի ընդհատումը UI-ից:
 
 **Օրինակ**
 

@@ -12,7 +12,7 @@ sublinks:
 ## Բովանդակություն
 
 - [Ներածություն](#ներածություն)
- - [C# ֆայլի նկարագրություն](#c-ֆայլի-նկարագրություն)
+- [C# ֆայլի նկարագրություն](#c-ֆայլի-նկարագրություն)
   - [Օժանդակ դասերի սահմանում](#օժանդակ-դասերի-սահմանում)
   - [Հիմնական դասի սահմանում](#հիմնական-դասի-սահմանում)
   - [Կոնստրուկտորի ձևավորում](#կոնստրուկտորի-ձևավորում)
@@ -20,21 +20,23 @@ sublinks:
 
 ## Ներածություն
 
-Սերվիսային երկար տևող հարցումներ կատարելու և կատարման ընթացքին հետևելու համար նկարագրվում է Տվյալների մշակման հարցում (DPR - Data Processing Request): 
-Տե՛ս [Ասինխրոն մշակում կիրառությունների սերվերի վրա](../../architecture/appserver_async.md)։
+Սերվիսային երկար տևող հարցումներ կատարելու և կատարման ընթացքին հետևելու համար նկարագրվում է Տվյալների մշակման հարցում (`DPR` - Data Processing Request): 
 
-Տվյալների մշակման հարցման նկարագրության համար հարկավոր է իրականացնել սերվերում աշխատող տրամաբանությունը C# դասում (`.cs` ֆայլում)։  
-Հարկավոր է սահմնել մուտքային և ելքային պարամետրերի դասեր (կարող ենք օգտագործվել գոյություն ունեցողները)։
+Տվյալների մշակման հարցման (`DPR`-ի) նկարագրության համար հարկավոր է նկարագրել սերվերում աշխատող տրամաբանությունը C# դասում (`.cs` ֆայլում)։  
+Հարկավոր է սահմանել մուտքային և ելքային պարամետրերի դասեր (կարելի է օգտագործել գոյություն ունեցողները)։
 
-Կազմակերպության սեփական Տվյալների մշակման հարցումների ստեղծման համար տե՛ս [այստեղ](../../extensions/definitions/dpr_new_guide.md):
+Տե՛ս նաև 
+* [Տվյալների մշակման հարցման մեթոդների ու հատկությունների նկարագրություն](dpr.md)
+* [Կազմակերպության սեփական Տվյալների մշակման հարցումների (`DPR`-ի) ստեղծման ձեռնարկ](../../extensions/definitions/dpr_new_guide.md)
+* [Ասինխրոն մշակում կիրառությունների սերվերի վրա](../../architecture/appserver_async.md)
 
 ## C# ֆայլի նկարագրություն
 
-Ձեռնարկի ամբողջական կոդը ինչպես նաև սկրիպտից կանչի ձևը տե՛ս [այստեղ](../examples/dpr/code.md):
+Ձեռնարկի ամբողջական կոդը, ինչպես նաև սկրիպտից կանչի ձևը տե՛ս [այստեղ](../examples/dpr/code.md):
 
 ### Օժանդակ դասերի սահմանում
 
-- Ստեղծել հարցման կատարման համար անհրաժեշտ պարամետրերը նկարագրող դաս։
+* Ստեղծել հարցման կատարման համար անհրաժեշտ պարամետրերը նկարագրող դաս։
   ```c#
   public class DeleteDocsByIsnRequest
   {
@@ -42,43 +44,48 @@ sublinks:
   }
   ```
 
-- Ստեղծել հարցման կատարման արդյունքում ստացվող տվյալները նկարագրող դասը։
-  ```c#
-  public class DeleteDocsByIsnResponse
-  {
-      public StorageInfo StorageInfo { get; set; }
-  }
-  ```
+* Ստեղծել հարցման կատարման արդյունքում ստացվող տվյալները նկարագրող դասը։
+
+```c#
+public class DeleteDocsByIsnResponse
+{
+    public StorageInfo StorageInfo { get; set; }
+}
+```
 
 ### Հիմնական դասի սահմանում
 
-- Հայտատարել դաս, որը ունի `DPR` ատրիբուտը և ժառանգում է `DataProcessingRequest<R, P>` դասը՝ որպես `R` փոխանցելով հարցման կատարման արդյունքում ստացվող տվյալները նկարագրող դասը, իսկ որպես `P`՝ պարամետրերը նկարագրող դասը։ 
+* Հայտատարել դաս, որը 
+  * ունի [DPR ատրիբուտը](../types/attributes/DPRAttribute.md)՝ նշելով DPR-ի տեսակը, հայերեն, անգլերեն անվանումները և թույլատրված է ընդհատումը UI-ից թե ոչ (լռությամբ թույլատրվում է ընդհատումը UI-ից)
+  * ժառանգում է `DataProcessingRequest<R, P>` դասը՝ որպես `R` փոխանցելով հարցման կատարման արդյունքում ստացվող տվյալները նկարագրող դասը, իսկ որպես `P`՝ պարամետրերը նկարագրող դասը։ 
+
   Պարամետրերի բացակայության դեպքում անհրաժեշտ է փոխանցել `NoParam` դասը, իսկ արդյունքի բացակայության դեպքում՝ `NoResult` դասը։
-  ```c#
-  [DPR(DPRType = DPRType.Other, ArmenianCaption = "Փաստաթղթերի հեռացում", EnglishCaption = "Deletion of documents")]
-  public class DeleteDocsByIsnDPR : DataProcessingRequest<DeleteDocsByIsnResponse, DeleteDocsByIsnRequest>
-  ```
-  `DPR` ատրիբուտում հարկավոր է նշել տեսակը, հայերեն անվանումը յունիկոդ կոդավորմամբ և անգլերեն անվանումը։
+
+```c#
+[DPR(DPRType = DPRType.Other, ArmenianCaption = "Փաստաթղթերի հեռացում", EnglishCaption = "Deletion of documents")]
+public class DeleteDocsByIsnDPR : DataProcessingRequest<DeleteDocsByIsnResponse, DeleteDocsByIsnRequest>
+```
 
 ### Կոնստրուկտորի ձևավորում
 
-- Ձևավորել կոնստրուկտորը, որտեղ անհրաժեշտ է [ինյեկցիա](../../project/injection.md) անել աշխատանքի համար անհրաժեշտ սերվիսները։
-  ```c#
-  private readonly IDocumentService documentService;
-  private readonly IStorageService storageService;
+* Ձևավորել կոնստրուկտորը, որտեղ անհրաժեշտ է [ինյեկցիա](../../project/injection.md) անել աշխատանքի համար անհրաժեշտ սերվիսները։
   
-  public DeleteDocsByIsnDPR(IDocumentService documentService, IStorageService storageService)
-  {
-      this.documentService = documentService;
-      this.storageService = storageService;
-  }
-  ```
+```c#
+private readonly IDocumentService documentService;
+private readonly IStorageService storageService;
+  
+public DeleteDocsByIsnDPR(IDocumentService documentService, IStorageService storageService)
+{
+    this.documentService = documentService;
+    this.storageService = storageService;
+}
+```
 
 ### Execute
 
 Հիմնական տրամաբանությունը հարկավոր է իրականացնել [Execute](dpr.md#execute) մեթոդում, այն ստանում է մուտքային պարամետրերը նկարագրող դասը և պետք է վերադարձնի կատարման արդյունքում ստացվող տվյալները նկարագրող դասը։
 
-Ստորև օրինակում նկարագրված Տվյալների մշակման հարցումը հեռացնում է կատարման պարամետրում տրված ISN-ներով փաստաթղթերը համակարգից [IDocumentService](../services/IDocumentService.md).[Delete](../services/IDocumentService.md#delete) մեթոդի միջոցով, ստեղծում է [TextReport](../types/TextReport.md), որում լրացնում է կատարման ընթացքում առաջացած սխալները և վերադարձնում է կլիենտին։
+Ստորև օրինակում նկարագրված Տվյալների մշակման հարցումը (`DPR`) հեռացնում է կատարման պարամետրում տրված ISN-ներով փաստաթղթերը համակարգից [IDocumentService](../services/IDocumentService.md).[Delete](../services/IDocumentService.md#delete) մեթոդի միջոցով, ստեղծում է [TextReport](../types/TextReport.md), որում լրացնում է կատարման ընթացքում առաջացած սխալները և վերադարձնում է կլիենտին։
 
 ```c#
 public override async Task<DeleteDocsByIsnResponse> Execute(DeleteDocsByIsnRequest request, CancellationToken stoppingToken)
