@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Հաշվառման նկարագրություն" 
+title: "(Accounting) Հաշվառման նկարագրություն" 
 tags: [Accounting]
 ---
 

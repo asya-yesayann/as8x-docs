@@ -84,7 +84,7 @@ DOCUMENT {
 
 Տե՛ս [օրինակում](../examples/document_definition.md) ձևավորված `UsrAccs.CodeGen.cs` ֆայլը:
 
-- Հայտատարարված է դաս, որը ունի փաստաթղթի ներքին անվանումը պարունակող `Document` ատրիբուտը և ժառանգում է [Document](document.md) դասից։
+- Հայտատարարված է դաս, որը ունի փաստաթղթի ներքին անվանումը պարունակող [Document ատրիբուտը](../types/attributes/DocumentAttribute.md) և ժառանգում է [Document](document.md) դասից։
 
   ```c#
   [Document("UsrAccs")]

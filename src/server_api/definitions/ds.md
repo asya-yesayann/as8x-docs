@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Տվյալների աղբյուրի նկարագրություն" 
+title: "(DataSource) Տվյալների աղբյուրի նկարագրություն" 
 tags: [DS, DataSource]
 sublinks:
 - { title: "Օրինակներ", ref: օրինակներ }
