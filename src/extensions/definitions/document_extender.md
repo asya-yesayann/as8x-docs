@@ -4,13 +4,7 @@ title: "Փաստաթղթի իրադարձությունների ընդլայնմ
 tags: [DocExtender, DOCUMENTEXTENDER]
 sublinks: 
 - { title: "DOCUMENTEXTENDER նկարագրություն", ref: documentextender-նկարագրություն }
-- { title: "Հատկություններ", ref: հատկություններ }
-- { title: "NAME", ref: name }
-- { title: "CAPTION", ref: caption }
-- { title: "ECAPTION", ref: ecaption }
-- { title: "CSSOURCE", ref: cssource }
 - { title: "DocumentExtender դաս", ref: documentextender-դաս }
-- { title: "Մեթոդներ", ref: մեթոդներ }
 - { title: "BeforeCommitDelete", ref: beforecommitdelete }
 - { title: "PreAction", ref: preaction }
 - { title: "PostAction", ref: postaction }
@@ -31,6 +25,10 @@ sublinks:
 - { title: "PostLoadGrids", ref: postloadgrids }
 - { title: "PreOnConfirmDocumentChangeRequest", ref: preonconfirmdocumentchangerequest }
 - { title: "PostOnConfirmDocumentChangeRequest", ref: postonconfirmdocumentchangerequest }
+- { title: "PreOnRejectDocumentChangeRequest", ref: preonrejectdocumentchangerequest }
+- { title: "PostOnRejectDocumentChangeRequest", ref: postonrejectdocumentchangerequest }
+- { title: "PrePostMessage", ref: prepostmessage }
+- { title: "PostPostMessage", ref: postpostmessage }
 - { title: "PostStoreGrid", ref: poststoregrid }
 - { title: "PreValidate", ref: prevalidate }
 - { title: "PostValidate", ref: postvalidate }
@@ -67,8 +65,10 @@ sublinks:
     - [PostLoadGrids](#postloadgrids)
     - [PreOnConfirmDocumentChangeRequest](#preonconfirmdocumentchangerequest)
     - [PostOnConfirmDocumentChangeRequest](#postonconfirmdocumentchangerequest)
+    - [PreOnRejectDocumentChangeRequest](#preonrejectdocumentchangerequest)
+    - [PostOnRejectDocumentChangeRequest](#postonrejectdocumentchangerequest)
+    - [PrePostMessage](#prepostmessage)
     - [PostPostMessage](#postpostmessage)
-    - [PostPostMessage](#postpostmessage-1)
     - [PostStoreGrid](#poststoregrid)
     - [PreValidate](#prevalidate)
     - [PostValidate](#postvalidate)
@@ -109,10 +109,7 @@ DOCUMENTEXTENDER {
 ### CSSOURCE 
 Ընդլայնող C# ֆայլի [հարաբերական ճանապարհը](https://phoenixnap.com/kb/absolute-path-vs-relative-path) .as ֆայլի նկատմամբ։
 
-Օրինակներ՝  
-* Եթե extend.as և extend.cs ֆայլերը գտնվում են նույն թղթապանակում, ապա կգրվի `CSSOURCE = "extend.cs";`։  
-* Եթե extend.as գտվում է "C:\WorkingDir\Scripts\App\extend.as" հասցեում, իսկ extend.cs-ը՝ "C:\WorkingDir\SubFolder1\SubFolder2\extend.as" հասցեում, ապա `CSSOURCE = "..\..\SubFolder1\SubFolder2\extend.cs";`։  
-* Կամ կլինի գրել ամբողջական ճանապարհը, ինչը խրախուսելի չէ `CSSOURCE = "C:\WoringDir\SubFolder1\SubFolder2\extend.cs";`
+Տե՛ս նաև [Նկարագրության CSSOURCE դաշտում հարաբերական ճանապարհի լրացման օրինակներ](../../server_api/examples/relative_path_examples.md):
 
 ## DocumentExtender դաս
 
@@ -133,7 +130,9 @@ public class DocExtenders : DocumentExtender
 public virtual Task BeforeCommitDelete(Document sender, BeforeCommitDeleteEventArgs args)
 ```
 
-BeforeCommitDelete իրադարձությունը առաջանում է տվյալների պահոցից փաստաթղթի հեռացումից անմիջապես հետո տրանզակցիայի մեջ։ 
+BeforeCommitDelete մեթոդը կանչվում է միջուկի կողմից` տվյալների պահոցից փաստաթղթի հեռացումից անմիջապես հետո տրանզակցիայի մեջ։ 
+
+---
 
 #### PreAction
 
@@ -141,7 +140,9 @@ BeforeCommitDelete իրադարձությունը առաջանում է տվյա
 public virtual Task PreAction(Document sender, ActionEventArgs args)
 ```
 
-PreAction իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) իրադարձությունից առաջ։
+PreAction մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) իրադարձությունից առաջ։
+
+---
 
 #### PostAction
 
@@ -149,7 +150,9 @@ PreAction իրադարձությունը առաջանում է փաստաթղթ�
 public virtual Task PostAction(Document sender, ActionEventArgs args)
 ```
 
-PostAction իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) իրադարձությունից հետո։
+PostAction մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) իրադարձությունից հետո։
+
+---
 
 #### PreAfterCommit
 
@@ -157,7 +160,9 @@ PostAction իրադարձությունը առաջանում է փաստաթղթ
 public virtual Task PreAfterCommit(Document sender, AfterCommitEventArgs args)
 ```
 
-PreAfterCommit իրադարձությունը առաջանում է փաստաթղթի տվյալների պահոցում գրանցումից հետո մեծ տրանզակցիայի մեջ՝ [BeforeCommit](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCommit.html) իրադարձությունից հետո և AfterCommit իրադարձությունից առաջ։
+PreAfterCommit մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի տվյալների պահոցում գրանցումից հետո մեծ տրանզակցիայի մեջ՝ [BeforeCommit](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCommit.html) իրադարձությունից հետո և AfterCommit իրադարձությունից առաջ։
+
+---
 
 #### PostAfterCommit
 
@@ -165,7 +170,9 @@ PreAfterCommit իրադարձությունը առաջանում է փաստաթ
 public virtual Task PostAfterCommit(Document sender, AfterCommitEventArgs args)
 ```
 
-PostAfterCommit իրադարձությունը առաջանում է փաստաթղթի տվյալների պահոցում գրանցումից հետո մեծ տրանզակցիայի մեջ՝ [BeforeCommit](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCommit.html), AfterCommit իրադարձություններից հետո։
+PostAfterCommit մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի տվյալների պահոցում գրանցումից հետո մեծ տրանզակցիայի մեջ՝ [BeforeCommit](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCommit.html), AfterCommit իրադարձություններից հետո։
+
+---
 
 #### PreAfterCreate
 
@@ -173,8 +180,9 @@ PostAfterCommit իրադարձությունը առաջանում է փաստա�
 public virtual Task PreAfterCreate(Document sender, AfterCreateEventArgs args)
 ```
 
-PreAfterCreate իրադարձությունը առաջանում է փաստաթուղթը ստեղծելուց` [AfterCreate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterCreate.html) իրադարձությունից առաջ։
+PreAfterCreate մեթոդը կանչվում է միջուկի կողմից` փաստաթուղթը ստեղծելուց` [AfterCreate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterCreate.html) իրադարձությունից առաջ։
 
+---
 
 #### PostAfterCreate
 
@@ -182,7 +190,9 @@ PreAfterCreate իրադարձությունը առաջանում է փաստաթ
 public virtual Task PostAfterCreate(Document sender, AfterCreateEventArgs args)
 ```
 
-PostAfterCreate իրադարձությունը առաջանում է փաստաթուղթը ստեղծելուց` [AfterCreate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterCreate.html) իրադարձությունից հետո։
+PostAfterCreate մեթոդը կանչվում է միջուկի կողմից` փաստաթուղթը ստեղծելուց` [AfterCreate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterCreate.html) իրադարձությունից հետո։
+
+---
 
 #### PreAfterLoad
 
@@ -190,7 +200,9 @@ PostAfterCreate իրադարձությունը առաջանում է փաստա�
 public virtual Task PreAfterLoad(Document sender, AfterLoadEventArgs args)
 ```
 
-PreAfterLoad իրադարձությունը առաջանում է փաստաթղթի բեռնումից անմիջապես հետո` [AfterLoad](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterLoad.html) իրադարձությունից առաջ։
+PreAfterLoad մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի բեռնումից անմիջապես հետո` [AfterLoad](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterLoad.html) իրադարձությունից առաջ։
+
+---
 
 #### PostAfterLoad
 
@@ -198,7 +210,9 @@ PreAfterLoad իրադարձությունը առաջանում է փաստաթղ
 public virtual Task PostAfterLoad(Document sender, AfterLoadEventArgs args)
 ```
 
-PostAfterLoad իրադարձությունը առաջանում է փաստաթղթի բեռնումից անմիջապես հետո` [AfterLoad](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterLoad.html) իրադարձությունից հետո։
+PostAfterLoad մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի բեռնումից անմիջապես հետո` [AfterLoad](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterLoad.html) իրադարձությունից հետո։
+
+---
 
 #### PreBeforeCommit
 
@@ -206,7 +220,9 @@ PostAfterLoad իրադարձությունը առաջանում է փաստաթ�
 public virtual Task PreBeforeCommit(Document sender, BeforeCommitEventArgs args)
 ```
 
-PreBeforeCommit իրադարձությունը առաջանում է փաստաթղթի տվյալների պահոցում գրանցումից անմիջապես հետո տրանզակցիայի մեջ՝ [BeforeCommit](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCommit.html) իրադարձությունից առաջ։
+PreBeforeCommit մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի տվյալների պահոցում գրանցումից անմիջապես հետո տրանզակցիայի մեջ՝ [BeforeCommit](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCommit.html) իրադարձությունից առաջ։
+
+---
 
 #### PostBeforeCommit
 
@@ -214,7 +230,9 @@ PreBeforeCommit իրադարձությունը առաջանում է փաստա�
 public virtual Task PostBeforeCommit(Document sender, BeforeCommitEventArgs args)
 ```
 
-PostBeforeCommit իրադարձությունը առաջանում է փաստաթղթի տվյալների պահոցում գրանցումից անմիջապես հետո տրանզակցիայի մեջ՝ [BeforeCommit](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCommit.html) իրադարձությունից հետո։
+PostBeforeCommit մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի տվյալների պահոցում գրանցումից անմիջապես հետո տրանզակցիայի մեջ՝ [BeforeCommit](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCommit.html) իրադարձությունից հետո։
+
+---
 
 #### PreBeforeCopy
 
@@ -222,7 +240,9 @@ PostBeforeCommit իրադարձությունը առաջանում է փաստա
 public virtual Task PreBeforeCopy(Document sender, BeforeCopyEventArgs args)
 ```
 
-PreBeforeCopy իրադարձությունը առաջանում է փաստաթուղթը պատճենման ժամանակ` [BeforeCopy](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) իրադարձությունից հետո։ 
+PreBeforeCopy մեթոդը կանչվում է միջուկի կողմից` փաստաթուղթը պատճենման ժամանակ` [BeforeCopy](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) իրադարձությունից հետո։ 
+
+---
 
 #### PostBeforeCopy
 
@@ -230,7 +250,9 @@ PreBeforeCopy իրադարձությունը առաջանում է փաստաթ�
 public virtual Task PostBeforeCopy(Document sender, BeforeCopyEventArgs args)
 ```
 
-PostBeforeCopy իրադարձությունը առաջանում է փաստաթուղթը պատճենման ժամանակ` [BeforeCopy](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) իրադարձությունից հետո։ 
+PostBeforeCopy մեթոդը կանչվում է միջուկի կողմից` փաստաթուղթը պատճենման ժամանակ` [BeforeCopy](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) իրադարձությունից հետո։ 
+
+---
 
 #### PreDelete
 
@@ -238,7 +260,9 @@ PostBeforeCopy իրադարձությունը առաջանում է փաստաթ
 public virtual Task PreDelete(Document sender, DeleteEventArgs args)
 ```
 
-PreDelete իրադարձությունը առաջանում է փաստաթուղթը ջնջելու ժամանակ տրանզակցիայի մեջ` [Delete](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Delete.html) իրադարձությունից առաջ։ 
+PreDelete մեթոդը կանչվում է միջուկի կողմից` փաստաթուղթը ջնջելու ժամանակ տրանզակցիայի մեջ` [Delete](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Delete.html) իրադարձությունից առաջ։ 
+
+---
 
 #### PostDelete
 
@@ -246,7 +270,9 @@ PreDelete իրադարձությունը առաջանում է փաստաթու�
 public virtual Task PostDelete(Document sender, DeleteEventArgs args)
 ```
 
-PostDelete իրադարձությունը առաջանում է փաստաթուղթը ջնջելու ժամանակ տրանզակցիայի մեջ` [Delete](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Delete.html) իրադարձությունից հետո։ 
+PostDelete մեթոդը կանչվում է միջուկի կողմից` փաստաթուղթը ջնջելու ժամանակ տրանզակցիայի մեջ` [Delete](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Delete.html) իրադարձությունից հետո։ 
+
+---
 
 #### PreFolders
 
@@ -254,7 +280,9 @@ PostDelete իրադարձությունը առաջանում է փաստաթու
 public virtual Task PreFolders(Document sender, FoldersEventArgs args)
 ```
 
-PreFolders իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Folders](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Folders.html) իրադարձությունից առաջ։
+PreFolders մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Folders](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Folders.html) իրադարձությունից առաջ։
+
+---
 
 #### PostFolders
 
@@ -262,7 +290,9 @@ PreFolders իրադարձությունը առաջանում է փաստաթղթ
 public virtual Task PostFolders(Document sender, FoldersEventArgs args)
 ```
 
-PostFolders իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Folders](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Folders.html) իրադարձությունից հետո։
+PostFolders մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Folders](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Folders.html) իրադարձությունից հետո։
+
+---
 
 #### PostLoadGrids
 
@@ -270,7 +300,9 @@ PostFolders իրադարձությունը առաջանում է փաստաթղ�
 public virtual Task PostLoadGrids(Document sender, LoadGridsEventArgs args)
 ```
 
-PostLoadGrids իրադարձությունը առաջանում է փաստաթղթի աղյուսակների բեռնման ժամանակ՝ [LoadGrids](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/LoadGrid.html) իրադարձությունից հետո։
+PostLoadGrids մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի աղյուսակների բեռնման ժամանակ՝ [LoadGrids](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/LoadGrid.html) իրադարձությունից հետո։
+
+---
 
 #### PreOnConfirmDocumentChangeRequest
 
@@ -278,7 +310,9 @@ PostLoadGrids իրադարձությունը առաջանում է փաստաթ�
 public virtual Task PreOnConfirmDocumentChangeRequest(Document sender, ConfirmDocumentChangeRequestEventArgs args)
 ```
 
-PreOnConfirmDocumentChangeRequest իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) փաստաթղթի փոփոխման հայտի բացման ընթացքում տրանզակցիայի մեջ` [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) իրադարձությունից հետո և OnConfirmDocumentChangeRequest իրադարձությունից առաջ։
+PreOnConfirmDocumentChangeRequest մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) փաստաթղթի փոփոխման հայտի բացման ընթացքում տրանզակցիայի մեջ` [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) իրադարձությունից հետո և OnConfirmDocumentChangeRequest իրադարձությունից առաջ։
+
+---
 
 #### PostOnConfirmDocumentChangeRequest
 
@@ -286,15 +320,67 @@ PreOnConfirmDocumentChangeRequest իրադարձությունը առաջանո�
 public virtual Task PostOnConfirmDocumentChangeRequest(Document sender, ConfirmDocumentChangeRequestEventArgs args)
 ```
 
-PreOnConfirmDocumentChangeRequest իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) փաստաթղթի փոփոխման հայտի բացման ընթացքում տրանզակցիայի մեջ` [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html), OnConfirmDocumentChangeRequest իրադարձություններից հետո։
+PreOnConfirmDocumentChangeRequest մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) փաստաթղթի փոփոխման հայտի բացման ընթացքում տրանզակցիայի մեջ` [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html), OnConfirmDocumentChangeRequest իրադարձություններից հետո։
 
-#### PostPostMessage
+---
+
+#### PreOnRejectDocumentChangeRequest
+
+```c#
+public virtual Task PreOnRejectDocumentChangeRequest(Document sender, RejectDocumentChangeRequestEventArgs args)
+```
+
+Մեթոդը կանչվում է միջուկի կողմից` [փաստաթղթի փոփոխման հայտը](../types/DocumentChangeRequest.md) մեթոդով մերժելիս, [OnConfirmDocumentChangeRequest](../../server_api/definitions/document.md#onconfirmdocumentchangerequest) մեթոդի կանչից առաջ։
+
+**Պարամետրեր**
+
+* `sender` - [Փաստաթղթի օբյեկտը](../../server_api/definitions/document.md), որի հիման վրա ստեղծվել է ընթացիկ փոփոխման հայտը։
+* `args` - [RejectDocumentChangeRequestEventArgs](../../server_api/types/args/RejectDocumentChangeRequestEventArgs.md) դասի օբյեկտ, որը պարունակում է տվյալներ փաստաթղթի փոփոխման հայտի և մերժման մեկնաբանության մասին։
+
+**Նկատառումներ**
+
+Փաստաթղթի փոփոխման հայտը մերժելիս կանչվում են հետևյալ մեթոդները նշված հերթականությամբ՝ 
+* [PreOnRejectDocumentChangeRequest](#preonrejectdocumentchangerequest),
+* [OnRejectDocumentChangeRequest](../../server_api/definitions/document.md#onconfirmdocumentchangerequest),
+* [PostOnRejectDocumentChangeRequest](#postonrejectdocumentchangerequest):
+
+Յուրաքանչյուր մեթոդի պարամետրերը կանչից հետո փոխանցվում են հաջորդին։
+
+---
+
+#### PostOnRejectDocumentChangeRequest
+
+```c#
+public virtual Task PostOnRejectDocumentChangeRequest(Document sender, RejectDocumentChangeRequestEventArgs args)
+```
+
+Մեթոդը կանչվում է միջուկի կողմից` [փաստաթղթի փոփոխման հայտը](../types/DocumentChangeRequest.md) մեթոդով մերժելիս, [OnConfirmDocumentChangeRequest](../../server_api/definitions/document.md#onconfirmdocumentchangerequest) մեթոդի կանչից հետո։
+
+**Պարամետրեր**
+
+* `sender` - [Փաստաթղթի օբյեկտը](../../server_api/definitions/document.md), որի հիման վրա ստեղծվել է ընթացիկ փոփոխման հայտը։
+* `args` - [RejectDocumentChangeRequestEventArgs](../../server_api/types/args/RejectDocumentChangeRequestEventArgs.md) դասի օբյեկտ, որը պարունակում է տվյալներ փաստաթղթի փոփոխման հայտի և մերժման մեկնաբանության մասին։
+
+**Նկատառումներ**
+
+Փաստաթղթի փոփոխման հայտը մերժելիս կանչվում են հետևյալ մեթոդները նշված հերթականությամբ՝ 
+* [PreOnRejectDocumentChangeRequest](#preonrejectdocumentchangerequest),
+* [OnRejectDocumentChangeRequest](../../server_api/definitions/document.md#onconfirmdocumentchangerequest),
+* [PostOnRejectDocumentChangeRequest](#postonrejectdocumentchangerequest):
+
+Յուրաքանչյուր մեթոդի պարամետրերը կանչից հետո փոխանցվում են հաջորդին։
+
+---
+
+#### PrePostMessage
 
 ```c#
 public virtual Task PrePostMessage(Document sender, PostMessageEventArgs args)
 ```
 
-PostMessage իրադարձությունը առաջանում է մի փաստաթղթից մյուն ծրագրային հաղորդագրություն([SendMessage](../../server_api/definitions/document.md#sendmessage)) ուղարկելիս՝ [PostMessage](../../server_api/definitions/document.md#postmessage) մեթոդի կանչից առաջ։
+PostMessage մեթոդը կանչվում է միջուկի կողմից` մի փաստաթղթից մյուն ծրագրային հաղորդագրություն([SendMessage](../../server_api/definitions/document.md#sendmessage)) ուղարկելիս՝ [PostMessage](../../server_api/definitions/document.md#postmessage) մեթոդի կանչից առաջ։
+
+---
 
 #### PostPostMessage
 
@@ -302,8 +388,9 @@ PostMessage իրադարձությունը առաջանում է մի փաստա
 public virtual Task PostPostMessage(Document sender, PostMessageEventArgs args)
 ```
 
-PostMessage իրադարձությունը առաջանում է մի փաստաթղթից մյուն ծրագրային հաղորդագրություն([SendMessage](../../server_api/definitions/document.md#sendmessage)) ուղարկելիս՝ [PostMessage](../../server_api/definitions/document.md#postmessage) մեթոդի կանչից հետո։
+PostMessage մեթոդը կանչվում է միջուկի կողմից` մի փաստաթղթից մյուն ծրագրային հաղորդագրություն([SendMessage](../../server_api/definitions/document.md#sendmessage)) ուղարկելիս՝ [PostMessage](../../server_api/definitions/document.md#postmessage) մեթոդի կանչից հետո։
  
+---
 
 #### PostStoreGrid
 
@@ -311,7 +398,9 @@ PostMessage իրադարձությունը առաջանում է մի փաստա
 public virtual Task PostStoreGrid(Document sender, StoreGridsEventArgs args)
 ```
 
-PostStoreGrid իրադարձությունը առաջանում է փաստաթղթի աղյուսակի պահպանման ժամանակ` [StoreGrids](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/StoreGrid.html) իրադարձությունից հետո։
+PostStoreGrid մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի աղյուսակի պահպանման ժամանակ` [StoreGrids](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/StoreGrid.html) իրադարձությունից հետո։
+
+---
 
 #### PreValidate
 
@@ -319,7 +408,9 @@ PostStoreGrid իրադարձությունը առաջանում է փաստաթ�
 public virtual Task PreValidate(Document sender, ValidateEventArgs args)
 ```
 
-PreValidate իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) իրադարձությունից առաջ։
+PreValidate մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) իրադարձությունից առաջ։
+
+---
 
 #### PostValidate
 
@@ -327,4 +418,4 @@ PreValidate իրադարձությունը առաջանում է փաստաթղ�
 public virtual Task PostValidate(Document sender, ValidateEventArgs args)
 ```
 
-PostValidate իրադարձությունը առաջանում է փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) իրադարձությունից հետո։
+PostValidate մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) իրադարձությունից հետո։
