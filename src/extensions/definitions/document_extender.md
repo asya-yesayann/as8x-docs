@@ -341,7 +341,7 @@ public virtual Task PreOnRejectDocumentChangeRequest(Document sender, RejectDocu
 
 [Փաստաթղթի փոփոխման հայտը](../../server_api/types/DocumentChangeRequest.md) մերժելիս կանչվում են հետևյալ մեթոդները նշված հերթականությամբ՝ 
 * [PreOnRejectDocumentChangeRequest](#preonrejectdocumentchangerequest),
-* [OnRejectDocumentChangeRequest](../../server_api/definitions/document.md#onconfirmdocumentchangerequest),
+* [OnRejectDocumentChangeRequest](../../server_api/definitions/document.md#onrejectdocumentchangerequest),
 * [PostOnRejectDocumentChangeRequest](#postonrejectdocumentchangerequest):
 
 Յուրաքանչյուր մեթոդի պարամետրերը կանչից հետո փոխանցվում են հաջորդին։
@@ -365,7 +365,7 @@ public virtual Task PostOnRejectDocumentChangeRequest(Document sender, RejectDoc
 
 [Փաստաթղթի փոփոխման հայտը](../../server_api/types/DocumentChangeRequest.md) մերժելիս կանչվում են հետևյալ մեթոդները նշված հերթականությամբ՝ 
 * [PreOnRejectDocumentChangeRequest](#preonrejectdocumentchangerequest),
-* [OnRejectDocumentChangeRequest](../../server_api/definitions/document.md#onconfirmdocumentchangerequest),
+* [OnRejectDocumentChangeRequest](../../server_api/definitions/document.md#onrejectdocumentchangerequest),
 * [PostOnRejectDocumentChangeRequest](#postonrejectdocumentchangerequest):
 
 Յուրաքանչյուր մեթոդի պարամետրերը կանչից հետո փոխանցվում են հաջորդին։

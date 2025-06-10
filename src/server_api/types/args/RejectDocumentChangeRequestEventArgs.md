@@ -4,7 +4,7 @@ title: "RejectDocumentChangeRequestEventArgs"
 tags: OnRejectDCR
 ---
 
-Այս դասը պարունակում է փաստաթղթի փոփոխման հայտի մերժման տվյալներ և օգտագործվում է փաստաթղթի [OnRejectDocumentChangeRequest](../../definitions/document.md#onrejectdocumentchangerequest) մեթոդում։
+Այս դասը պարունակում է փաստաթղթի փոփոխման հայտի մերժման տվյալներ և օգտագործվում է [PreOnRejectDocumentChangeRequest](../../../extensions/definitions/document_extender.md#preonrejectdocumentchangerequest), [OnRejectDocumentChangeRequest](../../definitions/document.md#onrejectdocumentchangerequest), [PostOnRejectDocumentChangeRequest](../../../extensions/definitions/document_extender.md#postonrejectdocumentchangerequest) մեթոդներում։
 
 ```c#
 public class RejectDocumentChangeRequestEventArgs
