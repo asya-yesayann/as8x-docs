@@ -140,7 +140,7 @@ BeforeCommitDelete մեթոդը կանչվում է միջուկի կողմից`
 public virtual Task PreAction(Document sender, ActionEventArgs args)
 ```
 
-PreAction մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) իրադարձությունից առաջ։
+PreAction մեթոդը կանչվում է միջուկի կողմից՝ փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) իրադարձությունից առաջ։
 
 ---
 
@@ -150,7 +150,7 @@ PreAction մեթոդը կանչվում է միջուկի կողմից` փաստ
 public virtual Task PostAction(Document sender, ActionEventArgs args)
 ```
 
-PostAction մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) իրադարձությունից հետո։
+PostAction մեթոդը կանչվում է միջուկի կողմից՝ փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Action](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Action.html) իրադարձությունից հետո։
 
 ---
 
@@ -180,7 +180,7 @@ PostAfterCommit մեթոդը կանչվում է միջուկի կողմից` փ
 public virtual Task PreAfterCreate(Document sender, AfterCreateEventArgs args)
 ```
 
-PreAfterCreate մեթոդը կանչվում է միջուկի կողմից` փաստաթուղթը ստեղծելուց` [AfterCreate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterCreate.html) իրադարձությունից առաջ։
+PreAfterCreate մեթոդը կանչվում է միջուկի կողմից՝ փաստաթուղթը ստեղծելուց, [AfterCreate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterCreate.html) իրադարձությունից առաջ։
 
 ---
 
@@ -190,7 +190,7 @@ PreAfterCreate մեթոդը կանչվում է միջուկի կողմից` փ�
 public virtual Task PostAfterCreate(Document sender, AfterCreateEventArgs args)
 ```
 
-PostAfterCreate մեթոդը կանչվում է միջուկի կողմից` փաստաթուղթը ստեղծելուց` [AfterCreate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterCreate.html) իրադարձությունից հետո։
+PostAfterCreate մեթոդը կանչվում է միջուկի կողմից՝ փաստաթուղթը ստեղծելուց, [AfterCreate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterCreate.html) իրադարձությունից հետո։
 
 ---
 
@@ -200,7 +200,7 @@ PostAfterCreate մեթոդը կանչվում է միջուկի կողմից` փ
 public virtual Task PreAfterLoad(Document sender, AfterLoadEventArgs args)
 ```
 
-PreAfterLoad մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի բեռնումից անմիջապես հետո` [AfterLoad](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterLoad.html) իրադարձությունից առաջ։
+PreAfterLoad մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի բեռնումից անմիջապես հետո, [AfterLoad](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterLoad.html) իրադարձությունից առաջ։
 
 ---
 
@@ -210,7 +210,7 @@ PreAfterLoad մեթոդը կանչվում է միջուկի կողմից` փա�
 public virtual Task PostAfterLoad(Document sender, AfterLoadEventArgs args)
 ```
 
-PostAfterLoad մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի բեռնումից անմիջապես հետո` [AfterLoad](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterLoad.html) իրադարձությունից հետո։
+PostAfterLoad մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի բեռնումից անմիջապես հետո, [AfterLoad](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/AfterLoad.html) իրադարձությունից հետո։
 
 ---
 
@@ -220,7 +220,7 @@ PostAfterLoad մեթոդը կանչվում է միջուկի կողմից` փա
 public virtual Task PreBeforeCommit(Document sender, BeforeCommitEventArgs args)
 ```
 
-PreBeforeCommit մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի տվյալների պահոցում գրանցումից անմիջապես հետո տրանզակցիայի մեջ՝ [BeforeCommit](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCommit.html) իրադարձությունից առաջ։
+PreBeforeCommit մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի տվյալների պահոցում գրանցումից անմիջապես հետո տրանզակցիայի մեջ, [BeforeCommit](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCommit.html) իրադարձությունից առաջ։
 
 ---
 
@@ -240,7 +240,7 @@ PostBeforeCommit մեթոդը կանչվում է միջուկի կողմից` �
 public virtual Task PreBeforeCopy(Document sender, BeforeCopyEventArgs args)
 ```
 
-PreBeforeCopy մեթոդը կանչվում է միջուկի կողմից` փաստաթուղթը պատճենման ժամանակ` [BeforeCopy](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) իրադարձությունից հետո։ 
+PreBeforeCopy մեթոդը կանչվում է միջուկի կողմից` փաստաթուղթը պատճենման ժամանակ, [BeforeCopy](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) իրադարձությունից հետո։ 
 
 ---
 
@@ -250,7 +250,7 @@ PreBeforeCopy մեթոդը կանչվում է միջուկի կողմից` փա
 public virtual Task PostBeforeCopy(Document sender, BeforeCopyEventArgs args)
 ```
 
-PostBeforeCopy մեթոդը կանչվում է միջուկի կողմից` փաստաթուղթը պատճենման ժամանակ` [BeforeCopy](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) իրադարձությունից հետո։ 
+PostBeforeCopy մեթոդը կանչվում է միջուկի կողմից` փաստաթուղթը պատճենման ժամանակ, [BeforeCopy](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/BeforeCopy.html) իրադարձությունից հետո։ 
 
 ---
 
@@ -260,7 +260,7 @@ PostBeforeCopy մեթոդը կանչվում է միջուկի կողմից` փ�
 public virtual Task PreDelete(Document sender, DeleteEventArgs args)
 ```
 
-PreDelete մեթոդը կանչվում է միջուկի կողմից` փաստաթուղթը ջնջելու ժամանակ տրանզակցիայի մեջ` [Delete](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Delete.html) իրադարձությունից առաջ։ 
+PreDelete մեթոդը կանչվում է միջուկի կողմից` փաստաթուղթը ջնջելու ժամանակ տրանզակցիայի մեջ, [Delete](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Delete.html) իրադարձությունից առաջ։ 
 
 ---
 
@@ -270,7 +270,7 @@ PreDelete մեթոդը կանչվում է միջուկի կողմից` փաստ
 public virtual Task PostDelete(Document sender, DeleteEventArgs args)
 ```
 
-PostDelete մեթոդը կանչվում է միջուկի կողմից` փաստաթուղթը ջնջելու ժամանակ տրանզակցիայի մեջ` [Delete](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Delete.html) իրադարձությունից հետո։ 
+PostDelete մեթոդը կանչվում է միջուկի կողմից` փաստաթուղթը ջնջելու ժամանակ տրանզակցիայի մեջ, [Delete](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Delete.html) իրադարձությունից հետո։ 
 
 ---
 
@@ -280,7 +280,7 @@ PostDelete մեթոդը կանչվում է միջուկի կողմից` փաս�
 public virtual Task PreFolders(Document sender, FoldersEventArgs args)
 ```
 
-PreFolders մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Folders](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Folders.html) իրադարձությունից առաջ։
+PreFolders մեթոդը կանչվում է միջուկի կողմից՝ փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ, [Folders](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Folders.html) իրադարձությունից առաջ։
 
 ---
 
@@ -290,7 +290,7 @@ PreFolders մեթոդը կանչվում է միջուկի կողմից` փաս�
 public virtual Task PostFolders(Document sender, FoldersEventArgs args)
 ```
 
-PostFolders մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Folders](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Folders.html) իրադարձությունից հետո։
+PostFolders մեթոդը կանչվում է միջուկի կողմից՝ փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ, [Folders](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Folders.html) իրադարձությունից հետո։
 
 ---
 
@@ -310,7 +310,7 @@ PostLoadGrids մեթոդը կանչվում է միջուկի կողմից` փա
 public virtual Task PreOnConfirmDocumentChangeRequest(Document sender, ConfirmDocumentChangeRequestEventArgs args)
 ```
 
-PreOnConfirmDocumentChangeRequest մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) փաստաթղթի փոփոխման հայտի բացման ընթացքում տրանզակցիայի մեջ` [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) իրադարձությունից հետո և OnConfirmDocumentChangeRequest իրադարձությունից առաջ։
+PreOnConfirmDocumentChangeRequest մեթոդը կանչվում է միջուկի կողմից՝ փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)), [OnConfirmDocumentChangeRequest](../../server_api/definitions/document.md#onconfirmdocumentchangerequest) իրադարձությունից առաջ։
 
 ---
 
@@ -320,7 +320,7 @@ PreOnConfirmDocumentChangeRequest մեթոդը կանչվում է միջուկ�
 public virtual Task PostOnConfirmDocumentChangeRequest(Document sender, ConfirmDocumentChangeRequestEventArgs args)
 ```
 
-PreOnConfirmDocumentChangeRequest մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) փաստաթղթի փոփոխման հայտի բացման ընթացքում տրանզակցիայի մեջ` [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html), OnConfirmDocumentChangeRequest իրադարձություններից հետո։
+PreOnConfirmDocumentChangeRequest մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)), [OnConfirmDocumentChangeRequest](../../server_api/definitions/document.md#onconfirmdocumentchangerequest) իրադարձություններից հետո։
 
 ---
 
@@ -335,7 +335,7 @@ public virtual Task PreOnRejectDocumentChangeRequest(Document sender, RejectDocu
 **Պարամետրեր**
 
 * `sender` - [Փաստաթղթի օբյեկտը](../../server_api/definitions/document.md), որի հիման վրա ստեղծվել է ընթացիկ փոփոխման հայտը։
-* `args` - [RejectDocumentChangeRequestEventArgs](../../server_api/types/args/RejectDocumentChangeRequestEventArgs.md) դասի օբյեկտ, որը պարունակում է տվյալներ [փաստաթղթի փոփոխման հայտի](../../server_api/definitions/document.md#onrejectdocumentchangerequest և մերժման մեկնաբանության մասին։
+* `args` - [RejectDocumentChangeRequestEventArgs](../../server_api/types/args/RejectDocumentChangeRequestEventArgs.md) դասի օբյեկտ, որը պարունակում է տվյալներ [փաստաթղթի փոփոխման հայտի](../../server_api/definitions/document.md#onrejectdocumentchangerequest) և մերժման մեկնաբանության մասին։
 
 **Նկատառումներ**
 
@@ -359,7 +359,7 @@ public virtual Task PostOnRejectDocumentChangeRequest(Document sender, RejectDoc
 **Պարամետրեր**
 
 * `sender` - [Փաստաթղթի օբյեկտը](../../server_api/definitions/document.md), որի հիման վրա ստեղծվել է ընթացիկ փոփոխման հայտը։
-* `args` - [RejectDocumentChangeRequestEventArgs](../../server_api/types/args/RejectDocumentChangeRequestEventArgs.md) դասի օբյեկտ, որը պարունակում է տվյալներ [փաստաթղթի փոփոխման հայտի](../../server_api/definitions/document.md#onrejectdocumentchangerequest և մերժման մեկնաբանության մասին։
+* `args` - [RejectDocumentChangeRequestEventArgs](../../server_api/types/args/RejectDocumentChangeRequestEventArgs.md) դասի օբյեկտ, որը պարունակում է տվյալներ [փաստաթղթի փոփոխման հայտի](../../server_api/definitions/document.md#onrejectdocumentchangerequest) և մերժման մեկնաբանության մասին։
 
 **Նկատառումներ**
 
@@ -398,7 +398,7 @@ PostMessage մեթոդը կանչվում է միջուկի կողմից` մի �
 public virtual Task PostStoreGrid(Document sender, StoreGridsEventArgs args)
 ```
 
-PostStoreGrid մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի աղյուսակի պահպանման ժամանակ` [StoreGrids](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/StoreGrid.html) իրադարձությունից հետո։
+PostStoreGrid մեթոդը կանչվում է միջուկի կողմից՝ փաստաթղթի աղյուսակի պահպանման ժամանակ` [StoreGrids](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/StoreGrid.html) իրադարձությունից հետո։
 
 ---
 
@@ -408,7 +408,7 @@ PostStoreGrid մեթոդը կանչվում է միջուկի կողմից` փա
 public virtual Task PreValidate(Document sender, ValidateEventArgs args)
 ```
 
-PreValidate մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) իրադարձությունից առաջ։
+PreValidate մեթոդը կանչվում է միջուկի կողմից՝ փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ, [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) իրադարձությունից առաջ։
 
 ---
 
@@ -418,4 +418,4 @@ PreValidate մեթոդը կանչվում է միջուկի կողմից` փաս
 public virtual Task PostValidate(Document sender, ValidateEventArgs args)
 ```
 
-PostValidate մեթոդը կանչվում է միջուկի կողմից` փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ` [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) իրադարձությունից հետո։
+PostValidate մեթոդը կանչվում է միջուկի կողմից՝ փաստաթղթի պահպանման ժամանակ ([Store](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/ASDOC/Store.html)) տրանզակցիայի մեջ, [Validate](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/Validate.html) իրադարձությունից հետո։
