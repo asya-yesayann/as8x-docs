@@ -330,12 +330,12 @@ PreOnConfirmDocumentChangeRequest մեթոդը կանչվում է միջուկ�
 public virtual Task PreOnRejectDocumentChangeRequest(Document sender, RejectDocumentChangeRequestEventArgs args)
 ```
 
-Մեթոդը կանչվում է միջուկի կողմից՝ [փաստաթղթի փոփոխման հայտը](../../server_api/types/DocumentChangeRequest.md) `DocumentChangeRequestService.Reject` մեթոդով մերժելիս, [OnRejectDocumentChangeRequest](../../server_api/definitions/document.md#onrejectdocumentchangerequest) մեթոդի կանչից առաջ։
+Մեթոդը կանչվում է միջուկի կողմից՝ [փաստաթղթի փոփոխման հայտը](../../server_api/types/DocumentChangeRequest.md) մերժելիս, [OnRejectDocumentChangeRequest](../../server_api/definitions/document.md#onrejectdocumentchangerequest) մեթոդի կանչից առաջ։
 
 **Պարամետրեր**
 
 * `sender` - [Փաստաթղթի օբյեկտը](../../server_api/definitions/document.md), որի հիման վրա ստեղծվել է ընթացիկ փոփոխման հայտը։
-* `args` - [RejectDocumentChangeRequestEventArgs](../../server_api/types/args/RejectDocumentChangeRequestEventArgs.md) դասի օբյեկտ, որը պարունակում է տվյալներ [փաստաթղթի փոփոխման հայտի](../../server_api/definitions/document.md#onrejectdocumentchangerequest) և մերժման մեկնաբանության մասին։
+* `args` - [RejectDocumentChangeRequestEventArgs](../../server_api/types/args/RejectDocumentChangeRequestEventArgs.md) դասի օբյեկտ։
 
 **Նկատառումներ**
 
@@ -344,7 +344,7 @@ public virtual Task PreOnRejectDocumentChangeRequest(Document sender, RejectDocu
 * [OnRejectDocumentChangeRequest](../../server_api/definitions/document.md#onrejectdocumentchangerequest),
 * [PostOnRejectDocumentChangeRequest](#postonrejectdocumentchangerequest):
 
-Յուրաքանչյուր մեթոդի պարամետրերը կանչից հետո փոխանցվում են հաջորդին։
+Յուրաքանչյուր մեթոդի պարամետրերը, կանչից հետո, փոխանցվում են հաջորդին։
 
 ---
 
@@ -354,12 +354,12 @@ public virtual Task PreOnRejectDocumentChangeRequest(Document sender, RejectDocu
 public virtual Task PostOnRejectDocumentChangeRequest(Document sender, RejectDocumentChangeRequestEventArgs args)
 ```
 
-Մեթոդը կանչվում է միջուկի կողմից՝ [փաստաթղթի փոփոխման հայտը](../../server_api/types/DocumentChangeRequest.md) `DocumentChangeRequestService.Reject` մեթոդով մերժելիս, [OnRejectDocumentChangeRequest](../../server_api/definitions/document.md#onrejectdocumentchangerequest) մեթոդի կանչից հետո։
+Մեթոդը կանչվում է միջուկի կողմից՝ [փաստաթղթի փոփոխման հայտը](../../server_api/types/DocumentChangeRequest.md) մերժելիս, [OnRejectDocumentChangeRequest](../../server_api/definitions/document.md#onrejectdocumentchangerequest) մեթոդի կանչից հետո։
 
 **Պարամետրեր**
 
 * `sender` - [Փաստաթղթի օբյեկտը](../../server_api/definitions/document.md), որի հիման վրա ստեղծվել է ընթացիկ փոփոխման հայտը։
-* `args` - [RejectDocumentChangeRequestEventArgs](../../server_api/types/args/RejectDocumentChangeRequestEventArgs.md) դասի օբյեկտ, որը պարունակում է տվյալներ [փաստաթղթի փոփոխման հայտի](../../server_api/definitions/document.md#onrejectdocumentchangerequest) և մերժման մեկնաբանության մասին։
+* `args` - [RejectDocumentChangeRequestEventArgs](../../server_api/types/args/RejectDocumentChangeRequestEventArgs.md) դասի օբյեկտ:
 
 **Նկատառումներ**
 
@@ -368,7 +368,7 @@ public virtual Task PostOnRejectDocumentChangeRequest(Document sender, RejectDoc
 * [OnRejectDocumentChangeRequest](../../server_api/definitions/document.md#onrejectdocumentchangerequest),
 * [PostOnRejectDocumentChangeRequest](#postonrejectdocumentchangerequest):
 
-Յուրաքանչյուր մեթոդի պարամետրերը կանչից հետո փոխանցվում են հաջորդին։
+Յուրաքանչյուր մեթոդի պարամետրերը, կանչից հետո, փոխանցվում են հաջորդին։
 
 ---
 

@@ -1055,13 +1055,13 @@ public virtual Task OnRefuse(RefuseEventArgs args)
 public virtual Task OnRejectDocumentChangeRequest(RejectDocumentChangeRequestEventArgs args)
 ```
 
-Մեթոդը կանչվում է միջուկի կողմից՝ [փաստաթղթի փոփոխման հայտը](../types/DocumentChangeRequest.md) `IDocumentChangeRequestService.Reject` մեթոդով մերժելիս։
+Մեթոդը կանչվում է միջուկի կողմից՝ [փաստաթղթի փոփոխման հայտը](../types/DocumentChangeRequest.md) մերժելիս։
 
 Հանդիսանում է 4x համակարգում նկարագրված [OnRejectDCR](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/OnRejectDCR.html) իրադարձության համարժեքը:
 
 **Պարամետրեր**
 
-* `args` - [RejectDocumentChangeRequestEventArgs](../types/args/RejectDocumentChangeRequestEventArgs.md) դասի օբյեկտ, որը պարունակում է տվյալներ [փաստաթղթի փոփոխման հայտի](../types/DocumentChangeRequest.md) և մերժման մեկնաբանության մասին։
+* `args` - [RejectDocumentChangeRequestEventArgs](../types/args/RejectDocumentChangeRequestEventArgs.md) դասի օբյեկտ:
 
 **Նկատառումներ**
 
@@ -1070,7 +1070,7 @@ public virtual Task OnRejectDocumentChangeRequest(RejectDocumentChangeRequestEve
 * [OnRejectDocumentChangeRequest](#onrejectdocumentchangerequest),
 * [PostOnRejectDocumentChangeRequest](../../extensions/definitions/document_extender.md#postonrejectdocumentchangerequest):
 
-Յուրաքանչյուր մեթոդի պարամետրերը կանչից հետո փոխանցվում են հաջորդին։
+Յուրաքանչյուր մեթոդի պարամետրերը, կանչից հետո, փոխանցվում են հաջորդին։
 
 ---
 
