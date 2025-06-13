@@ -4,6 +4,7 @@ title: "BankApiClient դաս"
 sublinks:
 - { title: "Accounts", ref: accounts }
 - { title: "Cards", ref: cards }
+- { title: "ClientIBOptions", ref: clientiboptions }
 - { title: "Clients", ref: clients }
 - { title: "LoanApplications", ref: loanapplications }
 - { title: "Կոնստրուկտոր", ref: կոնստրուկտոր }
@@ -16,6 +17,7 @@ sublinks:
 - [Հատկություններ](#հատկություններ)
   - [Accounts](#accounts)
   - [Cards](#cards)
+  - [ClientIBOptions](#clientiboptions)
   - [Clients](#clients)
   - [LoanApplications](#loanapplications)
 
@@ -75,6 +77,14 @@ public CardsRoutes Cards { get; }
 ```
 
 Վերադարձնում է [CardsRoutes](../routes/CardsRoutes.md) դասի օբյեկտ, որը պարունակում է մեթոդներ քարտերի հետ աշխատանքը ապահովելու համար։
+
+### ClientIBOptions
+
+```c#
+public ClientIBOptionsRoutes ClientIBOptions { get; }
+```
+
+Վերադարձնում է [ClientIBOptionsRoutes](../routes/ClientIBOptionsRoutes.md) դասի օբյեկտ, որը պարունակում է մեթոդներ հաճախորդների ԻԲ կարգավորումների տվյալների հետ աշխատանքը ապահովելու համար։
 
 ### Clients
 
