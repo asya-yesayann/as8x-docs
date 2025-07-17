@@ -738,11 +738,11 @@ public string Body()
 public void BuildEmbeddedUIRequest<T>(T uiRequestExecutionProgress) where T : IUIRequestExecutionProgress;
 ```
 
-[DPR](dpr.md)-ում (կամ այլ հերթագրվող պրոցեսում) փաստաթղթերի գրանցման/հեռացման ընթացքում առաջացող հաղորդագրությունները UI-ում ցուցադրելու համար անհրաժեշտ է [DPR](dpr.md)-ի [Execute](dpr.md#execute) մեթոդում մինչև փաստաթղթի [Store](../services/IDocumentService.md#store)/[Delete](../services/IDocumentService.md#delete) գործողությունները կանչել BuildEmbeddedUIRequest մեթոդը փոխանցելով [DPR](dpr.md).[Progress](dpr.md#progress)-ը։
+Եթե [DPR](dpr.md)-ի [Execute](dpr.md#execute) կամ փաստաթղթի կամայական մեթոդում նախատեսվում է կանչել մեկ այլ փաստաթղթի [Store](../services/IDocumentService.md#store)/[Delete](../services/IDocumentService.md#delete) մեթոդները, և անհրաժեշտ է, որ այդ մեթոդների կանչի ընթացքում առաջացող հաղորդագրությունները ցուցադրվեն UI-ում, ապա այդ մեթոդների կանչից առաջ անհրաժեշտ է կանչել BuildEmbeddedUIRequest մեթոդը՝ փոխանցելով համապատասխան կատարման պրոգրեսը:
 
 **Պարամետրեր**
 
-* `uiRequestExecutionProgress` - DPR-ի կատարման պրոգրեսը։
+* `uiRequestExecutionProgress` - Կատարման պրոգրեսը։
 
 ---
 
