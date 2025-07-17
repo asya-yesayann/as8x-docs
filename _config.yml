@@ -20,3 +20,10 @@ plugins:
 header_pages:
  - search.html
  - apiIndex.html
+ 
+defaults:
+  -
+    scope:
+      path: "src"
+    values:
+      layout: "page"
