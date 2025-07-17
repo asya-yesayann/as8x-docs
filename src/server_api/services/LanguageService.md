@@ -1,20 +1,6 @@
 ---
-layout: page
-title: "LanguageService" 
-sublinks:
-- { title: "CurrentUICultureName", ref: currentuiculturename }
-- { title: "IsArmenian", ref: isarmenian }
-- { title: "IsEnglish", ref: isenglish }
-- { title: "Language", ref: language }
+title: "LanguageService սերվիս"
 ---
-
-## Բովանդակություն
-- [Ներածություն](#ներածություն)
-- [Հատկություններ](#հատկություններ)
-  - [CurrentUICultureName](#currentuiculturename)
-  - [IsArmenian](#isarmenian)
-  - [IsEnglish](#isenglish)
-  - [Language](#language)
 
 ## Ներածություն
 
@@ -24,34 +10,9 @@ LanguageService-ը ստատիկ դաս է, որը նախատեսված է ծրա
 
 ## Հատկություններ
 
-### CurrentUICultureName
-
-```c#
-public static string CurrentUICultureName { get; }
-```
-
-Վերադարձնում է ծրագրի ընթացիկ [UI Culture](https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo.currentuiculture)-ի անունը:
-
-### IsArmenian
-
-```c#
-public static bool IsArmenian { get; }
-```
-
-Ցույց է տալիս արդյոք ծրագրի ընթացիկ լեզուն հայերենն է։
-
-### IsEnglish
-
-```c#
-public static bool IsEnglish { get; }
-```
-
-Ցույց է տալիս արդյոք ծրագրի ընթացիկ լեզուն անգլերենն է։
-
-### Language
-
-```c#
-public static Language Language { get; set; }
-```
-
-Վերադարձնում կամ նշանակում է ծրագրի [ընթացիկ լեզուն](../types/Language.md)։
+| Անվանում | Նկարագրություն |
+|----------|----------------|
+| [CurrentUICultureName](LanguageService/CurrentUICultureName.md) | Վերադարձնում է ծրագրի ընթացիկ [UI Culture](https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo.currentuiculture)-ի անունը: |
+| [IsArmenian](LanguageService/IsArmenian.md) | Ցույց է տալիս արդյոք ծրագրի ընթացիկ լեզուն հայերենն է։ |
+| [IsEnglish](LanguageService/IsEnglish.md) | Ցույց է տալիս արդյոք ծրագրի ընթացիկ լեզուն անգլերենն է։ |
+| [Language](LanguageService/Language.md) | Վերադարձնում կամ նշանակում է ծրագրի [ընթացիկ լեզուն](../types/Language.md)։ |
