@@ -29,27 +29,10 @@ private async Task CreateVacationFromHR(Request.EmployeeFinalCalculation emplDat
 {
     var docWgLvOrd = await this.documentService.Create<WgLvOrd>();
     docWgLvOrd.Code.Value = (string)await this.documentService.FieldToAnsi(nameof(WgLvOrd), nameof(WgLvOrd.Code), emplData.EmployeeNumber);
-    await docWgLvOrd.SetEmployeeData();
-    docWgLvOrd.DateR.NullableValue = request.OrderDate;
-    docWgLvOrd.Number.Value = (string)await this.documentService.FieldToAnsi(nameof(WgLvOrd), nameof(WgLvOrd.Number), request.OrderNumber);
-    docWgLvOrd.DateS.Value = request.FinalCalculationDate;
-    docWgLvOrd.DateE.Value = request.FinalCalculationDate;
-    docWgLvOrd.DateSC.Value = new DateTime(request.AverageYear, request.AverageMonth, 1);
-    docWgLvOrd.CalcDate.Value = new DateTime(request.CalculationYear, request.CalculationMonth, 1);
-    docWgLvOrd.LvType.Value = (string)await this.documentService.FieldToAnsi(nameof(WgLvOrd), nameof(WgLvOrd.LvType), request.LeaveType);
     docWgLvOrd.LvScheme.Value = (string)await this.documentService.FieldToAnsi(nameof(WgLvOrd), nameof(WgLvOrd.LvScheme), request.LeaveScheme);
-    docWgLvOrd.TabType.Value = request.DaysCalculationType;
     docWgLvOrd.fCalc.Value = true;
-    docWgLvOrd.fDni.Value = Math.Abs(emplData.FinalCalculationDays);
     docWgLvOrd.DedReCalc.Value = emplData.FinalCalculationDays < 0;
-    docWgLvOrd.Coment.Value = (string)await this.documentService.FieldToAnsi(nameof(WgLvOrd), nameof(WgLvOrd.Coment), request.Comment);
     docWgLvOrd.bPlan.Value = "f";
-    docWgLvOrd.Dni.Value = (short)Math.Abs(emplData.FinalCalculationDays);
-    docWgLvOrd.MaxDni.Value = (short)Math.Abs(emplData.FinalCalculationDays);
-    docWgLvOrd.SetPeriodAndYear();
-    docWgLvOrd.bISN.Value = docWgLvOrd.ISN;
-    docWgLvOrd.Property_LeaveGr = true;
-    docWgLvOrd.Property_DontCheckPeriodCrossing = true;
     docWgLvOrd.BuildEmbeddedUIRequest(this.Progress);
     await docWgLvOrd.Store();
 }
