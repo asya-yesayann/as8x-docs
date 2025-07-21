@@ -63,8 +63,7 @@ sublinks:
 - { title: "LoadClientDesc", ref: loadclientdesc }
 - { title: "LoadClientDoc", ref: loadclientdoc }
 - { title: "LoadClientDocRO", ref: loadclientdocro }
-- { title: "LoadContractDescByCode", ref: loadcontractdescbycode }
-- { title: "LoadContractDescByISN", ref: loadcontractdescbyisn }
+- { title: "LoadContractDesc", ref: loadcontractdesc }
 - { title: "LoadContractDoc", ref: loadcontractdoc }
 - { title: "LoadDoc", ref: loaddoc }
 - { title: "LoadDocFromFolder", ref: loaddocfromfolder }
@@ -157,8 +156,7 @@ sublinks:
    * [LoadClientDesc](#loadclientdesc)
    * [LoadClientDoc](#loadclientdoc)
    * [LoadClientDocRO](#loadclientdocro)
-   * [LoadContractDescByCode](#loadcontractdescbycode)
-   * [LoadContractDescByISN](#loadcontractdescbyisn)
+   * [LoadContractDesc](#loadcontractdesc)
    * [LoadContractDoc](#loadcontractdoc)
    * [LoadDoc](#loaddoc)
    * [LoadDocFromFolder](#loaddocfromfolder)

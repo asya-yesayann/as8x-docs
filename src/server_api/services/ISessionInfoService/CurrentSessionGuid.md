@@ -8,8 +8,6 @@ public string CurrentSessionGuid { get }
 
 Վերադարձնում է ընթացիկ [սեսսիայի](../../types/SessionInfo.md) ներքին նույնականացման համարը (Guid): -->
 
-## Մեթոդներ
-
 <!-- ### Add
 
 ```c#
@@ -23,3 +21,5 @@ public Task Add(SessionInfo sessionInfo)
 **Պարամետրեր**
 
 * `sessionInfo` - Ավելացվող [սեսսիայի ինֆորմացիան](../../types/SessionInfo.md)։
+
+-->

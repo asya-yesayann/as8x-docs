@@ -6,7 +6,7 @@ title: IStorageService.DeleteBlobAsync(string, CancellationToken) մեթոդ
 public virtual Task<bool> DeleteBlobAsync(string blobName, CancellationToken cancellationToken = default)
 ```
 
-Հեռացնում է ֆայլը [ընթացիկ սեսիայի կոնտեյներից](#container)։
+Հեռացնում է ֆայլը [ընթացիկ սեսիայի կոնտեյներից](Container.md)։
 
 **Պարամետրեր**
 

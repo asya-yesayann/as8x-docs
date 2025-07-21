@@ -6,7 +6,7 @@ title: IPermanentStorageService.UploadBlobAsync(string, Stream, BlobProperties, 
 public Task<bool> UploadBlobAsync(string blobName, Stream stream, BlobProperties properties = null, CancellationToken cancellationToken = default)
 ```
 
-Պահպանում է `value` պարամետրի պարունակությունը մշտական ֆայլերի պահոցի [Container](#container) հատկությամբ նշված թղթապանակում՝ `blobName` պարամետրում նշված ֆայլում։
+Պահպանում է `value` պարամետրի պարունակությունը մշտական ֆայլերի պահոցի [Container](Container.md) հատկությամբ նշված թղթապանակում՝ `blobName` պարամետրում նշված ֆայլում։
 
 **Պարամետրեր**
 

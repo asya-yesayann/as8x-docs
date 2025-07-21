@@ -6,7 +6,7 @@ title: IPermanentStorageService.DeleteBlobAsync(string, CancellationToken)
 public virtual Task<bool> DeleteBlobAsync(string blobName, CancellationToken cancellationToken = default)
 ```
 
-Հեռացնում է ֆայլը մշտական ֆայլերի պահոցի [Container](#container) հատկությամբ նշված թղթապանակից։
+Հեռացնում է ֆայլը մշտական ֆայլերի պահոցի [Container](Container.md) հատկությամբ նշված թղթապանակից։
 
 **Պարամետրեր**
 

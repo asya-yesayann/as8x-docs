@@ -10,7 +10,7 @@ public  Task CreateParentLinksDB(int isn, List<int> parentsIsn)
 Ֆունկցիան ստեղծում է կապը անմիջապես տվյալների պահոցում։ 
 Զավակ փաստաթուղթը պետք է գրանցված լինի տվյալների պահոցում։
 
-Ի տարբերություն  [MakeParentLink](#makeparentlink)-ի այս ֆունկցիան կարելի է կանչել ամենուրեք։
+Ի տարբերություն  [MakeParentLink](MakeParentLink.md)-ի այս ֆունկցիան կարելի է կանչել ամենուրեք։
 
 **Պարամետրեր**
 

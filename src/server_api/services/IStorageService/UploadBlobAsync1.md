@@ -6,7 +6,7 @@ title: IStorageService.UploadBlobAsync(string, Stream, BlobProperties, Cancellat
 public Task<bool> UploadBlobAsync(string blobName, Stream stream, BlobProperties properties = null, CancellationToken cancellationToken = default)
 ```
 
-Պահպանում է `stream` պարամետրի պարունակությունը [ընթացիկ սեսիայի կոնտեյների](#container) նշված ֆայլում։ 
+Պահպանում է `stream` պարամետրի պարունակությունը [ընթացիկ սեսիայի կոնտեյների](Container.md) նշված ֆայլում։ 
 
 **Պարամետրեր**
 

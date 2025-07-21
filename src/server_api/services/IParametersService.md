@@ -49,7 +49,7 @@ title: "IParametersService սերվիս"
 | [REPSTART](IParametersService/REPSTART1.md) | Վերադարձնում է **REPSTART** ներքին անունով [ամսաթիվ տիպի](../types/system_types.md#datefieldtype) պարամետրի արժեքը, որը ցույց է տալիս հաշվետու ժամանակահատվածի սկզբի ամսաթիվը `suid` ներքին համարով օգտագործողի համար։ |
 | [SetHiPar](IParametersService/SetHiPar.md) | Գրանցում է ժամանակագրական պարամետրի նոր արժեք տրված ամսաթվով: |
 | [SetValue](IParametersService/SetValue.md) | Փոխում է համակարգային պարամետրի արժեքը։ |
-| [SetValueWithAdditionalConnection](IParametersService/SetValueWithAdditionalConnection.md) | Փոխում է համակարգային պարամետրի արժեքը [լրացուցիչ sql միացման](IDBService.md#createadditionalconnection) միջոցով։ |
+| [SetValueWithAdditionalConnection](IParametersService/SetValueWithAdditionalConnection.md) | Փոխում է համակարգային պարամետրի արժեքը [լրացուցիչ sql միացման](IDBService/CreateAdditionalConnection.md) միջոցով։ |
 
 ## Հատկություններ
 

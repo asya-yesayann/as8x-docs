@@ -8,7 +8,7 @@ public Task<(bool IsUnicode, byte[] File, bool Updatable)> LoadTemplateFile(
 ```
 
 Բեռնում է տպելու ձևանմուշի տվյալները պահոցի `TEMPLATES` աղյուսակից։ Բեռնման ընթացքում կատարվում է լրացուցիչ ստուգումներ, որից հետո հնարավոր է լրացնել ֆայլը։ 
-Ստացված տվյալները ենթակա են փոխանցման [EvalAndAddUserDefinedParameters](#evalandadduserdefinedparameters), ապա [Substitute](#substitute) կամ [SubstituteAndGetContent](#substituteandgetcontent) մեթոդներին։
+Ստացված տվյալները ենթակա են փոխանցման [EvalAndAddUserDefinedParameters](EvalAndAddUserDefinedParameters.md), ապա [Substitute](Substitute.md) կամ [SubstituteAndGetContent](SubstituteAndGetContent.md) մեթոդներին։
 
 Վերադարձնում է կորտեժ
 * `IsUnicode` - Տպելու ձևանմուշը հարկավոր է արտահանել յունիկոդ կոդավորմամբ։

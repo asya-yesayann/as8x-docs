@@ -14,7 +14,7 @@ public class Descriptor
     public string ArmenianCaption { get; private set; }
     public string EnglishCaption { get; private set; }
     public Type Type { get; private set; }
-    public uint Version { get; private set; }
+    public byte[] TimeStamp { get; private set; }
     public bool IsDynamic { get; private set; }
     public FeatureAvailability IsCancellationSupported { get; private set; } = FeatureAvailability.Enabled;
 }
@@ -28,6 +28,6 @@ public class Descriptor
            DPRType.OLAP - Օլապ տվյալների մշակման հարցում
            DPRType.JobElement - Առաջադրանքների տվյալների մշակման հարցում
            DPRType.Other - Այլ տվյալների մշակման հարցում
-* `Version` - DPR-ի տարբերակի համարը։ 
+* `TimeStamp` - [DPR](../definitions/dpr.md)-ի վերջին փոփոխման ամսաթիվը/ժամանակը տվյալների պահոցում։ Ոչ դինամիկ նկարագրության դեպքում վերադարձնում է դատարկ զանգված։
 * `IsDynamic` - Ցույց է տալիս, արդյոք [DPR](../definitions/dpr.md)-ը հանդիսանում է [կազմակերպության սեփական նկարագրություն](../../extensions/definitions/dpr_new_guide.md), թե ոչ։ 
 * `IsCancellationSupported` - Ցույց է տալիս, արդյոք հնարավոր է դադարեցնել [DPR](../definitions/dpr.md)-ի կատարումը UI-ից։

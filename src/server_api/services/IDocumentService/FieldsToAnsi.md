@@ -13,7 +13,7 @@ public Task<Dictionary<string, object>> FieldsToAnsi(string docType, Dictionary<
 - դաշտը լրացվում է հայերեն, թե ռուսերեն,
 - փոխանցող կլինետը օգտագործում է յունկոդ տվյալներ, թե ANSI տվյալներ։
 
-Տե՛ս նաև [FieldToAnsi](#fieldtoansi)
+Տե՛ս նաև [FieldToAnsi](FieldToAnsi.md)
 
 **Պարամետրեր**
 

@@ -6,7 +6,7 @@ title: "IFoldersService սերվիս"
 
 FolderService դասը նախատեսված է [FOLDERS](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Folders.html) աղյուսակից թղթապանակի տարրերի հետ աշխատանքը ապահովելու համար։
 
-Աղյուսակում գրանցման համար օգտագործվում է [IDocumentService](IDocumentService.md).[StoreInFolder](IDocumentService.md#storeinfolder) ֆունկցիայով։
+Աղյուսակում գրանցման համար օգտագործվում է [IDocumentService](IDocumentService.md).[StoreInFolder](IDocumentService/StoreInFolder.md) ֆունկցիայով։
 
 ## Մեթոդներ
 

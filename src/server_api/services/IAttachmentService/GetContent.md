@@ -6,7 +6,7 @@ title: IAttachmentService.GetContent(int, string) մեթոդ
 public Task<StorageInfo> GetContent(int isn, string fileName)
 ```
 
-Բեռնում է փաստաթղթին կցված ֆայլի պարունակությունը տվյալների պահոցից և պահում սերվերային պահոցում [ընթացիկ սեսսիայի կոնտեյներում](../IStorageService.md#container)։ 
+Բեռնում է փաստաթղթին կցված ֆայլի պարունակությունը տվյալների պահոցից և պահում սերվերային պահոցում [ընթացիկ սեսսիայի կոնտեյներում](../IStorageService/Container.md)։ 
 
 Վերադարձնում է ֆայլի նույնականացուցիչը սերվերային պահոցում։
 

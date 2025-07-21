@@ -8,7 +8,7 @@ public Exception GetSqlRelatedException(SqlException exception,
                                         bool duplicateIsRestException = false)
 ```
 
-Ձևափոխում է SQL-ական սխալը փոխելով հաղորդագրությունը տեքստը ըստ [GetSqlExceptionText](#getsqlexceptiontext)-ի։
+Ձևափոխում է SQL-ական սխալը փոխելով հաղորդագրությունը տեքստը ըստ [GetSqlExceptionText](GetSqlExceptionText.md)-ի։
 
 **Պարամետրեր**
 
