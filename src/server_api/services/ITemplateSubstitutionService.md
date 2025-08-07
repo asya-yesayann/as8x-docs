@@ -66,7 +66,7 @@ public Task EvalAndAddUserDefinedParameters(
 **Պարամետրեր**
 
 * `name` - Տպելու ձևանմուշի ներքին անուն:
-* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
+* `type` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md):
 * `printTemplateSubstitution` - Տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտ։
 * `document` - Տպելու ձևանմուշի հետ կապակցված [փաստաթղթի օբյեկտ](../definitions/document.md)։
   Կարող է փոխանցվել `null`, եթե տպելու ձևը կապված չէ փաստաթղթի հետ։
@@ -87,7 +87,7 @@ public Task EvalAndAddUserDefinedParametersEx(
 **Պարամետրեր**
 
 * `name` - Տպելու ձևանմուշի ներքին անուն:
-* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
+* `type` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md):
 * `printTemplateSubstitutionEx` - Տպելու ձևանմուշի տեղադրվող արժեքները տիպիզացված ձևով պարունակող օբյեկտ։
 * `document` - Տպելու ձևանմուշի հետ կապակցված [փաստաթղթի օբյեկտ](../definitions/document.md)։
   Կարող է փոխանցվել `null`, եթե տպելու ձևը կապված չէ փաստաթղթի հետ։
@@ -110,7 +110,7 @@ public Task<ITemplateSubstitution> GetReadyTemplateSubstitution(
 
 * `document` - Տպելու ձևանմուշի հետ կապակցված [փաստաթուղթ](../definitions/document.md)։
 * `templateName` - Տպելու ձևանմուշի ներքին անունը։
-* `templateType` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
+* `templateType` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md):
 * `parameters` - Տպելու ձևանմուշի լրացման պարամետրերի Dictionary, որտեղ բանալին՝ պարամետրի անունն է, իսկ արժեքը՝ պարամետրի արժեքը: 
   Այս պարամետրի արժեքը փոխանցվելու է տպելու ձևանմուշի տեղադրվող արժեքները հաշվարկող [TemplateSubstitution](../definitions/document.md#templatesubstitution) իրադարձության մշակիչին։
 
@@ -126,7 +126,7 @@ public Task<bool> IsTemplateAvailable(
 **Պարամետրեր**
 
 * `templateName` - Տպելու ձևանմուշի ներքին անունը։
-* `templateType` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
+* `templateType` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md):
 * `document` - Տպելու ձևանմուշի հետ կապակցված [փաստաթղթի օբյեկտ](../definitions/document.md)։
 
 **Օգտագործում**
@@ -164,7 +164,7 @@ public Task<Stream> LoadAndSubstitute(
 
 * `printTemplateSubstitution` - Տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտ։
 * `name` - Տպելու ձևանմուշի ներքին անուն:
-* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
+* `type` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md):
 * `htmlImageOption` - Html տպվող տեսքերի [պատկերների տեղադրման եղանակ](../types/HtmlImageOption.md)։
 * `outputPassword` - Վերջնական ֆայլի բացման գաղտնաբառը։
 * `check` - Տպելու ձևանմուշում առկա կոդերի ճիշտ շարահյուսության ստուգման հայտանիշ։
@@ -189,7 +189,7 @@ public Task<string> LoadSubstituteAndGetContent(
 
 * `printTemplateSubstitution` - Տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտ։
 * `name` - Տպելու ձևանմուշի ներքին անուն:
-* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
+* `type` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md):
 * `htmlImageOption` - Html տպվող տեսքերի [պատկերների տեղադրման եղանակ](../types/HtmlImageOption.md)։
 * `check` - Տպելու ձևանմուշում առկա կոդերի ճիշտ շարահյուսության ստուգման հայտանիշ։
 
@@ -209,7 +209,7 @@ public Task<StorageInfo> LoadSubstitutionAndGetStorage(
 
 * `printTemplateSubstitution` - Տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտ։
 * `name` - Տպելու ձևանմուշի ներքին անուն:
-* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
+* `type` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md):
 * `htmlImageOption` - Html տպվող տեսքերի [պատկերների տեղադրման եղանակ](../types/HtmlImageOption.md)։
 * `outputPassword` - Վերջնական ֆայլի բացման գաղտնաբառը։
 * `check` - Տպելու ձևանմուշում առկա կոդերի ճիշտ շարահյուսության ստուգման հայտանիշ։
@@ -232,7 +232,7 @@ public Task<(bool IsUnicode, byte[] File, bool Updatable)> LoadTemplateFile(
 **Պարամետրեր**
 
 * `name` - Տպելու ձևանմուշի ներքին անուն:
-* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
+* `type` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md):
 
 ### MergeFile
 
@@ -247,7 +247,7 @@ public Task MergeFile(SubstitutionType type, StorageInfo targetFile,
 
 **Պարամետրեր**
 
-* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]: 
+* `type` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md): 
 * `targetFile` - Առաջին ֆայլի նույնականացուցիչը սերվերում, որին կավելանա երկրորդ ֆայլը։
 * `sourceFile` - Երկրորդ ֆայլի նույնականացուցիչը սերվերում։
 * `insertPageBreak` - Երկու ֆայլերի պարունակությունների միջև break-ի նշանի տեղադրման հայտանիշ։
@@ -266,7 +266,7 @@ public Task<Stream> MergeFile(SubstitutionType type, byte[] targetFile,
 
 **Պարամետրեր**
 
-* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
+* `type` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md):
 * `targetFile` - Առաջին ֆայլի նույնականացուցիչը սերվերում։
 * `sourceFile` - Երկրորդ ֆայլի նույնականացուցիչը սերվերում։
 * `insertPageBreak` - Երկու ֆայլերի պարունակությունների միջև break-ի նշանի տեղադրման հայտանիշ։
@@ -288,7 +288,7 @@ public Task<Stream> Substitute(IPrintTemplateSubstitution printTemplateSubstitut
 
 * `printTemplateSubstitution` - Տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտ։
 * `file` - Տպելու ձևանմուշի պարունակությունը որպես բայտերի զանգված։
-* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
+* `type` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md):
 * `htmlImageOption` - Html տպվող տեսքերի [պատկերների տեղադրման եղանակ](../types/HtmlImageOption.md)։
 * `isUnicode` - Տպելու ձևանմուշը արտահանել յունիկոդ կոդավորմամբ։
 * `outputPassword` - Վերջնական ֆայլի բացման գաղտնաբառը։
@@ -311,7 +311,7 @@ public Task Substitute(IPrintTemplateSubstitution printTemplateSubstitution,
 
 * `printTemplateSubstitution` - Տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտ։
 * `file` - Տպելու ձևանմուշը պարունակող ֆայլի և թղթապանակի անունները։
-* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
+* `type` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md):
 * `htmlImageOption` - Html տպվող տեսքերի [պատկերների տեղադրման եղանակ](../types/HtmlImageOption.md)։
 * `isUnicode` - Տպելու ձևանմուշի տվյալների `Unicode` կոդավորմամբ լրացման հայտանիշ։
 * `protect` - `true` արժեքի դեպքում տպելու ձևանմուշի ֆայլը բացվում է միայն կարդալու թույլտվությամբ, հակառակ դեպքում՝ կարդալու/խմբագրելու թույլտվությամբ։
@@ -332,7 +332,7 @@ public string SubstituteAndGetContent(IPrintTemplateSubstitution printTemplateSu
 
 * `printTemplateSubstitution` - Տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտ։
 * `file` - Տպելու ձևանմուշի պարունակությունը որպես byte տիպի զանգված։
-* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
+* `type` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md):
 * `htmlImageOption` - Html տպվող տեսքերի [պատկերների տեղադրման եղանակ](../types/HtmlImageOption.md)։
 * `isUnicode` - Տպելու ձևանմուշի տվյալների `Unicode` կոդավորմամբ լրացման հայտանիշ։
 * `check` - Տպելու ձևանմուշում առկա կոդերի ճիշտ շարահյուսության ստուգման հայտանիշ։
@@ -352,7 +352,7 @@ public Task<string> SubstituteAndGetContent(IPrintTemplateSubstitution printTemp
 
 * `printTemplateSubstitution` - Տպելու ձևանմուշի տեղադրվող արժեքները պարունակող օբյեկտ։
 * `file` - Տպելու ձևանմուշը պարունակող ֆայլի և թղթապանակի անունները։
-* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
+* `type` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md):
 * `htmlImageOption` - Html տպվող տեսքերի [պատկերների տեղադրման եղանակ](../types/HtmlImageOption.md)։
 * `isUnicode` - Տպելու ձևանմուշի տվյալների `Unicode` կոդավորմամբ լրացման հայտանիշ։
 * `check` - Տպելու ձևանմուշում առկա կոդերի ճիշտ շարահյուսության ստուգման հայտանիշ։ -->

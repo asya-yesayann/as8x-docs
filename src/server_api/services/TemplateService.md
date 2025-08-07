@@ -57,7 +57,7 @@ public Task Delete(string name, string type)
 **Պարամետրեր**
 
 * `name` - Տպելու ձևանմուշի ներքին անուն:
-* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
+* `type` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md):
 
 ### Edit
 
@@ -82,7 +82,7 @@ public Task<bool> ExistsTemplate(string name, string type)
 **Պարամետրեր**
 
 * `name` - Տպելու ձևանմուշի ներքին անուն:
-* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
+* `type` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md):
 
 **Օրինակ**
 
@@ -135,7 +135,7 @@ public Task<TemplateDefinition> GetDefinition(string name, string type)
 **Պարամետրեր**
 
 * `name` - Տպելու ձևանմուշի ներքին անուն:
-* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
+* `type` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md):
 
 <!-- ### GetFileContent
 
@@ -188,7 +188,7 @@ public Task<int> GetRowId(string name, string type)
 **Պարամետրեր**
 
 * `name` - Տպելու ձևանմուշի ներքին անուն:
-* `type` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]:
+* `type` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md):
  -->
 ### GetTemplateNameAndType
 
@@ -201,7 +201,7 @@ public static (bool result, string templateName, string templateType)
 Վերադարձնում է՝
 * `result` - Ցույց է տալիս, արդյոք բաժանումը հաջողվել է:
 * `templateName` - Տպելու ձևանմուշի ներքին անուն: Բաժանման չհաջողվելու դեպքում վերադարձնում է `templateNameWithType` պարամետրի արժեքը։
-* `templateType` - [Տպելու ձևանմուշի տիպ][4XTemplateSubstitution]: Բաժանման չհաջողվելու դեպքում վերադարձնում է `string.Empty`։
+* `templateType` - [Տպելու ձևանմուշի տիպ](../types/SubstitutionType.md): Բաժանման չհաջողվելու դեպքում վերադարձնում է `string.Empty`։
 
 **Պարամետրեր**
 
