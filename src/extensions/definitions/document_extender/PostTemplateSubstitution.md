@@ -15,7 +15,7 @@ public virtual Task PostTemplateSubstitution(Document sender,
 
 Մեթոդը կանչվում է միջուկի կողմից, երբ փաստաթղթի համար ձևավորվում է տպման ձև և անջատված է փաստաթղթի [TemplateSubstitutionIsExtended](../../../server_api/definitions/document.md#templatesubstitutionisextended) հատկությունը։ Մեթոդը կանչվում է [TemplateSubstitution](../../../server_api/definitions/document.md#templatesubstitution) մեթոդի կանչից հետո։
 
-Տե՛ս օգտագործման [օրինակը](../examples/PostTemplateSubstitution.md):
+Տե՛ս օգտագործման [օրինակը](../../examples/PostTemplateSubstitution.md):
 
 **Պարամետրեր**
 
