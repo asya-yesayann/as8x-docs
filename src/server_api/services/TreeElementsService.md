@@ -29,10 +29,12 @@ sublinks:
 TreeElementService դասը նախատեսված է ծառի հանգույցների հետ աշխատանքը ապահովելու համար։
 
 Ծառի հանգույցները ծրագրային ստեղծվում են երկու ձևով, 
-- փաստաթղթերի հետ կապված [IDocumentService](IDocumentService.md).[StoreInTree](IDocumentService/StoreInTree.md) ֆունկցիայով,
-- անկախ հանգույցներ [AddNode](TreeElementsService/AddNode.md) ֆունկցիայով։
+- փաստաթղթերի հետ կապված [IDocumentService](IDocumentService.md).[StoreInTree](IDocumentService#storeintree) ֆունկցիայով,
+- անկախ հանգույցներ [AddNode](#addnode) ֆունկցիայով։
 
 Ծառի հանգույցները պահվում են [TREES](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Trees.html) աղյուսակում։
+
+## Մեթոդներ
 
 ### AddNode
 
@@ -47,6 +49,80 @@ public Task<List<TreeNode>> AddNode(TreeElement treeElement, bool overwrite = fa
 * `treeElement` - [Ծառի տարր](../types/TreeElement.md)։
 * `overwrite` - Տվյալների պահոցում ծառի հանգույցի առկայության դեպքում հանգույցի վերագրանցման հայտանիշ։ 
   Այս հնարավորությունը հասանելի է միայն փաստաթղթի հետ չկապակցված ծառի հանգույցների համար։ 
+
+### DeleteNode
+
+```c#
+public Task<TreeNode> DeleteNode(string treeID, 
+                                 string key)
+```
+
+Հեռացնում է ծառի հանգույցը տվյալների պահոցից։
+
+**Պարամետրեր**
+
+* `treeID` - Ծառի ներքին անունը։
+* `key` - Ծառի հանգույցի կոդը։
+
+### EditNode
+
+```c#
+public Task<List<TreeNode>> EditNode(TreeElement treeElement)
+```
+
+Խմբագրում է ծառի հանգույցը և գրանցում տվյալների պահոցում։
+
+**Պարամետրեր**
+
+* `treeElement` - [Ծառի տարրը](../types/TreeElement.md)։
+
+### ExistsInDB
+
+```c#
+public Task<bool> ExistsInDB(string treeId, string key)
+```
+
+Ստուգում է ծառի հանգույցի առկայությունը տվյալների պահոցում։
+
+**Պարամետրեր**
+
+* `treeId` - Ծառի ներքին անունը։
+* `key` - Ծառի հանգույցի կոդը։
+
+### Get
+
+```c#
+public Task<TreeElement> Get(string treeId, string key, bool useCache = true)
+```
+
+Բեռնում է [ծառի տարրը](../types/TreeElement.md) տվյալների պահոցից կամ քեշից, եթե ծառը քեշավոևվող է։
+
+**Պարամետրեր**
+
+* `treeId` - Ծառի ներքին անունը։
+* `key` - Ծառի հանգույցի կոդը։
+* `useCache` - Քեշում առկայության դեպքում քեշից բեռնման հայտանիշ։
+
+### GetTreeElements
+
+```c#
+public Task<Dictionary<string, TreeElement>> GetTreeElements(string treeId, 
+                                                             string nodeType = null, 
+                                                             string key = null, 
+                                                             CacheUsage cacheUsage = CacheUsage.Use);
+```
+
+Վերադարձնում է ծառի տարրերը տվյալների պահոցից կամ քեշից, եթե ծառը քեշավորվող է։  
+Վերադարձվող Dictionary-ում որպես բանալի հանդես է գալիս ծառի հանգույցի կոդը։
+
+**Պարամետրեր**
+
+* `treeId` - Ծառի ներքին անունը։
+* `nodeType` - Ծառի հանգույցի տեսակը՝  
+    `"0"` - Բեռնել միայն տերևները։  
+    `"1"` - Բեռնել միայն ոչ տերևները։  
+* `key` - Ծառի հանգույցի կոդը։
+* `cacheUsage` - Քեշում հանգույցի նկարագրության առկայության դեպքում քեշից բեռնման հայտանիշ։ 
 
 <!-- ### CheckAndLoadIfNeeded
 

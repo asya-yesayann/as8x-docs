@@ -63,7 +63,7 @@ protected override bool ProcessRow(DataSourceArgs<Param> args, DataRow row, SqlD
 
 Ներկայացված է տվյալների աղբյուրի տողերի ֆիլտրացիայի օրինակ՝ վերջնական տողերի ցուցակում ընդգրկվում են այն տողերը, որտեղ ստուգվում է տարիքը։
 
-reader-ից տողերը կարդալը առավել արագացնելու համար կարելի է [AfterExecuteSQLCommand](../definitions.md#afterexecutesqlcommand) մեթոդում ստանալ reader-ի մեջ հարկավոր դիրքերը։
+reader-ից տողերը կարդալը առավել արագացնելու համար կարելի է [AfterExecuteSQLCommand](ds.md#afterexecutesqlcommand) մեթոդում ստանալ reader-ի մեջ հարկավոր դիրքերը։
 
 ```c#
 private int ageOrdinal;

@@ -12,7 +12,7 @@ sublinks:
 
 ITemplateSubstitutionService, IMailService, PostBeforeCommit օգտագործման օրինակ։
 
-Հետևյալ օրինակում մշակված է փաստաթղթի ընդլայնման [PostBeforeCommit](../../extensions/definitions/document_extender.md#postbeforecommit) իրադարձության մշակիչը, որը կանչվում է փաստաթղթի տվյալների պահոցում գրանցվելուց անմիջապես հետո, այդ փաստաթղթի համար հաշվարկվում է [տպելու ձևանմուշի լրացվող արժեքները](ITemplateSubstitutionService.md#getreadytemplatesubstitution), [լրացնում](ITemplateSubstitutionService.md#loadsubstituteandgetcontent) է նախապես որոշված HTML ձևանմուշում, ապա ստեղծում է էլ.նամակ որի մարիմը ձևավորված HTML-ն է և [ուղարկվում](#sendmail) է այն փաստաթուղթը ստեղծողի էլեկտրոնային հասցեին։
+Հետևյալ օրինակում մշակված է փաստաթղթի ընդլայնման [PostBeforeCommit](../../extensions/definitions/document_extender.md#postbeforecommit) իրադարձության մշակիչը, որը կանչվում է փաստաթղթի տվյալների պահոցում գրանցվելուց անմիջապես հետո, այդ փաստաթղթի համար հաշվարկվում է [տպելու ձևանմուշի լրացվող արժեքները](../services/ITemplateSubstitutionService.md#getreadytemplatesubstitution), [լրացնում](../services/ITemplateSubstitutionService.md#loadsubstituteandgetcontent) է նախապես որոշված HTML ձևանմուշում, ապա ստեղծում է էլ.նամակ որի մարիմը ձևավորված HTML-ն է և [ուղարկվում](../services/IMailService.md#sendmail) է այն փաստաթուղթը ստեղծողի էլեկտրոնային հասցեին։
 
 ```c#
 public override async Task PostBeforeCommit(Document document, BeforeCommitEventArgs args)
