@@ -1,6 +1,19 @@
 ---
-title: "IMailService սերվիս"
+layout: page
+title: "IMailService սերվիս" 
+tags: email
+sublinks:
+- { title: "DBMailService, MailKitMailService", ref: ներածություն }
+- { title: "SendMail", ref: sendmail }
 ---
+
+## Բովանդակություն
+
+- [Ներածություն](#ներածություն)
+- [Մեթոդներ](#մեթոդներ)
+  - [SendMail](#sendmail)
+- [Օրինակ](#օրինակ)
+
 
 ## Ներածություն
 
@@ -15,6 +28,15 @@ IMailService ինտերֆեյսը նախատեսված է էլեկտրոնայի
 
 ## Մեթոդներ
 
-| Անվանում | Նկարագրություն |
-|----------|----------------|
-| [SendMail](IMailService/SendMail.md) | Ուղարկում է էլեկտրոնային նամակ (email) ըստ `args` տվյալների։ |
+### SendMail
+
+```c#
+public Task SendMail(MailArgs args)
+```
+
+Ուղարկում է էլեկտրոնային նամակ (email) ըստ `args` տվյալների։
+
+**Պարամետրեր**
+
+* `args` - [Էլ. նամակի տվյալներ](../types/MailArgs.md)։
+

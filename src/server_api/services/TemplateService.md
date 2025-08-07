@@ -1,6 +1,32 @@
 ---
-title: "TemplateService սերվիս"
+layout: page
+title: "TemplateService սերվիս" 
+sublinks:
+- { title: "ExistsTemplate", ref: existstemplate }
+- { title: "GetDefinition", ref: getdefinition }
+- { title: "GetTemplateNameAndType", ref: gettemplatenameandtype }
 ---
+
+[4XTemplateSubstitution]: https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Functions/TemplateSubstitution.html
+
+## Բովանդակություն
+
+- [Ներածություն](#ներածություն)
+  <!-- - [Copy](#copy) -->
+  <!-- - [Delete](#delete) -->
+  <!-- - [Edit](#edit) -->
+  - [ExistsTemplate](#existstemplate)
+  <!-- - [GetCount](#getcount) -->
+  <!-- - [GetDataGroups](#getdatagroups) -->
+  - [GetDefinition](#getdefinition)
+  <!-- - [GetFileContent](#getfilecontent) -->
+  <!-- - [GetMappingCount](#getmappingcount) -->
+  <!-- - [GetPrintDataGroups](#getprintdatagroups) -->
+  <!-- - [GetRowId](#getrowid) -->
+  - [GetTemplateNameAndType](#gettemplatenameandtype)
+  <!-- - [GetType](#gettype) -->
+  <!-- - [Store](#store) -->
+  <!-- - [UpdateDataGroups](#updatedatagroups) -->
 
 ## Ներածություն
 
@@ -237,24 +263,3 @@ public Task UpdateDataGroups(int rowId, string dataGroups)
 * `rowId` - Տպելու ձևանմուշի ներքին նույնականացման համար։
 * `dataGroups` - Տպելու ձևանմուշի տվյալների խմբերի անունները որպես տեքստ, որտեղ խմբերը անհրաժեշտ է իրարից տարանջատել ստորակետերով։ Օրինակ **TRN,TRNAMD**:
  -->
-
-## Մեթոդներ
-
-| Անվանում | Նկարագրություն |
-|----------|----------------|
-| [Delete](TemplateService/Delete.md) | Հեռացնում է տպելու ձևանմուշի նկարագրությունը տվյալների պահոցի `TEMPLATES` աղյուսակից՝ ըստ տպելու ձևանմուշի ներքին անվան և տիպի։ |
-| [Edit](TemplateService/Edit.md) | Խմբագրում է տվյալների պահոցի `TEMPLATES` աղյուսակում գոյություն ունեցող տպելու ձևանմուշի նկարագրությունը: |
-| [ExistsTemplate](TemplateService/ExistsTemplate.md) | Ստուգում է տպելու ձևանմուշի նկարագրության առկայությունը տվյալների պահոցի `TEMPLATES` աղյուսակում։ |
-| [GetDataGroups](TemplateService/GetDataGroups.md) | Վերադարձնում է տպելու ձևանմուշի տվյալների խմբերի անունները որպես տեքստ, որտեղ խմբերը իրարից տարանջատված են ստորակետերով։ |
-| [GetDefinition](TemplateService/GetDefinition.md) | Վերադարձնում է տպելու ձևանմուշի նկարագրությունը տվյալների պահոցի `TEMPLATES` աղյուսակից՝ ըստ տպելու ձևանմուշի ներքին անվան և տիպի։ |
-| [GetMappingCount](TemplateService/GetMappingCount.md) | Վերադարձնում է տպելու ձևանմուշին կապակցված փաստաթղթերի քանակը։ |
-| [GetPrintDataGroups](TemplateService/GetPrintDataGroups.md) | Վերադարձնում է նշված տեսակի փաստաթղթին կապակցված տպելու ձևանմուշների տվյալների խմբերի նկարագրությունների ցուցակը։ |
-| [GetRowId](TemplateService/GetRowId.md) | Վերադարձնում է տպելու ձևանմուշի ներքին նույնականացման համարը (rowId) տվյալների պահոցի `TEMPLATES` աղյուսակից՝ ըստ տպելու ձևանմուշի ներքին անվան և տիպի։ |
-| [GetTemplateNameAndType](TemplateService/GetTemplateNameAndType.md) | Բաժանում է `templateNameWithType` պարամետրում միավորված տպելու ձևանմուշի ներքին անունը (կոդը) և տիպը: |
-| [UpdateDataGroups](TemplateService/UpdateDataGroups.md) | Թարմացնում է տպելու ձևանմուշի տվյալների խմբերը։ |
-
-## Հատկություններ
-
-| Անվանում | Նկարագրություն |
-|----------|----------------|
-| [Store](TemplateService/Store.md) | Գրանցում է տպելու ձևանմուշի նկարագրությունը տվյալների պահոցի `TEMPLATES` աղյուսակում։ |

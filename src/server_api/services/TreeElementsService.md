@@ -1,6 +1,28 @@
 ---
-title: "TreeElementsService սերվիս"
+layout: page
+title: "TreeElementService սերվիս" 
+sublinks:
+- { title: "AddNode", ref: addnode }
+- { title: "DeleteNode", ref: deletenode }
+- { title: "EditNode", ref: editnode }
+- { title: "ExistsInDB", ref: existsindb }
+- { title: "Get", ref: get }
+- { title: "GetTreeElements", ref: gettreeelements }
 ---
+
+## Բովանդակություն
+- [Ներածություն](#ներածություն)
+- [Մեթոդներ](#մեթոդներ)
+  - [AddNode](#addnode)
+  <!-- - [CheckAndLoadIfNeeded](#checkandloadifneeded) -->
+  <!-- - [ClearOldsFromCache](#clearoldsfromcache) -->
+  - [DeleteNode](#deletenode)
+  - [EditNode](#editnode)
+  - [ExistsInDB](#existsindb)
+  - [Get](#get)
+  - [GetTreeElements](#gettreeelements)
+  <!-- - [Store](#store) -->
+
 
 ## Ներածություն
 
@@ -14,6 +36,7 @@ TreeElementService դասը նախատեսված է ծառի հանգույցն�
 
 ## Մեթոդներ
 
+<<<<<<< HEAD
 | Անվանում | Նկարագրություն |
 |----------|----------------|
 | [AddNode](TreeElementsService/AddNode.md) | Ավելացնում է ծառի նոր հանգույց տվյալների պահոցում։ |
@@ -22,6 +45,21 @@ TreeElementService դասը նախատեսված է ծառի հանգույցն�
 | [ExistsInDB](TreeElementsService/ExistsInDB.md) | Ստուգում է ծառի հանգույցի առկայությունը տվյալների պահոցում։ |
 | [Get](TreeElementsService/Get.md) | Բեռնում է [ծառի տարրը](../types/TreeElement.md) տվյալների պահոցից կամ քեշից, եթե ծառը քեշավոևվող է։ |
 | [GetTreeElements](TreeElementsService/GetTreeElements.md) | Վերադարձնում է ծառի տարրերը տվյալների պահոցից կամ քեշից, եթե ծառը քեշավորվող է։ |
+=======
+### AddNode
+
+```c#
+public Task<List<TreeNode>> AddNode(TreeElement treeElement, bool overwrite = false)
+```
+
+Ավելացնում է ծառի նոր հանգույց տվյալների պահոցում։
+
+**Պարամետրեր**
+
+* `treeElement` - [Ծառի տարր](../types/TreeElement.md)։
+* `overwrite` - Տվյալների պահոցում ծառի հանգույցի առկայության դեպքում հանգույցի վերագրանցման հայտանիշ։ 
+  Այս հնարավորությունը հասանելի է միայն փաստաթղթի հետ չկապակցված ծառի հանգույցների համար։ 
+>>>>>>> parent of 41db315 (Changed appearance of service methods/properties and moved to separate file for each one)
 
 <!-- ### CheckAndLoadIfNeeded
 
@@ -36,9 +74,15 @@ public Task<(bool, byte[], Dictionary<string, TreeElement>)> CheckAndLoadIfNeede
 **Պարամետրեր**
 
 * `treeID` - Ծառի ներքին անունը։
+<<<<<<< HEAD
 * `ts` -  
 
 ### ClearOldsFromCache
+=======
+* `ts` -  -->
+
+<!-- ### ClearOldsFromCache
+>>>>>>> parent of 41db315 (Changed appearance of service methods/properties and moved to separate file for each one)
 
 ```c#
 public static void ClearOldsFromCache(SqlConnection connection, string treeId = null)
@@ -49,9 +93,86 @@ public static void ClearOldsFromCache(SqlConnection connection, string treeId = 
 **Պարամետրեր**
 
 * `connection` - [SqlConnection](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlconnection?view=sqlclient-dotnet-standard-5.2) դեպի ծառը պարունակող տվյալների պահոց։
+<<<<<<< HEAD
 * `treeID` - Ծառի ներքին անունը։ 
 
 -->
+=======
+* `treeID` - Ծառի ներքին անունը։ -->
+
+### DeleteNode
+
+```c#
+public Task<TreeNode> DeleteNode(string treeID, string key)
+```
+
+Հեռացնում է ծառի հանգույցը տվյալների պահոցից։
+
+**Պարամետրեր**
+
+* `treeID` - Ծառի ներքին անունը։
+* `key` - Ծառի հանգույցի կոդը։
+
+### EditNode
+
+```c#
+public Task<List<TreeNode>> EditNode(TreeElement treeElement)
+```
+
+Խմբագրում է ծառի հանգույցը և գրանցում տվյալների պահոցում։
+
+**Պարամետրեր**
+
+* `treeElement` - [Ծառի տարրը](../types/TreeElement.md)։
+
+### ExistsInDB
+
+```c#
+public Task<bool> ExistsInDB(string treeId, string key)
+```
+
+Ստուգում է ծառի հանգույցի առկայությունը տվյալների պահոցում։
+
+**Պարամետրեր**
+
+* `treeId` - Ծառի ներքին անունը։
+* `key` - Ծառի հանգույցի կոդը։
+
+### Get
+
+```c#
+public Task<TreeElement> Get(string treeId, string key, bool useCache = true)
+```
+
+Բեռնում է [ծառի տարրը](../types/TreeElement.md) տվյալների պահոցից կամ քեշից, եթե ծառը քեշավոևվող է։
+
+**Պարամետրեր**
+
+* `treeId` - Ծառի ներքին անունը։
+* `key` - Ծառի հանգույցի կոդը։
+* `useCache` - Քեշում առկայության դեպքում քեշից բեռնման հայտանիշ։
+
+### GetTreeElements
+
+```c#
+public Task<Dictionary<string, TreeElement>> GetTreeElements(string treeId, 
+                                                             string nodeType = null, 
+                                                             string key = null, 
+                                                             CacheUsage cacheUsage = CacheUsage.Use);
+```
+
+Վերադարձնում է ծառի տարրերը տվյալների պահոցից կամ քեշից, եթե ծառը քեշավորվող է։  
+Վերադարձվող Dictionary-ում որպես բանալի հանդես է գալիս ծառի հանգույցի կոդը։
+
+**Պարամետրեր**
+
+* `treeId` - Ծառի ներքին անունը։
+* `nodeType` - Ծառի հանգույցի տեսակը՝  
+    `"0"` - Բեռնել միայն տերևները։  
+    `"1"` - Բեռնել միայն ոչ տերևները։  
+* `key` - Ծառի հանգույցի կոդը։
+* `cacheUsage` - Քեշում հանգույցի նկարագրության առկայության դեպքում քեշից բեռնման հայտանիշ։ 
+>>>>>>> parent of 41db315 (Changed appearance of service methods/properties and moved to separate file for each one)
 
 <!-- ### Store
 
