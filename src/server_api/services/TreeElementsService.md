@@ -34,18 +34,6 @@ TreeElementService դասը նախատեսված է ծառի հանգույցն�
 
 Ծառի հանգույցները պահվում են [TREES](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/Database/Trees.html) աղյուսակում։
 
-## Մեթոդներ
-
-<<<<<<< HEAD
-| Անվանում | Նկարագրություն |
-|----------|----------------|
-| [AddNode](TreeElementsService/AddNode.md) | Ավելացնում է ծառի նոր հանգույց տվյալների պահոցում։ |
-| [DeleteNode](TreeElementsService/DeleteNode.md) | Հեռացնում է ծառի հանգույցը տվյալների պահոցից։ |
-| [EditNode](TreeElementsService/EditNode.md) | Խմբագրում է ծառի հանգույցը և գրանցում տվյալների պահոցում։ |
-| [ExistsInDB](TreeElementsService/ExistsInDB.md) | Ստուգում է ծառի հանգույցի առկայությունը տվյալների պահոցում։ |
-| [Get](TreeElementsService/Get.md) | Բեռնում է [ծառի տարրը](../types/TreeElement.md) տվյալների պահոցից կամ քեշից, եթե ծառը քեշավոևվող է։ |
-| [GetTreeElements](TreeElementsService/GetTreeElements.md) | Վերադարձնում է ծառի տարրերը տվյալների պահոցից կամ քեշից, եթե ծառը քեշավորվող է։ |
-=======
 ### AddNode
 
 ```c#
@@ -59,7 +47,6 @@ public Task<List<TreeNode>> AddNode(TreeElement treeElement, bool overwrite = fa
 * `treeElement` - [Ծառի տարր](../types/TreeElement.md)։
 * `overwrite` - Տվյալների պահոցում ծառի հանգույցի առկայության դեպքում հանգույցի վերագրանցման հայտանիշ։ 
   Այս հնարավորությունը հասանելի է միայն փաստաթղթի հետ չկապակցված ծառի հանգույցների համար։ 
->>>>>>> parent of 41db315 (Changed appearance of service methods/properties and moved to separate file for each one)
 
 <!-- ### CheckAndLoadIfNeeded
 
@@ -74,31 +61,6 @@ public Task<(bool, byte[], Dictionary<string, TreeElement>)> CheckAndLoadIfNeede
 **Պարամետրեր**
 
 * `treeID` - Ծառի ներքին անունը։
-<<<<<<< HEAD
-* `ts` -  
-
-### ClearOldsFromCache
-=======
-* `ts` -  -->
-
-<!-- ### ClearOldsFromCache
->>>>>>> parent of 41db315 (Changed appearance of service methods/properties and moved to separate file for each one)
-
-```c#
-public static void ClearOldsFromCache(SqlConnection connection, string treeId = null)
-```
-
-Մաքրում է ծառի նկարագրությունը և հանգույցները քեշից։
-
-**Պարամետրեր**
-
-* `connection` - [SqlConnection](https://learn.microsoft.com/en-us/dotnet/api/microsoft.data.sqlclient.sqlconnection?view=sqlclient-dotnet-standard-5.2) դեպի ծառը պարունակող տվյալների պահոց։
-<<<<<<< HEAD
-* `treeID` - Ծառի ներքին անունը։ 
-
--->
-=======
-* `treeID` - Ծառի ներքին անունը։ -->
 
 ### DeleteNode
 
@@ -172,7 +134,6 @@ public Task<Dictionary<string, TreeElement>> GetTreeElements(string treeId,
     `"1"` - Բեռնել միայն ոչ տերևները։  
 * `key` - Ծառի հանգույցի կոդը։
 * `cacheUsage` - Քեշում հանգույցի նկարագրության առկայության դեպքում քեշից բեռնման հայտանիշ։ 
->>>>>>> parent of 41db315 (Changed appearance of service methods/properties and moved to separate file for each one)
 
 <!-- ### Store
 

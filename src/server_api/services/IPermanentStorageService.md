@@ -21,25 +21,6 @@ IPermanentStorageService դասը նախատեսված է ծրագրի աշխա�
 
 Կարգավորվում է [appsettings.json](../../project/appsettings_json.md) կոնֆիգուրացիոն ֆայլի [Storage](../../project/appsettings_json.md#storage) բաժնի `Permanent` ենթաբաժնում։
 
-<<<<<<< HEAD
-## Մեթոդներ
-
-| Անվանում | Նկարագրություն |
-|----------|----------------|
-| [GetBlobAsync](IPermanentStorageService/GetBlobAsync.md) | Վերադարձնում է ֆայլի պարունակությունը մշտական ֆայլերից պահոցից՝ որպես [Stream](https://learn.microsoft.com/en-us/dotnet/api/system.io.stream): |
-| [UploadBlobAsync](IPermanentStorageService/UploadBlobAsync.md) | Պահպանում է `value` պարամետրի պարունակությունը մշտական ֆայլերի պահոցում՝ նշված կոնտեյների նշված ֆայլում։ |
-| [UploadBlobAsync](IPermanentStorageService/UploadBlobAsync1.md) | Պահպանում է `value` պարամետրի պարունակությունը մշտական ֆայլերի պահոցի [Container](IStorageService/Container.md) հատկությամբ նշված թղթապանակում՝ `blobName` պարամետրում նշված ֆայլում։ |
-| [UploadBlobAsync](IPermanentStorageService/UploadBlobAsync2.md) | Պահպանում է `stream` պարամետրի պարունակությունը մշտական ֆայլերի պահոցում՝ նշված կոնտեյների նշված ֆայլում։ |
-| [UploadTempBlobAsync](IPermanentStorageService/UploadTempBlobAsync.md) | Պահպանում է `stream` պարամետրի պարունակությունը մշտական ֆայլերի պահոցի [Container](IStorageService/Container.md) հատկությամբ նշված թղթապանակում` տրված ընդլայնմամբ ֆայլում, որի անունը ձևավորվում է ավտոմատ։ |
-
-## Հատկություններ
-
-| Անվանում | Նկարագրություն |
-|----------|----------------|
-| [Container](IPermanentStorageService/Container.md) | Վերադարձնում կամ նշանակում է մշտական ֆայլերի պահպանման ընթացիկ թղթապանակը, որը հանդիսանում է մշտական ֆայլերի պահոցի ենթաթղթապանակ։ |
-| [DeleteBlobAsync](IPermanentStorageService/DeleteBlobAsync.md) | Հեռացնում է ֆայլը մշտական ֆայլերի պահոցից՝ ըստ անվան և կոնտեյների։ |
-| [DeleteBlobAsync](IPermanentStorageService/DeleteBlobAsync1.md) | Հեռացնում է ֆայլը մշտական ֆայլերի պահոցի [Container](IStorageService/Container.md) հատկությամբ նշված թղթապանակից։ |
-=======
 ## Հատկություններ
 
 ### Container
@@ -169,4 +150,3 @@ public Task<bool> UploadTempBlobAsync(string fileExtension, out string blobName,
 * `stream` - Ֆայլի պարունակությունը որպես [Stream](https://learn.microsoft.com/en-us/dotnet/api/system.io.stream):
 * `properties` - Ֆայլի հատկությունները։ 
 * `cancellationToken` - Ընդհատման օբյեկտ։
->>>>>>> parent of 41db315 (Changed appearance of service methods/properties and moved to separate file for each one)

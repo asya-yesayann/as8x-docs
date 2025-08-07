@@ -22,13 +22,6 @@ IErrorHandlingService դասը նախատեսված է ծրագրի աշխատա
 
 ## Մեթոդներ
 
-<<<<<<< HEAD
-| Անվանում | Նկարագրություն |
-|----------|----------------|
-| [GetSqlExceptionDetails](IErrorHandlingService/GetSqlExceptionDetails.md) | Վերադարձնում է `sqlException` պարամետրում պարունակվող SQL-ական ենթասխալների [մանրամասների](../types/ErrorDetail.md) ցուցակը։ |
-| [GetSqlExceptionText](IErrorHandlingService/GetSqlExceptionText.md) | Փորձում է ճանաչել SQL-ական սխալը և վերադարձնել վերջնական օգտագործողներին ավելի հասկանալի հաղորդագրություն։ |
-| [GetSqlRelatedException](IErrorHandlingService/GetSqlRelatedException.md) | Ձևափոխում է SQL-ական սխալը փոխելով հաղորդագրությունը տեքստը ըստ [GetSqlExceptionText](IErrorHandlingService/GetSqlExceptionText.md)-ի։ |
-=======
 ### GetSqlExceptionDetails
 
 ```c#        
@@ -82,4 +75,3 @@ public Exception GetSqlRelatedException(SqlException exception,
 **Օրինակ**
 
 Տե՛ս օգտագործման [օրինակը](../examples/IErrorHandlingService.md#օրինակ-2)։
->>>>>>> parent of 41db315 (Changed appearance of service methods/properties and moved to separate file for each one)
