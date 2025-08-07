@@ -4,7 +4,7 @@ title: DocumentExtender.PostTemplateSubstitutionEx(Document, TemplateSubstitutio
 
 ## Նկարագիր
 
-**Համարժեքը 4x-ում՝** [PostTemplateSubstitution]https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/DocExtenderEvents/PostTemplateSubstitution.html
+**Համարժեքը 4x-ում՝** [PostTemplateSubstitution](https://armsoft.github.io/as4x-docs/HTM/ProgrGuide/ScriptProcs/DocExtenderEvents/PostTemplateSubstitution.html)
 
 **Դաս՝** [DocumentExtender](../document_extender.md)
 
