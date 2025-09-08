@@ -945,9 +945,6 @@ public Task<Document> Load(int isn, GridLoadMode gridLoadMode = GridLoadMode.Ful
 
 {{site.data.constants.document.load_description}}
 
-Վերադարձնում է Փաստաթղթի օբյեկտը, եթե հայտնաբերվել է։  
-Եթե չի հայտնաբերվել առաջացնում է սխալ կամ վերադարձնում է **null** կախված `throwExceptionIfDeleted` պարամետրից։
-
 **Պարամետրեր**
 
 * `isn` - Բեռնվող փաստաթղթի ներքին նույնականացման համարը։
@@ -972,9 +969,6 @@ public Task<T> Load<T>(int isn, GridLoadMode gridLoadMode = GridLoadMode.Full,
 ```
 
 {{site.data.constants.document.load_description}}
-
-Վերադարձնում է Փաստաթղթի օբյեկտը, եթե հայտնաբերվել է։  
-Եթե չի հայտնաբերվել առաջացնում է սխալ կամ վերադարձնում է **null** կախված `throwExceptionIfDeleted` պարամետրից։
 
 **Պարամետրեր**
 
