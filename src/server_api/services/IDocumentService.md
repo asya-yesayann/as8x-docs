@@ -943,7 +943,7 @@ public Task<Document> Load(int isn, GridLoadMode gridLoadMode = GridLoadMode.Ful
                            Type instanceType = null, bool loadParents = false)
 ```
 
-Բեռնում է տվյալների պահոցում գոյություն ունեցող փաստաթուղթը ըստ ներքին նույնականացման համարի։
+{{site.data.constants.document.load_description}}
 
 Վերադարձնում է Փաստաթղթի օբյեկտը, եթե հայտնաբերվել է։  
 Եթե չի հայտնաբերվել առաջացնում է սխալ կամ վերադարձնում է **null** կախված `throwExceptionIfDeleted` պարամետրից։
@@ -971,7 +971,7 @@ public Task<T> Load<T>(int isn, GridLoadMode gridLoadMode = GridLoadMode.Full,
                        bool loadParents = false) where T : Document
 ```
 
-Բեռնում է տվյալների պահոցում գոյություն ունեցող փաստաթուղթը ըստ ներքին նույնականացման համարի։
+{{site.data.constants.document.load_description}}
 
 Վերադարձնում է Փաստաթղթի օբյեկտը, եթե հայտնաբերվել է։  
 Եթե չի հայտնաբերվել առաջացնում է սխալ կամ վերադարձնում է **null** կախված `throwExceptionIfDeleted` պարամետրից։
